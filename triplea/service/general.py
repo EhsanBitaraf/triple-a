@@ -1,8 +1,14 @@
 # https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=("Electronic+Health+Records"[Mesh])+AND+("National"[Title/Abstract])&retmode=json&retstart=${esearchresultRetstart}&retmax=10000
 
-
+# https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=${PMID.0}&retmode=xml
 import json
 import requests
+import xmltodict
+
+# from config.settings import ROOT,SETTINGS
+from triplea.config.settings import ROOT,SETTINGS
+from triplea.schemas.article import Article
+from triplea.service.persist import create_article
 
 def get_article_list():
     # api-endpoint
@@ -20,7 +26,7 @@ def get_article_list():
             }
     # sending get request and saving the response as response object
     r = requests.get(url = URL, params = PARAMS)
-    
+
     # extracting data in json format
     data = r.json()
     data1= json.dumps(r.json(), indent=4)
@@ -28,6 +34,23 @@ def get_article_list():
         outfile.write(data1)
 
     print(data1)
+
+def get_article_details(PMID):
+    URL = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?"
+    PARAMS = {'db': 'pubmed',
+            'id': PMID , 
+            'retmode':'xml' ,
+            }
+    r = requests.get(url = URL, params = PARAMS)
+    if r.status_code == 200:
+        xml = r.content
+        data_dict = xmltodict.parse(xml)
+        print(data_dict)
+        return data_dict
+    else:
+        raise Exception('Error')
+    
+
 
 def main():
     # Opening JSON file
@@ -40,10 +63,16 @@ def main():
     # Iterating through the json
     # list
     for i in data['esearchresult']['idlist']:
+        a = Article(PMID = i)
+        create_article(a)
         print(i)
     
     # Closing file
     f.close()
 
 if __name__ == '__main__':
-    main()
+    # main()
+    data = get_article_details('36702245')
+    json_data = json.dumps(data)
+    with open("data.json", "w") as json_file:
+        json_file.write(json_data)
