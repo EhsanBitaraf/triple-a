@@ -1,0 +1,14 @@
+{'header': {'type': 'esearch', 'version': '0.3'
+    }, 'esearchresult': {'count': '10953', 'retmax': '20', 'retstart': '40', 'idlist': ['36705946', '36705672', '36705447', '36702245', '36702164', '36700678', '36699740', '36697930', '36697470', '36696915', '36696219', '36696162', '36694916', '36694845', '36694142', '36693934', '36691692', '36691691', '36691690', '36691609'
+        ], 'translationset': [
+            {'from': 'ehr', 'to': '"Ethics Hum Res"[Journal:__jid101738005
+                ] OR "Environ Hist Rev"[Journal:__jid100967296
+                ] OR "ehr"[All Fields
+                ]'
+            }
+        ], 'querytranslation': '"ethics hum res"[Journal
+        ] OR "environ hist rev"[Journal
+        ] OR "ehr"[All Fields
+        ]'
+    }
+}
