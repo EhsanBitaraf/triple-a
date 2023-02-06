@@ -2,11 +2,814 @@
     "_default": {
         "1": {
             "PMID": "36705946",
-            "Title": null
+            "Title": null,
+            "OreginalArticle": {
+                "PubmedArticleSet": {
+                    "PubmedArticle": {
+                        "MedlineCitation": {
+                            "@Status": "PubMed-not-MEDLINE",
+                            "@Owner": "NLM",
+                            "PMID": {
+                                "@Version": "1",
+                                "#text": "36705946"
+                            },
+                            "DateRevised": {
+                                "Year": "2023",
+                                "Month": "02",
+                                "Day": "02"
+                            },
+                            "Article": {
+                                "@PubModel": "Electronic",
+                                "Journal": {
+                                    "ISSN": {
+                                        "@IssnType": "Print",
+                                        "#text": "2291-9694"
+                                    },
+                                    "JournalIssue": {
+                                        "@CitedMedium": "Print",
+                                        "Volume": "11",
+                                        "PubDate": {
+                                            "Year": "2023",
+                                            "Month": "Jan",
+                                            "Day": "27"
+                                        }
+                                    },
+                                    "Title": "JMIR medical informatics",
+                                    "ISOAbbreviation": "JMIR Med Inform"
+                                },
+                                "ArticleTitle": "Unique Device Identification-Based Linkage of Hierarchically Accessible Data Domains in Prospective Surgical Hospital Data Ecosystems: User-Centered Design Approach.",
+                                "Pagination": {
+                                    "StartPage": "e41614",
+                                    "MedlinePgn": "e41614"
+                                },
+                                "ELocationID": {
+                                    "@EIdType": "doi",
+                                    "@ValidYN": "Y",
+                                    "#text": "10.2196/41614"
+                                },
+                                "Abstract": {
+                                    "AbstractText": [
+                                        {
+                                            "@Label": "BACKGROUND",
+                                            "@NlmCategory": "BACKGROUND",
+                                            "#text": "The electronic health record (EHR) targets systematized collection of patient-specific, electronically stored health data. The EHR is an evolving concept driven by ongoing developments and open or unclear legal issues concerning medical technologies, cross-domain data integration, and unclear access roles. Consequently, an interdisciplinary discourse based on representative pilot scenarios is required to connect previously unconnected domains."
+                                        },
+                                        {
+                                            "@Label": "OBJECTIVE",
+                                            "@NlmCategory": "OBJECTIVE",
+                                            "#text": "We address cross-domain data integration including access control using the specific example of a unique device identification (UDI)-expanded hip implant. In fact, the integration of technical focus data into the hospital information system (HIS) is considered based on surgically relevant information. Moreover, the acquisition of social focus data based on mobile health (mHealth) is addressed, covering data integration and networking with therapeutic intervention and acute diagnostics data."
+                                        },
+                                        {
+                                            "@Label": "METHODS",
+                                            "@NlmCategory": "METHODS",
+                                            "#text": "In addition to the additive manufacturing of a hip implant with the integration of a UDI, we built a database that combines database technology and a wrapper layer known from extract, transform, load systems and brings it into a SQL database, WEB application programming interface (API) layer (back end), interface layer (rest API), and front end. It also provides semantic integration through connection mechanisms between data elements."
+                                        },
+                                        {
+                                            "@Label": "RESULTS",
+                                            "@NlmCategory": "RESULTS",
+                                            "#text": "A hip implant is approached by design, production, and verification while linking operation-relevant specifics like implant-bone fit by merging patient-specific image material (computed tomography, magnetic resonance imaging, or a biomodel) and the digital implant twin for well-founded selection pairing. This decision-facilitating linkage, which improves surgical planning, relates to patient-specific postoperative influencing factors during the healing phase. A unique product identification approach is presented, allowing a postoperative read-out with state-of-the-art hospital technology while enabling future access scenarios for patient and implant data. The latter was considered from the manufacturing perspective using the process manufacturing chain for a (patient-specific) implant to identify quality-relevant data for later access. In addition, sensor concepts were identified to use to monitor the patient-implant interaction during the healing phase using wearables, for example. A data aggregation and integration concept for heterogeneous data sources from the considered focus domains is also presented. Finally, a hierarchical data access concept is shown, protecting sensitive patient data from misuse using existing scenarios."
+                                        },
+                                        {
+                                            "@Label": "CONCLUSIONS",
+                                            "@NlmCategory": "CONCLUSIONS",
+                                            "#text": "Personalized medicine requires cross-domain linkage of data, which, in turn, require an appropriate data infrastructure and adequate hierarchical data access solutions in a shared and federated data space. The hip implant is used as an example for the usefulness of cross-domain data linkage since it bundles social, medical, and technical aspects of the implantation. It is necessary to open existing databases using interfaces for secure integration of data from end devices and to assure availability through suitable access models while guaranteeing long-term, independent data persistence. A suitable strategy requires the combination of technical solutions from the areas of identity and trust, federated data storage, cryptographic procedures, and software engineering as well as organizational changes."
+                                        }
+                                    ],
+                                    "CopyrightInformation": "\u00a9Karol Kozak, Andr\u00e9 Seidel, Nataliia Matvieieva, Constanze Neupetsch, Uwe Teicher, Gordon Lemme, Anas Ben Achour, Martin Barth, Steffen Ihlenfeldt, Welf-Guntram Drossel. Originally published in JMIR Medical Informatics (https://medinform.jmir.org), 27.01.2023."
+                                },
+                                "AuthorList": {
+                                    "@CompleteYN": "Y",
+                                    "Author": [
+                                        {
+                                            "@ValidYN": "Y",
+                                            "LastName": "Kozak",
+                                            "ForeName": "Karol",
+                                            "Initials": "K",
+                                            "Identifier": {
+                                                "@Source": "ORCID",
+                                                "#text": "0000-0002-2773-136X"
+                                            },
+                                            "AffiliationInfo": {
+                                                "Affiliation": "Center for Evidence-Based Healthcare, Technische Universit\u00e4t Dresden, Dresden, Germany."
+                                            }
+                                        },
+                                        {
+                                            "@ValidYN": "Y",
+                                            "LastName": "Seidel",
+                                            "ForeName": "Andr\u00e9",
+                                            "Initials": "A",
+                                            "Identifier": {
+                                                "@Source": "ORCID",
+                                                "#text": "0000-0002-9170-4833"
+                                            },
+                                            "AffiliationInfo": {
+                                                "Affiliation": "Fraunhofer Institute for Machine Tools and Forming Technology IWU, Dresden, Germany."
+                                            }
+                                        },
+                                        {
+                                            "@ValidYN": "Y",
+                                            "LastName": "Matvieieva",
+                                            "ForeName": "Nataliia",
+                                            "Initials": "N",
+                                            "Identifier": {
+                                                "@Source": "ORCID",
+                                                "#text": "0000-0002-3849-6262"
+                                            },
+                                            "AffiliationInfo": {
+                                                "Affiliation": "Fraunhofer Institute for Machine Tools and Forming Technology IWU, Dresden, Germany."
+                                            }
+                                        },
+                                        {
+                                            "@ValidYN": "Y",
+                                            "LastName": "Neupetsch",
+                                            "ForeName": "Constanze",
+                                            "Initials": "C",
+                                            "Identifier": {
+                                                "@Source": "ORCID",
+                                                "#text": "0000-0003-4950-8721"
+                                            },
+                                            "AffiliationInfo": [
+                                                {
+                                                    "Affiliation": "Fraunhofer Institute for Machine Tools and Forming Technology IWU, Dresden, Germany."
+                                                },
+                                                {
+                                                    "Affiliation": "Professorship for Adaptronics and Lightweight Design in Production, Technische Universit\u00e4t Chemnitz, Chemnitz, Germany."
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "@ValidYN": "Y",
+                                            "LastName": "Teicher",
+                                            "ForeName": "Uwe",
+                                            "Initials": "U",
+                                            "Identifier": {
+                                                "@Source": "ORCID",
+                                                "#text": "0000-0002-7061-4687"
+                                            },
+                                            "AffiliationInfo": {
+                                                "Affiliation": "Fraunhofer Institute for Machine Tools and Forming Technology IWU, Dresden, Germany."
+                                            }
+                                        },
+                                        {
+                                            "@ValidYN": "Y",
+                                            "LastName": "Lemme",
+                                            "ForeName": "Gordon",
+                                            "Initials": "G",
+                                            "Identifier": {
+                                                "@Source": "ORCID",
+                                                "#text": "0000-0002-8781-9179"
+                                            },
+                                            "AffiliationInfo": {
+                                                "Affiliation": "Fraunhofer Institute for Machine Tools and Forming Technology IWU, Dresden, Germany."
+                                            }
+                                        },
+                                        {
+                                            "@ValidYN": "Y",
+                                            "LastName": "Ben Achour",
+                                            "ForeName": "Anas",
+                                            "Initials": "A",
+                                            "Identifier": {
+                                                "@Source": "ORCID",
+                                                "#text": "0000-0001-7053-847X"
+                                            },
+                                            "AffiliationInfo": {
+                                                "Affiliation": "Fraunhofer Institute for Machine Tools and Forming Technology IWU, Dresden, Germany."
+                                            }
+                                        },
+                                        {
+                                            "@ValidYN": "Y",
+                                            "LastName": "Barth",
+                                            "ForeName": "Martin",
+                                            "Initials": "M",
+                                            "Identifier": {
+                                                "@Source": "ORCID",
+                                                "#text": "0000-0002-4685-7435"
+                                            },
+                                            "AffiliationInfo": {
+                                                "Affiliation": "Fraunhofer Institute for Ceramic Technologies and Systems IKTS, Dresden, Germany."
+                                            }
+                                        },
+                                        {
+                                            "@ValidYN": "Y",
+                                            "LastName": "Ihlenfeldt",
+                                            "ForeName": "Steffen",
+                                            "Initials": "S",
+                                            "Identifier": {
+                                                "@Source": "ORCID",
+                                                "#text": "0000-0002-9258-5178"
+                                            },
+                                            "AffiliationInfo": [
+                                                {
+                                                    "Affiliation": "Fraunhofer Institute for Machine Tools and Forming Technology IWU, Dresden, Germany."
+                                                },
+                                                {
+                                                    "Affiliation": "Chair of Machine Tools Development and Adaptive Controls, Technische Universit\u00e4t Dresden, Dresden, Germany."
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "@ValidYN": "Y",
+                                            "LastName": "Drossel",
+                                            "ForeName": "Welf-Guntram",
+                                            "Initials": "WG",
+                                            "Identifier": {
+                                                "@Source": "ORCID",
+                                                "#text": "0000-0002-8504-4584"
+                                            },
+                                            "AffiliationInfo": [
+                                                {
+                                                    "Affiliation": "Fraunhofer Institute for Machine Tools and Forming Technology IWU, Dresden, Germany."
+                                                },
+                                                {
+                                                    "Affiliation": "Professorship for Adaptronics and Lightweight Design in Production, Technische Universit\u00e4t Chemnitz, Chemnitz, Germany."
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                "Language": "eng",
+                                "PublicationTypeList": {
+                                    "PublicationType": {
+                                        "@UI": "D016428",
+                                        "#text": "Journal Article"
+                                    }
+                                },
+                                "ArticleDate": {
+                                    "@DateType": "Electronic",
+                                    "Year": "2023",
+                                    "Month": "01",
+                                    "Day": "27"
+                                }
+                            },
+                            "MedlineJournalInfo": {
+                                "Country": "Canada",
+                                "MedlineTA": "JMIR Med Inform",
+                                "NlmUniqueID": "101645109"
+                            },
+                            "KeywordList": {
+                                "@Owner": "NOTNLM",
+                                "Keyword": [
+                                    {
+                                        "@MajorTopicYN": "N",
+                                        "#text": "cyber-physical production systems"
+                                    },
+                                    {
+                                        "@MajorTopicYN": "N",
+                                        "#text": "data integration ecosystem"
+                                    },
+                                    {
+                                        "@MajorTopicYN": "N",
+                                        "#text": "electronic health record"
+                                    },
+                                    {
+                                        "@MajorTopicYN": "N",
+                                        "#text": "hierarchical data access"
+                                    },
+                                    {
+                                        "@MajorTopicYN": "N",
+                                        "#text": "mHealth"
+                                    },
+                                    {
+                                        "@MajorTopicYN": "N",
+                                        "#text": "shell embedded role model"
+                                    },
+                                    {
+                                        "@MajorTopicYN": "N",
+                                        "#text": "unique device identification"
+                                    }
+                                ]
+                            }
+                        },
+                        "PubmedData": {
+                            "History": {
+                                "PubMedPubDate": [
+                                    {
+                                        "@PubStatus": "received",
+                                        "Year": "2022",
+                                        "Month": "8",
+                                        "Day": "2"
+                                    },
+                                    {
+                                        "@PubStatus": "accepted",
+                                        "Year": "2022",
+                                        "Month": "11",
+                                        "Day": "24"
+                                    },
+                                    {
+                                        "@PubStatus": "revised",
+                                        "Year": "2022",
+                                        "Month": "11",
+                                        "Day": "23"
+                                    },
+                                    {
+                                        "@PubStatus": "entrez",
+                                        "Year": "2023",
+                                        "Month": "1",
+                                        "Day": "27",
+                                        "Hour": "11",
+                                        "Minute": "52"
+                                    },
+                                    {
+                                        "@PubStatus": "pubmed",
+                                        "Year": "2023",
+                                        "Month": "1",
+                                        "Day": "28",
+                                        "Hour": "6",
+                                        "Minute": "0"
+                                    },
+                                    {
+                                        "@PubStatus": "medline",
+                                        "Year": "2023",
+                                        "Month": "1",
+                                        "Day": "28",
+                                        "Hour": "6",
+                                        "Minute": "1"
+                                    }
+                                ]
+                            },
+                            "PublicationStatus": "epublish",
+                            "ArticleIdList": {
+                                "ArticleId": [
+                                    {
+                                        "@IdType": "pubmed",
+                                        "#text": "36705946"
+                                    },
+                                    {
+                                        "@IdType": "doi",
+                                        "#text": "10.2196/41614"
+                                    },
+                                    {
+                                        "@IdType": "pii",
+                                        "#text": "v11i1e41614"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            },
+            "State": 1
         },
         "2": {
             "PMID": "36705672",
-            "Title": null
+            "Title": null,
+            "OreginalArticle": {
+                "PubmedArticleSet": {
+                    "PubmedArticle": {
+                        "MedlineCitation": {
+                            "@Status": "Publisher",
+                            "@Owner": "NLM",
+                            "PMID": {
+                                "@Version": "1",
+                                "#text": "36705672"
+                            },
+                            "DateRevised": {
+                                "Year": "2023",
+                                "Month": "01",
+                                "Day": "27"
+                            },
+                            "Article": {
+                                "@PubModel": "Print-Electronic",
+                                "Journal": {
+                                    "ISSN": {
+                                        "@IssnType": "Electronic",
+                                        "#text": "1615-2573"
+                                    },
+                                    "JournalIssue": {
+                                        "@CitedMedium": "Internet",
+                                        "PubDate": {
+                                            "Year": "2023",
+                                            "Month": "Jan",
+                                            "Day": "27"
+                                        }
+                                    },
+                                    "Title": "Heart and vessels",
+                                    "ISOAbbreviation": "Heart Vessels"
+                                },
+                                "ArticleTitle": "Risk factor structure of heart failure in patients with cancer after treatment with anticancer agents' assessment by big data from a Japanese electronic health record.",
+                                "ELocationID": {
+                                    "@EIdType": "doi",
+                                    "@ValidYN": "Y",
+                                    "#text": "10.1007/s00380-023-02238-9"
+                                },
+                                "Abstract": {
+                                    "AbstractText": "As the prognosis of cancer patients has been improved, comorbidity of heart failure (HF) in cancer survivors is a serious concern, especially in the aged population. This study aimed to examine the risk factors of HF development after treatment by anticancer agents, using a machine learning-based analysis of a massive dataset obtained from the electronic health record (EHR) in Japan. This retrospective, cohort study, using a dataset from 2008 to 2017 in the Diagnosis Procedure Combination (DPC) database in Japan, enrolled 140,327 patients. The structure of risk factors was determined using multivariable analysis and classification and regression tree (CART) algorithm for time-to-event data. The mean follow-up period was 1.55\u00a0years. The prevalence of HF after anticancer agent administration were 4.0%. HF was more prevalent in the older than the younger. As the presence of cardiovascular diseases and various risk factors predicted HF, CART analysis of the risk factors revealed that the risk factor structures complicatedly differed among different age groups. The highest risk combination was hypertension, diabetes mellitus, and atrial fibrillation in the group aged \u2009\u2264\u200964\u00a0years, and the presence of ischemic heart disease was a key in both groups aged 65-74\u00a0years and 75\u2009\u2264\u2009years. The machine learning-based approach was able to develop complicated HF risk structures in cancer patients after anticancer agents in different age population, of which knowledge would be essential for realizing precision medicine to improve the prognosis of cancer patients.",
+                                    "CopyrightInformation": "\u00a9 2023. The Author(s)."
+                                },
+                                "AuthorList": {
+                                    "@CompleteYN": "Y",
+                                    "Author": [
+                                        {
+                                            "@ValidYN": "Y",
+                                            "LastName": "Nohara",
+                                            "ForeName": "Shoichiro",
+                                            "Initials": "S",
+                                            "AffiliationInfo": {
+                                                "Affiliation": "Division of Cardiovascular Medicine, Department of Internal Medicine, Kurume University School of Medicine, 67 Asahimachi, Kurume, 830- 0011, Japan."
+                                            }
+                                        },
+                                        {
+                                            "@ValidYN": "Y",
+                                            "LastName": "Ishii",
+                                            "ForeName": "Kazuo",
+                                            "Initials": "K",
+                                            "AffiliationInfo": {
+                                                "Affiliation": "Biostatistics Center, Kurume University, Kurume, Japan."
+                                            }
+                                        },
+                                        {
+                                            "@ValidYN": "Y",
+                                            "LastName": "Shibata",
+                                            "ForeName": "Tatsuhiro",
+                                            "Initials": "T",
+                                            "AffiliationInfo": {
+                                                "Affiliation": "Division of Cardiovascular Medicine, Department of Internal Medicine, Kurume University School of Medicine, 67 Asahimachi, Kurume, 830- 0011, Japan."
+                                            }
+                                        },
+                                        {
+                                            "@ValidYN": "Y",
+                                            "LastName": "Obara",
+                                            "ForeName": "Hitoshi",
+                                            "Initials": "H",
+                                            "AffiliationInfo": {
+                                                "Affiliation": "Biostatistics Center, Kurume University, Kurume, Japan."
+                                            }
+                                        },
+                                        {
+                                            "@ValidYN": "Y",
+                                            "LastName": "Miyamoto",
+                                            "ForeName": "Takanobu",
+                                            "Initials": "T",
+                                            "AffiliationInfo": {
+                                                "Affiliation": "Biostatistics Center, Kurume University, Kurume, Japan."
+                                            }
+                                        },
+                                        {
+                                            "@ValidYN": "Y",
+                                            "LastName": "Ueno",
+                                            "ForeName": "Takafumi",
+                                            "Initials": "T",
+                                            "AffiliationInfo": {
+                                                "Affiliation": "Division of Cardiovascular Medicine, Department of Internal Medicine, Kurume University School of Medicine, 67 Asahimachi, Kurume, 830- 0011, Japan."
+                                            }
+                                        },
+                                        {
+                                            "@ValidYN": "Y",
+                                            "LastName": "Kakuma",
+                                            "ForeName": "Tatsuyuki",
+                                            "Initials": "T",
+                                            "AffiliationInfo": {
+                                                "Affiliation": "Biostatistics Center, Kurume University, Kurume, Japan."
+                                            }
+                                        },
+                                        {
+                                            "@ValidYN": "Y",
+                                            "LastName": "Fukumoto",
+                                            "ForeName": "Yoshihiro",
+                                            "Initials": "Y",
+                                            "Identifier": {
+                                                "@Source": "ORCID",
+                                                "#text": "0000-0002-8947-109X"
+                                            },
+                                            "AffiliationInfo": {
+                                                "Affiliation": "Division of Cardiovascular Medicine, Department of Internal Medicine, Kurume University School of Medicine, 67 Asahimachi, Kurume, 830- 0011, Japan. fukumoto_yoshihiro@med.kurume-u.ac.jp."
+                                            }
+                                        }
+                                    ]
+                                },
+                                "Language": "eng",
+                                "PublicationTypeList": {
+                                    "PublicationType": {
+                                        "@UI": "D016428",
+                                        "#text": "Journal Article"
+                                    }
+                                },
+                                "ArticleDate": {
+                                    "@DateType": "Electronic",
+                                    "Year": "2023",
+                                    "Month": "01",
+                                    "Day": "27"
+                                }
+                            },
+                            "MedlineJournalInfo": {
+                                "Country": "Japan",
+                                "MedlineTA": "Heart Vessels",
+                                "NlmUniqueID": "8511258",
+                                "ISSNLinking": "0910-8327"
+                            },
+                            "CitationSubset": "IM",
+                            "KeywordList": {
+                                "@Owner": "NOTNLM",
+                                "Keyword": [
+                                    {
+                                        "@MajorTopicYN": "N",
+                                        "#text": "Anticancer agents"
+                                    },
+                                    {
+                                        "@MajorTopicYN": "N",
+                                        "#text": "Electronic health record"
+                                    },
+                                    {
+                                        "@MajorTopicYN": "N",
+                                        "#text": "Epidemiology"
+                                    },
+                                    {
+                                        "@MajorTopicYN": "N",
+                                        "#text": "Heart failure"
+                                    },
+                                    {
+                                        "@MajorTopicYN": "N",
+                                        "#text": "Machine learning"
+                                    }
+                                ]
+                            }
+                        },
+                        "PubmedData": {
+                            "History": {
+                                "PubMedPubDate": [
+                                    {
+                                        "@PubStatus": "received",
+                                        "Year": "2022",
+                                        "Month": "8",
+                                        "Day": "5"
+                                    },
+                                    {
+                                        "@PubStatus": "accepted",
+                                        "Year": "2023",
+                                        "Month": "1",
+                                        "Day": "18"
+                                    },
+                                    {
+                                        "@PubStatus": "entrez",
+                                        "Year": "2023",
+                                        "Month": "1",
+                                        "Day": "27",
+                                        "Hour": "11",
+                                        "Minute": "12"
+                                    },
+                                    {
+                                        "@PubStatus": "pubmed",
+                                        "Year": "2023",
+                                        "Month": "1",
+                                        "Day": "28",
+                                        "Hour": "6",
+                                        "Minute": "0"
+                                    },
+                                    {
+                                        "@PubStatus": "medline",
+                                        "Year": "2023",
+                                        "Month": "1",
+                                        "Day": "28",
+                                        "Hour": "6",
+                                        "Minute": "0"
+                                    }
+                                ]
+                            },
+                            "PublicationStatus": "aheadofprint",
+                            "ArticleIdList": {
+                                "ArticleId": [
+                                    {
+                                        "@IdType": "pubmed",
+                                        "#text": "36705672"
+                                    },
+                                    {
+                                        "@IdType": "doi",
+                                        "#text": "10.1007/s00380-023-02238-9"
+                                    },
+                                    {
+                                        "@IdType": "pii",
+                                        "#text": "10.1007/s00380-023-02238-9"
+                                    }
+                                ]
+                            },
+                            "ReferenceList": {
+                                "Reference": [
+                                    {
+                                        "Citation": "Mayer DK, Nasso SF, Earp JA (2017) Defining cancer survivors, their needs, and perspectives on survivorship health care in the USA. Lancet Oncol 18:e11\u2013e18",
+                                        "ArticleIdList": {
+                                            "ArticleId": {
+                                                "@IdType": "doi",
+                                                "#text": "10.1016/S1470-2045(16)30573-3"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "Citation": "Takahashi M (2016) Cancer survivorship: current status of research, care, and policy in Japan. Jpn J Clin Oncol 46:599\u2013604",
+                                        "ArticleIdList": {
+                                            "ArticleId": {
+                                                "@IdType": "doi",
+                                                "#text": "10.1093/jjco/hyw057"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "Citation": "Abe R, Sakata Y, Nochioka K, Miura M, Oikawa T, Kasahara S, Sato M, Aoyanagi H, Shiroto T, Sugimura K, Takahashi J, Miyata S, Shimokawa H, Investigators C (2019) Gender differences in prognostic relevance of self-care behaviors on mortality and hospitalization in patients with heart failure\u2014a report from the CHART-2 Study. J Cardiol 73:370\u2013378",
+                                        "ArticleIdList": {
+                                            "ArticleId": {
+                                                "@IdType": "doi",
+                                                "#text": "10.1016/j.jjcc.2018.11.006"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "Citation": "Yancy CW, Jessup M, Bozkurt B, Butler J, Casey DE Jr, Colvin MM, Drazner MH, Filippatos GS, Fonarow GC, Givertz MM, Hollenberg SM, Lindenfeld J, Masoudi FA, McBride PE, Peterson PN, Stevenson LW, Westlake C (2017) 2017 ACC/AHA/HFSA focused update of the 2013 ACCF/AHA guideline for the management of heart failure: a report of the American college of cardiology/American heart association task force on clinical practice guidelines and the heart failure society of America. J Am Coll Cardiol 70:776\u2013803",
+                                        "ArticleIdList": {
+                                            "ArticleId": {
+                                                "@IdType": "doi",
+                                                "#text": "10.1016/j.jacc.2017.04.025"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "Citation": "Minami M, Matsumoto S, Horiuchi H (2010) Cardiovascular side-effects of modern cancer therapy. Circ J 74:1779\u20131786",
+                                        "ArticleIdList": {
+                                            "ArticleId": {
+                                                "@IdType": "doi",
+                                                "#text": "10.1253/circj.CJ-10-0632"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "Citation": "Bonsu J, Charles L, Guha A, Awan F, Woyach J, Yildiz V, Wei L, Jneid H, Addison D (2019) Representation of patients with cardiovascular disease in pivotal cancer clinical trials. Circulation 139:2594\u20132596",
+                                        "ArticleIdList": {
+                                            "ArticleId": {
+                                                "@IdType": "doi",
+                                                "#text": "10.1161/CIRCULATIONAHA.118.039180"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "Citation": "Slamon DJ, Leyland-Jones B, Shak S, Fuchs H, Paton V, Bajamonde A, Fleming T, Eiermann W, Wolter J, Pegram M, Baselga J, Norton L (2001) Use of chemotherapy plus a monoclonal antibody against HER2 for metastatic breast cancer that overexpresses HER2. N Engl J Med 344:783\u2013792",
+                                        "ArticleIdList": {
+                                            "ArticleId": {
+                                                "@IdType": "doi",
+                                                "#text": "10.1056/NEJM200103153441101"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "Citation": "Swain SM, Whaley FS, Ewer MS (2003) Congestive heart failure in patients treated with doxorubicin: a retrospective analysis of three trials. Cancer 97:2869\u20132879",
+                                        "ArticleIdList": {
+                                            "ArticleId": {
+                                                "@IdType": "doi",
+                                                "#text": "10.1002/cncr.11407"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "Citation": "Zamorano JL, Lancellotti P, Rodriguez Munoz D, Aboyans V, Asteggiano R, Galderisi M, Habib G, Lenihan DJ, Lip GY, Lyon AR, Lopez Fernandez T, Mohty D, Piepoli MF, Tamargo J, Torbicki A, Suter TM, Zamorano JL, Aboyans V, Achenbach S, Agewall S, Badimon L, Baron-Esquivias G, Baumgartner H, Bax JJ, Bueno H, Carerj S, Dean V, Erol C, Fitzsimons D, Gaemperli O, Kirchhof P, Kolh P, Lancellotti P, Lip GY, Nihoyannopoulos P, Piepoli MF, Ponikowski P, Roffi M, Torbicki A, Vaz Carneiro A, Windecker S, Authors/Task Force Members; ESC Committee for Practice Guidelines (CPG); Document Reviewers (2017) 2016 ESC Position Paper on cancer treatments and cardiovascular toxicity developed under the auspices of the ESC committee for practice guidelines: the task force for cancer treatments and cardiovascular toxicity of the european society of cardiology (ESC). Eur J Heart Fail 19:9\u201342",
+                                        "ArticleIdList": {
+                                            "ArticleId": {
+                                                "@IdType": "doi",
+                                                "#text": "10.1002/ejhf.654"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "Citation": "Ihaka R, Gentleman R (1996) R: a language for data analysis and graphics. J Comput Graph Stat 5:299\u2013314"
+                                    },
+                                    {
+                                        "Citation": "Cleves M, Gould W, Gutierrez R, Marchenko Y (2010) An Introduction to Survival Analysis Using Stata, Third, Edition. Stata Press College Station, TX, USA, pp 365\u2013391"
+                                    },
+                                    {
+                                        "Citation": "Zhang H, Holford T, Bracken MB (1996) A tree-based method of analysis for prospective studies. Stat Med 15:37\u201349",
+                                        "ArticleIdList": {
+                                            "ArticleId": {
+                                                "@IdType": "doi",
+                                                "#text": "10.1002/(SICI)1097-0258(19960115)15:1<37::AID-SIM144>3.0.CO;2-0"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "Citation": "Zhang HP, Bracken MB (1995) A tree-based risk factor analysis of preterm delivery and small for gestational age birth. Am J Epidemiol 141:70\u201378",
+                                        "ArticleIdList": {
+                                            "ArticleId": {
+                                                "@IdType": "doi",
+                                                "#text": "10.1093/oxfordjournals.aje.a117347"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "Citation": "Ziaeian B, Fonarow GC (2016) Epidemiology and aetiology of heart failure. Nat Rev Cardiol 13:368\u2013378",
+                                        "ArticleIdList": {
+                                            "ArticleId": {
+                                                "@IdType": "doi",
+                                                "#text": "10.1038/nrcardio.2016.25"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "Citation": "Putten Wv (2006) CART: Stata module to perform Classification And Regression Tree analysis. In: Statistical Software Components from Boston College Department of Economics"
+                                    },
+                                    {
+                                        "Citation": "Okura Y, Ramadan MM, Ohno Y, Mitsuma W, Tanaka K, Ito M, Suzuki K, Tanabe N, Kodama M, Aizawa Y (2008) Impending epidemic: future projection of heart failure in Japan to the year 2055. Circ J 72:489\u2013491",
+                                        "ArticleIdList": {
+                                            "ArticleId": {
+                                                "@IdType": "doi",
+                                                "#text": "10.1253/circj.72.489"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "Citation": "Hunt SA, Abraham WT, Chin MH, Feldman AM, Francis GS, Ganiats TG, Jessup M, Konstam MA, Mancini DM, Michl K, Oates JA, Rahko PS, Silver MA, Stevenson LW, Yancy CW, American College of Cardiology Foundation; American Heart Association (2009) 2009 Focused update incorporated into the ACC/AHA 2005 guidelines for the diagnosis and management of heart failure in adults a report of the American college of cardiology foundation/American heart association task force on practice guidelines developed in collaboration with the international society for heart and lung transplantation. J Am Coll Cardiol 53:e1\u2013e90",
+                                        "ArticleIdList": {
+                                            "ArticleId": {
+                                                "@IdType": "doi",
+                                                "#text": "10.1016/j.jacc.2008.11.013"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "Citation": "Masson R, Titievsky L, Corley DA, Zhao W, Lopez AR, Schneider J, Zaroff JG (2019) Incidence rates of cardiovascular outcomes in a community-based population of cancer patients. Cancer Med 8:7913\u20137923",
+                                        "ArticleIdList": {
+                                            "ArticleId": {
+                                                "@IdType": "doi",
+                                                "#text": "10.1002/cam4.2657"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "Citation": "Choy CK, Rodgers JE, Nappi JM, Haines ST (2008) Type 2 diabetes mellitus and heart failure. Pharmacotherapy 28:170\u2013192",
+                                        "ArticleIdList": {
+                                            "ArticleId": {
+                                                "@IdType": "doi",
+                                                "#text": "10.1592/phco.28.2.170"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "Citation": "Kostis JB, Davis BR, Cutler J, Grimm RH Jr, Berge KG, Cohen JD, Lacy CR, Perry HM Jr, Blaufox MD, Wassertheil-Smoller S, Black HR, Schron E, Berkson DM, Curb JD, Smith WM, McDonald R, Applegate WB (1997) Prevention of heart failure by antihypertensive drug treatment in older persons with isolated systolic hypertension. SHEP Cooperative Res Group JAMA 278:212\u2013216"
+                                    },
+                                    {
+                                        "Citation": "Anker SD, Doehner W, Rauchhaus M, Sharma R, Francis D, Knosalla C, Davos CH, Cicoira M, Shamim W, Kemp M, Segal R, Osterziel KJ, Leyva F, Hetzer R, Ponikowski P, Coats AJ (2003) Uric acid and survival in chronic heart failure: validation and application in metabolic, functional, and hemodynamic staging. Circulation 107:1991\u20131997",
+                                        "ArticleIdList": {
+                                            "ArticleId": {
+                                                "@IdType": "doi",
+                                                "#text": "10.1161/01.CIR.0000065637.10517.A0"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "Citation": "Sakata Y, Shimokawa H (2013) Epidemiology of heart failure in Asia. Circ J 77:2209\u20132217",
+                                        "ArticleIdList": {
+                                            "ArticleId": {
+                                                "@IdType": "doi",
+                                                "#text": "10.1253/circj.CJ-13-0971"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "Citation": "Schnabel RB, Sullivan LM, Levy D, Pencina MJ, Massaro JM, D\u2019Agostino RB Sr, Newton-Cheh C, Yamamoto JF, Magnani JW, Tadros TM, Kannel WB, Wang TJ, Ellinor PT, Wolf PA, Vasan RS, Benjamin EJ (2009) Development of a risk score for atrial fibrillation (Framingham Heart Study): a community-based cohort study. Lancet 373:739\u2013745",
+                                        "ArticleIdList": {
+                                            "ArticleId": {
+                                                "@IdType": "doi",
+                                                "#text": "10.1016/S0140-6736(09)60443-8"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "Citation": "Shiba N, Nochioka K, Miura M, Kohno H, Shimokawa H, Investigators C (2011) Trend of westernization of etiology and clinical characteristics of heart failure patients in Japan\u2013first report from the CHART-2 study. Circ J 75:823\u2013833",
+                                        "ArticleIdList": {
+                                            "ArticleId": {
+                                                "@IdType": "doi",
+                                                "#text": "10.1253/circj.CJ-11-0135"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "Citation": "Tsutsui H, Tsuchihashi-Makaya M, Kinugawa S, Goto D, Takeshita A, Investigators J-G (2007) Characteristics and outcomes of patients with heart failure in general practices and hospitals. Circ J 71:449\u2013454",
+                                        "ArticleIdList": {
+                                            "ArticleId": {
+                                                "@IdType": "doi",
+                                                "#text": "10.1253/circj.71.449"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "Citation": "Herrmann J, Lerman A, Sandhu NP, Villarraga HR, Mulvagh SL, Kohli M (2014) Evaluation and management of patients with heart disease and cancer: cardio-oncology. Mayo Clin Proc 89:1287\u20131306",
+                                        "ArticleIdList": {
+                                            "ArticleId": {
+                                                "@IdType": "doi",
+                                                "#text": "10.1016/j.mayocp.2014.05.013"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "Citation": "Pinder MC, Duan Z, Goodwin JS, Hortobagyi GN, Giordano SH (2007) Congestive heart failure in older women treated with adjuvant anthracycline chemotherapy for breast cancer. J Clin Oncol 25:3808\u20133815",
+                                        "ArticleIdList": {
+                                            "ArticleId": {
+                                                "@IdType": "doi",
+                                                "#text": "10.1200/JCO.2006.10.4976"
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            },
+            "State": 1
         },
         "3": {
             "PMID": "36705447",

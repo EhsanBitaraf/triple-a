@@ -2,14 +2,16 @@
 
 # https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=${PMID.0}&retmode=xml
 import json
+import time
 import requests
+import tinydb
 import xmltodict
 
 
 # from config.settings import ROOT,SETTINGS
 from triplea.config.settings import ROOT,SETTINGS
 from triplea.schemas.article import Article
-from triplea.service.persist import create_article, get_article_by_state
+from triplea.service.persist import create_article, get_article_by_state, update_article_by_pmid
 
 def get_article_list():
     # api-endpoint
@@ -79,6 +81,45 @@ if __name__ == '__main__':
     # with open("data.json", "w") as json_file:
     #     json_file.write(json_data)
 
-    a = get_article_by_state(None)
-    print(a)
+    la = get_article_by_state(None)
+    for a in la:
+        # print(type(a))
+        # print(a.__dict__)
+        # print(a.copy())
+        a = Article(**a.copy()) 
+        try:
+            status = a.State
+        except:
+            status = 0
+
+    
+        if status is None:
+            # oa = get_article_details(a.PMID)
+            # a.OreginalArticle = oa
+            # a.State = 0
+            # time.sleep(3)
+            # l = update_article_by_pmid(a , a.PMID)
+            # print(l)
+
+            pass
+        elif status == 0:
+            # oa = get_article_details(a.PMID)
+            # a.OreginalArticle = oa
+            # a.State = 1
+            # l = update_article_by_pmid(a , a.PMID)
+            # time.sleep(3)
+            pass
+        elif status == 1: # Extract Data
+            data = a.OreginalArticle
+            data = data['PubmedArticleSet']['PubmedArticle']['PubmedData']
+            
+            ArticleId = data['ArticleIdList']['ArticleId']
+            print(ArticleId)
+
+            a.Title =  data['MedlineCitation']['Article']['ArticleTitle']
+            pass
+        else:
+            pass
+
+    print(type(a))
     

@@ -18,7 +18,13 @@ class DB_TinyDB(DataBase):
     
     def get_article_by_state(self,state:int):
         q = Query()
-        return db.search(q.state == None)
+        
+        return self.db.search(q.Title == None)
+    
+    def update_article_by_pmid(self,article, pmid:str):
+        q = Query()
+        return self.db.update(article , q.PMID == pmid)
+
 
 
 

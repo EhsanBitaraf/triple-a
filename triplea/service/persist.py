@@ -7,3 +7,6 @@ def create_article(article:Article):
 
 def get_article_by_state(state:int):
     return db.get_article_by_state(state)
+
+def update_article_by_pmid(article,pmid:str):
+    return db.update_article_by_pmid(article,pmid)
