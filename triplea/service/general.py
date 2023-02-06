@@ -5,10 +5,11 @@ import json
 import requests
 import xmltodict
 
+
 # from config.settings import ROOT,SETTINGS
 from triplea.config.settings import ROOT,SETTINGS
 from triplea.schemas.article import Article
-from triplea.service.persist import create_article
+from triplea.service.persist import create_article, get_article_by_state
 
 def get_article_list():
     # api-endpoint
@@ -72,7 +73,12 @@ def main():
 
 if __name__ == '__main__':
     # main()
-    data = get_article_details('36702245')
-    json_data = json.dumps(data)
-    with open("data.json", "w") as json_file:
-        json_file.write(json_data)
+
+    # data = get_article_details('36702245')
+    # json_data = json.dumps(data)
+    # with open("data.json", "w") as json_file:
+    #     json_file.write(json_data)
+
+    a = get_article_by_state(None)
+    print(a)
+    
