@@ -4,6 +4,8 @@ Article Analysis Assistant
 
 # Use 
 
+## Setup
+
 ```
 python -m venv venv
 ```
@@ -24,6 +26,38 @@ poetry install
 ```
 poetry run python triplea/cli/main.py 
 ```
+
+
+## Functional Use
+
+get list of PMID in state 0
+```
+term = '("Electronic Health Records"[Mesh]) AND ("National"[Title/Abstract]) AND Iran'
+get_article_list_all_store_to_kg_rep(term)
+```
+
+move to state 1
+```
+move_state_forward(1)
+```
+
+
+get list of PMID in state 0 and save to file for debugginf use
+```
+    data = get_article_list(1, 10,'("Electronic Health Records"[Mesh]) AND ("National"[Title/Abstract])')
+    data = get_article_list(1, 10,'"Electronic Health Records"')
+    data1= json.dumps(data, indent=4)
+    with open("sample1.json", "w") as outfile:
+        outfile.write(data1)
+```
+
+open befor file for debuging use
+```
+    f = open('sample1.json')
+    data = json.load(f)
+    f.close()
+```
+
 
 # testing
 
@@ -48,3 +82,16 @@ poetry run pytest
 [Build and Test a Command Line Interface with Python, Poetry, Click, and pytest](https://dev.to/bowmanjd/build-a-command-line-interface-with-python-poetry-and-click-1f5k)
 
 [click](https://click.palletsprojects.com/en/8.1.x/)
+
+
+# MEDLINE®PubMed® XML Element Descriptions and their Attributes
+[THE ELEMENTS AND THEIR ATTRIBUTES IN PUBMEDARTICLESET](https://www.nlm.nih.gov/bsd/licensee/elements_descriptions.html)
+
+
+## useful link
+https://www.ncbi.nlm.nih.gov/books/NBK25500/
+
+
+https://www.ncbi.nlm.nih.gov/books/NBK25499/#chapter4.ESearch
+
+

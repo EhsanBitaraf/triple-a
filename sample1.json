@@ -1,0 +1,25 @@
+{
+    "header": {
+        "type": "esearch",
+        "version": "0.3"
+    },
+    "esearchresult": {
+        "count": "35505",
+        "retmax": "10",
+        "retstart": "1",
+        "idlist": [
+            "36745605",
+            "36745498",
+            "36745495",
+            "36745455",
+            "36744550",
+            "36744083",
+            "36744082",
+            "36743422",
+            "36743315",
+            "36741723"
+        ],
+        "translationset": [],
+        "querytranslation": "\"Electronic Health Records\"[All Fields]"
+    }
+}
