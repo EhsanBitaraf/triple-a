@@ -44,8 +44,8 @@ move_state_forward(1)
 
 get list of PMID in state 0 and save to file for debugginf use
 ```
-    data = get_article_list(1, 10,'("Electronic Health Records"[Mesh]) AND ("National"[Title/Abstract])')
-    data = get_article_list(1, 10,'"Electronic Health Records"')
+    data = get_article_list_from_pubmed(1, 10,'("Electronic Health Records"[Mesh]) AND ("National"[Title/Abstract])')
+    data = get_article_list_from_pubmed(1, 10,'"Electronic Health Records"')
     data1= json.dumps(data, indent=4)
     with open("sample1.json", "w") as outfile:
         outfile.write(data1)
@@ -58,6 +58,13 @@ open befor file for debuging use
     f.close()
 ```
 
+get one article from kg and save to file
+```
+    data = get_article_by_pmid('32434767')
+    data= json.dumps(data, indent=4)
+    with open("one-article.json", "w") as outfile:
+        outfile.write(data)
+```
 
 # testing
 

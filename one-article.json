@@ -1,0 +1,399 @@
+{
+    "Abstract": null,
+    "DOI": null,
+    "Journal": null,
+    "OreginalArticle": {
+        "PubmedArticleSet": {
+            "PubmedArticle": {
+                "MedlineCitation": {
+                    "@Status": "MEDLINE",
+                    "@VersionID": "2",
+                    "@Owner": "NLM",
+                    "PMID": {
+                        "@Version": "2",
+                        "#text": "32434767"
+                    },
+                    "DateCompleted": {
+                        "Year": "2020",
+                        "Month": "07",
+                        "Day": "13"
+                    },
+                    "DateRevised": {
+                        "Year": "2021",
+                        "Month": "01",
+                        "Day": "10"
+                    },
+                    "Article": {
+                        "@PubModel": "Print-Electronic",
+                        "Journal": {
+                            "ISSN": {
+                                "@IssnType": "Electronic",
+                                "#text": "1472-0213"
+                            },
+                            "JournalIssue": {
+                                "@CitedMedium": "Internet",
+                                "Volume": "37",
+                                "Issue": "7",
+                                "PubDate": {
+                                    "Year": "2020",
+                                    "Month": "Jul"
+                                }
+                            },
+                            "Title": "Emergency medicine journal : EMJ",
+                            "ISOAbbreviation": "Emerg Med J"
+                        },
+                        "ArticleTitle": "Iranian national COVID-19 electronic screening system: experience to share.",
+                        "Pagination": {
+                            "StartPage": "412",
+                            "EndPage": "413",
+                            "MedlinePgn": "412-413"
+                        },
+                        "ELocationID": {
+                            "@EIdType": "doi",
+                            "@ValidYN": "Y",
+                            "#text": "10.1136/emermed-2020-209806"
+                        },
+                        "AuthorList": {
+                            "@CompleteYN": "Y",
+                            "Author": [
+                                {
+                                    "@ValidYN": "Y",
+                                    "@EqualContrib": "Y",
+                                    "LastName": "Amir-Behghadami",
+                                    "ForeName": "Mehrdad",
+                                    "Initials": "M",
+                                    "Identifier": {
+                                        "@Source": "ORCID",
+                                        "#text": "0000-0001-6723-6438"
+                                    },
+                                    "AffiliationInfo": [
+                                        {
+                                            "Affiliation": "Iranian Center of Excellence in Health Management (IceHM), School of Management and Medical Informatics, Tabriz University of Medical Sciences, Tabriz, Iran Janati1382@gmail.com Behghadamim@tbzmed.ac.ir."
+                                        },
+                                        {
+                                            "Affiliation": "Student Research Committee (SRC), Tabriz University of Medical Sciences, Tabriz, Iran."
+                                        },
+                                        {
+                                            "Affiliation": "Tabriz Health Services Management Research Center, Health Management and Safety Promotion Research Institute, Tabriz University of Medical Sciences, Tabriz, Iran."
+                                        }
+                                    ]
+                                },
+                                {
+                                    "@ValidYN": "Y",
+                                    "@EqualContrib": "Y",
+                                    "LastName": "Janati",
+                                    "ForeName": "Ali",
+                                    "Initials": "A",
+                                    "Identifier": {
+                                        "@Source": "ORCID",
+                                        "#text": "0000-0003-4295-0824"
+                                    },
+                                    "AffiliationInfo": [
+                                        {
+                                            "Affiliation": "Iranian Center of Excellence in Health Management (IceHM), School of Management and Medical Informatics, Tabriz University of Medical Sciences, Tabriz, Iran Janati1382@gmail.com Behghadamim@tbzmed.ac.ir."
+                                        },
+                                        {
+                                            "Affiliation": "Tabriz Health Services Management Research Center, Health Management and Safety Promotion Research Institute, Tabriz University of Medical Sciences, Tabriz, Iran."
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        "Language": "eng",
+                        "PublicationTypeList": {
+                            "PublicationType": {
+                                "@UI": "D016422",
+                                "#text": "Letter"
+                            }
+                        },
+                        "ArticleDate": {
+                            "@DateType": "Electronic",
+                            "Year": "2020",
+                            "Month": "05",
+                            "Day": "19"
+                        }
+                    },
+                    "MedlineJournalInfo": {
+                        "Country": "England",
+                        "MedlineTA": "Emerg Med J",
+                        "NlmUniqueID": "100963089",
+                        "ISSNLinking": "1472-0205"
+                    },
+                    "CitationSubset": "IM",
+                    "MeshHeadingList": {
+                        "MeshHeading": [
+                            {
+                                "DescriptorName": {
+                                    "@UI": "D000073640",
+                                    "@MajorTopicYN": "N",
+                                    "#text": "Betacoronavirus"
+                                },
+                                "QualifierName": {
+                                    "@UI": "Q000472",
+                                    "@MajorTopicYN": "Y",
+                                    "#text": "pathogenicity"
+                                }
+                            },
+                            {
+                                "DescriptorName": {
+                                    "@UI": "D000086382",
+                                    "@MajorTopicYN": "N",
+                                    "#text": "COVID-19"
+                                }
+                            },
+                            {
+                                "DescriptorName": {
+                                    "@UI": "D018352",
+                                    "@MajorTopicYN": "N",
+                                    "#text": "Coronavirus Infections"
+                                },
+                                "QualifierName": [
+                                    {
+                                        "@UI": "Q000175",
+                                        "@MajorTopicYN": "Y",
+                                        "#text": "diagnosis"
+                                    },
+                                    {
+                                        "@UI": "Q000453",
+                                        "@MajorTopicYN": "N",
+                                        "#text": "epidemiology"
+                                    },
+                                    {
+                                        "@UI": "Q000517",
+                                        "@MajorTopicYN": "N",
+                                        "#text": "prevention & control"
+                                    },
+                                    {
+                                        "@UI": "Q000821",
+                                        "@MajorTopicYN": "N",
+                                        "#text": "virology"
+                                    }
+                                ]
+                            },
+                            {
+                                "DescriptorName": {
+                                    "@UI": "D059026",
+                                    "@MajorTopicYN": "Y",
+                                    "#text": "Diagnostic Self Evaluation"
+                                }
+                            },
+                            {
+                                "DescriptorName": {
+                                    "@UI": "D057286",
+                                    "@MajorTopicYN": "N",
+                                    "#text": "Electronic Health Records"
+                                },
+                                "QualifierName": {
+                                    "@UI": "Q000458",
+                                    "@MajorTopicYN": "Y",
+                                    "#text": "organization & administration"
+                                }
+                            },
+                            {
+                                "DescriptorName": {
+                                    "@UI": "D006801",
+                                    "@MajorTopicYN": "N",
+                                    "#text": "Humans"
+                                }
+                            },
+                            {
+                                "DescriptorName": {
+                                    "@UI": "D020407",
+                                    "@MajorTopicYN": "N",
+                                    "#text": "Internet"
+                                }
+                            },
+                            {
+                                "DescriptorName": {
+                                    "@UI": "D007492",
+                                    "@MajorTopicYN": "N",
+                                    "@Type": "Geographic",
+                                    "#text": "Iran"
+                                },
+                                "QualifierName": {
+                                    "@UI": "Q000453",
+                                    "@MajorTopicYN": "N",
+                                    "#text": "epidemiology"
+                                }
+                            },
+                            {
+                                "DescriptorName": {
+                                    "@UI": "D008403",
+                                    "@MajorTopicYN": "N",
+                                    "#text": "Mass Screening"
+                                },
+                                "QualifierName": {
+                                    "@UI": "Q000458",
+                                    "@MajorTopicYN": "Y",
+                                    "#text": "organization & administration"
+                                }
+                            },
+                            {
+                                "DescriptorName": {
+                                    "@UI": "D058873",
+                                    "@MajorTopicYN": "N",
+                                    "#text": "Pandemics"
+                                },
+                                "QualifierName": {
+                                    "@UI": "Q000517",
+                                    "@MajorTopicYN": "N",
+                                    "#text": "prevention & control"
+                                }
+                            },
+                            {
+                                "DescriptorName": {
+                                    "@UI": "D011024",
+                                    "@MajorTopicYN": "N",
+                                    "#text": "Pneumonia, Viral"
+                                },
+                                "QualifierName": [
+                                    {
+                                        "@UI": "Q000175",
+                                        "@MajorTopicYN": "Y",
+                                        "#text": "diagnosis"
+                                    },
+                                    {
+                                        "@UI": "Q000453",
+                                        "@MajorTopicYN": "N",
+                                        "#text": "epidemiology"
+                                    },
+                                    {
+                                        "@UI": "Q000517",
+                                        "@MajorTopicYN": "N",
+                                        "#text": "prevention & control"
+                                    },
+                                    {
+                                        "@UI": "Q000821",
+                                        "@MajorTopicYN": "N",
+                                        "#text": "virology"
+                                    }
+                                ]
+                            },
+                            {
+                                "DescriptorName": {
+                                    "@UI": "D000086402",
+                                    "@MajorTopicYN": "N",
+                                    "#text": "SARS-CoV-2"
+                                }
+                            },
+                            {
+                                "DescriptorName": {
+                                    "@UI": "D013689",
+                                    "@MajorTopicYN": "N",
+                                    "#text": "Telephone"
+                                }
+                            }
+                        ]
+                    },
+                    "KeywordList": {
+                        "@Owner": "NOTNLM",
+                        "Keyword": [
+                            {
+                                "@MajorTopicYN": "N",
+                                "#text": "infection"
+                            },
+                            {
+                                "@MajorTopicYN": "N",
+                                "#text": "infectious diseases"
+                            }
+                        ]
+                    },
+                    "CoiStatement": "Competing interests: None declared."
+                },
+                "PubmedData": {
+                    "History": {
+                        "PubMedPubDate": [
+                            {
+                                "@PubStatus": "accepted",
+                                "Year": "2020",
+                                "Month": "5",
+                                "Day": "5"
+                            },
+                            {
+                                "@PubStatus": "pubmed",
+                                "Year": "2020",
+                                "Month": "5",
+                                "Day": "22",
+                                "Hour": "6",
+                                "Minute": "0"
+                            },
+                            {
+                                "@PubStatus": "medline",
+                                "Year": "2020",
+                                "Month": "7",
+                                "Day": "14",
+                                "Hour": "6",
+                                "Minute": "0"
+                            },
+                            {
+                                "@PubStatus": "entrez",
+                                "Year": "2020",
+                                "Month": "5",
+                                "Day": "22",
+                                "Hour": "6",
+                                "Minute": "0"
+                            }
+                        ]
+                    },
+                    "PublicationStatus": "ppublish",
+                    "ArticleIdList": {
+                        "ArticleId": [
+                            {
+                                "@IdType": "pubmed",
+                                "#text": "32434767"
+                            },
+                            {
+                                "@IdType": "pmc",
+                                "#text": "PMC7276241"
+                            },
+                            {
+                                "@IdType": "doi",
+                                "#text": "10.1136/emermed-2020-209806"
+                            },
+                            {
+                                "@IdType": "pii",
+                                "#text": "emermed-2020-209806"
+                            }
+                        ]
+                    },
+                    "ReferenceList": {
+                        "Reference": [
+                            {
+                                "Citation": "Iranian Ministry of Health and Medical Education \nCOVID-19 daily epidemiology Journal. Available: http://corona.behdasht.gov.ir/files/site1/files/IRAN_COVID19_Factsheet_N.27___-19April_En.pdf"
+                            },
+                            {
+                                "Citation": "Amir-Behghadami M, Janati A. The importance of designing and implementing participatory surveillance system: an approach as early detection and prevention of novel coronavirus (2019-nCov). Am J Infect Control 2020. 10.1016/j.ajic.2020.03.013. [Epub ahead of print: 01 Apr 2020].",
+                                "ArticleIdList": {
+                                    "ArticleId": [
+                                        {
+                                            "@IdType": "doi",
+                                            "#text": "10.1016/j.ajic.2020.03.013"
+                                        },
+                                        {
+                                            "@IdType": "pmc",
+                                            "#text": "PMC7118640"
+                                        },
+                                        {
+                                            "@IdType": "pubmed",
+                                            "#text": "32247584"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "Citation": "Home to home program to be launched to combat COVID-19. Mehrnews 2020."
+                            },
+                            {
+                                "Citation": "Iranian Ministry of Health and Medical Education \nCOVID-19 daily epidemiology Journal. Available: http://corona.behdasht.gov.ir/files/site1/files/Factsheet_24-0126-En.pdf [Accessed 17 Apr 2020]."
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "PMID": "32434767",
+    "QueryTranslation": "\"Electronic Health Records\"[MeSH Terms] AND \"National\"[Title/Abstract] AND (\"iran\"[MeSH Terms] OR \"iran\"[All Fields])",
+    "State": 1,
+    "Title": null
+}

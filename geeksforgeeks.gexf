@@ -1,0 +1,1118 @@
+<?xml version='1.0' encoding='utf-8'?>
+<gexf xmlns="http://www.gexf.net/1.2draft" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.gexf.net/1.2draft http://www.gexf.net/1.2draft/gexf.xsd" version="1.2">
+  <meta lastmodifieddate="2023-02-07">
+    <creator>NetworkX 3.0</creator>
+  </meta>
+  <graph defaultedgetype="directed" mode="static" name="">
+    <attributes mode="static" class="edge">
+      <attribute id="1" title="Type" type="string" />
+    </attributes>
+    <attributes mode="static" class="node">
+      <attribute id="0" title="Type" type="string" />
+    </attributes>
+    <nodes>
+      <node id="36694161" label="36694161">
+        <attvalues>
+          <attvalue for="0" value="Article" />
+        </attvalues>
+      </node>
+      <node id="-7562007841860855368" label="-7562007841860855368">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+      <node id="3205377172359497382" label="3205377172359497382">
+        <attvalues>
+          <attvalue for="0" value="Affiliation" />
+        </attvalues>
+      </node>
+      <node id="-4279616519589059550" label="-4279616519589059550">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+      <node id="5726550028787706939" label="5726550028787706939">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+      <node id="4938719425918648695" label="4938719425918648695">
+        <attvalues>
+          <attvalue for="0" value="Affiliation" />
+        </attvalues>
+      </node>
+      <node id="4833082155198057496" label="4833082155198057496">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+      <node id="35773882" label="35773882">
+        <attvalues>
+          <attvalue for="0" value="Article" />
+        </attvalues>
+      </node>
+      <node id="8860862144097260332" label="8860862144097260332">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+      <node id="-3152852102956522370" label="-3152852102956522370">
+        <attvalues>
+          <attvalue for="0" value="Affiliation" />
+        </attvalues>
+      </node>
+      <node id="8460387946442708861" label="8460387946442708861">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+      <node id="4643833198456077496" label="4643833198456077496">
+        <attvalues>
+          <attvalue for="0" value="Affiliation" />
+        </attvalues>
+      </node>
+      <node id="-5529581172335851487" label="-5529581172335851487">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+      <node id="-3306650053478592232" label="-3306650053478592232">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+      <node id="1809409448729307957" label="1809409448729307957">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+      <node id="35421968" label="35421968">
+        <attvalues>
+          <attvalue for="0" value="Article" />
+        </attvalues>
+      </node>
+      <node id="-4667250220407545970" label="-4667250220407545970">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+      <node id="7431665006420863633" label="7431665006420863633">
+        <attvalues>
+          <attvalue for="0" value="Affiliation" />
+        </attvalues>
+      </node>
+      <node id="-2485333000267971769" label="-2485333000267971769">
+        <attvalues>
+          <attvalue for="0" value="Affiliation" />
+        </attvalues>
+      </node>
+      <node id="3643294268493340433" label="3643294268493340433">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+      <node id="1510086673467046354" label="1510086673467046354">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+      <node id="7005603178082695483" label="7005603178082695483">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+      <node id="4793767449244244073" label="4793767449244244073">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+      <node id="4442701995121746540" label="4442701995121746540">
+        <attvalues>
+          <attvalue for="0" value="Affiliation" />
+        </attvalues>
+      </node>
+      <node id="3310751297615581873" label="3310751297615581873">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+      <node id="-1550454227049962002" label="-1550454227049962002">
+        <attvalues>
+          <attvalue for="0" value="Affiliation" />
+        </attvalues>
+      </node>
+      <node id="34042657" label="34042657">
+        <attvalues>
+          <attvalue for="0" value="Article" />
+        </attvalues>
+      </node>
+      <node id="3425317625228234085" label="3425317625228234085">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+      <node id="3046370298919229533" label="3046370298919229533">
+        <attvalues>
+          <attvalue for="0" value="Affiliation" />
+        </attvalues>
+      </node>
+      <node id="3126224144733840532" label="3126224144733840532">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+      <node id="-899325197271783277" label="-899325197271783277">
+        <attvalues>
+          <attvalue for="0" value="Affiliation" />
+        </attvalues>
+      </node>
+      <node id="-2270467055097368353" label="-2270467055097368353">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+      <node id="-5171202033146745218" label="-5171202033146745218">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+      <node id="32434767" label="32434767">
+        <attvalues>
+          <attvalue for="0" value="Article" />
+        </attvalues>
+      </node>
+      <node id="3407080022076643065" label="3407080022076643065">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+      <node id="7200626047011771600" label="7200626047011771600">
+        <attvalues>
+          <attvalue for="0" value="Affiliation" />
+        </attvalues>
+      </node>
+      <node id="681488707588568397" label="681488707588568397">
+        <attvalues>
+          <attvalue for="0" value="Affiliation" />
+        </attvalues>
+      </node>
+      <node id="-343654591190956764" label="-343654591190956764">
+        <attvalues>
+          <attvalue for="0" value="Affiliation" />
+        </attvalues>
+      </node>
+      <node id="7829183749422595732" label="7829183749422595732">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+      <node id="32338358" label="32338358">
+        <attvalues>
+          <attvalue for="0" value="Article" />
+        </attvalues>
+      </node>
+      <node id="-4822287865048448752" label="-4822287865048448752">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+      <node id="2408825918282704170" label="2408825918282704170">
+        <attvalues>
+          <attvalue for="0" value="Affiliation" />
+        </attvalues>
+      </node>
+      <node id="-8018045460786922997" label="-8018045460786922997">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+      <node id="8365242212771839037" label="8365242212771839037">
+        <attvalues>
+          <attvalue for="0" value="Affiliation" />
+        </attvalues>
+      </node>
+      <node id="5359313783253654122" label="5359313783253654122">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+      <node id="-5290769476252407937" label="-5290769476252407937">
+        <attvalues>
+          <attvalue for="0" value="Affiliation" />
+        </attvalues>
+      </node>
+      <node id="-3799334449537717493" label="-3799334449537717493">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+      <node id="5665286801605654616" label="5665286801605654616">
+        <attvalues>
+          <attvalue for="0" value="Affiliation" />
+        </attvalues>
+      </node>
+      <node id="6054520862868604434" label="6054520862868604434">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+      <node id="8159202782024047635" label="8159202782024047635">
+        <attvalues>
+          <attvalue for="0" value="Affiliation" />
+        </attvalues>
+      </node>
+      <node id="-9088251056014966966" label="-9088251056014966966">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+      <node id="-8118852962167322189" label="-8118852962167322189">
+        <attvalues>
+          <attvalue for="0" value="Affiliation" />
+        </attvalues>
+      </node>
+      <node id="32271593" label="32271593">
+        <attvalues>
+          <attvalue for="0" value="Article" />
+        </attvalues>
+      </node>
+      <node id="-137725218364713916" label="-137725218364713916">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+      <node id="4317575347575005760" label="4317575347575005760">
+        <attvalues>
+          <attvalue for="0" value="Affiliation" />
+        </attvalues>
+      </node>
+      <node id="5021764505168357257" label="5021764505168357257">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+      <node id="-6389968464904699774" label="-6389968464904699774">
+        <attvalues>
+          <attvalue for="0" value="Affiliation" />
+        </attvalues>
+      </node>
+      <node id="8800348117292330513" label="8800348117292330513">
+        <attvalues>
+          <attvalue for="0" value="Affiliation" />
+        </attvalues>
+      </node>
+      <node id="9032798278811086323" label="9032798278811086323">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+      <node id="-781246573836976742" label="-781246573836976742">
+        <attvalues>
+          <attvalue for="0" value="Affiliation" />
+        </attvalues>
+      </node>
+      <node id="31625591" label="31625591">
+        <attvalues>
+          <attvalue for="0" value="Article" />
+        </attvalues>
+      </node>
+      <node id="6846216186940068111" label="6846216186940068111">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+      <node id="-2833603895052937495" label="-2833603895052937495">
+        <attvalues>
+          <attvalue for="0" value="Affiliation" />
+        </attvalues>
+      </node>
+      <node id="-8814732728489490264" label="-8814732728489490264">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+      <node id="-6366648545612934199" label="-6366648545612934199">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+      <node id="-1810077800676336488" label="-1810077800676336488">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+      <node id="31349247" label="31349247">
+        <attvalues>
+          <attvalue for="0" value="Article" />
+        </attvalues>
+      </node>
+      <node id="-3296783629559692797" label="-3296783629559692797">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+      <node id="5539648181967717777" label="5539648181967717777">
+        <attvalues>
+          <attvalue for="0" value="Affiliation" />
+        </attvalues>
+      </node>
+      <node id="-8998864153560615855" label="-8998864153560615855">
+        <attvalues>
+          <attvalue for="0" value="Affiliation" />
+        </attvalues>
+      </node>
+      <node id="7907166061618028092" label="7907166061618028092">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+      <node id="4017306862225313218" label="4017306862225313218">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+      <node id="6064453112082057883" label="6064453112082057883">
+        <attvalues>
+          <attvalue for="0" value="Affiliation" />
+        </attvalues>
+      </node>
+      <node id="274395641441363552" label="274395641441363552">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+      <node id="-2530555029270470551" label="-2530555029270470551">
+        <attvalues>
+          <attvalue for="0" value="Affiliation" />
+        </attvalues>
+      </node>
+      <node id="7413178930791529238" label="7413178930791529238">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+      <node id="2997230014172971387" label="2997230014172971387">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+      <node id="31272424" label="31272424">
+        <attvalues>
+          <attvalue for="0" value="Article" />
+        </attvalues>
+      </node>
+      <node id="-2763164067310571952" label="-2763164067310571952">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+      <node id="-4334331881616990833" label="-4334331881616990833">
+        <attvalues>
+          <attvalue for="0" value="Affiliation" />
+        </attvalues>
+      </node>
+      <node id="4414710521574039296" label="4414710521574039296">
+        <attvalues>
+          <attvalue for="0" value="Affiliation" />
+        </attvalues>
+      </node>
+      <node id="-7461451276780012513" label="-7461451276780012513">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+      <node id="-3035842110563611565" label="-3035842110563611565">
+        <attvalues>
+          <attvalue for="0" value="Affiliation" />
+        </attvalues>
+      </node>
+      <node id="-247553520233594605" label="-247553520233594605">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+      <node id="-2704389597478666457" label="-2704389597478666457">
+        <attvalues>
+          <attvalue for="0" value="Affiliation" />
+        </attvalues>
+      </node>
+      <node id="30408235" label="30408235">
+        <attvalues>
+          <attvalue for="0" value="Article" />
+        </attvalues>
+      </node>
+      <node id="-5721849153394829757" label="-5721849153394829757">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+      <node id="-5082807542070991122" label="-5082807542070991122">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+      <node id="5804387288900573649" label="5804387288900573649">
+        <attvalues>
+          <attvalue for="0" value="Affiliation" />
+        </attvalues>
+      </node>
+      <node id="-4355848605862801050" label="-4355848605862801050">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+      <node id="5000455419035127909" label="5000455419035127909">
+        <attvalues>
+          <attvalue for="0" value="Affiliation" />
+        </attvalues>
+      </node>
+      <node id="3865678167191365819" label="3865678167191365819">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+      <node id="-7671474446778371432" label="-7671474446778371432">
+        <attvalues>
+          <attvalue for="0" value="Affiliation" />
+        </attvalues>
+      </node>
+      <node id="30342685" label="30342685">
+        <attvalues>
+          <attvalue for="0" value="Article" />
+        </attvalues>
+      </node>
+      <node id="4184169587402773589" label="4184169587402773589">
+        <attvalues>
+          <attvalue for="0" value="Affiliation" />
+        </attvalues>
+      </node>
+      <node id="7375797026242013376" label="7375797026242013376">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+      <node id="29618962" label="29618962">
+        <attvalues>
+          <attvalue for="0" value="Article" />
+        </attvalues>
+      </node>
+      <node id="-288824378204936116" label="-288824378204936116">
+        <attvalues>
+          <attvalue for="0" value="Affiliation" />
+        </attvalues>
+      </node>
+      <node id="-5249191661450094725" label="-5249191661450094725">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+      <node id="1688787270852893081" label="1688787270852893081">
+        <attvalues>
+          <attvalue for="0" value="Affiliation" />
+        </attvalues>
+      </node>
+      <node id="-5860669678996567915" label="-5860669678996567915">
+        <attvalues>
+          <attvalue for="0" value="Author" />
+        </attvalues>
+      </node>
+    </nodes>
+    <edges>
+      <edge source="-7562007841860855368" target="36694161" id="0">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-7562007841860855368" target="3205377172359497382" id="1">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-4279616519589059550" target="36694161" id="2">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-4279616519589059550" target="3205377172359497382" id="3">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="5726550028787706939" target="36694161" id="4">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="5726550028787706939" target="4938719425918648695" id="5">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="4833082155198057496" target="36694161" id="6">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="4833082155198057496" target="3205377172359497382" id="7">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="8860862144097260332" target="35773882" id="8">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="8860862144097260332" target="-3152852102956522370" id="9">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="8460387946442708861" target="35773882" id="10">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="8460387946442708861" target="-3152852102956522370" id="11">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="8460387946442708861" target="4643833198456077496" id="12">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-5529581172335851487" target="35773882" id="13">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-5529581172335851487" target="-3152852102956522370" id="14">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-3306650053478592232" target="35773882" id="15">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-3306650053478592232" target="-3152852102956522370" id="16">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="1809409448729307957" target="35773882" id="17">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="1809409448729307957" target="-3152852102956522370" id="18">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-4667250220407545970" target="35421968" id="19">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-4667250220407545970" target="7431665006420863633" id="20">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-4667250220407545970" target="-2485333000267971769" id="21">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="3643294268493340433" target="35421968" id="22">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="3643294268493340433" target="7431665006420863633" id="23">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="1510086673467046354" target="35421968" id="24">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="1510086673467046354" target="7431665006420863633" id="25">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="7005603178082695483" target="35421968" id="26">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="7005603178082695483" target="-2485333000267971769" id="27">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="4793767449244244073" target="35421968" id="28">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="4793767449244244073" target="4442701995121746540" id="29">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="3310751297615581873" target="35421968" id="30">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="3310751297615581873" target="-1550454227049962002" id="31">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="3425317625228234085" target="34042657" id="32">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="3425317625228234085" target="3046370298919229533" id="33">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="3126224144733840532" target="34042657" id="34">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="3126224144733840532" target="-899325197271783277" id="35">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-2270467055097368353" target="34042657" id="36">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-2270467055097368353" target="-899325197271783277" id="37">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-5171202033146745218" target="34042657" id="38">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-5171202033146745218" target="-899325197271783277" id="39">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="3407080022076643065" target="32434767" id="40">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="3407080022076643065" target="7200626047011771600" id="41">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="3407080022076643065" target="681488707588568397" id="42">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="3407080022076643065" target="-343654591190956764" id="43">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="7829183749422595732" target="32434767" id="44">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="7829183749422595732" target="7200626047011771600" id="45">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="7829183749422595732" target="-343654591190956764" id="46">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-4822287865048448752" target="32338358" id="47">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-4822287865048448752" target="2408825918282704170" id="48">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-8018045460786922997" target="32338358" id="49">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-8018045460786922997" target="8365242212771839037" id="50">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="5359313783253654122" target="32338358" id="51">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="5359313783253654122" target="-5290769476252407937" id="52">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-3799334449537717493" target="32338358" id="53">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-3799334449537717493" target="5665286801605654616" id="54">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="6054520862868604434" target="32338358" id="55">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="6054520862868604434" target="8159202782024047635" id="56">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-9088251056014966966" target="32338358" id="57">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-9088251056014966966" target="-8118852962167322189" id="58">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-137725218364713916" target="32271593" id="59">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-137725218364713916" target="4317575347575005760" id="60">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="5021764505168357257" target="32271593" id="61">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="5021764505168357257" target="-6389968464904699774" id="62">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="5021764505168357257" target="8800348117292330513" id="63">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="9032798278811086323" target="32271593" id="64">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="9032798278811086323" target="-781246573836976742" id="65">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="6846216186940068111" target="31625591" id="66">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="6846216186940068111" target="-2833603895052937495" id="67">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-8814732728489490264" target="31625591" id="68">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-8814732728489490264" target="-2833603895052937495" id="69">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-8814732728489490264" target="29618962" id="70">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-8814732728489490264" target="1688787270852893081" id="71">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-6366648545612934199" target="31625591" id="72">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-6366648545612934199" target="-2833603895052937495" id="73">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-6366648545612934199" target="29618962" id="74">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-6366648545612934199" target="1688787270852893081" id="75">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-1810077800676336488" target="31625591" id="76">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-1810077800676336488" target="-2833603895052937495" id="77">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-1810077800676336488" target="29618962" id="78">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-1810077800676336488" target="-288824378204936116" id="79">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-3296783629559692797" target="31349247" id="80">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-3296783629559692797" target="5539648181967717777" id="81">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-3296783629559692797" target="-8998864153560615855" id="82">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="7907166061618028092" target="31349247" id="83">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="7907166061618028092" target="-8998864153560615855" id="84">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="4017306862225313218" target="31349247" id="85">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="4017306862225313218" target="6064453112082057883" id="86">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="274395641441363552" target="31349247" id="87">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="274395641441363552" target="-2530555029270470551" id="88">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="7413178930791529238" target="31349247" id="89">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="7413178930791529238" target="-2530555029270470551" id="90">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="2997230014172971387" target="31349247" id="91">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="2997230014172971387" target="-8998864153560615855" id="92">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="2997230014172971387" target="-2530555029270470551" id="93">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-2763164067310571952" target="31272424" id="94">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-2763164067310571952" target="-4334331881616990833" id="95">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-2763164067310571952" target="4414710521574039296" id="96">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-2763164067310571952" target="30342685" id="97">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-2763164067310571952" target="4184169587402773589" id="98">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-7461451276780012513" target="31272424" id="99">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-7461451276780012513" target="-3035842110563611565" id="100">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-7461451276780012513" target="4414710521574039296" id="101">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-7461451276780012513" target="30342685" id="102">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-247553520233594605" target="31272424" id="103">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-247553520233594605" target="-2704389597478666457" id="104">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-5721849153394829757" target="30408235" id="105">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-5721849153394829757" target="-3035842110563611565" id="106">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-5082807542070991122" target="30408235" id="107">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-5082807542070991122" target="5804387288900573649" id="108">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-4355848605862801050" target="30408235" id="109">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-4355848605862801050" target="5000455419035127909" id="110">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="3865678167191365819" target="30408235" id="111">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="3865678167191365819" target="-7671474446778371432" id="112">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="7375797026242013376" target="30342685" id="113">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="7375797026242013376" target="-2704389597478666457" id="114">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-5249191661450094725" target="29618962" id="115">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-5249191661450094725" target="-288824378204936116" id="116">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-5860669678996567915" target="29618962" id="117">
+        <attvalues>
+          <attvalue for="1" value="AUTHOR_OF" />
+        </attvalues>
+      </edge>
+      <edge source="-5860669678996567915" target="1688787270852893081" id="118">
+        <attvalues>
+          <attvalue for="1" value="IS_MEMBER_OF" />
+        </attvalues>
+      </edge>
+    </edges>
+  </graph>
+</gexf>
