@@ -2,7 +2,7 @@ from typing import Optional
 from triplea.db.dal import db
 from triplea.schemas.article import Article
 from triplea.schemas.node import Edge, Node
-
+from triplea.service.click_logger import logger
 
 def create_article(article:Article):
     db.add_new_article(article)
@@ -17,7 +17,8 @@ def update_article_by_pmid(article,pmid:str):
     return db.update_article_by_pmid(article,pmid)
 
 def insert_new_pmid(pmid:str ,
-                    querytranslation: Optional[str] = None ):
+                    querytranslation: Optional[str] = None,
+                    insert_type: Optional[str] = None, ):
     """
     If the article is not in the database, add it
     
@@ -27,13 +28,15 @@ def insert_new_pmid(pmid:str ,
     """
     # check PMID is exist
     if db.is_article_exist_by_pmid(pmid):
-        pass
+        logger.DEBUG('Article ' + pmid + ' is exist.' ,deep = 3 )
         return
     else: # Insert not exist Article
-        a = Article(PMID = pmid , State= 0 , QueryTranslation = querytranslation)
+        insert_type_list = []
+        if insert_type is not None:
+            insert_type_list.append(insert_type) 
+
+        a = Article(PMID = pmid , State= 0 , QueryTranslation = querytranslation , InsertType= insert_type_list)
         return db.add_new_article(a)
-
-
 
 def get_all_article_count()-> int:
     """
@@ -44,7 +47,7 @@ def get_all_article_count()-> int:
 
 def create_node(node:Node)->int:
     if db.is_node_exist_by_identifier(node.Identifier):
-        pass
+        logger.DEBUG('Node ' + node.Name + ' is exist.' ,deep = 3 )
         return
     else:
         return db.add_new_node(node)
@@ -57,7 +60,7 @@ def get_all_nodes():
 
 def create_edge(edge:Edge)->int:
     if db.is_edge_exist_by_hashid(edge.HashID):
-        pass
+        logger.DEBUG('Edge ' + edge.HashID + ' is exist.' ,deep = 3 )
         return
     else:
         return db.add_new_edge(edge)

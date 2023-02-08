@@ -1,21 +1,80 @@
-# https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=("Electronic+Health+Records"[Mesh])+AND+("National"[Title/Abstract])&retmode=json&retstart=${esearchresultRetstart}&retmax=10000
-
-# https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=${PMID.0}&retmode=xml
 import json
 import time
 from typing import Optional
 import requests
-import tinydb
 import xmltodict
-import click
+from triplea.service.click_logger import logger
 from triplea.schemas.node import Edge, Node
 
-
-from triplea.service.click_logger import logger
-# from config.settings import ROOT,SETTINGS
 from triplea.config.settings import ROOT,SETTINGS
-from triplea.schemas.article import Affiliation, Article, Author
+from triplea.schemas.article import Affiliation, Article, Author, Keyword
 from triplea.service.persist import create_article, create_edge, create_node, get_all_article_count, get_all_edge_count, get_all_node_count, get_all_nodes, get_article_by_pmid, get_article_by_state, insert_new_pmid, update_article_by_pmid
+
+def _convert_dict_to_class_affiliation(data:dict)-> Affiliation:
+    """
+    It takes a dictionary as input, and returns an Affiliation object
+    
+    :param data: dict
+    :type data: dict
+    :return: an Affiliation object
+    """
+    affiliation = Affiliation()
+    affiliation.Text = data['Affiliation']
+    aff_part = affiliation.Text.split(',')
+    aff_part_number = len(aff_part)
+    affiliation.Part1 = aff_part[0]
+    affiliation.Has_Extra = False
+    if aff_part_number > 1 : affiliation.Part2 = aff_part[1].strip()
+    if aff_part_number > 2 : affiliation.Part3 = aff_part[2].strip()
+    if aff_part_number > 3 : affiliation.Part4 = aff_part[3].strip()
+    if aff_part_number > 4 : affiliation.Part5 = aff_part[4].strip()
+    if aff_part_number > 5 : affiliation.Part6 = aff_part[5].strip()
+    if aff_part_number > 6 :
+        affiliation.Has_Extra = True
+        
+    pre_hash = str(affiliation.Part1) + str(affiliation.Part2) + str(affiliation.Part3) + str(affiliation.Part4)
+    affiliation.HashID = str(hash(pre_hash))
+    return affiliation
+
+def _convert_dict_to_class_author(data:dict)-> Author:
+    """
+    It takes a dictionary and returns an Author object
+    
+    :param data: dict
+    :type data: dict
+    :return: an Author object
+    """
+    if 'CollectiveName' in data:
+        my_author = Author()
+        my_author.FullName = data['CollectiveName']
+        my_author.HashID = str(hash(my_author.FullName))
+        return my_author
+
+    my_author = Author()
+    my_author.ForeName = data['ForeName']
+    my_author.LastName = data['LastName']
+    my_author.FullName = my_author.ForeName + ' ' + my_author.LastName
+    my_author.HashID = str(hash(my_author.FullName))
+    if 'Identifier' in data:
+        if data['Identifier']['@Source'] == 'ORCID':
+            my_author.ORCID = data['Identifier']['#text']
+
+
+    if 'AffiliationInfo' in data:
+        affiliation_list = []
+        if type(data['AffiliationInfo']) == dict:
+            affiliation = _convert_dict_to_class_affiliation(data['AffiliationInfo'])
+            affiliation_list.append(affiliation)
+        elif type(data['AffiliationInfo']) == list:
+            for aff in  data['AffiliationInfo']:
+                affiliation = _convert_dict_to_class_affiliation(aff)
+                affiliation_list.append(affiliation)
+        else:
+            raise NotImplementedError
+        
+        my_author.Affiliations = affiliation_list
+    
+    return my_author
 
 def get_article_list_from_pubmed(retstart:int, retmax:int, search_term:str)-> dict:
     """
@@ -51,6 +110,12 @@ def get_article_list_from_pubmed(retstart:int, retmax:int, search_term:str)-> di
     return data
 
 def get_article_details_from_pubmed(PMID)->dict:
+    """
+    It takes a PMID as input and returns a dictionary of the article's details from Pubmed
+    
+    :param PMID: The PubMed ID of the article you want to get the details of
+    :return: It returns a dictionary that is converted from the [XML output](https://www.nlm.nih.gov/bsd/licensee/elements_descriptions.html) of the pubmed site to the json model
+    """
     URL = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?"
     PARAMS = {'db': 'pubmed',
             'id': PMID , 
@@ -62,6 +127,7 @@ def get_article_details_from_pubmed(PMID)->dict:
         data_dict = xmltodict.parse(xml)
         return data_dict
     else:
+
         raise Exception('Error')
 
 def save_article_pmid_list_in_kgrep(data:dict)-> None:
@@ -70,7 +136,7 @@ def save_article_pmid_list_in_kgrep(data:dict)-> None:
     knowledge repository. If the PMID is not a duplicate, then log the PMID as added to the knowledge
     repository
     
-    :param data: dict
+    :param data: The output format from the pubmed service is for a list of PMIDs that is output from the `get_article_list_from_pubmed` method.
     :type data: dict
     """
     if 'esearchresult' in data:
@@ -84,37 +150,26 @@ def save_article_pmid_list_in_kgrep(data:dict)-> None:
     else:
         logger.ERROR('data is not in right format.')
 
-def main():
-    # Opening JSON file
-    f = open('sample.json')
-    
-    # returns JSON object as 
-    # a dictionary
-    data = json.load(f)
-    
-    # Iterating through the json
-    # list
-    for i in data['esearchresult']['idlist']:
-        a = Article(PMID = i)
-        create_article(a)
-        print(i)
-    
-    # Closing file
-    f.close()
-
-
 def get_article_list_all_store_to_kg_rep(searchterm:str,
                                          tps_limit: Optional[int] = 1,
                                          big_ret: Optional[bool] = True,
                                          retmax: Optional[int] = 10000,
                                          ):
-
+    """
+    It takes a search term, and returns a list of all the articles that match that search term
+    
+    :param searchterm: The search term you want to use to search PubMed
+    :type searchterm: str
+    :param tps_limit: The number of requests per second, defaults to 1
+    :type tps_limit: Optional[int] (optional)
+    :param big_ret: If True, the function will return a maximum of 10,000 records. If False, it will
+    return a maximum of 20 records, defaults to True
+    :type big_ret: Optional[bool] (optional)
+    :param retmax: The number of articles to return per request, defaults to 10000
+    :type retmax: Optional[int] (optional)
+    """
     sleep_time = 1  // tps_limit
     data = get_article_list_from_pubmed(0 ,1 , searchterm)
-    ## file base test
-    # f = open('sample1.json')
-    # data = json.load(f)
-    # f.close()
 
     total = int(data['esearchresult']['count'])
     logger.INFO('Total number of article is ' + str(total))
@@ -144,7 +199,19 @@ def get_article_list_all_store_to_kg_rep(searchterm:str,
     chunkdata = get_article_list_from_pubmed(start , retmax ,searchterm)
     save_article_pmid_list_in_kgrep(chunkdata)
 
-def move_state_forward(state: int):
+def move_state_forward(state: int,
+                       tps_limit: Optional[int] = 1,
+                       extend_by_refrence: Optional[bool] = False):
+    """
+    It takes an article, extracts the data from it, and then creates a node and edge for each author and
+    affiliation
+    
+    :param state: The state of the article in Knowledge Repository you want to move forward
+    :type state: int
+    :param tps_limit: The number of requests per second you want to make to the API, defaults to 1
+    :type tps_limit: Optional[int] (optional)
+    """
+    sleep_time = 1  // tps_limit
     la = get_article_by_state(state)
     logger.DEBUG(str(len(la)) + ' Article(s) is in state ' + str(state))
     for a in la:
@@ -159,17 +226,16 @@ def move_state_forward(state: int):
         ## for re run
         # if current_state == 2 : current_state = 1
 
-
         if current_state is None:
             updated_article.State = 1
-            time.sleep(3)
+            time.sleep(sleep_time)
             oa = get_article_details_from_pubmed(updated_article.PMID)
             updated_article.OreginalArticle = oa
             l = update_article_by_pmid(updated_article , updated_article.PMID)
 
-        elif current_state == 0:
+        elif current_state == 0: # get article details from pubmed
             updated_article.State = 1
-            time.sleep(3)
+            time.sleep(sleep_time)
             oa = get_article_details_from_pubmed(updated_article.PMID)
             updated_article.OreginalArticle = oa
             l = update_article_by_pmid(updated_article , updated_article.PMID)
@@ -179,15 +245,33 @@ def move_state_forward(state: int):
             data = updated_article.OreginalArticle
             PubmedData = data['PubmedArticleSet']['PubmedArticle']['PubmedData']
             
-            ArticleId = PubmedData['ArticleIdList']['ArticleId']
-            for a_id in ArticleId:
-                if a_id['@IdType'] == 'doi':
-                    updated_article.DOI = a_id['#text']
-            
+            # The above code is checking if the article has a DOI or PMC number. If it does, it will update the
+            # article with the DOI or PMC number.
+            if 'ArticleIdList' in PubmedData:
+                ArticleId = PubmedData['ArticleIdList']['ArticleId']
+                if type(ArticleId) == list:
+                    for a_id in ArticleId:
+                        if a_id['@IdType'] == 'doi':
+                            updated_article.DOI = a_id['#text']
+                        if a_id['@IdType'] == 'pmc':
+                            updated_article.PMC = a_id['#text']
+                elif type(ArticleId) == dict:
+                        if ArticleId['@IdType'] == 'doi':
+                            updated_article.DOI = a_id['#text']
+                        if ArticleId['@IdType'] == 'pmc':
+                            updated_article.PMC = a_id['#text']
+                else:
+                    raise NotImplementedError
+
+            # update article Title & Journal Title.
             pubmed_article_data = data['PubmedArticleSet']['PubmedArticle']['MedlineCitation']['Article']
             updated_article.Title =  pubmed_article_data['ArticleTitle']
             updated_article.Journal = pubmed_article_data['Journal']['Title']
+            
+            # print(pubmed_article_data['ArticleDate']) ------------------------------------------------------------------------
 
+            # The above code is checking if the abstract is a string or a list. If it is a string, it will add the
+            # abstract to the database. If it is a list, it will add all the abstracts to the database.
             if 'Abstract' in pubmed_article_data:
                 if type(pubmed_article_data['Abstract']) == dict:
                     if type(pubmed_article_data['Abstract']['AbstractText']) == str:
@@ -202,74 +286,81 @@ def move_state_forward(state: int):
                 else:
                     raise NotImplementedError
 
-            author_list=[]
-            for author in pubmed_article_data['AuthorList']['Author']:
-                my_author = Author()
-                my_author.ForeName = author['ForeName']
-                my_author.LastName = author['LastName']
-                my_author.FullName = my_author.ForeName + ' ' + my_author.LastName
-                if 'Identifier' in author:
-                    if author['Identifier']['@Source'] == 'ORCID':
-                        my_author.ORCID = author['Identifier']['#text']
-
-                if 'AffiliationInfo' in author:
-                    affiliation_list = []
-                    if type(author['AffiliationInfo']) == dict:
-                        affiliation = Affiliation()
-                        affiliation.Text = author['AffiliationInfo']['Affiliation']
-                        aff_part = affiliation.Text.split(',')
-                        aff_part_number = len(aff_part)
-                        affiliation.Part1 = aff_part[0]
-                        affiliation.Has_Extra = False
-                        if aff_part_number > 1 : affiliation.Part2 = aff_part[1].strip()
-                        if aff_part_number > 2 : affiliation.Part3 = aff_part[2].strip()
-                        if aff_part_number > 3 : affiliation.Part4 = aff_part[3].strip()
-                        if aff_part_number > 4 : affiliation.Part5 = aff_part[4].strip()
-                        if aff_part_number > 5 : affiliation.Part6 = aff_part[5].strip()
-                        if aff_part_number > 6 :
-                            affiliation.Has_Extra = True
-                            
-
-                        pre_hash = str(affiliation.Part1) + str(affiliation.Part2) + str(affiliation.Part3) + str(affiliation.Part4)
-                        affiliation.HashID = str(hash(pre_hash))
-                        affiliation_list.append (affiliation)
-
-                    elif type(author['AffiliationInfo']) == list:
-                        for aff in  author['AffiliationInfo']:
-                            affiliation = Affiliation()
-                            affiliation.Text = aff['Affiliation']
-                            aff_part = affiliation.Text.split(',')
-                            aff_part_number = len(aff_part)
-                            affiliation.Part1 = aff_part[0]
-                            affiliation.Has_Extra = False
-                            if aff_part_number > 1 : affiliation.Part2 = aff_part[1].strip()
-                            if aff_part_number > 2 : affiliation.Part3 = aff_part[2].strip()
-                            if aff_part_number > 3 : affiliation.Part4 = aff_part[3].strip()
-                            if aff_part_number > 4 : affiliation.Part5 = aff_part[4].strip()
-                            if aff_part_number > 5 : affiliation.Part6 = aff_part[5].strip()
-                            if aff_part_number > 6 :
-                                affiliation.Has_Extra = True
-                                
-                            pre_hash = str(affiliation.Part1) + str(affiliation.Part2) + str(affiliation.Part3) + str(affiliation.Part4)
-                            affiliation.HashID = str(hash(pre_hash))
-                            affiliation_list.append (affiliation)
+            # Creating a list of keywords. Merging Mesh List & Keyword List
+            medline_citation = data['PubmedArticleSet']['PubmedArticle']['MedlineCitation']
+            keyword_list = []
+            if 'MeshHeadingList' in medline_citation:
+                for mesh in medline_citation['MeshHeadingList']['MeshHeading']:
+                    my_keyword = Keyword()
+                    my_keyword.Text = mesh['DescriptorName']['#text']
+                    if mesh['DescriptorName']['@MajorTopicYN'] == 'Y':
+                        my_keyword.IS_Major = True
                     else:
-                        raise NotImplementedError
+                        my_keyword.IS_Major = False
+                    # mesh['QualifierName'] # We did not get into this subject
+                    my_keyword.IS_Mesh = True
+                    keyword_list.append(my_keyword)
+            if 'KeywordList' in medline_citation:
+                for keyword in medline_citation['KeywordList']['Keyword']:
+                    my_keyword = Keyword()
+                    my_keyword.Text = keyword['#text']
+                    if keyword['@MajorTopicYN'] == 'Y':
+                        my_keyword.IS_Major = True
+                    else:
+                        my_keyword.IS_Major = False
+                    my_keyword.IS_Mesh = False
+                    keyword_list.append(my_keyword)
 
-                    my_author.Affiliations = affiliation_list
+            updated_article.Keywords = keyword_list
 
-            
-                my_author.HashID = str(hash(my_author.FullName))
+            # The code is parsing the Article and extracting the references from the Mode.
+            if 'ReferenceList' in PubmedData:
+                for i in updated_article.InsertType:
+                    ref_go_on = True
+                    if i == 'REFERENCE':
+                        ref_go_on = False
+                        if extend_by_refrence:
+                            ref_go_on = True
+                if ref_go_on:
+                    reference_list = []
+                    for ref in PubmedData['ReferenceList']['Reference']:
+                        # print(ref['Citation'])
+                        if 'ArticleIdList' in ref:
+                            if type(ref['ArticleIdList']['ArticleId']) == dict:
+                                if ref['ArticleIdList']['ArticleId']['@IdType'] == 'pubmed':
+                                    reference_list.append(ref['ArticleIdList']['ArticleId']['#text'])
+
+                            elif type(ref['ArticleIdList']['ArticleId']) == list:
+                                for ref_id in ref['ArticleIdList']['ArticleId']:
+                                    if ref_id['@IdType'] == 'pubmed':
+                                        reference_list.append(ref_id['#text'])
+                            else:
+                                raise NotImplementedError
+                    
+                    updated_article.References = reference_list
+                    # create new article
+                    for ref_pmid in reference_list:
+                        insert_new_pmid(pmid = ref_pmid , insert_type = 'REFERENCE' )
+
+            author_list=[]
+            if type(pubmed_article_data['AuthorList']['Author']) == list:
+                for author in pubmed_article_data['AuthorList']['Author']:
+                    my_author = _convert_dict_to_class_author(author)
+                    author_list.append(my_author)
+            elif type(pubmed_article_data['AuthorList']['Author']) == dict:
+                my_author = _convert_dict_to_class_author(pubmed_article_data['AuthorList']['Author'])
                 author_list.append(my_author)
-
+            else:
+                raise NotImplementedError
             updated_article.Authors = author_list
+
             l = update_article_by_pmid(updated_article , updated_article.PMID)
             if len(l) == 1:
                 pass
             else:
                 logger.ERROR('Duplication has Occurred')
 
-        elif current_state == 2: # Create Knowlege
+        elif current_state == 2: # Create Knowledge
             updated_article.State = 3
             nodes = []
             edges = []
@@ -294,20 +385,53 @@ def move_state_forward(state: int):
                 edge.HashID =  str(hash(edge.SourceID + edge.DestinationID))
                 edges.append(edge)
 
-                for aff in author.Affiliations:
-                    node_affiliation = Node()
-                    node_affiliation.Identifier = aff.HashID
-                    node_affiliation.Name = aff.Part1
-                    node_affiliation.Type = 'Affiliation'
-                    nodes.append(node_affiliation)
+                # Creating a graph of authors and affiliation.
+                if author.Affiliations is not None:
+                    for aff in author.Affiliations:
+                        node_affiliation = Node()
+                        node_affiliation.Identifier = aff.HashID
+                        node_affiliation.Name = aff.Part1
+                        node_affiliation.Type = 'Affiliation'
+                        nodes.append(node_affiliation)
+
+                        edge = Edge()
+                        edge.SourceID = node_author.Identifier
+                        edge.DestinationID = node_affiliation.Identifier
+                        edge.Type = 'IS_MEMBER_OF'
+                        edge.HashID =  str(hash(edge.SourceID + edge.DestinationID))
+                        edges.append(edge)
+
+            # Creating a graph of articles and keywordes.
+            for key in updated_article.Keywords:
+                node_keyword = Node()
+                node_keyword.Identifier = key.Text
+                node_keyword.Name = key.Text
+                node_keyword.Type = 'Keyword'
+                nodes.append(node_author)
+
+                edge = Edge()
+                edge.SourceID = node_article.Identifier
+                edge.DestinationID = node_keyword.Identifier
+                edge.Type = 'KEYWORD'
+                edge.HashID =  str(hash(edge.SourceID + edge.DestinationID))
+                edges.append(edge)
+
+            # Creating a graph of articles and references.
+            if updated_article.References is not None:
+                for ref in updated_article.References:
+                    node_reference = Node()
+                    node_reference.Identifier = ref
+                    node_reference.Name = ref
+                    node_reference.Type = 'Article'
+                    nodes.append(node_reference)
 
                     edge = Edge()
-                    edge.SourceID = node_author.Identifier
-                    edge.DestinationID = node_affiliation.Identifier
-                    edge.Type = 'IS_MEMBER_OF'
+                    edge.SourceID = node_article.Identifier
+                    edge.DestinationID = node_reference.Identifier
+                    edge.Type = 'REFERENCE'
                     edge.HashID =  str(hash(edge.SourceID + edge.DestinationID))
-                    edges.append(edge)
-                
+                    edges.append(edge)              
+
 
             # Save node & edge to db
             for n in nodes:
@@ -315,9 +439,6 @@ def move_state_forward(state: int):
             
             for e in edges:
                 create_edge(e)
-            
-
-
 
         else:
             raise NotImplementedError
@@ -325,14 +446,17 @@ def move_state_forward(state: int):
 if __name__ == '__main__':
     logger.WARNING('Number of article in knowlege repository is ' + str(get_all_article_count()))
 
-    # move_state_forward(2)
+    
     print(get_all_node_count())
     print(get_all_edge_count())
 
-    print(type(get_all_nodes()))
+    move_state_forward(2)
 
 
-
+    # data = get_article_by_pmid('31349247')
+    # data= json.dumps(data, indent=4)
+    # with open("one-ForeName.json", "w") as outfile:
+    #     outfile.write(data)
 
     # 32434767
     # click.echo(click.style('Number of article in knowlege repository is ', fg='green') + ' ' + click.style(str(get_all_article_count()), fg='red'))

@@ -66,7 +66,7 @@ get one article from kg and save to file
         outfile.write(data)
 ```
 
-# testing
+# Testing
 
 ```
 poetry run pytest
@@ -94,11 +94,30 @@ poetry run pytest
 # MEDLINE®PubMed® XML Element Descriptions and their Attributes
 [THE ELEMENTS AND THEIR ATTRIBUTES IN PUBMEDARTICLESET](https://www.nlm.nih.gov/bsd/licensee/elements_descriptions.html)
 
-
 ## useful link
 https://www.ncbi.nlm.nih.gov/books/NBK25500/
 
 
 https://www.ncbi.nlm.nih.gov/books/NBK25499/#chapter4.ESearch
 
+service
+```
+https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=("Electronic+Health+Records"[Mesh])+AND+("National"[Title/Abstract])&retmode=json&retstart=${esearchresultRetstart}&retmax=10000
+```
+```
+https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=${PMID.0}&retmode=xml
+```
 
+### PMC Article Datasets
+https://www.ncbi.nlm.nih.gov/pmc/tools/textmining/
+
+### PMC For Developers
+PMC hosts a number of important article datasets and makes our APIs and some code available via public code repositories.
+
+https://www.ncbi.nlm.nih.gov/pmc/tools/developers/
+
+https://www.ncbi.nlm.nih.gov/research/bionlp/APIs/BioC-PMC/
+
+
+# Graph Visualization 
+[List of graph visualization libraries](https://elise-deux.medium.com/the-list-of-graph-visualization-libraries-7a7b89aab6a6)
