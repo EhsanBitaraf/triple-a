@@ -1,0 +1,1170 @@
+{
+    "Abstract": " The mission of medical schools is a sustainable commitment to orient education, research, and services based on the priorities and expectations of society. The most common complaints of patients from comprehensive health service centers (CHSCs) based on the data from electronic health records were assessed in order to determine primary health care (PHC) priorities for the educational planning of medical students in Iran. A population-based national study was designed to assess clinical complaints of patients in all age groups who were referred to CHSCs at least once to be visited by physicians. All the data in the census were extracted from electronic health records in PHC system during 2015-2020, classified by the International Classification of Primary Care 2 edition (ICPC-2e-English), and statistically analyzed. The total number of complaints that were recorded in the system was 17,430,139. 59% of the referring patients were women. The highest number of referrals was related to the age group of 18-59\u00a0years (56.9%), while the lowest belonged to the elderly people (13.3%). In all age and sex groups, the first ten complaints of patients with three top priorities in each category included process (follow-up, consultation, and results exam), digestive (toothache and gum complaint, abdominal pain, and diarrhea), respiratory (cough, sore throat, and runny nose), general (fever, pain, and weakness and fatigue), musculoskeletal (back pain, leg complaint, and knee injuries), endocrine and nutritional (weight gain, Feeding problem, and weight loss), cardiovascular (hypertension, palpitations, and Postural hypotension), neurological (headache, dizziness, and paralysis), sexual dysfunction (vaginal complaint, discharge, and irregular menstruation), and dermatological (pruritus, rash, and inflammation) problems. High priorities in referring to PHC had a key role in assessing the country's health needs. Since this study was in line with the national pattern of complaints and patients' profile, the present findings can be helpful to amend policy-making, educational planning and curricula development in medical schools.",
+    "DOI": "10.1186/s12913-022-07880-z",
+    "Journal": "BMC health services research",
+    "OreginalArticle": {
+        "PubmedArticleSet": {
+            "PubmedArticle": {
+                "MedlineCitation": {
+                    "@IndexingMethod": "Automated",
+                    "@Owner": "NLM",
+                    "@Status": "MEDLINE",
+                    "@VersionID": "2",
+                    "Article": {
+                        "@PubModel": "Electronic",
+                        "Abstract": {
+                            "AbstractText": [
+                                {
+                                    "#text": "The mission of medical schools is a sustainable commitment to orient education, research, and services based on the priorities and expectations of society. The most common complaints of patients from comprehensive health service centers (CHSCs) based on the data from electronic health records were assessed in order to determine primary health care (PHC) priorities for the educational planning of medical students in Iran.",
+                                    "@Label": "BACKGROUND",
+                                    "@NlmCategory": "BACKGROUND"
+                                },
+                                {
+                                    "#text": "A population-based national study was designed to assess clinical complaints of patients in all age groups who were referred to CHSCs at least once to be visited by physicians. All the data in the census were extracted from electronic health records in PHC system during 2015-2020, classified by the International Classification of Primary Care 2 edition (ICPC-2e-English), and statistically analyzed. The total number of complaints that were recorded in the system was 17,430,139.",
+                                    "@Label": "METHODS",
+                                    "@NlmCategory": "METHODS",
+                                    "sup": "nd"
+                                },
+                                {
+                                    "#text": "59% of the referring patients were women. The highest number of referrals was related to the age group of 18-59\u00a0years (56.9%), while the lowest belonged to the elderly people (13.3%). In all age and sex groups, the first ten complaints of patients with three top priorities in each category included process (follow-up, consultation, and results exam), digestive (toothache and gum complaint, abdominal pain, and diarrhea), respiratory (cough, sore throat, and runny nose), general (fever, pain, and weakness and fatigue), musculoskeletal (back pain, leg complaint, and knee injuries), endocrine and nutritional (weight gain, Feeding problem, and weight loss), cardiovascular (hypertension, palpitations, and Postural hypotension), neurological (headache, dizziness, and paralysis), sexual dysfunction (vaginal complaint, discharge, and irregular menstruation), and dermatological (pruritus, rash, and inflammation) problems.",
+                                    "@Label": "RESULTS",
+                                    "@NlmCategory": "RESULTS"
+                                },
+                                {
+                                    "#text": "High priorities in referring to PHC had a key role in assessing the country's health needs. Since this study was in line with the national pattern of complaints and patients' profile, the present findings can be helpful to amend policy-making, educational planning and curricula development in medical schools.",
+                                    "@Label": "CONCLUSION",
+                                    "@NlmCategory": "CONCLUSIONS"
+                                }
+                            ],
+                            "CopyrightInformation": "\u00a9 2022. The Author(s)."
+                        },
+                        "ArticleDate": {
+                            "@DateType": "Electronic",
+                            "Day": "14",
+                            "Month": "04",
+                            "Year": "2022"
+                        },
+                        "ArticleTitle": "Health complaints in individual visiting primary health care: population-based national electronic health records of Iran.",
+                        "AuthorList": {
+                            "@CompleteYN": "Y",
+                            "Author": [
+                                {
+                                    "@ValidYN": "Y",
+                                    "AffiliationInfo": [
+                                        {
+                                            "Affiliation": "Department of Community Medicine, School of Medicine, Tehran University of Medical Sciences, Tehran, Iran."
+                                        },
+                                        {
+                                            "Affiliation": "Institute of Social and Preventive Medicine (ISPM), University of Bern, Bern, Switzerland."
+                                        }
+                                    ],
+                                    "ForeName": "Farnaz",
+                                    "Initials": "F",
+                                    "LastName": "Khatami"
+                                },
+                                {
+                                    "@ValidYN": "Y",
+                                    "AffiliationInfo": {
+                                        "Affiliation": "Department of Community Medicine, School of Medicine, Tehran University of Medical Sciences, Tehran, Iran."
+                                    },
+                                    "ForeName": "Mohammad",
+                                    "Initials": "M",
+                                    "LastName": "Shariati"
+                                },
+                                {
+                                    "@ValidYN": "Y",
+                                    "AffiliationInfo": {
+                                        "Affiliation": "Department of Community Medicine, School of Medicine, Tehran University of Medical Sciences, Tehran, Iran."
+                                    },
+                                    "ForeName": "Zahra",
+                                    "Initials": "Z",
+                                    "LastName": "Abbasi"
+                                },
+                                {
+                                    "@ValidYN": "Y",
+                                    "AffiliationInfo": {
+                                        "Affiliation": "Institute of Social and Preventive Medicine (ISPM), University of Bern, Bern, Switzerland."
+                                    },
+                                    "ForeName": "Taulant",
+                                    "Initials": "T",
+                                    "LastName": "Muka"
+                                },
+                                {
+                                    "@ValidYN": "Y",
+                                    "AffiliationInfo": {
+                                        "Affiliation": "Health Management Research Center, Baqiyatallah University of Medical Sciences, Tehran, Iran."
+                                    },
+                                    "ForeName": "Leila",
+                                    "Initials": "L",
+                                    "LastName": "Khedmat"
+                                },
+                                {
+                                    "@ValidYN": "Y",
+                                    "AffiliationInfo": {
+                                        "Affiliation": "Department of Medical Education, School of Medicine, Tehran University of Medical Sciences, Tehran, Iran. narsis1358.ns@gmail.com."
+                                    },
+                                    "ForeName": "Narges",
+                                    "Initials": "N",
+                                    "LastName": "Saleh"
+                                }
+                            ]
+                        },
+                        "ELocationID": [
+                            {
+                                "#text": "502",
+                                "@EIdType": "pii",
+                                "@ValidYN": "Y"
+                            },
+                            {
+                                "#text": "10.1186/s12913-022-07880-z",
+                                "@EIdType": "doi",
+                                "@ValidYN": "Y"
+                            }
+                        ],
+                        "Journal": {
+                            "ISOAbbreviation": "BMC Health Serv Res",
+                            "ISSN": {
+                                "#text": "1472-6963",
+                                "@IssnType": "Electronic"
+                            },
+                            "JournalIssue": {
+                                "@CitedMedium": "Internet",
+                                "Issue": "1",
+                                "PubDate": {
+                                    "Day": "14",
+                                    "Month": "Apr",
+                                    "Year": "2022"
+                                },
+                                "Volume": "22"
+                            },
+                            "Title": "BMC health services research"
+                        },
+                        "Language": "eng",
+                        "Pagination": {
+                            "MedlinePgn": "502",
+                            "StartPage": "502"
+                        },
+                        "PublicationTypeList": {
+                            "PublicationType": {
+                                "#text": "Journal Article",
+                                "@UI": "D016428"
+                            }
+                        }
+                    },
+                    "CitationSubset": "IM",
+                    "CoiStatement": "The authors declare no competing interests.",
+                    "DateCompleted": {
+                        "Day": "18",
+                        "Month": "04",
+                        "Year": "2022"
+                    },
+                    "DateRevised": {
+                        "Day": "10",
+                        "Month": "05",
+                        "Year": "2022"
+                    },
+                    "KeywordList": {
+                        "@Owner": "NOTNLM",
+                        "Keyword": [
+                            {
+                                "#text": "Clinical complaint",
+                                "@MajorTopicYN": "N"
+                            },
+                            {
+                                "#text": "Educational needs assessment",
+                                "@MajorTopicYN": "N"
+                            },
+                            {
+                                "#text": "Electronic health record",
+                                "@MajorTopicYN": "N"
+                            },
+                            {
+                                "#text": "Medical education",
+                                "@MajorTopicYN": "N"
+                            },
+                            {
+                                "#text": "Primary care",
+                                "@MajorTopicYN": "N"
+                            }
+                        ]
+                    },
+                    "MedlineJournalInfo": {
+                        "Country": "England",
+                        "ISSNLinking": "1472-6963",
+                        "MedlineTA": "BMC Health Serv Res",
+                        "NlmUniqueID": "101088677"
+                    },
+                    "MeshHeadingList": {
+                        "MeshHeading": [
+                            {
+                                "DescriptorName": {
+                                    "#text": "Adolescent",
+                                    "@MajorTopicYN": "N",
+                                    "@UI": "D000293"
+                                }
+                            },
+                            {
+                                "DescriptorName": {
+                                    "#text": "Adult",
+                                    "@MajorTopicYN": "N",
+                                    "@UI": "D000328"
+                                }
+                            },
+                            {
+                                "DescriptorName": {
+                                    "#text": "Aged",
+                                    "@MajorTopicYN": "N",
+                                    "@UI": "D000368"
+                                }
+                            },
+                            {
+                                "DescriptorName": {
+                                    "#text": "Delivery of Health Care",
+                                    "@MajorTopicYN": "Y",
+                                    "@UI": "D003695"
+                                }
+                            },
+                            {
+                                "DescriptorName": {
+                                    "#text": "Electronic Health Records",
+                                    "@MajorTopicYN": "Y",
+                                    "@UI": "D057286"
+                                }
+                            },
+                            {
+                                "DescriptorName": {
+                                    "#text": "Female",
+                                    "@MajorTopicYN": "N",
+                                    "@UI": "D005260"
+                                }
+                            },
+                            {
+                                "DescriptorName": {
+                                    "#text": "Humans",
+                                    "@MajorTopicYN": "N",
+                                    "@UI": "D006801"
+                                }
+                            },
+                            {
+                                "DescriptorName": {
+                                    "#text": "Iran",
+                                    "@MajorTopicYN": "N",
+                                    "@Type": "Geographic",
+                                    "@UI": "D007492"
+                                },
+                                "QualifierName": {
+                                    "#text": "epidemiology",
+                                    "@MajorTopicYN": "N",
+                                    "@UI": "Q000453"
+                                }
+                            },
+                            {
+                                "DescriptorName": {
+                                    "#text": "Male",
+                                    "@MajorTopicYN": "N",
+                                    "@UI": "D008297"
+                                }
+                            },
+                            {
+                                "DescriptorName": {
+                                    "#text": "Middle Aged",
+                                    "@MajorTopicYN": "N",
+                                    "@UI": "D008875"
+                                }
+                            },
+                            {
+                                "DescriptorName": {
+                                    "#text": "Primary Health Care",
+                                    "@MajorTopicYN": "N",
+                                    "@UI": "D011320"
+                                }
+                            },
+                            {
+                                "DescriptorName": {
+                                    "#text": "Referral and Consultation",
+                                    "@MajorTopicYN": "N",
+                                    "@UI": "D012017"
+                                }
+                            },
+                            {
+                                "DescriptorName": {
+                                    "#text": "Young Adult",
+                                    "@MajorTopicYN": "N",
+                                    "@UI": "D055815"
+                                }
+                            }
+                        ]
+                    },
+                    "PMID": {
+                        "#text": "35421968",
+                        "@Version": "2"
+                    }
+                },
+                "PubmedData": {
+                    "ArticleIdList": {
+                        "ArticleId": [
+                            {
+                                "#text": "35421968",
+                                "@IdType": "pubmed"
+                            },
+                            {
+                                "#text": "PMC9008379",
+                                "@IdType": "pmc"
+                            },
+                            {
+                                "#text": "10.1186/s12913-022-07880-z",
+                                "@IdType": "doi"
+                            },
+                            {
+                                "#text": "10.1186/s12913-022-07880-z",
+                                "@IdType": "pii"
+                            }
+                        ]
+                    },
+                    "History": {
+                        "PubMedPubDate": [
+                            {
+                                "@PubStatus": "received",
+                                "Day": "26",
+                                "Month": "7",
+                                "Year": "2021"
+                            },
+                            {
+                                "@PubStatus": "accepted",
+                                "Day": "31",
+                                "Month": "3",
+                                "Year": "2022"
+                            },
+                            {
+                                "@PubStatus": "entrez",
+                                "Day": "15",
+                                "Hour": "5",
+                                "Minute": "6",
+                                "Month": "4",
+                                "Year": "2022"
+                            },
+                            {
+                                "@PubStatus": "pubmed",
+                                "Day": "16",
+                                "Hour": "6",
+                                "Minute": "0",
+                                "Month": "4",
+                                "Year": "2022"
+                            },
+                            {
+                                "@PubStatus": "medline",
+                                "Day": "19",
+                                "Hour": "6",
+                                "Minute": "0",
+                                "Month": "4",
+                                "Year": "2022"
+                            }
+                        ]
+                    },
+                    "PublicationStatus": "epublish",
+                    "ReferenceList": {
+                        "Reference": [
+                            {
+                                "ArticleIdList": {
+                                    "ArticleId": [
+                                        {
+                                            "#text": "10.1371/journal.pone.0122648",
+                                            "@IdType": "doi"
+                                        },
+                                        {
+                                            "#text": "PMC4383330",
+                                            "@IdType": "pmc"
+                                        },
+                                        {
+                                            "#text": "25837634",
+                                            "@IdType": "pubmed"
+                                        }
+                                    ]
+                                },
+                                "Citation": "Houwink EJ, Muijtjens AM, van Teeffelen SR, Henneman L, Rethans JJ, Jacobi F, et al. Effect of comprehensive oncogenetics training interventions for general practitioners, evaluated at multiple performance levels. PLoS ONE. 2015;10(4):e0122648. doi: 10.1371/journal.pone.0122648."
+                            },
+                            {
+                                "ArticleIdList": {
+                                    "ArticleId": [
+                                        {
+                                            "#text": "10.1186/s12875-016-0431-1",
+                                            "@IdType": "doi"
+                                        },
+                                        {
+                                            "#text": "PMC4806499",
+                                            "@IdType": "pmc"
+                                        },
+                                        {
+                                            "#text": "27009060",
+                                            "@IdType": "pubmed"
+                                        }
+                                    ]
+                                },
+                                "Citation": "Murray M, Murray L, Donnelly M. Systematic review of interventions to improve the psychological well-being of general practitioners. BMC Fam Pract. 2016;17(1):36. doi: 10.1186/s12875-016-0431-1."
+                            },
+                            {
+                                "ArticleIdList": {
+                                    "ArticleId": [
+                                        {
+                                            "#text": "10.1186/s12913-017-2189-0",
+                                            "@IdType": "doi"
+                                        },
+                                        {
+                                            "#text": "PMC5382510",
+                                            "@IdType": "pmc"
+                                        },
+                                        {
+                                            "#text": "28381224",
+                                            "@IdType": "pubmed"
+                                        }
+                                    ]
+                                },
+                                "Citation": "Lionis C, Papadakis S, Tatsi C, Bertsias A, Duijker G, Mekouris PB, et al. Informing primary care reform in Greece: patient expectations and experiences (the QUALICOPC study) BMC Health Serv Res. 2017;17(1):255. doi: 10.1186/s12913-017-2189-0."
+                            },
+                            {
+                                "ArticleIdList": {
+                                    "ArticleId": [
+                                        {
+                                            "#text": "10.1186/s12875-020-01181-2",
+                                            "@IdType": "doi"
+                                        },
+                                        {
+                                            "#text": "PMC7291526",
+                                            "@IdType": "pmc"
+                                        },
+                                        {
+                                            "#text": "32527224",
+                                            "@IdType": "pubmed"
+                                        }
+                                    ]
+                                },
+                                "Citation": "Khatami F, Shariati M, Khedmat L, Bahmani M. Patients\u2019 preferences in selecting family physician in primary health centers: a qualitative-quantitative approach. BMC Fam Pract. 2020;21(1):107. doi: 10.1186/s12875-020-01181-2."
+                            },
+                            {
+                                "ArticleIdList": {
+                                    "ArticleId": [
+                                        {
+                                            "#text": "10.1046/j.1365-2923.2000.00779.x",
+                                            "@IdType": "doi"
+                                        },
+                                        {
+                                            "#text": "11012935",
+                                            "@IdType": "pubmed"
+                                        }
+                                    ]
+                                },
+                                "Citation": "Spencer J, Blackmore D, Heard S, McCrorie P, McHaffie D, Scherpbier A, et al. Patient-oriented learning: a review of the role of the patient in the education of medical students. Med Educ. 2000;34(10):851\u2013857. doi: 10.1046/j.1365-2923.2000.00779.x."
+                            },
+                            {
+                                "ArticleIdList": {
+                                    "ArticleId": {
+                                        "#text": "10.1108/HESWBL-01-2020-0010",
+                                        "@IdType": "doi"
+                                    }
+                                },
+                                "Citation": "Khatami F, Shariati M, Motezarre A. A compatible model of family medicine residency training in Iran. High Educ Skill Work Learn. 2021 doi: 10.1108/HESWBL-01-2020-0010."
+                            },
+                            {
+                                "ArticleIdList": {
+                                    "ArticleId": [
+                                        {
+                                            "#text": "10.1080/10401334.2012.692284",
+                                            "@IdType": "doi"
+                                        },
+                                        {
+                                            "#text": "22775791",
+                                            "@IdType": "pubmed"
+                                        }
+                                    ]
+                                },
+                                "Citation": "Hammoud MM, Dalrymple JL, Christner JG, Stewart RA, Fisher J, Margo K, et al. Medical student documentation in electronic health records: a collaborative statement from the Alliance for Clinical Education. Teach Learn Med. 2012;24(3):257\u2013266. doi: 10.1080/10401334.2012.692284."
+                            },
+                            {
+                                "ArticleIdList": {
+                                    "ArticleId": [
+                                        {
+                                            "#text": "10.1097/ACM.0000000000001829",
+                                            "@IdType": "doi"
+                                        },
+                                        {
+                                            "#text": "28746069",
+                                            "@IdType": "pubmed"
+                                        }
+                                    ]
+                                },
+                                "Citation": "Welcher CM, Hersh W, Takesue B, Stagg Elliott V, Hawkins RE. Barriers to medical students\u2019 electronic health record access can impede their preparedness for practice. Acad Med. 2018;93(1):48\u201353. doi: 10.1097/ACM.0000000000001829."
+                            },
+                            {
+                                "ArticleIdList": {
+                                    "ArticleId": [
+                                        {
+                                            "#text": "10.1016/j.ijmedinf.2018.09.004",
+                                            "@IdType": "doi"
+                                        },
+                                        {
+                                            "#text": "30342685",
+                                            "@IdType": "pubmed"
+                                        }
+                                    ]
+                                },
+                                "Citation": "Khajouei R, Abbasi R, Mirzaee M. Errors and causes of communication failures from hospital information systems to electronic health record: a record-review study. Int J Med Inform. 2018;119:47\u201353. doi: 10.1016/j.ijmedinf.2018.09.004."
+                            },
+                            {
+                                "ArticleIdList": {
+                                    "ArticleId": [
+                                        {
+                                            "#text": "10.4103/2008-7802.160056",
+                                            "@IdType": "doi"
+                                        },
+                                        {
+                                            "#text": "PMC4505398",
+                                            "@IdType": "pmc"
+                                        },
+                                        {
+                                            "#text": "26236444",
+                                            "@IdType": "pubmed"
+                                        }
+                                    ]
+                                },
+                                "Citation": "Yazdi-Feyzabadi V, Emami M, Mehrolhassani MH. Health information system in primary health care: the challenges and barriers from local providers\u2019 perspective of an area in Iran. Int J Prev Med. 2015;6:57. doi: 10.4103/2008-7802.160056."
+                            },
+                            {
+                                "ArticleIdList": {
+                                    "ArticleId": [
+                                        {
+                                            "#text": "10.1136/bmjopen-2018-022109",
+                                            "@IdType": "doi"
+                                        },
+                                        {
+                                            "#text": "PMC6074640",
+                                            "@IdType": "pmc"
+                                        },
+                                        {
+                                            "#text": "30068619",
+                                            "@IdType": "pubmed"
+                                        }
+                                    ]
+                                },
+                                "Citation": "Todd A, Thomson K, Kasim A, Bambra C. Cutting care clusters: the creation of an inverse pharmacy care law? An area-level analysis exploring the clustering of community pharmacies in England. BMJ Open. 2018;8(7):e022109. doi: 10.1136/bmjopen-2018-022109."
+                            },
+                            {
+                                "ArticleIdList": {
+                                    "ArticleId": [
+                                        {
+                                            "#text": "10.4103/jehp.jehp_211_18",
+                                            "@IdType": "doi"
+                                        },
+                                        {
+                                            "#text": "PMC6432837",
+                                            "@IdType": "pmc"
+                                        },
+                                        {
+                                            "#text": "30993129",
+                                            "@IdType": "pubmed"
+                                        }
+                                    ]
+                                },
+                                "Citation": "Fardid M, Jafari M, Moghaddam AV, Ravaghi H. Challenges and strengths of implementing urban family physician program in Fars Province. Iran J Educ Health Promot. 2019;8:36. doi: 10.4103/jehp.jehp_211_18."
+                            },
+                            {
+                                "ArticleIdList": {
+                                    "ArticleId": [
+                                        {
+                                            "#text": "10.1186/s12888-018-1701-3",
+                                            "@IdType": "doi"
+                                        },
+                                        {
+                                            "#text": "PMC5932827",
+                                            "@IdType": "pmc"
+                                        },
+                                        {
+                                            "#text": "29720133",
+                                            "@IdType": "pubmed"
+                                        }
+                                    ]
+                                },
+                                "Citation": "Archibald D, Stratton J, Liddy C, Grant RE, Green D, Keely EJ. Evaluation of an electronic consultation service in psychiatry for primary care providers. BMC Psychiatr. 2018;18(1):119. doi: 10.1186/s12888-018-1701-3."
+                            },
+                            {
+                                "ArticleIdList": {
+                                    "ArticleId": [
+                                        {
+                                            "#text": "10.1002/chp.21268",
+                                            "@IdType": "doi"
+                                        },
+                                        {
+                                            "#text": "25799970",
+                                            "@IdType": "pubmed"
+                                        }
+                                    ]
+                                },
+                                "Citation": "Bjerre LM, Paterson NR, McGowan J, Hogg W, Campbell C, Viner G, et al. Do continuing medical education (CME) events cover the content physicians want to know? A content analysis of CME offerings. J Contin Educ Health Prof. 2015;35(1):27\u201337. doi: 10.1002/chp.21268."
+                            },
+                            {
+                                "ArticleIdList": {
+                                    "ArticleId": [
+                                        {
+                                            "#text": "10.1186/s12891-019-2629-6",
+                                            "@IdType": "doi"
+                                        },
+                                        {
+                                            "#text": "PMC6530027",
+                                            "@IdType": "pmc"
+                                        },
+                                        {
+                                            "#text": "31113484",
+                                            "@IdType": "pubmed"
+                                        }
+                                    ]
+                                },
+                                "Citation": "Riel H, Lindstr\u00f8m CF, Rathleff MS, Jensen MB, Olesen JL. Prevalence and incidence rate of lower-extremity tendinopathies in a Danish general practice: a registry-based study. BMC Musculoskelet Disord. 2019;20(1):1\u20136. doi: 10.1186/s12891-019-2629-6."
+                            },
+                            {
+                                "ArticleIdList": {
+                                    "ArticleId": [
+                                        {
+                                            "#text": "10.1093/fampra/cmx132",
+                                            "@IdType": "doi"
+                                        },
+                                        {
+                                            "#text": "30060181",
+                                            "@IdType": "pubmed"
+                                        }
+                                    ]
+                                },
+                                "Citation": "Olagundoye OA, Malan Z, Mash B, van Boven K, Gusso G, Ogunnaike A. Reliability measurement and ICD-10 validation of ICPC-2 for coding/classification of diagnoses/health problems in an African primary care setting. Fam Pract. 2018;35(4):406\u2013411. doi: 10.1093/fampra/cmx132."
+                            },
+                            {
+                                "ArticleIdList": {
+                                    "ArticleId": {
+                                        "#text": "10.15511/tahd.18.00333",
+                                        "@IdType": "doi"
+                                    }
+                                },
+                                "Citation": "Bekta\u015f Y, G\u00f6rpelio\u011flu S, Suvak \u00d6, Akb\u0131y\u0131k D, Aypak C. The effect of using ICD-10 or ICPC-2-R coding systems on primary health care service planning. Turk J Fam Pract. 2018;22(3):133\u2013140. doi: 10.15511/tahd.18.00333."
+                            },
+                            {
+                                "ArticleIdList": {
+                                    "ArticleId": [
+                                        {
+                                            "#text": "10.2147/PPA.S137388",
+                                            "@IdType": "doi"
+                                        },
+                                        {
+                                            "#text": "PMC5572955",
+                                            "@IdType": "pmc"
+                                        },
+                                        {
+                                            "#text": "28860728",
+                                            "@IdType": "pubmed"
+                                        }
+                                    ]
+                                },
+                                "Citation": "Neuner-Jehle S, Zechmann S, Maissen DG, Rosemann T, Senn O. Patient\u2013provider concordance in the perception of illness and disease: a cross-sectional study among multimorbid patients and their general practitioners in Switzerland. Patient Prefer Adherence. 2017;11:1451\u20131458. doi: 10.2147/PPA.S137388."
+                            },
+                            {
+                                "Citation": "Iran\u2019s Community Health Worker Program. https://chwcentral.org/irans-community-health-worker-program/. Accessed 21 May 2018."
+                            },
+                            {
+                                "ArticleIdList": {
+                                    "ArticleId": [
+                                        {
+                                            "#text": "10.1016/S0140-6736(15)01297-0",
+                                            "@IdType": "doi"
+                                        },
+                                        {
+                                            "#text": "26766344",
+                                            "@IdType": "pubmed"
+                                        }
+                                    ]
+                                },
+                                "Citation": "Heshmati B, Joulaei H. Iran\u2019s health-care system in transition. Lancet. 2016;387(10013):29\u201330. doi: 10.1016/S0140-6736(15)01297-0."
+                            },
+                            {
+                                "Citation": "Dent J, Harden RM, Hunt D. A practical guide for medical teachers. Six edition. Elsevier Health Sciences; 2017."
+                            },
+                            {
+                                "ArticleIdList": {
+                                    "ArticleId": [
+                                        {
+                                            "#text": "10.1046/j.1365-2923.1999.00342.x",
+                                            "@IdType": "doi"
+                                        },
+                                        {
+                                            "#text": "10211262",
+                                            "@IdType": "pubmed"
+                                        }
+                                    ]
+                                },
+                                "Citation": "O'Neill PA, Metcalfe D, David TJ. The core content of the undergraduate curriculum in Manchester. Med Educ. 1999;33(2):121\u2013129. doi: 10.1046/j.1365-2923.1999.00342.x."
+                            },
+                            {
+                                "ArticleIdList": {
+                                    "ArticleId": [
+                                        {
+                                            "#text": "10.1111/j.1365-2929.2005.02198.x",
+                                            "@IdType": "doi"
+                                        },
+                                        {
+                                            "#text": "15960788",
+                                            "@IdType": "pubmed"
+                                        }
+                                    ]
+                                },
+                                "Citation": "Newble D, Stark P, Bax N, Lawson M. Developing an outcome-focused core curriculum. Med Educ. 2005;39(7):680\u2013687. doi: 10.1111/j.1365-2929.2005.02198.x."
+                            },
+                            {
+                                "ArticleIdList": {
+                                    "ArticleId": [
+                                        {
+                                            "#text": "PMC6234945",
+                                            "@IdType": "pmc"
+                                        },
+                                        {
+                                            "#text": "30429181",
+                                            "@IdType": "pubmed"
+                                        }
+                                    ]
+                                },
+                                "Citation": "Finley CR, Chan DS, Garrison S, Korownyk C, Kolber MR, Campbell S, et al. What are the most common conditions in primary care? Systematic review. Can Fam Physician. 2018;64(11):832\u2013840."
+                            },
+                            {
+                                "ArticleIdList": {
+                                    "ArticleId": [
+                                        {
+                                            "#text": "10.34171/mjiri.33.65.PMID:31456989;PMCID:PMC6708118",
+                                            "@IdType": "doi"
+                                        },
+                                        {
+                                            "#text": "PMC6708118",
+                                            "@IdType": "pmc"
+                                        },
+                                        {
+                                            "#text": "31456989",
+                                            "@IdType": "pubmed"
+                                        }
+                                    ]
+                                },
+                                "Citation": "Abdi Z, Yazdizadeh B, Ahmadnezhad E, Rahimi M, Majdzadeh R. Universal health coverage in Iran: What kind of knowledge is needed to achieve the goals? Med J Islam Repub Iran. 2019;8(33):65. doi: 10.34171/mjiri.33.65.PMID:31456989;PMCID:PMC6708118."
+                            },
+                            {
+                                "ArticleIdList": {
+                                    "ArticleId": [
+                                        {
+                                            "#text": "10.1370/afm.73",
+                                            "@IdType": "doi"
+                                        },
+                                        {
+                                            "#text": "PMC1466720",
+                                            "@IdType": "pmc"
+                                        },
+                                        {
+                                            "#text": "15506572",
+                                            "@IdType": "pubmed"
+                                        }
+                                    ]
+                                },
+                                "Citation": "Pace WD, Dickinson LM, Staton EW. Seasonal variation in diagnoses and visits to family physicians. Ann Fam Med. 2004;2(5):411\u2013417. doi: 10.1370/afm.73."
+                            },
+                            {
+                                "ArticleIdList": {
+                                    "ArticleId": [
+                                        {
+                                            "#text": "10.1370/afm.310",
+                                            "@IdType": "doi"
+                                        },
+                                        {
+                                            "#text": "PMC1466884",
+                                            "@IdType": "pmc"
+                                        },
+                                        {
+                                            "#text": "15928223",
+                                            "@IdType": "pubmed"
+                                        }
+                                    ]
+                                },
+                                "Citation": "\u00d8stbye T, Yarnall KSH, Krause KM, Pollak KI, Gradison M, Michener JL. Is there time for management of patients with chronic diseases in primary care? Ann Fam Med. 2005;3(3):209\u201314. doi: 10.1370/afm.310."
+                            },
+                            {
+                                "ArticleIdList": {
+                                    "ArticleId": [
+                                        {
+                                            "#text": "PMC1463227",
+                                            "@IdType": "pmc"
+                                        },
+                                        {
+                                            "#text": "16105366",
+                                            "@IdType": "pubmed"
+                                        }
+                                    ]
+                                },
+                                "Citation": "Fleming DM, Cross KW, Barley MA. Recent changes in the prevalence of diseases presenting for health care. Br J Gen Pract. 2005;55(517):589\u2013595."
+                            },
+                            {
+                                "ArticleIdList": {
+                                    "ArticleId": {
+                                        "#text": "10.1211/0022357021981",
+                                        "@IdType": "doi"
+                                    }
+                                },
+                                "Citation": "Mohan N, Nagav BG. Development of standard therapeutic guidelines for selected common diseases for the primary health care centres of a South Indian district. Int J Pharm Pract. 2003;11:169\u2013174. doi: 10.1211/0022357021981."
+                            },
+                            {
+                                "ArticleIdList": {
+                                    "ArticleId": [
+                                        {
+                                            "#text": "PMC4267011",
+                                            "@IdType": "pmc"
+                                        },
+                                        {
+                                            "#text": "25606215",
+                                            "@IdType": "pubmed"
+                                        }
+                                    ]
+                                },
+                                "Citation": "Mimi O, Tong SF, Nordin S, Teng CL, Khoo EM, Abdul-Rahman A, et al. A comparison of morbidity patterns in public and private primary care clinics in Malaysia. Malays Fam Physician. 2011;6(1):1985\u20132274."
+                            },
+                            {
+                                "ArticleIdList": {
+                                    "ArticleId": [
+                                        {
+                                            "#text": "10.1016/S2214-109X(15)00152-7",
+                                            "@IdType": "doi"
+                                        },
+                                        {
+                                            "#text": "26566749",
+                                            "@IdType": "pubmed"
+                                        }
+                                    ]
+                                },
+                                "Citation": "Salvi S, Apte K, Madas S, Barne M, Chhowala S, Sethi T, et al. Symptoms and medical conditions in 204 912 patients visiting primary health-care practitioners in India: a 1-day point prevalence study (the POSEIDON study) Lancet Glob Health. 2015;3:e776\u2013e784. doi: 10.1016/S2214-109X(15)00152-7."
+                            },
+                            {
+                                "Citation": "Statistical Center of Iran. https://www.amar.org.ir/english. Accessed 25\u00a0Dec\u00a02021."
+                            },
+                            {
+                                "ArticleIdList": {
+                                    "ArticleId": [
+                                        {
+                                            "#text": "10.1371/journal.pone.0032358",
+                                            "@IdType": "doi"
+                                        },
+                                        {
+                                            "#text": "PMC3306367",
+                                            "@IdType": "pmc"
+                                        },
+                                        {
+                                            "#text": "22442666",
+                                            "@IdType": "pubmed"
+                                        }
+                                    ]
+                                },
+                                "Citation": "Mash B, Fairall L, Adejayan O, Ikpefan O, Kumari J, Mathee S, et al. A morbidity survey of South African primary care. PLoS ONE. 2012;7(3):e32358. doi: 10.1371/journal.pone.0032358."
+                            },
+                            {
+                                "ArticleIdList": {
+                                    "ArticleId": [
+                                        {
+                                            "#text": "10.1186/s12905-014-0145-2",
+                                            "@IdType": "doi"
+                                        },
+                                        {
+                                            "#text": "PMC4258297",
+                                            "@IdType": "pmc"
+                                        },
+                                        {
+                                            "#text": "25433402",
+                                            "@IdType": "pubmed"
+                                        }
+                                    ]
+                                },
+                                "Citation": "Carretero MT, Calder\u00f3n-Larra\u00f1aga A, Poblador-Plou B, Prados-Torres A. Primary health care use from the perspective of gender and morbidity burden. BMC Women Health. 2014;14:145. doi: 10.1186/s12905-014-0145-2."
+                            },
+                            {
+                                "ArticleIdList": {
+                                    "ArticleId": [
+                                        {
+                                            "#text": "10.1016/S0140-6736(16)00620-6",
+                                            "@IdType": "doi"
+                                        },
+                                        {
+                                            "#text": "PMC4899422",
+                                            "@IdType": "pmc"
+                                        },
+                                        {
+                                            "#text": "27059888",
+                                            "@IdType": "pubmed"
+                                        }
+                                    ]
+                                },
+                                "Citation": "Hobbs FR, Bankhead C, Mukhtar T, Stevens S, Perera-Salazar R, Holt T, et al. Clinical workload in UK primary care: a retrospective analysis of 100 million consultations in England, 2007\u201314. Lancet. 2016;387(10035):2323\u20132330. doi: 10.1016/S0140-6736(16)00620-6."
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "PMID": "35421968",
+    "QueryTranslation": "\"Electronic Health Records\"[MeSH Terms] AND \"National\"[Title/Abstract] AND (\"iran\"[MeSH Terms] OR \"iran\"[All Fields])",
+    "State": 2,
+    "Title": "Health complaints in individual visiting primary health care: population-based national electronic health records of Iran.",
+    "Authors": [
+        {
+            "Affiliations": [
+                {
+                    "Has_Extra": false,
+                    "HashID": "-1492877760514931934",
+                    "Part1": "Department of Community Medicine",
+                    "Part2": "School of Medicine",
+                    "Part3": "Tehran University of Medical Sciences",
+                    "Part4": "Tehran",
+                    "Part5": "Iran.",
+                    "Part6": null,
+                    "Text": "Department of Community Medicine, School of Medicine, Tehran University of Medical Sciences, Tehran, Iran."
+                },
+                {
+                    "Has_Extra": false,
+                    "HashID": "2282542688895513011",
+                    "Part1": "Institute of Social and Preventive Medicine (ISPM)",
+                    "Part2": "University of Bern",
+                    "Part3": "Bern",
+                    "Part4": "Switzerland.",
+                    "Part5": null,
+                    "Part6": null,
+                    "Text": "Institute of Social and Preventive Medicine (ISPM), University of Bern, Bern, Switzerland."
+                }
+            ],
+            "ForeName": "Farnaz",
+            "FullName": "Farnaz Khatami",
+            "HashID": "5276997612335527849",
+            "LastName": "Khatami",
+            "ORCID": null
+        },
+        {
+            "Affiliations": [
+                {
+                    "Has_Extra": false,
+                    "HashID": "-1492877760514931934",
+                    "Part1": "Department of Community Medicine",
+                    "Part2": "School of Medicine",
+                    "Part3": "Tehran University of Medical Sciences",
+                    "Part4": "Tehran",
+                    "Part5": "Iran.",
+                    "Part6": null,
+                    "Text": "Department of Community Medicine, School of Medicine, Tehran University of Medical Sciences, Tehran, Iran."
+                }
+            ],
+            "ForeName": "Mohammad",
+            "FullName": "Mohammad Shariati",
+            "HashID": "5359958604614258850",
+            "LastName": "Shariati",
+            "ORCID": null
+        },
+        {
+            "Affiliations": [
+                {
+                    "Has_Extra": false,
+                    "HashID": "-1492877760514931934",
+                    "Part1": "Department of Community Medicine",
+                    "Part2": "School of Medicine",
+                    "Part3": "Tehran University of Medical Sciences",
+                    "Part4": "Tehran",
+                    "Part5": "Iran.",
+                    "Part6": null,
+                    "Text": "Department of Community Medicine, School of Medicine, Tehran University of Medical Sciences, Tehran, Iran."
+                }
+            ],
+            "ForeName": "Zahra",
+            "FullName": "Zahra Abbasi",
+            "HashID": "5692773776208950294",
+            "LastName": "Abbasi",
+            "ORCID": null
+        },
+        {
+            "Affiliations": [
+                {
+                    "Has_Extra": false,
+                    "HashID": "2282542688895513011",
+                    "Part1": "Institute of Social and Preventive Medicine (ISPM)",
+                    "Part2": "University of Bern",
+                    "Part3": "Bern",
+                    "Part4": "Switzerland.",
+                    "Part5": null,
+                    "Part6": null,
+                    "Text": "Institute of Social and Preventive Medicine (ISPM), University of Bern, Bern, Switzerland."
+                }
+            ],
+            "ForeName": "Taulant",
+            "FullName": "Taulant Muka",
+            "HashID": "9094204985645409530",
+            "LastName": "Muka",
+            "ORCID": null
+        },
+        {
+            "Affiliations": [
+                {
+                    "Has_Extra": false,
+                    "HashID": "-7391353017057836146",
+                    "Part1": "Health Management Research Center",
+                    "Part2": "Baqiyatallah University of Medical Sciences",
+                    "Part3": "Tehran",
+                    "Part4": "Iran.",
+                    "Part5": null,
+                    "Part6": null,
+                    "Text": "Health Management Research Center, Baqiyatallah University of Medical Sciences, Tehran, Iran."
+                }
+            ],
+            "ForeName": "Leila",
+            "FullName": "Leila Khedmat",
+            "HashID": "-8683640266460746745",
+            "LastName": "Khedmat",
+            "ORCID": null
+        },
+        {
+            "Affiliations": [
+                {
+                    "Has_Extra": false,
+                    "HashID": "-3632051549283772704",
+                    "Part1": "Department of Medical Education",
+                    "Part2": "School of Medicine",
+                    "Part3": "Tehran University of Medical Sciences",
+                    "Part4": "Tehran",
+                    "Part5": "Iran. narsis1358.ns@gmail.com.",
+                    "Part6": null,
+                    "Text": "Department of Medical Education, School of Medicine, Tehran University of Medical Sciences, Tehran, Iran. narsis1358.ns@gmail.com."
+                }
+            ],
+            "ForeName": "Narges",
+            "FullName": "Narges Saleh",
+            "HashID": "-8785969303342038390",
+            "LastName": "Saleh",
+            "ORCID": null
+        }
+    ],
+    "InsertType": null,
+    "Keywords": [
+        {
+            "IS_Major": false,
+            "IS_Mesh": true,
+            "Text": "Adolescent"
+        },
+        {
+            "IS_Major": false,
+            "IS_Mesh": true,
+            "Text": "Adult"
+        },
+        {
+            "IS_Major": false,
+            "IS_Mesh": true,
+            "Text": "Aged"
+        },
+        {
+            "IS_Major": true,
+            "IS_Mesh": true,
+            "Text": "Delivery of Health Care"
+        },
+        {
+            "IS_Major": true,
+            "IS_Mesh": true,
+            "Text": "Electronic Health Records"
+        },
+        {
+            "IS_Major": false,
+            "IS_Mesh": true,
+            "Text": "Female"
+        },
+        {
+            "IS_Major": false,
+            "IS_Mesh": true,
+            "Text": "Humans"
+        },
+        {
+            "IS_Major": false,
+            "IS_Mesh": true,
+            "Text": "Iran"
+        },
+        {
+            "IS_Major": false,
+            "IS_Mesh": true,
+            "Text": "Male"
+        },
+        {
+            "IS_Major": false,
+            "IS_Mesh": true,
+            "Text": "Middle Aged"
+        },
+        {
+            "IS_Major": false,
+            "IS_Mesh": true,
+            "Text": "Primary Health Care"
+        },
+        {
+            "IS_Major": false,
+            "IS_Mesh": true,
+            "Text": "Referral and Consultation"
+        },
+        {
+            "IS_Major": false,
+            "IS_Mesh": true,
+            "Text": "Young Adult"
+        },
+        {
+            "IS_Major": false,
+            "IS_Mesh": false,
+            "Text": "Clinical complaint"
+        },
+        {
+            "IS_Major": false,
+            "IS_Mesh": false,
+            "Text": "Educational needs assessment"
+        },
+        {
+            "IS_Major": false,
+            "IS_Mesh": false,
+            "Text": "Electronic health record"
+        },
+        {
+            "IS_Major": false,
+            "IS_Mesh": false,
+            "Text": "Medical education"
+        },
+        {
+            "IS_Major": false,
+            "IS_Mesh": false,
+            "Text": "Primary care"
+        }
+    ],
+    "PMC": "PMC9008379",
+    "References": [
+        "25837634",
+        "27009060",
+        "28381224",
+        "32527224",
+        "11012935",
+        "22775791",
+        "28746069",
+        "30342685",
+        "26236444",
+        "30068619",
+        "30993129",
+        "29720133",
+        "25799970",
+        "31113484",
+        "30060181",
+        "28860728",
+        "26766344",
+        "10211262",
+        "15960788",
+        "30429181",
+        "31456989",
+        "15506572",
+        "15928223",
+        "16105366",
+        "25606215",
+        "26566749",
+        "22442666",
+        "25433402",
+        "27059888"
+    ]
+}

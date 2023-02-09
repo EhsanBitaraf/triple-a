@@ -96,6 +96,8 @@ else:
 
 if __name__ == '__main__':
     ddb = DB_TinyDB()
-    a = ddb.is_article_exist_by_pmid('3670594')
+    # a = ddb.is_article_exist_by_pmid('3670594')
+
+    # ddb.db.drop_table('node')
+    # ddb.db.drop_table('edge')
    
-    print(a)

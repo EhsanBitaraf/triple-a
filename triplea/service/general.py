@@ -401,13 +401,13 @@ def move_state_forward(state: int,
                         edge.HashID =  str(hash(edge.SourceID + edge.DestinationID))
                         edges.append(edge)
 
-            # Creating a graph of articles and keywordes.
+            # Creating a graph of articles and keywords.
             for key in updated_article.Keywords:
                 node_keyword = Node()
                 node_keyword.Identifier = key.Text
                 node_keyword.Name = key.Text
                 node_keyword.Type = 'Keyword'
-                nodes.append(node_author)
+                nodes.append(node_keyword)
 
                 edge = Edge()
                 edge.SourceID = node_article.Identifier
@@ -450,13 +450,12 @@ if __name__ == '__main__':
     print(get_all_node_count())
     print(get_all_edge_count())
 
-    move_state_forward(2)
+    # move_state_forward(2)
 
-
-    # data = get_article_by_pmid('31349247')
-    # data= json.dumps(data, indent=4)
-    # with open("one-ForeName.json", "w") as outfile:
-    #     outfile.write(data)
+    data = get_article_by_pmid('35421968')
+    data= json.dumps(data, indent=4)
+    with open("one-ForeName.json", "w") as outfile:
+        outfile.write(data)
 
     # 32434767
     # click.echo(click.style('Number of article in knowlege repository is ', fg='green') + ' ' + click.style(str(get_all_article_count()), fg='red'))

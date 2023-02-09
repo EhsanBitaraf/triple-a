@@ -66,6 +66,38 @@ get one article from kg and save to file
         outfile.write(data)
 ```
 
+
+## Visualization Use
+
+```
+import http.server
+import socketserver
+
+PORT = 8000
+
+Handler = http.server.SimpleHTTPRequestHandler
+
+with socketserver.TCPServer(("", PORT), Handler) as httpd:
+    print("serving at port", PORT)
+    httpd.serve_forever()
+```
+
+`http.server` can also be invoked directly using the -m switch of the interpreter. Similar to the previous example, this serves files relative to the current directory:
+```
+python3 -m http.server
+```
+```
+python -m http.server 9000
+```
+```
+python -m http.server --bind 127.0.0.1
+```
+```
+python -m http.server --directory /tmp/
+```
+
+with `web.py`[.](https://stackoverflow.com/questions/39801718/how-to-run-a-http-server-which-serves-a-specific-path)
+
 # Testing
 
 ```
@@ -120,6 +152,8 @@ https://www.ncbi.nlm.nih.gov/research/bionlp/APIs/BioC-PMC/
 
 
 # Graph Visualization 
+[Chapter 3: Graph Visualization](https://ericmjl.github.io/Network-Analysis-Made-Simple/01-introduction/03-viz/)
+
 [List of graph visualization libraries](https://elise-deux.medium.com/the-list-of-graph-visualization-libraries-7a7b89aab6a6)
 
 
@@ -136,3 +170,16 @@ https://www.graphdracula.net/documentation/
 A graph visualization application for the web.
 
 http://graphalchemist.github.io/Alchemy/#/
+
+## netwulf 
+Interactive visualization of networks based on Ulf Aslak's d3 web app. 
+
+https://github.com/benmaier/netwulf
+
+# Graph Analysis
+
+## Usefull Link
+
+### Network Analysis Made Simple 
+ An introduction to network analysis and applied graph theory using Python and NetworkX 
+https://ericmjl.github.io/Network-Analysis-Made-Simple/
