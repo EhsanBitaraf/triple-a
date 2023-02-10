@@ -64,20 +64,63 @@ def show_degree_distribution(G):
     plt.scatter(x, y)
     plt.show()
 
+
+def get_top_keys(dictionary, top):
+    items = dictionary.items()
+    sort_items = dict(sorted(items,reverse=True, key=lambda item: item[1]))
+    top = {k: sort_items[k] for k in list(sort_items)[:top]}
+    return top
+
+
+from networkx.classes.function import is_directed
+
+def info(G):
+    if is_directed(G) :
+        print('Graph Type: Directed')
+        print (f'SCC: {nx.number_strongly_connected_components(G)}')
+        print (f'WCC: {nx.number_weakly_connected_components(G)}')
+    else:
+        print('Graph Type: Undirected')
+        # G.s_metric()
+
+    density = nx.density(G)
+    transitivity = nx.transitivity(G)
+    number_of_edges = nx.number_of_edges(G)
+    number_of_nodes = nx.number_of_nodes(G)
+    avg_deg = float(number_of_edges) / number_of_nodes
+    print(f'Graph Nodes: {number_of_nodes}')
+    print(f'Graph Edges: {number_of_edges}')
+    print(f'Graph Average Degree : {avg_deg}')
+    print(f'Graph Density : {density}')
+    print(f'Graph transitivity : {transitivity}')
+
+    
+   
+    bet_cen = nx.betweenness_centrality(G)
+    clo_cen = nx.closeness_centrality(G)
+    eig_cen = nx.eigenvector_centrality(G)
+    print(f'Graph Betweenness Centrality: {get_top_keys(bet_cen,1)}')
+    print(f'Graph Closeness Centrality: {get_top_keys(clo_cen,1)}')
+    print(f'Graph Eigenvector Centrality : {get_top_keys(eig_cen, 1)}')
+
+
+
 if __name__ == '__main__':
     # G = export_networkX(graph_type='undirected')
     G = export_networkX()
 
+    #region lab
+
     # print(len(G.edges))
-    print(nx.number_of_nodes(G))
-    print(nx.number_of_edges(G))
+    # print(nx.number_of_nodes(G))
+    # print(nx.number_of_edges(G))
+
+    # print(nx.info(G))
+    # print(nx.triangles(G, 6))
 
     # print(sorted(nx.pagerank_numpy(G[0],
     #     weight=None).items(),
     #     key=lambda x:x[1], reverse=True)[0:10])
-
-    # print(nx.info(G))
-    # print(nx.triangles(G, 6))
 
     # print(G.edges.values())
     # list(G.edges(data=True))[0:5]
@@ -185,7 +228,59 @@ if __name__ == '__main__':
     # selected_edges = [(u,v,e) for u,v,e in G.edges(data=True) if v == '31113484']
     # H = nx.Graph(selected_edges)
     H = nx.Graph(((u, v, e) for u,v,e in G.edges(data=True) if e['Type'] == 'KEYWORD'))
-    visualize(H)
+    # visualize(H)
+    # print(nx.number_of_nodes(H))
+    # print(nx.number_of_edges(H))
+    # print(sorted_betweenness_centrality(H))
+    # print(H.out_degree('Electronic Health Records'))
+    # print(H.in_degree('Electronic Health Records'))
+    # nx.draw_circular(H, with_labels=True)
+    # nx.draw_shell(H)
+    # plt.savefig("path.png")
+    from networkx.algorithms.smetric import s_metric
+    # print(s_metric(H))
+    
+    # print(nx.diameter(H))
+    G = G.to_undirected()
+    info(G) 
+
+    # G = H
+    # info(G) 
+    # print(nx.is_connected(G))
+
+    # # Next, use nx.connected_components to get the list of components,
+    # # then use the max() command to find the largest one:
+    # components = nx.connected_components(G)
+    # largest_component = max(components, key=len)
+
+    # # Create a "subgraph" of just the largest component
+    # # Then calculate the diameter of the subgraph, just like you did with density.
+    # #
+
+    # subgraph = G.subgraph(largest_component)
+    # diameter = nx.diameter(subgraph)
+    # print("Network diameter of largest component:", diameter)
+    # # print(nx.s_metric(G))
+    # info(subgraph)
+
+    # Connected components are sorted in descending order of their size
+    # cam_net_components = nx.connected_component_subgraphs(G)
+    # connected_component_subgraphs() has been removed from version 2.4.
+    # G = G.to_undirected()
+    # connected_component_subgraphs = (G.subgraph(c) for c in nx.connected_components(G))
+    # largest_subgraph = max(connected_component_subgraphs, key=len)
+    # print('--------------------')
+    # info(largest_subgraph)
+    # cam_net_mc = largest_subgraph[0]
+    # # Betweenness centrality
+    # bet_cen = nx.betweenness_centrality(cam_net_mc)
+    # # Closeness centrality
+    # clo_cen = nx.closeness_centrality(cam_net_mc)
+    # # Eigenvector centrality
+    # eig_cen = nx.eigenvector_centrality(cam_net_mc)
+
+    #endregion
+
 
 
 

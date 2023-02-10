@@ -1,7 +1,6 @@
 # triple-a
 Article Analysis Assistant
 
-
 # Use 
 
 ## Setup
@@ -172,7 +171,9 @@ A graph visualization application for the web.
 http://graphalchemist.github.io/Alchemy/#/
 
 ## netwulf 
-Interactive visualization of networks based on Ulf Aslak's d3 web app. 
+Interactive visualization of networks based on Ulf Aslak's d3 web app.
+
+![](https://github.com/benmaier/netwulf/raw/master/img/logo_small.png)
 
 https://github.com/benmaier/netwulf
 
@@ -183,3 +184,11 @@ https://github.com/benmaier/netwulf
 ### Network Analysis Made Simple 
  An introduction to network analysis and applied graph theory using Python and NetworkX 
 https://ericmjl.github.io/Network-Analysis-Made-Simple/
+
+
+### Network Analysis with Python
+Petko Georgiev
+
+Computer Laboratory, University of Cambridge
+
+https://www.cl.cam.ac.uk/teaching/1314/L109/tutorial.pdf
