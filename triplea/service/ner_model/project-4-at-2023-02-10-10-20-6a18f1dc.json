@@ -1,0 +1,3261 @@
+[
+    {
+        "id": 14,
+        "annotations": [
+            {
+                "id": 2,
+                "completed_by": 2,
+                "result": [
+                    {
+                        "value": {
+                            "start": 34,
+                            "end": 60,
+                            "text": "health information systems",
+                            "labels": [
+                                "MajorTopic"
+                            ]
+                        },
+                        "id": "wU6BLnJfdz",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    },
+                    {
+                        "value": {
+                            "start": 0,
+                            "end": 17,
+                            "text": "Interoperability ",
+                            "labels": [
+                                "Qualifier"
+                            ]
+                        },
+                        "id": "wEW4NkJUdo",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    }
+                ],
+                "was_cancelled": false,
+                "ground_truth": false,
+                "created_at": "2023-02-10T08:52:00.242103Z",
+                "updated_at": "2023-02-10T08:52:00.242142Z",
+                "lead_time": 24.203,
+                "prediction": {},
+                "result_count": 0,
+                "task": 14,
+                "project": 4,
+                "parent_prediction": null,
+                "parent_annotation": null
+            }
+        ],
+        "file_upload": "ef645e4d-text.txt",
+        "drafts": [],
+        "predictions": [],
+        "data": {
+            "value": "Interoperability of heterogeneous health information systems: a systematic literature review."
+        },
+        "meta": {},
+        "created_at": "2023-02-10T08:46:23.715873Z",
+        "updated_at": "2023-02-10T08:52:00.299400Z",
+        "inner_id": 1,
+        "total_annotations": 1,
+        "cancelled_annotations": 0,
+        "total_predictions": 0,
+        "comment_count": 0,
+        "unresolved_comment_count": 0,
+        "last_comment_updated_at": null,
+        "project": 4,
+        "updated_by": 2,
+        "comment_authors": []
+    },
+    {
+        "id": 15,
+        "annotations": [
+            {
+                "id": 3,
+                "completed_by": 2,
+                "result": [
+                    {
+                        "value": {
+                            "start": 41,
+                            "end": 65,
+                            "text": "Electronic Health Record",
+                            "labels": [
+                                "MajorTopic"
+                            ]
+                        },
+                        "id": "aN5EoV4Hws",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    },
+                    {
+                        "value": {
+                            "start": 0,
+                            "end": 25,
+                            "text": "Type and Number of Errors",
+                            "labels": [
+                                "Qualifier"
+                            ]
+                        },
+                        "id": "6Ga_O3RKue",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    }
+                ],
+                "was_cancelled": false,
+                "ground_truth": false,
+                "created_at": "2023-02-10T08:52:47.626783Z",
+                "updated_at": "2023-02-10T08:52:47.626823Z",
+                "lead_time": 44.645,
+                "prediction": {},
+                "result_count": 0,
+                "task": 15,
+                "project": 4,
+                "parent_prediction": null,
+                "parent_annotation": null
+            }
+        ],
+        "file_upload": "ef645e4d-text.txt",
+        "drafts": [],
+        "predictions": [],
+        "data": {
+            "value": "Type and Number of Errors of the Iranian Electronic Health Record (SEPAS) in Hospitals Affiliated with Mashhad University of Medical Sciences."
+        },
+        "meta": {},
+        "created_at": "2023-02-10T08:46:23.716030Z",
+        "updated_at": "2023-02-10T08:52:47.684017Z",
+        "inner_id": 2,
+        "total_annotations": 1,
+        "cancelled_annotations": 0,
+        "total_predictions": 0,
+        "comment_count": 0,
+        "unresolved_comment_count": 0,
+        "last_comment_updated_at": null,
+        "project": 4,
+        "updated_by": 2,
+        "comment_authors": []
+    },
+    {
+        "id": 16,
+        "annotations": [
+            {
+                "id": 4,
+                "completed_by": 2,
+                "result": [
+                    {
+                        "value": {
+                            "start": 21,
+                            "end": 60,
+                            "text": "individual visiting primary health care",
+                            "labels": [
+                                "MajorTopic"
+                            ]
+                        },
+                        "id": "UP3mvu4OsL",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    },
+                    {
+                        "value": {
+                            "start": 0,
+                            "end": 17,
+                            "text": "Health complaints",
+                            "labels": [
+                                "Qualifier"
+                            ]
+                        },
+                        "id": "UhY1ISONhJ",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    }
+                ],
+                "was_cancelled": false,
+                "ground_truth": false,
+                "created_at": "2023-02-10T08:54:10.488179Z",
+                "updated_at": "2023-02-10T08:54:10.488216Z",
+                "lead_time": 80.552,
+                "prediction": {},
+                "result_count": 0,
+                "task": 16,
+                "project": 4,
+                "parent_prediction": null,
+                "parent_annotation": null
+            }
+        ],
+        "file_upload": "ef645e4d-text.txt",
+        "drafts": [],
+        "predictions": [],
+        "data": {
+            "value": "Health complaints in individual visiting primary health care: population-based national electronic health records of Iran.     "
+        },
+        "meta": {},
+        "created_at": "2023-02-10T08:46:23.716166Z",
+        "updated_at": "2023-02-10T08:54:10.539672Z",
+        "inner_id": 3,
+        "total_annotations": 1,
+        "cancelled_annotations": 0,
+        "total_predictions": 0,
+        "comment_count": 0,
+        "unresolved_comment_count": 0,
+        "last_comment_updated_at": null,
+        "project": 4,
+        "updated_by": 2,
+        "comment_authors": []
+    },
+    {
+        "id": 17,
+        "annotations": [
+            {
+                "id": 5,
+                "completed_by": 2,
+                "result": [
+                    {
+                        "value": {
+                            "start": 4,
+                            "end": 52,
+                            "text": "Iranian Integrated Care Electronic Health Record",
+                            "labels": [
+                                "MajorTopic"
+                            ]
+                        },
+                        "id": "IWIBw80TiI",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    }
+                ],
+                "was_cancelled": false,
+                "ground_truth": false,
+                "created_at": "2023-02-10T08:54:32.611883Z",
+                "updated_at": "2023-02-10T08:54:32.611924Z",
+                "lead_time": 20.082,
+                "prediction": {},
+                "result_count": 0,
+                "task": 17,
+                "project": 4,
+                "parent_prediction": null,
+                "parent_annotation": null
+            }
+        ],
+        "file_upload": "ef645e4d-text.txt",
+        "drafts": [],
+        "predictions": [],
+        "data": {
+            "value": "The Iranian Integrated Care Electronic Health Record."
+        },
+        "meta": {},
+        "created_at": "2023-02-10T08:46:23.716267Z",
+        "updated_at": "2023-02-10T08:54:32.664221Z",
+        "inner_id": 4,
+        "total_annotations": 1,
+        "cancelled_annotations": 0,
+        "total_predictions": 0,
+        "comment_count": 0,
+        "unresolved_comment_count": 0,
+        "last_comment_updated_at": null,
+        "project": 4,
+        "updated_by": 2,
+        "comment_authors": []
+    },
+    {
+        "id": 18,
+        "annotations": [
+            {
+                "id": 6,
+                "completed_by": 2,
+                "result": [
+                    {
+                        "value": {
+                            "start": 26,
+                            "end": 53,
+                            "text": "electronic screening system",
+                            "labels": [
+                                "MajorTopic"
+                            ]
+                        },
+                        "id": "JhgKHN3nRf",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    },
+                    {
+                        "value": {
+                            "start": 55,
+                            "end": 66,
+                            "text": "experience ",
+                            "labels": [
+                                "Qualifier"
+                            ]
+                        },
+                        "id": "xEDBgA5-oR",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    }
+                ],
+                "was_cancelled": false,
+                "ground_truth": false,
+                "created_at": "2023-02-10T08:55:25.956517Z",
+                "updated_at": "2023-02-10T08:55:25.956564Z",
+                "lead_time": 34.978,
+                "prediction": {},
+                "result_count": 0,
+                "task": 18,
+                "project": 4,
+                "parent_prediction": null,
+                "parent_annotation": null
+            }
+        ],
+        "file_upload": "ef645e4d-text.txt",
+        "drafts": [],
+        "predictions": [],
+        "data": {
+            "value": "Iranian national COVID-19 electronic screening system: experience to share."
+        },
+        "meta": {},
+        "created_at": "2023-02-10T08:46:23.716362Z",
+        "updated_at": "2023-02-10T08:55:26.011073Z",
+        "inner_id": 5,
+        "total_annotations": 1,
+        "cancelled_annotations": 0,
+        "total_predictions": 0,
+        "comment_count": 0,
+        "unresolved_comment_count": 0,
+        "last_comment_updated_at": null,
+        "project": 4,
+        "updated_by": 2,
+        "comment_authors": []
+    },
+    {
+        "id": 19,
+        "annotations": [
+            {
+                "id": 7,
+                "completed_by": 2,
+                "result": [
+                    {
+                        "value": {
+                            "start": 13,
+                            "end": 34,
+                            "text": "national minimum data",
+                            "labels": [
+                                "MajorTopic"
+                            ]
+                        },
+                        "id": "jhIthmbA1D",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    },
+                    {
+                        "value": {
+                            "start": 0,
+                            "end": 11,
+                            "text": "Developing ",
+                            "labels": [
+                                "Qualifier"
+                            ]
+                        },
+                        "id": "idHJpFzC89",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    }
+                ],
+                "was_cancelled": false,
+                "ground_truth": false,
+                "created_at": "2023-02-10T08:55:48.182233Z",
+                "updated_at": "2023-02-10T08:55:48.182274Z",
+                "lead_time": 20.499,
+                "prediction": {},
+                "result_count": 0,
+                "task": 19,
+                "project": 4,
+                "parent_prediction": null,
+                "parent_annotation": null
+            }
+        ],
+        "file_upload": "ef645e4d-text.txt",
+        "drafts": [],
+        "predictions": [],
+        "data": {
+            "value": "Developing a national minimum data set for hospital information systems in the Islamic Republic of Iran."
+        },
+        "meta": {},
+        "created_at": "2023-02-10T08:46:23.716453Z",
+        "updated_at": "2023-02-10T08:55:48.235315Z",
+        "inner_id": 6,
+        "total_annotations": 1,
+        "cancelled_annotations": 0,
+        "total_predictions": 0,
+        "comment_count": 0,
+        "unresolved_comment_count": 0,
+        "last_comment_updated_at": null,
+        "project": 4,
+        "updated_by": 2,
+        "comment_authors": []
+    },
+    {
+        "id": 20,
+        "annotations": [
+            {
+                "id": 8,
+                "completed_by": 2,
+                "result": [
+                    {
+                        "value": {
+                            "start": 41,
+                            "end": 58,
+                            "text": "COVID-19 Epidemic",
+                            "labels": [
+                                "MajorTopic"
+                            ]
+                        },
+                        "id": "YAcL5pvLiv",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    },
+                    {
+                        "value": {
+                            "start": 11,
+                            "end": 32,
+                            "text": "National Mobilization",
+                            "labels": [
+                                "Qualifier"
+                            ]
+                        },
+                        "id": "sK4q8-Zmux",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    }
+                ],
+                "was_cancelled": false,
+                "ground_truth": false,
+                "created_at": "2023-02-10T08:56:39.409891Z",
+                "updated_at": "2023-02-10T08:56:39.409931Z",
+                "lead_time": 49.455,
+                "prediction": {},
+                "result_count": 0,
+                "task": 20,
+                "project": 4,
+                "parent_prediction": null,
+                "parent_annotation": null
+            }
+        ],
+        "file_upload": "ef645e4d-text.txt",
+        "drafts": [],
+        "predictions": [],
+        "data": {
+            "value": "IR of Iran National Mobilization against COVID-19 Epidemic."
+        },
+        "meta": {},
+        "created_at": "2023-02-10T08:46:23.716544Z",
+        "updated_at": "2023-02-10T08:56:39.475434Z",
+        "inner_id": 7,
+        "total_annotations": 1,
+        "cancelled_annotations": 0,
+        "total_predictions": 0,
+        "comment_count": 0,
+        "unresolved_comment_count": 0,
+        "last_comment_updated_at": null,
+        "project": 4,
+        "updated_by": 2,
+        "comment_authors": []
+    },
+    {
+        "id": 21,
+        "annotations": [
+            {
+                "id": 9,
+                "completed_by": 2,
+                "result": [
+                    {
+                        "value": {
+                            "start": 54,
+                            "end": 87,
+                            "text": "National Electronic Health Record",
+                            "labels": [
+                                "MajorTopic"
+                            ]
+                        },
+                        "id": "iXHLcKcSSH",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    },
+                    {
+                        "value": {
+                            "start": 4,
+                            "end": 13,
+                            "text": "security ",
+                            "labels": [
+                                "Qualifier"
+                            ]
+                        },
+                        "id": "v7sagONzlz",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    },
+                    {
+                        "value": {
+                            "start": 17,
+                            "end": 25,
+                            "text": "privacy ",
+                            "labels": [
+                                "Qualifier"
+                            ]
+                        },
+                        "id": "MBlrpibMjH",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    }
+                ],
+                "was_cancelled": false,
+                "ground_truth": false,
+                "created_at": "2023-02-10T09:36:07.112812Z",
+                "updated_at": "2023-02-10T09:36:07.112860Z",
+                "lead_time": 31.911,
+                "prediction": {},
+                "result_count": 0,
+                "task": 21,
+                "project": 4,
+                "parent_prediction": null,
+                "parent_annotation": null
+            }
+        ],
+        "file_upload": "ef645e4d-text.txt",
+        "drafts": [],
+        "predictions": [],
+        "data": {
+            "value": "Key security and privacy issues from implementing the National Electronic Health Record in the Islamic Republic of Iran.       "
+        },
+        "meta": {},
+        "created_at": "2023-02-10T08:46:23.716632Z",
+        "updated_at": "2023-02-10T09:36:07.175790Z",
+        "inner_id": 8,
+        "total_annotations": 1,
+        "cancelled_annotations": 0,
+        "total_predictions": 0,
+        "comment_count": 0,
+        "unresolved_comment_count": 0,
+        "last_comment_updated_at": null,
+        "project": 4,
+        "updated_by": 2,
+        "comment_authors": []
+    },
+    {
+        "id": 22,
+        "annotations": [
+            {
+                "id": 10,
+                "completed_by": 2,
+                "result": [
+                    {
+                        "value": {
+                            "start": 0,
+                            "end": 30,
+                            "text": "Colorectal Cancer Registration",
+                            "labels": [
+                                "MajorTopic"
+                            ]
+                        },
+                        "id": "G5zTDW00Nn",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    },
+                    {
+                        "value": {
+                            "start": 32,
+                            "end": 45,
+                            "text": "Data Approach",
+                            "labels": [
+                                "Qualifier"
+                            ]
+                        },
+                        "id": "ovg9T9dEe4",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    }
+                ],
+                "was_cancelled": false,
+                "ground_truth": false,
+                "created_at": "2023-02-10T09:36:28.868090Z",
+                "updated_at": "2023-02-10T09:36:28.868143Z",
+                "lead_time": 19.121,
+                "prediction": {},
+                "result_count": 0,
+                "task": 22,
+                "project": 4,
+                "parent_prediction": null,
+                "parent_annotation": null
+            }
+        ],
+        "file_upload": "ef645e4d-text.txt",
+        "drafts": [],
+        "predictions": [],
+        "data": {
+            "value": "Colorectal Cancer Registration: Data Approach to Knowledge."
+        },
+        "meta": {},
+        "created_at": "2023-02-10T08:46:23.716720Z",
+        "updated_at": "2023-02-10T09:36:28.919116Z",
+        "inner_id": 9,
+        "total_annotations": 1,
+        "cancelled_annotations": 0,
+        "total_predictions": 0,
+        "comment_count": 0,
+        "unresolved_comment_count": 0,
+        "last_comment_updated_at": null,
+        "project": 4,
+        "updated_by": 2,
+        "comment_authors": []
+    },
+    {
+        "id": 23,
+        "annotations": [
+            {
+                "id": 11,
+                "completed_by": 2,
+                "result": [
+                    {
+                        "value": {
+                            "start": 40,
+                            "end": 57,
+                            "text": "minimum data sets",
+                            "labels": [
+                                "MajorTopic"
+                            ]
+                        },
+                        "id": "ZBH54Nky9n",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    },
+                    {
+                        "value": {
+                            "start": 0,
+                            "end": 11,
+                            "text": "Evaluating ",
+                            "labels": [
+                                "Qualifier"
+                            ]
+                        },
+                        "id": "feH5084S5A",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    }
+                ],
+                "was_cancelled": false,
+                "ground_truth": false,
+                "created_at": "2023-02-10T09:36:49.727112Z",
+                "updated_at": "2023-02-10T09:36:49.727151Z",
+                "lead_time": 18.881,
+                "prediction": {},
+                "result_count": 0,
+                "task": 23,
+                "project": 4,
+                "parent_prediction": null,
+                "parent_annotation": null
+            }
+        ],
+        "file_upload": "ef645e4d-text.txt",
+        "drafts": [],
+        "predictions": [],
+        "data": {
+            "value": "Evaluating the demographic and clinical minimum data sets of Iranian National Electronic Health Record."
+        },
+        "meta": {},
+        "created_at": "2023-02-10T08:46:23.716816Z",
+        "updated_at": "2023-02-10T09:36:49.781544Z",
+        "inner_id": 10,
+        "total_annotations": 1,
+        "cancelled_annotations": 0,
+        "total_predictions": 0,
+        "comment_count": 0,
+        "unresolved_comment_count": 0,
+        "last_comment_updated_at": null,
+        "project": 4,
+        "updated_by": 2,
+        "comment_authors": []
+    },
+    {
+        "id": 24,
+        "annotations": [
+            {
+                "id": 12,
+                "completed_by": 2,
+                "result": [
+                    {
+                        "value": {
+                            "start": 54,
+                            "end": 88,
+                            "text": "Iran Health Insurance Organization",
+                            "labels": [
+                                "MajorTopic"
+                            ]
+                        },
+                        "id": "orWFhvvsIQ",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    },
+                    {
+                        "value": {
+                            "start": 0,
+                            "end": 28,
+                            "text": "Challenges of implementation",
+                            "labels": [
+                                "Qualifier"
+                            ]
+                        },
+                        "id": "3w_7s3kKc1",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    }
+                ],
+                "was_cancelled": false,
+                "ground_truth": false,
+                "created_at": "2023-02-10T09:37:53.303719Z",
+                "updated_at": "2023-02-10T09:37:53.303758Z",
+                "lead_time": 19.244,
+                "prediction": {},
+                "result_count": 0,
+                "task": 24,
+                "project": 4,
+                "parent_prediction": null,
+                "parent_annotation": null
+            }
+        ],
+        "file_upload": "ef645e4d-text.txt",
+        "drafts": [],
+        "predictions": [],
+        "data": {
+            "value": "Challenges of implementation: Strategic purchasing in Iran Health Insurance Organization."
+        },
+        "meta": {},
+        "created_at": "2023-02-10T08:46:23.716908Z",
+        "updated_at": "2023-02-10T09:37:53.354583Z",
+        "inner_id": 11,
+        "total_annotations": 1,
+        "cancelled_annotations": 0,
+        "total_predictions": 0,
+        "comment_count": 0,
+        "unresolved_comment_count": 0,
+        "last_comment_updated_at": null,
+        "project": 4,
+        "updated_by": 2,
+        "comment_authors": []
+    },
+    {
+        "id": 25,
+        "annotations": [
+            {
+                "id": 13,
+                "completed_by": 2,
+                "result": [
+                    {
+                        "value": {
+                            "start": 49,
+                            "end": 77,
+                            "text": "hospital information systems",
+                            "labels": [
+                                "MajorTopic"
+                            ]
+                        },
+                        "id": "TphTrBoqPs",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    },
+                    {
+                        "value": {
+                            "start": 0,
+                            "end": 7,
+                            "text": "Errors ",
+                            "labels": [
+                                "Qualifier"
+                            ]
+                        },
+                        "id": "b3nKphp9JO",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    }
+                ],
+                "was_cancelled": false,
+                "ground_truth": false,
+                "created_at": "2023-02-10T09:38:12.991983Z",
+                "updated_at": "2023-02-10T09:38:12.992025Z",
+                "lead_time": 17.08,
+                "prediction": {},
+                "result_count": 0,
+                "task": 25,
+                "project": 4,
+                "parent_prediction": null,
+                "parent_annotation": null
+            }
+        ],
+        "file_upload": "ef645e4d-text.txt",
+        "drafts": [],
+        "predictions": [],
+        "data": {
+            "value": "Errors and causes of communication failures from hospital information systems to electronic health record: A record-review study."
+        },
+        "meta": {},
+        "created_at": "2023-02-10T08:46:23.716999Z",
+        "updated_at": "2023-02-10T09:38:13.053229Z",
+        "inner_id": 12,
+        "total_annotations": 1,
+        "cancelled_annotations": 0,
+        "total_predictions": 0,
+        "comment_count": 0,
+        "unresolved_comment_count": 0,
+        "last_comment_updated_at": null,
+        "project": 4,
+        "updated_by": 2,
+        "comment_authors": []
+    },
+    {
+        "id": 26,
+        "annotations": [
+            {
+                "id": 14,
+                "completed_by": 2,
+                "result": [
+                    {
+                        "value": {
+                            "start": 15,
+                            "end": 39,
+                            "text": "Hospital-based Data Sets",
+                            "labels": [
+                                "MajorTopic"
+                            ]
+                        },
+                        "id": "ySWW0fUyAU",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    },
+                    {
+                        "value": {
+                            "start": 0,
+                            "end": 12,
+                            "text": "Development ",
+                            "labels": [
+                                "Qualifier"
+                            ]
+                        },
+                        "id": "OyWRr-0SUs",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    }
+                ],
+                "was_cancelled": false,
+                "ground_truth": false,
+                "created_at": "2023-02-10T09:38:42.048633Z",
+                "updated_at": "2023-02-10T09:38:42.048686Z",
+                "lead_time": 26.726,
+                "prediction": {},
+                "result_count": 0,
+                "task": 26,
+                "project": 4,
+                "parent_prediction": null,
+                "parent_annotation": null
+            }
+        ],
+        "file_upload": "ef645e4d-text.txt",
+        "drafts": [],
+        "predictions": [],
+        "data": {
+            "value": "Development of Hospital-based Data Sets as a Vehicle for Implementation of a National Electronic Health Record."
+        },
+        "meta": {},
+        "created_at": "2023-02-10T08:46:23.717113Z",
+        "updated_at": "2023-02-10T09:38:42.109789Z",
+        "inner_id": 13,
+        "total_annotations": 1,
+        "cancelled_annotations": 0,
+        "total_predictions": 0,
+        "comment_count": 0,
+        "unresolved_comment_count": 0,
+        "last_comment_updated_at": null,
+        "project": 4,
+        "updated_by": 2,
+        "comment_authors": []
+    },
+    {
+        "id": 27,
+        "annotations": [
+            {
+                "id": 15,
+                "completed_by": 2,
+                "result": [
+                    {
+                        "value": {
+                            "start": 40,
+                            "end": 74,
+                            "text": "electronic medical records systems",
+                            "labels": [
+                                "MajorTopic"
+                            ]
+                        },
+                        "id": "hg-vWsDk7N",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    },
+                    {
+                        "value": {
+                            "start": 24,
+                            "end": 37,
+                            "text": "requirements ",
+                            "labels": [
+                                "Qualifier"
+                            ]
+                        },
+                        "id": "bug53WcO2d",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    }
+                ],
+                "was_cancelled": false,
+                "ground_truth": false,
+                "created_at": "2023-02-10T09:39:04.386209Z",
+                "updated_at": "2023-02-10T09:39:04.386251Z",
+                "lead_time": 20.736,
+                "prediction": {},
+                "result_count": 0,
+                "task": 27,
+                "project": 4,
+                "parent_prediction": null,
+                "parent_annotation": null
+            }
+        ],
+        "file_upload": "ef645e4d-text.txt",
+        "drafts": [],
+        "predictions": [],
+        "data": {
+            "value": "Task-specific usability requirements of electronic medical records systems: Lessons learned from a national survey of end-users."
+        },
+        "meta": {},
+        "created_at": "2023-02-10T08:46:23.717201Z",
+        "updated_at": "2023-02-10T09:39:04.435844Z",
+        "inner_id": 14,
+        "total_annotations": 1,
+        "cancelled_annotations": 0,
+        "total_predictions": 0,
+        "comment_count": 0,
+        "unresolved_comment_count": 0,
+        "last_comment_updated_at": null,
+        "project": 4,
+        "updated_by": 2,
+        "comment_authors": []
+    },
+    {
+        "id": 28,
+        "annotations": [
+            {
+                "id": 16,
+                "completed_by": 2,
+                "result": [
+                    {
+                        "value": {
+                            "start": 0,
+                            "end": 22,
+                            "text": "Older people home care",
+                            "labels": [
+                                "MajorTopic"
+                            ]
+                        },
+                        "id": "pDz39b01Jy",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    },
+                    {
+                        "value": {
+                            "start": 31,
+                            "end": 56,
+                            "text": "electronic health records",
+                            "labels": [
+                                "Qualifier"
+                            ]
+                        },
+                        "id": "kZ0b5P2gte",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    }
+                ],
+                "was_cancelled": false,
+                "ground_truth": false,
+                "created_at": "2023-02-10T09:39:44.263637Z",
+                "updated_at": "2023-02-10T09:39:44.263680Z",
+                "lead_time": 37.745,
+                "prediction": {},
+                "result_count": 0,
+                "task": 28,
+                "project": 4,
+                "parent_prediction": null,
+                "parent_annotation": null
+            }
+        ],
+        "file_upload": "ef645e4d-text.txt",
+        "drafts": [],
+        "predictions": [],
+        "data": {
+            "value": "Older people home care through electronic health records: functions, data elements and security needs."
+        },
+        "meta": {},
+        "created_at": "2023-02-10T08:46:23.717289Z",
+        "updated_at": "2023-02-10T09:39:44.311374Z",
+        "inner_id": 15,
+        "total_annotations": 1,
+        "cancelled_annotations": 0,
+        "total_predictions": 0,
+        "comment_count": 0,
+        "unresolved_comment_count": 0,
+        "last_comment_updated_at": null,
+        "project": 4,
+        "updated_by": 2,
+        "comment_authors": []
+    },
+    {
+        "id": 29,
+        "annotations": [
+            {
+                "id": 17,
+                "completed_by": 2,
+                "result": [
+                    {
+                        "value": {
+                            "start": 8,
+                            "end": 24,
+                            "text": "National eHealth",
+                            "labels": [
+                                "MajorTopic"
+                            ]
+                        },
+                        "id": "i-cz6GPrAP",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    },
+                    {
+                        "value": {
+                            "start": 25,
+                            "end": 39,
+                            "text": "Implementation",
+                            "labels": [
+                                "Qualifier"
+                            ]
+                        },
+                        "id": "40Z_0_MEWi",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    }
+                ],
+                "was_cancelled": false,
+                "ground_truth": false,
+                "created_at": "2023-02-10T09:40:02.673689Z",
+                "updated_at": "2023-02-10T09:40:02.673738Z",
+                "lead_time": 16.987,
+                "prediction": {},
+                "result_count": 0,
+                "task": 29,
+                "project": 4,
+                "parent_prediction": null,
+                "parent_annotation": null
+            }
+        ],
+        "file_upload": "ef645e4d-text.txt",
+        "drafts": [],
+        "predictions": [],
+        "data": {
+            "value": "Towards National eHealth Implementation--a comparative study on WHO\/ITU National eHealth Strategy Toolkit in Iran."
+        },
+        "meta": {},
+        "created_at": "2023-02-10T08:46:23.717376Z",
+        "updated_at": "2023-02-10T09:40:02.728124Z",
+        "inner_id": 16,
+        "total_annotations": 1,
+        "cancelled_annotations": 0,
+        "total_predictions": 0,
+        "comment_count": 0,
+        "unresolved_comment_count": 0,
+        "last_comment_updated_at": null,
+        "project": 4,
+        "updated_by": 2,
+        "comment_authors": []
+    },
+    {
+        "id": 30,
+        "annotations": [
+            {
+                "id": 18,
+                "completed_by": 2,
+                "result": [
+                    {
+                        "value": {
+                            "start": 14,
+                            "end": 38,
+                            "text": "ontology-based algorithm",
+                            "labels": [
+                                "MajorTopic"
+                            ]
+                        },
+                        "id": "tZdBOqE8oP",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    },
+                    {
+                        "value": {
+                            "start": 0,
+                            "end": 11,
+                            "text": "Validating ",
+                            "labels": [
+                                "Qualifier"
+                            ]
+                        },
+                        "id": "1dLM3aLaLa",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    }
+                ],
+                "was_cancelled": false,
+                "ground_truth": false,
+                "created_at": "2023-02-10T09:40:31.640685Z",
+                "updated_at": "2023-02-10T09:40:31.640725Z",
+                "lead_time": 25.824,
+                "prediction": {},
+                "result_count": 0,
+                "task": 30,
+                "project": 4,
+                "parent_prediction": null,
+                "parent_annotation": null
+            }
+        ],
+        "file_upload": "ef645e4d-text.txt",
+        "drafts": [],
+        "predictions": [],
+        "data": {
+            "value": "Validating an ontology-based algorithm to identify patients with type 2 diabetes mellitus in electronic health records."
+        },
+        "meta": {},
+        "created_at": "2023-02-10T08:46:23.717477Z",
+        "updated_at": "2023-02-10T09:40:31.688115Z",
+        "inner_id": 17,
+        "total_annotations": 1,
+        "cancelled_annotations": 0,
+        "total_predictions": 0,
+        "comment_count": 0,
+        "unresolved_comment_count": 0,
+        "last_comment_updated_at": null,
+        "project": 4,
+        "updated_by": 2,
+        "comment_authors": []
+    },
+    {
+        "id": 31,
+        "annotations": [
+            {
+                "id": 19,
+                "completed_by": 2,
+                "result": [
+                    {
+                        "value": {
+                            "start": 0,
+                            "end": 48,
+                            "text": "National health information infrastructure model",
+                            "labels": [
+                                "MajorTopic"
+                            ]
+                        },
+                        "id": "YmETyJKIHy",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    },
+                    {
+                        "value": {
+                            "start": 52,
+                            "end": 62,
+                            "text": "milestone ",
+                            "labels": [
+                                "Qualifier"
+                            ]
+                        },
+                        "id": "0XI8LRzH27",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    }
+                ],
+                "was_cancelled": false,
+                "ground_truth": false,
+                "created_at": "2023-02-10T09:41:15.923939Z",
+                "updated_at": "2023-02-10T09:41:15.923980Z",
+                "lead_time": 41.271,
+                "prediction": {},
+                "result_count": 0,
+                "task": 31,
+                "project": 4,
+                "parent_prediction": null,
+                "parent_annotation": null
+            }
+        ],
+        "file_upload": "ef645e4d-text.txt",
+        "drafts": [],
+        "predictions": [],
+        "data": {
+            "value": "National health information infrastructure model: a milestone for health information management education realignment."
+        },
+        "meta": {},
+        "created_at": "2023-02-10T08:46:23.717596Z",
+        "updated_at": "2023-02-10T09:41:15.978976Z",
+        "inner_id": 18,
+        "total_annotations": 1,
+        "cancelled_annotations": 0,
+        "total_predictions": 0,
+        "comment_count": 0,
+        "unresolved_comment_count": 0,
+        "last_comment_updated_at": null,
+        "project": 4,
+        "updated_by": 2,
+        "comment_authors": []
+    },
+    {
+        "id": 32,
+        "annotations": [
+            {
+                "id": 20,
+                "completed_by": 2,
+                "result": [
+                    {
+                        "value": {
+                            "start": 67,
+                            "end": 83,
+                            "text": "Medical Outcomes",
+                            "labels": [
+                                "MajorTopic"
+                            ]
+                        },
+                        "id": "6tHWdvgRt1",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    },
+                    {
+                        "value": {
+                            "start": 57,
+                            "end": 64,
+                            "text": "Effect ",
+                            "labels": [
+                                "Qualifier"
+                            ]
+                        },
+                        "id": "OFC8U5LgOV",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    }
+                ],
+                "was_cancelled": false,
+                "ground_truth": false,
+                "created_at": "2023-02-10T09:41:56.824666Z",
+                "updated_at": "2023-02-10T09:41:56.824706Z",
+                "lead_time": 38.899,
+                "prediction": {},
+                "result_count": 0,
+                "task": 32,
+                "project": 4,
+                "parent_prediction": null,
+                "parent_annotation": null
+            }
+        ],
+        "file_upload": "ef645e4d-text.txt",
+        "drafts": [],
+        "predictions": [],
+        "data": {
+            "value": "Health Information Technology Continues to Show Positive Effect on Medical Outcomes: Systematic Review."
+        },
+        "meta": {},
+        "created_at": "2023-02-10T08:46:23.717711Z",
+        "updated_at": "2023-02-10T09:41:56.884445Z",
+        "inner_id": 19,
+        "total_annotations": 1,
+        "cancelled_annotations": 0,
+        "total_predictions": 0,
+        "comment_count": 0,
+        "unresolved_comment_count": 0,
+        "last_comment_updated_at": null,
+        "project": 4,
+        "updated_by": 2,
+        "comment_authors": []
+    },
+    {
+        "id": 33,
+        "annotations": [
+            {
+                "id": 21,
+                "completed_by": 2,
+                "result": [
+                    {
+                        "value": {
+                            "start": 13,
+                            "end": 34,
+                            "text": "US Health Care System",
+                            "labels": [
+                                "MajorTopic"
+                            ]
+                        },
+                        "id": "rs4kCVeFIw",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    },
+                    {
+                        "value": {
+                            "start": 36,
+                            "end": 51,
+                            "text": "Estimated Costs",
+                            "labels": [
+                                "Qualifier"
+                            ]
+                        },
+                        "id": "UUL0Y533v9",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    }
+                ],
+                "was_cancelled": false,
+                "ground_truth": false,
+                "created_at": "2023-02-10T09:42:27.102904Z",
+                "updated_at": "2023-02-10T09:42:27.102946Z",
+                "lead_time": 28.104,
+                "prediction": {},
+                "result_count": 0,
+                "task": 33,
+                "project": 4,
+                "parent_prediction": null,
+                "parent_annotation": null
+            }
+        ],
+        "file_upload": "ef645e4d-text.txt",
+        "drafts": [],
+        "predictions": [],
+        "data": {
+            "value": "Waste in the US Health Care System: Estimated Costs and Potential for Savings."
+        },
+        "meta": {},
+        "created_at": "2023-02-10T08:46:23.717840Z",
+        "updated_at": "2023-02-10T09:42:27.157273Z",
+        "inner_id": 20,
+        "total_annotations": 1,
+        "cancelled_annotations": 0,
+        "total_predictions": 0,
+        "comment_count": 0,
+        "unresolved_comment_count": 0,
+        "last_comment_updated_at": null,
+        "project": 4,
+        "updated_by": 2,
+        "comment_authors": []
+    },
+    {
+        "id": 34,
+        "annotations": [
+            {
+                "id": 22,
+                "completed_by": 2,
+                "result": [
+                    {
+                        "value": {
+                            "start": 4,
+                            "end": 21,
+                            "text": "ntelligent system",
+                            "labels": [
+                                "MajorTopic"
+                            ]
+                        },
+                        "id": "6PWRIS4B3k",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    },
+                    {
+                        "value": {
+                            "start": 26,
+                            "end": 36,
+                            "text": "improving ",
+                            "labels": [
+                                "Qualifier"
+                            ]
+                        },
+                        "id": "QkfUWhksod",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    }
+                ],
+                "was_cancelled": false,
+                "ground_truth": false,
+                "created_at": "2023-02-10T09:42:54.705527Z",
+                "updated_at": "2023-02-10T09:42:54.705568Z",
+                "lead_time": 25.957,
+                "prediction": {},
+                "result_count": 0,
+                "task": 34,
+                "project": 4,
+                "parent_prediction": null,
+                "parent_annotation": null
+            }
+        ],
+        "file_upload": "ef645e4d-text.txt",
+        "drafts": [],
+        "predictions": [],
+        "data": {
+            "value": "An intelligent system for improving adherence to guidelines on acute stroke."
+        },
+        "meta": {},
+        "created_at": "2023-02-10T08:46:23.717963Z",
+        "updated_at": "2023-02-10T09:42:54.763076Z",
+        "inner_id": 21,
+        "total_annotations": 1,
+        "cancelled_annotations": 0,
+        "total_predictions": 0,
+        "comment_count": 0,
+        "unresolved_comment_count": 0,
+        "last_comment_updated_at": null,
+        "project": 4,
+        "updated_by": 2,
+        "comment_authors": []
+    },
+    {
+        "id": 35,
+        "annotations": [
+            {
+                "id": 23,
+                "completed_by": 2,
+                "result": [
+                    {
+                        "value": {
+                            "start": 6,
+                            "end": 36,
+                            "text": "Medical Information Technology",
+                            "labels": [
+                                "MajorTopic"
+                            ]
+                        },
+                        "id": "_WccirQ1yI",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    },
+                    {
+                        "value": {
+                            "start": 0,
+                            "end": 6,
+                            "text": "Smart ",
+                            "labels": [
+                                "Qualifier"
+                            ]
+                        },
+                        "id": "b9B7Vn1n5M",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    }
+                ],
+                "was_cancelled": false,
+                "ground_truth": false,
+                "created_at": "2023-02-10T09:43:24.404958Z",
+                "updated_at": "2023-02-10T09:43:24.404998Z",
+                "lead_time": 27.159,
+                "prediction": {},
+                "result_count": 0,
+                "task": 35,
+                "project": 4,
+                "parent_prediction": null,
+                "parent_annotation": null
+            }
+        ],
+        "file_upload": "ef645e4d-text.txt",
+        "drafts": [],
+        "predictions": [],
+        "data": {
+            "value": "Smart Medical Information Technology for Healthcare (SMITH)."
+        },
+        "meta": {},
+        "created_at": "2023-02-10T08:46:23.718068Z",
+        "updated_at": "2023-02-10T09:43:24.456095Z",
+        "inner_id": 22,
+        "total_annotations": 1,
+        "cancelled_annotations": 0,
+        "total_predictions": 0,
+        "comment_count": 0,
+        "unresolved_comment_count": 0,
+        "last_comment_updated_at": null,
+        "project": 4,
+        "updated_by": 2,
+        "comment_authors": []
+    },
+    {
+        "id": 36,
+        "annotations": [
+            {
+                "id": 24,
+                "completed_by": 2,
+                "result": [
+                    {
+                        "value": {
+                            "start": 36,
+                            "end": 56,
+                            "text": "mHealth applications",
+                            "labels": [
+                                "MajorTopic"
+                            ]
+                        },
+                        "id": "SOqaCsoPGg",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    },
+                    {
+                        "value": {
+                            "start": 0,
+                            "end": 17,
+                            "text": "Interoperability ",
+                            "labels": [
+                                "Qualifier"
+                            ]
+                        },
+                        "id": "ayVvcPzatd",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    }
+                ],
+                "was_cancelled": false,
+                "ground_truth": false,
+                "created_at": "2023-02-10T09:43:44.552669Z",
+                "updated_at": "2023-02-10T09:43:44.552707Z",
+                "lead_time": 18.794,
+                "prediction": {},
+                "result_count": 0,
+                "task": 36,
+                "project": 4,
+                "parent_prediction": null,
+                "parent_annotation": null
+            }
+        ],
+        "file_upload": "ef645e4d-text.txt",
+        "drafts": [],
+        "predictions": [],
+        "data": {
+            "value": "Interoperability frameworks linking mHealth applications to electronic record systems."
+        },
+        "meta": {},
+        "created_at": "2023-02-10T08:46:23.718158Z",
+        "updated_at": "2023-02-10T09:43:44.606585Z",
+        "inner_id": 23,
+        "total_annotations": 1,
+        "cancelled_annotations": 0,
+        "total_predictions": 0,
+        "comment_count": 0,
+        "unresolved_comment_count": 0,
+        "last_comment_updated_at": null,
+        "project": 4,
+        "updated_by": 2,
+        "comment_authors": []
+    },
+    {
+        "id": 37,
+        "annotations": [
+            {
+                "id": 25,
+                "completed_by": 2,
+                "result": [
+                    {
+                        "value": {
+                            "start": 18,
+                            "end": 35,
+                            "text": "Share Health Data",
+                            "labels": [
+                                "MajorTopic"
+                            ]
+                        },
+                        "id": "8jTQ0DLngy",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    },
+                    {
+                        "value": {
+                            "start": 143,
+                            "end": 160,
+                            "text": "Interoperability ",
+                            "labels": [
+                                "Qualifier"
+                            ]
+                        },
+                        "id": "9CspEJy1QK",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    },
+                    {
+                        "value": {
+                            "start": 164,
+                            "end": 172,
+                            "text": "Privacy ",
+                            "labels": [
+                                "Qualifier"
+                            ]
+                        },
+                        "id": "GoDXfkR_8P",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    }
+                ],
+                "was_cancelled": false,
+                "ground_truth": false,
+                "created_at": "2023-02-10T09:44:17.405024Z",
+                "updated_at": "2023-02-10T09:44:17.405110Z",
+                "lead_time": 31.184,
+                "prediction": {},
+                "result_count": 0,
+                "task": 37,
+                "project": 4,
+                "parent_prediction": null,
+                "parent_annotation": null
+            }
+        ],
+        "file_upload": "ef645e4d-text.txt",
+        "drafts": [],
+        "predictions": [],
+        "data": {
+            "value": "Doctors Routinely Share Health Data Electronically Under HIPAA, and Sharing With Patients and Patients' Third-Party Health Apps is Consistent: Interoperability and Privacy Analysis."
+        },
+        "meta": {},
+        "created_at": "2023-02-10T08:46:23.718253Z",
+        "updated_at": "2023-02-10T09:44:17.456653Z",
+        "inner_id": 24,
+        "total_annotations": 1,
+        "cancelled_annotations": 0,
+        "total_predictions": 0,
+        "comment_count": 0,
+        "unresolved_comment_count": 0,
+        "last_comment_updated_at": null,
+        "project": 4,
+        "updated_by": 2,
+        "comment_authors": []
+    },
+    {
+        "id": 38,
+        "annotations": [
+            {
+                "id": 26,
+                "completed_by": 2,
+                "result": [
+                    {
+                        "value": {
+                            "start": 35,
+                            "end": 46,
+                            "text": "Registries ",
+                            "labels": [
+                                "MajorTopic"
+                            ]
+                        },
+                        "id": "rapDYSRtxr",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    },
+                    {
+                        "value": {
+                            "start": 50,
+                            "end": 54,
+                            "text": "EHRs",
+                            "labels": [
+                                "MajorTopic"
+                            ]
+                        },
+                        "id": "-hHbYBrxgS",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    },
+                    {
+                        "value": {
+                            "start": 0,
+                            "end": 26,
+                            "text": "Improving Interoperability",
+                            "labels": [
+                                "Qualifier"
+                            ]
+                        },
+                        "id": "aKnjEIHi62",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    }
+                ],
+                "was_cancelled": false,
+                "ground_truth": false,
+                "created_at": "2023-02-10T09:44:58.984215Z",
+                "updated_at": "2023-02-10T09:44:58.984252Z",
+                "lead_time": 38.495,
+                "prediction": {},
+                "result_count": 0,
+                "task": 38,
+                "project": 4,
+                "parent_prediction": null,
+                "parent_annotation": null
+            }
+        ],
+        "file_upload": "ef645e4d-text.txt",
+        "drafts": [],
+        "predictions": [],
+        "data": {
+            "value": "Improving Interoperability between Registries and EHRs."
+        },
+        "meta": {},
+        "created_at": "2023-02-10T08:46:23.718344Z",
+        "updated_at": "2023-02-10T09:44:59.038716Z",
+        "inner_id": 25,
+        "total_annotations": 1,
+        "cancelled_annotations": 0,
+        "total_predictions": 0,
+        "comment_count": 0,
+        "unresolved_comment_count": 0,
+        "last_comment_updated_at": null,
+        "project": 4,
+        "updated_by": 2,
+        "comment_authors": []
+    },
+    {
+        "id": 39,
+        "annotations": [
+            {
+                "id": 27,
+                "completed_by": 2,
+                "result": [
+                    {
+                        "value": {
+                            "start": 32,
+                            "end": 50,
+                            "text": "systematic reviews",
+                            "labels": [
+                                "MajorTopic"
+                            ]
+                        },
+                        "id": "HLxuGevITi",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    },
+                    {
+                        "value": {
+                            "start": 0,
+                            "end": 17,
+                            "text": "Updating guidance",
+                            "labels": [
+                                "Qualifier"
+                            ]
+                        },
+                        "id": "csJ73uQ_14",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    }
+                ],
+                "was_cancelled": false,
+                "ground_truth": false,
+                "created_at": "2023-02-10T09:46:35.966059Z",
+                "updated_at": "2023-02-10T09:46:35.966108Z",
+                "lead_time": 95.092,
+                "prediction": {},
+                "result_count": 0,
+                "task": 39,
+                "project": 4,
+                "parent_prediction": null,
+                "parent_annotation": null
+            }
+        ],
+        "file_upload": "ef645e4d-text.txt",
+        "drafts": [],
+        "predictions": [],
+        "data": {
+            "value": "Updating guidance for reporting systematic reviews: development of the PRISMA 2020 statement."
+        },
+        "meta": {},
+        "created_at": "2023-02-10T08:46:23.718435Z",
+        "updated_at": "2023-02-10T09:46:36.016427Z",
+        "inner_id": 26,
+        "total_annotations": 1,
+        "cancelled_annotations": 0,
+        "total_predictions": 0,
+        "comment_count": 0,
+        "unresolved_comment_count": 0,
+        "last_comment_updated_at": null,
+        "project": 4,
+        "updated_by": 2,
+        "comment_authors": []
+    },
+    {
+        "id": 40,
+        "annotations": [
+            {
+                "id": 28,
+                "completed_by": 2,
+                "result": [
+                    {
+                        "value": {
+                            "start": 19,
+                            "end": 25,
+                            "text": "QUADAS",
+                            "labels": [
+                                "MajorTopic"
+                            ]
+                        },
+                        "id": "DHkLxRgRGl",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    },
+                    {
+                        "value": {
+                            "start": 4,
+                            "end": 16,
+                            "text": "development ",
+                            "labels": [
+                                "Qualifier"
+                            ]
+                        },
+                        "id": "J4Lqgy70Gy",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    }
+                ],
+                "was_cancelled": false,
+                "ground_truth": false,
+                "created_at": "2023-02-10T09:46:52.479525Z",
+                "updated_at": "2023-02-10T09:46:52.479563Z",
+                "lead_time": 14.411,
+                "prediction": {},
+                "result_count": 0,
+                "task": 40,
+                "project": 4,
+                "parent_prediction": null,
+                "parent_annotation": null
+            }
+        ],
+        "file_upload": "ef645e4d-text.txt",
+        "drafts": [],
+        "predictions": [],
+        "data": {
+            "value": "The development of QUADAS: a tool for the quality assessment of studies of diagnostic accuracy included in systematic reviews. "
+        },
+        "meta": {},
+        "created_at": "2023-02-10T08:46:23.718536Z",
+        "updated_at": "2023-02-10T09:46:52.532308Z",
+        "inner_id": 27,
+        "total_annotations": 1,
+        "cancelled_annotations": 0,
+        "total_predictions": 0,
+        "comment_count": 0,
+        "unresolved_comment_count": 0,
+        "last_comment_updated_at": null,
+        "project": 4,
+        "updated_by": 2,
+        "comment_authors": []
+    },
+    {
+        "id": 41,
+        "annotations": [
+            {
+                "id": 29,
+                "completed_by": 2,
+                "result": [
+                    {
+                        "value": {
+                            "start": 38,
+                            "end": 53,
+                            "text": "healthcare work",
+                            "labels": [
+                                "MajorTopic"
+                            ]
+                        },
+                        "id": "-3h5mxUY7V",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    },
+                    {
+                        "value": {
+                            "start": 0,
+                            "end": 16,
+                            "text": "Conceptualizing ",
+                            "labels": [
+                                "Qualifier"
+                            ]
+                        },
+                        "id": "jN5R7e9ekj",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    }
+                ],
+                "was_cancelled": false,
+                "ground_truth": false,
+                "created_at": "2023-02-10T09:47:20.323034Z",
+                "updated_at": "2023-02-10T09:47:20.323072Z",
+                "lead_time": 26.236,
+                "prediction": {},
+                "result_count": 0,
+                "task": 41,
+                "project": 4,
+                "parent_prediction": null,
+                "parent_annotation": null
+            }
+        ],
+        "file_upload": "ef645e4d-text.txt",
+        "drafts": [],
+        "predictions": [],
+        "data": {
+            "value": "Conceptualizing the digitalization of healthcare work: A metaphor-based Critical Interpretive Synthesis."
+        },
+        "meta": {},
+        "created_at": "2023-02-10T08:46:23.718627Z",
+        "updated_at": "2023-02-10T09:47:20.369540Z",
+        "inner_id": 28,
+        "total_annotations": 1,
+        "cancelled_annotations": 0,
+        "total_predictions": 0,
+        "comment_count": 0,
+        "unresolved_comment_count": 0,
+        "last_comment_updated_at": null,
+        "project": 4,
+        "updated_by": 2,
+        "comment_authors": []
+    },
+    {
+        "id": 42,
+        "annotations": [
+            {
+                "id": 30,
+                "completed_by": 2,
+                "result": [
+                    {
+                        "value": {
+                            "start": 57,
+                            "end": 77,
+                            "text": "mhealth applications",
+                            "labels": [
+                                "MajorTopic"
+                            ]
+                        },
+                        "id": "ybreKXbOVY",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    },
+                    {
+                        "value": {
+                            "start": 0,
+                            "end": 30,
+                            "text": "Interoperability opportunities",
+                            "labels": [
+                                "Qualifier"
+                            ]
+                        },
+                        "id": "xwvvn--Iil",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    }
+                ],
+                "was_cancelled": false,
+                "ground_truth": false,
+                "created_at": "2023-02-10T09:47:56.686121Z",
+                "updated_at": "2023-02-10T09:47:56.686162Z",
+                "lead_time": 34.963,
+                "prediction": {},
+                "result_count": 0,
+                "task": 42,
+                "project": 4,
+                "parent_prediction": null,
+                "parent_annotation": null
+            }
+        ],
+        "file_upload": "ef645e4d-text.txt",
+        "drafts": [
+            {
+                "id": 26,
+                "user": "admin@api1.iums.ac.ir",
+                "created_username": "admin@api1.iums.ac.ir, 2",
+                "created_ago": "32 minutes",
+                "result": [
+                    {
+                        "value": {
+                            "start": 57,
+                            "end": 77,
+                            "text": "mhealth applications",
+                            "labels": [
+                                "MajorTopic"
+                            ]
+                        },
+                        "id": "ybreKXbOVY",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    },
+                    {
+                        "value": {
+                            "start": 0,
+                            "end": 30,
+                            "text": "Interoperability opportunities",
+                            "labels": [
+                                "Qualifier"
+                            ]
+                        },
+                        "id": "xwvvn--Iil",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    }
+                ],
+                "lead_time": 34.953,
+                "was_postponed": false,
+                "created_at": "2023-02-10T09:47:56.512935Z",
+                "updated_at": "2023-02-10T09:47:56.512980Z",
+                "task": 42,
+                "annotation": null
+            }
+        ],
+        "predictions": [],
+        "data": {
+            "value": "Interoperability opportunities and challenges in linking mhealth applications and eRecord systems: Botswana as an exemplar.    "
+        },
+        "meta": {},
+        "created_at": "2023-02-10T08:46:23.718719Z",
+        "updated_at": "2023-02-10T09:47:56.748596Z",
+        "inner_id": 29,
+        "total_annotations": 1,
+        "cancelled_annotations": 0,
+        "total_predictions": 0,
+        "comment_count": 0,
+        "unresolved_comment_count": 0,
+        "last_comment_updated_at": null,
+        "project": 4,
+        "updated_by": 2,
+        "comment_authors": []
+    },
+    {
+        "id": 43,
+        "annotations": [
+            {
+                "id": 31,
+                "completed_by": 2,
+                "result": [
+                    {
+                        "value": {
+                            "start": 30,
+                            "end": 45,
+                            "text": "healthcare data",
+                            "labels": [
+                                "MajorTopic"
+                            ]
+                        },
+                        "id": "5i-y6xYdd_",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    },
+                    {
+                        "value": {
+                            "start": 46,
+                            "end": 62,
+                            "text": "interoperability",
+                            "labels": [
+                                "Qualifier"
+                            ]
+                        },
+                        "id": "GSGzqjNgEn",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    }
+                ],
+                "was_cancelled": false,
+                "ground_truth": false,
+                "created_at": "2023-02-10T09:48:12.967949Z",
+                "updated_at": "2023-02-10T09:48:12.968000Z",
+                "lead_time": 14.803,
+                "prediction": {},
+                "result_count": 0,
+                "task": 43,
+                "project": 4,
+                "parent_prediction": null,
+                "parent_annotation": null
+            }
+        ],
+        "file_upload": "ef645e4d-text.txt",
+        "drafts": [],
+        "predictions": [],
+        "data": {
+            "value": "The qualculative dimension of healthcare data interoperability."
+        },
+        "meta": {},
+        "created_at": "2023-02-10T08:46:23.718817Z",
+        "updated_at": "2023-02-10T09:48:13.024591Z",
+        "inner_id": 30,
+        "total_annotations": 1,
+        "cancelled_annotations": 0,
+        "total_predictions": 0,
+        "comment_count": 0,
+        "unresolved_comment_count": 0,
+        "last_comment_updated_at": null,
+        "project": 4,
+        "updated_by": 2,
+        "comment_authors": []
+    },
+    {
+        "id": 44,
+        "annotations": [
+            {
+                "id": 32,
+                "completed_by": 2,
+                "result": [
+                    {
+                        "value": {
+                            "start": 17,
+                            "end": 43,
+                            "text": "interoperability framework",
+                            "labels": [
+                                "MajorTopic"
+                            ]
+                        },
+                        "id": "H3suHC3KAL",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    },
+                    {
+                        "value": {
+                            "start": 49,
+                            "end": 61,
+                            "text": "facilitator ",
+                            "labels": [
+                                "Qualifier"
+                            ]
+                        },
+                        "id": "Ie8vdgm8wm",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    }
+                ],
+                "was_cancelled": false,
+                "ground_truth": false,
+                "created_at": "2023-02-10T09:48:48.545239Z",
+                "updated_at": "2023-02-10T09:48:48.545279Z",
+                "lead_time": 33.759,
+                "prediction": {},
+                "result_count": 0,
+                "task": 44,
+                "project": 4,
+                "parent_prediction": null,
+                "parent_annotation": null
+            }
+        ],
+        "file_upload": "ef645e4d-text.txt",
+        "drafts": [],
+        "predictions": [],
+        "data": {
+            "value": "The new European interoperability framework as a facilitator of digital transformation for citizen empowerment."
+        },
+        "meta": {},
+        "created_at": "2023-02-10T08:46:23.718908Z",
+        "updated_at": "2023-02-10T09:48:48.595473Z",
+        "inner_id": 31,
+        "total_annotations": 1,
+        "cancelled_annotations": 0,
+        "total_predictions": 0,
+        "comment_count": 0,
+        "unresolved_comment_count": 0,
+        "last_comment_updated_at": null,
+        "project": 4,
+        "updated_by": 2,
+        "comment_authors": []
+    },
+    {
+        "id": 45,
+        "annotations": [
+            {
+                "id": 33,
+                "completed_by": 2,
+                "result": [
+                    {
+                        "value": {
+                            "start": 20,
+                            "end": 33,
+                            "text": "NHS hospitals",
+                            "labels": [
+                                "MajorTopic"
+                            ]
+                        },
+                        "id": "zFMwM3FU7P",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    },
+                    {
+                        "value": {
+                            "start": 0,
+                            "end": 17,
+                            "text": "Interoperability ",
+                            "labels": [
+                                "Qualifier"
+                            ]
+                        },
+                        "id": "aEGbIM4TDa",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    }
+                ],
+                "was_cancelled": false,
+                "ground_truth": false,
+                "created_at": "2023-02-10T09:49:18.439314Z",
+                "updated_at": "2023-02-10T09:49:18.439352Z",
+                "lead_time": 28.647,
+                "prediction": {},
+                "result_count": 0,
+                "task": 45,
+                "project": 4,
+                "parent_prediction": null,
+                "parent_annotation": null
+            }
+        ],
+        "file_upload": "ef645e4d-text.txt",
+        "drafts": [],
+        "predictions": [],
+        "data": {
+            "value": "Interoperability in NHS hospitals must be improved: the Care Quality Commission should be a key actor in this process."
+        },
+        "meta": {},
+        "created_at": "2023-02-10T08:46:23.718998Z",
+        "updated_at": "2023-02-10T09:49:18.500802Z",
+        "inner_id": 32,
+        "total_annotations": 1,
+        "cancelled_annotations": 0,
+        "total_predictions": 0,
+        "comment_count": 0,
+        "unresolved_comment_count": 0,
+        "last_comment_updated_at": null,
+        "project": 4,
+        "updated_by": 2,
+        "comment_authors": []
+    },
+    {
+        "id": 46,
+        "annotations": [
+            {
+                "id": 34,
+                "completed_by": 2,
+                "result": [
+                    {
+                        "value": {
+                            "start": 0,
+                            "end": 11,
+                            "text": "Health Care",
+                            "labels": [
+                                "MajorTopic"
+                            ]
+                        },
+                        "id": "1R1u7_fhj3",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    },
+                    {
+                        "value": {
+                            "start": 26,
+                            "end": 42,
+                            "text": "Interoperability",
+                            "labels": [
+                                "Qualifier"
+                            ]
+                        },
+                        "id": "k2YLLc3W6-",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    }
+                ],
+                "was_cancelled": false,
+                "ground_truth": false,
+                "created_at": "2023-02-10T09:50:54.645240Z",
+                "updated_at": "2023-02-10T09:50:54.645289Z",
+                "lead_time": 14.576,
+                "prediction": {},
+                "result_count": 0,
+                "task": 46,
+                "project": 4,
+                "parent_prediction": null,
+                "parent_annotation": null
+            }
+        ],
+        "file_upload": "ef645e4d-text.txt",
+        "drafts": [],
+        "predictions": [],
+        "data": {
+            "value": "Health Care in the Age of Interoperability: The Potential and Challenges."
+        },
+        "meta": {},
+        "created_at": "2023-02-10T08:46:23.719086Z",
+        "updated_at": "2023-02-10T09:50:54.694267Z",
+        "inner_id": 33,
+        "total_annotations": 1,
+        "cancelled_annotations": 0,
+        "total_predictions": 0,
+        "comment_count": 0,
+        "unresolved_comment_count": 0,
+        "last_comment_updated_at": null,
+        "project": 4,
+        "updated_by": 2,
+        "comment_authors": []
+    },
+    {
+        "id": 47,
+        "annotations": [
+            {
+                "id": 35,
+                "completed_by": 2,
+                "result": [
+                    {
+                        "value": {
+                            "start": 11,
+                            "end": 35,
+                            "text": "Electronic Health Record",
+                            "labels": [
+                                "MajorTopic"
+                            ]
+                        },
+                        "id": "x_WXIrvsNd",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    },
+                    {
+                        "value": {
+                            "start": 42,
+                            "end": 59,
+                            "text": "Interoperability ",
+                            "labels": [
+                                "Qualifier"
+                            ]
+                        },
+                        "id": "mjVKbmqhaV",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    }
+                ],
+                "was_cancelled": false,
+                "ground_truth": false,
+                "created_at": "2023-02-10T09:51:20.645446Z",
+                "updated_at": "2023-02-10T09:51:20.645489Z",
+                "lead_time": 24.339,
+                "prediction": {},
+                "result_count": 0,
+                "task": 47,
+                "project": 4,
+                "parent_prediction": null,
+                "parent_annotation": null
+            }
+        ],
+        "file_upload": "ef645e4d-text.txt",
+        "drafts": [],
+        "predictions": [],
+        "data": {
+            "value": "Smart Pump-Electronic Health Record (EHR) Interoperability with Auto-Documentation is Associated with Increased Submission of Infusion-Therapy Billing Claims at a Community Hospital."
+        },
+        "meta": {},
+        "created_at": "2023-02-10T08:46:23.719174Z",
+        "updated_at": "2023-02-10T09:51:20.696271Z",
+        "inner_id": 34,
+        "total_annotations": 1,
+        "cancelled_annotations": 0,
+        "total_predictions": 0,
+        "comment_count": 0,
+        "unresolved_comment_count": 0,
+        "last_comment_updated_at": null,
+        "project": 4,
+        "updated_by": 2,
+        "comment_authors": []
+    },
+    {
+        "id": 48,
+        "annotations": [
+            {
+                "id": 36,
+                "completed_by": 2,
+                "result": [
+                    {
+                        "value": {
+                            "start": 18,
+                            "end": 29,
+                            "text": "Health Data",
+                            "labels": [
+                                "MajorTopic"
+                            ]
+                        },
+                        "id": "XH784CMiZ-",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    },
+                    {
+                        "value": {
+                            "start": 37,
+                            "end": 53,
+                            "text": "Interoperability",
+                            "labels": [
+                                "Qualifier"
+                            ]
+                        },
+                        "id": "NUMq_bhgXK",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    }
+                ],
+                "was_cancelled": false,
+                "ground_truth": false,
+                "created_at": "2023-02-10T09:51:39.664296Z",
+                "updated_at": "2023-02-10T09:51:39.664335Z",
+                "lead_time": 17.076,
+                "prediction": {},
+                "result_count": 0,
+                "task": 48,
+                "project": 4,
+                "parent_prediction": null,
+                "parent_annotation": null
+            }
+        ],
+        "file_upload": "ef645e4d-text.txt",
+        "drafts": [],
+        "predictions": [],
+        "data": {
+            "value": "Patient-Generated Health Data (PGHD) Interoperability: An Integrative Perspective."
+        },
+        "meta": {},
+        "created_at": "2023-02-10T08:46:23.719261Z",
+        "updated_at": "2023-02-10T09:51:39.713588Z",
+        "inner_id": 35,
+        "total_annotations": 1,
+        "cancelled_annotations": 0,
+        "total_predictions": 0,
+        "comment_count": 0,
+        "unresolved_comment_count": 0,
+        "last_comment_updated_at": null,
+        "project": 4,
+        "updated_by": 2,
+        "comment_authors": []
+    },
+    {
+        "id": 49,
+        "annotations": [
+            {
+                "id": 37,
+                "completed_by": 2,
+                "result": [
+                    {
+                        "value": {
+                            "start": 0,
+                            "end": 11,
+                            "text": "Healthcare ",
+                            "labels": [
+                                "MajorTopic"
+                            ]
+                        },
+                        "id": "tJjNsXk2rq",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    },
+                    {
+                        "value": {
+                            "start": 25,
+                            "end": 41,
+                            "text": "Interoperability",
+                            "labels": [
+                                "Qualifier"
+                            ]
+                        },
+                        "id": "gs0cRNTQlL",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    }
+                ],
+                "was_cancelled": false,
+                "ground_truth": false,
+                "created_at": "2023-02-10T09:52:09.224324Z",
+                "updated_at": "2023-02-10T09:52:09.224360Z",
+                "lead_time": 8.541,
+                "prediction": {},
+                "result_count": 0,
+                "task": 49,
+                "project": 4,
+                "parent_prediction": null,
+                "parent_annotation": null
+            }
+        ],
+        "file_upload": "ef645e4d-text.txt",
+        "drafts": [],
+        "predictions": [],
+        "data": {
+            "value": "Healthcare in the Age of Interoperability: The Promise of Fast Healthcare Interoperability Resources."
+        },
+        "meta": {},
+        "created_at": "2023-02-10T08:46:23.719348Z",
+        "updated_at": "2023-02-10T09:52:09.279321Z",
+        "inner_id": 36,
+        "total_annotations": 1,
+        "cancelled_annotations": 0,
+        "total_predictions": 0,
+        "comment_count": 0,
+        "unresolved_comment_count": 0,
+        "last_comment_updated_at": null,
+        "project": 4,
+        "updated_by": 2,
+        "comment_authors": []
+    },
+    {
+        "id": 50,
+        "annotations": [
+            {
+                "id": 38,
+                "completed_by": 2,
+                "result": [
+                    {
+                        "value": {
+                            "start": 32,
+                            "end": 53,
+                            "text": "Mobile Patient Survey",
+                            "labels": [
+                                "MajorTopic"
+                            ]
+                        },
+                        "id": "-qR2F9dxhu",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    },
+                    {
+                        "value": {
+                            "start": 0,
+                            "end": 28,
+                            "text": "Interoperability Improvement",
+                            "labels": [
+                                "Qualifier"
+                            ]
+                        },
+                        "id": "Rns3NHr1dY",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    }
+                ],
+                "was_cancelled": false,
+                "ground_truth": false,
+                "created_at": "2023-02-10T09:52:26.444994Z",
+                "updated_at": "2023-02-10T09:52:26.445031Z",
+                "lead_time": 15.721,
+                "prediction": {},
+                "result_count": 0,
+                "task": 50,
+                "project": 4,
+                "parent_prediction": null,
+                "parent_annotation": null
+            }
+        ],
+        "file_upload": "ef645e4d-text.txt",
+        "drafts": [],
+        "predictions": [],
+        "data": {
+            "value": "Interoperability Improvement of Mobile Patient Survey (MoPat) Implementing Fast Health Interoperability Resources (FHIR).      "
+        },
+        "meta": {},
+        "created_at": "2023-02-10T08:46:23.719434Z",
+        "updated_at": "2023-02-10T09:52:26.503220Z",
+        "inner_id": 37,
+        "total_annotations": 1,
+        "cancelled_annotations": 0,
+        "total_predictions": 0,
+        "comment_count": 0,
+        "unresolved_comment_count": 0,
+        "last_comment_updated_at": null,
+        "project": 4,
+        "updated_by": 2,
+        "comment_authors": []
+    },
+    {
+        "id": 51,
+        "annotations": [
+            {
+                "id": 39,
+                "completed_by": 2,
+                "result": [
+                    {
+                        "value": {
+                            "start": 11,
+                            "end": 51,
+                            "text": "clinical document architecture documents",
+                            "labels": [
+                                "MajorTopic"
+                            ]
+                        },
+                        "id": "bZKaR-b-LC",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    },
+                    {
+                        "value": {
+                            "start": 0,
+                            "end": 11,
+                            "text": "Converting ",
+                            "labels": [
+                                "Qualifier"
+                            ]
+                        },
+                        "id": "QBBbD7rXTp",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    }
+                ],
+                "was_cancelled": false,
+                "ground_truth": false,
+                "created_at": "2023-02-10T09:53:08.643291Z",
+                "updated_at": "2023-02-10T09:53:08.643329Z",
+                "lead_time": 36.504,
+                "prediction": {},
+                "result_count": 0,
+                "task": 51,
+                "project": 4,
+                "parent_prediction": null,
+                "parent_annotation": null
+            }
+        ],
+        "file_upload": "ef645e4d-text.txt",
+        "drafts": [],
+        "predictions": [],
+        "data": {
+            "value": "Converting clinical document architecture documents to the common data model for incorporating health information exchange data in observational health studies: CDA to CDM."
+        },
+        "meta": {},
+        "created_at": "2023-02-10T08:46:23.719521Z",
+        "updated_at": "2023-02-10T09:53:08.693001Z",
+        "inner_id": 38,
+        "total_annotations": 1,
+        "cancelled_annotations": 0,
+        "total_predictions": 0,
+        "comment_count": 0,
+        "unresolved_comment_count": 0,
+        "last_comment_updated_at": null,
+        "project": 4,
+        "updated_by": 2,
+        "comment_authors": []
+    },
+    {
+        "id": 52,
+        "annotations": [
+            {
+                "id": 40,
+                "completed_by": 2,
+                "result": [
+                    {
+                        "value": {
+                            "start": 32,
+                            "end": 50,
+                            "text": "medicinal products",
+                            "labels": [
+                                "MajorTopic"
+                            ]
+                        },
+                        "id": "RSZZb38voG",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    },
+                    {
+                        "value": {
+                            "start": 14,
+                            "end": 29,
+                            "text": "representation ",
+                            "labels": [
+                                "Qualifier"
+                            ]
+                        },
+                        "id": "EwwHiLoO4j",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    }
+                ],
+                "was_cancelled": false,
+                "ground_truth": false,
+                "created_at": "2023-02-10T09:53:34.007645Z",
+                "updated_at": "2023-02-10T09:53:34.007700Z",
+                "lead_time": 23.666,
+                "prediction": {},
+                "result_count": 0,
+                "task": 52,
+                "project": 4,
+                "parent_prediction": null,
+                "parent_annotation": null
+            }
+        ],
+        "file_upload": "ef645e4d-text.txt",
+        "drafts": [],
+        "predictions": [],
+        "data": {
+            "value": "Comparing the representation of medicinal products in RxNorm and SNOMED CT - Consequences on interoperability."
+        },
+        "meta": {},
+        "created_at": "2023-02-10T08:46:23.719609Z",
+        "updated_at": "2023-02-10T09:53:34.061172Z",
+        "inner_id": 39,
+        "total_annotations": 1,
+        "cancelled_annotations": 0,
+        "total_predictions": 0,
+        "comment_count": 0,
+        "unresolved_comment_count": 0,
+        "last_comment_updated_at": null,
+        "project": 4,
+        "updated_by": 2,
+        "comment_authors": []
+    },
+    {
+        "id": 53,
+        "annotations": [
+            {
+                "id": 41,
+                "completed_by": 2,
+                "result": [
+                    {
+                        "value": {
+                            "start": 0,
+                            "end": 14,
+                            "text": "Digital Health",
+                            "labels": [
+                                "MajorTopic"
+                            ]
+                        },
+                        "id": "JMTni5bbWe",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    },
+                    {
+                        "value": {
+                            "start": 46,
+                            "end": 71,
+                            "text": "Electronic Health Records",
+                            "labels": [
+                                "MajorTopic"
+                            ]
+                        },
+                        "id": "ddBK7ocICK",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    },
+                    {
+                        "value": {
+                            "start": 23,
+                            "end": 45,
+                            "text": "State of Interoperable",
+                            "labels": [
+                                "Qualifier"
+                            ]
+                        },
+                        "id": "TEMZOgOrOR",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    }
+                ],
+                "was_cancelled": false,
+                "ground_truth": false,
+                "created_at": "2023-02-10T09:54:49.553388Z",
+                "updated_at": "2023-02-10T09:54:49.553433Z",
+                "lead_time": 72.019,
+                "prediction": {},
+                "result_count": 0,
+                "task": 53,
+                "project": 4,
+                "parent_prediction": null,
+                "parent_annotation": null
+            }
+        ],
+        "file_upload": "ef645e4d-text.txt",
+        "drafts": [],
+        "predictions": [],
+        "data": {
+            "value": "Digital Health and the State of Interoperable Electronic Health Records."
+        },
+        "meta": {},
+        "created_at": "2023-02-10T08:46:23.719694Z",
+        "updated_at": "2023-02-10T09:54:49.612449Z",
+        "inner_id": 40,
+        "total_annotations": 1,
+        "cancelled_annotations": 0,
+        "total_predictions": 0,
+        "comment_count": 0,
+        "unresolved_comment_count": 0,
+        "last_comment_updated_at": null,
+        "project": 4,
+        "updated_by": 2,
+        "comment_authors": []
+    },
+    {
+        "id": 54,
+        "annotations": [
+            {
+                "id": 42,
+                "completed_by": 2,
+                "result": [
+                    {
+                        "value": {
+                            "start": 61,
+                            "end": 72,
+                            "text": "Health Data",
+                            "labels": [
+                                "MajorTopic"
+                            ]
+                        },
+                        "id": "adIAqHR8Jb",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    },
+                    {
+                        "value": {
+                            "start": 73,
+                            "end": 88,
+                            "text": "Secondary Usage",
+                            "labels": [
+                                "Qualifier"
+                            ]
+                        },
+                        "id": "8uxavmmD27",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    }
+                ],
+                "was_cancelled": false,
+                "ground_truth": false,
+                "created_at": "2023-02-10T09:55:23.582253Z",
+                "updated_at": "2023-02-10T09:55:23.582291Z",
+                "lead_time": 32.262,
+                "prediction": {},
+                "result_count": 0,
+                "task": 54,
+                "project": 4,
+                "parent_prediction": null,
+                "parent_annotation": null
+            }
+        ],
+        "file_upload": "ef645e4d-text.txt",
+        "drafts": [],
+        "predictions": [],
+        "data": {
+            "value": "A National, Semantic-Driven, Three-Pillar Strategy to Enable Health Data Secondary Usage Interoperability for Research Within the Swiss Personalized Health Network: Methodological Study."
+        },
+        "meta": {},
+        "created_at": "2023-02-10T08:46:23.719785Z",
+        "updated_at": "2023-02-10T09:55:23.638324Z",
+        "inner_id": 41,
+        "total_annotations": 1,
+        "cancelled_annotations": 0,
+        "total_predictions": 0,
+        "comment_count": 0,
+        "unresolved_comment_count": 0,
+        "last_comment_updated_at": null,
+        "project": 4,
+        "updated_by": 2,
+        "comment_authors": []
+    },
+    {
+        "id": 55,
+        "annotations": [
+            {
+                "id": 43,
+                "completed_by": 2,
+                "result": [
+                    {
+                        "value": {
+                            "start": 35,
+                            "end": 49,
+                            "text": "drug discovery",
+                            "labels": [
+                                "MajorTopic"
+                            ]
+                        },
+                        "id": "Gus49LuauZ",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    },
+                    {
+                        "value": {
+                            "start": 21,
+                            "end": 35,
+                            "text": "computational ",
+                            "labels": [
+                                "Qualifier"
+                            ]
+                        },
+                        "id": "WsjgdBAfXd",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    }
+                ],
+                "was_cancelled": false,
+                "ground_truth": false,
+                "created_at": "2023-02-10T09:55:41.425847Z",
+                "updated_at": "2023-02-10T09:55:41.425887Z",
+                "lead_time": 16.082,
+                "prediction": {},
+                "result_count": 0,
+                "task": 55,
+                "project": 4,
+                "parent_prediction": null,
+                "parent_annotation": null
+            }
+        ],
+        "file_upload": "ef645e4d-text.txt",
+        "drafts": [],
+        "predictions": [],
+        "data": {
+            "value": "Towards reproducible computational drug discovery."
+        },
+        "meta": {},
+        "created_at": "2023-02-10T08:46:23.719874Z",
+        "updated_at": "2023-02-10T09:55:41.476612Z",
+        "inner_id": 42,
+        "total_annotations": 1,
+        "cancelled_annotations": 0,
+        "total_predictions": 0,
+        "comment_count": 0,
+        "unresolved_comment_count": 0,
+        "last_comment_updated_at": null,
+        "project": 4,
+        "updated_by": 2,
+        "comment_authors": []
+    },
+    {
+        "id": 56,
+        "annotations": [
+            {
+                "id": 44,
+                "completed_by": 2,
+                "result": [
+                    {
+                        "value": {
+                            "start": 29,
+                            "end": 53,
+                            "text": "health records standards",
+                            "labels": [
+                                "MajorTopic"
+                            ]
+                        },
+                        "id": "8YOC-Dt7_8",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    },
+                    {
+                        "value": {
+                            "start": 0,
+                            "end": 25,
+                            "text": "Semantic interoperability",
+                            "labels": [
+                                "Qualifier"
+                            ]
+                        },
+                        "id": "EdUds4FYRk",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    }
+                ],
+                "was_cancelled": false,
+                "ground_truth": false,
+                "created_at": "2023-02-10T09:55:58.283128Z",
+                "updated_at": "2023-02-10T09:55:58.283172Z",
+                "lead_time": 15.342,
+                "prediction": {},
+                "result_count": 0,
+                "task": 56,
+                "project": 4,
+                "parent_prediction": null,
+                "parent_annotation": null
+            }
+        ],
+        "file_upload": "ef645e4d-text.txt",
+        "drafts": [
+            {
+                "id": 33,
+                "user": "admin@api1.iums.ac.ir",
+                "created_username": "admin@api1.iums.ac.ir, 2",
+                "created_ago": "24 minutes",
+                "result": [
+                    {
+                        "value": {
+                            "start": 29,
+                            "end": 53,
+                            "text": "health records standards",
+                            "labels": [
+                                "MajorTopic"
+                            ]
+                        },
+                        "id": "8YOC-Dt7_8",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    },
+                    {
+                        "value": {
+                            "start": 0,
+                            "end": 25,
+                            "text": "Semantic interoperability",
+                            "labels": [
+                                "Qualifier"
+                            ]
+                        },
+                        "id": "EdUds4FYRk",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    }
+                ],
+                "lead_time": 15.25,
+                "was_postponed": false,
+                "created_at": "2023-02-10T09:55:58.169448Z",
+                "updated_at": "2023-02-10T09:55:58.169491Z",
+                "task": 56,
+                "annotation": null
+            }
+        ],
+        "predictions": [],
+        "data": {
+            "value": "Semantic interoperability in health records standards: a systematic literature review."
+        },
+        "meta": {},
+        "created_at": "2023-02-10T08:46:23.719963Z",
+        "updated_at": "2023-02-10T09:55:58.335799Z",
+        "inner_id": 43,
+        "total_annotations": 1,
+        "cancelled_annotations": 0,
+        "total_predictions": 0,
+        "comment_count": 0,
+        "unresolved_comment_count": 0,
+        "last_comment_updated_at": null,
+        "project": 4,
+        "updated_by": 2,
+        "comment_authors": []
+    },
+    {
+        "id": 57,
+        "annotations": [
+            {
+                "id": 45,
+                "completed_by": 2,
+                "result": [
+                    {
+                        "value": {
+                            "start": 10,
+                            "end": 45,
+                            "text": "comprehensive oncogenetics training",
+                            "labels": [
+                                "MajorTopic"
+                            ]
+                        },
+                        "id": "MUrAYfOE8n",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    },
+                    {
+                        "value": {
+                            "start": 0,
+                            "end": 7,
+                            "text": "Effect ",
+                            "labels": [
+                                "Qualifier"
+                            ]
+                        },
+                        "id": "tRZHueCW4m",
+                        "from_name": "lbl",
+                        "to_name": "txt",
+                        "type": "labels",
+                        "origin": "manual"
+                    }
+                ],
+                "was_cancelled": false,
+                "ground_truth": false,
+                "created_at": "2023-02-10T09:56:43.804573Z",
+                "updated_at": "2023-02-10T09:56:43.804613Z",
+                "lead_time": 41.555,
+                "prediction": {},
+                "result_count": 0,
+                "task": 57,
+                "project": 4,
+                "parent_prediction": null,
+                "parent_annotation": null
+            }
+        ],
+        "file_upload": "ef645e4d-text.txt",
+        "drafts": [],
+        "predictions": [],
+        "data": {
+            "value": "Effect of comprehensive oncogenetics training interventions for general practitioners, evaluated at multiple performance levels."
+        },
+        "meta": {},
+        "created_at": "2023-02-10T08:46:23.720050Z",
+        "updated_at": "2023-02-10T09:56:43.858992Z",
+        "inner_id": 44,
+        "total_annotations": 1,
+        "cancelled_annotations": 0,
+        "total_predictions": 0,
+        "comment_count": 0,
+        "unresolved_comment_count": 0,
+        "last_comment_updated_at": null,
+        "project": 4,
+        "updated_by": 2,
+        "comment_authors": []
+    }
+]

@@ -452,16 +452,23 @@ if __name__ == '__main__':
 
     # move_state_forward(2)
 
-    data = get_article_by_pmid('35421968')
-    data= json.dumps(data, indent=4)
-    with open("one-ForeName.json", "w") as outfile:
-        outfile.write(data)
+    # data = get_article_by_pmid('35421968')
+    # data= json.dumps(data, indent=4)
+    # with open("one-ForeName.json", "w") as outfile:
+    #     outfile.write(data)
 
     # 32434767
     # click.echo(click.style('Number of article in knowlege repository is ', fg='green') + ' ' + click.style(str(get_all_article_count()), fg='red'))
     # click.secho('Hello World!', fg='green')
     # click.secho('Some more text', bg='blue', fg='white')
     # click.secho('ATTENTION', blink=True, bold=True)
+
+    la = get_article_by_state(2)
+    for a in la:
+        article = Article(**a.copy()) 
+        print(article.Title)
+        
+
 
     
 
