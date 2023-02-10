@@ -177,6 +177,9 @@ Interactive visualization of networks based on Ulf Aslak's d3 web app.
 
 https://github.com/benmaier/netwulf
 
+## NetworkX and PyVis
+https://python-textbook.pythonhumanities.com/06_sna/06_01_05_networkx_pyvis.html
+
 # Graph Analysis
 
 ## Usefull Link
@@ -192,3 +195,14 @@ Petko Georgiev
 Computer Laboratory, University of Cambridge
 
 https://www.cl.cam.ac.uk/teaching/1314/L109/tutorial.pdf
+
+### Graph Analysis - I
+https://notebook.community/harrymvr/dataminingapp-lectures/Lecture-17/GraphAnalysis-I
+
+### Tutorial 7: Network analysis
+
+https://infovis.fh-potsdam.de/tutorials/infovis7networks.html
+
+### Lightning Network: Some Graph Theory Metrics — Part 2
+
+https://medium.com/analytics-vidhya/lightning-network-some-graph-theory-metrics-part-2-practical-guide-cfc37fb8e047

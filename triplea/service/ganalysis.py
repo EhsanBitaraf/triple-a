@@ -79,6 +79,7 @@ def info(G):
         print('Graph Type: Directed')
         print (f'SCC: {nx.number_strongly_connected_components(G)}')
         print (f'WCC: {nx.number_weakly_connected_components(G)}')
+        print (f'Reciprocity : {nx.reciprocity(G)}' )
     else:
         print('Graph Type: Undirected')
         # G.s_metric()
@@ -92,16 +93,16 @@ def info(G):
     print(f'Graph Edges: {number_of_edges}')
     print(f'Graph Average Degree : {avg_deg}')
     print(f'Graph Density : {density}')
-    print(f'Graph transitivity : {transitivity}')
+    print(f'Graph Transitivity : {transitivity}')
 
     
    
-    bet_cen = nx.betweenness_centrality(G)
-    clo_cen = nx.closeness_centrality(G)
-    eig_cen = nx.eigenvector_centrality(G)
-    print(f'Graph Betweenness Centrality: {get_top_keys(bet_cen,1)}')
-    print(f'Graph Closeness Centrality: {get_top_keys(clo_cen,1)}')
-    print(f'Graph Eigenvector Centrality : {get_top_keys(eig_cen, 1)}')
+    # bet_cen = nx.betweenness_centrality(G)
+    # clo_cen = nx.closeness_centrality(G)
+    # eig_cen = nx.eigenvector_centrality(G)
+    # print(f'Graph Betweenness Centrality: {get_top_keys(bet_cen,1)}')
+    # print(f'Graph Closeness Centrality: {get_top_keys(clo_cen,1)}')
+    # print(f'Graph Eigenvector Centrality : {get_top_keys(eig_cen, 1)}')
 
 
 
@@ -237,12 +238,11 @@ if __name__ == '__main__':
     # nx.draw_circular(H, with_labels=True)
     # nx.draw_shell(H)
     # plt.savefig("path.png")
-    from networkx.algorithms.smetric import s_metric
+    # from networkx.algorithms.smetric import s_metric
     # print(s_metric(H))
     
     # print(nx.diameter(H))
-    G = G.to_undirected()
-    info(G) 
+ 
 
     # G = H
     # info(G) 
@@ -279,6 +279,16 @@ if __name__ == '__main__':
     # # Eigenvector centrality
     # eig_cen = nx.eigenvector_centrality(cam_net_mc)
 
+
+    # Modularity
+    # Modularity is a metric for understanding how well a network can be partitioned into separate clusters. The general rule is, the greater the modularity, the higher the number of highly connected groups connected by sparse edges.
+    G = nx.complete_graph(100)
+    G = G.to_undirected()
+    info(G) 
+    import networkx.algorithms.community as nx_comm
+    print(nx_comm.modularity(G, G.nodes()))
+
+    
     #endregion
 
 
