@@ -82,6 +82,26 @@ def export_networkX(graph_type: Optional[str] = 'directed' ):
 
     return G
 
+def generate_networkX(nodes : list[Node] , edges : list[Edge], graph_type: Optional[str] = 'directed' ):
+    if graph_type == 'undirected':
+        G = nx.Graph()
+    elif graph_type == 'directed':
+        G = nx.DiGraph()
+    else:
+        raise NotImplementedError
+
+    # nodes = get_all_nodes()
+    for node in nodes:
+        # node = Node(**n.copy()) 
+        G.add_node(node.Identifier , Type = node.Type, Name = node.Name)
+
+    # edges = get_all_edges()
+    for edge in edges:
+        # edge = Edge(**e.copy()) 
+        G.add_edge(edge.SourceID , edge.DestinationID , Type = edge.Type)
+
+    return G
+
 def export_networkx_to_gpickle(filename:str):
     G = export_networkX()
     nx.write_gpickle(G, filename)

@@ -1,0 +1,243 @@
+{
+    "Abstract": null,
+    "Authors": null,
+    "DOI": null,
+    "InsertType": [],
+    "Journal": null,
+    "Keywords": null,
+    "OreginalArticle": {
+        "PubmedArticleSet": {
+            "PubmedArticle": {
+                "MedlineCitation": {
+                    "@IndexingMethod": "Automated",
+                    "@Owner": "NLM",
+                    "@Status": "MEDLINE",
+                    "Article": {
+                        "@PubModel": "Print",
+                        "Abstract": {
+                            "AbstractText": [
+                                {
+                                    "#text": "To evaluate the cancer registry in Iraq over a 5 year period from 2013 to 2018 (except 2017 as software data was not accessable) in all of Iraqi's provinces. Further more to study the incidence rate and the pattern of distribution of breast cancer in various provinces of Iraq.",
+                                    "@Label": "OBJECTIVE",
+                                    "@NlmCategory": "OBJECTIVE"
+                                },
+                                {
+                                    "#text": "All data was collected from the cancer registration centres of Iraq. Original data is set to highlight and update the cancer state of the country.",
+                                    "@Label": "METHODS",
+                                    "@NlmCategory": "METHODS"
+                                },
+                                {
+                                    "#text": "On data analysis it was observed that the incidence of cancer with the number of new cases each year, were higher in some cities compared to others. The major cause for this difference is the displacement of people from their home cities due to ISIS attack, which changed the demographic distribution of people in Iraq. Current results revealed an increase in the number of new cases registered annually during 1994-2018. Moreover, cancer incidence rate per 1005 population showed that Baghdad, Karbala and Al Najaf have a higher incidence in the period between 2013-2018. Breast cancer in females is the most frequent malignancy in Iraq, followed by colon cancer and leukaemia. This reveals the importance of cancer awareness programmes in drawing the attention to early diagnosis and treatment.",
+                                    "@Label": "RESULTS",
+                                    "@NlmCategory": "RESULTS"
+                                },
+                                {
+                                    "#text": "This study provides the incidence of cancer, especially breast cancer in Iraq. This will assist the researchers to identify regional differences in the prevalence figures.",
+                                    "@Label": "CONCLUSIONS",
+                                    "@NlmCategory": "CONCLUSIONS"
+                                }
+                            ]
+                        },
+                        "ArticleTitle": "Re-validate the dataset of Iraq cancer registries.",
+                        "AuthorList": {
+                            "@CompleteYN": "Y",
+                            "Author": [
+                                {
+                                    "@ValidYN": "Y",
+                                    "AffiliationInfo": {
+                                        "Affiliation": "Department of Molecular Oncology , Mustansiriyah University, Baghdad, Iraq."
+                                    },
+                                    "ForeName": "Amar Hekmat",
+                                    "Initials": "AH",
+                                    "LastName": "Mahdi"
+                                },
+                                {
+                                    "@ValidYN": "Y",
+                                    "AffiliationInfo": {
+                                        "Affiliation": "Department of Molecular Biology , Mustansiriyah University, Baghdad, Iraq."
+                                    },
+                                    "ForeName": "Zaynab Saad",
+                                    "Initials": "ZS",
+                                    "LastName": "Abdulghany"
+                                },
+                                {
+                                    "@ValidYN": "Y",
+                                    "AffiliationInfo": {
+                                        "Affiliation": "Department of Experimental Therapy, Mustansiriyah University, Baghdad, Iraq."
+                                    },
+                                    "ForeName": "Maeda Hussain",
+                                    "Initials": "MH",
+                                    "LastName": "Mohammed"
+                                }
+                            ]
+                        },
+                        "Journal": {
+                            "ISOAbbreviation": "J Pak Med Assoc",
+                            "ISSN": {
+                                "#text": "0030-9982",
+                                "@IssnType": "Print"
+                            },
+                            "JournalIssue": {
+                                "@CitedMedium": "Internet",
+                                "Issue": "12",
+                                "PubDate": {
+                                    "Month": "Dec",
+                                    "Year": "2021"
+                                },
+                                "Volume": "71(Suppl 8)"
+                            },
+                            "Title": "JPMA. The Journal of the Pakistan Medical Association"
+                        },
+                        "Language": "eng",
+                        "Pagination": {
+                            "EndPage": "S156",
+                            "MedlinePgn": "S149-S156",
+                            "StartPage": "S149"
+                        },
+                        "PublicationTypeList": {
+                            "PublicationType": {
+                                "#text": "Journal Article",
+                                "@UI": "D016428"
+                            }
+                        }
+                    },
+                    "CitationSubset": "IM",
+                    "DateCompleted": {
+                        "Day": "09",
+                        "Month": "02",
+                        "Year": "2022"
+                    },
+                    "DateRevised": {
+                        "Day": "09",
+                        "Month": "02",
+                        "Year": "2022"
+                    },
+                    "KeywordList": {
+                        "@Owner": "NOTNLM",
+                        "Keyword": {
+                            "#text": "Iraq, Cancer registry, Baghdad, Incidence rate.",
+                            "@MajorTopicYN": "N"
+                        }
+                    },
+                    "MedlineJournalInfo": {
+                        "Country": "Pakistan",
+                        "ISSNLinking": "0030-9982",
+                        "MedlineTA": "J Pak Med Assoc",
+                        "NlmUniqueID": "7501162"
+                    },
+                    "MeshHeadingList": {
+                        "MeshHeading": [
+                            {
+                                "DescriptorName": {
+                                    "#text": "Breast Neoplasms",
+                                    "@MajorTopicYN": "Y",
+                                    "@UI": "D001943"
+                                },
+                                "QualifierName": {
+                                    "#text": "epidemiology",
+                                    "@MajorTopicYN": "N",
+                                    "@UI": "Q000453"
+                                }
+                            },
+                            {
+                                "DescriptorName": {
+                                    "#text": "Female",
+                                    "@MajorTopicYN": "N",
+                                    "@UI": "D005260"
+                                }
+                            },
+                            {
+                                "DescriptorName": {
+                                    "#text": "Humans",
+                                    "@MajorTopicYN": "N",
+                                    "@UI": "D006801"
+                                }
+                            },
+                            {
+                                "DescriptorName": {
+                                    "#text": "Incidence",
+                                    "@MajorTopicYN": "N",
+                                    "@UI": "D015994"
+                                }
+                            },
+                            {
+                                "DescriptorName": {
+                                    "#text": "Iraq",
+                                    "@MajorTopicYN": "N",
+                                    "@Type": "Geographic",
+                                    "@UI": "D007493"
+                                },
+                                "QualifierName": {
+                                    "#text": "epidemiology",
+                                    "@MajorTopicYN": "N",
+                                    "@UI": "Q000453"
+                                }
+                            },
+                            {
+                                "DescriptorName": {
+                                    "#text": "Prevalence",
+                                    "@MajorTopicYN": "N",
+                                    "@UI": "D015995"
+                                }
+                            },
+                            {
+                                "DescriptorName": {
+                                    "#text": "Registries",
+                                    "@MajorTopicYN": "N",
+                                    "@UI": "D012042"
+                                }
+                            }
+                        ]
+                    },
+                    "PMID": {
+                        "#text": "35130239",
+                        "@Version": "1"
+                    }
+                },
+                "PubmedData": {
+                    "ArticleIdList": {
+                        "ArticleId": {
+                            "#text": "35130239",
+                            "@IdType": "pubmed"
+                        }
+                    },
+                    "History": {
+                        "PubMedPubDate": [
+                            {
+                                "@PubStatus": "entrez",
+                                "Day": "7",
+                                "Hour": "17",
+                                "Minute": "13",
+                                "Month": "2",
+                                "Year": "2022"
+                            },
+                            {
+                                "@PubStatus": "pubmed",
+                                "Day": "8",
+                                "Hour": "6",
+                                "Minute": "0",
+                                "Month": "2",
+                                "Year": "2022"
+                            },
+                            {
+                                "@PubStatus": "medline",
+                                "Day": "10",
+                                "Hour": "6",
+                                "Minute": "0",
+                                "Month": "2",
+                                "Year": "2022"
+                            }
+                        ]
+                    },
+                    "PublicationStatus": "ppublish"
+                }
+            }
+        }
+    },
+    "PMC": null,
+    "PMID": "35130239",
+    "QueryTranslation": "(\"Breast Neoplasms\"[MeSH Terms] OR \"Breast Cancer\"[Title] OR \"Breast Neoplasms\"[Title] OR \"Breast Neoplasms\"[Other Term] OR \"Breast Cancer\"[Other Term]) AND (\"Registries\"[MeSH Major Topic] OR \"Database Management Systems\"[MeSH Major Topic] OR \"Information Systems\"[MeSH Major Topic] OR \"Registry\"[Other Term] OR \"Registry\"[Title] OR \"Information Storage and Retrieval\"[MeSH Major Topic])",
+    "References": null,
+    "State": -1,
+    "Title": null
+}

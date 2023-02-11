@@ -1,10 +1,19 @@
-from triplea.service.export import export_networkX
+
+import json
+from triplea.schemas.article import Article
+from triplea.schemas.node import Edge, Node
+from triplea.service.export import generate_networkX
+from triplea.service.persist import get_article_by_state
+from triplea.service.click_logger import logger
+
 import networkx as nx
 import nxviz as nv
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 from netwulf import visualize
+
+
 
 def visualize_and_grouping(G):
     for k, v in G.nodes(data=True):
@@ -104,11 +113,125 @@ def info(G):
     # print(f'Graph Closeness Centrality: {get_top_keys(clo_cen,1)}')
     # print(f'Graph Eigenvector Centrality : {get_top_keys(eig_cen, 1)}')
 
+def generate_custom_graph():
+    la = get_article_by_state(3)
+    nodes = []
+    edges = []
+    MJ = []
+    n = 0 
+    for a in la:
+        n = n + 1
+        updated_article = Article(**a.copy())
+
+        node_article = Node()
+        node_article.Identifier = updated_article.PMID
+        node_article.Name = updated_article.PMID
+        node_article.Type = 'Article'
+        nodes.append(node_article)
+
+        if updated_article.NamedEntities is not None:
+            for ner in updated_article.NamedEntities:
+                node_entity = Node()
+                node_entity.Identifier = ner.Entity
+                node_entity.Name = ner.Entity
+                if ner.Label=='MAJORTOPIC':
+                    new_cluster_entity = ner.Entity.lower()
+
+                    if new_cluster_entity.__contains__('registr'):new_cluster_entity = 'registry'
+                    if new_cluster_entity.__contains__('data'):new_cluster_entity = 'data'
+                    if new_cluster_entity.__contains__('record'):new_cluster_entity = 'record'
+                    if new_cluster_entity.__contains__('screening'):new_cluster_entity = 'screening'
+     
+
+                    
+                    node_entity.Identifier = new_cluster_entity
+                    node_entity.Name = new_cluster_entity
+                    MJ.append(new_cluster_entity)
+
+                
+                node_entity.Type = 'Entity'
+                nodes.append(node_entity)
+
+                edge_label = Edge()
+                edge_label.SourceID = node_article.Identifier
+                edge_label.DestinationID = node_entity.Identifier
+                edge_label.Type = ner.Label
+                edge_label.HashID =  str(hash(edge_label.SourceID + edge_label.DestinationID + edge_label.Type))
+                edges.append(edge_label)
+
+
+
+
+        logger.INFO(f'{n} article(s) read.')
+
+
+    nodes_json= json.dumps(MJ, indent=4)
+    with open("nodes.json", "w") as outfile:
+        outfile.write(nodes_json)
+    
+    G = generate_networkX(nodes,edges)
+    return G
+
+def generate_custom_keyword_graph():
+    la = get_article_by_state(3)
+    nodes = []
+    edges = []
+    MJ = []
+    n = 0 
+    for a in la:
+        n = n + 1
+        updated_article = Article(**a.copy())
+
+        node_article = Node()
+        node_article.Identifier = updated_article.PMID
+        node_article.Name = updated_article.PMID
+        node_article.Type = 'Article'
+        nodes.append(node_article)
+
+        if updated_article.Keywords is not None:
+            for k in updated_article.Keywords:
+                node_entity = Node()
+                node_entity.Identifier = k.Text
+                node_entity.Name = k.Text
+                node_entity.Type = 'Keyword'
+                nodes.append(node_entity)
+
+                MJ.append(node_entity.Name)
+
+                edge_label = Edge()
+                edge_label.SourceID = node_article.Identifier
+                edge_label.DestinationID = node_entity.Identifier
+                edge_label.Type = 'KEYWORD'
+                edge_label.HashID =  str(hash(edge_label.SourceID + edge_label.DestinationID + edge_label.Type))
+                edges.append(edge_label)
+
+        logger.INFO(f'{n} article(s) read.')
+
+
+    nodes_json= json.dumps(MJ, indent=4)
+    with open("nodes.json", "w") as outfile:
+        outfile.write(nodes_json)
+    
+    G = generate_networkX(nodes,edges)
+    return G
+
+
 
 
 if __name__ == '__main__':
+
+
+    # G = generate_custom_graph()
+    G = generate_custom_keyword_graph()
+    # saving graph created above in graphml format
+    nx.write_graphml(G, "NER.graphml")
+    info(G)
+    print(sorted_degree_centrality(G))
+    visualize_and_grouping(G)
+
+
     # G = export_networkX(graph_type='undirected')
-    G = export_networkX()
+    # G = export_networkX()
 
     #region lab
 
@@ -228,7 +351,7 @@ if __name__ == '__main__':
 
     # selected_edges = [(u,v,e) for u,v,e in G.edges(data=True) if v == '31113484']
     # H = nx.Graph(selected_edges)
-    H = nx.Graph(((u, v, e) for u,v,e in G.edges(data=True) if e['Type'] == 'KEYWORD'))
+    # H = nx.Graph(((u, v, e) for u,v,e in G.edges(data=True) if e['Type'] == 'KEYWORD'))
     # visualize(H)
     # print(nx.number_of_nodes(H))
     # print(nx.number_of_edges(H))
@@ -282,11 +405,11 @@ if __name__ == '__main__':
 
     # Modularity
     # Modularity is a metric for understanding how well a network can be partitioned into separate clusters. The general rule is, the greater the modularity, the higher the number of highly connected groups connected by sparse edges.
-    G = nx.complete_graph(100)
-    G = G.to_undirected()
-    info(G) 
-    import networkx.algorithms.community as nx_comm
-    print(nx_comm.modularity(G, G.nodes()))
+    # G = nx.complete_graph(100)
+    # G = G.to_undirected()
+    # info(G) 
+    # import networkx.algorithms.community as nx_comm
+    # print(nx_comm.modularity(G, G.nodes()))
 
     
     #endregion

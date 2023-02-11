@@ -2,6 +2,10 @@ from pydantic import BaseModel,Field
 from typing import Optional
 
 
+class NamedEntity(BaseModel):
+    Label: Optional[str] = Field(description='')
+    Entity: Optional[str] = Field(description='')
+
 class Keyword(BaseModel):
     Text: Optional[str] = Field(description='')
     IS_Major: Optional[bool] = Field(description='The MajorTopic attribute is set to True (for Yes) when the MeSH Heading/Keyword alone is a central concept of the article')
@@ -41,3 +45,5 @@ class Article(BaseModel):
     Keywords: Optional[list[Keyword]] =  Field(description='')
     References: Optional[list[str]] =  Field(description='')
     InsertType: Optional[list[str]] = Field(description='')
+    NamedEntities: Optional[list[NamedEntity]] = Field(description='')
+

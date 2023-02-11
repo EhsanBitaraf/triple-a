@@ -35,11 +35,10 @@ term = '("Electronic Health Records"[Mesh]) AND ("National"[Title/Abstract]) AND
 get_article_list_all_store_to_kg_rep(term)
 ```
 
-move to state 1
+move from state 1
 ```
 move_state_forward(1)
 ```
-
 
 get list of PMID in state 0 and save to file for debugginf use
 ```
@@ -65,6 +64,17 @@ get one article from kg and save to file
         outfile.write(data)
 ```
 
+Save Title for Annotation
+```
+    file =  open("article-title.txt", "w", encoding="utf-8")
+    la = get_article_by_state(2)
+    for a in la:
+        try:
+            article = Article(**a.copy())
+        except:
+            pass
+        file.write(article.Title  + "\n")
+```
 
 ### Trainong NER for Article Title
 **Step 1:** Annotate train data with Label Studio
@@ -147,11 +157,47 @@ with `web.py`[.](https://stackoverflow.com/questions/39801718/how-to-run-a-http-
 
 ## Command Line (CLI) Use
 
+
+### Get and Save list of article identifier base on search term
+
+Get list of article identifier (PMID) base on search term and save into knowledge repository in first state (0):
+
+use this command:
+```
+python .\triplea\cli\search.py --searchterm [searchterm]
+```
+
+### Move data pipeline state
+With this command move from current state to the next state
+```
+python .\triplea\cli\next.py --state [state]
+```
+
+output:
+
+![](docs/assets/img/cli-next.png)
+
+
+*List of state number*
+
+|State|Desc|
+|-|-|
+|0|article identifier saved|
+|1|article details article info saved|
+|2|parse details info|
+|3|NER Title|
+|4|extract graph|
+|-1|Error|
+
+
+
+
 ### NER Article Title
 
 ```
 python .\triplea\cli\ner.py --title "The Iranian Integrated Care Electronic Health Record."
 ```
+
 
 
 # Testing
@@ -178,6 +224,40 @@ poetry run pytest
 
 [click](https://click.palletsprojects.com/en/8.1.x/)
 
+# Use case
+
+## EHR
+
+## Registry of Breast Cancer
+
+Keyword Checking:
+```
+"Breast Neoplasms"[Mesh]  
+"Breast Cancer"[Title]
+"Breast Neoplasms"[Title]  
+"Breast Neoplasms"[Other Term]
+"Breast Cancer"[Other Term]
+"Registries"[Mesh]
+"Database Management Systems"[Mesh]
+"Information Systems"[MeSH Major Topic]
+"Registries"[Other Term]
+"Information Storage and Retrieval"[MeSH Major Topic]
+"Registry"[Title]
+"National Program of Cancer Registries"[Mesh]
+"Registries"[MeSH Major Topic]
+"Information Science"[Mesh]
+"Data Management"[Mesh]
+```
+
+Final Pubmed Query:
+```
+("Breast Neoplasms"[Mesh] OR "Breast Cancer"[Title] OR "Breast Neoplasms"[Title] OR "Breast Neoplasms"[Other Term] OR "Breast Cancer"[Other Term]) AND ("Registries"[MeSH Major Topic] OR "Database Management Systems"[MeSH Major Topic] OR "Information Systems"[MeSH Major Topic] OR "Registry"[Other Term] OR "Registry"[Title] OR "Information Storage and Retrieval"[MeSH Major Topic])
+```
+
+url:
+```
+https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=("Breast+Neoplasms"[Mesh]+OR+"Breast+Cancer"[Title]+OR+"Breast+Neoplasms"[Title]+OR+"Breast+Neoplasms"[Other+Term]+OR+"Breast+Cancer"[Other+Term])+AND+("Registries"[MeSH+Major+Topic]+OR+"Database+Management+Systems"[MeSH+Major+Topic]+OR+"Information+Systems"[MeSH+Major+Topic]+OR+"Registry"[Other+Term]+OR+"Registry"[Title]+OR+"Information+Storage+and+Retrieval"[MeSH+Major+Topic])&retmode=json&retstart=1&retmax=10
+```
 
 # MEDLINE®PubMed® XML Element Descriptions and their Attributes
 [THE ELEMENTS AND THEIR ATTRIBUTES IN PUBMEDARTICLESET](https://www.nlm.nih.gov/bsd/licensee/elements_descriptions.html)
@@ -207,6 +287,38 @@ https://www.ncbi.nlm.nih.gov/pmc/tools/developers/
 https://www.ncbi.nlm.nih.gov/research/bionlp/APIs/BioC-PMC/
 
 
+#### Citation
+
+http://api.crossref.org/works/10.1179/1942787514y.0000000039
+
+http://api.crossref.org/works/10.1186/s12911-023-02115-5
+
+https://api.citeas.org/product/10.1186/s12911-023-02115-5
+
+
+#### citeas-api
+
+Get the scholarly citation for any research product: software, preprint, paper, or dataset 
+
+https://github.com/ourresearch/citeas-api
+
+
+#### elink
+https://github.com/biopython/biopython/blob/master/Bio/Entrez/__init__.py
+
+https://www.ncbi.nlm.nih.gov/books/NBK25500/
+
+https://eutils.ncbi.nlm.nih.gov/entrez/eutils/elink.fcgi
+
+https://eutils.ncbi.nlm.nih.gov/entrez/eutils/elink.fcgi?dbfrom=pubmed&db=pubmed&id=34577062
+
+ Example: Find related articles to PMID 20210808 
+
+ https://eutils.ncbi.nlm.nih.gov/entrez/eutils/elink.fcgi?dbfrom=pubmed&db=pubmed&id=20210808&cmd=neighbor_score
+
+ https://eutils.ncbi.nlm.nih.gov/entrez/eutils/elink.fcgi?dbfrom=pubmed&db=pubmed&id=35130239
+
+pubmed_pubmed_citedin
 # Graph Visualization 
 [Chapter 3: Graph Visualization](https://ericmjl.github.io/Network-Analysis-Made-Simple/01-introduction/03-viz/)
 

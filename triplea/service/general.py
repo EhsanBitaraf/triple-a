@@ -1,4 +1,6 @@
 import json
+from logging import info
+import sys
 import time
 from typing import Optional
 import requests
@@ -7,8 +9,9 @@ from triplea.service.click_logger import logger
 from triplea.schemas.node import Edge, Node
 
 from triplea.config.settings import ROOT,SETTINGS
-from triplea.schemas.article import Affiliation, Article, Author, Keyword
-from triplea.service.persist import create_article, create_edge, create_node, get_all_article_count, get_all_edge_count, get_all_node_count, get_all_nodes, get_article_by_pmid, get_article_by_state, insert_new_pmid, update_article_by_pmid
+from triplea.schemas.article import Affiliation, Article, Author, Keyword, NamedEntity
+from triplea.service.ner import get_title_ner
+from triplea.service.persist import  create_article, create_edge, create_node, get_all_article_count, get_all_edge_count, get_all_node_count, get_all_nodes, get_article_by_pmid, get_article_by_state, insert_new_pmid, refresh, update_article_by_pmid
 
 def _convert_dict_to_class_affiliation(data:dict)-> Affiliation:
     """
@@ -76,6 +79,19 @@ def _convert_dict_to_class_author(data:dict)-> Author:
     
     return my_author
 
+def _convert_dict_to_class_keyword(data:dict) -> Keyword:
+    my_keyword = Keyword()
+    my_keyword.Text = data['#text']
+    if ',' in my_keyword.Text:
+        raise NotImplementedError 
+    if data['@MajorTopicYN'] == 'Y':
+        my_keyword.IS_Major = True
+    else:
+        my_keyword.IS_Major = False
+    my_keyword.IS_Mesh = False
+    return my_keyword
+
+
 def get_article_list_from_pubmed(retstart:int, retmax:int, search_term:str)-> dict:
     """
     This function takes in a search term, and returns a dictionary of the results of the search
@@ -99,9 +115,11 @@ def get_article_list_from_pubmed(retstart:int, retmax:int, search_term:str)-> di
             'retstart': retstart, # Sequential index of the first UID in the retrieved set to be shown in the XML output (default=0, corresponding to the first record of the entire set). This parameter can be used in conjunction with retmax to download an arbitrary subset of UIDs retrieved from a search.
             'retmax' : retmax, # Total number of UIDs from the retrieved set to be shown in the XML output (default=20). By default, ESearch only includes the first 20 UIDs retrieved in the XML output. If usehistory is set to 'y', the remainder of the retrieved set will be stored on the History server; otherwise these UIDs are lost. Increasing retmax allows more of the retrieved UIDs to be included in the XML output, up to a maximum of 10,000 records.
             }
+
+    headers = {'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/109.0'}
     # sending get request and saving the response as response object
     try:
-        r = requests.get(url = URL, params = PARAMS)
+        r = requests.get(url = URL, params = PARAMS , headers= headers)
     except:
         raise Exception('Connection Error.')
 
@@ -154,7 +172,7 @@ def get_article_list_all_store_to_kg_rep(searchterm:str,
                                          tps_limit: Optional[int] = 1,
                                          big_ret: Optional[bool] = True,
                                          retmax: Optional[int] = 10000,
-                                         ):
+                                         )-> None:
     """
     It takes a search term, and returns a list of all the articles that match that search term
     
@@ -169,10 +187,13 @@ def get_article_list_all_store_to_kg_rep(searchterm:str,
     :type retmax: Optional[int] (optional)
     """
     sleep_time = 1  // tps_limit
-    data = get_article_list_from_pubmed(0 ,1 , searchterm)
+    data = get_article_list_from_pubmed(0 ,2 , searchterm)
 
     total = int(data['esearchresult']['count'])
     logger.INFO('Total number of article is ' + str(total))
+
+    if total == 0:
+        return 
 
     if big_ret == True:
         retmax = 10000
@@ -213,248 +234,342 @@ def move_state_forward(state: int,
     """
     sleep_time = 1  // tps_limit
     la = get_article_by_state(state)
+    total_article_in_current_state = len(la)
+    number_of_article_move_forward = 0
+    number_of_new_reference_article = 0
     logger.DEBUG(str(len(la)) + ' Article(s) is in state ' + str(state))
+
+
+    refresh_point = 0
     for a in la:
-        updated_article = Article(**a.copy()) 
-        
         try:
-            current_state = updated_article.State
-        except:
-            current_state = 0
-        logger.DEBUG('Article ' + updated_article.PMID + ' with state ' + str(current_state) + ' forward to ' + str(current_state + 1))
-
-        ## for re run
-        # if current_state == 2 : current_state = 1
-
-        if current_state is None:
-            updated_article.State = 1
-            time.sleep(sleep_time)
-            oa = get_article_details_from_pubmed(updated_article.PMID)
-            updated_article.OreginalArticle = oa
-            l = update_article_by_pmid(updated_article , updated_article.PMID)
-
-        elif current_state == 0: # get article details from pubmed
-            updated_article.State = 1
-            time.sleep(sleep_time)
-            oa = get_article_details_from_pubmed(updated_article.PMID)
-            updated_article.OreginalArticle = oa
-            l = update_article_by_pmid(updated_article , updated_article.PMID)
-                  
-        elif current_state == 1: # Extract Data
-            updated_article.State = 2
-            data = updated_article.OreginalArticle
-            PubmedData = data['PubmedArticleSet']['PubmedArticle']['PubmedData']
+            number_of_article_move_forward = number_of_article_move_forward + 1
             
-            # The above code is checking if the article has a DOI or PMC number. If it does, it will update the
-            # article with the DOI or PMC number.
-            if 'ArticleIdList' in PubmedData:
-                ArticleId = PubmedData['ArticleIdList']['ArticleId']
-                if type(ArticleId) == list:
-                    for a_id in ArticleId:
-                        if a_id['@IdType'] == 'doi':
-                            updated_article.DOI = a_id['#text']
-                        if a_id['@IdType'] == 'pmc':
-                            updated_article.PMC = a_id['#text']
-                elif type(ArticleId) == dict:
-                        if ArticleId['@IdType'] == 'doi':
-                            updated_article.DOI = a_id['#text']
-                        if ArticleId['@IdType'] == 'pmc':
-                            updated_article.PMC = a_id['#text']
-                else:
-                    raise NotImplementedError
+            if refresh_point == 50:
+                refresh_point = 0
+                refresh()
+                logger.DEBUG(f'There are {str(total_article_in_current_state - number_of_article_move_forward)} article(s) left ', forecolore='yellow')
+            else:
+                refresh_point = refresh_point + 1
 
-            # update article Title & Journal Title.
-            pubmed_article_data = data['PubmedArticleSet']['PubmedArticle']['MedlineCitation']['Article']
-            updated_article.Title =  pubmed_article_data['ArticleTitle']
-            updated_article.Journal = pubmed_article_data['Journal']['Title']
-            
-            # print(pubmed_article_data['ArticleDate']) ------------------------------------------------------------------------
+            try:
+                updated_article = Article(**a.copy())
+            except:
+                print(a.__dict__)
+                backward_dict = a.copy()
+                backward = Article()
+                backward.PMID = backward_dict['PMID']
+                backward.State = 0
+                updated_article = backward
+                l = update_article_by_pmid(updated_article , updated_article.PMID)
 
-            # The above code is checking if the abstract is a string or a list. If it is a string, it will add the
-            # abstract to the database. If it is a list, it will add all the abstracts to the database.
-            if 'Abstract' in pubmed_article_data:
-                if type(pubmed_article_data['Abstract']) == dict:
-                    if type(pubmed_article_data['Abstract']['AbstractText']) == str:
-                        updated_article.Abstract = pubmed_article_data['Abstract']['AbstractText']
-                    elif type(pubmed_article_data['Abstract']['AbstractText']) == list:
-                        abstract_all = ''
-                        for abstract_part in pubmed_article_data['Abstract']['AbstractText']:
-                            abstract_all = abstract_all + ' ' + abstract_part['#text']
-                        updated_article.Abstract = abstract_all
+            try:
+                current_state = updated_article.State
+            except:
+                current_state = 0
+            logger.DEBUG('Article ' + updated_article.PMID + ' with state ' + str(current_state) + ' forward to ' + str(current_state + 1))
+
+            ## for re run
+            # if current_state == 2 : current_state = 1
+
+            if current_state is None:
+                updated_article.State = 1
+                time.sleep(sleep_time)
+                oa = get_article_details_from_pubmed(updated_article.PMID)
+                updated_article.OreginalArticle = oa
+                l = update_article_by_pmid(updated_article , updated_article.PMID)
+
+            elif current_state == 0: # get article details from pubmed
+                updated_article.State = 1
+                time.sleep(sleep_time)
+                oa = get_article_details_from_pubmed(updated_article.PMID)
+                updated_article.OreginalArticle = oa
+                l = update_article_by_pmid(updated_article , updated_article.PMID)
+                    
+            elif current_state == 1: # Extract Data
+                updated_article.State = 2
+                data = updated_article.OreginalArticle
+                PubmedData = data['PubmedArticleSet']['PubmedArticle']['PubmedData']
+                
+                # The above code is checking if the article has a DOI or PMC number. If it does, it will update the
+                # article with the DOI or PMC number.
+                if 'ArticleIdList' in PubmedData:
+                    ArticleId = PubmedData['ArticleIdList']['ArticleId']
+                    if type(ArticleId) == list:
+                        for a_id in ArticleId:
+                            if a_id['@IdType'] == 'doi':
+                                updated_article.DOI = a_id['#text']
+                            if a_id['@IdType'] == 'pmc':
+                                updated_article.PMC = a_id['#text']
+                    elif type(ArticleId) == dict:
+                            if ArticleId['@IdType'] == 'doi':
+                                updated_article.DOI = a_id['#text']
+                            if ArticleId['@IdType'] == 'pmc':
+                                updated_article.PMC = a_id['#text']
                     else:
                         raise NotImplementedError
-                else:
-                    raise NotImplementedError
 
-            # Creating a list of keywords. Merging Mesh List & Keyword List
-            medline_citation = data['PubmedArticleSet']['PubmedArticle']['MedlineCitation']
-            keyword_list = []
-            if 'MeshHeadingList' in medline_citation:
-                for mesh in medline_citation['MeshHeadingList']['MeshHeading']:
-                    my_keyword = Keyword()
-                    my_keyword.Text = mesh['DescriptorName']['#text']
-                    if mesh['DescriptorName']['@MajorTopicYN'] == 'Y':
-                        my_keyword.IS_Major = True
+                # update article Title & Journal Title.
+                pubmed_article_data = data['PubmedArticleSet']['PubmedArticle']['MedlineCitation']['Article']
+                updated_article.Title =  pubmed_article_data['ArticleTitle']
+                updated_article.Journal = pubmed_article_data['Journal']['Title']
+                
+                # print(pubmed_article_data['ArticleDate']) ------------------------------------------------------------------------
+
+                # The above code is checking if the abstract is a string or a list. If it is a string, it will add the
+                # abstract to the database. If it is a list, it will add all the abstracts to the database.
+                if 'Abstract' in pubmed_article_data:
+                    if type(pubmed_article_data['Abstract']) == dict:
+                        if type(pubmed_article_data['Abstract']['AbstractText']) == str:
+                            updated_article.Abstract = pubmed_article_data['Abstract']['AbstractText']
+                        elif type(pubmed_article_data['Abstract']['AbstractText']) == list:
+                            abstract_all = ''
+                            for abstract_part in pubmed_article_data['Abstract']['AbstractText']:
+                                abstract_all = abstract_all + ' ' + abstract_part['#text']
+                            updated_article.Abstract = abstract_all
+                        elif type(pubmed_article_data['Abstract']['AbstractText']) == dict:
+                            # exception happen in pmid '36497366' one-abstract-dict-mode.json
+                            updated_article.Abstract = pubmed_article_data['Abstract']['AbstractText']['#text']
+                        else:
+                            t = type(pubmed_article_data['Abstract']['AbstractText'])
+                            logger.ERROR (f'Type {str(t)} in Abstract Not Implemented')
+                            raise NotImplementedError
                     else:
-                        my_keyword.IS_Major = False
-                    # mesh['QualifierName'] # We did not get into this subject
-                    my_keyword.IS_Mesh = True
-                    keyword_list.append(my_keyword)
-            if 'KeywordList' in medline_citation:
-                for keyword in medline_citation['KeywordList']['Keyword']:
-                    my_keyword = Keyword()
-                    my_keyword.Text = keyword['#text']
-                    if keyword['@MajorTopicYN'] == 'Y':
-                        my_keyword.IS_Major = True
+                        raise NotImplementedError
+
+                # Creating a list of keywords. Merging Mesh List & Keyword List
+                medline_citation = data['PubmedArticleSet']['PubmedArticle']['MedlineCitation']
+                keyword_list = []
+                if 'MeshHeadingList' in medline_citation:
+                    for mesh in medline_citation['MeshHeadingList']['MeshHeading']:
+                        my_keyword = Keyword()
+                        my_keyword.Text = mesh['DescriptorName']['#text']
+                        if mesh['DescriptorName']['@MajorTopicYN'] == 'Y':
+                            my_keyword.IS_Major = True
+                        else:
+                            my_keyword.IS_Major = False
+                        # mesh['QualifierName'] # We did not get into this subject
+                        my_keyword.IS_Mesh = True
+                        keyword_list.append(my_keyword)
+                if 'KeywordList' in medline_citation:
+                    if type(medline_citation['KeywordList']['Keyword']) == list:
+                        for keyword in medline_citation['KeywordList']['Keyword']:
+                            my_keyword = _convert_dict_to_class_keyword(keyword)
+                            keyword_list.append(my_keyword)
+                    elif type(medline_citation['KeywordList']['Keyword']) == dict:
+                        my_keyword = _convert_dict_to_class_keyword(medline_citation['KeywordList']['Keyword'])
+                        keyword_list.append(my_keyword)
                     else:
-                        my_keyword.IS_Major = False
-                    my_keyword.IS_Mesh = False
-                    keyword_list.append(my_keyword)
+                        raise NotImplementedError
 
-            updated_article.Keywords = keyword_list
+                updated_article.Keywords = keyword_list
 
-            # The code is parsing the Article and extracting the references from the Mode.
-            if 'ReferenceList' in PubmedData:
-                for i in updated_article.InsertType:
+                # The code is parsing the Article and extracting the references from the Mode.
+                if 'ReferenceList' in PubmedData:
                     ref_go_on = True
-                    if i == 'REFERENCE':
-                        ref_go_on = False
-                        if extend_by_refrence:
-                            ref_go_on = True
-                if ref_go_on:
-                    reference_list = []
-                    for ref in PubmedData['ReferenceList']['Reference']:
-                        # print(ref['Citation'])
-                        if 'ArticleIdList' in ref:
-                            if type(ref['ArticleIdList']['ArticleId']) == dict:
-                                if ref['ArticleIdList']['ArticleId']['@IdType'] == 'pubmed':
-                                    reference_list.append(ref['ArticleIdList']['ArticleId']['#text'])
+                    for i in updated_article.InsertType:
+                        if i == 'REFERENCE':
+                            ref_go_on = False
+                            if extend_by_refrence:
+                                ref_go_on = True
+                    if ref_go_on:
+                        reference_list = []
+                        for ref in PubmedData['ReferenceList']['Reference']:
+                            # print(ref['Citation'])
+                            if 'ArticleIdList' in ref:
+                                if type(ref['ArticleIdList']['ArticleId']) == dict:
+                                    if ref['ArticleIdList']['ArticleId']['@IdType'] == 'pubmed':
+                                        reference_list.append(ref['ArticleIdList']['ArticleId']['#text'])
 
-                            elif type(ref['ArticleIdList']['ArticleId']) == list:
-                                for ref_id in ref['ArticleIdList']['ArticleId']:
-                                    if ref_id['@IdType'] == 'pubmed':
-                                        reference_list.append(ref_id['#text'])
-                            else:
-                                raise NotImplementedError
-                    
-                    updated_article.References = reference_list
-                    # create new article
-                    for ref_pmid in reference_list:
-                        insert_new_pmid(pmid = ref_pmid , insert_type = 'REFERENCE' )
+                                elif type(ref['ArticleIdList']['ArticleId']) == list:
+                                    for ref_id in ref['ArticleIdList']['ArticleId']:
+                                        if ref_id['@IdType'] == 'pubmed':
+                                            reference_list.append(ref_id['#text'])
+                                else:
+                                    raise NotImplementedError
+                        
+                        updated_article.References = reference_list
+                        # create new article
+                        number_of_new_reference_article = number_of_new_reference_article + len(reference_list)
+                        logger.DEBUG(f'Add {len(reference_list)} new article(s) by REFERENCE. number of total new until now is {number_of_new_reference_article} ' , forecolore='yellow' , deep = 3)
 
-            author_list=[]
-            if type(pubmed_article_data['AuthorList']['Author']) == list:
-                for author in pubmed_article_data['AuthorList']['Author']:
-                    my_author = _convert_dict_to_class_author(author)
-                    author_list.append(my_author)
-            elif type(pubmed_article_data['AuthorList']['Author']) == dict:
-                my_author = _convert_dict_to_class_author(pubmed_article_data['AuthorList']['Author'])
-                author_list.append(my_author)
-            else:
-                raise NotImplementedError
-            updated_article.Authors = author_list
+                        for ref_pmid in reference_list:
+                            start = time.time_ns()
+                            insert_new_pmid(pmid = ref_pmid , insert_type = 'REFERENCE' )
+                            end = time.time_ns()
+                            # logger.DEBUG(f'Time taken {end-start} ns',forecolore= 'white' , deep = 5)
+                            
+                if 'AuthorList' in pubmed_article_data:
+                    author_list=[]
+                    if type(pubmed_article_data['AuthorList']['Author']) == list:
+                        for author in pubmed_article_data['AuthorList']['Author']:
+                            my_author = _convert_dict_to_class_author(author)
+                            author_list.append(my_author)
+                    elif type(pubmed_article_data['AuthorList']['Author']) == dict:
+                        my_author = _convert_dict_to_class_author(pubmed_article_data['AuthorList']['Author'])
+                        author_list.append(my_author)
+                    else:
+                        raise NotImplementedError
+                    updated_article.Authors = author_list
+                else:
+                    logger.WARNING(f'Article {updated_article.PMID} has no AuthorList',forecolore= 'white' , deep = 5)
 
-            l = update_article_by_pmid(updated_article , updated_article.PMID)
-            if len(l) == 1:
-                pass
-            else:
-                logger.ERROR('Duplication has Occurred')
+                l = update_article_by_pmid(updated_article , updated_article.PMID)
+                if len(l) == 1:
+                    pass
+                else:
+                    logger.ERROR('Duplication has Occurred')
 
-        elif current_state == 2: # Create Knowledge
-            updated_article.State = 3
-            nodes = []
-            edges = []
+            elif current_state == 2: # NER Title 
+                updated_article.State = 3
+                ner = get_title_ner(updated_article.Title)
+                l_ner = []
+                for e in ner:
+                    my_ner = NamedEntity()
+                    if len(e.ents) > 1: raise NotImplementedError
+                    my_ner.Label = e.label_
+                    # print(type(e.ents[0]))
+                    my_ner.Entity = e.ents[0].text
+                    l_ner.append(my_ner)
+                    # print(f'{e.label_} : {e.ents}')
+                
+                if len(l_ner) > 0:
+                    updated_article.NamedEntities = l_ner
 
-            node_article = Node()
-            node_article.Identifier = updated_article.PMID
-            node_article.Name = updated_article.PMID
-            node_article.Type = 'Article'
-            nodes.append(node_article)
+                l = update_article_by_pmid(updated_article , updated_article.PMID)
+                if len(l) == 1:
+                    pass
+                else:
+                    logger.ERROR('Duplication has Occurred')
 
-            for author in updated_article.Authors:
-                node_author = Node()
-                node_author.Identifier = author.HashID
-                node_author.Name = author.FullName
-                node_author.Type = 'Author'
-                nodes.append(node_author)
 
-                edge = Edge()
-                edge.SourceID = node_author.Identifier
-                edge.DestinationID = node_article.Identifier
-                edge.Type = 'AUTHOR_OF'
-                edge.HashID =  str(hash(edge.SourceID + edge.DestinationID))
-                edges.append(edge)
+            elif current_state == 3: # Create Knowledge
+                updated_article.State = 4
+                nodes = []
+                edges = []
 
-                # Creating a graph of authors and affiliation.
-                if author.Affiliations is not None:
-                    for aff in author.Affiliations:
-                        node_affiliation = Node()
-                        node_affiliation.Identifier = aff.HashID
-                        node_affiliation.Name = aff.Part1
-                        node_affiliation.Type = 'Affiliation'
-                        nodes.append(node_affiliation)
+                node_article = Node()
+                node_article.Identifier = updated_article.PMID
+                node_article.Name = updated_article.PMID
+                node_article.Type = 'Article'
+                nodes.append(node_article)
 
-                        edge = Edge()
-                        edge.SourceID = node_author.Identifier
-                        edge.DestinationID = node_affiliation.Identifier
-                        edge.Type = 'IS_MEMBER_OF'
-                        edge.HashID =  str(hash(edge.SourceID + edge.DestinationID))
-                        edges.append(edge)
+                for author in updated_article.Authors:
+                    node_author = Node()
+                    node_author.Identifier = author.HashID
+                    node_author.Name = author.FullName
+                    node_author.Type = 'Author'
+                    nodes.append(node_author)
 
-            # Creating a graph of articles and keywords.
-            for key in updated_article.Keywords:
-                node_keyword = Node()
-                node_keyword.Identifier = key.Text
-                node_keyword.Name = key.Text
-                node_keyword.Type = 'Keyword'
-                nodes.append(node_keyword)
+                    edge = Edge()
+                    edge.SourceID = node_author.Identifier
+                    edge.DestinationID = node_article.Identifier
+                    edge.Type = 'AUTHOR_OF'
+                    edge.HashID =  str(hash(edge.SourceID + edge.DestinationID))
+                    edges.append(edge)
 
-                edge = Edge()
-                edge.SourceID = node_article.Identifier
-                edge.DestinationID = node_keyword.Identifier
-                edge.Type = 'KEYWORD'
-                edge.HashID =  str(hash(edge.SourceID + edge.DestinationID))
-                edges.append(edge)
+                    # Creating a graph of authors and affiliation.
+                    if author.Affiliations is not None:
+                        for aff in author.Affiliations:
+                            node_affiliation = Node()
+                            node_affiliation.Identifier = aff.HashID
+                            node_affiliation.Name = aff.Part1
+                            node_affiliation.Type = 'Affiliation'
+                            nodes.append(node_affiliation)
 
-            # Creating a graph of articles and references.
-            if updated_article.References is not None:
-                for ref in updated_article.References:
-                    node_reference = Node()
-                    node_reference.Identifier = ref
-                    node_reference.Name = ref
-                    node_reference.Type = 'Article'
-                    nodes.append(node_reference)
+                            edge = Edge()
+                            edge.SourceID = node_author.Identifier
+                            edge.DestinationID = node_affiliation.Identifier
+                            edge.Type = 'IS_MEMBER_OF'
+                            edge.HashID =  str(hash(edge.SourceID + edge.DestinationID))
+                            edges.append(edge)
+
+                # Creating a graph of articles and keywords.
+                for key in updated_article.Keywords:
+                    node_keyword = Node()
+                    node_keyword.Identifier = key.Text
+                    node_keyword.Name = key.Text
+                    node_keyword.Type = 'Keyword'
+                    nodes.append(node_keyword)
 
                     edge = Edge()
                     edge.SourceID = node_article.Identifier
-                    edge.DestinationID = node_reference.Identifier
-                    edge.Type = 'REFERENCE'
+                    edge.DestinationID = node_keyword.Identifier
+                    edge.Type = 'KEYWORD'
                     edge.HashID =  str(hash(edge.SourceID + edge.DestinationID))
-                    edges.append(edge)              
+                    edges.append(edge)
+
+                # Creating a graph of articles and references.
+                if updated_article.References is not None:
+                    for ref in updated_article.References:
+                        node_reference = Node()
+                        node_reference.Identifier = ref
+                        node_reference.Name = ref
+                        node_reference.Type = 'Article'
+                        nodes.append(node_reference)
+
+                        edge = Edge()
+                        edge.SourceID = node_article.Identifier
+                        edge.DestinationID = node_reference.Identifier
+                        edge.Type = 'REFERENCE'
+                        edge.HashID =  str(hash(edge.SourceID + edge.DestinationID))
+                        edges.append(edge)              
 
 
-            # Save node & edge to db
-            for n in nodes:
-                create_node(n)
-            
-            for e in edges:
-                create_edge(e)
+                # Save node & edge to db
+                for n in nodes:
+                    create_node(n)
+                
+                for e in edges:
+                    create_edge(e)
 
-        else:
-            raise NotImplementedError
+            else:
+                raise NotImplementedError
+
+        except:
+            if current_state == 1: 
+                updated_article = Article(**a.copy())  
+                updated_article.State = -1
+                update_article_by_pmid(updated_article , updated_article.PMID)
+                refresh()
+                exc_type, exc_value, exc_tb = sys.exc_info()
+                logger.ERROR(f'Error {exc_type}')
+                logger.ERROR(f'Error {exc_value}')
+            elif current_state == 2: 
+                raise
+                updated_article = Article(**a.copy())  
+                updated_article.State = -2
+                update_article_by_pmid(updated_article , updated_article.PMID)
+                refresh()
+                exc_type, exc_value, exc_tb = sys.exc_info()
+                logger.ERROR(f'Error {exc_type}')
+                logger.ERROR(f'Error {exc_value}')
+
+            else:
+                refresh()
+                raise
+
 
 if __name__ == '__main__':
     logger.WARNING('Number of article in knowlege repository is ' + str(get_all_article_count()))
+    logger.WARNING(f'{get_all_node_count()} Node(s) in knowlege repository.')
+    logger.WARNING(f'{get_all_edge_count()} Edge(s) in knowlege repository.')
+    logger.INFO(f'{str(len(get_article_by_state(-1)))} article(s) in state -1.')
+    logger.INFO(f'{str(len(get_article_by_state(0)))} article(s) in state 0.')
+    logger.INFO(f'{str(len(get_article_by_state(1)))} article(s) in state 1.')
+    logger.INFO(f'{str(len(get_article_by_state(2)))} article(s) in state 2.')
+    logger.INFO(f'{str(len(get_article_by_state(3)))} article(s) in state 3.')
 
     
-    print(get_all_node_count())
-    print(get_all_edge_count())
+
+    # s = '("Breast Neoplasms"[Mesh] OR "Breast Cancer"[Title] OR "Breast Neoplasms"[Title] OR "Breast Neoplasms"[Other Term] OR "Breast Cancer"[Other Term]) AND ("Registries"[MeSH Major Topic] OR "Database Management Systems"[MeSH Major Topic] OR "Information Systems"[MeSH Major Topic] OR "Registry"[Other Term] OR "Registry"[Title] OR "Information Storage and Retrieval"[MeSH Major Topic])'
+    # get_article_list_all_store_to_kg_rep(s)
 
     # move_state_forward(2)
 
-    # data = get_article_by_pmid('35421968')
+    # data = get_article_by_pmid('35130239')
     # data= json.dumps(data, indent=4)
-    # with open("one-ForeName.json", "w") as outfile:
+    # with open("one-35130239.json", "w") as outfile:
     #     outfile.write(data)
 
     # 32434767
@@ -463,14 +578,27 @@ if __name__ == '__main__':
     # click.secho('Some more text', bg='blue', fg='white')
     # click.secho('ATTENTION', blink=True, bold=True)
 
-    la = get_article_by_state(2)
-    for a in la:
-        article = Article(**a.copy()) 
-        print(article.Title)
+    
+
+    
+    # # Save Title for Annotation
+    # file =  open("article-title.txt", "w",  encoding="utf-8")
+    # la = get_article_by_state(2)
+    # for a in la:
+    #     try:
+    #         article = Article(**a.copy())
+    #     except:
+    #         pass
+    #     file.write(article.Title + "\n")
+
+
+
+
+
         
 
 
-    
+
 
     
 

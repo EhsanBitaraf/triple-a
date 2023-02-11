@@ -28,7 +28,7 @@ def insert_new_pmid(pmid:str ,
     """
     # check PMID is exist
     if db.is_article_exist_by_pmid(pmid):
-        logger.DEBUG('Article ' + pmid + ' is exist.' ,deep = 3 )
+        logger.DEBUG('The article ' + pmid + ' already exists.' ,deep = 3 )
         return
     else: # Insert not exist Article
         insert_type_list = []
@@ -70,3 +70,6 @@ def get_all_edge_count()-> int:
 
 def get_all_edges():
     return db.get_all_edges()
+
+def refresh():
+    db.refresh()

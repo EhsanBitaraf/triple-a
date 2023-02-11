@@ -4,13 +4,16 @@ from triplea.config.settings import SETTINGS,DB_ROOT_PATH
 from triplea.schemas.article import Article
 from triplea.schemas.node import Edge, Node
 
-
+from tinydb.storages import JSONStorage
+from tinydb.middlewares import CachingMiddleware
 
 class DataBase():
     pass
 
 class DB_TinyDB(DataBase):
-    db = TinyDB(DB_ROOT_PATH / 'articledata.json')
+    # db = TinyDB(DB_ROOT_PATH / 'articledata.json')
+    db = TinyDB(DB_ROOT_PATH / 'articledata.json' , storage=CachingMiddleware(JSONStorage))
+    
 
     def add_new_article(self, article:Article) -> int:
         article_json = json.loads(json.dumps(article, default=lambda o: o.__dict__, sort_keys=True, indent=4))
@@ -83,6 +86,16 @@ class DB_TinyDB(DataBase):
     def get_all_edges(self):
         table = self.db.table('edge')
         return table.all()
+
+    def close(self):
+        self.db.close()
+
+    def flush(self):
+        self.db.storage.flush()
+
+    def refresh(self):
+        self.db.close()
+        self.db = TinyDB(DB_ROOT_PATH / 'articledata.json' , storage=CachingMiddleware(JSONStorage))
 
 if SETTINGS.DB_TYPE == 'TinyDB':
     db = DB_TinyDB()

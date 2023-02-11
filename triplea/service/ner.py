@@ -71,7 +71,6 @@ def get_title_ner(title_text:str)->tuple:
 
     return doc.ents
 
-
 if __name__ == '__main__':
     pass
     # # Convert Label Studio Json format to Spacy Training data
