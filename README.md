@@ -224,6 +224,20 @@ poetry run pytest
 
 [click](https://click.palletsprojects.com/en/8.1.x/)
 
+
+Hugging Face
+
+
+pip install transformers[torch]
+```
+Downloading (…)lve/main/config.json: 100%|████████████████████████████████████████████████████████| 1.42k/1.42k [00:00<00:00, 712kB/s] 
+C:\Users\Dr bitaraf\Desktop\MyData\CodeRepo\github\triple-a\venv\lib\site-packages\huggingface_hub\file_download.py:129: UserWarning: `huggingface_hub` cache-system uses symlinks by default to efficiently store duplicated files but your machine does not support them in 
+C:\Users\Dr bitaraf\.cache\huggingface\hub. Caching files will still work but in a degraded version that might require more space on your disk. This warning can be disabled by setting the `HF_HUB_DISABLE_SYMLINKS_WARNING` environment variable. For more details, see https://huggingface.co/docs/huggingface_hub/how-to-cache#limitations.
+To support symlinks on Windows, you either need to activate Developer Mode or to run Python as an administrator. In order to see activate developer mode, see this article: https://docs.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development      
+  warnings.warn(message)
+Downloading (…)"pytorch_model.bin";:   1%|▋                                                       | 21.0M/1.63G [00:27<36:47, 727kB/s]
+```
+
 # Use case
 
 ## EHR
@@ -348,6 +362,17 @@ https://github.com/benmaier/netwulf
 
 ## NetworkX and PyVis
 https://python-textbook.pythonhumanities.com/06_sna/06_01_05_networkx_pyvis.html
+
+## multiNetX
+multiNetX is a python package for the manipulation and visualization of multilayer networks. It is build on NetworkX 
+
+https://github.com/nkoub/multinetx
+
+## VivaGraphJS
+
+Graph drawing library for JavaScript 
+
+https://github.com/anvaka/VivaGraphJS
 
 # Graph Analysis
 
