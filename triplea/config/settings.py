@@ -34,7 +34,9 @@ class Settings(BaseSettings):
     FIRST_SUPERUSER_PW: str = "CHANGEME"
 
     # ---------------My Envirement Varable-------------------------------
-    DB_TYPE : Optional[str] = os.getenv('TRIPLEA_DB_TYPE')
+    AAA_DB_TYPE : Optional[str] = os.getenv('TRIPLEA_DB_TYPE')
+    AAA_MONGODB_CONNECTION_URL:  Optional[str] = os.getenv('AAA_MONGODB_CONNECTION_URL')
+    AAA_MONGODB_DB_NAME: Optional[str] = os.getenv('AAA_MONGODB_DB_NAME')
 
     # class Config:
     #     case_sensitive = True
