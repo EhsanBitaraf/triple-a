@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 DB_ROOT_PATH = ROOT.parent / 'database'
 
-load_dotenv( ROOT / 'config' / 'environment_variable' / '.env')
+load_dotenv( ROOT / 'config' / 'environment_variable' / '.env',override=True)
 
 # # print all environment variable
 # for name, value in os.environ.items():
@@ -35,8 +35,14 @@ class Settings(BaseSettings):
 
     # ---------------My Envirement Varable-------------------------------
     AAA_DB_TYPE : Optional[str] = os.getenv('TRIPLEA_DB_TYPE')
+    AAA_TINYDB_FILENAME : Optional[str] = os.getenv('AAA_TINYDB_FILENAME')
     AAA_MONGODB_CONNECTION_URL:  Optional[str] = os.getenv('AAA_MONGODB_CONNECTION_URL')
     AAA_MONGODB_DB_NAME: Optional[str] = os.getenv('AAA_MONGODB_DB_NAME')
+    AAA_TPS_LIMIT : Optional[int] = os.getenv('AAA_TPS_LIMIT')
+    AAA_PROXY_HTTP: Optional[str] = os.getenv('AAA_PROXY_HTTP')
+    AAA_PROXY_HTTPS: Optional[str] = os.getenv('AAA_PROXY_HTTPS')
+    AAA_REFF_CRAWLER_DEEP: Optional[int] = os.getenv('AAA_REFF_CRAWLER_DEEP')
+    AAA_CITED_CRAWLER_DEEP: Optional[int] = os.getenv('AAA_CITED_CRAWLER_DEEP')
 
     # class Config:
     #     case_sensitive = True

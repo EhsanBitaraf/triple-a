@@ -9,11 +9,11 @@ from triplea.schemas.node import Edge, Node
 
 from triplea.config.settings import DB_ROOT_PATH
 
-
+from triplea.config.settings import SETTINGS
 
 class DB_TinyDB(DataBase):
     # db = TinyDB(DB_ROOT_PATH / 'articledata.json')
-    db = TinyDB(DB_ROOT_PATH / 'articledata.json' , storage=CachingMiddleware(JSONStorage))
+    db = TinyDB(DB_ROOT_PATH / SETTINGS.AAA_TINYDB_FILENAME , storage=CachingMiddleware(JSONStorage))
     
 
     def add_new_article(self, article:Article) -> int:
@@ -96,4 +96,4 @@ class DB_TinyDB(DataBase):
 
     def refresh(self):
         self.db.close()
-        self.db = TinyDB(DB_ROOT_PATH / 'articledata.json' , storage=CachingMiddleware(JSONStorage))
+        self.db = TinyDB(DB_ROOT_PATH / SETTINGS.AAA_TINYDB_FILENAME , storage=CachingMiddleware(JSONStorage))

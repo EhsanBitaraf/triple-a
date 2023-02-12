@@ -5,6 +5,7 @@ from pymongo import MongoClient
 from triplea.db.database import DataBase
 from triplea.config.settings import SETTINGS
 from triplea.schemas.article import Article
+from triplea.schemas.node import Edge, Node
 
 class DB_MongoDB(DataBase):
     _connection_url = SETTINGS.AAA_MONGODB_CONNECTION_URL
@@ -49,13 +50,6 @@ class DB_MongoDB(DataBase):
         r = self.col_article.update_one(myquery, article_json)
         return r
 
-    def get_all_article_count(self)-> int:
-        """
-        > This function returns the number of articles in the database
-        :return: The length of the database.
-        """
-        return self.col_article.count_documents({})
-
     def is_article_exist_by_pmid(self,pmid:str) -> bool:
         """
         > Check if the article with the given PMID exists in the database
@@ -69,4 +63,55 @@ class DB_MongoDB(DataBase):
             return True
         else:
             return False
+
+    def get_all_article_count(self)-> int:
+        """
+        > This function returns the number of articles in the database
+        :return: The length of the database.
+        """
+        return self.col_article.count_documents({})
+
+    def add_new_node(self, node:Node)->int:
+        node_json = json.loads(json.dumps(node, default=lambda o: o.__dict__, sort_keys=True, indent=4))
+        result = self.col_nodes.insert_one(node_json)
+        return result.inserted_id
+
+    def is_node_exist_by_identifier(self, identifier:str) -> bool:
+        myquery = { "Identifier":  identifier}
+        if self.col_nodes.count_documents(myquery) > 0:
+            return True
+        else:
+            return False
+
+    def get_all_node_count(self)-> int:
+        return self.col_nodes.count_documents({})
+
+    def get_all_nodes(self):
+        raise NotImplementedError
+
+    def add_new_edge(self, edge:Edge)->int:
+        edge_json = json.loads(json.dumps(edge, default=lambda o: o.__dict__, sort_keys=True, indent=4))
+        result = self.col_edges.insert_one(edge_json)
+        return result.inserted_id
+
+    def is_edge_exist_by_hashid(self, hashid:str) -> bool:
+        myquery = { "HashID":  hashid}
+        if self.col_edges.count_documents(myquery) > 0:
+            return True
+        else:
+            return False
+
+    def get_all_edge_count(self)-> int:
+        return self.col_edges.count_documents({})
         
+    def get_all_edges(self):
+        raise NotImplementedError
+
+    def close(self):
+        self.client.close
+
+    def flush(self):
+        pass
+
+    def refresh(self):
+        pass    

@@ -44,6 +44,9 @@ class Article(BaseModel):
     QueryTranslation : Optional[str] =   Field(description='')
     Keywords: Optional[list[Keyword]] =  Field(description='')
     References: Optional[list[str]] =  Field(description='')
+    CitedBy : Optional[list[str]] =  Field(description='')
     InsertType: Optional[list[str]] = Field(description='')
+    ReferenceCrawlerDeep : Optional[int] = Field(description='')
+    CiteCrawlerDeep : Optional[int] = Field(description='')
     NamedEntities: Optional[list[NamedEntity]] = Field(description='')
 

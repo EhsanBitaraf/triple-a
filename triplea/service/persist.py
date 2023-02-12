@@ -18,7 +18,9 @@ def update_article_by_pmid(article,pmid:str):
 
 def insert_new_pmid(pmid:str ,
                     querytranslation: Optional[str] = None,
-                    insert_type: Optional[str] = None, ):
+                    insert_type: Optional[str] = None,
+                    reference_crawler_deep: Optional[int] = 0,
+                    cite_crawler_deep: Optional[int] = 0 ):
     """
     If the article is not in the database, add it
     
@@ -35,7 +37,15 @@ def insert_new_pmid(pmid:str ,
         if insert_type is not None:
             insert_type_list.append(insert_type) 
 
-        a = Article(PMID = pmid , State= 0 , QueryTranslation = querytranslation , InsertType= insert_type_list)
+        # # old version
+        # a = Article(PMID = pmid , State= 0 , QueryTranslation = querytranslation , InsertType= insert_type_list, ReferenceCrawlerDeep = reference_crawler_deep)
+        # New version
+        a = Article(PMID = pmid ,
+                    State= 0 ,
+                    QueryTranslation = querytranslation ,
+                    ReferenceCrawlerDeep = reference_crawler_deep,
+                    CiteCrawlerDeep = cite_crawler_deep)
+
         return db.add_new_article(a)
 
 def get_all_article_count()-> int:

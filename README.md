@@ -186,6 +186,7 @@ output:
 |1|article details article info saved|
 |2|parse details info|
 |3|NER Title|
+|4|Get Citation|
 |4|extract graph|
 |-1|Error|
 
@@ -331,6 +332,8 @@ https://eutils.ncbi.nlm.nih.gov/entrez/eutils/elink.fcgi?dbfrom=pubmed&db=pubmed
  https://eutils.ncbi.nlm.nih.gov/entrez/eutils/elink.fcgi?dbfrom=pubmed&db=pubmed&id=20210808&cmd=neighbor_score
 
  https://eutils.ncbi.nlm.nih.gov/entrez/eutils/elink.fcgi?dbfrom=pubmed&db=pubmed&id=35130239
+
+  https://eutils.ncbi.nlm.nih.gov/entrez/eutils/elink.fcgi?dbfrom=pubmed&db=pubmed&id=35130239&retmode=json
 
 pubmed_pubmed_citedin
 # Graph Visualization 
