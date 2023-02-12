@@ -1,7 +1,7 @@
 # from triplea.config.settings import SETTINGS,DB_ROOT_PATH
 from triplea.db.mongodb import DB_MongoDB
 from triplea.db.tinydb import DB_TinyDB
-
+from triplea.service.click_logger import logger
 
 def convert():
     source_db = DB_TinyDB()
@@ -14,7 +14,7 @@ def convert():
     destination_db = DB_MongoDB()   
     for a in la:
         if destination_db.is_article_exist_by_pmid(a['PMID']):
-            pass
+            logger.DEBUG('The article ' + a['PMID'] + ' already exists.', deep = 3 )
         else:
             destination_db.add_new_article(a)
 

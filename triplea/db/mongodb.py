@@ -43,8 +43,11 @@ class DB_MongoDB(DataBase):
             #     la.append(d)
             #     return la
 
-  
-
+    def update_article_by_pmid(self, article:Article, pmid:str):
+        article_json = json.loads(json.dumps(article, default=lambda o: o.__dict__, sort_keys=True, indent=4))
+        myquery = { "PMID": pmid }
+        r = self.col_article.update_one(myquery, article_json)
+        return r
 
     def get_all_article_count(self)-> int:
         """
