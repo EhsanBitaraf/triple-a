@@ -10,6 +10,12 @@ def create_article(article:Article):
 def get_article_by_state(state:int):
     return db.get_article_by_state(state)
 
+def get_article_pmid_list_by_state(state:int):
+    return db.get_article_pmid_list_by_state(state)
+
+def get_count_article_by_state(state:int):
+    return db.get_count_article_by_state(state)
+
 def get_article_by_pmid(pmid:str):
     return db.get_article_by_pmid(pmid)
 
@@ -80,6 +86,9 @@ def get_all_edge_count()-> int:
 
 def get_all_edges():
     return db.get_all_edges()
+
+def get_article_group_by_state():
+    return db.get_article_group_by_state()
 
 def refresh():
     db.refresh()

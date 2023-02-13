@@ -11,7 +11,7 @@ from triplea.schemas.node import Edge, Node
 from triplea.config.settings import ROOT,SETTINGS
 from triplea.schemas.article import Affiliation, Article, Author, Keyword, NamedEntity
 from triplea.service.ner import get_title_ner
-from triplea.service.persist import  create_article, create_edge, create_node, get_all_article_count, get_all_edge_count, get_all_node_count, get_all_nodes, get_article_by_pmid, get_article_by_state, insert_new_pmid, refresh, update_article_by_pmid
+from triplea.service.persist import  create_article, create_edge, create_node, get_all_article_count, get_all_edge_count, get_all_node_count, get_all_nodes, get_article_by_pmid, get_article_by_state, get_article_group_by_state, get_article_pmid_list_by_state, insert_new_pmid, refresh, update_article_by_pmid
 
 
 tps_limit = SETTINGS.AAA_TPS_LIMIT
@@ -201,10 +201,15 @@ def get_cited_article_from_pubmed(PMID)->dict:
         data = json.loads(data_byte.decode('utf-8'))
         if 'linksets' in data:
             for link in data['linksets']:
-                print(type(link))
-                print(type(link['linksetdbs']))
+                # print(type(link))
+                # print(type(link['linksetdbs']))
                 for linkdb in link['linksetdbs']:
-                    print(linkdb['linkname'])
+                    rd = linkdb['linkname']
+                    if rd == 'pubmed_pubmed' or rd =='pubmed_pubmed_alsoviewed' or  rd == 'pubmed_pubmed_combined' or rd == 'pubmed_pubmed_five' or rd == 'pubmed_pubmed_reviews' or rd == 'pubmed_pubmed_reviews_five' :
+                        pass
+                    else:
+                        # print(linkdb['linkname'])
+                        pass
                     if linkdb['linkname'] == 'pubmed_pubmed_citedin':
                         return linkdb['links']
         else:
@@ -295,8 +300,16 @@ def _expand_details( article: Article):
     article.State = 1
     sleep_time = 1  // tps_limit
     time.sleep(sleep_time)
-    oa = get_article_details_from_pubmed(article.PMID)
-    article.OreginalArticle = oa
+    try:
+        oa = get_article_details_from_pubmed(article.PMID)
+        article.OreginalArticle = oa
+    except:
+        article.State = 0
+        exc_type, exc_value, exc_tb = sys.exc_info()
+        logger.ERROR(f'Error {exc_type} Value : {exc_value}')
+        logger.ERROR(f'Error {exc_tb}')
+
+
     return article
 
 def _parsing_details(article: Article):
@@ -450,19 +463,30 @@ def _get_citation(article: Article):
     article.State = 4
     pmid = article.PMID
     if pmid is not None:
-        lc = get_cited_article_from_pubmed(pmid)
-        if lc is not None:
-            if len(lc) > 0:
-                if article.CiteCrawlerDeep is None:
-                    article.CiteCrawlerDeep = 0
-                    # raise Exception('CiteCrawlerDeep is None.')
-                if article.CiteCrawlerDeep > 0:
-                    article.CitedBy = lc
-                    # create new article
-                    logger.DEBUG(f'Add {len(lc)} new article(s) by CITED.' , forecolore='yellow' , deep = 3)
-                    new_ccd = article.CiteCrawlerDeep - 1
-                    for c in lc:
-                        insert_new_pmid(pmid = c , cite_crawler_deep= new_ccd)
+        if article.CiteCrawlerDeep > 0:
+            try:
+                lc = get_cited_article_from_pubmed(pmid)
+            except:
+                article.State = 3
+                exc_type, exc_value, exc_tb = sys.exc_info()
+                logger.ERROR(f'Error {exc_type} Value : {exc_value}')
+                logger.ERROR(f'Error {exc_tb}')
+                return article
+        
+            if lc is not None:
+                if len(lc) > 0:
+                    if article.CiteCrawlerDeep is None:
+                        article.CiteCrawlerDeep = 0 
+                        # raise Exception('CiteCrawlerDeep is None.')
+                    if article.CiteCrawlerDeep > 0:
+                        article.CitedBy = lc
+                        # create new article
+                        logger.DEBUG(f'Add {len(lc)} new article(s) by CITED.' , forecolore='yellow' , deep = 3)
+                        new_ccd = article.CiteCrawlerDeep - 1
+                        for c in lc:
+                            insert_new_pmid(pmid = c , cite_crawler_deep= new_ccd)
+        else:
+            logger.DEBUG(f'Article {pmid} Cite Crawler Deep = {article.CiteCrawlerDeep}.'  , deep = 5)
     return article
 
 def _create_knowledge(article: Article):
@@ -548,6 +572,80 @@ def _create_knowledge(article: Article):
     return article
 
 
+def _extract_knowledge(article: Article):   
+    article.State = 5
+    nodes = []
+    edges = []
+
+    node_article = Node()
+    node_article.Identifier = article.PMID
+    node_article.Name = article.PMID
+    node_article.Type = 'Article'
+    nodes.append(node_article)
+
+    for author in article.Authors:
+        node_author = Node()
+        node_author.Identifier = author.HashID
+        node_author.Name = author.FullName
+        node_author.Type = 'Author'
+        nodes.append(node_author)
+
+        edge = Edge()
+        edge.SourceID = node_author.Identifier
+        edge.DestinationID = node_article.Identifier
+        edge.Type = 'AUTHOR_OF'
+        edge.HashID =  str(hash(edge.SourceID + edge.DestinationID))
+        edges.append(edge)
+
+        # Creating a graph of authors and affiliation.
+        if author.Affiliations is not None:
+            for aff in author.Affiliations:
+                node_affiliation = Node()
+                node_affiliation.Identifier = aff.HashID
+                node_affiliation.Name = aff.Part1
+                node_affiliation.Type = 'Affiliation'
+                nodes.append(node_affiliation)
+
+                edge = Edge()
+                edge.SourceID = node_author.Identifier
+                edge.DestinationID = node_affiliation.Identifier
+                edge.Type = 'IS_MEMBER_OF'
+                edge.HashID =  str(hash(edge.SourceID + edge.DestinationID))
+                edges.append(edge)
+
+    # Creating a graph of articles and keywords.
+    for key in article.Keywords:
+        node_keyword = Node()
+        node_keyword.Identifier = key.Text
+        node_keyword.Name = key.Text
+        node_keyword.Type = 'Keyword'
+        nodes.append(node_keyword)
+
+        edge = Edge()
+        edge.SourceID = node_article.Identifier
+        edge.DestinationID = node_keyword.Identifier
+        edge.Type = 'KEYWORD'
+        edge.HashID =  str(hash(edge.SourceID + edge.DestinationID))
+        edges.append(edge)
+
+    # Creating a graph of articles and references.
+    if article.References is not None:
+        for ref in article.References:
+            node_reference = Node()
+            node_reference.Identifier = ref
+            node_reference.Name = ref
+            node_reference.Type = 'Article'
+            nodes.append(node_reference)
+
+            edge = Edge()
+            edge.SourceID = node_article.Identifier
+            edge.DestinationID = node_reference.Identifier
+            edge.Type = 'REFERENCE'
+            edge.HashID =  str(hash(edge.SourceID + edge.DestinationID))
+            edges.append(edge)
+
+    return { 'nodes' : nodes, 'edges' : edges}
+
 def move_state_forward(state: int,
                        tps_limit: Optional[int] = 1,
                        extend_by_refrence: Optional[bool] = False,
@@ -562,28 +660,33 @@ def move_state_forward(state: int,
     :type tps_limit: Optional[int] (optional)
     """
 
-    la = get_article_by_state(state)
-    total_article_in_current_state = len(la)
+    # la = get_article_by_state(state) # old version
+    l_pmid = get_article_pmid_list_by_state(state)
+    total_article_in_current_state = len(l_pmid)
     number_of_article_move_forward = 0
-    logger.DEBUG(str(len(la)) + ' Article(s) is in state ' + str(state))
+    logger.DEBUG(str(len(l_pmid)) + ' Article(s) is in state ' + str(state))
 
 
     refresh_point = 0
-    for a in la:
+    for id in l_pmid:
         try:
             number_of_article_move_forward = number_of_article_move_forward + 1
             
-            if refresh_point == 50:
+            if refresh_point == 5:
                 refresh_point = 0
                 refresh()
-                logger.DEBUG(f'There are {str(total_article_in_current_state - number_of_article_move_forward)} article(s) left ', forecolore='yellow')
+                logger.INFO(f'There are {str(total_article_in_current_state - number_of_article_move_forward)} article(s) left ', forecolore='yellow')
+                min = (total_article_in_current_state - number_of_article_move_forward) / 60
+                logger.INFO(f'It takes at least {str(int(min))} minutes or {str(int(min/60))} hours', forecolore='yellow')
             else:
                 refresh_point = refresh_point + 1
 
+            a = get_article_by_pmid(id)
             try:
                 updated_article = Article(**a.copy())
             except:
-                print(a.__dict__)
+                # print(a.__dict__)
+                print(type(a))
                 backward_dict = a.copy()
                 backward = Article()
                 backward.PMID = backward_dict['PMID']
@@ -619,18 +722,20 @@ def move_state_forward(state: int,
             elif current_state == 2: # NER Title 
                 updated_article = _ner_title(updated_article)
                 l = update_article_by_pmid(updated_article , updated_article.PMID)
-                if len(l) == 1:
-                    pass
-                else:
-                    logger.ERROR('Duplication has Occurred')
+                # think after
+                # if len(l) == 1:
+                #     pass
+                # else:
+                #     logger.ERROR('Duplication has Occurred')
 
             elif current_state == 3: # Get Citation
                 updated_article = _get_citation(updated_article)
                 l = update_article_by_pmid(updated_article , updated_article.PMID)
-                if len(l) == 1:
-                    pass
-                else:
-                    logger.ERROR('Duplication has Occurred')
+                # think after
+                # if len(l) == 1:
+                #     pass
+                # else:
+                #     logger.ERROR('Duplication has Occurred')
 
 
             elif current_state == 4: # Create Knowledge
@@ -668,20 +773,23 @@ if __name__ == '__main__':
     logger.WARNING('Number of article in knowlege repository is ' + str(get_all_article_count()))
     logger.WARNING(f'{get_all_node_count()} Node(s) in knowlege repository.')
     logger.WARNING(f'{get_all_edge_count()} Edge(s) in knowlege repository.')
-    logger.INFO(f'{str(len(get_article_by_state(-2)))} article(s) in state -2.')
-    logger.INFO(f'{str(len(get_article_by_state(-1)))} article(s) in state -1.')
-    logger.INFO(f'{str(len(get_article_by_state(0)))} article(s) in state 0.')
-    logger.INFO(f'{str(len(get_article_by_state(1)))} article(s) in state 1.')
-    logger.INFO(f'{str(len(get_article_by_state(2)))} article(s) in state 2.')
-    logger.INFO(f'{str(len(get_article_by_state(3)))} article(s) in state 3.')
-    logger.INFO(f'{str(len(get_article_by_state(4)))} article(s) in state 4.')
+    data = get_article_group_by_state()
+    for i in range(-3,7):
+        w = 0
+        for s in data:
+            if s['State'] == i:
+                w = 1
+                n = s['n']
+                logger.INFO(f'{n} article(s) in state {i}.')
+        if w == 0 : 
+            logger.INFO(f'0 article(s) in state {i}.')
 
 
 
     # s = '("Breast Neoplasms"[Mesh] OR "Breast Cancer"[Title] OR "Breast Neoplasms"[Title] OR "Breast Neoplasms"[Other Term] OR "Breast Cancer"[Other Term]) AND ("Registries"[MeSH Major Topic] OR "Database Management Systems"[MeSH Major Topic] OR "Information Systems"[MeSH Major Topic] OR "Registry"[Other Term] OR "Registry"[Title] OR "Information Storage and Retrieval"[MeSH Major Topic])'
     # get_article_list_all_store_to_kg_rep(s)
 
-    # move_state_forward(1)
+    move_state_forward(2)
     # refresh()
 
     # data = get_article_by_pmid('35130239')

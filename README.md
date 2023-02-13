@@ -377,6 +377,17 @@ Graph drawing library for JavaScript
 
 https://github.com/anvaka/VivaGraphJS
 
+
+## Sigmajs
+https://www.sigmajs.org/
+
+## dash-cytoscape
+Interactive network visualization in Python and Dash, powered by Cytoscape.js 
+
+https://github.com/plotly/dash-cytoscape
+
+https://dash.plotly.com/cytoscape
+
 # Graph Analysis
 
 ## Usefull Link

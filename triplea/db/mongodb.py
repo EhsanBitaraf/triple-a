@@ -27,6 +27,30 @@ class DB_MongoDB(DataBase):
             return None
         else:
             return list(cursor)
+    
+    def get_article_pmid_list_by_state(self, state:int):
+        myquery = { "State":  state}
+        cursor = self.col_article.find(myquery,
+                                        projection={
+                                                    "PMID" : "$PMID", 
+                                                    "_id" : 0
+                                                })
+
+        la = list(cursor)
+        new_la = []
+        for l in la:
+            new_la.append(l['PMID'])
+
+        if len(new_la) == 0 :
+            return []
+        else:
+            return new_la
+
+
+    def get_count_article_by_state(self, state:int):
+        myquery = { "State":  state}
+        return self.col_article.count_documents(myquery)
+
 
     def get_article_by_pmid(self,pmid:str):
         myquery = { "PMID":  pmid}
@@ -37,7 +61,7 @@ class DB_MongoDB(DataBase):
             return None
         else:
             la = list(cursor)
-            return la
+            return la[0]
             # la = []
             # for d in cursor:
             #     print(type(d))
@@ -47,8 +71,8 @@ class DB_MongoDB(DataBase):
     def update_article_by_pmid(self, article:Article, pmid:str):
         article_json = json.loads(json.dumps(article, default=lambda o: o.__dict__, sort_keys=True, indent=4))
         myquery = { "PMID": pmid }
-        r = self.col_article.update_one(myquery, article_json)
-        return r
+        r = self.col_article.replace_one(myquery, article_json)
+        return r.raw_result
 
     def is_article_exist_by_pmid(self,pmid:str) -> bool:
         """
@@ -114,4 +138,32 @@ class DB_MongoDB(DataBase):
         pass
 
     def refresh(self):
-        pass    
+        pass
+
+    def get_article_group_by_state(self):
+        pipeline  = [
+        { 
+            "$group" : { 
+                "_id" : { 
+                    "State" : "$State"
+                }, 
+                "COUNT(_id)" : { 
+                    "$sum" : 1
+                }
+            }
+        }, 
+        { 
+            "$project" : { 
+                "State" : "$_id.State", 
+                "n" : "$COUNT(_id)", 
+                "_id" : 0
+            }
+        }
+    ]
+        return list(self.col_article.aggregate(pipeline))
+        
+
+if __name__ == '__main__':
+    db = DB_MongoDB()
+    # print(list(db.get_article_group_by_state()))
+    print(db.get_article_pmid_list_by_state(-1))

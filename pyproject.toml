@@ -20,6 +20,7 @@ netwulf = "^0.1.5"
 spacy = "^3.5.0"
 pymongo = "^4.3.3"
 transformers = {extras = ["torch"], version = "^4.26.1"}
+py2neo = "^2021.2.3"
 
 [tool.poetry.scripts]
 ner = "triplea.cli.ner:ner_title"

@@ -8,7 +8,6 @@ from triplea.schemas.article import Article
 from triplea.schemas.node import Edge, Node
 
 from triplea.config.settings import DB_ROOT_PATH
-
 from triplea.config.settings import SETTINGS
 
 class DB_TinyDB(DataBase):
@@ -24,6 +23,12 @@ class DB_TinyDB(DataBase):
     def get_article_by_state(self,state:int):
         q = Query()
         return self.db.search(q.State == state)
+    
+    def get_article_pmid_list_by_state(self, state:int):
+        raise NotImplementedError
+
+    def get_count_article_by_state(self, state:int):
+        raise NotImplementedError
 
     def get_article_by_pmid(self,pmid:str):
         q = Query()
@@ -97,3 +102,14 @@ class DB_TinyDB(DataBase):
     def refresh(self):
         self.db.close()
         self.db = TinyDB(DB_ROOT_PATH / SETTINGS.AAA_TINYDB_FILENAME , storage=CachingMiddleware(JSONStorage))
+
+    def get_article_group_by_state(self):
+        r = []
+        for i in range(-2,5):
+            n = 0
+            q = Query()
+            n = self.db.count(q.State == i)
+            r.append({ 'State' : i , 'n' : n })
+
+        return r
+
