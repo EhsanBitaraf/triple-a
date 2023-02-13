@@ -25,10 +25,14 @@ class DB_TinyDB(DataBase):
         return self.db.search(q.State == state)
     
     def get_article_pmid_list_by_state(self, state:int):
-        raise NotImplementedError
+        q = Query()
+        l_pmid = [a.get('PMID') for a in self.db.search(q.State == state)]
+        return l_pmid
 
     def get_count_article_by_state(self, state:int):
-        raise NotImplementedError
+        q = Query()
+        l_pmid = self.db.search(q.State == state)
+        return len(l_pmid)
 
     def get_article_by_pmid(self,pmid:str):
         q = Query()

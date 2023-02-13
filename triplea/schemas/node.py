@@ -32,6 +32,7 @@ class Edge(BaseModel):
     SourceID: Optional[str]  =  Field(description='')
     DestinationID: Optional[str]  =  Field(description='')
     Type: Optional[str]  =  Field(description='')
+    Weight:  Optional[float]  =  Field(description='')
 
 
 
