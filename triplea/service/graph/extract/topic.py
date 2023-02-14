@@ -6,7 +6,15 @@ import pytextrank
 nlp = spacy.load("en_core_web_sm")
 nlp.add_pipe("topicrank")
 
-def _extract_article_topic(article: Article): 
+def graph_extract_article_topic(article: Article)-> dict: 
+    """
+    > For each article, extract the top 10 topics from the title and create a node for each topic and an
+    edge from the article to each topic
+    
+    :param article: Article - this is the article object that we will be extracting the topics from
+    :type article: Article
+    :return: A dictionary with two keys: nodes and edges.
+    """
     nodes = []
     edges = []
 

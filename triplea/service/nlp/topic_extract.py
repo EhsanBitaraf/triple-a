@@ -1,9 +1,8 @@
 import spacy
 import pytextrank
-from triplea.schemas.article import Article
 from triplea.service.click_logger import logger
-from triplea.service.ner import get_title_ner
-from triplea.service.persist import get_article_by_pmid, get_article_pmid_list_by_state
+from triplea.service.nlp.ner import get_title_ner
+
 
 
 def extract_topicrank(text:str):

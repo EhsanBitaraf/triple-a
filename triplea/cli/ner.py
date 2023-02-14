@@ -1,6 +1,6 @@
 from string import printable
 import click
-from triplea.service.ner import get_title_ner
+from triplea.service.nlp.ner import get_title_ner
 from triplea.service.click_logger import logger
 
 @click.command()

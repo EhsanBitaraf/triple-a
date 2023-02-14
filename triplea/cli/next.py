@@ -1,5 +1,5 @@
 import click
-from triplea.service.general import move_state_forward
+from triplea.service.repository.general import move_state_forward
 from triplea.service.click_logger import logger
 
 @click.command()

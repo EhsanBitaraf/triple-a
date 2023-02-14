@@ -2,17 +2,16 @@ import json
 from typing import Optional
 import networkx as nx
 from triplea.schemas.node import Edge, Node
-
-from triplea.service.persist import get_all_edges, get_all_nodes
+import triplea.service.repository.persist as persist
 
 def _check_graph():
-    nodes = get_all_nodes()
+    nodes = persist.get_all_nodes()
     data_nodes = []
     for n in nodes:
         node = Node(**n.copy()) 
         data_nodes.append(node.Identifier)
 
-    edges = get_all_edges()
+    edges = persist.get_all_edges()
     n = 0
     for e in edges:
        
@@ -30,11 +29,15 @@ def _check_graph():
             n = n + 1
             print(f'{n} | DestinationID "{edge.DestinationID}" Not Exist. in Type : {edge.Type} & SourceID =  "{edge.SourceID}"')
 
-def export_graphjson()->dict:
-
+def export_graphjson_from_arepo()->dict:
+    """
+    It takes all the nodes and edges from the article repository and converts them into a format that can be used
+    by the graph visualization library
+    :return: A dictionary with two keys: nodes and edges.
+    """
     data = {}
     data['comment'] = 'This file generate autommaticlly by TripleA'
-    nodes = get_all_nodes()
+    nodes = persist.get_all_nodes()
     data_nodes = []
     for n in nodes:
         node = Node(**n.copy()) 
@@ -44,7 +47,7 @@ def export_graphjson()->dict:
         data_n['id'] = node.Identifier
         data_nodes.append(data_n)
 
-    edges = get_all_edges()
+    edges = persist.get_all_edges()
     data_edges = []
     for e in edges:
         edge = Edge(**e.copy()) 
@@ -58,9 +61,9 @@ def export_graphjson()->dict:
     data['edges'] = data_edges
     return data
 
-def export_networkX(graph_type: Optional[str] = 'directed' ):
+def export_networkX_from_arepo(graph_type: Optional[str] = 'directed' ):
     """
-    It takes a list of nodes and edges from a database and creates a networkX graph object
+    It takes a list of nodes and edges from the article repository and creates a networkX graph object
     :return: A networkx graph object
     """
     if graph_type == 'undirected':
@@ -70,19 +73,64 @@ def export_networkX(graph_type: Optional[str] = 'directed' ):
     else:
         raise NotImplementedError
 
-    nodes = get_all_nodes()
+    nodes = persist.get_all_nodes()
     for n in nodes:
         node = Node(**n.copy()) 
         G.add_node(node.Identifier , Type = node.Type, Name = node.Name)
 
-    edges = get_all_edges()
+    edges = persist.get_all_edges()
     for e in edges:
         edge = Edge(**e.copy()) 
         G.add_edge(edge.SourceID , edge.DestinationID , Type = edge.Type)
 
     return G
 
-def generate_networkX(nodes : list[Node] , edges : list[Edge], graph_type: Optional[str] = 'directed' ):
+def export_gpickle_from_arepo(filename:str):
+    """
+    It read article repository and extract node & edge from it, and then saves it in the [pickle format](https://docs.python.org/3/library/pickle.html).
+    Pickles are a serialized byte stream of a Python object.
+    
+    :param filename: the name of the file to write to
+    :type filename: str
+    """
+    G = export_networkX_from_arepo()
+    nx.write_gpickle(G, filename)
+    # And just to show that it can be loaded back into memory:
+    # G_loaded = nx.read_gpickle("/tmp/divvy.pkl")
+
+def export_gexf_from_arepo(filename:str):
+    """
+    It read article repository and extract node & edge from it, and then saves it in the [gexf format](https://gexf.net/)
+    """
+    G = export_networkX_from_arepo()
+    # saving graph created above in gexf format
+    nx.write_gexf(G, filename +  ".gexf")
+
+def export_graphml_from_arepo(filename:str):
+    """
+    It read article repository and extract node & edge from it and exports it as a [graphml file](http://graphml.graphdrawing.org/)
+    
+    :param filename: the name of the file you want to save the graphml file as
+    :type filename: str
+    """
+    G = export_networkX_from_arepo()
+    # saving graph created above in graphml format
+    nx.write_graphml(G, filename + ".graphml")
+
+def export_graphml_from_networkx(G:nx.Graph, filename:str):
+    """
+    It takes a networkx graph and a filename, and exports the graph to a graphml file with the given
+    filename
+    
+    :param G: the networkx graph object
+    :type G: nx.Graph
+    :param filename: the name of the file you want to save the graph as
+    :type filename: str
+    """
+    nx.write_graphml(G, filename + ".graphml")
+
+##-------------------------------------------------------------------------------------------------------------
+def export_networkX(nodes : list[Node] , edges : list[Edge], graph_type: Optional[str] = 'directed' ):
     if graph_type == 'undirected':
         G = nx.Graph()
     elif graph_type == 'directed':
@@ -102,7 +150,7 @@ def generate_networkX(nodes : list[Node] , edges : list[Edge], graph_type: Optio
 
     return G
 
-def generate_networkX(nodes : list[dict] , edges : list[dict], graph_type: Optional[str] = 'directed' ):
+def export_networkX(nodes : list[dict] , edges : list[dict], graph_type: Optional[str] = 'directed' ):
     if graph_type == 'undirected':
         G = nx.Graph()
     elif graph_type == 'directed':
@@ -122,33 +170,12 @@ def generate_networkX(nodes : list[dict] , edges : list[dict], graph_type: Optio
 
     return G
 
-def export_networkx_to_gpickle(filename:str):
-    G = export_networkX()
-    nx.write_gpickle(G, filename)
-    # And just to show that it can be loaded back into memory:
-    # G_loaded = nx.read_gpickle("/tmp/divvy.pkl")
-
-def export_gexf(filename:str):
-    """
-    It creates a networkX graph object, and then saves it in the gexf format
-    """
-    G = export_networkX()
-    # saving graph created above in gexf format
-    nx.write_gexf(G, filename +  ".gexf")
-
-def export_graphml(filename:str):
-    G = export_networkX()
-    # saving graph created above in graphml format
-    nx.write_graphml(G, filename + ".graphml")
-
-def export_graphml(filename:str,G):
-    nx.write_graphml(G, filename + ".graphml")
-
 
 from triplea.config.settings import ROOT
 import pandas as pd
 # from nams.solutions.hubs import ecdf_degree
 if __name__ == '__main__':
+    pass
     # export_networkX()
     # export_gexf('ehr')
     # export_graphml('ehr')
@@ -162,7 +189,7 @@ if __name__ == '__main__':
     # with open(ROOT.parent / 'visualization' / 'alchemy' / 'data.json', "w") as outfile:
     #     outfile.write(data)
 
-    G = export_networkX()
+
 
 
 

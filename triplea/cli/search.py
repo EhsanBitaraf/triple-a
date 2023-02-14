@@ -1,5 +1,5 @@
 import click
-from triplea.service.general import get_article_list_all_store_to_kg_rep
+from triplea.service.repository.state import get_article_list_from_pubmed_all_store_to_arepo
 from triplea.service.click_logger import logger
 
 @click.command()
@@ -10,7 +10,7 @@ def get_article(searchterm):
     searchterm = searchterm.strip()
     logger.INFO(f'Query encoder : ')
     logger.INFO(searchterm, forecolore='cyan')
-    get_article_list_all_store_to_kg_rep(searchterm)
+    get_article_list_from_pubmed_all_store_to_arepo(searchterm)
 
 if __name__ == '__main__':
     pass
