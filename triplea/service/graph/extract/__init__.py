@@ -11,11 +11,17 @@ from triplea.service.click_logger import logger
 
 from triplea.service.graph.extract.topic import graph_extract_article_topic 
 from triplea.service.graph.extract.author import graph_extract_article_author_affiliation
+from triplea.service.graph.extract.keyword import graph_extract_article_keyword
+from triplea.service.graph.extract.reference import graph_extract_article_reference
+from triplea.service.graph.extract.cited import graph_extract_article_cited
 __all__ = ["graph_extractor", 
            "graph_extract_article_topic",
-           "graph_extract_article_author_affiliation"
+           "graph_extract_article_author_affiliation",
+           "graph_extract_article_keyword",
+           "graph_extract_article_reference",
+           "graph_extract_article_cited"
            ]
-
+ 
 def Emmanuel(d:list)->list:
     """Base on [this](https://stackoverflow.com/questions/9427163/remove-duplicate-dict-in-list-in-python)
 

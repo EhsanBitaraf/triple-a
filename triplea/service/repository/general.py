@@ -11,7 +11,7 @@ from triplea.service.repository.persist import  create_article, create_edge, cre
 
 tps_limit = SETTINGS.AAA_TPS_LIMIT
 
-
+# It is no longer used
 def _create_knowledge(article: Article):
     article.State = 5
     nodes = []
@@ -94,6 +94,7 @@ def _create_knowledge(article: Article):
 
     return article
 
+# It is no longer used
 def _extract_knowledge(article: Article):   
     article.State = 5
     nodes = []
@@ -134,7 +135,7 @@ def _extract_knowledge(article: Article):
                 edge.Type = 'IS_MEMBER_OF'
                 edge.HashID =  str(hash(edge.SourceID + edge.DestinationID))
                 edges.append(edge)
-
+ 
     # Creating a graph of articles and keywords.
     for key in article.Keywords:
         node_keyword = Node()

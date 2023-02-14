@@ -30,7 +30,7 @@ class Author(BaseModel):
     FullName : Optional[str]  =  Field(description='')
     ORCID: Optional[str]  =  Field(description='')
     Affiliations: Optional[list[Affiliation]]  =  Field(description='')
-
+ 
 class Article(BaseModel):
     PMID: Optional[str]  =  Field(description='the PubMed (NLM database that incorporates MEDLINE) unique identifier, is a 1 to 8-digit accession number with no leading zeros.')
     DOI: Optional[str]  =  Field(description='')

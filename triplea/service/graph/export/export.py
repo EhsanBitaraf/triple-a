@@ -1,8 +1,16 @@
 import json
 from typing import Optional
+from triplea.service.click_logger import logger
 import networkx as nx
 from triplea.schemas.node import Edge, Node
+from triplea.service.graph.extract.cited import graph_extract_article_cited
+from triplea.service.graph.extract.keyword import graph_extract_article_keyword
+from triplea.service.graph.extract.reference import graph_extract_article_reference
+from triplea.service.graph.extract.topic import graph_extract_article_topic
 import triplea.service.repository.persist as persist
+
+from triplea.service.graph.extract import Emmanuel, graph_extractor
+from triplea.service.graph.extract import graph_extract_article_author_affiliation
 
 def _check_graph():
     nodes = persist.get_all_nodes()
@@ -129,6 +137,61 @@ def export_graphml_from_networkx(G:nx.Graph, filename:str):
     """
     nx.write_graphml(G, filename + ".graphml")
 
+def export_gson_from_graphdict(graphdict)->dict:
+    gson_nodes = []
+    gson_edges = []
+    for n in graphdict['nodes']:
+        gson_node = {}
+        gson_node['label'] = n['Name']
+        gson_node['id'] = n['Identifier']
+        # gson_node['info'] = title ...
+        # gson_node['value'] = degree ...
+        # gson_node['image'] 
+        # gson_node['categories']
+        # gson_node['community']
+        # gson_node['group']
+        # gson_node['x']
+        # gson_node['y']
+        gson_node['categories'] = { n['Type'] :  n['Type'] }
+        if n['Type'] == 'Article':
+            gson_node['value'] = 10
+            gson_node['image'] = "./images/photo/article.png"
+        elif n['Type'] == 'Author':
+            gson_node['value'] = 5
+            gson_node['image'] =  "./images/photo/author.png"
+        elif n['Type'] == 'Affiliation':
+            gson_node['value'] = 15
+            gson_node['image'] = "./images/photo/institute.png"
+        elif n['Type'] == 'Keyword':
+            gson_node['value'] = 15
+            # gson_node['image'] = "./images/photo/institute.png"
+        elif n['Type'] == 'Topic':
+            gson_node['value'] = 15
+            # gson_node['image'] = "./images/photo/institute.png"
+        else:
+            gson_node['value'] = 1
+        
+        
+
+
+        gson_nodes.append(gson_node)
+
+    for e in graphdict['edges']:
+        gson_edge = {}
+        gson_edge['id'] = e['HashID']
+        gson_edge['from'] = e['SourceID']
+        gson_edge['to'] = e['DestinationID']
+        gson_edge['label'] = e['Type']
+        gson_edges.append(gson_edge)
+
+    result = {}
+    result['data'] = {'nodes' : gson_nodes , 'edges' : gson_edges}
+    return result
+
+
+
+
+
 ##-------------------------------------------------------------------------------------------------------------
 def export_networkX(nodes : list[Node] , edges : list[Edge], graph_type: Optional[str] = 'directed' ):
     if graph_type == 'undirected':
@@ -189,6 +252,39 @@ if __name__ == '__main__':
     # with open(ROOT.parent / 'visualization' / 'alchemy' / 'data.json', "w") as outfile:
     #     outfile.write(data)
 
+    state = 2
+    graphdict1 = graph_extractor(graph_extract_article_author_affiliation, state)
+    graphdict2 = graph_extractor(graph_extract_article_topic, state)
+    graphdict3 = graph_extractor(graph_extract_article_keyword, state)
+    graphdict4 = graph_extractor(graph_extract_article_reference, state)
+    # graphdict5 = graph_extractor(graph_extract_article_cited, state)
+    nodes = []
+    nodes.extend(graphdict1['nodes'])
+    nodes.extend(graphdict2['nodes'])
+    nodes.extend(graphdict3['nodes'])
+    nodes.extend(graphdict4['nodes'])
+    # nodes.extend(graphdict5['nodes'])
+    edges = []
+    edges.extend(graphdict1['edges'])
+    edges.extend(graphdict2['edges'])
+    edges.extend(graphdict3['edges'])
+    edges.extend(graphdict4['edges'])
+    # edges.extend(graphdict5['edges'])
+
+    n = Emmanuel(nodes)
+    e = Emmanuel(edges)
+    logger.DEBUG(f'Final {len(n)} Nodes & {len(e)} Edges Extracted.')
+    graphdict = { 'nodes' : n , 'edges' : e}
+
+
+    data = export_gson_from_graphdict(graphdict)
+
+    data= json.dumps(data, indent=4)
+    with open(ROOT.parent / 'visualization' / 'interactivegraph' / 'one-gson.json', "w") as outfile:
+        outfile.write(data)
+
+
+ 
 
 
 

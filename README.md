@@ -389,6 +389,21 @@ https://github.com/plotly/dash-cytoscape
 
 https://dash.plotly.com/cytoscape
 
+## InteractiveGraph
+InteractiveGraph provides a web-based interactive visualization and analysis framework for large graph data, which may come from a GSON file, or an online Neo4j graph database. InteractiveGraph also provides applications built on the framework: GraphNavigator, GraphExplorer and RelFinder. 
+
+https://github.com/grapheco/InteractiveGraph
+
+## graphia
+A visualisation tool for the creation and analysis of graphs 
+
+windows application
+
+https://github.com/graphia-app/graphia
+
+https://graphia.app/
+
+
 # Graph Analysis
 
 ## Usefull Link
