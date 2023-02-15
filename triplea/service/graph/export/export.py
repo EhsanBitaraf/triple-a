@@ -37,6 +37,33 @@ def _check_graph():
             n = n + 1
             print(f'{n} | DestinationID "{edge.DestinationID}" Not Exist. in Type : {edge.Type} & SourceID =  "{edge.SourceID}"')
 
+def export_graphjson_from_graphdict(graphdict):
+    data = {}
+    data['comment'] = 'This file generate autommaticlly by TripleA'
+    nodes = graphdict['nodes']
+    data_nodes = []
+    for n in nodes:
+
+        data_n = {}
+        data_n['caption'] = n['Name']
+        data_n['type'] = n['Type']
+        data_n['id'] = n['Identifier']
+        data_nodes.append(data_n)
+
+    edges = graphdict['edges']
+    data_edges = []
+    for e in edges:
+        
+        data_e = {}
+        data_e['source'] = e['SourceID']
+        data_e['target'] = e['DestinationID']
+        data_e['caption'] = e['Type']
+        data_edges.append(data_e)
+
+    data['nodes'] = data_nodes
+    data['edges'] = data_edges
+    return data
+
 def export_graphjson_from_arepo()->dict:
     """
     It takes all the nodes and edges from the article repository and converts them into a format that can be used
@@ -191,8 +218,21 @@ def export_gson_from_graphdict(graphdict)->dict:
     result['data'] = {'nodes' : gson_nodes , 'edges' : gson_edges}
     return result
 
+def export_networkx_from_graphdict(graphdict,graph_type: Optional[str] = 'directed'):
+    if graph_type == 'undirected':
+        G = nx.Graph()
+    elif graph_type == 'directed':
+        G = nx.DiGraph()
+    else:
+        raise NotImplementedError
 
+    for node in graphdict['nodes']:
+        G.add_node(node['Identifier'] , Type = node['Type'], Name = node['Name'])
 
+    for edge in graphdict['edges']:
+        G.add_edge(edge['SourceID'] , edge['DestinationID'] , Type = edge['Type'])
+
+    return G
 
 
 ##-------------------------------------------------------------------------------------------------------------
@@ -216,25 +256,6 @@ def export_networkX(nodes : list[Node] , edges : list[Edge], graph_type: Optiona
 
     return G
 
-def export_networkX(nodes : list[dict] , edges : list[dict], graph_type: Optional[str] = 'directed' ):
-    if graph_type == 'undirected':
-        G = nx.Graph()
-    elif graph_type == 'directed':
-        G = nx.DiGraph()
-    else:
-        raise NotImplementedError
-
-    # nodes = get_all_nodes()
-    for node in nodes:
-        # node = Node(**n.copy()) 
-        G.add_node(node['Identifier'] , Type = node['Type'], Name = node['Name'])
-
-    # edges = get_all_edges()
-    for edge in edges:
-        # edge = Edge(**e.copy()) 
-        G.add_edge(edge['SourceID'] , edge['DestinationID'] , Type = edge['Type'])
-
-    return G
 
 from triplea.config.settings import ROOT
 import pandas as pd
@@ -249,10 +270,7 @@ if __name__ == '__main__':
     # _check_graph()
 
     # print(ROOT.parent / 'visualization' / 'alchemy' / 'data.json')
-    # data = export_graphjson()
-    # data= json.dumps(data, indent=4)
-    # with open(ROOT.parent / 'visualization' / 'alchemy' / 'data.json', "w") as outfile:
-    #     outfile.write(data)
+
 
 
     # # Export All
@@ -281,11 +299,7 @@ if __name__ == '__main__':
     # graphdict = { 'nodes' : n , 'edges' : e}
 
 
-    # data = export_gson_from_graphdict(graphdict)
 
-    # data= json.dumps(data, indent=4)
-    # with open(ROOT.parent / 'visualization' / 'interactivegraph' / 'one-gson.json', "w") as outfile:
-    #     outfile.write(data)
 
     graphdict = graph_extractor_all_entity(state = 4 ,limit_node= 0)
     data= json.dumps(graphdict, indent=4)

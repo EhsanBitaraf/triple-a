@@ -1,17 +1,18 @@
 
+
 import json
-from triplea.schemas.article import Article
-from triplea.schemas.node import Edge, Node
-from triplea.service.export import generate_networkX
-from triplea.service.persist import get_article_by_state
-from triplea.service.click_logger import logger
+from triplea.service.graph.export.export import export_networkx_from_graphdict
+from triplea.service.graph.extract import graph_extractor_all_entity
+
 
 import networkx as nx
-import nxviz as nv
+# import nxviz as nv??
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 from netwulf import visualize
+
+from visualization.gdatarefresh import refresh_alchemy, refresh_interactivegraph
 
 
 
@@ -113,123 +114,50 @@ def info(G):
     # print(f'Graph Closeness Centrality: {get_top_keys(clo_cen,1)}')
     # print(f'Graph Eigenvector Centrality : {get_top_keys(eig_cen, 1)}')
 
-def generate_custom_graph():
-    la = get_article_by_state(3)
-    nodes = []
-    edges = []
-    MJ = []
-    n = 0 
-    for a in la:
-        n = n + 1
-        updated_article = Article(**a.copy())
 
-        node_article = Node()
-        node_article.Identifier = updated_article.PMID
-        node_article.Name = updated_article.PMID
-        node_article.Type = 'Article'
-        nodes.append(node_article)
-
-        if updated_article.NamedEntities is not None:
-            for ner in updated_article.NamedEntities:
-                node_entity = Node()
-                node_entity.Identifier = ner.Entity
-                node_entity.Name = ner.Entity
-                if ner.Label=='MAJORTOPIC':
-                    new_cluster_entity = ner.Entity.lower()
-
-                    if new_cluster_entity.__contains__('registr'):new_cluster_entity = 'registry'
-                    if new_cluster_entity.__contains__('data'):new_cluster_entity = 'data'
-                    if new_cluster_entity.__contains__('record'):new_cluster_entity = 'record'
-                    if new_cluster_entity.__contains__('screening'):new_cluster_entity = 'screening'
-     
-
-                    
-                    node_entity.Identifier = new_cluster_entity
-                    node_entity.Name = new_cluster_entity
-                    MJ.append(new_cluster_entity)
-
-                
-                node_entity.Type = 'Entity'
-                nodes.append(node_entity)
-
-                edge_label = Edge()
-                edge_label.SourceID = node_article.Identifier
-                edge_label.DestinationID = node_entity.Identifier
-                edge_label.Type = ner.Label
-                edge_label.HashID =  str(hash(edge_label.SourceID + edge_label.DestinationID + edge_label.Type))
-                edges.append(edge_label)
-
-
-
-
-        logger.INFO(f'{n} article(s) read.')
-
-
-    nodes_json= json.dumps(MJ, indent=4)
-    with open("nodes.json", "w") as outfile:
-        outfile.write(nodes_json)
-    
-    G = generate_networkX(nodes,edges)
-    return G
-
-def generate_custom_keyword_graph():
-    la = get_article_by_state(3)
-    nodes = []
-    edges = []
-    MJ = []
-    n = 0 
-    for a in la:
-        n = n + 1
-        updated_article = Article(**a.copy())
-
-        node_article = Node()
-        node_article.Identifier = updated_article.PMID
-        node_article.Name = updated_article.PMID
-        node_article.Type = 'Article'
-        nodes.append(node_article)
-
-        if updated_article.Keywords is not None:
-            for k in updated_article.Keywords:
-                node_entity = Node()
-                node_entity.Identifier = k.Text
-                node_entity.Name = k.Text
-                node_entity.Type = 'Keyword'
-                nodes.append(node_entity)
-
-                MJ.append(node_entity.Name)
-
-                edge_label = Edge()
-                edge_label.SourceID = node_article.Identifier
-                edge_label.DestinationID = node_entity.Identifier
-                edge_label.Type = 'KEYWORD'
-                edge_label.HashID =  str(hash(edge_label.SourceID + edge_label.DestinationID + edge_label.Type))
-                edges.append(edge_label)
-
-        logger.INFO(f'{n} article(s) read.')
-
-
-    nodes_json= json.dumps(MJ, indent=4)
-    with open("nodes.json", "w") as outfile:
-        outfile.write(nodes_json)
-    
-    G = generate_networkX(nodes,edges)
-    return G
-
-
-
-
-
+from networkx.algorithms.community import k_clique_communities
+from networkx.algorithms.approximation import max_clique,large_clique_size
 if __name__ == '__main__':
 
 
-    # G = generate_custom_graph()
-    G = generate_custom_keyword_graph()
-    # saving graph created above in graphml format
-    nx.write_graphml(G, "NER.graphml")
-    info(G)
-    print(sorted_degree_centrality(G))
-    visualize_and_grouping(G)
+    # data = graph_extractor_all_entity(state=2)
+    
+    # data= json.dumps(data, indent=4)
+    # with open( 'one-data.json', "w") as outfile:
+    #     outfile.write(data)
 
+    f = open('one-data.json')
+    data = json.load(f)
+    f.close()
+
+    # refresh_interactivegraph(data)
+    # refresh_alchemy(data)
+
+
+    G = export_networkx_from_graphdict(data,graph_type='undirected')
+    # print(max_clique(G))
+    print(large_clique_size(G))
+    # info(G)
+    
+    # r = k_clique_communities(G,4)
+    # print(list(r))
+
+    print(nx.common_neighbors(G, "Health information systems", "electronic health record"))
+    print (f'Graph is Euleian : {nx.is_eulerian(G)}')
+    print(nx.degree_histogram(G))
+    A = nx.induced_subgraph(G , ["Health information systems"])
+    print(list(A.edges))
+    print(list(nx.neighbors(G, "Health information systems")))
+    # print(list(A.nodes))
+
+    # s= nx.complete_graph(20)
+    # s= nx.graph_atlas(100)
+    # s = nx.dorogovtsev_goltsev_mendes_graph(10)
+    # visualize(s)
+
+
+    # nx.draw(G)
+    # plt.show()
 
     # G = export_networkX(graph_type='undirected')
     # G = export_networkX()

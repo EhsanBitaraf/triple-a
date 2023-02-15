@@ -344,7 +344,7 @@ if __name__ == '__main__':
     # s = '("Breast Neoplasms"[Mesh] OR "Breast Cancer"[Title] OR "Breast Neoplasms"[Title] OR "Breast Neoplasms"[Other Term] OR "Breast Cancer"[Other Term]) AND ("Registries"[MeSH Major Topic] OR "Database Management Systems"[MeSH Major Topic] OR "Information Systems"[MeSH Major Topic] OR "Registry"[Other Term] OR "Registry"[Title] OR "Information Storage and Retrieval"[MeSH Major Topic])'
     # get_article_list_all_store_to_kg_rep(s)
 
-    move_state_forward(3)
+    # move_state_forward(3)
     # refresh()
 
     # data = get_article_by_pmid('35130239')
