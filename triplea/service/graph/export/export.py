@@ -9,7 +9,7 @@ from triplea.service.graph.extract.reference import graph_extract_article_refere
 from triplea.service.graph.extract.topic import graph_extract_article_topic
 import triplea.service.repository.persist as persist
 
-from triplea.service.graph.extract import Emmanuel, graph_extractor
+from triplea.service.graph.extract import Emmanuel, graph_extractor, graph_extractor_all_entity
 from triplea.service.graph.extract import graph_extract_article_author_affiliation
 
 def _check_graph():
@@ -138,6 +138,12 @@ def export_graphml_from_networkx(G:nx.Graph, filename:str):
     nx.write_graphml(G, filename + ".graphml")
 
 def export_gson_from_graphdict(graphdict)->dict:
+    """
+    > It takes a graph dictionary and returns a GSON format
+    
+    :param graphdict: the graph dictionary
+    :return: A dictionary with GSON format
+    """
     gson_nodes = []
     gson_edges = []
     for n in graphdict['nodes']:
@@ -170,9 +176,6 @@ def export_gson_from_graphdict(graphdict)->dict:
             # gson_node['image'] = "./images/photo/institute.png"
         else:
             gson_node['value'] = 1
-        
-        
-
 
         gson_nodes.append(gson_node)
 
@@ -233,7 +236,6 @@ def export_networkX(nodes : list[dict] , edges : list[dict], graph_type: Optiona
 
     return G
 
-
 from triplea.config.settings import ROOT
 import pandas as pd
 # from nams.solutions.hubs import ecdf_degree
@@ -252,39 +254,45 @@ if __name__ == '__main__':
     # with open(ROOT.parent / 'visualization' / 'alchemy' / 'data.json', "w") as outfile:
     #     outfile.write(data)
 
-    state = 2
-    graphdict1 = graph_extractor(graph_extract_article_author_affiliation, state)
-    graphdict2 = graph_extractor(graph_extract_article_topic, state)
-    graphdict3 = graph_extractor(graph_extract_article_keyword, state)
-    graphdict4 = graph_extractor(graph_extract_article_reference, state)
-    # graphdict5 = graph_extractor(graph_extract_article_cited, state)
-    nodes = []
-    nodes.extend(graphdict1['nodes'])
-    nodes.extend(graphdict2['nodes'])
-    nodes.extend(graphdict3['nodes'])
-    nodes.extend(graphdict4['nodes'])
-    # nodes.extend(graphdict5['nodes'])
-    edges = []
-    edges.extend(graphdict1['edges'])
-    edges.extend(graphdict2['edges'])
-    edges.extend(graphdict3['edges'])
-    edges.extend(graphdict4['edges'])
-    # edges.extend(graphdict5['edges'])
 
-    n = Emmanuel(nodes)
-    e = Emmanuel(edges)
-    logger.DEBUG(f'Final {len(n)} Nodes & {len(e)} Edges Extracted.')
-    graphdict = { 'nodes' : n , 'edges' : e}
+    # # Export All
+    # state = 2
+    # graphdict1 = graph_extractor(graph_extract_article_author_affiliation, state)
+    # graphdict2 = graph_extractor(graph_extract_article_topic, state)
+    # graphdict3 = graph_extractor(graph_extract_article_keyword, state)
+    # graphdict4 = graph_extractor(graph_extract_article_reference, state)
+    # # graphdict5 = graph_extractor(graph_extract_article_cited, state)
+    # nodes = []
+    # nodes.extend(graphdict1['nodes'])
+    # nodes.extend(graphdict2['nodes'])
+    # nodes.extend(graphdict3['nodes'])
+    # nodes.extend(graphdict4['nodes'])
+    # # nodes.extend(graphdict5['nodes'])
+    # edges = []
+    # edges.extend(graphdict1['edges'])
+    # edges.extend(graphdict2['edges'])
+    # edges.extend(graphdict3['edges'])
+    # edges.extend(graphdict4['edges'])
+    # # edges.extend(graphdict5['edges'])
+
+    # n = Emmanuel(nodes)
+    # e = Emmanuel(edges)
+    # logger.DEBUG(f'Final {len(n)} Nodes & {len(e)} Edges Extracted.')
+    # graphdict = { 'nodes' : n , 'edges' : e}
 
 
-    data = export_gson_from_graphdict(graphdict)
+    # data = export_gson_from_graphdict(graphdict)
 
-    data= json.dumps(data, indent=4)
-    with open(ROOT.parent / 'visualization' / 'interactivegraph' / 'one-gson.json', "w") as outfile:
+    # data= json.dumps(data, indent=4)
+    # with open(ROOT.parent / 'visualization' / 'interactivegraph' / 'one-gson.json', "w") as outfile:
+    #     outfile.write(data)
+
+    graphdict = graph_extractor_all_entity(state = 4 ,limit_node= 0)
+    data= json.dumps(graphdict, indent=4)
+    with open("one-graphdict-all.json", "w") as outfile:
         outfile.write(data)
+    
 
-
- 
 
 
 

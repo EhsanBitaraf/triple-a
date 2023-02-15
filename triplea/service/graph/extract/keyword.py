@@ -2,6 +2,14 @@ from triplea.schemas.article import Article
 from triplea.schemas.node import Edge, Node
 
 def graph_extract_article_keyword(article: Article)-> dict: 
+    """
+    > This function takes an article and returns a dictionary with two keys: nodes and edges. The nodes
+    key contains a list of nodes, and the edges key contains a list of edges. nodes contain article & keyword
+    
+    :param article: Article - the article object that we want to extract the keywords from
+    :type article: Article
+    :return: A dictionary with two keys: nodes and edges.
+    """
     nodes = []
     edges = []
  

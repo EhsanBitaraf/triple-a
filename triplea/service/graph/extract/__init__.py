@@ -4,6 +4,7 @@ import sys
 import time
 
 import click
+from typing import Optional
 from triplea.schemas.article import Article
 from triplea.schemas.node import Edge, Node
 import triplea.service.repository.persist as persist
@@ -45,7 +46,7 @@ def thefourtheye_2(data):
     """
     return {frozenset(item.items()):item for item in data}.values()
 
-def graph_extractor(func,state:int):
+def graph_extractor(func , state:int, limit_node: Optional[int] = 0):
     """
     It takes a function as an argument, and returns a dictionary of nodes and edges
     
@@ -74,13 +75,14 @@ def graph_extractor(func,state:int):
                 # logger.ERROR(f'Error {exc_tb.tb_next}')
                 article = None
 
-            # Temporal
-            if n == 300:
-                logger.DEBUG(f'Remove duplication in Nodes & Edges. ')
-                n = Emmanuel(l_nodes)
-                e = Emmanuel(l_edges)
-                logger.DEBUG(f'Final {len(n)} Nodes & {len(e)} Edges Extracted.')
-                return { 'nodes' : n , 'edges' : e}
+ 
+            if limit_node != 0 : # Unlimited
+                if n == limit_node:
+                    logger.DEBUG(f'Remove duplication in Nodes & Edges. ')
+                    n = Emmanuel(l_nodes)
+                    e = Emmanuel(l_edges)
+                    logger.DEBUG(f'Final {len(n)} Nodes & {len(e)} Edges Extracted.')
+                    return { 'nodes' : n , 'edges' : e}
 
             if article is not None:
                 # data = _extract_article_topic(article)
@@ -92,11 +94,77 @@ def graph_extractor(func,state:int):
                 bar.label = f'Article ({n}): Extract {len(a_nodes)} Nodes & {len(a_edges)} Edges. Total ({len(l_nodes)},{len(l_edges)})'
                 # logger.DEBUG(f'Article ({n}): Extract {len(a_nodes)} Nodes & {len(a_edges)} Edges. Total ({len(l_nodes)},{len(l_edges)})')
 
+    print()
     logger.DEBUG(f'Remove duplication in Nodes & Edges. ')
     n = Emmanuel(l_nodes)
     e = Emmanuel(l_edges)
     logger.DEBUG(f'Final {len(n)} Nodes & {len(e)} Edges Extracted.')
     return { 'nodes' : n , 'edges' : e}
+
+
+
+def graph_extractor_all_entity( state:int, limit_node: Optional[int] = 0):
+    l_pmid = persist.get_article_pmid_list_by_state(state)
+    logger.INFO(str(len(l_pmid)) + ' Article(s) is in state ' + str(state))
+    l_nodes=[]
+    l_edges = []
+    n  = 0
+    with click.progressbar(length=len(l_pmid), show_pos=True,show_percent =True) as bar:
+        for id in l_pmid:
+            n = n + 1
+            bar.update(1)
+            a = persist.get_article_by_pmid(id)
+            try:
+                article = Article(**a.copy())
+            except:
+                exc_type, exc_value, exc_tb = sys.exc_info()
+                print()
+                logger.ERROR(f'Error {exc_type}')
+                logger.ERROR(f'Error {exc_value}')
+                # logger.ERROR(f'Error {exc_tb.tb_next}')
+                article = None
+
+ 
+            if limit_node != 0 : # Unlimited
+                if n == limit_node:
+                    logger.DEBUG(f'Remove duplication in Nodes & Edges. ')
+                    n = Emmanuel(l_nodes)
+                    e = Emmanuel(l_edges)
+                    logger.DEBUG(f'Final {len(n)} Nodes & {len(e)} Edges Extracted.')
+                    return { 'nodes' : n , 'edges' : e}
+
+            if article is not None:
+                # data = _extract_article_topic(article)
+
+
+                graphdict1 = graph_extract_article_author_affiliation(article)
+                graphdict2 = graph_extract_article_topic(article)
+                graphdict3 = graph_extract_article_keyword(article)
+                graphdict4 = graph_extract_article_reference(article)
+                # graphdict5 = graph_extract_article_cited(article)
+     
+                l_nodes.extend(graphdict1['nodes'])
+                l_nodes.extend(graphdict2['nodes'])
+                l_nodes.extend(graphdict3['nodes'])
+                l_nodes.extend(graphdict4['nodes'])
+                # nodes.extend(graphdict5['nodes'])
+
+                l_edges.extend(graphdict1['edges'])
+                l_edges.extend(graphdict2['edges'])
+                l_edges.extend(graphdict3['edges'])
+                l_edges.extend(graphdict4['edges'])
+                # edges.extend(graphdict5['edges'])
+
+                bar.label = f'Article ({n}): Total ({len(l_nodes)},{len(l_edges)})'
+                # logger.DEBUG(f'Article ({n}): Extract {len(a_nodes)} Nodes & {len(a_edges)} Edges. Total ({len(l_nodes)},{len(l_edges)})')
+
+    print()
+    logger.DEBUG(f'Remove duplication in Nodes & Edges. ')
+    n = Emmanuel(l_nodes)
+    e = Emmanuel(l_edges)
+    logger.DEBUG(f'Final {len(n)} Nodes & {len(e)} Edges Extracted.')
+    return { 'nodes' : n , 'edges' : e}
+
 
 def check_upper_term(n:dict,text:str):
     """
@@ -128,16 +196,5 @@ def check_upper_term(n:dict,text:str):
         return None     
 
 if __name__ == '__main__':
-    with click.progressbar(label="Processing",
-                           length=100,
-                           show_eta=False) as progress_bar:
-        click.echo("Starting progress bar")
-        progress_bar.update(0)
-        time.sleep(1.01)
-        progress_bar.update(25)
-        time.sleep(1.25)
-        progress_bar.update(25)
-        time.sleep(2)
-        progress_bar.update(25)
-        time.sleep(3)
-        progress_bar.update(25)
+    pass
+    

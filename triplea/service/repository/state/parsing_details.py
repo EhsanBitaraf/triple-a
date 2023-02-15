@@ -1,4 +1,5 @@
  
+import json
 import time
 from triplea.config.settings import SETTINGS
 from triplea.schemas.article import Affiliation, Article, Author,Keyword
@@ -48,9 +49,9 @@ def _convert_dict_to_class_author(data:dict)-> Author:
         return my_author
 
     my_author = Author()
-    my_author.ForeName = data['ForeName']
+    if 'ForeName' in data: my_author.ForeName = data['ForeName']
     my_author.LastName = data['LastName']
-    my_author.FullName = my_author.ForeName + ' ' + my_author.LastName
+    my_author.FullName = str(my_author.ForeName) + ' ' + my_author.LastName
     my_author.HashID = str(hash(my_author.FullName))
     if 'Identifier' in data:
         if data['Identifier']['@Source'] == 'ORCID':
@@ -84,7 +85,9 @@ def _convert_dict_to_class_keyword(data:dict) -> Keyword:
     my_keyword = Keyword()
     my_keyword.Text = data['#text']
     if ',' in my_keyword.Text:
-        raise NotImplementedError 
+        pass
+        # logger.ERROR ('The keyword text has the character ",".')
+        # raise NotImplementedError 
     if data['@MajorTopicYN'] == 'Y':
         my_keyword.IS_Major = True
     else:
@@ -94,8 +97,38 @@ def _convert_dict_to_class_keyword(data:dict) -> Keyword:
 
 def parsing_details(article: Article)-> Article:
     article.State = 2
+    backward_state = -1
     data = article.OreginalArticle
-    PubmedData = data['PubmedArticleSet']['PubmedArticle']['PubmedData']
+
+    if data is None:
+        print()
+        logger.ERROR(f'Error in Original Article data. It is Null.  PMID = {article.PMID}')
+        article.State = backward_state
+        return article
+
+    if 'PubmedArticleSet' in data:
+        if data['PubmedArticleSet'] is None:
+            print()
+            logger.ERROR(f'Error in Original Article data. It is Null. PMID = {article.PMID}')
+            article.State = backward_state
+            return article
+
+        if 'PubmedArticle' in data['PubmedArticleSet']:
+            PubmedData = data['PubmedArticleSet']['PubmedArticle']['PubmedData']
+        else:
+            print()
+            article.State = backward_state
+            logger.ERROR(f'Error in format Original Article data.  PMID = {article.PMID}')
+            return article
+    else:
+        print()
+        logger.ERROR(f'Error in format Original Article data.')
+        article.State = backward_state
+        # data= json.dumps(data, indent=4)
+        # with open("one-error-originalarticle.json", "w") as outfile:
+        #     outfile.write(data)
+        return article
+
     
     # The above code is checking if the article has a DOI or PMC number. If it does, it will update the
     # article with the DOI or PMC number.
@@ -147,8 +180,20 @@ def parsing_details(article: Article)-> Article:
     medline_citation = data['PubmedArticleSet']['PubmedArticle']['MedlineCitation']
     keyword_list = []
     if 'MeshHeadingList' in medline_citation:
-        for mesh in medline_citation['MeshHeadingList']['MeshHeading']:
+        if type(medline_citation['MeshHeadingList']['MeshHeading']) == list:
+            for mesh in medline_citation['MeshHeadingList']['MeshHeading']:
+                my_keyword = Keyword()
+                my_keyword.Text = mesh['DescriptorName']['#text']
+                if mesh['DescriptorName']['@MajorTopicYN'] == 'Y':
+                    my_keyword.IS_Major = True
+                else:
+                    my_keyword.IS_Major = False
+                # mesh['QualifierName'] # We did not get into this subject
+                my_keyword.IS_Mesh = True
+                keyword_list.append(my_keyword)
+        elif type(medline_citation['MeshHeadingList']['MeshHeading']) == dict:
             my_keyword = Keyword()
+            mesh = medline_citation['MeshHeadingList']['MeshHeading']
             my_keyword.Text = mesh['DescriptorName']['#text']
             if mesh['DescriptorName']['@MajorTopicYN'] == 'Y':
                 my_keyword.IS_Major = True
@@ -157,6 +202,10 @@ def parsing_details(article: Article)-> Article:
             # mesh['QualifierName'] # We did not get into this subject
             my_keyword.IS_Mesh = True
             keyword_list.append(my_keyword)
+        else:
+            raise NotImplementedError
+
+
     if 'KeywordList' in medline_citation:
         if type(medline_citation['KeywordList']['Keyword']) == list:
             for keyword in medline_citation['KeywordList']['Keyword']:

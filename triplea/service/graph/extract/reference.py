@@ -2,6 +2,14 @@ from triplea.schemas.article import Article
 from triplea.schemas.node import Edge, Node
 
 def graph_extract_article_reference(article: Article)-> dict: 
+    """
+    For each article, we create a node for the article and a node for each reference. We then create an
+    edge between the article and each reference
+    
+    :param article: Article - the article object that we want to extract the references from
+    :type article: Article
+    :return: A dictionary with two keys: nodes and edges.
+    """
     nodes = []
     edges = []
 

@@ -4,7 +4,7 @@ from triplea.service.nlp.ner import get_title_ner
 
 
 def ner_title(article: Article)-> Article:
-    article.State = 3
+    article.State = 4
     ner = get_title_ner(article.Title)
     l_ner = []
     for e in ner:

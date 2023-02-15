@@ -183,11 +183,11 @@ output:
 |State|Desc|
 |-|-|
 |0|article identifier saved|
-|1|article details article info saved|
+|1|article details article info saved (json Form)|
 |2|parse details info|
-|3|NER Title|
-|4|Get Citation|
-|4|extract graph|
+|3|Get Citation|
+|4|NER Title|
+|5|extract graph|
 |-1|Error|
 
 
@@ -403,6 +403,18 @@ https://github.com/graphia-app/graphia
 
 https://graphia.app/
 
+## cosmos
+GPU-accelerated force graph layout and rendering 
+
+https://github.com/cosmograph-org/cosmos
+
+https://nightingaledvs.com/how-to-visualize-a-graph-with-a-million-nodes/
+
+## Igraph ??
+igraph is a library collection for creating and manipulating graphs and analyzing networks. It is written in C and also exists as Python and R packages. There exists moreover an interface for Mathematica. The software is widely used in academic research in network science and related fields.
+https://igraph.org/
+
+https://github.com/igraph
 
 # Graph Analysis
 

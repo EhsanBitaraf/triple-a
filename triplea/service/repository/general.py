@@ -1,5 +1,7 @@
 import sys
 from typing import Optional
+
+import click
 from triplea.config.settings import SETTINGS
 from triplea.service.click_logger import logger
 from triplea.schemas.node import Edge, Node
@@ -189,15 +191,19 @@ def move_state_forward(state: int,
     number_of_article_move_forward = 0
     logger.DEBUG(str(len(l_pmid)) + ' Article(s) is in state ' + str(state))
 
+    bar  = click.progressbar(length=len(l_pmid), show_pos=True,show_percent =True) 
+
 
     refresh_point = 0
     for id in l_pmid:
         try:
             number_of_article_move_forward = number_of_article_move_forward + 1
+            current_state = None
             
-            if refresh_point == 5:
+            if refresh_point == 500:
                 refresh_point = 0
                 refresh()
+                print()
                 logger.INFO(f'There are {str(total_article_in_current_state - number_of_article_move_forward)} article(s) left ', forecolore='yellow')
                 min = (total_article_in_current_state - number_of_article_move_forward) / 60
                 logger.INFO(f'It takes at least {str(int(min))} minutes or {str(int(min/60))} hours', forecolore='yellow')
@@ -208,21 +214,27 @@ def move_state_forward(state: int,
             try:
                 updated_article = Article(**a.copy())
             except:
-                # print(a.__dict__)
-                print(type(a))
-                backward_dict = a.copy()
-                backward = Article()
-                backward.PMID = backward_dict['PMID']
-                backward.State = 0
-                updated_article = backward
-                l = update_article_by_pmid(updated_article , updated_article.PMID)
+                # print()
+                # backward_dict = a.copy()
+                # backward = Article()
+                # backward.PMID = backward_dict['PMID']
+                # logger.ERROR(f'Error in parsing article. PMID = {backward.PMID}')
+                # backward.State = 0
+                # updated_article = backward
+                # l = update_article_by_pmid(updated_article , updated_article.PMID)
+                print()
+                print(logger.ERROR(f'Error in parsing article. PMID = {id}'))
+                raise Exception('Article Not Parsed.')
+
 
             try:
                 current_state = updated_article.State
             except:
                 current_state = 0
-            logger.DEBUG('Article ' + updated_article.PMID + ' with state ' + str(current_state) + ' forward to ' + str(current_state + 1))
 
+            # logger.DEBUG('Article ' + updated_article.PMID + ' with state ' + str(current_state) + ' forward to ' + str(current_state + 1))
+            bar.label = 'Article ' + updated_article.PMID + ' with state ' + str(current_state) + ' forward to ' + str(current_state + 1)
+            bar.update(1)
             ## for re run
             # if current_state == 2 : current_state = 1
 
@@ -230,28 +242,24 @@ def move_state_forward(state: int,
                 updated_article = state_manager.expand_details(updated_article)
                 l = update_article_by_pmid(updated_article , updated_article.PMID)
 
-            elif current_state == 0: # get article details from pubmed
+            elif current_state == -1: # Error in State 0 Net state: 1
+                updated_article = state_manager.parsing_details(updated_article)
+                l = update_article_by_pmid(updated_article , updated_article.PMID)
+
+            elif current_state == 0: # Net state: get article details from pubmed
                 updated_article = state_manager.expand_details(updated_article)
                 l = update_article_by_pmid(updated_article , updated_article.PMID)
                     
-            elif current_state == 1: # Extract Data
+            elif current_state == 1: # Net state: Extract Data
                 updated_article = state_manager.parsing_details(updated_article)
                 l = update_article_by_pmid(updated_article , updated_article.PMID)
-                if len(l) == 1:
-                    pass
-                else:
-                    logger.ERROR('Duplication has Occurred')
-
-            elif current_state == 2: # NER Title 
-                updated_article = state_manager.ner_title(updated_article)
-                l = update_article_by_pmid(updated_article , updated_article.PMID)
-                # think after
+                # # think after
                 # if len(l) == 1:
                 #     pass
                 # else:
                 #     logger.ERROR('Duplication has Occurred')
 
-            elif current_state == 3: # Get Citation
+            elif current_state == 2: # Net state: Get Citation
                 updated_article = state_manager.get_citation(updated_article)
                 l = update_article_by_pmid(updated_article , updated_article.PMID)
                 # think after
@@ -260,8 +268,16 @@ def move_state_forward(state: int,
                 # else:
                 #     logger.ERROR('Duplication has Occurred')
 
+            elif current_state == 3: # Net state: NER Title 
+                updated_article = state_manager.ner_title(updated_article)
+                l = update_article_by_pmid(updated_article , updated_article.PMID)
+                # think after
+                # if len(l) == 1:
+                #     pass
+                # else:
+                #     logger.ERROR('Duplication has Occurred')
 
-            elif current_state == 4: # Create Knowledge
+            elif current_state == 4: # Net state:Create Knowledge
                 updated_article = _create_knowledge(updated_article)
                 # l = update_article_by_pmid(updated_article , updated_article.PMID)
 
@@ -277,20 +293,36 @@ def move_state_forward(state: int,
                 exc_type, exc_value, exc_tb = sys.exc_info()
                 logger.ERROR(f'Error {exc_type}')
                 logger.ERROR(f'Error {exc_value}')
-            elif current_state == 2: 
-                raise
-                updated_article = Article(**a.copy())  
-                updated_article.State = -2
-                update_article_by_pmid(updated_article , updated_article.PMID)
+
+            elif current_state is None:
+                # Article Not Parsed.
+                print()
                 refresh()
                 exc_type, exc_value, exc_tb = sys.exc_info()
                 logger.ERROR(f'Error {exc_type}')
                 logger.ERROR(f'Error {exc_value}')
 
+            elif current_state == 2: 
+                updated_article = Article(**a.copy())  
+                updated_article.State = -2
+                raise
+                update_article_by_pmid(updated_article , updated_article.PMID)
+                refresh()
+                exc_type, exc_value, exc_tb = sys.exc_info()
+                print()
+                logger.ERROR(f'Error {exc_type}')
+                logger.ERROR(f'Error {exc_value}')
+
             else:
                 refresh()
+                exc_type, exc_value, exc_tb = sys.exc_info()
+                
+                print()
+                print(exc_tb.tb_lineno)
                 raise
 
+                logger.ERROR(f'Error {exc_type}')
+                logger.ERROR(f'Error {exc_value}')
 
 if __name__ == '__main__':
     logger.WARNING('Number of article in knowlege repository is ' + str(get_all_article_count()))
@@ -312,7 +344,7 @@ if __name__ == '__main__':
     # s = '("Breast Neoplasms"[Mesh] OR "Breast Cancer"[Title] OR "Breast Neoplasms"[Title] OR "Breast Neoplasms"[Other Term] OR "Breast Cancer"[Other Term]) AND ("Registries"[MeSH Major Topic] OR "Database Management Systems"[MeSH Major Topic] OR "Information Systems"[MeSH Major Topic] OR "Registry"[Other Term] OR "Registry"[Title] OR "Information Storage and Retrieval"[MeSH Major Topic])'
     # get_article_list_all_store_to_kg_rep(s)
 
-    # move_state_forward(2)
+    move_state_forward(3)
     # refresh()
 
     # data = get_article_by_pmid('35130239')

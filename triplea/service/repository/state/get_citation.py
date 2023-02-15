@@ -16,9 +16,11 @@ def get_citation(article: Article):
     :type article: Article
     :return: Article with list of CitedBy
     """
-    article.State = 4
+    article.State = 3
     pmid = article.PMID
     if pmid is not None:
+        if article.CiteCrawlerDeep is None:
+            article.CiteCrawlerDeep = 0
         if article.CiteCrawlerDeep > 0:
             try:
                 lc = get_cited_article_from_pubmed(pmid)
@@ -42,5 +44,6 @@ def get_citation(article: Article):
                         for c in lc:
                             persist.insert_new_pmid(pmid = c , cite_crawler_deep= new_ccd)
         else:
-            logger.DEBUG(f'Article {pmid} Cite Crawler Deep = {article.CiteCrawlerDeep}.'  , deep = 5)
+            pass
+            # logger.DEBUG(f'Article {pmid} Cite Crawler Deep = {article.CiteCrawlerDeep}.'  , deep = 5)
     return article

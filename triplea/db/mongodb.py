@@ -23,10 +23,11 @@ class DB_MongoDB(DataBase):
     def get_article_by_state(self,state:int):
         myquery = { "State":  state}
         cursor = self.col_article.find(myquery)
-        if len(list(cursor.clone())) == 0 :
+        la = list(cursor)
+        if len(la) == 0 :
             return None
         else:
-            return list(cursor)
+            return la
     
     def get_article_pmid_list_by_state(self, state:int):
         myquery = { "State":  state}
