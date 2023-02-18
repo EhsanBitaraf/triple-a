@@ -28,6 +28,66 @@ def _save_article_pmid_list_in_arepo(data:dict)-> None:
     else:
         logger.ERROR('data is not in right format.')
 
+# https://stackoverflow.com/questions/3368969/find-string-between-two-substrings
+def _find_between( s, first, last ):
+    try:
+        start = s.index( first ) + len( first )
+        end = s.index( last, start )
+        return s[start:end]
+    except ValueError:
+        return ""
+
+def _find_between_r( s, first, last ):
+    try:
+        start = s.rindex( first ) + len( first )
+        end = s.rindex( last, start )
+        return s[start:end]
+    except ValueError:
+        return ""
+
+
+
+def get_article_from_bibliography_file_format(filepath:str):
+    infile = open(filepath, 'r')
+    file_content = infile.read()
+    infile.close()
+    file_type = ''
+    if file_content.__contains__('@article{'):
+        file_type = 'bib' # A BIB file is a text document created by a LaTeX program, such as MiKTeX or TeXworks.
+    elif file_content.__contains__('%0 Journal Article'):
+        file_type = 'enw' # An .ENW file is an EndNote Export file. 
+    elif file_content.__contains__('TY  - JOUR'):
+        file_type = 'ris' # The RIS (file format) is a standardized tag format developed by Research Information Systems company. The tag includes two letters, two spaces, and a hyphen to express bibliographic citation information.
+    else:
+        raise Exception('The file format is unknown to us.')
+
+    if file_type == 'bib':
+        title = _find_between( file_content , 'title={' , '}')
+    elif file_type == 'enw':
+        title = _find_between( file_content , '%T ' , '\n')
+    elif file_type == 'ris':
+        title = _find_between( file_content , 'T1  - ' , '\n')
+    else:
+        raise Exception('The file format is unknown to us.')
+
+    searchterm = '"' + title + '"'
+    data = get_article_list_from_pubmed(0 ,2 , searchterm)
+    total = int(data['esearchresult']['count'])
+
+    if total == 0:
+        logger.WARNING('There is no article with this title in PubMed.')
+        return 
+    _save_article_pmid_list_in_arepo(data)
+    persist.refresh()
+    logger.INFO('The article was registered in Arepo.')
+
+    return title
+
+
+
+
+
+
 def get_article_list_from_pubmed_all_store_to_arepo(searchterm:str,
                                          tps_limit: Optional[int] = 1,
                                          big_ret: Optional[bool] = True,
@@ -80,3 +140,8 @@ def get_article_list_from_pubmed_all_store_to_arepo(searchterm:str,
     chunkdata = get_article_list_from_pubmed(start , retmax ,searchterm)
     _save_article_pmid_list_in_arepo(chunkdata)
 
+if __name__ == '__main__':
+    pass
+    f = r'C:\Users\Bitaraf\Desktop\my-python-project\github\triple-a\tests\fixtures\cite-file\scholar.ris'
+    
+    print(get_article_from_bibliography_file_format(f))

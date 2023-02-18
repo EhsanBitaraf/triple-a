@@ -8,168 +8,11 @@ from triplea.schemas.node import Edge, Node
 from triplea.schemas.article import  Article
 import triplea.service.repository.state as state_manager
 
-from triplea.service.repository.persist import  create_article, create_edge, create_node, get_all_article_count, get_all_edge_count, get_all_node_count, get_all_nodes, get_article_by_pmid, get_article_by_state, get_article_group_by_state, get_article_pmid_list_by_state, insert_new_pmid, refresh, update_article_by_pmid
+from triplea.service.repository.persist import get_all_article_count, get_all_edge_count, get_all_node_count, get_article_by_pmid, get_article_group_by_state, get_article_pmid_list_by_state, refresh, update_article_by_pmid
 
 
 tps_limit = SETTINGS.AAA_TPS_LIMIT
 
-# It is no longer used
-def _create_knowledge(article: Article):
-    article.State = 5
-    nodes = []
-    edges = []
-
-    node_article = Node()
-    node_article.Identifier = article.PMID
-    node_article.Name = article.PMID
-    node_article.Type = 'Article'
-    nodes.append(node_article)
-
-    for author in article.Authors:
-        node_author = Node()
-        node_author.Identifier = author.HashID
-        node_author.Name = author.FullName
-        node_author.Type = 'Author'
-        nodes.append(node_author)
-
-        edge = Edge()
-        edge.SourceID = node_author.Identifier
-        edge.DestinationID = node_article.Identifier
-        edge.Type = 'AUTHOR_OF'
-        edge.HashID =  str(hash(edge.SourceID + edge.DestinationID))
-        edges.append(edge)
-
-        # Creating a graph of authors and affiliation.
-        if author.Affiliations is not None:
-            for aff in author.Affiliations:
-                node_affiliation = Node()
-                node_affiliation.Identifier = aff.HashID
-                node_affiliation.Name = aff.Part1
-                node_affiliation.Type = 'Affiliation'
-                nodes.append(node_affiliation)
-
-                edge = Edge()
-                edge.SourceID = node_author.Identifier
-                edge.DestinationID = node_affiliation.Identifier
-                edge.Type = 'IS_MEMBER_OF'
-                edge.HashID =  str(hash(edge.SourceID + edge.DestinationID))
-                edges.append(edge)
-
-    # Creating a graph of articles and keywords.
-    for key in article.Keywords:
-        node_keyword = Node()
-        node_keyword.Identifier = key.Text
-        node_keyword.Name = key.Text
-        node_keyword.Type = 'Keyword'
-        nodes.append(node_keyword)
-
-        edge = Edge()
-        edge.SourceID = node_article.Identifier
-        edge.DestinationID = node_keyword.Identifier
-        edge.Type = 'KEYWORD'
-        edge.HashID =  str(hash(edge.SourceID + edge.DestinationID))
-        edges.append(edge)
-
-    # Creating a graph of articles and references.
-    if article.References is not None:
-        for ref in article.References:
-            node_reference = Node()
-            node_reference.Identifier = ref
-            node_reference.Name = ref
-            node_reference.Type = 'Article'
-            nodes.append(node_reference)
-
-            edge = Edge()
-            edge.SourceID = node_article.Identifier
-            edge.DestinationID = node_reference.Identifier
-            edge.Type = 'REFERENCE'
-            edge.HashID =  str(hash(edge.SourceID + edge.DestinationID))
-            edges.append(edge)              
-
-
-    # Save node & edge to db
-    for n in nodes:
-        create_node(n)
-    
-    for e in edges:
-        create_edge(e)
-
-    return article
-
-# It is no longer used
-def _extract_knowledge(article: Article):   
-    article.State = 5
-    nodes = []
-    edges = []
-
-    node_article = Node()
-    node_article.Identifier = article.PMID
-    node_article.Name = article.PMID
-    node_article.Type = 'Article'
-    nodes.append(node_article)
-
-    for author in article.Authors:
-        node_author = Node()
-        node_author.Identifier = author.HashID
-        node_author.Name = author.FullName
-        node_author.Type = 'Author'
-        nodes.append(node_author)
-
-        edge = Edge()
-        edge.SourceID = node_author.Identifier
-        edge.DestinationID = node_article.Identifier
-        edge.Type = 'AUTHOR_OF'
-        edge.HashID =  str(hash(edge.SourceID + edge.DestinationID))
-        edges.append(edge)
-
-        # Creating a graph of authors and affiliation.
-        if author.Affiliations is not None:
-            for aff in author.Affiliations:
-                node_affiliation = Node()
-                node_affiliation.Identifier = aff.HashID
-                node_affiliation.Name = aff.Part1
-                node_affiliation.Type = 'Affiliation'
-                nodes.append(node_affiliation)
-
-                edge = Edge()
-                edge.SourceID = node_author.Identifier
-                edge.DestinationID = node_affiliation.Identifier
-                edge.Type = 'IS_MEMBER_OF'
-                edge.HashID =  str(hash(edge.SourceID + edge.DestinationID))
-                edges.append(edge)
- 
-    # Creating a graph of articles and keywords.
-    for key in article.Keywords:
-        node_keyword = Node()
-        node_keyword.Identifier = key.Text
-        node_keyword.Name = key.Text
-        node_keyword.Type = 'Keyword'
-        nodes.append(node_keyword)
-
-        edge = Edge()
-        edge.SourceID = node_article.Identifier
-        edge.DestinationID = node_keyword.Identifier
-        edge.Type = 'KEYWORD'
-        edge.HashID =  str(hash(edge.SourceID + edge.DestinationID))
-        edges.append(edge)
-
-    # Creating a graph of articles and references.
-    if article.References is not None:
-        for ref in article.References:
-            node_reference = Node()
-            node_reference.Identifier = ref
-            node_reference.Name = ref
-            node_reference.Type = 'Article'
-            nodes.append(node_reference)
-
-            edge = Edge()
-            edge.SourceID = node_article.Identifier
-            edge.DestinationID = node_reference.Identifier
-            edge.Type = 'REFERENCE'
-            edge.HashID =  str(hash(edge.SourceID + edge.DestinationID))
-            edges.append(edge)
-
-    return { 'nodes' : nodes, 'edges' : edges}
 
 def move_state_forward(state: int,
                        tps_limit: Optional[int] = 1,
@@ -278,8 +121,9 @@ def move_state_forward(state: int,
                 #     logger.ERROR('Duplication has Occurred')
 
             elif current_state == 4: # Net state:Create Knowledge
-                updated_article = _create_knowledge(updated_article)
-                # l = update_article_by_pmid(updated_article , updated_article.PMID)
+                pass
+                # updated_article = _create_knowledge(updated_article)
+                # # l = update_article_by_pmid(updated_article , updated_article.PMID)
 
             else:
                 raise NotImplementedError
