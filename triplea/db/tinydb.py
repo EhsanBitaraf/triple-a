@@ -28,6 +28,14 @@ class DB_TinyDB(DataBase):
         q = Query()
         l_pmid = [a.get('PMID') for a in self.db.search(q.State == state)]
         return l_pmid
+    
+    def get_all_article_pmid_list(self):
+        l = self.db.all()
+        l_pmid = []
+        for i in l:
+           l_pmid.append(i['PMID'])
+        return l_pmid
+
 
     def get_count_article_by_state(self, state:int):
         q = Query()

@@ -191,14 +191,21 @@ output:
 |-1|Error|
 
 
-
-
 ### NER Article Title
 
 ```
 python .\triplea\cli\ner.py --title "The Iranian Integrated Care Electronic Health Record."
 ```
 
+### Import single reference file
+Import file type is `.bib` , `.enw` , `.ris`
+
+```
+python .\triplea\cli\import.py "C:\Users\Dr bitaraf\Desktop\MyData\CodeRepo\github\triple-a\bc.ris"
+```
+
+output:
+![](docs/assets/img/import-output.png)
 
 
 # Testing

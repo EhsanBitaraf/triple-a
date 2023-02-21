@@ -28,6 +28,9 @@ def get_article_pmid_list_by_state(state:int):
     """
     return db.get_article_pmid_list_by_state(state)
 
+def get_all_article_pmid_list():
+    return db.get_all_article_pmid_list()
+
 def get_count_article_by_state(state:int)-> int:
     """
     This function returns the number of articles in the database that have a given state

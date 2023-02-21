@@ -8,11 +8,61 @@ from triplea.schemas.node import Edge, Node
 from triplea.schemas.article import  Article
 import triplea.service.repository.state as state_manager
 
-from triplea.service.repository.persist import get_all_article_count, get_all_edge_count, get_all_node_count, get_article_by_pmid, get_article_group_by_state, get_article_pmid_list_by_state, refresh, update_article_by_pmid
-
+# from triplea.service.repository.persist import get_all_article_count, get_all_edge_count, get_all_node_count, get_article_by_pmid, get_article_group_by_state, get_article_pmid_list_by_state, refresh, update_article_by_pmid
+import triplea.service.repository.persist as persist
 
 tps_limit = SETTINGS.AAA_TPS_LIMIT
 
+def move_state_until(end_state:int):
+    l_pmid = persist.get_all_article_pmid_list()
+    total_article_in_current_state = len(l_pmid)
+    number_of_article_move_forward = 0
+    logger.INFO(str(len(l_pmid)) + ' Article(s) is arepo ')
+
+    bar  = click.progressbar(length=len(l_pmid), show_pos=True,show_percent =True)
+
+    for id in l_pmid:
+        updated_article_current_state = None
+        a = persist.get_article_by_pmid(id)
+        try:
+            updated_article = Article(**a.copy())
+        except:
+            print()
+            logger.ERROR(f'Error in parsing article. PMID = {id}')
+            # raise Exception('Article Not Parsed.')
+
+        updated_article_current_state = updated_article.State
+
+
+        for current_state in range (updated_article_current_state , 3):
+            if current_state is None:
+                updated_article = state_manager.expand_details(updated_article)
+                
+            elif current_state == -1: # Error in State 0 Net state: 1
+                updated_article = state_manager.parsing_details(updated_article)
+                
+            elif current_state == 0: # Net state: get article details from pubmed
+                updated_article = state_manager.expand_details(updated_article)
+                    
+            elif current_state == 1: # Net state: Extract Data
+                updated_article = state_manager.parsing_details(updated_article)
+                
+            elif current_state == 2: # Net state: Get Citation
+                updated_article = state_manager.get_citation(updated_article)
+                
+            elif current_state == 3: # Net state: NER Title 
+                updated_article = state_manager.ner_title(updated_article)
+                
+            elif persist.current_state == 4: # Net state:Create Knowledge
+                pass
+
+            else:
+                raise NotImplementedError
+            
+        l = persist.update_article_by_pmid(updated_article , updated_article.PMID)
+        bar.label = 'Article ' + updated_article.PMID + ' with state ' + str(updated_article_current_state) + ' forward to ' + str(end_state )
+        bar.update(1)
+    persist.refresh()
 
 def move_state_forward(state: int,
                        tps_limit: Optional[int] = 1,
@@ -29,13 +79,12 @@ def move_state_forward(state: int,
     """
 
     # la = get_article_by_state(state) # old version
-    l_pmid = get_article_pmid_list_by_state(state)
+    l_pmid = persist.get_article_pmid_list_by_state(state)
     total_article_in_current_state = len(l_pmid)
     number_of_article_move_forward = 0
     logger.DEBUG(str(len(l_pmid)) + ' Article(s) is in state ' + str(state))
 
     bar  = click.progressbar(length=len(l_pmid), show_pos=True,show_percent =True) 
-
 
     refresh_point = 0
     for id in l_pmid:
@@ -45,7 +94,7 @@ def move_state_forward(state: int,
             
             if refresh_point == 500:
                 refresh_point = 0
-                refresh()
+                persist.refresh()
                 print()
                 logger.INFO(f'There are {str(total_article_in_current_state - number_of_article_move_forward)} article(s) left ', forecolore='yellow')
                 min = (total_article_in_current_state - number_of_article_move_forward) / 60
@@ -53,7 +102,7 @@ def move_state_forward(state: int,
             else:
                 refresh_point = refresh_point + 1
 
-            a = get_article_by_pmid(id)
+            a = persist.get_article_by_pmid(id)
             try:
                 updated_article = Article(**a.copy())
             except:
@@ -83,19 +132,19 @@ def move_state_forward(state: int,
 
             if current_state is None:
                 updated_article = state_manager.expand_details(updated_article)
-                l = update_article_by_pmid(updated_article , updated_article.PMID)
+                l = persist.update_article_by_pmid(updated_article , updated_article.PMID)
 
             elif current_state == -1: # Error in State 0 Net state: 1
                 updated_article = state_manager.parsing_details(updated_article)
-                l = update_article_by_pmid(updated_article , updated_article.PMID)
+                l = persist.update_article_by_pmid(updated_article , updated_article.PMID)
 
             elif current_state == 0: # Net state: get article details from pubmed
                 updated_article = state_manager.expand_details(updated_article)
-                l = update_article_by_pmid(updated_article , updated_article.PMID)
+                l = persist.update_article_by_pmid(updated_article , updated_article.PMID)
                     
             elif current_state == 1: # Net state: Extract Data
                 updated_article = state_manager.parsing_details(updated_article)
-                l = update_article_by_pmid(updated_article , updated_article.PMID)
+                l = persist.update_article_by_pmid(updated_article , updated_article.PMID)
                 # # think after
                 # if len(l) == 1:
                 #     pass
@@ -104,7 +153,7 @@ def move_state_forward(state: int,
 
             elif current_state == 2: # Net state: Get Citation
                 updated_article = state_manager.get_citation(updated_article)
-                l = update_article_by_pmid(updated_article , updated_article.PMID)
+                l = persist.update_article_by_pmid(updated_article , updated_article.PMID)
                 # think after
                 # if len(l) == 1:
                 #     pass
@@ -113,14 +162,14 @@ def move_state_forward(state: int,
 
             elif current_state == 3: # Net state: NER Title 
                 updated_article = state_manager.ner_title(updated_article)
-                l = update_article_by_pmid(updated_article , updated_article.PMID)
+                l = persist.update_article_by_pmid(updated_article , updated_article.PMID)
                 # think after
                 # if len(l) == 1:
                 #     pass
                 # else:
                 #     logger.ERROR('Duplication has Occurred')
 
-            elif current_state == 4: # Net state:Create Knowledge
+            elif persist.current_state == 4: # Net state:Create Knowledge
                 pass
                 # updated_article = _create_knowledge(updated_article)
                 # # l = update_article_by_pmid(updated_article , updated_article.PMID)
@@ -132,8 +181,8 @@ def move_state_forward(state: int,
             if current_state == 1: 
                 updated_article = Article(**a.copy())  
                 updated_article.State = -1
-                update_article_by_pmid(updated_article , updated_article.PMID)
-                refresh()
+                persist.update_article_by_pmid(updated_article , updated_article.PMID)
+                persist.refresh()
                 exc_type, exc_value, exc_tb = sys.exc_info()
                 logger.ERROR(f'Error {exc_type}')
                 logger.ERROR(f'Error {exc_value}')
@@ -141,7 +190,7 @@ def move_state_forward(state: int,
             elif current_state is None:
                 # Article Not Parsed.
                 print()
-                refresh()
+                persist.refresh()
                 exc_type, exc_value, exc_tb = sys.exc_info()
                 logger.ERROR(f'Error {exc_type}')
                 logger.ERROR(f'Error {exc_value}')
@@ -158,7 +207,7 @@ def move_state_forward(state: int,
                 logger.ERROR(f'Error {exc_value}')
 
             else:
-                refresh()
+                persist.refresh()
                 exc_type, exc_value, exc_tb = sys.exc_info()
                 
                 print()
@@ -169,10 +218,10 @@ def move_state_forward(state: int,
                 logger.ERROR(f'Error {exc_value}')
 
 if __name__ == '__main__':
-    logger.WARNING('Number of article in knowlege repository is ' + str(get_all_article_count()))
-    logger.WARNING(f'{get_all_node_count()} Node(s) in knowlege repository.')
-    logger.WARNING(f'{get_all_edge_count()} Edge(s) in knowlege repository.')
-    data = get_article_group_by_state()
+    logger.WARNING('Number of article in knowlege repository is ' + str(persist.get_all_article_count()))
+    logger.WARNING(f'{persist.get_all_node_count()} Node(s) in knowlege repository.')
+    logger.WARNING(f'{persist.get_all_edge_count()} Edge(s) in knowlege repository.')
+    data = persist.get_article_group_by_state()
     for i in range(-3,7):
         w = 0
         for s in data:
@@ -189,6 +238,7 @@ if __name__ == '__main__':
     # get_article_list_all_store_to_kg_rep(s)
 
     # move_state_forward(3)
+    # move_state_until(3)
     # refresh()
 
     # data = get_article_by_pmid('35130239')

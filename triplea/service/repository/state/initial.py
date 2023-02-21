@@ -24,7 +24,8 @@ def _save_article_pmid_list_in_arepo(data:dict)-> None:
             if i is None: # PMID is Duplicate
                 logger.INFO( pmid + ' is exist in knowledge repository.')
             else:
-                logger.INFO('add ' + pmid + ' to knowledge repository. get ' + str(i))
+                # logger.INFO('add ' + pmid + ' to knowledge repository. get ' + str(i))
+                logger.INFO('add ' + pmid + ' to knowledge repository.')
     else:
         logger.ERROR('data is not in right format.')
 
@@ -59,7 +60,9 @@ def get_article_from_bibliography_file_format(filepath:str):
     elif file_content.__contains__('TY  - JOUR'):
         file_type = 'ris' # The RIS (file format) is a standardized tag format developed by Research Information Systems company. The tag includes two letters, two spaces, and a hyphen to express bibliographic citation information.
     else:
-        raise Exception('The file format is unknown to us.')
+        logger.ERROR('The file format is unknown to us.')
+        return False
+        # raise Exception('The file format is unknown to us.')
 
     if file_type == 'bib':
         title = _find_between( file_content , 'title={' , '}')
@@ -68,20 +71,33 @@ def get_article_from_bibliography_file_format(filepath:str):
     elif file_type == 'ris':
         title = _find_between( file_content , 'T1  - ' , '\n')
     else:
-        raise Exception('The file format is unknown to us.')
+        logger.ERROR('The file format is unknown to us.')
+        return False
+        # raise Exception('The file format is unknown to us.')
+    searchterm = ""
+    
+    if title.lower().__contains__(' and '):
+        t = title.lower().split(' and ')
+        for i in t:
+            searchterm  = searchterm + i.strip() + '[Title] AND '
+    elif title.lower().__contains__(' or '):
+        t = title.lower().split(' and ')
+        for i in t:
+            searchterm  = searchterm + i.strip() + '[Title] OR '
+    else:
+        searchterm = title.strip() + '[Title]'
 
-    searchterm = '"' + title + '"'
     data = get_article_list_from_pubmed(0 ,2 , searchterm)
     total = int(data['esearchresult']['count'])
 
     if total == 0:
         logger.WARNING('There is no article with this title in PubMed.')
-        return 
+        return False
     _save_article_pmid_list_in_arepo(data)
     persist.refresh()
     logger.INFO('The article was registered in Arepo.')
 
-    return title
+    return True
 
 
 
@@ -143,5 +159,5 @@ def get_article_list_from_pubmed_all_store_to_arepo(searchterm:str,
 if __name__ == '__main__':
     pass
     f = r'C:\Users\Bitaraf\Desktop\my-python-project\github\triple-a\tests\fixtures\cite-file\scholar.ris'
-    
+    f = r'C:\Users\Dr bitaraf\Desktop\MyData\CodeRepo\github\triple-a\bc.ris'
     print(get_article_from_bibliography_file_format(f))

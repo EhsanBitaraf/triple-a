@@ -48,6 +48,9 @@ class DB_MongoDB(DataBase):
             return new_la
 
 
+    def get_all_article_pmid_list(self):
+        raise NotImplementedError
+    
     def get_count_article_by_state(self, state:int):
         myquery = { "State":  state}
         return self.col_article.count_documents(myquery)
