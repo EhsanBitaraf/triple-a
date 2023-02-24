@@ -1,8 +1,9 @@
 import click
 from triplea.service.repository.state import get_article_list_from_pubmed_all_store_to_arepo
 from triplea.service.click_logger import logger
+from triplea.cli.main import cli
 
-@click.command()
+@cli.command('search',help = 'Search query from PubMed and store to Arepo.')
 @click.option("--searchterm", prompt="Search Term", help="Query for Pubmed search.")
 def get_article(searchterm):
     logger.INFO(f'Searching Pubmed ...')

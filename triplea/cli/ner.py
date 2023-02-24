@@ -2,8 +2,9 @@ from string import printable
 import click
 from triplea.service.nlp.ner import get_title_ner
 from triplea.service.click_logger import logger
+from triplea.cli.main import cli
 
-@click.command()
+@cli.command('ner',help = 'Single NER with custom model.')
 @click.option("--title", prompt="Article Title", help="The person to greet.")
 def ner_title(title):
     logger.INFO(f'NER this Title base on custom mode for extracting major topic:')

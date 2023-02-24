@@ -1,19 +1,18 @@
 import click
-from triplea.service.click_logger import logger
-from triplea import __version__
+import triplea as tr
 
-@click.command()
-# @click.argument('cli')
-# @click.option("--command", "-c" , "command",  prompt='Your name please',  required=False , help="Add a thematic break")
-@click.option("--action", "-a" , "action", required=False , is_flag=True, show_default=True, default=True, help="Add a thematic break")
-@click.option("--version", "-v" , "version", required=False , is_flag=True, help="output version information and exit")
-def main(action,version):
-    if version:
-        logger.INFO(__version__)
+click.echo(f"Title: {tr.__title__} ({tr.__version__})")
+click.echo(f"   {tr.__description__}")
+click.echo()
 
-    
-
-
+from triplea.cli.main import cli # main.py
+from triplea.cli.import_bib import import_single_file # import
+from triplea.cli.config import configuration # config
+from triplea.cli.ner import ner_title # ner
+from triplea.cli.next import next # next
+from triplea.cli.search import get_article # search
+from triplea.cli.go import go # go
+from triplea.cli.export import export # export
 
 if __name__ == '__main__':
-    main()
+    cli()

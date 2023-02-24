@@ -2,19 +2,21 @@ import click
 from triplea.service.repository.general import move_state_forward
 from triplea.service.click_logger import logger
 from triplea.service.repository.persist import refresh
+from triplea.cli.main import cli
 
-@click.command()
-@click.option("--state", prompt="Current State", help="Current state for start to move next state.")
-def next(state:int):
+
+@cli.command('next',help = 'Moves the articles state in the Arepo from the current state to the next state.')
+@click.option("--state", "-s" , "current_state", prompt="Current State", help="Current state for start to move next state.")
+def next(current_state:int):
     try:
-        state = int(state)
+        current_state = int(current_state)
     except:
-        logger.ERROR(f'State {state} Value Error.')
+        logger.ERROR(f'State {current_state} Value Error.')
         return
 
 
-    logger.INFO(f'Read Current State {state} ...', forecolore='cyan')
-    next_state = state + 1
+    logger.INFO(f'Read Current State {current_state} ...', forecolore='cyan')
+    next_state = current_state + 1
     if next_state == 1:
         logger.INFO(f'Next State {next_state} for get detail information of article ...')
     elif next_state == 2:
@@ -24,7 +26,7 @@ def next(state:int):
     else:
         logger.WARNING(f'Next State {next_state} for  ...')
 
-    move_state_forward(state)
+    move_state_forward(current_state)
     refresh()
 
 
