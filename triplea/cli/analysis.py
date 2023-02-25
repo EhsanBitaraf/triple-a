@@ -38,7 +38,8 @@ from triplea.service.click_logger import logger
                                 ''')
 @click.option("--command", "-c" , "command", 
                 type=click.Choice(['info',
-                    'new-command']),
+                                   'sdc',
+                    'sdd']),
                     multiple=False,
                     required=True ,
                     help='''Analysis Graph.
@@ -46,6 +47,8 @@ from triplea.service.click_logger import logger
                     info : 
 
                     sdc : sorted_degree_centrality
+
+                    sdd : show_degree_distribution
                     
                     
                     ''')
@@ -89,7 +92,7 @@ def analysis(generate_type,command):
             logger.ERROR(f"Invalid value for '--generate' / '-g': {generate_type}")
 
     print()
-    logger.DEBUG(f'Remove duplication in Nodes & Edges. ')
+    # logger.DEBUG(f'Remove duplication in Nodes & Edges. ')
     n = gextract.Emmanuel(l_nodes)
     e = gextract.Emmanuel(l_edges)
     graphdict = { 'nodes' : n, 'edges' : e}
@@ -97,7 +100,11 @@ def analysis(generate_type,command):
     if command == 'info':
         G = gexport.export_networkx_from_graphdict(graphdict)
         ganalysis.info(G)
-    elif command == 'new-command':
-        pass
+    elif command == 'sdc':
+        G = gexport.export_networkx_from_graphdict(graphdict)
+        print(ganalysis.sorted_degree_centrality(G))
+    elif command == 'sdd':
+        G = gexport.export_networkx_from_graphdict(graphdict)
+        ganalysis.show_degree_distribution(G)
     else:
         logger.ERROR(f"Invalid value for '--command' / '-c': {command}")

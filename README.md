@@ -273,6 +273,13 @@ python .\triplea\cli\aaa.py analysis -g gen-all -c info
 
 
 
+```
+python .\triplea\cli\aaa.py analysis -g gen-all -c sdc
+```
+
+sdc
+
+
 # Testing
 
 ```

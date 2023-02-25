@@ -25,6 +25,18 @@ def sorted_degree_centrality(G)->pd.Series:
     dcs = dcs.sort_values(ascending=False)
     return dcs
 
+# def sorted_in_degree(G)->pd.Series:
+#     # NetworkX provides a function for us to calculate degree centrality conveniently:
+#     dcs = pd.Series(G.in_degree())
+#     dcs = dcs.sort_values(ascending=False)
+#     return dcs
+
+def sorted_triangles(G)->pd.Series:
+    # NetworkX provides a function for us to calculate degree centrality conveniently:
+    dcs = pd.Series(nx.triangles(G))
+    dcs = dcs.sort_values(ascending=False)
+    return dcs
+
 def sorted_degree(G)->pd.Series:
     # ?
     dcs = pd.Series(nx.degree(G))
@@ -68,6 +80,9 @@ def show_degree_distribution(G):
     plt.show()
 
 
+
+
+
 def get_top_keys(dictionary, top):
     items = dictionary.items()
     sort_items = dict(sorted(items,reverse=True, key=lambda item: item[1]))
@@ -86,17 +101,26 @@ def info(G):
     else:
         print('Graph Type: Undirected')
         # G.s_metric()
+        diameter = nx.diameter(G)
+        print(f'Graph Diameter : {diameter}')
+        
 
     density = nx.density(G)
     transitivity = nx.transitivity(G)
     number_of_edges = nx.number_of_edges(G)
     number_of_nodes = nx.number_of_nodes(G)
     avg_deg = float(number_of_edges) / number_of_nodes
+    dag_longest_path_length =  nx.dag_longest_path_length(G)
+    average_clustering = nx.average_clustering(G)
+    degree_assortativity_coefficient = nx.degree_assortativity_coefficient(G)
     print(f'Graph Nodes: {number_of_nodes}')
     print(f'Graph Edges: {number_of_edges}')
     print(f'Graph Average Degree : {avg_deg}')
     print(f'Graph Density : {density}')
     print(f'Graph Transitivity : {transitivity}')
+    print(f'Graph max path length : {dag_longest_path_length}')
+    print(f'Graph Average Clustering Coefficient : {average_clustering}')
+    print(f'Graph Degree Assortativity Coefficient : {degree_assortativity_coefficient}')
 
     
    
@@ -110,7 +134,32 @@ def info(G):
 
 from networkx.algorithms.community import k_clique_communities
 from networkx.algorithms.approximation import max_clique,large_clique_size
+
+
+import triplea.service.graph.extract as gextract
+import triplea.service.graph.export as gexport
 if __name__ == '__main__':
+    pass
+
+    graphdict = gextract.graph_extractor_all_entity()
+    G = gexport.export_networkx_from_graphdict(graphdict,graph_type= 'directed')
+
+    # d = sorted_in_degree(G)
+    # print(d)
+
+    # d = nx.betweenness_centrality(G)
+    # dcs = pd.Series(d)
+    # dcs = dcs.sort_values(ascending=False)
+    # print(dcs)
+
+    # # print(d)
+    # G1 = nx.k_core(G)
+    # # print(G1)
+    # visualize(G1)
+    # # nx.draw(G1)
+    # # plt.show()
+
+    
 
 
     # data = graph_extractor_all_entity(state=2)
@@ -119,29 +168,29 @@ if __name__ == '__main__':
     # with open( 'one-data.json', "w") as outfile:
     #     outfile.write(data)
 
-    f = open('one-data.json')
-    data = json.load(f)
-    f.close()
+    # f = open('one-data.json')
+    # data = json.load(f)
+    # f.close()
 
     # refresh_interactivegraph(data)
     # refresh_alchemy(data)
 
 
-    G = export_networkx_from_graphdict(data,graph_type='undirected')
-    # print(max_clique(G))
-    print(large_clique_size(G))
-    # info(G)
+    # G = export_networkx_from_graphdict(data,graph_type='undirected')
+    # # print(max_clique(G))
+    # print(large_clique_size(G))
+    # # info(G)
     
     # r = k_clique_communities(G,4)
     # print(list(r))
 
-    print(nx.common_neighbors(G, "Health information systems", "electronic health record"))
-    print (f'Graph is Euleian : {nx.is_eulerian(G)}')
-    print(nx.degree_histogram(G))
-    A = nx.induced_subgraph(G , ["Health information systems"])
-    print(list(A.edges))
-    print(list(nx.neighbors(G, "Health information systems")))
-    # print(list(A.nodes))
+    # print(nx.common_neighbors(G, "Health information systems", "electronic health record"))
+    # print (f'Graph is Euleian : {nx.is_eulerian(G)}')
+    # print(nx.degree_histogram(G))
+    # A = nx.induced_subgraph(G , ["Health information systems"])
+    # print(list(A.edges))
+    # print(list(nx.neighbors(G, "Health information systems")))
+    # # print(list(A.nodes))
 
     # s= nx.complete_graph(20)
     # s= nx.graph_atlas(100)
