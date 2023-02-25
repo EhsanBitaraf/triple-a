@@ -46,7 +46,7 @@ def thefourtheye_2(data):
     """
     return {frozenset(item.items()):item for item in data}.values()
 
-def graph_extractor(func , state:int, limit_node: Optional[int] = 0):
+def graph_extractor(func ,  state:Optional[int] = None, limit_node: Optional[int] = 0):
     """
     It takes a function as an argument, and returns a dictionary of nodes and edges
     
@@ -55,8 +55,14 @@ def graph_extractor(func , state:int, limit_node: Optional[int] = 0):
     :type state: int
     :return: A dictionary with two keys, 'nodes' and 'edges'. The values are remove duplicate nodes & edge with Emmanuel algoritm.
     """
-    l_pmid = persist.get_article_pmid_list_by_state(state)
-    logger.INFO(str(len(l_pmid)) + ' Article(s) is in state ' + str(state))
+    if state is None:
+        l_pmid = persist.get_all_article_pmid_list()
+        logger.INFO(str(len(l_pmid)) + ' Article(s) ')
+    else:
+        l_pmid = persist.get_article_pmid_list_by_state(state)
+        logger.INFO(str(len(l_pmid)) + ' Article(s) is in state ' + str(state))
+
+    
     l_nodes=[]
     l_edges = []
     n  = 0
@@ -103,9 +109,34 @@ def graph_extractor(func , state:int, limit_node: Optional[int] = 0):
 
 
 
-def graph_extractor_all_entity( state:int, limit_node: Optional[int] = 0):
-    l_pmid = persist.get_article_pmid_list_by_state(state)
-    logger.INFO(str(len(l_pmid)) + ' Article(s) is in state ' + str(state))
+def graph_extractor_all_entity( state:Optional[int] = None, limit_node: Optional[int] = 0):
+    """
+    It takes a list of articles, extracts the graph from each article, and then combines all the graphs
+    into one graph.
+    Graph Model contains :
+
+    article_author_affiliation
+
+    article_topic
+
+    article_keyword
+
+    article_reference
+    
+    article_cited 
+    
+    :param state: The state of the article
+    :type state: Optional[int]
+    :param limit_node: Optional[int] = 0, defaults to 0
+    :type limit_node: Optional[int] (optional)
+    :return: A dictionary with two keys: nodes and edges.
+    """
+    if state is None:
+        l_pmid = persist.get_all_article_pmid_list()
+        logger.INFO(str(len(l_pmid)) + ' Article(s) ')
+    else:
+        l_pmid = persist.get_article_pmid_list_by_state(state)
+        logger.INFO(str(len(l_pmid)) + ' Article(s) is in state ' + str(state))
     l_nodes=[]
     l_edges = []
     n  = 0
@@ -134,26 +165,24 @@ def graph_extractor_all_entity( state:int, limit_node: Optional[int] = 0):
                     return { 'nodes' : n , 'edges' : e}
 
             if article is not None:
-                # data = _extract_article_topic(article)
-
-
+                # Extracting the graph from the article.
                 graphdict1 = graph_extract_article_author_affiliation(article)
                 graphdict2 = graph_extract_article_topic(article)
                 graphdict3 = graph_extract_article_keyword(article)
                 graphdict4 = graph_extract_article_reference(article)
-                # graphdict5 = graph_extract_article_cited(article)
+                graphdict5 = graph_extract_article_cited(article)
      
                 l_nodes.extend(graphdict1['nodes'])
                 l_nodes.extend(graphdict2['nodes'])
                 l_nodes.extend(graphdict3['nodes'])
                 l_nodes.extend(graphdict4['nodes'])
-                # nodes.extend(graphdict5['nodes'])
+                l_nodes.extend(graphdict5['nodes'])
 
                 l_edges.extend(graphdict1['edges'])
                 l_edges.extend(graphdict2['edges'])
                 l_edges.extend(graphdict3['edges'])
                 l_edges.extend(graphdict4['edges'])
-                # edges.extend(graphdict5['edges'])
+                l_edges.extend(graphdict5['edges'])
 
                 bar.label = f'Article ({n}): Total ({len(l_nodes)},{len(l_edges)})'
                 # logger.DEBUG(f'Article ({n}): Extract {len(a_nodes)} Nodes & {len(a_edges)} Edges. Total ({len(l_nodes)},{len(l_edges)})')

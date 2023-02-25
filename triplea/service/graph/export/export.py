@@ -2,6 +2,7 @@ import json
 from typing import Optional
 from triplea.service.click_logger import logger
 import networkx as nx
+
 from triplea.schemas.node import Edge, Node
 from triplea.service.graph.extract.cited import graph_extract_article_cited
 from triplea.service.graph.extract.keyword import graph_extract_article_keyword
@@ -37,7 +38,14 @@ def _check_graph():
             n = n + 1
             print(f'{n} | DestinationID "{edge.DestinationID}" Not Exist. in Type : {edge.Type} & SourceID =  "{edge.SourceID}"')
 
-def export_graphjson_from_graphdict(graphdict):
+def export_graphjson_from_graphdict(graphdict)->dict:
+    """
+    It takes a graphdict and returns a graphjson
+    we use graphjson in alchemy visualization
+    
+    :param graphdict: The graph dictionary that you want to export
+    :return: A dictionary
+    """
     data = {}
     data['comment'] = 'This file generate autommaticlly by TripleA'
     nodes = graphdict['nodes']
@@ -133,12 +141,38 @@ def export_gpickle_from_arepo(filename:str):
     # And just to show that it can be loaded back into memory:
     # G_loaded = nx.read_gpickle("/tmp/divvy.pkl")
 
+def export_gpickle_from_graphdict(graphdict:dict, filename:str):
+    """
+    It takes a graph dictionary and exports it as a gpickle file
+    
+    :param graphdict: a dictionary of dictionaries, where the keys are the nodes and the values are
+    dictionaries of the node's neighbors and their weights
+    :type graphdict: dict
+    :param filename: the name of the file you want to save the graph to
+    :type filename: str
+    """
+    G = export_networkx_from_graphdict(graphdict)
+    nx.write_gpickle(G, filename)
+
 def export_gexf_from_arepo(filename:str):
     """
     It read article repository and extract node & edge from it, and then saves it in the [gexf format](https://gexf.net/)
     """
     G = export_networkX_from_arepo()
     # saving graph created above in gexf format
+    nx.write_gexf(G, filename +  ".gexf")
+
+def export_gexf_from_graphdict(graphdict:dict, filename:str):
+    """
+    It takes a graph dictionary and exports it as a GEXF file
+    
+    :param graphdict: a dictionary of dictionaries, where the keys are the nodes and the values are
+    dictionaries of the nodes' neighbors and the weights of the edges between them
+    :type graphdict: dict
+    :param filename: the name of the file you want to save the graph as
+    :type filename: str
+    """
+    G = export_networkx_from_graphdict(graphdict)
     nx.write_gexf(G, filename +  ".gexf")
 
 def export_graphml_from_arepo(filename:str):
@@ -164,9 +198,20 @@ def export_graphml_from_networkx(G:nx.Graph, filename:str):
     """
     nx.write_graphml(G, filename + ".graphml")
 
+def export_graphml_from_graphdict(graphdict:dict,filename:str):
+    """
+    It takes a graph dictionary and exports it to a graphml file
+    
+    :param filename: the name of the file you want to save the graphml file as
+    :type filename: str
+    """
+    G = export_networkx_from_graphdict(graphdict)
+    nx.write_graphml(G, filename + ".graphml")
+
 def export_gson_from_graphdict(graphdict)->dict:
     """
     > It takes a graph dictionary and returns a GSON format
+    we use GSON format in interactivegraph visualization
     
     :param graphdict: the graph dictionary
     :return: A dictionary with GSON format
@@ -218,7 +263,15 @@ def export_gson_from_graphdict(graphdict)->dict:
     result['data'] = {'nodes' : gson_nodes , 'edges' : gson_edges}
     return result
 
-def export_networkx_from_graphdict(graphdict,graph_type: Optional[str] = 'directed'):
+def export_networkx_from_graphdict(graphdict,graph_type: Optional[str] = 'directed')->nx.Graph:
+    """
+    It takes a graph dictionary and returns a networkx graph
+    
+    :param graphdict: The graph dictionary that you want to convert to a networkx graph
+    :param graph_type: Optional[str] = 'directed', defaults to directed
+    :type graph_type: Optional[str] (optional)
+    :return: A networkx graph object
+    """
     if graph_type == 'undirected':
         G = nx.Graph()
     elif graph_type == 'directed':
@@ -233,7 +286,6 @@ def export_networkx_from_graphdict(graphdict,graph_type: Optional[str] = 'direct
         G.add_edge(edge['SourceID'] , edge['DestinationID'] , Type = edge['Type'])
 
     return G
-
 
 ##-------------------------------------------------------------------------------------------------------------
 def export_networkX(nodes : list[Node] , edges : list[Edge], graph_type: Optional[str] = 'directed' ):

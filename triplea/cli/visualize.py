@@ -4,8 +4,22 @@ from triplea.cli.main import cli
 import triplea.service.graph.extract as gextract
 import triplea.service.graph.export as gexport
 from triplea.service.click_logger import logger
+import visualization.gdatarefresh as graphdatarefresh
+import http.server
+import socketserver
 
-@cli.command('export_graph',help = 'Export Graph.')
+# PORT = 8000
+DIRECTORY = "visualization"
+
+
+class Handler(http.server.SimpleHTTPRequestHandler):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, directory=DIRECTORY, **kwargs)
+
+
+
+
+@cli.command('visualize',help = 'Visualize Graph.')
 @click.option("--generate", "-g" , "generate_type",
               type=click.Choice(['store',
                                 'gen-all',
@@ -34,36 +48,8 @@ from triplea.service.click_logger import logger
                                 article-cited :
                                 
                                 ''')
-@click.option("--format", "-f" , "format_type",
-              type=click.Choice(['graphdict',
-                                'graphjson',
-                                'gson',
-                                'gpickle',
-                                'graphml',
-                                'gexf']),
-                                multiple=False,
-                                required=True ,
-                                help='''Generate graph and export.
-                                graphdict : This format is a customized format for citation graphs in the form of a Python dictionary.
-
-                                graphjson :
-
-                                gson : 
-
-                                gpickle : Write graph in Python pickle format. Pickles are a serialized byte stream of a Python object 
-
-                                graphml : The GraphML file format uses .graphml extension and is XML structured. It supports attributes for nodes and edges, hierarchical graphs and benefits from a flexible architecture.
-
-                                gexf : GEXF (Graph Exchange XML Format) is an XML-based file format for storing a single undirected or directed graph.
-
-                                ''')
-@click.option("--output", "-o" , "output_file",
-            #   type=click.File('wb') ,
-            type = str ,
-                                multiple=False,
-                                required=True ,
-                                help='File name & path of output graph format.')
-def export(generate_type,format_type,output_file):
+@click.option("--port", "-p" , "port",  default=8000, help='port')
+def visualize(generate_type,port):
     l_nodes=[]
     l_edges = []
     for g_type  in generate_type:
@@ -102,35 +88,15 @@ def export(generate_type,format_type,output_file):
         else:
             logger.ERROR(f"Invalid value for '--generate' / '-g': {generate_type}")
 
-    print()
-    logger.DEBUG(f'Remove duplication in Nodes & Edges. ')
+    # print()
+    # logger.DEBUG(f'Remove duplication in Nodes & Edges. ')
     n = gextract.Emmanuel(l_nodes)
     e = gextract.Emmanuel(l_edges)
     graphdict = { 'nodes' : n, 'edges' : e}
-    if format_type == 'graphdict':
-        data1= json.dumps(graphdict, indent=4)
-        with open(output_file, "w") as outfile:
-            outfile.write(data1)
-    elif format_type == 'graphjson':
-        data = gexport.export_graphjson_from_graphdict(graphdict)
-        data= json.dumps(data, indent=4)
-        with open(output_file, "w") as outfile:
-            outfile.write(data)
-            outfile.close()      
-    elif format_type == 'gson':
-        data = gexport.export_gson_from_graphdict(graphdict)
-        data= json.dumps(data, indent=4)
-        with open(output_file, "w") as outfile:
-            outfile.write(data)
-            outfile.close() 
-    elif format_type == 'gpickle':
-        gexport.export_gpickle_from_graphdict(graphdict,output_file)
-    elif format_type == 'graphml':
-        gexport.export_graphml_from_graphdict(graphdict,output_file)
-    elif format_type == 'gexf':
-        gexport.export_gexf_from_graphdict(graphdict,output_file)
-    else:
-        logger.ERROR(f"Invalid value for '--format' / '-f': {format_type}")
+    logger.DEBUG(f'Update Graph Data ...')
+    graphdatarefresh.refresh_interactivegraph(graphdict)
+    graphdatarefresh.refresh_alchemy(graphdict)
 
-
-
+    with socketserver.TCPServer(("", port), Handler) as httpd:
+        logger.INFO(f"serving at http://localhost:{port} ....")
+        httpd.serve_forever()

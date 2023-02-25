@@ -208,6 +208,71 @@ output:
 ![](docs/assets/img/import-output.png)
 
 
+### Export graph
+
+for details information:
+```
+python .\triplea\cli\aaa.py export_graph --help
+```
+
+
+Making a graph with the `graphml` format and saving it in a file `test.graphml`
+```
+python .\triplea\cli\aaa.py export_graph -g gen-all -f graphml -o .\triplea\test
+```
+
+Making a graph with the `gexf` format and saving it in a file `C:\Users\Dr bitaraf\Documents\graph\article.gexf`.This graph contains article, author, affiliation and relation between them:
+```
+python .\triplea\cli\aaa.py export_graph -g article-author-affiliation -f gexf -o "C:\Users\Dr bitaraf\Documents\graph\article"
+```
+
+Making a graph with the `graphdict` format and saving it in a file `C:\Users\Dr bitaraf\Documents\graph\article.json`.This graph contains article, Reference, article cite and relation between them:
+```
+python .\triplea\cli\aaa.py export_graph -g article-reference -g article-cited -f graphdict -o "C:\Users\Dr bitaraf\Documents\graph\article.json"
+```
+
+
+### Visualizing Graph
+Several visualizator are used to display graphs in this program. These include:
+
+[Alchemy.js](https://graphalchemist.github.io/Alchemy/#/) : Alchemy.js is a graph drawing application built almost entirely in d3.
+
+[interactivegaraph](https://github.com/grapheco/InteractiveGraph) : InteractiveGraph provides a web-based interactive visualization and analysis framework for large graph data, which may come from a GSON file
+
+[netwulf](https://github.com/benmaier/netwulf) : Interactive visualization of networks based on Ulf Aslak's d3 web app.
+
+
+```
+python .\triplea\cli\aaa.py visualize -g article-reference -g article-cited -p 8001
+```
+
+
+```
+python .\triplea\cli\aaa.py visualize -g gen-all -p 8001
+```
+
+
+
+![](docs/assets//img/gen-all-graph.png)
+
+
+```
+python .\triplea\cli\aaa.py visualize -g article-topic -g article-keyword -p 8001
+```
+
+![](docs/assets/img/graph-alchemy.png)
+
+
+### Analysis Graph
+
+
+```
+python .\triplea\cli\aaa.py analysis -g gen-all -c info
+```
+
+
+
+
 # Testing
 
 ```

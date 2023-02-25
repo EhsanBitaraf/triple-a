@@ -1,10 +1,4 @@
-
-
 import json
-from triplea.service.graph.export.export import export_networkx_from_graphdict
-from triplea.service.graph.extract import graph_extractor_all_entity
-
-
 import networkx as nx
 # import nxviz as nv??
 import numpy as np
@@ -12,8 +6,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from netwulf import visualize
 
-from visualization.gdatarefresh import refresh_alchemy, refresh_interactivegraph
-
+from triplea.service.graph.export.export import export_networkx_from_graphdict
 
 
 def visualize_and_grouping(G):

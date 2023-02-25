@@ -12,7 +12,6 @@ def graph_extract_article_author_affiliation(article: Article)-> dict:
     """
     nodes = []
     edges = []
-
     node_article = Node()
     node_article.Identifier = article.PMID
     node_article.Name = article.PMID
