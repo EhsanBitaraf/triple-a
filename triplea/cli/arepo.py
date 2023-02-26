@@ -87,8 +87,6 @@ def arepo(command,pmid,output):
                     authors = authors + author['FullName'] + ', '
                 logger.INFO(f'Authors : {authors}')
 
-
-
         if 'Keywords' in a:
             if a['Keywords'] is not None:
                 keywords = ''
