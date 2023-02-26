@@ -97,7 +97,7 @@ def graph_extractor(func ,  state:Optional[int] = None, limit_node: Optional[int
                 a_edges = data['edges']
                 l_nodes.extend(a_nodes)
                 l_edges.extend(a_edges)
-                bar.label = f'Article ({n}): Extract {len(a_nodes)} Nodes & {len(a_edges)} Edges. Total ({len(l_nodes)},{len(l_edges)})'
+                bar.label = f'Article ({n}) (PMID : {article.PMID}): Extract {len(a_nodes)} Nodes & {len(a_edges)} Edges. Total ({len(l_nodes)},{len(l_edges)})'
                 # logger.DEBUG(f'Article ({n}): Extract {len(a_nodes)} Nodes & {len(a_edges)} Edges. Total ({len(l_nodes)},{len(l_edges)})')
 
     print()

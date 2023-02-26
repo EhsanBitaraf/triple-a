@@ -108,3 +108,18 @@ def analysis(generate_type,command):
         ganalysis.show_degree_distribution(G)
     else:
         logger.ERROR(f"Invalid value for '--command' / '-c': {command}")
+
+
+if __name__ == '__main__':
+    # graphdict = gextract.graph_extractor(gextract.graph_extract_article_cited)
+    # l_nodes=[]
+    # l_edges = []
+    # l_nodes.extend(graphdict['nodes'])
+    # l_edges.extend(graphdict['edges'])
+    # n = gextract.Emmanuel(l_nodes)
+    # e = gextract.Emmanuel(l_edges)
+    # graphdict = { 'nodes' : n, 'edges' : e}
+
+    import triplea.service.repository.persist as pr
+    d = pr.get_article_by_pmid('31398071')
+    print(d)
