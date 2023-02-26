@@ -176,6 +176,8 @@ def move_state_forward(state: int,
 
             else:
                 raise NotImplementedError
+            
+        
 
         except:
             if current_state == 1: 
@@ -216,7 +218,9 @@ def move_state_forward(state: int,
 
                 logger.ERROR(f'Error {exc_type}')
                 logger.ERROR(f'Error {exc_value}')
+    persist.refresh()
 
+    
 if __name__ == '__main__':
     logger.WARNING('Number of article in knowlege repository is ' + str(persist.get_all_article_count()))
     logger.WARNING(f'{persist.get_all_node_count()} Node(s) in knowlege repository.')

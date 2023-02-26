@@ -27,7 +27,9 @@ def _save_article_pmid_list_in_arepo(data:dict)-> None:
                 # logger.INFO('add ' + pmid + ' to knowledge repository. get ' + str(i))
                 logger.INFO('add ' + pmid + ' to knowledge repository.')
     else:
+        persist.refresh()
         logger.ERROR('data is not in right format.')
+    persist.refresh()
 
 # https://stackoverflow.com/questions/3368969/find-string-between-two-substrings
 def _find_between( s, first, last ):

@@ -107,8 +107,6 @@ def graph_extractor(func ,  state:Optional[int] = None, limit_node: Optional[int
     logger.DEBUG(f'Final {len(n)} Nodes & {len(e)} Edges Extracted.')
     return { 'nodes' : n , 'edges' : e}
 
-
-
 def graph_extractor_all_entity( state:Optional[int] = None, limit_node: Optional[int] = 0):
     """
     It takes a list of articles, extracts the graph from each article, and then combines all the graphs
@@ -193,7 +191,6 @@ def graph_extractor_all_entity( state:Optional[int] = None, limit_node: Optional
     e = Emmanuel(l_edges)
     logger.DEBUG(f'Final {len(n)} Nodes & {len(e)} Edges Extracted.')
     return { 'nodes' : n , 'edges' : e}
-
 
 def check_upper_term(n:dict,text:str):
     """

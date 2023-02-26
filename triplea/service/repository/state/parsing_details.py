@@ -151,6 +151,9 @@ def parsing_details(article: Article)-> Article:
     # update article Title & Journal Title.
     pubmed_article_data = data['PubmedArticleSet']['PubmedArticle']['MedlineCitation']['Article']
     article.Title =  pubmed_article_data['ArticleTitle']
+    if type(article.Title) == dict:
+        article.Title = pubmed_article_data['ArticleTitle']['#text']
+
     article.Journal = pubmed_article_data['Journal']['Title']
     
     # print(pubmed_article_data['ArticleDate']) ------------------------------------------------------------------------

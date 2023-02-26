@@ -4,7 +4,7 @@ from triplea.service.click_logger import logger
 from triplea.cli.main import cli
 
 @cli.command('search',help = 'Search query from PubMed and store to Arepo.')
-@click.option("--searchterm", prompt="Search Term", help="Query for Pubmed search.")
+@click.option("--searchterm", "-s" , "searchterm" , prompt="Search Term", help="Query for Pubmed search.")
 def get_article(searchterm):
     logger.INFO(f'Searching Pubmed ...')
     # searchterm = searchterm.replace(' ', '+')

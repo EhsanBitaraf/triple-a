@@ -15,6 +15,7 @@ from triplea.cli.go import go                # go
 from triplea.cli.export import export        # export
 from triplea.cli.visualize import visualize  # visualize
 from triplea.cli.analysis import analysis    # analysis
+from triplea.cli.arepo import arepo          # arepo
 
 if __name__ == '__main__':
     cli()

@@ -108,39 +108,20 @@ Save Title for Annotation
 
 You can use NLP(Natural Language Processing) methods to extract information from the structure of the article and add it to your graph. For example, you can extract NER(Named-entity recognition) words from the title of the article and add to the graph. [Here's how to create a custom NER](docs/training-ner.md).
 
-## Visualization Use
-
-```
-import http.server
-import socketserver
-
-PORT = 8000
-
-Handler = http.server.SimpleHTTPRequestHandler
-
-with socketserver.TCPServer(("", PORT), Handler) as httpd:
-    print("serving at port", PORT)
-    httpd.serve_forever()
-```
-
-`http.server` can also be invoked directly using the -m switch of the interpreter. Similar to the previous example, this serves files relative to the current directory:
-```
-python3 -m http.server
-```
-```
-python -m http.server 9000
-```
-```
-python -m http.server --bind 127.0.0.1
-```
-```
-python -m http.server --directory /tmp/
-```
-
-with `web.py`[.](https://stackoverflow.com/questions/39801718/how-to-run-a-http-server-which-serves-a-specific-path)
 
 
 ## Command Line (CLI) Use
+
+By using the following command, you can see the command completion `help`. Each command has a separate `help`.
+
+```
+python .\triplea\cli\aaa.py  --help
+```
+
+output:
+
+![](docs/assets/img/aaa-help.png)
+
 
 ### Get and Save list of article identifier base on search term
 
@@ -148,23 +129,24 @@ Get list of article identifier (PMID) base on search term and save into knowledg
 
 use this command:
 ```
-python .\triplea\cli\search.py --searchterm [searchterm]
+python .\triplea\cli\aaa.py search --searchterm [searchterm]
 ```
 
-### Move data pipeline state
-With this command move from current state to the next state
+Even the PMID itself can be used in the search term.
 ```
-python .\triplea\cli\next.py --state [state]
+python .\triplea\cli\aaa.py search --searchterm 36467335
 ```
 
 output:
 
-![](docs/assets/img/cli-next.png)
+![](docs/assets/img/aaa-search.png)
 
+### Move data pipeline state
+The preparation of the article for extracting the graph has different steps that are placed in a pipeline. Each step is identified by a number in the state value. The following table describes the state number:
 
 *List of state number*
 
-|State|Desc|
+|State|Description|
 |-|-|
 |0|article identifier saved|
 |1|article details article info saved (json Form)|
@@ -175,7 +157,42 @@ output:
 |-1|Error|
 
 
+There are two ways to run a pipeline. In the first method, we give the number of the existing state and all the articles in this state move forward one state.
+In another method, we give the final state number and each article under that state starts to move until it reaches the final state number that we specified.
+The first can be executed with the `next` command and the second with the `go` command.
+
+With this command move from current state to the next state
+```
+python .\triplea\cli\aaa.py next --state [current state]
+```
+
+for example move all article in state 0 to 1:
+```
+python .\triplea\cli\aaa.py next --state 0
+```
+output:
+
+![](docs/assets/img/aaa-next.png)
+
+
+`go` command:
+```
+python .\triplea\cli\aaa.py go --end [last state]
+```
+
+```
+python .\triplea\cli\aaa.py go --end 3
+```
+
+output:
+
+![](docs/assets/img/aaa-go.png)
+
+
+
+
 ### NER Article Title
+You can try the NER method to extract the major topic of the article's title by using the following command. This command is independent and is used for testing and is not stored in the Arepo.
 
 ```
 python .\triplea\cli\ner.py --title "The Iranian Integrated Care Electronic Health Record."
@@ -185,10 +202,11 @@ python .\triplea\cli\ner.py --title "The Iranian Integrated Care Electronic Heal
 Import file type is `.bib` , `.enw` , `.ris`
 
 ```
-python .\triplea\cli\import.py "C:\Users\Dr bitaraf\Desktop\MyData\CodeRepo\github\triple-a\bc.ris"
+python .\triplea\cli\import.py "C:\...\bc.ris"
 ```
 
 output:
+
 ![](docs/assets/img/import-output.png)
 
 
@@ -236,6 +254,7 @@ python .\triplea\cli\aaa.py visualize -g gen-all -p 8001
 ```
 
 
+output:
 
 ![](docs/assets//img/gen-all-graph.png)
 
@@ -244,24 +263,95 @@ python .\triplea\cli\aaa.py visualize -g gen-all -p 8001
 python .\triplea\cli\aaa.py visualize -g article-topic -g article-keyword -p 8001
 ```
 
+output:
+
 ![](docs/assets/img/graph-alchemy.png)
 
 
 ### Analysis Graph
 
 
+`analysis info` command calculates specific metrics for the entire graph. These metrics include the following:
+- Graph Type: 
+- SCC: 
+- WCC: 
+- Reciprocity : 
+- Graph Nodes: 
+- Graph Edges: 
+- Graph Average Degree : 
+- Graph Density : 
+- Graph Transitivity : 
+- Graph max path length : 
+- Graph Average Clustering Coefficient : 
+- Graph Degree Assortativity Coefficient : 
+
 ```
 python .\triplea\cli\aaa.py analysis -g gen-all -c info
 ```
 
+output:
+
+![](docs/assets/img/aaa-analysis-info.png)
 
 
 
+
+Creates a graph with all possible nodes and edges and calculates and lists the sorted [degree centrality](https://bookdown.org/omarlizardo/_main/4-2-degree-centrality.html) for each node.
 ```
 python .\triplea\cli\aaa.py analysis -g gen-all -c sdc
 ```
 
-sdc
+output:
+
+![](docs/assets/img/aaa-analysis-sdc.png)
+
+
+### Work with Article Repository
+Article Repository (Arepo) is a database that stores the information of articles and graphs. Different databases can be used. We have used the following information banks here:
+
+- [TinyDB](https://github.com/msiemens/tinydb) - TinyDB is a lightweight document oriented database
+
+- [MongoDB](https://www.mongodb.com/) - MongoDB is a source-available cross-platform document-oriented database program
+
+
+To get general information about the articles, nodes and egdes in the database, use the following command.
+```
+python .\triplea\cli\aaa.py arepo -c info
+```
+
+output:
+```
+Number of article in article repository is 122
+0 Node(s) in article repository.
+0 Edge(s) in article repository.
+122 article(s) in state 3.
+```
+
+
+
+Get article data by PMID
+```
+python .\triplea\cli\aaa.py arepo -pmid 31398071
+```
+
+output:
+```
+Title   : Association between MRI background parenchymal enhancement and lymphovascular invasion and estrogen receptor status in invasive breast cancer.
+Journal : The British journal of radiology
+DOI     : 10.1259/bjr.20190417
+PMID    : 31398071
+PMC     : PMC6849688
+State   : 3
+Authors : Jun Li, Yin Mo, Bo He, Qian Gao, Chunyan Luo, Chao Peng, Wei Zhao, Yun Ma, Ying Yang, 
+Keywords: Adult, Aged, Breast Neoplasms, Female, Humans, Lymphatic Metastasis, Magnetic Resonance Imaging, Menopause, Middle Aged, Neoplasm Invasiveness, Receptors, Estrogen, Retrospective Studies, Young Adult,
+```
+
+Get article data by PMID and save to `article.json` file.
+```
+python .\triplea\cli\aaa.py arepo -pmid 31398071 -o article.json
+```
+
+
 
 
 # Testing

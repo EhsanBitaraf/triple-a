@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 ## v0.0.1 - 2023-02-05
 
 ### Improvements
+- add arepo cli 2023-02-26
 - Improve cli
 - Add graph_extract_article_cited
 - Add persist.get_all_article_pmid_list , general.move_state_until , cli.triplea , cli.import
@@ -31,4 +32,6 @@ All notable changes to this project will be documented in this file.
 
 
 ### Bug Fixes
+- Fix get_all_article_pmid_list not implemented in MongoDB [Issue #3](https://github.com/EhsanBitaraf/triple-a/issues/3)
+- Fix article.Title parsing
 - Fix move_state_forward

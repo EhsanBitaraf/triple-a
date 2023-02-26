@@ -49,7 +49,22 @@ class DB_MongoDB(DataBase):
 
 
     def get_all_article_pmid_list(self):
-        raise NotImplementedError
+        myquery = {}
+        cursor = self.col_article.find(myquery,
+                                        projection={
+                                                    "PMID" : "$PMID", 
+                                                    "_id" : 0
+                                                })
+
+        la = list(cursor)
+        new_la = []
+        for l in la:
+            new_la.append(l['PMID'])
+
+        if len(new_la) == 0 :
+            return []
+        else:
+            return new_la
     
     def get_count_article_by_state(self, state:int):
         myquery = { "State":  state}

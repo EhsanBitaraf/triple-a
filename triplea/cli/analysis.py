@@ -53,6 +53,7 @@ from triplea.service.click_logger import logger
                     
                     ''')
 def analysis(generate_type,command):
+    logger.INFO(f'Generate Graph ... ')
     l_nodes=[]
     l_edges = []
     for g_type  in generate_type:
@@ -111,15 +112,15 @@ def analysis(generate_type,command):
 
 
 if __name__ == '__main__':
-    # graphdict = gextract.graph_extractor(gextract.graph_extract_article_cited)
-    # l_nodes=[]
-    # l_edges = []
-    # l_nodes.extend(graphdict['nodes'])
-    # l_edges.extend(graphdict['edges'])
-    # n = gextract.Emmanuel(l_nodes)
-    # e = gextract.Emmanuel(l_edges)
-    # graphdict = { 'nodes' : n, 'edges' : e}
+    graphdict = gextract.graph_extractor(gextract.graph_extract_article_cited)
+    l_nodes=[]
+    l_edges = []
+    l_nodes.extend(graphdict['nodes'])
+    l_edges.extend(graphdict['edges'])
+    n = gextract.Emmanuel(l_nodes)
+    e = gextract.Emmanuel(l_edges)
+    graphdict = { 'nodes' : n, 'edges' : e}
 
-    import triplea.service.repository.persist as pr
-    d = pr.get_article_by_pmid('31398071')
-    print(d)
+    # import triplea.service.repository.persist as pr
+    # d = pr.get_article_by_pmid('31398071')
+    # print(d)
