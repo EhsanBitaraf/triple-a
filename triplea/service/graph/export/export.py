@@ -353,10 +353,7 @@ if __name__ == '__main__':
 
 
 
-    graphdict = graph_extractor_all_entity(state = 4 ,limit_node= 0)
-    data= json.dumps(graphdict, indent=4)
-    with open("one-graphdict-all.json", "w") as outfile:
-        outfile.write(data)
+
     
 
 

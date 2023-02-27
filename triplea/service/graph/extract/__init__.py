@@ -1,5 +1,6 @@
 
 
+import json
 import sys
 import time
 
@@ -22,7 +23,53 @@ __all__ = ["graph_extractor",
            "graph_extract_article_reference",
            "graph_extract_article_cited"
            ]
- 
+
+
+class _tdedup():
+    def __init__(self, d):
+        self.d = d
+        self.new_l = []
+
+    def run(self,i,n):
+        if i not in self.d[n + 1:]:
+           self.new_l.append(i)
+
+    def get_new_l(self):
+        return self.new_l
+
+import threading
+def _t_emmanuel(d:list)->list:
+    start_time = time.time()
+    new_l = []
+
+    tdedup = _tdedup(d)
+
+    total = len(d)
+    bar = click.progressbar(length=total, show_pos=True,show_percent =True)
+    threads = []
+    t_q_num = 1
+    t_num = 1
+    for n,i in enumerate(d):
+        bar.update(1)
+        bar.label = f'Scan for remove duplication what : {threading.activeCount()} {str(len(threads))}'
+
+        t1 = threading.Thread(target=tdedup.run, args=(i,n,))
+        t1.start()
+        threads.append(t1)
+        t_num = t_num + 1
+        
+        if t_num > t_q_num:
+            for t in threads:
+                t.join()
+            t_num = 0
+            threads = []
+
+    print()
+    process_time = time.time() - start_time
+    logger.INFO(f'process_time : {str(process_time)}')
+    return new_l
+
+
 def Emmanuel(d:list)->list:
     """Base on [this](https://stackoverflow.com/questions/9427163/remove-duplicate-dict-in-list-in-python)
 
@@ -33,6 +80,41 @@ def Emmanuel(d:list)->list:
         list: _description_
     """
     return [i for n, i in enumerate(d) if i not in d[n + 1:]]
+
+def _emmanuel(d:list)->list:
+    """Base on [this](https://stackoverflow.com/questions/9427163/remove-duplicate-dict-in-list-in-python)
+
+    Args:
+        d (list): _description_
+
+    Returns:
+        list: _description_
+        
+    """
+    start_time = time.time()
+    # response = await call_next(request)
+    new_l = []
+    total = len(d)
+    bar = click.progressbar(length=total, show_pos=True,show_percent =True)
+    p_total_num = total / 100
+    P_num = 0
+    for n,i in enumerate(d):
+        P_num = P_num + 1
+        if P_num > p_total_num:
+            bar.update(P_num)
+            bar.label = f'Scan for remove duplication '
+            P_num = 0
+        if i not in d[n + 1:]:
+            new_l.append(i)
+
+    bar.finish()
+    print()
+    process_time = time.time() - start_time
+    logger.INFO(f'process_time : {str(process_time)}')
+    return new_l
+
+
+
 
 def thefourtheye_2(data):
     """
@@ -84,9 +166,15 @@ def graph_extractor(func ,  state:Optional[int] = None, limit_node: Optional[int
  
             if limit_node != 0 : # Unlimited
                 if n == limit_node:
+                    print()
                     logger.DEBUG(f'Remove duplication in Nodes & Edges. ')
-                    n = Emmanuel(l_nodes)
-                    e = Emmanuel(l_edges)
+                    # for temp
+                    data= json.dumps({ 'nodes' : l_nodes , 'edges' : l_edges}, indent=4)
+                    with open("temp.json", "w") as outfile:
+                        outfile.write(data)
+                        outfile.close()
+                    n = thefourtheye_2(l_nodes)
+                    e = thefourtheye_2(l_edges)
                     logger.DEBUG(f'Final {len(n)} Nodes & {len(e)} Edges Extracted.')
                     return { 'nodes' : n , 'edges' : e}
 
@@ -102,8 +190,13 @@ def graph_extractor(func ,  state:Optional[int] = None, limit_node: Optional[int
 
     print()
     logger.DEBUG(f'Remove duplication in Nodes & Edges. ')
-    n = Emmanuel(l_nodes)
-    e = Emmanuel(l_edges)
+    # for temp
+    data= json.dumps({ 'nodes' : l_nodes , 'edges' : l_edges}, indent=4)
+    with open("temp.json", "w") as outfile:
+        outfile.write(data)
+        outfile.close()
+    n = thefourtheye_2(l_nodes)
+    e = thefourtheye_2(l_edges)
     logger.DEBUG(f'Final {len(n)} Nodes & {len(e)} Edges Extracted.')
     return { 'nodes' : n , 'edges' : e}
 

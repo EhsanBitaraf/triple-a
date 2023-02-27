@@ -37,15 +37,15 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 
                                 gen-all : It considers all possible nodes and edges
 
-                                article-topic :
+                               article-topic : It considers article and topic as nodes and edges between them
 
-                                article-author-affiliation :
+                                article-author-affiliation : It considers article, author and affiliation as nodes and edges between them
 
-                                article-keyword :
+                                article-keyword : It considers article and keyword as nodes and edges between them
 
-                                article-reference :
+                                article-reference : It considers article and reference as nodes and edges between them
 
-                                article-cited :
+                                article-cited : It considers article and cited as nodes and edges between them
                                 
                                 ''')
 @click.option("--port", "-p" , "port",  default=8000, help='port')

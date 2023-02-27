@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 ## v0.0.1 - 2023-02-05
 
 ### Improvements
+- progress bar for Emmanuel function [Issue #5](https://github.com/EhsanBitaraf/triple-a/issues/5)
 - add arepo cli 2023-02-26
 - Improve cli
 - Add graph_extract_article_cited

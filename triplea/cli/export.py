@@ -23,15 +23,15 @@ from triplea.service.click_logger import logger
 
                                 gen-all : It considers all possible nodes and edges
 
-                                article-topic :
+                               article-topic : It considers article and topic as nodes and edges between them
 
-                                article-author-affiliation :
+                                article-author-affiliation : It considers article, author and affiliation as nodes and edges between them
 
-                                article-keyword :
+                                article-keyword : It considers article and keyword as nodes and edges between them
 
-                                article-reference :
+                                article-reference : It considers article and reference as nodes and edges between them
 
-                                article-cited :
+                                article-cited : It considers article and cited as nodes and edges between them
                                 
                                 ''')
 @click.option("--format", "-f" , "format_type",
@@ -104,8 +104,8 @@ def export(generate_type,format_type,output_file):
 
     print()
     logger.DEBUG(f'Remove duplication in Nodes & Edges. ')
-    n = gextract.Emmanuel(l_nodes)
-    e = gextract.Emmanuel(l_edges)
+    n = gextract._emmanuel(l_nodes)
+    e = gextract._emmanuel(l_edges)
     graphdict = { 'nodes' : n, 'edges' : e}
     if format_type == 'graphdict':
         data1= json.dumps(graphdict, indent=4)
