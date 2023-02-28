@@ -61,12 +61,79 @@ if __name__ == '__main__':
 
 
 
-    f = open('temp.json')
+    # f = open('temp.json')
+    f = open('temp-with-duplication.json')
     data = json.load(f)
     f.close() 
 
     G = gexport.export_networkx_from_graphdict(data,graph_type='directed')
-    ganaliz.info(G)
+    # ganaliz.info(G)
+
+    # on = nx.isolates(G)
+    # print(list(on))
+    # print(nx.number_of_isolates(G))
+
+    # G = nx.read_graphml(r"C:\Users\Dr bitaraf\Desktop\New folder\topic-keyword.graphml")
+    # print(nx.number_of_isolates(G))
+    # print(ganaliz.sorted_degree_centrality(G))
+    
+
+    # dcs = pd.Series(nx.average_degree_connectivity(G))
+    # dcs = dcs.sort_values(ascending=False)
+    # print(dcs)
+
+    
+
+    # dcs = pd.Series(nx.average_neighbor_degree(G))
+    # dcs = dcs.sort_values(ascending=False)
+    # print(dcs)
+
+
+    # #Degree plot for undirected and unweighted graph
+    # degrees = [G.degree(n) for n in G.nodes()]
+    # plt.hist(degrees)
+    # plt.show()
+
+    
+
+    # #Degree Prestige
+    # max_incoming_edges = len(G.nodes) - 1
+    # top = 10
+    # n = 0
+    # for node in G.nodes():
+    #     n = n + 1
+    #     print(node, G.in_degree(node)/max_incoming_edges)
+    #     if n > top:
+    #         break    
+
+
+    # Community Detection
+    from networkx.algorithms import community
+    communities_generator = community.girvan_newman(G)
+    dcs = pd.Series(communities_generator)
+    dcs = dcs.sort_values(ascending=False)
+    dcs = dcs.nlargest(n=50, keep='first')
+
+
+    #Undirected and unweigted graph
+    # cal = nx.closeness_centrality(G)
+    # cal = nx.pagerank(G)
+    # Hubs and Authorities
+    # cal = nx.hits(G)
+
+    # dcs = pd.Series(cal)
+    # dcs = dcs.sort_values(ascending=False)
+    # dcs = dcs.nlargest(n=50, keep='first')
+
+
+    # print(dcs.to_excel("output.xlsx" , sheet_name = 'main'))
+    # dcs.to_json("output_hits.json")
+
+    # #Sort for identifying most inflential nodes using closeness_centrality
+    # for node in sorted(closeness_centrality, key=closeness_centrality.get, reverse=True):
+    #     print(node, closeness_centrality[node])
+
+
 
     # n = extract._emmanuel(data['nodes'])
     # e = extract._emmanuel(data['edges']) 

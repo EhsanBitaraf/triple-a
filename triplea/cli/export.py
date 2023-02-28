@@ -60,9 +60,15 @@ from triplea.service.click_logger import logger
 @click.option("--output", "-o" , "output_file",
             #   type=click.File('wb') ,
             type = str ,
-                                multiple=False,
-                                required=True ,
-                                help='File name & path of output graph format.')
+            multiple=False,
+            required=True ,
+            help='File name & path of output graph format.')
+@click.option("--bar", "-b" , "proccess_bar",
+            type = bool ,
+            multiple=False,
+            required=False ,
+            default= True,
+            help='File name & path of output graph format.')
 def export(generate_type,format_type,output_file):
     l_nodes=[]
     l_edges = []
@@ -103,9 +109,15 @@ def export(generate_type,format_type,output_file):
             logger.ERROR(f"Invalid value for '--generate' / '-g': {generate_type}")
 
     print()
+    # for temp
+    logger.DEBUG(f'Save temp file with duplication.')
+    data= json.dumps({ 'nodes' : l_nodes , 'edges' : l_edges}, indent=4)
+    with open("temp-with-duplication.json", "w") as outfile:
+        outfile.write(data)
+        outfile.close()
     logger.DEBUG(f'Remove duplication in Nodes & Edges. ')
-    n = gextract._emmanuel(l_nodes)
-    e = gextract._emmanuel(l_edges)
+    n = gextract.thefourtheye_2(l_nodes)
+    e = gextract.thefourtheye_2(l_edges)
     graphdict = { 'nodes' : n, 'edges' : e}
     if format_type == 'graphdict':
         data1= json.dumps(graphdict, indent=4)

@@ -1,12 +1,10 @@
-import json
+
 import networkx as nx
 # import nxviz as nv??
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 from netwulf import visualize
-
-from triplea.service.graph.export.export import export_networkx_from_graphdict
 
 
 def visualize_and_grouping(G):

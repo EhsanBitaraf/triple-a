@@ -128,7 +128,10 @@ def thefourtheye_2(data):
     """
     return {frozenset(item.items()):item for item in data}.values()
 
-def graph_extractor(func ,  state:Optional[int] = None, limit_node: Optional[int] = 0):
+def graph_extractor(func ,
+                    state:Optional[int] = None,
+                    limit_node: Optional[int] = 0,
+                    proccess_bar: Optional[bool] = True):
     """
     It takes a function as an argument, and returns a dictionary of nodes and edges
     
@@ -148,53 +151,51 @@ def graph_extractor(func ,  state:Optional[int] = None, limit_node: Optional[int
     l_nodes=[]
     l_edges = []
     n  = 0
-    with click.progressbar(length=len(l_pmid), show_pos=True,show_percent =True) as bar:
-        for id in l_pmid:
-            n = n + 1
+    if proccess_bar:
+        bar = click.progressbar(length=len(l_pmid), show_pos=True,show_percent =True) 
+    for id in l_pmid:
+        n = n + 1
+        if proccess_bar:
             bar.update(1)
-            a = persist.get_article_by_pmid(id)
-            try:
-                article = Article(**a.copy())
-            except:
-                exc_type, exc_value, exc_tb = sys.exc_info()
+        a = persist.get_article_by_pmid(id)
+        try:
+            article = Article(**a.copy())
+        except:
+            exc_type, exc_value, exc_tb = sys.exc_info()
+            print()
+            logger.ERROR(f'Error {exc_type}')
+            logger.ERROR(f'Error {exc_value}')
+            # logger.ERROR(f'Error {exc_tb.tb_next}')
+            article = None
+
+
+        if limit_node != 0 : # Unlimited
+            if n == limit_node:
                 print()
-                logger.ERROR(f'Error {exc_type}')
-                logger.ERROR(f'Error {exc_value}')
-                # logger.ERROR(f'Error {exc_tb.tb_next}')
-                article = None
+                logger.DEBUG(f'Remove duplication in Nodes & Edges. ')
+                # for temp
+                data= json.dumps({ 'nodes' : l_nodes , 'edges' : l_edges}, indent=4)
+                with open("temp.json", "w") as outfile:
+                    outfile.write(data)
+                    outfile.close()
+                n = thefourtheye_2(l_nodes)
+                e = thefourtheye_2(l_edges)
+                logger.DEBUG(f'Final {len(n)} Nodes & {len(e)} Edges Extracted.')
+                return { 'nodes' : n , 'edges' : e}
 
- 
-            if limit_node != 0 : # Unlimited
-                if n == limit_node:
-                    print()
-                    logger.DEBUG(f'Remove duplication in Nodes & Edges. ')
-                    # for temp
-                    data= json.dumps({ 'nodes' : l_nodes , 'edges' : l_edges}, indent=4)
-                    with open("temp.json", "w") as outfile:
-                        outfile.write(data)
-                        outfile.close()
-                    n = thefourtheye_2(l_nodes)
-                    e = thefourtheye_2(l_edges)
-                    logger.DEBUG(f'Final {len(n)} Nodes & {len(e)} Edges Extracted.')
-                    return { 'nodes' : n , 'edges' : e}
-
-            if article is not None:
-                # data = _extract_article_topic(article)
-                data = func(article)
-                a_nodes = data['nodes']
-                a_edges = data['edges']
-                l_nodes.extend(a_nodes)
-                l_edges.extend(a_edges)
+        if article is not None:
+            # data = _extract_article_topic(article)
+            data = func(article)
+            a_nodes = data['nodes']
+            a_edges = data['edges']
+            l_nodes.extend(a_nodes)
+            l_edges.extend(a_edges)
+            if proccess_bar:
                 bar.label = f'Article ({n}) (PMID : {article.PMID}): Extract {len(a_nodes)} Nodes & {len(a_edges)} Edges. Total ({len(l_nodes)},{len(l_edges)})'
                 # logger.DEBUG(f'Article ({n}): Extract {len(a_nodes)} Nodes & {len(a_edges)} Edges. Total ({len(l_nodes)},{len(l_edges)})')
 
     print()
     logger.DEBUG(f'Remove duplication in Nodes & Edges. ')
-    # for temp
-    data= json.dumps({ 'nodes' : l_nodes , 'edges' : l_edges}, indent=4)
-    with open("temp.json", "w") as outfile:
-        outfile.write(data)
-        outfile.close()
     n = thefourtheye_2(l_nodes)
     e = thefourtheye_2(l_edges)
     logger.DEBUG(f'Final {len(n)} Nodes & {len(e)} Edges Extracted.')
