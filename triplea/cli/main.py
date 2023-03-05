@@ -18,7 +18,8 @@ import click
 #     if version:
 #         logger.INFO(__version__)
 
-@click.group()    
+
+@click.group()
 def cli():
     pass
     # click.echo(f"Debug mode is {'on' if debug else 'off'}")

@@ -51,3 +51,19 @@ https://www.researchrabbit.ai/
 
 ## Network Repository - Citation Networks
 https://networkrepository.com/cit.php
+
+
+## OpenCitations 
+Creating an Open Citation Graph from PDF Documents
+
+https://www.ipvs.uni-stuttgart.de/news/news/Creating-an-Open-Citation-Graph-from-PDF-Documents/
+
+OpenCitations is an independent not-for-profit infrastructure organization for open scholarship dedicated to the publication of open bibliographic and citation data by the use of Semantic Web (Linked Data) technologies.
+
+http://opencitations.net/
+
+# Reference
+
+Tools to visualize connections between academic publications
+
+https://proto-knowledge.blogspot.com/2015/02/tools-to-visualize-connections-between.html
