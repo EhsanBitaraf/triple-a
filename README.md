@@ -640,11 +640,23 @@ flake8  .\triplea\cli\  --output-file cli.txt  --format pylint
 flake8  .\triplea\cli\  --select E251 --output-file cli.txt  --format pylint --show-source
 ```
 
-
+```
 flake8  .\triplea\cli\analysis.py   --output-file cli2.txt  --format pylint --show-source --max-line-length 150 
+```
+```
 black .\triplea\cli\analysis.py
-
-
+```
+```
 flake8  .\triplea\cli\  --output-file cli2.txt  --format pylint --show-source --max-line-length 150 
-black .\triplea\cli\
+```
 
+```
+black .\triplea\cli\
+```
+
+```
+flake8  .\triplea\db\  --output-file cli2.txt  --format pylint --show-source --max-line-length 250 
+```
+```
+black .\triplea\db\
+```

@@ -1,4 +1,2 @@
-
-
-class DataBase():
+class DataBase:
     pass

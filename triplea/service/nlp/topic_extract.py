@@ -1,11 +1,9 @@
 import spacy
 import pytextrank
-from triplea.service.click_logger import logger
 from triplea.service.nlp.ner import get_title_ner
 
 
-
-def extract_topicrank(text:str):
+def extract_topicrank(text: str):
     nlp = spacy.load("en_core_web_sm")
     # add PyTextRank to the spaCy pipeline
     # nlp.add_pipe("textrank")
@@ -17,7 +15,8 @@ def extract_topicrank(text:str):
 
     return doc._.phrases[:10]
 
-def extract_positionrank(text:str):
+
+def extract_positionrank(text: str):
     nlp = spacy.load("en_core_web_sm")
     # add PyTextRank to the spaCy pipeline
     # nlp.add_pipe("textrank")
@@ -29,7 +28,8 @@ def extract_positionrank(text:str):
 
     return doc._.phrases[:10]
 
-def extract_textrank(text:str):
+
+def extract_textrank(text: str):
     nlp = spacy.load("en_core_web_sm")
     # add PyTextRank to the spaCy pipeline
     # nlp.add_pipe("textrank")
@@ -40,17 +40,16 @@ def extract_textrank(text:str):
     #     print(phrase.text)
 
     return doc._.phrases[:10]
-    
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     title = "Health complaints in individual visiting primary health care: population-based national electronic health records of Iran."
     ner = get_title_ner(title)
     for e in ner:
-        print(f'{e.label_} : {e.ents}')
+        print(f"{e.label_} : {e.ents}")
 
-    l = extract_topicrank(title)
-    for r in l:
+    l_topic = extract_topicrank(title)
+    for r in l_topic:
         print(r)
         print(r.text)
 
@@ -61,7 +60,7 @@ if __name__ == '__main__':
     #         article = Article(**a.copy())
     #     except:
     #         print('error')
-    
+
     #     print()
     #     print(article.Title)
     #     ner = get_title_ner(article.Title)
@@ -83,9 +82,9 @@ if __name__ == '__main__':
     #     l = extract_textrank(article.Title)
     #     for r in l:
     #         print(r.text)
-    
+
     # text = "National eHealth Implementation"
-    
+
     # print()
     # print(text)
     # ner = get_title_ner(text)
@@ -108,8 +107,6 @@ if __name__ == '__main__':
     # for r in l:
     #     print(r.text)
 
-
-
     # l_pmid = get_article_pmid_list_by_state(2)
     # for id in l_pmid:
     #     a = get_article_by_pmid(id)
@@ -131,7 +128,3 @@ if __name__ == '__main__':
     #                 logger.ERROR (e.ents)
     #             if e.label_ == 'QUALIFIER':
     #                 logger.WARNING (e.ents)
-
-                
-
-        
