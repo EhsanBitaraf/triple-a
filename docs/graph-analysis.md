@@ -1,5 +1,10 @@
 # Graph Analysis
 
+
+
+
+
+
 Network centrality using networkx
 
 https://www.kaggle.com/code/rahulgoel1106/network-centrality-using-networkx
@@ -46,7 +51,34 @@ https://medium.com/analytics-vidhya/lightning-network-some-graph-theory-metrics-
 
 
 
+## awesome
+
+https://github.com/briatte/awesome-network-analysis
+
 ## cuGraph 
 cuGraph - RAPIDS Graph Analytics Library 
 
 https://github.com/rapidsai/cugraph
+
+## cdlib
+![Awesome Badges](https://img.shields.io/badge/badges-awesome-green.svg)
+Community Discovery Library 
+
+CDlib is a meta-library for community discovery in complex networks: it implements algorithms, clustering fitness functions as well as visualization facilities.
+
+https://github.com/GiulioRossetti/cdlib
+
+
+## littleballoffur
+![Awesome Badges](https://img.shields.io/badge/badges-awesome-green.svg)
+Little Ball of Fur - A graph sampling extension library for NetworKit and NetworkX (CIKM 2020) 
+
+https://github.com/benedekrozemberczki/littleballoffur
+
+
+## PyGraphistry 
+
+PyGraphistry is a Python library to quickly load, shape, embed, and explore big graphs with the GPU-accelerated Graphistry visual graph analyzer
+
+
+https://github.com/graphistry/pygraphistry

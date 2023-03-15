@@ -62,6 +62,12 @@ OpenCitations is an independent not-for-profit infrastructure organization for o
 
 http://opencitations.net/
 
+
+## metaknowledge
+A Python library for doing bibliometric and network analysis in science and health policy research 
+
+https://github.com/UWNETLAB/metaknowledge
+
 # Reference
 
 Tools to visualize connections between academic publications
