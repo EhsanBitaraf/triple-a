@@ -3,9 +3,7 @@
 # annoying.
 name: testing poetry
 on:
-  push:
-    branches: [main]
-  pull_request:
+  pull_request: [main]
 
 jobs:
   test:
