@@ -1,8 +1,4 @@
 
-
-
-
-
 from triplea.db.tinydb import DB_TinyDB
 from triplea.service.click_logger import logger
 
