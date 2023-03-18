@@ -368,6 +368,10 @@ python .\triplea\cli\aaa.py arepo -pmid 31398071 -o article.json
 poetry run pytest
 ```
 
+```
+poetry run pytest --cov
+```
+
 # Dependencies
 
 [Poetry](https://python-poetry.org/docs/basic-usage/)

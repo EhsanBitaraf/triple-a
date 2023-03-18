@@ -1,0 +1,19 @@
+# https://sourcery.ai/blog/github-actions/
+
+name: docker-build
+
+on: [push]
+
+
+jobs:
+  docker-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build docker image
+        run: docker build . -t project_name
+
+      - name: Test image
+        run: |
+          docker run -it --name project_name

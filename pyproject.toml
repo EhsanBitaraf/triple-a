@@ -31,6 +31,7 @@ ner = "triplea.cli.ner:ner_title"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.1.0"
+pytest-cov = "^4.0.0"
 
 [build-system]
 requires = ["poetry-core"]
