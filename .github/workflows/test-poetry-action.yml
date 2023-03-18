@@ -2,7 +2,7 @@
 
 name: test-poetry-action
 
-on: pull_request
+on: [push]
 
 jobs:
   test:
