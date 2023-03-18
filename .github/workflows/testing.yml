@@ -3,7 +3,7 @@
 # annoying.
 name: testing poetry
 on:
-  pull_request: [main]
+  pull_request
 
 jobs:
   test:
