@@ -1,4 +1,4 @@
-'''Nostril: Nonsense String Evaluator
+"""Nostril: Nonsense String Evaluator
 Introduction
 ------------
 
@@ -16,7 +16,7 @@ Authors
 Copyright
 ---------
 
-'''
+"""
 
 from .__version__ import __version__, __title__, __url__, __description__
 from .__version__ import __author__, __email__

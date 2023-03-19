@@ -29,9 +29,7 @@ def ner_title(title):
     else:
         logger.WARNING("Invalid input :(")
         logger.WARNING(
-            'You pressed: "'
-            + "".join(["\\" + hex(ord(i))[1:] if i not in printable else i for i in c])
-            + '"'
+            'You pressed: "' + "".join(["\\" + hex(ord(i))[1:] if i not in printable else i for i in c]) + '"'
         )
 
 

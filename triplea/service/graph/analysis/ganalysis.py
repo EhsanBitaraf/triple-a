@@ -36,7 +36,7 @@ def sorted_average_neighbor_degree(G) -> pd.Series:
 def average_neighbor_number(G) -> float:
     """
     For each node in the graph, count the number of neighbors and calculate average neighbor number for graph.
-    
+
     :param G: a networkx graph
     :return: The average number of neighbors of a node in the graph.
     """

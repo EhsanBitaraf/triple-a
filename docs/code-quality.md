@@ -130,3 +130,19 @@ flake8  .\triplea\db\  --output-file cli2.txt  --format pylint --show-source --m
 ```
 black .\triplea\db\
 ```
+
+```
+flake8  .\triplea\  --output-file cli2.txt  --format pylint --ignore F401,W503,W504,E203 --show-source --max-line-length 451 
+```
+
+```
+black .\triplea\
+```
+
+```
+flake8  .\visualization\  --output-file cli2.txt  --format pylint --ignore F401,W503,W504,E203 --show-source --max-line-length 451 
+```
+
+```
+black .\visualization\
+```

@@ -1,4 +1,3 @@
-
 import click
 from py2neo import Graph
 import triplea.service.graph.extract as gextract
@@ -76,7 +75,8 @@ def export_to_neo4j(graphdict: dict, neoj4_bolt_url: str):
             + """ AND b.HashID = """
             + des_id
             + """
-            CREATE (a)-[r:""" + type
+            CREATE (a)-[r:"""
+            + type
             + """ {HashID: """
             + hashid
             + """}]->(b) RETURN a,b

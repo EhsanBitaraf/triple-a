@@ -42,8 +42,7 @@ from triplea.service.click_logger import logger
 def arepo(command, pmid, output):
     if command == "info":
         logger.INFO(
-            "Number of article in article repository is "
-            + str(persist.get_all_article_count())
+            "Number of article in article repository is " + str(persist.get_all_article_count())
         )
         logger.INFO(f"{persist.get_all_node_count()} Node(s) in article repository.")
         logger.INFO(f"{persist.get_all_edge_count()} Edge(s) in article repository.")

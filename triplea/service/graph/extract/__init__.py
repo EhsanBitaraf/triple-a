@@ -32,7 +32,7 @@ class _tdedup:
         self.new_l = []
 
     def run(self, i, n):
-        if i not in self.d[n + 1:]:
+        if i not in self.d[n + 1 :]:
             self.new_l.append(i)
 
     def get_new_l(self):
@@ -86,7 +86,7 @@ def Emmanuel(d: list) -> list:
     Returns:
         list: _description_
     """
-    return [i for n, i in enumerate(d) if i not in d[n + 1:]]
+    return [i for n, i in enumerate(d) if i not in d[n + 1 :]]
 
 
 def _emmanuel(d: list) -> list:
@@ -112,7 +112,7 @@ def _emmanuel(d: list) -> list:
             bar.update(P_num)
             bar.label = "Scan for remove duplication "
             P_num = 0
-        if i not in d[n + 1:]:
+        if i not in d[n + 1 :]:
             new_l.append(i)
 
     bar.finish()
