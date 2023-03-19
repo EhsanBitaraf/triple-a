@@ -28,18 +28,18 @@ jobs:
         # stop the build if there are Python syntax errors or undefined names
         # flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-        flake8 .\triplea\ --count --exit-zero --max-complexity=10 --format pylint --ignore F401,W503,W504,E203 --max-line-length=451 --statistics
+        flake8 ./triplea/ --count --exit-zero --max-complexity=10 --format pylint --ignore F401,W503,W504,E203 --max-line-length=451 --statistics
 
-    - name: Fetch action
-      id: pl
-      uses: Rishabh510/Path-lister-action@master
-      with:
-        path: "./triplea/"
-        type: ".py"
+    # - name: Fetch action
+    #   id: pl
+    #   uses: Rishabh510/Path-lister-action@master
+    #   with:
+    #     path: "./triplea/"
+    #     type: ".py"
 
-    - name: Output results
-      run: |
-        echo "Found ${{ steps.pl.outputs.path_count }} file(s) with this extension:"
-        for i in ${{ steps.pl.outputs.paths }}; do
-        echo $i
-        done
+    # - name: Output results
+    #   run: |
+    #     echo "Found ${{ steps.pl.outputs.path_count }} file(s) with this extension:"
+    #     for i in ${{ steps.pl.outputs.paths }}; do
+    #     echo $i
+    #     done
