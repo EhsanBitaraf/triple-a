@@ -16,11 +16,14 @@ RUN python -c 'from urllib.request import urlopen; print(urlopen("https://instal
 COPY . ./
 RUN poetry install --no-interaction --no-ansi -vvv
 
-CMD ["bash"]
+# CMD ["bash"]
 
 # https://dteslya.engineer/blog/2022/07/14/how-to-run-a-python-cli-tool-inside-a-docker-container/
 # Entrypoint script
 # COPY ./docker/docker-entrypoint.sh /docker-entrypoint.sh
-RUN chmod +x /docker-entrypoint.sh
-ENTRYPOINT ["/docker-entrypoint.sh"]
+# RUN chmod +x /docker-entrypoint.sh
+# ENTRYPOINT ["/docker-entrypoint.sh"]
+
+RUN chmod +x docker-entrypoint.sh
+ENTRYPOINT ["docker-entrypoint.sh"]
 
