@@ -10,7 +10,7 @@ This tool gives you the power to create a graph of articles and analyze it. This
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![GitHub commit](https://img.shields.io/github/last-commit/EhsanBitaraf/triple-a)](https://github.com/EhsanBitaraf/triple-a/main)
 [![Release](https://img.shields.io/github/release/EhsanBitaraf/triple-a.svg?style=flat)]()
-
+![repo size](https://img.shields.io/github/repo-size/EhsanBitaraf/triple-a)
 
 
 # 🎮 Main Features
@@ -374,29 +374,52 @@ poetry run pytest --cov
 
 # Dependencies
 
-[Poetry](https://python-poetry.org/docs/basic-usage/)
 
 
+For graph analysis:
+
+[networkx](https://networkx.org/)
+
+
+For NLP:
+
+[PyTextRank](https://derwen.ai/docs/ptr/)
+
+[transformers](https://huggingface.co/docs/transformers/index) 
+
+[spaCy](https://spacy.io/)
+
+For data storage:
+ 
+[TinyDB](https://tinydb.readthedocs.io/en/latest/)
+
+[py2neo](https://github.com/py2neo-org/py2neo)
+
+[pymongo](https://github.com/mongodb/mongo-python-driver)
+
+For visualization of networks:
+
+[netwulf](https://github.com/benmaier/netwulf)
+
+[Alchemy.js](https://graphalchemist.github.io/Alchemy/#/)
+
+[InteractiveGraph](https://github.com/grapheco/InteractiveGraph)
+
+For CLI:
 
 [click](https://click.palletsprojects.com/en/8.1.x/)
 
 
-Hugging Face
+For packaging and dependency management: 
+
+[Poetry](https://python-poetry.org/docs/basic-usage/)
 
 
-pip install transformers[torch]
-```
-Downloading (…)lve/main/config.json: 100%|████████████████████████████████████████████████████████| 1.42k/1.42k [00:00<00:00, 712kB/s] 
-C:\Users\Dr bitaraf\Desktop\MyData\CodeRepo\github\triple-a\venv\lib\site-packages\huggingface_hub\file_download.py:129: UserWarning: `huggingface_hub` cache-system uses symlinks by default to efficiently store duplicated files but your machine does not support them in 
-C:\Users\Dr bitaraf\.cache\huggingface\hub. Caching files will still work but in a degraded version that might require more space on your disk. This warning can be disabled by setting the `HF_HUB_DISABLE_SYMLINKS_WARNING` environment variable. For more details, see https://huggingface.co/docs/huggingface_hub/how-to-cache#limitations.
-To support symlinks on Windows, you either need to activate Developer Mode or to run Python as an administrator. In order to see activate developer mode, see this article: https://docs.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development      
-  warnings.warn(message)
-Downloading (…)"pytorch_model.bin";:   1%|▋                                                       | 21.0M/1.63G [00:27<36:47, 727kB/s]
-```
 
 # Use case
+With this tool, you can create datasets in different formats, here are examples of these datasets.
 
-## EHR
+
 
 ## Registry of Breast Cancer
 
@@ -430,6 +453,10 @@ https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=("Brea
 ```
 
 
+You can download the result of this network and the relationship between the article and the keyword in `graphdict` format from [**here**](datasets/bcancer-graphdict.json). Manipulated, you can download this graph in `gramphml` format from [**here**](datasets/bcancer.graphml).
+
+## EHR
+It is not yet complete.
 
 # Graph Visualization 
 Various tools have been developed to visualize graphs. We have done a [brief review](docs/graph-visualization.md) and selected a few tools to use in this program.
