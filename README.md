@@ -7,11 +7,16 @@ There are various software and online systems for this, a brief review of which 
 
 This tool gives you the power to create a graph of articles and analyze it. This tool is designed as a **CLI** (command-line interface) and you can use it as a Python library.
 
+[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![GitHub commit](https://img.shields.io/github/last-commit/EhsanBitaraf/triple-a)](https://github.com/EhsanBitaraf/triple-a/main)
-[![Release](https://img.shields.io/github/release/EhsanBitaraf/triple-a.svg?style=flat)]()
+![Release](https://img.shields.io/github/release/EhsanBitaraf/triple-a)
+<!-- ![Release](https://img.shields.io/github/release-date/EhsanBitaraf/triple-a) -->
 ![repo size](https://img.shields.io/github/repo-size/EhsanBitaraf/triple-a)
-
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/EhsanBitaraf/triple-a)
+<!-- ![PyPI - Wheel](https://img.shields.io/pypi/EhsanBitaraf/triple-a) -->
+![Open Issue](https://img.shields.io/github/issues-raw/EhsanBitaraf/triple-a)
+[![GitHub tag](https://img.shields.io/github/tag/EhsanBitaraf/triple-a.svg)](https://GitHub.com/EhsanBitaraf/triple-a/tags/)
 
 # 🎮 Main Features
 

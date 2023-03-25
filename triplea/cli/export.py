@@ -85,7 +85,7 @@ from triplea.service.click_logger import logger
     default=True,
     help="File name & path of output graph format.",
 )
-def export(generate_type, format_type, output_file):
+def export(generate_type, format_type, output_file, proccess_bar):
     l_nodes = []
     l_edges = []
     for g_type in generate_type:
