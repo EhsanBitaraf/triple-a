@@ -85,43 +85,53 @@ from triplea.service.click_logger import logger
     default=True,
     help="File name & path of output graph format.",
 )
-def export(generate_type, format_type, output_file, proccess_bar):
+@click.option(
+    "--removed",
+    "-rd",
+    "remove_duplicate",
+    type=bool,
+    multiple=False,
+    required=False,
+    default=True,
+    help="File name & path of output graph format.",
+)
+def export(generate_type, format_type, output_file, proccess_bar,remove_duplicate):
     l_nodes = []
     l_edges = []
     for g_type in generate_type:
         if g_type == "store":
             raise NotImplementedError
         elif g_type == "gen-all":
-            graphdict = gextract.graph_extractor_all_entity()
+            graphdict = gextract.graph_extractor_all_entity(remove_duplicate=remove_duplicate)
             l_nodes.extend(graphdict["nodes"])
             l_edges.extend(graphdict["edges"])
 
         elif g_type == "article-topic":
-            graphdict = gextract.graph_extractor(gextract.graph_extract_article_topic)
+            graphdict = gextract.graph_extractor(gextract.graph_extract_article_topic,proccess_bar =proccess_bar,remove_duplicate=remove_duplicate)
             l_nodes.extend(graphdict["nodes"])
             l_edges.extend(graphdict["edges"])
 
         elif g_type == "article-author-affiliation":
             graphdict = gextract.graph_extractor(
-                gextract.graph_extract_article_author_affiliation
+                gextract.graph_extract_article_author_affiliation,proccess_bar =proccess_bar,remove_duplicate=remove_duplicate
             )
             l_nodes.extend(graphdict["nodes"])
             l_edges.extend(graphdict["edges"])
 
         elif g_type == "article-keyword":
-            graphdict = gextract.graph_extractor(gextract.graph_extract_article_keyword)
+            graphdict = gextract.graph_extractor(gextract.graph_extract_article_keyword,proccess_bar =proccess_bar,remove_duplicate=remove_duplicate)
             l_nodes.extend(graphdict["nodes"])
             l_edges.extend(graphdict["edges"])
 
         elif g_type == "article-reference":
             graphdict = gextract.graph_extractor(
-                gextract.graph_extract_article_reference
+                gextract.graph_extract_article_reference,proccess_bar =proccess_bar,remove_duplicate=remove_duplicate
             )
             l_nodes.extend(graphdict["nodes"])
             l_edges.extend(graphdict["edges"])
 
         elif g_type == "article-cited":
-            graphdict = gextract.graph_extractor(gextract.graph_extract_article_cited)
+            graphdict = gextract.graph_extractor(gextract.graph_extract_article_cited,proccess_bar =proccess_bar,remove_duplicate=remove_duplicate)
             l_nodes.extend(graphdict["nodes"])
             l_edges.extend(graphdict["edges"])
 
@@ -135,10 +145,14 @@ def export(generate_type, format_type, output_file, proccess_bar):
     with open("temp-with-duplication.json", "w") as outfile:
         outfile.write(data)
         outfile.close()
-    logger.DEBUG("Remove duplication in Nodes & Edges. ")
-    n = gextract.thefourtheye_2(l_nodes)
-    e = gextract.thefourtheye_2(l_edges)
-    graphdict = {"nodes": n, "edges": e}
+    if remove_duplicate:
+        logger.DEBUG("Remove duplication in Nodes & Edges. ")
+        n = gextract.thefourtheye_2(l_nodes)
+        e = gextract.thefourtheye_2(l_edges)
+        graphdict = {"nodes": n, "edges": e}
+    else:
+        graphdict = {"nodes": l_nodes, "edges": l_edges}
+
     if format_type == "graphdict":
         data1 = json.dumps(graphdict, indent=4)
         with open(output_file, "w") as outfile:

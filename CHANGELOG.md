@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 ## v0.0.2 - 2023-03-25
 ### Improvements
 - Improve pyproject.toml
+- Add remove_duplicate in cli.export
 
 ### Bug Fixes
 - Fix proccess_bar in export

@@ -11,12 +11,17 @@ This tool gives you the power to create a graph of articles and analyze it. This
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![GitHub commit](https://img.shields.io/github/last-commit/EhsanBitaraf/triple-a)](https://github.com/EhsanBitaraf/triple-a/main)
 ![Release](https://img.shields.io/github/release/EhsanBitaraf/triple-a)
-<!-- ![Release](https://img.shields.io/github/release-date/EhsanBitaraf/triple-a) -->
 ![repo size](https://img.shields.io/github/repo-size/EhsanBitaraf/triple-a)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/EhsanBitaraf/triple-a)
-<!-- ![PyPI - Wheel](https://img.shields.io/pypi/EhsanBitaraf/triple-a) -->
 ![Open Issue](https://img.shields.io/github/issues-raw/EhsanBitaraf/triple-a)
 [![GitHub tag](https://img.shields.io/github/tag/EhsanBitaraf/triple-a.svg)](https://GitHub.com/EhsanBitaraf/triple-a/tags/)
+
+<!-- ![Release](https://img.shields.io/github/release-date/EhsanBitaraf/triple-a) -->
+
+<!-- ![PyPI - Wheel](https://img.shields.io/pypi/EhsanBitaraf/triple-a) -->
+
+<!-- [![GitHub commits](https://img.shields.io/github/commits-since/EhsanBitaraf/triple-a/v1.0.0.svg)](https://github.com/EhsanBitaraf/triple-a/commit/master) -->
+
 
 # 🎮 Main Features
 

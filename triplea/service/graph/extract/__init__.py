@@ -140,6 +140,7 @@ def graph_extractor(
     state: Optional[int] = None,
     limit_node: Optional[int] = 0,
     proccess_bar: Optional[bool] = True,
+    remove_duplicate: Optional[bool] = True,
 ):
     """
     It takes a function as an argument, and returns a dictionary of nodes and edges
@@ -178,17 +179,21 @@ def graph_extractor(
 
         if limit_node != 0:  # Unlimited
             if n == limit_node:
-                print()
-                logger.DEBUG("Remove duplication in Nodes & Edges. ")
                 # for temp
                 data = json.dumps({"nodes": l_nodes, "edges": l_edges}, indent=4)
                 with open("temp.json", "w") as outfile:
                     outfile.write(data)
                     outfile.close()
-                n = thefourtheye_2(l_nodes)
-                e = thefourtheye_2(l_edges)
-                logger.DEBUG(f"Final {len(n)} Nodes & {len(e)} Edges Extracted.")
-                return {"nodes": n, "edges": e}
+                if remove_duplicate:
+                    print()
+                    logger.DEBUG("Remove duplication in Nodes & Edges. ")
+                    n = thefourtheye_2(l_nodes)
+                    e = thefourtheye_2(l_edges)
+                    logger.DEBUG(f"Final {len(n)} Nodes & {len(e)} Edges Extracted.")
+                    return {"nodes": n, "edges": e}
+                else:
+                    return {"nodes": l_nodes, "edges": l_edges}
+
 
         if article is not None:
             # data = _extract_article_topic(article)
@@ -201,16 +206,21 @@ def graph_extractor(
                 bar.label = f"Article ({n}) (PMID : {article.PMID}): Extract {len(a_nodes)} Nodes & {len(a_edges)} Edges. Total ({len(l_nodes)},{len(l_edges)})"
                 # logger.DEBUG(f'Article ({n}): Extract {len(a_nodes)} Nodes & {len(a_edges)} Edges. Total ({len(l_nodes)},{len(l_edges)})')
 
-    print()
-    logger.DEBUG("Remove duplication in Nodes & Edges. ")
-    n = thefourtheye_2(l_nodes)
-    e = thefourtheye_2(l_edges)
-    logger.DEBUG(f"Final {len(n)} Nodes & {len(e)} Edges Extracted.")
-    return {"nodes": n, "edges": e}
+    if remove_duplicate:
+        print()
+        logger.DEBUG("Remove duplication in Nodes & Edges. ")
+        n = thefourtheye_2(l_nodes)
+        e = thefourtheye_2(l_edges)
+        logger.DEBUG(f"Final {len(n)} Nodes & {len(e)} Edges Extracted.")
+        return {"nodes": n, "edges": e}
+    else:
+        return {"nodes": l_nodes, "edges": l_edges}
 
 
 def graph_extractor_all_entity(
-    state: Optional[int] = None, limit_node: Optional[int] = 0
+    state: Optional[int] = None,
+    limit_node: Optional[int] = 0,
+    remove_duplicate: Optional[bool] = True
 ):
     """
     It takes a list of articles, extracts the graph from each article, and then combines all the graphs
@@ -259,11 +269,15 @@ def graph_extractor_all_entity(
 
             if limit_node != 0:  # Unlimited
                 if n == limit_node:
-                    logger.DEBUG("Remove duplication in Nodes & Edges. ")
-                    n = Emmanuel(l_nodes)
-                    e = Emmanuel(l_edges)
-                    logger.DEBUG(f"Final {len(n)} Nodes & {len(e)} Edges Extracted.")
-                    return {"nodes": n, "edges": e}
+                    if remove_duplicate:
+                        logger.DEBUG("Remove duplication in Nodes & Edges. ")
+                        n = Emmanuel(l_nodes)
+                        e = Emmanuel(l_edges)
+                        logger.DEBUG(f"Final {len(n)} Nodes & {len(e)} Edges Extracted.")
+                        return {"nodes": n, "edges": e}
+                    else:
+                        return {"nodes": l_nodes, "edges": l_edges}
+
 
             if article is not None:
                 # Extracting the graph from the article.
@@ -287,13 +301,16 @@ def graph_extractor_all_entity(
 
                 bar.label = f"Article ({n}): Total ({len(l_nodes)},{len(l_edges)})"
                 # logger.DEBUG(f'Article ({n}): Extract {len(a_nodes)} Nodes & {len(a_edges)} Edges. Total ({len(l_nodes)},{len(l_edges)})')
+    if remove_duplicate:
+        print()
+        logger.DEBUG("Remove duplication in Nodes & Edges. ")
+        n = Emmanuel(l_nodes)
+        e = Emmanuel(l_edges)
+        logger.DEBUG(f"Final {len(n)} Nodes & {len(e)} Edges Extracted.")
+        return {"nodes": n, "edges": e}
+    else:
+        return {"nodes": l_nodes, "edges": l_edges}
 
-    print()
-    logger.DEBUG("Remove duplication in Nodes & Edges. ")
-    n = Emmanuel(l_nodes)
-    e = Emmanuel(l_edges)
-    logger.DEBUG(f"Final {len(n)} Nodes & {len(e)} Edges Extracted.")
-    return {"nodes": n, "edges": e}
 
 
 def check_upper_term(n: dict, text: str):
