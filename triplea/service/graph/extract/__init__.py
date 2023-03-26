@@ -350,3 +350,19 @@ def check_upper_term(n: dict, text: str):
 
 if __name__ == "__main__":
     pass
+    # f = open(r"C:\Users\Bitaraf\Desktop\New folder\temp-with-duplication.json")
+    # data = json.load(f)
+    # f.close()
+    # print("load complete.")
+    # l_nodes = data["nodes"]
+    # l_edges = data["edges"]
+    # n = thefourtheye_2(l_nodes)
+    # print("node complete.")
+    # e = thefourtheye_2(l_edges)
+    # print("edge complete.")
+
+    # graphdict = {"nodes": l_nodes, "edges": l_edges}
+    # data= json.dumps(graphdict, indent=4)
+    # with open("bcancer-all.json", "w") as outfile:
+    #     outfile.write(data)    
+

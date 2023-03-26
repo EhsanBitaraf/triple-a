@@ -134,7 +134,12 @@ def info(G):
     number_of_edges = nx.number_of_edges(G)
     number_of_nodes = nx.number_of_nodes(G)
     avg_deg = float(number_of_edges) / number_of_nodes
-    dag_longest_path_length = nx.dag_longest_path_length(G)
+    try:
+        dag_longest_path_length = nx.dag_longest_path_length(G)
+    except Exception:
+        # Graph contains a cycle or graph changed during iteration
+        dag_longest_path_length = 'NaN'
+
     average_clustering = nx.average_clustering(G)
     degree_assortativity_coefficient = nx.degree_assortativity_coefficient(G)
     print(f"Graph Nodes: {number_of_nodes}")
