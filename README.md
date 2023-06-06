@@ -16,6 +16,8 @@ This tool gives you the power to create a graph of articles and analyze it. This
 ![Open Issue](https://img.shields.io/github/issues-raw/EhsanBitaraf/triple-a)
 [![GitHub tag](https://img.shields.io/github/tag/EhsanBitaraf/triple-a.svg)](https://GitHub.com/EhsanBitaraf/triple-a/tags/)
 
+![Build and push images](https://github.com/EhsanBitaraf/triple-a/workflows/push%20docker%20image/badge.svg)
+
 <!-- ![Release](https://img.shields.io/github/release-date/EhsanBitaraf/triple-a) -->
 
 <!-- ![PyPI - Wheel](https://img.shields.io/pypi/EhsanBitaraf/triple-a) -->
@@ -487,6 +489,26 @@ This topic is very interesting from a research point of view, so I have included
 # Code Quality
 We used flake8 and black libraries to increase code quality.
 More information can be found [here](docs/code-quality.md).
+
+---
+
+# Citation
+
+If you use `Triple A` for your scientific work, consider citing us! We're published in [IEEE](https://ieeexplore.ieee.org/document/10139229).
+
+```bibtex
+@INPROCEEDINGS{10139229,
+  author={Jafarpour, Maryam and Bitaraf, Ehsan and Moeini, Ali and Nahvijou, Azin},
+  booktitle={2023 9th International Conference on Web Research (ICWR)}, 
+  title={Triple A (AAA): a Tool to Analyze Scientific Literature Metadata with Complex Network Parameters}, 
+  year={2023},
+  volume={},
+  number={},
+  pages={342-345},
+  doi={10.1109/ICWR57742.2023.10139229}}
+```
+
+[![DOI:10.1101/2021.01.08.425840](http://img.shields.io/badge/DOI-10.1101/2021.01.08.425840-B31B1B.svg)](https://doi.org/10.1101/2021.01.08.425840)
 
 ---
 

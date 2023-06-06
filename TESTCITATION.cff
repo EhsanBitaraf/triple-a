@@ -1,6 +1,3 @@
-# This CITATION.cff file was generated with cffinit.
-# Visit https://bit.ly/cffinit to generate yours today!
-
 cff-version: 1.2.0
 title: >-
   Triple A (AAA): a Tool to Analyze Scientific Literature
@@ -8,7 +5,7 @@ title: >-
 message: >-
   If you use this software, please cite it using the
   metadata from this file.
-type: software
+type: conference-paper
 authors:
   - given-names: Maryam
     family-names: Jafarpour
@@ -34,6 +31,11 @@ authors:
     affiliation: >-
       Cancer Research Centre, Cancer Institute, Tehran
       University of Medical Sciences, Tehran, Iran
+year: 2023
+collection-title: "2023 9th International Conference on Web Research (ICWR)"
+collection-doi: 10.1109/ICWR57742.2023
+start: 342
+end: 345
 identifiers:
   - type: doi
     value: 10.1109/ICWR57742.2023.10139229
