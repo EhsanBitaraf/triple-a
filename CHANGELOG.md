@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 - Add remove_duplicate in cli.export
 
 ### Bug Fixes
+- Fix Security [Issue #3](https://github.com/EhsanBitaraf/triple-a/security/dependabot/3)  Bump tornado from 6.2 to 6.3.2 [#24](https://github.com/EhsanBitaraf/triple-a/pull/24)
 - Fix proccess_bar in export
 
 ## v0.0.1 - 2023-02-05

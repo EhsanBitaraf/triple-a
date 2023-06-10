@@ -32,45 +32,45 @@ This tool gives you the power to create a graph of articles and analyze it. This
 ## Setup
 
 Clone repository:
-```
+```shell
 git clone https://github.com/EhsanBitaraf/triple-a.git
 ```
 
 or 
 
-```
+```shell
 git clone git@github.com:EhsanBitaraf/triple-a.git
 ```
 
 Create environment variable:
-```
+```shell
 python -m venv venv
 ```
 
 Activate environment variable:
 
 *Windows*
-```
+```shell
 .\venv\Scripts\activate
 ```
 
 *Linux*
-```
+```shell
 $ source venv/bin/activate
 ```
 
 Install poetry:
-```
+```shell
 pip install poetry
 ```
 
 Instal dependences:
-```
+```shell
 poetry install
 ```
 
 run cli:
-```
+```shell
 poetry run python triplea/cli/aaa.py 
 ```
 
@@ -78,18 +78,18 @@ poetry run python triplea/cli/aaa.py
 ## Functional Use
 
 get list of PMID in state 0
-```
+```python
 term = '("Electronic Health Records"[Mesh]) AND ("National"[Title/Abstract]) AND Iran'
 get_article_list_all_store_to_kg_rep(term)
 ```
 
 move from state 1
-```
+```python
 move_state_forward(1)
 ```
 
 get list of PMID in state 0 and save to file for debugginf use
-```
+```python
     data = get_article_list_from_pubmed(1, 10,'("Electronic Health Records"[Mesh]) AND ("National"[Title/Abstract])')
     data = get_article_list_from_pubmed(1, 10,'"Electronic Health Records"')
     data1= json.dumps(data, indent=4)
@@ -98,14 +98,14 @@ get list of PMID in state 0 and save to file for debugginf use
 ```
 
 open befor file for debuging use
-```
+```python
     f = open('sample1.json')
     data = json.load(f)
     f.close()
 ```
 
 get one article from kg and save to file
-```
+```python
     data = get_article_by_pmid('32434767')
     data= json.dumps(data, indent=4)
     with open("one-article.json", "w") as outfile:
@@ -113,7 +113,7 @@ get one article from kg and save to file
 ```
 
 Save Title for Annotation
-```
+```python
     file =  open("article-title.txt", "w", encoding="utf-8")
     la = get_article_by_state(2)
     for a in la:
@@ -124,7 +124,7 @@ Save Title for Annotation
         file.write(article.Title  + "\n")
 ```
 
-### Trainong NER for Article Title
+### Training NER for Article Title
 
 You can use NLP(Natural Language Processing) methods to extract information from the structure of the article and add it to your graph. For example, you can extract NER(Named-entity recognition) words from the title of the article and add to the graph. [Here's how to create a custom NER](docs/training-ner.md).
 
@@ -134,7 +134,7 @@ You can use NLP(Natural Language Processing) methods to extract information from
 
 By using the following command, you can see the command completion `help`. Each command has a separate `help`.
 
-```
+```shell
 python .\triplea\cli\aaa.py  --help
 ```
 
@@ -182,12 +182,12 @@ In another method, we give the final state number and each article under that st
 The first can be executed with the `next` command and the second with the `go` command.
 
 With this command move from current state to the next state
-```
+```shell
 python .\triplea\cli\aaa.py next --state [current state]
 ```
 
 for example move all article in state 0 to 1:
-```
+```shell
 python .\triplea\cli\aaa.py next --state 0
 ```
 output:
@@ -196,11 +196,11 @@ output:
 
 
 `go` command:
-```
+```shell
 python .\triplea\cli\aaa.py go --end [last state]
 ```
 
-```
+```shell
 python .\triplea\cli\aaa.py go --end 3
 ```
 
@@ -214,14 +214,14 @@ output:
 ### NER Article Title
 You can try the NER method to extract the major topic of the article's title by using the following command. This command is independent and is used for testing and is not stored in the Arepo.
 
-```
+```shell
 python .\triplea\cli\ner.py --title "The Iranian Integrated Care Electronic Health Record."
 ```
 
 ### Import single reference file
 Import file type is `.bib` , `.enw` , `.ris`
 
-```
+```shell
 python .\triplea\cli\import.py "C:\...\bc.ris"
 ```
 
@@ -239,17 +239,17 @@ python .\triplea\cli\aaa.py export_graph --help
 
 
 Making a graph with the `graphml` format and saving it in a file `test.graphml`
-```
+```shell
 python .\triplea\cli\aaa.py export_graph -g gen-all -f graphml -o .\triplea\test
 ```
 
 Making a graph with the `gexf` format and saving it in a file `C:\Users\Dr bitaraf\Documents\graph\article.gexf`.This graph contains article, author, affiliation and relation between them:
-```
+```shell
 python .\triplea\cli\aaa.py export_graph -g article-author-affiliation -f gexf -o "C:\Users\Dr bitaraf\Documents\graph\article"
 ```
 
 Making a graph with the `graphdict` format and saving it in a file `C:\Users\Dr bitaraf\Documents\graph\article.json`.This graph contains article, Reference, article cite and relation between them:
-```
+```shell
 python .\triplea\cli\aaa.py export_graph -g article-reference -g article-cited -f graphdict -o "C:\Users\Dr bitaraf\Documents\graph\article.json"
 ```
 
@@ -264,12 +264,12 @@ Several visualizator are used to display graphs in this program. These include:
 [netwulf](https://github.com/benmaier/netwulf) : Interactive visualization of networks based on Ulf Aslak's d3 web app.
 
 
-```
+```shell
 python .\triplea\cli\aaa.py visualize -g article-reference -g article-cited -p 8001
 ```
 
 
-```
+```shell
 python .\triplea\cli\aaa.py visualize -g gen-all -p 8001
 ```
 
@@ -279,7 +279,7 @@ output:
 ![](docs/assets//img/gen-all-graph.png)
 
 
-```
+```shell
 python .\triplea\cli\aaa.py visualize -g article-topic -g article-keyword -p 8001
 ```
 
