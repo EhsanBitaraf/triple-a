@@ -3,6 +3,9 @@ All notable changes to this project will be documented in this file.
 
 ## v0.0.2 - 2023-03-25
 ### Improvements
+- Add graph_diameter
+- Add Graph Radius ([Issue #11](https://github.com/EhsanBitaraf/triple-a/issues/11))
+    , Number of Components([Issue #14](https://github.com/EhsanBitaraf/triple-a/issues/14)) to Info() 
 - Add Citation 2023-06-06
 - Improve pyproject.toml
 - Add remove_duplicate in cli.export

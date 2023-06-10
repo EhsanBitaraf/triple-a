@@ -32,27 +32,6 @@ def sorted_average_neighbor_degree(G) -> pd.Series:
     dcs = dcs.sort_values(ascending=False)
     return dcs
 
-
-def average_neighbor_number(G) -> float:
-    """
-    For each node in the graph, count the number of neighbors and calculate average neighbor number for graph.
-
-    :param G: a networkx graph
-    :return: The average number of neighbors of a node in the graph.
-    """
-    H = G.to_undirected()
-    i = 0
-    sum_neighbors = 0
-    for n in list(H.nodes(data=True)):
-        i = i + 1
-        node = n[0]
-        iter = H.neighbors(node)
-        num_neighbors = len(list(iter))
-        sum_neighbors = sum_neighbors + num_neighbors
-
-    return sum_neighbors / i
-
-
 # def sorted_in_degree(G)->pd.Series:
 #     # NetworkX provides a function for us to calculate degree centrality conveniently:
 #     dcs = pd.Series(G.in_degree())
@@ -117,7 +96,7 @@ def get_top_keys(dictionary, top):
     return top
 
 
-def info(G):
+def info(G, format="stdout"):
     if is_directed(G):
         print("Graph Type: Directed")
         print(f"SCC: {nx.number_strongly_connected_components(G)}")
@@ -127,9 +106,15 @@ def info(G):
         print("Graph Type: Undirected")
         # G.s_metric()
         diameter = nx.diameter(G)
+        num_components = nx.number_connected_components(G)
+
         print(f"Graph Diameter : {diameter}")
+        print(f"Number of Components : {num_components}")
+
+
 
     density = nx.density(G)
+     
     transitivity = nx.transitivity(G)
     number_of_edges = nx.number_of_edges(G)
     number_of_nodes = nx.number_of_nodes(G)
@@ -142,6 +127,15 @@ def info(G):
 
     average_clustering = nx.average_clustering(G)
     degree_assortativity_coefficient = nx.degree_assortativity_coefficient(G)
+    
+    try:
+        radius = nx.algorithms.distance_measures.radius(G)
+    except Exception as ex:
+        radius = f'NaN {ex}'   
+    
+    
+
+
     print(f"Graph Nodes: {number_of_nodes}")
     print(f"Graph Edges: {number_of_edges}")
     print(f"Graph Average Degree : {avg_deg}")
@@ -152,6 +146,8 @@ def info(G):
     print(
         f"Graph Degree Assortativity Coefficient : {degree_assortativity_coefficient}"
     )
+    print(f"Graph Radius : {radius}")
+    
 
     # bet_cen = nx.betweenness_centrality(G)
     # clo_cen = nx.closeness_centrality(G)

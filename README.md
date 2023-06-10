@@ -148,12 +148,12 @@ output:
 Get list of article identifier (PMID) base on search term and save into knowledge repository in first state (0):
 
 use this command:
-```
+```shell
 python .\triplea\cli\aaa.py search --searchterm [searchterm]
 ```
 
 Even the PMID itself can be used in the search term.
-```
+```shell
 python .\triplea\cli\aaa.py search --searchterm 36467335
 ```
 
