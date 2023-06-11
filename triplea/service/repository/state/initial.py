@@ -17,7 +17,9 @@ def _save_article_pmid_list_in_arepo(data: dict) -> None:
     """
     if "esearchresult" in data:
         qt = data["esearchresult"]["querytranslation"]
+        n = 0
         for pmid in data["esearchresult"]["idlist"]:
+            n = n + 1
             i = persist.insert_new_pmid(
                 pmid,
                 querytranslation=qt,
@@ -25,10 +27,10 @@ def _save_article_pmid_list_in_arepo(data: dict) -> None:
                 cite_crawler_deep=SETTINGS.AAA_CITED_CRAWLER_DEEP,
             )
             if i is None:  # PMID is Duplicate
-                logger.INFO(pmid + " is exist in knowledge repository.")
+                logger.INFO(f"{pmid} is exist in knowledge repository. ({n})")
             else:
                 # logger.INFO('add ' + pmid + ' to knowledge repository. get ' + str(i))
-                logger.INFO("add " + pmid + " to knowledge repository.")
+                logger.INFO(f"add {pmid} to knowledge repository. ({n})")
     else:
         persist.refresh()
         logger.ERROR("data is not in right format.")
@@ -182,6 +184,12 @@ def get_article_list_from_pubmed_all_store_to_arepo(
 
 if __name__ == "__main__":
     pass
-    f = r"C:\Users\Bitaraf\Desktop\my-python-project\github\triple-a\tests\fixtures\cite-file\scholar.ris"
-    f = r"C:\Users\Dr bitaraf\Desktop\MyData\CodeRepo\github\triple-a\bc.ris"
-    print(get_article_from_bibliography_file_format(f))
+    # f = r"C:\Users\Bitaraf\Desktop\my-python-project\github\triple-a\tests\fixtures\cite-file\scholar.ris"
+    # f = r"C:\Users\Dr bitaraf\Desktop\MyData\CodeRepo\github\triple-a\bc.ris"
+    # print(get_article_from_bibliography_file_format(f))
+
+    start = 1
+    retmax = 10000
+    searchterm = '"Biological Specimen Banks"[Mesh] OR BioBanking OR biobank OR dataBank OR "Bio Banking" OR "bio bank"'
+    chunkdata = get_article_list_from_pubmed(start, retmax, searchterm)
+    _save_article_pmid_list_in_arepo(chunkdata)

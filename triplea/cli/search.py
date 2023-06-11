@@ -15,7 +15,9 @@ from triplea.cli.main import cli
     help="Query for Pubmed search.",
 )
 def get_article(searchterm):
+    logger.DEBUG(f"searchterm : {searchterm}")
     logger.INFO("Searching Pubmed ...")
+    
     # searchterm = searchterm.replace(' ', '+')
     searchterm = searchterm.strip()
     logger.INFO("Query encoder : ")

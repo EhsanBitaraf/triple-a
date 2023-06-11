@@ -431,6 +431,31 @@ For packaging and dependency management:
 # Use case
 With this tool, you can create datasets in different formats, here are examples of these datasets.
 
+## Bio Bank
+
+Pubmed Query:
+```
+"Biological Specimen Banks"[Mesh] OR BioBanking OR biobank OR dataBank OR "Bio Banking" OR "bio bank"
+```
+
+39,023 results 
+
+Search with this command:
+
+```
+python .\triplea\cli\aaa.py search --searchterm "\"Biological Specimen Banks\"[Mesh] OR BioBanking OR biobank OR dataBank OR \"Bio Banking\" OR \"bio bank\" "
+```
+
+Get 39,023 result until `2023/01/02`
+
+```
+"ERROR":"Search Backend failed: Exception:\n\'retstart\' cannot be larger than 9998. For PubMed, ESearch can only retrieve the first 9,999 records matching the query. To obtain more than 9,999 PubMed records, consider using EDirect that contains additional logic to batch PubMed search results automatically so that an arbitrary number can be retrieved. For details see https://www.ncbi.nlm.nih.gov/books/NBK25499/"
+```
+
+This query had more than 10,000 results, and as a result, the following text was used:
+
+To retrieve more than 10,000 UIDs from databases other than PubMed, submit multiple esearch requests while incrementing the value of retstart (see Application 3). For PubMed, ESearch can only retrieve the first 10,000 records matching the query. To obtain more than 10,000 PubMed records, consider using `<EDirect>` that contains additional logic to batch PubMed search results automatically so that an arbitrary number can be retrieved.
+
 
 
 ## Registry of Breast Cancer

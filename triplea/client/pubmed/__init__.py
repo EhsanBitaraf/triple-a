@@ -2,7 +2,7 @@ from triplea.config.settings import SETTINGS
 import requests
 import xmltodict
 import json
-
+from triplea.service.click_logger import logger
 
 def get_article_list_from_pubmed(retstart: int, retmax: int, search_term: str) -> dict:
     """
@@ -27,6 +27,10 @@ def get_article_list_from_pubmed(retstart: int, retmax: int, search_term: str) -
         "retmode": "json",  # Retrieval type. Determines the format of the returned output. The default value is ‘xml’ for ESearch XML, but ‘json’ is also supported to return output in JSON format.
         "retstart": retstart,  # Sequential index of the first UID in the retrieved set to be shown in the XML output (default=0, corresponding to the first record of the entire set). This parameter can be used in conjunction with retmax to download an arbitrary subset of UIDs retrieved from a search.
         "retmax": retmax,  # Total number of UIDs from the retrieved set to be shown in the XML output (default=20). By default, ESearch only includes the first 20 UIDs retrieved in the XML output. If usehistory is set to 'y', the remainder of the retrieved set will be stored on the History server; otherwise these UIDs are lost. Increasing retmax allows more of the retrieved UIDs to be included in the XML output, up to a maximum of 10,000 records.
+        # # For chunking data when more than 10000
+        # "datetype" : "pdat",
+        # "mindate" : "2022/01/01",
+        # "maxdate" : "2023/01/02"
     }
 
     headers = {
@@ -49,7 +53,12 @@ def get_article_list_from_pubmed(retstart: int, retmax: int, search_term: str) -
         raise Exception("Connection Error.")
 
     # extracting data in json format
-    data = r.json()
+    try:
+        data = r.json()
+    except Exception as ex:
+        logger.ERROR(f"Error : {ex}")
+        logger.ERROR(f"{type(r)}  {r} ")
+        raise
     return data
 
 
