@@ -3,9 +3,12 @@ All notable changes to this project will be documented in this file.
 
 ## v0.0.2 - 2023-03-25
 ### Improvements
+- Ass `get_clustering_coefficient_per_node()` ([Issue #18](https://github.com/EhsanBitaraf/triple-a/issues/18)) :test_tube:`not complete`
+- Add `get_avg_shortest_path_length_per_node()` ([Issue #17](https://github.com/EhsanBitaraf/triple-a/issues/17)) :test_tube:`not complete`
+- Add "time report" and "elapsed time calculation report" to the `info` function ([Issue #16](https://github.com/EhsanBitaraf/triple-a/issues/16)) .
 - Add graph_diameter
 - Add Graph Radius ([Issue #11](https://github.com/EhsanBitaraf/triple-a/issues/11))
-    , Number of Components([Issue #14](https://github.com/EhsanBitaraf/triple-a/issues/14)) to Info() 
+    , Number of Components([Issue #14](https://github.com/EhsanBitaraf/triple-a/issues/14)) to `Info()`
 - Add Citation 2023-06-06
 - Improve pyproject.toml
 - Add remove_duplicate in cli.export

@@ -111,7 +111,8 @@ def parsing_details(article: Article) -> Article:
     if data is None:
         print()
         logger.ERROR(
-            f"Error in Original Article data. It is Null.  PMID = {article.PMID}"
+            f"""Error in Original Article data. It is Null.  
+            PMID = {article.PMID}"""
         )
         article.State = backward_state
         return article
@@ -251,7 +252,9 @@ def parsing_details(article: Article) -> Article:
             for ref in PubmedData["ReferenceList"]["Reference"]:
                 if "ArticleIdList" in ref:
                     if type(ref["ArticleIdList"]["ArticleId"]) == dict:
-                        if ref["ArticleIdList"]["ArticleId"]["@IdType"] == "pubmed":
+                        if ref["ArticleIdList"]["ArticleId"][
+                            "@IdType"
+                            ] == "pubmed":
                             reference_list.append(
                                 ref["ArticleIdList"]["ArticleId"]["#text"]
                             )
@@ -272,7 +275,8 @@ def parsing_details(article: Article) -> Article:
             )
             new_rcd = article.ReferenceCrawlerDeep - 1
             for ref_pmid in reference_list:
-                persist.insert_new_pmid(pmid=ref_pmid, reference_crawler_deep=new_rcd)
+                persist.insert_new_pmid(pmid=ref_pmid,
+                                        reference_crawler_deep=new_rcd)
 
             return article
 
@@ -292,7 +296,9 @@ def parsing_details(article: Article) -> Article:
         article.Authors = author_list
     else:
         logger.WARNING(
-            f"Article {article.PMID} has no AuthorList", forecolore="white", deep=5
+            f"Article {article.PMID} has no AuthorList",
+            forecolore="white",
+            deep=5
         )
 
     return article

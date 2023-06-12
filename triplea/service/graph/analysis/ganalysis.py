@@ -95,63 +95,41 @@ def get_top_keys(dictionary, top):
     top = {k: sort_items[k] for k in list(sort_items)[:top]}
     return top
 
+def get_avg_shortest_path_length_per_node(G):
+    # Calculate the average shortest-path length for each node
+    avg_shortest_path_lengths = nx.shortest_path_length(G)
 
-def info(G, format="stdout"):
-    if is_directed(G):
-        print("Graph Type: Directed")
-        print(f"SCC: {nx.number_strongly_connected_components(G)}")
-        print(f"WCC: {nx.number_weakly_connected_components(G)}")
-        print(f"Reciprocity : {nx.reciprocity(G)}")
-    else:
-        print("Graph Type: Undirected")
-        # G.s_metric()
-        diameter = nx.diameter(G)
-        num_components = nx.number_connected_components(G)
+    # Print the results
+    ll = {}
+    for node in avg_shortest_path_lengths:
+        avg_shortest_path_length = sum(avg_shortest_path_lengths[node].values()) / (len(G) - 1)
+        ll[node] = avg_shortest_path_length
+        # print(f"The average shortest-path length for node {node} is {avg_shortest_path_length:.2f}")
 
-        print(f"Graph Diameter : {diameter}")
-        print(f"Number of Components : {num_components}")
+    dcs = pd.Series(ll)
+    dcs = dcs.sort_values(ascending=False)
 
+    return dcs
 
-
-    density = nx.density(G)
-     
-    transitivity = nx.transitivity(G)
-    number_of_edges = nx.number_of_edges(G)
-    number_of_nodes = nx.number_of_nodes(G)
-    avg_deg = float(number_of_edges) / number_of_nodes
-    try:
-        dag_longest_path_length = nx.dag_longest_path_length(G)
-    except Exception:
-        # Graph contains a cycle or graph changed during iteration
-        dag_longest_path_length = 'NaN'
-
-    average_clustering = nx.average_clustering(G)
-    degree_assortativity_coefficient = nx.degree_assortativity_coefficient(G)
+def get_clustering_coefficient_per_node(G):
+    # Calculate the clustering coefficient for each node
+    s = {}
+    for node in G.nodes():
+        neighbors = list(G.neighbors(node))
+        if len(neighbors) <= 1:
+            # print(f"Node {node}: N/A")
+            s[node] = None
+        else:
+            num_connected = 0
+            for i in range(len(neighbors)):
+                for j in range(i+1, len(neighbors)):
+                    if G.has_edge(neighbors[i], neighbors[j]):
+                        num_connected += 1
+            cc = num_connected / (len(neighbors) * (len(neighbors)-1) / 2)
+            # print(f"Node {node}: {cc}")
+            s[node] = cc
     
-    try:
-        radius = nx.algorithms.distance_measures.radius(G)
-    except Exception as ex:
-        radius = f'NaN {ex}'   
-    
-    
+    dcs = pd.Series(s)
+    dcs = dcs.sort_values(ascending=False)
 
-
-    print(f"Graph Nodes: {number_of_nodes}")
-    print(f"Graph Edges: {number_of_edges}")
-    print(f"Graph Average Degree : {avg_deg}")
-    print(f"Graph Density : {density}")
-    print(f"Graph Transitivity : {transitivity}")
-    print(f"Graph max path length : {dag_longest_path_length}")
-    print(f"Graph Average Clustering Coefficient : {average_clustering}")
-    print(
-        f"Graph Degree Assortativity Coefficient : {degree_assortativity_coefficient}"
-    )
-    print(f"Graph Radius : {radius}")
-    
-
-    # bet_cen = nx.betweenness_centrality(G)
-    # clo_cen = nx.closeness_centrality(G)
-    # eig_cen = nx.eigenvector_centrality(G)
-    # print(f'Graph Betweenness Centrality: {get_top_keys(bet_cen,1)}')
-    # print(f'Graph Closeness Centrality: {get_top_keys(clo_cen,1)}')
-    # print(f'Graph Eigenvector Centrality : {get_top_keys(eig_cen, 1)}')
+    return dcs

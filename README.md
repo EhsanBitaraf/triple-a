@@ -438,7 +438,7 @@ Pubmed Query:
 "Biological Specimen Banks"[Mesh] OR BioBanking OR biobank OR dataBank OR "Bio Banking" OR "bio bank"
 ```
 
-39,023 results 
+`39,023` results 
 
 Search with this command:
 
@@ -457,6 +457,21 @@ This query had more than 10,000 results, and as a result, the following text was
 To retrieve more than 10,000 UIDs from databases other than PubMed, submit multiple esearch requests while incrementing the value of retstart (see Application 3). For PubMed, ESearch can only retrieve the first 10,000 records matching the query. To obtain more than 10,000 PubMed records, consider using `<EDirect>` that contains additional logic to batch PubMed search results automatically so that an arbitrary number can be retrieved.
 
 
+This Query Added lately:
+```
+"bio-banking"[Title/Abstract] OR "bio-bank"[Title/Abstract] OR "data-bank"[Title/Abstract]
+```
+
+`9,012` results
+
+```
+python .\triplea\cli\aaa.py search --searchterm " \"bio-banking\"[Title/Abstract] OR \"bio-bank\"[Title/Abstract] OR \"data-bank\"[Title/Abstract] "
+```
+
+after run this. get info:
+```
+Number of article in article repository is 47735
+```
 
 ## Registry of Breast Cancer
 

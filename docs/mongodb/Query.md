@@ -1,7 +1,10 @@
 
 
 # State Report
+```sql
 select State, count(_id)  from articledata group by State;
+```
+
 
 ```
 // Requires official MongoShell 3.6+
@@ -34,7 +37,10 @@ db.getCollection("articledata").aggregate(
 
 
 # List of PMID base on State
+
+```sql
 select PMID  from articledata where State = -1
+```
 
 ```
 // Requires official MongoShell 3.6+
@@ -51,3 +57,18 @@ db.getCollection("articledata").find(
 
 ```
 
+# Get Article Base on PMID
+
+```sql
+select *  from articledata where PMID = '37301943'
+```
+
+```json
+use articledata;
+db.getCollection("articledata").find(
+    { 
+        "PMID" : "37301943"
+    }
+);
+
+```
