@@ -117,6 +117,7 @@ def parsing_details(article: Article) -> Article:
         article.State = backward_state
         return article
 
+    # Read Original Article Format
     if "PubmedArticleSet" in data:
         if data["PubmedArticleSet"] is None:
             print()
@@ -144,8 +145,8 @@ def parsing_details(article: Article) -> Article:
         #     outfile.write(data)
         return article
 
-    # The above code is checking if the article has a DOI or PMC number. If it does, it will update the
-    # article with the DOI or PMC number.
+    # The below code is checking if the article has a DOI or PMC number.
+    # If it does, it will update the article with the DOI or PMC number.
     if "ArticleIdList" in PubmedData:
         ArticleId = PubmedData["ArticleIdList"]["ArticleId"]
         if type(ArticleId) == list:
@@ -162,20 +163,19 @@ def parsing_details(article: Article) -> Article:
         else:
             raise NotImplementedError
 
-    # update article Title & Journal Title.
-    pubmed_article_data = data["PubmedArticleSet"]["PubmedArticle"]["MedlineCitation"][
-        "Article"
-    ]
+    # Update Article Title & Journal Title.
+    pubmed_article_data = data["PubmedArticleSet"]["PubmedArticle"][
+        "MedlineCitation"
+        ]["Article"]
     article.Title = pubmed_article_data["ArticleTitle"]
     if type(article.Title) == dict:
         article.Title = pubmed_article_data["ArticleTitle"]["#text"]
-
     article.Journal = pubmed_article_data["Journal"]["Title"]
 
-    # print(pubmed_article_data['ArticleDate']) ------------------------------------------------------------------------
-
-    # The above code is checking if the abstract is a string or a list. If it is a string, it will add the
-    # abstract to the database. If it is a list, it will add all the abstracts to the database.
+    # The below code is checking if the abstract is a string or a list.
+    # If it is a string, it will add the
+    # abstract to the database. If it is a list,
+    # it will add all the abstracts to the database.
     if "Abstract" in pubmed_article_data:
         if type(pubmed_article_data["Abstract"]) == dict:
             if type(pubmed_article_data["Abstract"]["AbstractText"]) == str:
@@ -198,7 +198,9 @@ def parsing_details(article: Article) -> Article:
             raise NotImplementedError
 
     # Creating a list of keywords. Merging Mesh List & Keyword List
-    medline_citation = data["PubmedArticleSet"]["PubmedArticle"]["MedlineCitation"]
+    medline_citation = data["PubmedArticleSet"]["PubmedArticle"][
+        "MedlineCitation"
+        ]
     keyword_list = []
     if "MeshHeadingList" in medline_citation:
         if type(medline_citation["MeshHeadingList"]["MeshHeading"]) == list:
@@ -241,33 +243,35 @@ def parsing_details(article: Article) -> Article:
 
     article.Keywords = keyword_list
 
-    # The code is parsing the Article and extracting the references from the Mode.
+    # The code is parsing the Article and
+    # extracting the references from the Mode.
     if "ReferenceList" in PubmedData:
         if article.ReferenceCrawlerDeep is None:
             # raise Exception('ReferenceCrawlerDeep is None.')
             article.ReferenceCrawlerDeep = 0
 
+        reference_list = []
+        for ref in PubmedData["ReferenceList"]["Reference"]:
+            if "ArticleIdList" in ref:
+                if type(ref["ArticleIdList"]["ArticleId"]) == dict:
+                    if ref["ArticleIdList"]["ArticleId"][
+                        "@IdType"
+                        ] == "pubmed":
+                        reference_list.append(
+                            ref["ArticleIdList"]["ArticleId"]["#text"]
+                        )
+
+                elif type(ref["ArticleIdList"]["ArticleId"]) == list:
+                    for ref_id in ref["ArticleIdList"]["ArticleId"]:
+                        if ref_id["@IdType"] == "pubmed":
+                            reference_list.append(ref_id["#text"])
+                else:
+                    raise NotImplementedError
+
+        article.References = reference_list
+
         if article.ReferenceCrawlerDeep > 0:
-            reference_list = []
-            for ref in PubmedData["ReferenceList"]["Reference"]:
-                if "ArticleIdList" in ref:
-                    if type(ref["ArticleIdList"]["ArticleId"]) == dict:
-                        if ref["ArticleIdList"]["ArticleId"][
-                            "@IdType"
-                            ] == "pubmed":
-                            reference_list.append(
-                                ref["ArticleIdList"]["ArticleId"]["#text"]
-                            )
-
-                    elif type(ref["ArticleIdList"]["ArticleId"]) == list:
-                        for ref_id in ref["ArticleIdList"]["ArticleId"]:
-                            if ref_id["@IdType"] == "pubmed":
-                                reference_list.append(ref_id["#text"])
-                    else:
-                        raise NotImplementedError
-
-            article.References = reference_list
-            # create new article
+            # Create new article from References List
             logger.DEBUG(
                 f"Add {len(reference_list)} new article(s) by REFERENCE. ",
                 forecolore="yellow",
@@ -278,7 +282,7 @@ def parsing_details(article: Article) -> Article:
                 persist.insert_new_pmid(pmid=ref_pmid,
                                         reference_crawler_deep=new_rcd)
 
-            return article
+
 
     if "AuthorList" in pubmed_article_data:
         author_list = []

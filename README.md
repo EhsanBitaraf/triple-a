@@ -15,6 +15,7 @@ This tool gives you the power to create a graph of articles and analyze it. This
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/EhsanBitaraf/triple-a)
 ![Open Issue](https://img.shields.io/github/issues-raw/EhsanBitaraf/triple-a)
 [![GitHub tag](https://img.shields.io/github/tag/EhsanBitaraf/triple-a.svg)](https://GitHub.com/EhsanBitaraf/triple-a/tags/)
+![Downloads](https://img.shields.io/github/downloads/EhsanBitaraf/triple-a/total)
 
 ![Build and push images](https://github.com/EhsanBitaraf/triple-a/workflows/push%20docker%20image/badge.svg)
 
@@ -218,7 +219,7 @@ You can try the NER method to extract the major topic of the article's title by 
 python .\triplea\cli\ner.py --title "The Iranian Integrated Care Electronic Health Record."
 ```
 
-### Import single reference file
+### Import Single Reference File
 Import file type is `.bib` , `.enw` , `.ris`
 
 ```shell
@@ -371,8 +372,35 @@ Get article data by PMID and save to `article.json` file.
 python .\triplea\cli\aaa.py arepo -pmid 31398071 -o article.json
 ```
 
+### Configuration
 
+For details information:
+```shell
+python .\triplea\cli\aaa.py config --help
+```
 
+Get environment variable:
+```shell
+ python .\triplea\cli\aaa.py config -c info
+```
+
+Set new environment variable:
+```shell
+python .\triplea\cli\aaa.py config -c update
+```
+
+Below is a summary of important environment variables in this project:
+|Environment Variables     |Description|Default Value|
+|--------------------------|-----------|-------------|
+|TRIPLEA_DB_TYPE           |The type of database to be used in the project. The database layer is separate and you can use different databases, currently it supports `MongoDB` and `TinyDB` databases. TinyDB can be used for small scope and Mango can be used for large scope|TinyDB|
+|AAA_TINYDB_FILENAME       |File name of TinyDB|articledata.json|
+|AAA_MONGODB_CONNECTION_URL|[Standard Connection String Format](https://www.mongodb.com/docs/manual/reference/connection-string/#std-label-connections-standard-connection-string-format) For MongoDB|mongodb://user:pass@127.0.0.1:27017/|
+|AAA_MONGODB_DB_NAME       |Name of MongoDB Collection|articledata|
+|AAA_TPS_LIMIT             |Transaction Per Second Limitation|1|
+|AAA_PROXY_HTTP            |An HTTP proxy is a server that acts as an intermediary between a client and PubMed server. When a client sends a request to a server through an HTTP proxy, the proxy intercepts the request and forwards it to the server on behalf of the client. Similarly, when the server responds, the proxy intercepts the response and forwards it back to the client.||
+|AAA_PROXY_HTTPS           |HTTPS Proxy|| 
+|AAA_REFF_CRAWLER_DEEP     ||1|
+|AAA_CITED_CRAWLER_DEEP    ||1|
 
 # Testing
 
@@ -471,6 +499,11 @@ python .\triplea\cli\aaa.py search --searchterm " \"bio-banking\"[Title/Abstract
 after run this. get info:
 ```
 Number of article in article repository is 47735
+```
+
+Export `graphml` format:
+```shell
+python .\triplea\cli\aaa.py export_graph -g article-reference -g article-keyword  -f graphml -o .\triplea\datasets\biobank.graphml
 ```
 
 ## Registry of Breast Cancer

@@ -1,4 +1,4 @@
-__version__ = "0.0.1"
+__version__ = "0.0.2"
 __title__ = "Triplea"
 __description__ = "Article Analysis Assistant "
 __url__ = "https://github.com/EhsanBitaraf/triple-a"

@@ -72,3 +72,20 @@ db.getCollection("articledata").find(
 );
 
 ```
+
+# Change ReferenceCrawlerDeep
+
+```sql
+Update articledata SET ReferenceCrawlerDeep = 0 where ReferenceCrawlerDeep = 1
+```
+* Not work in Studio3d
+
+
+```
+use articledata;
+db.articledata.updateMany(
+  { ReferenceCrawlerDeep: 1 },
+  { $set: { ReferenceCrawlerDeep: 0 } }
+);
+
+```
