@@ -31,6 +31,16 @@ def get_article_pmid_list_by_state(state: int):
     """
     return db.get_article_pmid_list_by_state(state)
 
+def get_article_pmid_list_by_cstate(state: int, tag_field: str):
+    """
+    This function returns a list of PubMed IDs (PMIDs) of articles that have a given custom state
+
+    :param state: the state of the article, which is an integer
+    :type state: int
+    :return: A list of PMIDs
+    """
+    return db.get_article_pmid_list_by_cstate(state, tag_field)
+
 
 def get_all_article_pmid_list():
     return db.get_all_article_pmid_list()

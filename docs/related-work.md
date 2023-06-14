@@ -68,6 +68,21 @@ A Python library for doing bibliometric and network analysis in science and heal
 
 https://github.com/UWNETLAB/metaknowledge
 
+
+## Tethne: Bibliographic Network Analysis in Python
+Tethne provides tools for easily parsing and analyzing bibliographic data in Python. The primary emphasis is on working with data from the ISI Web of Science database, and providing efficient methods for modeling and analyzing citation-based networks. Future versions will include support for PubMed, Scopus, and other databases.
+
+As of v0.3, Tethne is beginning to include methods for incorporating data from the [JSTOR Data-for-Research service](https://about.jstor.org/whats-in-jstor/text-mining-support/), and [MALLET topic modeling](https://mimno.github.io/Mallet/topics).
+
+https://pythonhosted.org/tethne/index.html
+
+https://github.com/diging/tethne
+
+## Pubmed Parser: A Python Parser for PubMed Open-Access XML Subset and MEDLINE XML Dataset
+A Python Parser for PubMed Open-Access XML Subset and MEDLINE XML Dataset 
+
+https://github.com/titipata/pubmed_parser
+
 # Reference
 
 Tools to visualize connections between academic publications

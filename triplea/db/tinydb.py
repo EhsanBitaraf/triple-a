@@ -33,6 +33,11 @@ class DB_TinyDB(DataBase):
         q = Query()
         l_pmid = [a.get("PMID") for a in self.db.search(q.State == state)]
         return l_pmid
+    
+    def get_article_pmid_list_by_cstate(self, state: int,tag_field: str):
+        q = Query()
+        l_pmid = [a.get("PMID") for a in self.db.search(q[tag_field] == state)]
+        return l_pmid
 
     def get_all_article_pmid_list(self):
         l_all = self.db.all()

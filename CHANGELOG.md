@@ -3,6 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## v0.0.2 - 2023-03-25
 ### Improvements
+- Add `get_article_pmid_list_by_cstate()` :test_tube:Not Complete
 - Add `extract_triples()` in NLP services 2023-06-13
 - Complete Cli config ([Issue #2](https://github.com/EhsanBitaraf/triple-a/issues/2))
 - Add `get_clustering_coefficient_per_node()` ([Issue #18](https://github.com/EhsanBitaraf/triple-a/issues/18)) :test_tube:`not complete`

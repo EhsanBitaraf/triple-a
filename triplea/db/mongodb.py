@@ -45,6 +45,20 @@ class DB_MongoDB(DataBase):
             return []
         else:
             return new_la
+        
+    def get_article_pmid_list_by_cstate(self, state: int, tag_field: str):
+        myquery = {tag_field: state}
+        cursor = self.col_article.find(myquery, projection={"PMID": "$PMID", "_id": 0})
+
+        la = list(cursor)
+        new_la = []
+        for c in la:
+            new_la.append(c["PMID"])
+
+        if len(new_la) == 0:
+            return []
+        else:
+            return new_la
 
     def get_all_article_pmid_list(self):
         myquery = {}
