@@ -11,6 +11,7 @@ from triplea.cli.export import export  # export
 from triplea.cli.visualize import visualize  # visualize
 from triplea.cli.analysis import analysis  # analysis
 from triplea.cli.arepo import arepo  # arepo
+from triplea.cli.pipeline import pipeline  # pipeline
 
 click.echo(f"Title: {tr.__title__} ({tr.__version__})")
 click.echo(f"   {tr.__description__}")

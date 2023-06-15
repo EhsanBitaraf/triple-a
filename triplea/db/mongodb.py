@@ -15,6 +15,9 @@ class DB_MongoDB(DataBase):
     col_article = db["articledata"]
     col_nodes = db["nodes"]
     col_edges = db["edges"]
+    col_triple = db["triple"]
+
+#region Article
 
     def add_new_article(self, article: Article) -> int:
         article_json = json.loads(
@@ -47,7 +50,21 @@ class DB_MongoDB(DataBase):
             return new_la
         
     def get_article_pmid_list_by_cstate(self, state: int, tag_field: str):
-        myquery = {tag_field: state}
+        if state is None or state == 0:
+            myquery = { 
+                        "$or" : [
+                            { 
+                                "FlagExtractKG" : None
+                            }, 
+                            { 
+                                "FlagExtractKG" : 0
+                            }
+                        ]
+                    }
+        else:
+            myquery = {tag_field: state}
+
+        
         cursor = self.col_article.find(myquery, projection={"PMID": "$PMID", "_id": 0})
 
         la = list(cursor)
@@ -123,6 +140,18 @@ class DB_MongoDB(DataBase):
         """
         return self.col_article.count_documents({})
 
+    def get_article_group_by_state(self):
+        pipeline = [
+            {"$group": {"_id": {"State": "$State"}, "COUNT(_id)": {"$sum": 1}}},
+            {"$project": {"State": "$_id.State", "n": "$COUNT(_id)", "_id": 0}},
+        ]
+        return list(self.col_article.aggregate(pipeline))
+
+
+# endregion
+
+# region Node
+
     def add_new_node(self, node: Node) -> int:
         node_json = json.loads(
             json.dumps(node, default=lambda o: o.__dict__, sort_keys=True, indent=4)
@@ -142,6 +171,10 @@ class DB_MongoDB(DataBase):
 
     def get_all_nodes(self):
         raise NotImplementedError
+
+# endregion
+
+# region Edge
 
     def add_new_edge(self, edge: Edge) -> int:
         edge_json = json.loads(
@@ -163,6 +196,19 @@ class DB_MongoDB(DataBase):
     def get_all_edges(self):
         raise NotImplementedError
 
+# endregion
+
+# region Triple
+    def add_new_triple(self, edge: dict) -> int:
+        triple_json = json.loads(
+            json.dumps(edge, default=lambda o: o.__dict__, sort_keys=True, indent=4)
+        )
+        result = self.col_triple.insert_one(triple_json)
+        return result.inserted_id
+
+# endregion
+
+
     def close(self):
         self.client.close
 
@@ -171,13 +217,6 @@ class DB_MongoDB(DataBase):
 
     def refresh(self):
         pass
-
-    def get_article_group_by_state(self):
-        pipeline = [
-            {"$group": {"_id": {"State": "$State"}, "COUNT(_id)": {"$sum": 1}}},
-            {"$project": {"State": "$_id.State", "n": "$COUNT(_id)", "_id": 0}},
-        ]
-        return list(self.col_article.aggregate(pipeline))
 
 
 if __name__ == "__main__":

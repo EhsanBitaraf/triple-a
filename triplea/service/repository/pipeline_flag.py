@@ -1,78 +1,16 @@
 import sys
-import time
-import networkx as nx
-
-# import nxviz as nv??
-import numpy as np
-import matplotlib.pyplot as plt
-import pandas as pd
-from netwulf import visualize
 import click
-
-import json
 from triplea.schemas.article import Article
-from triplea.service.graph import extract
-
-import triplea.service.graph.analysis.ganalysis as ganaliz
-import triplea.service.graph.export.export as gexport
-import triplea.service.graph.extract as gextract
-
-# import triplea.service.graph.export as gexport
-from triplea.service.graph.extract import Emmanuel, check_upper_term, _t_emmanuel
-from triplea.service.click_logger import logger
 import triplea.service.repository.persist as persist
 import triplea.service.repository.state as state_manager
-from triplea.service.repository.state.custom.affiliation_mining import country_list
+from triplea.service.click_logger import logger
 
 
-
-def check_map_topic():
-    f = open("one-graph.json")
-    data = json.load(f)
-    f.close()
-    new_nodes = []
-    new_edges = []
-    for n in data["nodes"]:
-        if n["Type"] == "Topic":
-            uv = check_upper_term(n, "cancer")
-            if uv is not None:
-                new_nodes.append(uv["node"])
-                new_edges.append(uv["edge"])
-
-            uv = check_upper_term(n, "breast")
-            if uv is not None:
-                new_nodes.append(uv["node"])
-                new_edges.append(uv["edge"])
-
-            uv = check_upper_term(n, "registry")
-            if uv is not None:
-                new_nodes.append(uv["node"])
-                new_edges.append(uv["edge"])
-
-            uv = check_upper_term(n, "data")
-            if uv is not None:
-                new_nodes.append(uv["node"])
-                new_edges.append(uv["edge"])
-
-    n = Emmanuel(new_nodes)
-    e = Emmanuel(new_edges)
-    data["nodes"].extend(n)
-    data["edges"].extend(e)
-
-    G = gexport.export_networkx_from_graphdict(data)
-    ganaliz.info(G)
-
-
-
-if __name__ == "__main__":
-    # a = persist.get_article_by_pmid('37046084')
-    # updated_article = Article(**a.copy())
-    # updated_article = state_manager.affiliation_mining(updated_article)
-
-    l_pmid = persist.get_article_pmid_list_by_cstate( 0, "FlagAffiliationMining" )
+def go_extract_triple():
+    l_pmid = persist.get_article_pmid_list_by_cstate( 0, "FlagExtractKG" )
     total_article_in_current_state = len(l_pmid)
     number_of_article_move_forward = 0
-    logger.DEBUG(str(len(l_pmid)) + " Article(s) is in FlagAffiliationMining " + str(0))
+    logger.DEBUG(str(len(l_pmid)) + " Article(s) is in FlagExtractKG " + str(0))
 
     bar = click.progressbar(length=len(l_pmid), show_pos=True, show_percent=True)
 
@@ -82,8 +20,7 @@ if __name__ == "__main__":
             number_of_article_move_forward = number_of_article_move_forward + 1
             current_state = None
 
-            if refresh_point == 50:
-                
+            if refresh_point == 500:
                 refresh_point = 0
                 persist.refresh()
                 print()
@@ -117,26 +54,26 @@ if __name__ == "__main__":
             bar.label = (
                 "Article "
                 + updated_article.PMID
-                + " affiliation mining."
+                + " Extract Knowledge Triple From Abstract"
             )
             bar.update(1)
             # # for re run
             # if current_state == 2 : current_state = 1
 
             if current_state is None:
-                updated_article = state_manager.affiliation_mining(updated_article)
+                updated_article = state_manager.extract_triple_abstract_save(updated_article)
                 persist.update_article_by_pmid(updated_article,
                                                 updated_article.PMID)
 
             elif current_state == -1:  
-                updated_article = state_manager.affiliation_mining(updated_article)
+                updated_article = state_manager.extract_triple_abstract_save(updated_article)
                 persist.update_article_by_pmid(updated_article,
                                                 updated_article.PMID)
 
             elif current_state == 0:  
-                updated_article = state_manager.affiliation_mining(updated_article)
+                updated_article = state_manager.extract_triple_abstract_save(updated_article)
                 persist.update_article_by_pmid(updated_article,
-                                               updated_article.PMID)
+                                                updated_article.PMID)
 
             elif current_state == 1:  
                 pass
@@ -164,4 +101,4 @@ if __name__ == "__main__":
                 raise
                 logger.ERROR(f"Error {exc_type}")
                 logger.ERROR(f"Error {exc_value}")
-    persist.refresh()
+    persist.refresh()    

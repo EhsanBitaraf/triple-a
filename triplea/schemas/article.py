@@ -66,3 +66,5 @@ class Article(BaseModel):
     ReferenceCrawlerDeep: Optional[int] = Field(description="")
     CiteCrawlerDeep: Optional[int] = Field(description="")
     NamedEntities: Optional[list[NamedEntity]] = Field(description="")
+    FlagExtractKG : Optional[int] = Field(description="")
+    FlagAffiliationMining : Optional[int] = Field(description="")

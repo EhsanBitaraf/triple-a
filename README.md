@@ -162,7 +162,7 @@ output:
 
 ![](docs/assets/img/aaa-search.png)
 
-### Move data pipeline state
+### Move core pipeline state
 The preparation of the article for extracting the graph has different steps that are placed in a pipeline. Each step is identified by a number in the state value. The following table describes the state number:
 
 *List of state number*
@@ -210,9 +210,10 @@ output:
 ![](docs/assets/img/aaa-go.png)
 
 
+### Run custom pipeline
+Apart from the core pipelines that should be used to prepare articles, customized pipelines can also be used. Custom pipelines may be implemented to extract knowledge from texts and NLP processing. These pipelines themselves can form a new graph other than the citation graph or in combination with it.
 
-
-### NER Article Title
+#### NER Article Title
 You can try the NER method to extract the major topic of the article's title by using the following command. This command is independent and is used for testing and is not stored in the Arepo.
 
 ```shell
@@ -229,6 +230,14 @@ python .\triplea\cli\import.py "C:\...\bc.ris"
 output:
 
 ![](docs/assets/img/import-output.png)
+
+
+#### Extract Triple from Abstract
+
+```shell
+python .\triplea\cli\aaa.py pipeline --name FlagExtractKG
+```
+
 
 
 ### Export graph

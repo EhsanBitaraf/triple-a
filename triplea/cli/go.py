@@ -1,5 +1,5 @@
 import click
-from triplea.service.repository.general import move_state_until
+from triplea.service.repository.pipeline_core import move_state_until
 from triplea.cli.main import cli
 
 

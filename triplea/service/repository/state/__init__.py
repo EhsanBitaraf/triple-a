@@ -5,6 +5,13 @@ from triplea.service.repository.state.get_citation import get_citation
 from triplea.service.repository.state.initial import (
     get_article_list_from_pubmed_all_store_to_arepo,
 )
+from triplea.service.repository.state.custom.extract_kg_abstract import (
+    extract_triple_abstract_save
+)
+from triplea.service.repository.state.custom.affiliation_mining import (
+    affiliation_mining
+)
+
 
 
 __all__ = [
@@ -13,4 +20,6 @@ __all__ = [
     "ner_title",
     "get_citation",
     "get_article_list_from_pubmed_all_store_to_arepo",
+    "extract_triple_abstract_save",
+    "affiliation_mining",
 ]

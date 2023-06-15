@@ -102,7 +102,6 @@ def processSubjectObjectPairs(tokens):
 #                 pLog("objectConstruction ------------> " + objectConstruction)
         if "subj" in token.dep_:
             if firstSubject == False:
-
                 pLog("subject num ------------> " + str(i))
                 pLog("subject ----------------> " + subject)
                 subject = appendChunk(subject, token.text)
@@ -131,6 +130,8 @@ def processSubjectObjectPairs(tokens):
                             object = tokens[i-1].text + object
                     firstObject = True
         i = i + 1
+        # # I doubt it can be a list or it is one
+        # print(subject.strip() + "," + relation.strip() + "," + object.strip())
 
     pLog (subject.strip() + "," + relation.strip() + "," + object.strip())
     return (subject.strip(), relation.strip(), object.strip())
@@ -163,7 +164,7 @@ def extract_triples(text:str):
         dict['sentence'] = sentence
         kg.append(dict)
 
-    print(json.dumps(kg))
+    
     return kg
 
 if __name__ == "__main__":

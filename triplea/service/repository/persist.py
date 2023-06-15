@@ -5,6 +5,13 @@ from triplea.schemas.node import Edge, Node
 from triplea.service.click_logger import logger
 
 
+
+
+
+
+#region Article
+
+
 def create_article(article: Article):
     db.add_new_article(article)
 
@@ -30,6 +37,7 @@ def get_article_pmid_list_by_state(state: int):
     :return: A list of PMIDs
     """
     return db.get_article_pmid_list_by_state(state)
+
 
 def get_article_pmid_list_by_cstate(state: int, tag_field: str):
     """
@@ -125,6 +133,17 @@ def get_all_article_count() -> int:
     """
     return db.get_all_article_count()
 
+def get_article_group_by_state():
+    """
+    It returns a list of dictionaries, each dictionary containing the state name and the number of
+    articles in that state
+    :return: A list of tuples.
+    """
+    return db.get_article_group_by_state()
+
+#endregion
+
+#region Node
 
 def create_node(node: Node) -> int:
     """
@@ -156,6 +175,9 @@ def get_all_nodes():
     """
     return db.get_all_nodes()
 
+#endregion
+
+#region Edge
 
 def create_edge(edge: Edge) -> int:
     """
@@ -193,14 +215,17 @@ def get_all_edges():
     return db.get_all_edges()
 
 
-def get_article_group_by_state():
-    """
-    It returns a list of dictionaries, each dictionary containing the state name and the number of
-    articles in that state
-    :return: A list of tuples.
-    """
-    return db.get_article_group_by_state()
+#endregion
 
+#region Triple
+
+def create_triple(triple: dict) -> int:
+    # Duplication is not checked in this method,
+    # and if it is ever checked, its place is here
+
+    return db.add_new_triple(triple)
+
+#endregion
 
 def refresh():
     """
