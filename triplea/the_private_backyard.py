@@ -65,7 +65,7 @@ def check_map_topic():
 
 
 if __name__ == "__main__":
-    # a = persist.get_article_by_pmid('37046084')
+    # a = persist.get_article_by_pmid('29593419')
     # updated_article = Article(**a.copy())
     # updated_article = state_manager.affiliation_mining(updated_article)
 
