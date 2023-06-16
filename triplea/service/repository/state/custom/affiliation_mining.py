@@ -58,8 +58,6 @@ def _is_hospital(txt:str):
         return False
     
 def _is_country(txt:str):
-    txt = txt.replace('.', '')
-    txt = txt.strip()
     if country_list.__contains__(txt):
         return True
     else:
@@ -76,24 +74,35 @@ def affiliation_mining(article: Article):
                     aff_part = aff.Text.split(",")
                     aff_part_number = len(aff_part)
                     loc = []
+                    n=0
                     for p in aff_part:
+                        
                         if _is_university(p):
-                            loc.append({ "university" : p})
+                            loc.append({ "university" : p.strip()})
+                            n = n + 1
                         elif _is_center(p):
-                            loc.append({ "center" : p})
+                            loc.append({ "center" : p.strip()})
+                            n = n + 1
                         elif _is_department(p):
-                            loc.append({ "department" : p})
+                            loc.append({ "department" : p.strip()})
+                            n = n + 1
                         elif _is_institute(p):
-                            loc.append({ "institute" : p})
+                            loc.append({ "institute" : p.strip()})
+                            n = n + 1
                         elif _is_hospital(p):
-                            loc.append({ "hospital" : p})
-                        elif _is_country(p):
-                            loc.append({ "country" : p})
+                            loc.append({ "hospital" : p.strip()})
+                            n = n + 1
+                        elif _is_country(p.replace('.', '').strip()):
+                            loc.append({ "country" : p.replace('.', '').strip()})
+                            n = n + 1
                         else:
                             pass
                             # print(p)
-
-                    print(loc)
+                    if aff_part_number - n > 3:
+                        print()
+                        print(loc)
+                        print(aff.Text)
+                        print(aff_part_number - n)
 
 
 
