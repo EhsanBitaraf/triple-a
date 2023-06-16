@@ -20,6 +20,7 @@ from triplea.service.click_logger import logger
             "article-keyword",
             "article-reference",
             "article-cited",
+            "country-authorship",
         ]
     ),
     multiple=True,
@@ -40,6 +41,8 @@ from triplea.service.click_logger import logger
                                 article-reference : It considers article and reference as nodes and edges between them
 
                                 article-cited : It considers article and cited as nodes and edges between them
+
+                                country-authorship :
 
                                 """,
 )
@@ -132,6 +135,11 @@ def export(generate_type, format_type, output_file, proccess_bar,remove_duplicat
 
         elif g_type == "article-cited":
             graphdict = gextract.graph_extractor(gextract.graph_extract_article_cited,proccess_bar =proccess_bar,remove_duplicate=remove_duplicate)
+            l_nodes.extend(graphdict["nodes"])
+            l_edges.extend(graphdict["edges"])
+
+        elif g_type == "country-authorship":
+            graphdict = gextract.graph_extractor(gextract.graph_extract_article_country,proccess_bar =proccess_bar,remove_duplicate=remove_duplicate)
             l_nodes.extend(graphdict["nodes"])
             l_edges.extend(graphdict["edges"])
 

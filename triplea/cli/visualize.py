@@ -29,6 +29,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             "article-keyword",
             "article-reference",
             "article-cited",
+            "country-authorship",
         ]
     ),
     multiple=True,
@@ -49,6 +50,8 @@ class Handler(http.server.SimpleHTTPRequestHandler):
                                 article-reference : It considers article and reference as nodes and edges between them
 
                                 article-cited : It considers article and cited as nodes and edges between them
+
+                                country-authorship :
 
                                 """,
 )
@@ -93,6 +96,10 @@ def visualize(generate_type, port):
             l_nodes.extend(graphdict["nodes"])
             l_edges.extend(graphdict["edges"])
 
+        elif g_type == "country-authorship":
+            graphdict = gextract.graph_extractor(gextract.graph_extract_article_country)
+            l_nodes.extend(graphdict["nodes"])
+            l_edges.extend(graphdict["edges"])
         else:
             logger.ERROR(f"Invalid value for '--generate' / '-g': {generate_type}")
 

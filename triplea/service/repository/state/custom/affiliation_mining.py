@@ -52,12 +52,31 @@ def _is_institute(txt:str):
         return False
 
 def _is_hospital(txt:str):
+    """
+    The function checks if a given string contains the word "hospital" and returns
+    True if it does, otherwise it returns False.
+    
+    :param txt: a string that represents a text input that we want to check if it
+    contains the word "hospital" (case insensitive)
+    :type txt: str
+    :return: a boolean value (True or False) depending on whether the input string
+    contains the word "hospital" (case-insensitive).
+    """
     if txt.lower().__contains__("hospital"):
         return True
     else:
         return False
     
 def _is_country(txt:str):
+    """
+    This function checks if a given string is a country name by comparing it to a
+    list of countries.
+    
+    :param txt: a string that represents a country name or code
+    :type txt: str
+    :return: a boolean value (True or False) depending on whether the input string
+    `txt` is present in the `country_list` or not.
+    """
     if country_list.__contains__(txt):
         return True
     else:
@@ -104,9 +123,44 @@ def affiliation_mining(article: Article):
                         print(aff.Text)
                         print(aff_part_number - n)
 
+    return article
 
 
+def get_structured_affiliation(article: Article):
+    pass
+    if article.Authors is not None:
+        loc = [] 
+        for a in article.Authors:
+            if a.Affiliations is not None:
+                for aff in a.Affiliations:
+                    aff_part = aff.Text.split(",")
+                    aff_part_number = len(aff_part)
 
+                    n=0
+                    for p in aff_part:
+                        if _is_university(p):
+                            loc.append({ "university" : p.strip()})
+                            n = n + 1
+                        elif _is_center(p):
+                            loc.append({ "center" : p.strip()})
+                            n = n + 1
+                        elif _is_department(p):
+                            loc.append({ "department" : p.strip()})
+                            n = n + 1
+                        elif _is_institute(p):
+                            loc.append({ "institute" : p.strip()})
+                            n = n + 1
+                        elif _is_hospital(p):
+                            loc.append({ "hospital" : p.strip()})
+                            n = n + 1
+                        elif _is_country(p.replace('.', '').strip()):
+                            loc.append({ "country" : p.replace('.', '').strip()})
+                            n = n + 1
+                        else:
+                            pass
+                            # print(p)
+
+    return loc
 
 def affiliation_mining1(article: Article):
     article.FlagAffiliationMining = 0 # Critical

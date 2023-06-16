@@ -20,6 +20,7 @@ import triplea.service.graph.extract as gextract
 # import triplea.service.graph.export as gexport
 from triplea.service.graph.extract import Emmanuel, check_upper_term, _t_emmanuel
 from triplea.service.click_logger import logger
+from triplea.service.graph.extract.country_based_co_authorship import graph_extract_article_country
 import triplea.service.repository.persist as persist
 import triplea.service.repository.state as state_manager
 from triplea.service.repository.state.custom.affiliation_mining import country_list
@@ -65,8 +66,9 @@ def check_map_topic():
 
 
 if __name__ == "__main__":
-    # a = persist.get_article_by_pmid('29593419')
-    # updated_article = Article(**a.copy())
+    a = persist.get_article_by_pmid('33952250')
+    updated_article = Article(**a.copy())
+    graph_extract_article_country(updated_article)
     # updated_article = state_manager.affiliation_mining(updated_article)
 
     l_pmid = persist.get_article_pmid_list_by_cstate( 0, "FlagAffiliationMining" )
@@ -161,7 +163,6 @@ if __name__ == "__main__":
                 exc_type, exc_value, exc_tb = sys.exc_info()
                 print()
                 print(exc_tb.tb_lineno)
-                raise
                 logger.ERROR(f"Error {exc_type}")
                 logger.ERROR(f"Error {exc_value}")
     persist.refresh()

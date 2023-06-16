@@ -75,7 +75,6 @@ run cli:
 poetry run python triplea/cli/aaa.py 
 ```
 
-
 ## Functional Use
 
 get list of PMID in state 0
@@ -219,6 +218,17 @@ You can try the NER method to extract the major topic of the article's title by 
 ```shell
 python .\triplea\cli\ner.py --title "The Iranian Integrated Care Electronic Health Record."
 ```
+
+#### Country-based Co-authorship
+A country-based co-authorship network refers to a network of collaborative relationships between researchers from different countries who have co-authored academic papers together. It represents the connections and collaborations that exist among researchers across national boundaries.
+
+By studying a country-based co-authorship network, researchers can gain insights into international collaborations, identify emerging research trends, foster interdisciplinary cooperation, and facilitate policy decisions related to research funding, academic mobility, and scientific development at a global scale.
+
+There are several software tools available that can help you produce country-based co-authorship networks. Here are a few popular options:
+
+[VOSviewer](https://www.vosviewer.com/): VOSviewer is a widely used software tool for constructing and visualizing co-authorship networks. It offers various clustering and visualization techniques and allows you to analyze and explore the network based on different attributes, including country affiliation.
+
+[Sci2 Tool](https://sci2.cns.iu.edu/user/index.php): The Science of Science (Sci2) Tool is a Java-based software package (in [GitHub](https://github.com/CIShell)) that supports the analysis and visualization of scientific networks. It offers a variety of functionalities for constructing and analyzing co-authorship networks, including country-based analysis. It allows users to perform data preprocessing, network analysis, and visualization within a single integrated environment.
 
 ### Import Single Reference File
 Import file type is `.bib` , `.enw` , `.ris`

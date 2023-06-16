@@ -15,6 +15,8 @@ from triplea.service.graph.extract.author import (
 from triplea.service.graph.extract.keyword import graph_extract_article_keyword
 from triplea.service.graph.extract.reference import graph_extract_article_reference
 from triplea.service.graph.extract.cited import graph_extract_article_cited
+from triplea.service.graph.extract.country_based_co_authorship import graph_extract_article_country
+
 
 __all__ = [
     "graph_extractor",
@@ -23,6 +25,7 @@ __all__ = [
     "graph_extract_article_keyword",
     "graph_extract_article_reference",
     "graph_extract_article_cited",
+    "graph_extract_article_country",
 ]
 
 
