@@ -1,5 +1,622 @@
 {
     "comment": "This file generate autommaticlly by TripleA",
-    "nodes": [],
-    "edges": []
+    "nodes": [
+        {
+            "caption": "36467335",
+            "type": "Article",
+            "id": "36467335"
+        },
+        {
+            "caption": "33952250",
+            "type": "Article",
+            "id": "33952250"
+        },
+        {
+            "caption": "China",
+            "type": "Country",
+            "id": "China"
+        },
+        {
+            "caption": "29580128",
+            "type": "Article",
+            "id": "29580128"
+        },
+        {
+            "caption": "USA",
+            "type": "Country",
+            "id": "USA"
+        },
+        {
+            "caption": "31718602",
+            "type": "Article",
+            "id": "31718602"
+        },
+        {
+            "caption": "20627830",
+            "type": "Article",
+            "id": "20627830"
+        },
+        {
+            "caption": "Norway",
+            "type": "Country",
+            "id": "Norway"
+        },
+        {
+            "caption": "35139887",
+            "type": "Article",
+            "id": "35139887"
+        },
+        {
+            "caption": "32929060",
+            "type": "Article",
+            "id": "32929060"
+        },
+        {
+            "caption": "29881292",
+            "type": "Article",
+            "id": "29881292"
+        },
+        {
+            "caption": "People's Republic of China",
+            "type": "Country",
+            "id": "People's Republic of China"
+        },
+        {
+            "caption": "27603915",
+            "type": "Article",
+            "id": "27603915"
+        },
+        {
+            "caption": "31302201",
+            "type": "Article",
+            "id": "31302201"
+        },
+        {
+            "caption": "31301674",
+            "type": "Article",
+            "id": "31301674"
+        },
+        {
+            "caption": "31717266",
+            "type": "Article",
+            "id": "31717266"
+        },
+        {
+            "caption": "31774607",
+            "type": "Article",
+            "id": "31774607"
+        },
+        {
+            "caption": "32733556",
+            "type": "Article",
+            "id": "32733556"
+        },
+        {
+            "caption": "32318335",
+            "type": "Article",
+            "id": "32318335"
+        },
+        {
+            "caption": "South Africa",
+            "type": "Country",
+            "id": "South Africa"
+        },
+        {
+            "caption": "Romania",
+            "type": "Country",
+            "id": "Romania"
+        },
+        {
+            "caption": "28720111",
+            "type": "Article",
+            "id": "28720111"
+        },
+        {
+            "caption": "30123182",
+            "type": "Article",
+            "id": "30123182"
+        },
+        {
+            "caption": "Canada",
+            "type": "Country",
+            "id": "Canada"
+        },
+        {
+            "caption": "20619301",
+            "type": "Article",
+            "id": "20619301"
+        },
+        {
+            "caption": "Korea",
+            "type": "Country",
+            "id": "Korea"
+        },
+        {
+            "caption": "34722255",
+            "type": "Article",
+            "id": "34722255"
+        },
+        {
+            "caption": "Belgium",
+            "type": "Country",
+            "id": "Belgium"
+        },
+        {
+            "caption": "32147678",
+            "type": "Article",
+            "id": "32147678"
+        },
+        {
+            "caption": "26885027",
+            "type": "Article",
+            "id": "26885027"
+        },
+        {
+            "caption": "32133796",
+            "type": "Article",
+            "id": "32133796"
+        },
+        {
+            "caption": "29245011",
+            "type": "Article",
+            "id": "29245011"
+        },
+        {
+            "caption": "35284103",
+            "type": "Article",
+            "id": "35284103"
+        },
+        {
+            "caption": "23391414",
+            "type": "Article",
+            "id": "23391414"
+        },
+        {
+            "caption": "19914236",
+            "type": "Article",
+            "id": "19914236"
+        },
+        {
+            "caption": "19400945",
+            "type": "Article",
+            "id": "19400945"
+        },
+        {
+            "caption": "31619268",
+            "type": "Article",
+            "id": "31619268"
+        },
+        {
+            "caption": "34250022",
+            "type": "Article",
+            "id": "34250022"
+        },
+        {
+            "caption": "22247839",
+            "type": "Article",
+            "id": "22247839"
+        },
+        {
+            "caption": "India",
+            "type": "Country",
+            "id": "India"
+        },
+        {
+            "caption": "28449441",
+            "type": "Article",
+            "id": "28449441"
+        },
+        {
+            "caption": "Japan",
+            "type": "Country",
+            "id": "Japan"
+        },
+        {
+            "caption": "33292213",
+            "type": "Article",
+            "id": "33292213"
+        },
+        {
+            "caption": "28701486",
+            "type": "Article",
+            "id": "28701486"
+        },
+        {
+            "caption": "34145432",
+            "type": "Article",
+            "id": "34145432"
+        },
+        {
+            "caption": "Egypt",
+            "type": "Country",
+            "id": "Egypt"
+        },
+        {
+            "caption": "20162579",
+            "type": "Article",
+            "id": "20162579"
+        },
+        {
+            "caption": "31014355",
+            "type": "Article",
+            "id": "31014355"
+        },
+        {
+            "caption": "Spain",
+            "type": "Country",
+            "id": "Spain"
+        },
+        {
+            "caption": "Iran",
+            "type": "Country",
+            "id": "Iran"
+        },
+        {
+            "caption": "24104470",
+            "type": "Article",
+            "id": "24104470"
+        },
+        {
+            "caption": "12483536",
+            "type": "Article",
+            "id": "12483536"
+        },
+        {
+            "caption": "27942222",
+            "type": "Article",
+            "id": "27942222"
+        },
+        {
+            "caption": "8950993",
+            "type": "Article",
+            "id": "8950993"
+        },
+        {
+            "caption": "26662309",
+            "type": "Article",
+            "id": "26662309"
+        },
+        {
+            "caption": "31921634",
+            "type": "Article",
+            "id": "31921634"
+        },
+        {
+            "caption": "Mexico",
+            "type": "Country",
+            "id": "Mexico"
+        },
+        {
+            "caption": "29217194",
+            "type": "Article",
+            "id": "29217194"
+        },
+        {
+            "caption": "25058905",
+            "type": "Article",
+            "id": "25058905"
+        },
+        {
+            "caption": "34991659",
+            "type": "Article",
+            "id": "34991659"
+        },
+        {
+            "caption": "32021307",
+            "type": "Article",
+            "id": "32021307"
+        },
+        {
+            "caption": "34959269",
+            "type": "Article",
+            "id": "34959269"
+        },
+        {
+            "caption": "20099276",
+            "type": "Article",
+            "id": "20099276"
+        },
+        {
+            "caption": "29593419",
+            "type": "Article",
+            "id": "29593419"
+        },
+        {
+            "caption": "32246957",
+            "type": "Article",
+            "id": "32246957"
+        },
+        {
+            "caption": "Russia",
+            "type": "Country",
+            "id": "Russia"
+        },
+        {
+            "caption": "32127478",
+            "type": "Article",
+            "id": "32127478"
+        },
+        {
+            "caption": "30841468",
+            "type": "Article",
+            "id": "30841468"
+        }
+    ],
+    "edges": [
+        {
+            "source": "33952250",
+            "target": "China",
+            "caption": "IS"
+        },
+        {
+            "source": "29580128",
+            "target": "China",
+            "caption": "IS"
+        },
+        {
+            "source": "29580128",
+            "target": "USA",
+            "caption": "IS"
+        },
+        {
+            "source": "31718602",
+            "target": "USA",
+            "caption": "IS"
+        },
+        {
+            "source": "31718602",
+            "target": "China",
+            "caption": "IS"
+        },
+        {
+            "source": "20627830",
+            "target": "Norway",
+            "caption": "IS"
+        },
+        {
+            "source": "35139887",
+            "target": "USA",
+            "caption": "IS"
+        },
+        {
+            "source": "32929060",
+            "target": "China",
+            "caption": "IS"
+        },
+        {
+            "source": "29881292",
+            "target": "People's Republic of China",
+            "caption": "IS"
+        },
+        {
+            "source": "29881292",
+            "target": "USA",
+            "caption": "IS"
+        },
+        {
+            "source": "27603915",
+            "target": "China",
+            "caption": "IS"
+        },
+        {
+            "source": "31302201",
+            "target": "China",
+            "caption": "IS"
+        },
+        {
+            "source": "31301674",
+            "target": "China",
+            "caption": "IS"
+        },
+        {
+            "source": "31717266",
+            "target": "China",
+            "caption": "IS"
+        },
+        {
+            "source": "31774607",
+            "target": "China",
+            "caption": "IS"
+        },
+        {
+            "source": "32733556",
+            "target": "China",
+            "caption": "IS"
+        },
+        {
+            "source": "32318335",
+            "target": "South Africa",
+            "caption": "IS"
+        },
+        {
+            "source": "32318335",
+            "target": "Romania",
+            "caption": "IS"
+        },
+        {
+            "source": "28720111",
+            "target": "China",
+            "caption": "IS"
+        },
+        {
+            "source": "30123182",
+            "target": "Canada",
+            "caption": "IS"
+        },
+        {
+            "source": "20619301",
+            "target": "Korea",
+            "caption": "IS"
+        },
+        {
+            "source": "34722255",
+            "target": "Belgium",
+            "caption": "IS"
+        },
+        {
+            "source": "32147678",
+            "target": "China",
+            "caption": "IS"
+        },
+        {
+            "source": "26885027",
+            "target": "China",
+            "caption": "IS"
+        },
+        {
+            "source": "32133796",
+            "target": "China",
+            "caption": "IS"
+        },
+        {
+            "source": "29245011",
+            "target": "USA",
+            "caption": "IS"
+        },
+        {
+            "source": "35284103",
+            "target": "China",
+            "caption": "IS"
+        },
+        {
+            "source": "23391414",
+            "target": "USA",
+            "caption": "IS"
+        },
+        {
+            "source": "19914236",
+            "target": "USA",
+            "caption": "IS"
+        },
+        {
+            "source": "31619268",
+            "target": "China",
+            "caption": "IS"
+        },
+        {
+            "source": "34250022",
+            "target": "China",
+            "caption": "IS"
+        },
+        {
+            "source": "22247839",
+            "target": "India",
+            "caption": "IS"
+        },
+        {
+            "source": "28449441",
+            "target": "Japan",
+            "caption": "IS"
+        },
+        {
+            "source": "33292213",
+            "target": "China",
+            "caption": "IS"
+        },
+        {
+            "source": "34145432",
+            "target": "Egypt",
+            "caption": "IS"
+        },
+        {
+            "source": "34145432",
+            "target": "USA",
+            "caption": "IS"
+        },
+        {
+            "source": "20162579",
+            "target": "China",
+            "caption": "IS"
+        },
+        {
+            "source": "31014355",
+            "target": "Spain",
+            "caption": "IS"
+        },
+        {
+            "source": "31014355",
+            "target": "Iran",
+            "caption": "IS"
+        },
+        {
+            "source": "24104470",
+            "target": "Spain",
+            "caption": "IS"
+        },
+        {
+            "source": "12483536",
+            "target": "USA",
+            "caption": "IS"
+        },
+        {
+            "source": "27942222",
+            "target": "People's Republic of China",
+            "caption": "IS"
+        },
+        {
+            "source": "8950993",
+            "target": "USA",
+            "caption": "IS"
+        },
+        {
+            "source": "26662309",
+            "target": "People's Republic of China",
+            "caption": "IS"
+        },
+        {
+            "source": "26662309",
+            "target": "China",
+            "caption": "IS"
+        },
+        {
+            "source": "31921634",
+            "target": "Mexico",
+            "caption": "IS"
+        },
+        {
+            "source": "29217194",
+            "target": "China",
+            "caption": "IS"
+        },
+        {
+            "source": "25058905",
+            "target": "USA",
+            "caption": "IS"
+        },
+        {
+            "source": "34991659",
+            "target": "China",
+            "caption": "IS"
+        },
+        {
+            "source": "32021307",
+            "target": "People's Republic of China",
+            "caption": "IS"
+        },
+        {
+            "source": "34959269",
+            "target": "USA",
+            "caption": "IS"
+        },
+        {
+            "source": "29593419",
+            "target": "People's Republic of China",
+            "caption": "IS"
+        },
+        {
+            "source": "32246957",
+            "target": "Russia",
+            "caption": "IS"
+        },
+        {
+            "source": "32246957",
+            "target": "USA",
+            "caption": "IS"
+        },
+        {
+            "source": "30841468",
+            "target": "China",
+            "caption": "IS"
+        }
+    ]
 }

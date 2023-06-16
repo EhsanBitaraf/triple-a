@@ -127,9 +127,9 @@ def affiliation_mining(article: Article):
 
 
 def get_structured_affiliation(article: Article):
-    pass
+    loc = []
     if article.Authors is not None:
-        loc = [] 
+         
         for a in article.Authors:
             if a.Affiliations is not None:
                 for aff in a.Affiliations:
