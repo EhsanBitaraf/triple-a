@@ -17,7 +17,8 @@ def graph_extract_article_country(article: Article) -> dict:
     
     # affiliation_list = Emmanuel(affiliation_list)
     affiliation_list = [i for n, i in enumerate(affiliation_list) if i not in affiliation_list[n + 1 :]]
-    print(affiliation_list)
+    
+    
     for af in affiliation_list:
         if 'country' in af:
             node_country = Node()

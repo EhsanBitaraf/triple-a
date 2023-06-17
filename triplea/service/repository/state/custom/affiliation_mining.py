@@ -135,7 +135,7 @@ def get_structured_affiliation(article: Article):
                 for aff in a.Affiliations:
                     aff_part = aff.Text.split(",")
                     aff_part_number = len(aff_part)
-
+                    country_exist = False
                     n=0
                     for p in aff_part:
                         if _is_university(p):
@@ -155,10 +155,14 @@ def get_structured_affiliation(article: Article):
                             n = n + 1
                         elif _is_country(p.replace('.', '').strip()):
                             loc.append({ "country" : p.replace('.', '').strip()})
+                            country_exist = True
                             n = n + 1
                         else:
                             pass
                             # print(p)
+                    if country_exist == False:
+                        loc.append({ "country" : "NaN"})
+
 
     return loc
 

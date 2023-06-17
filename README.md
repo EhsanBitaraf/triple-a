@@ -26,6 +26,40 @@ This tool gives you the power to create a graph of articles and analyze it. This
 <!-- [![GitHub commits](https://img.shields.io/github/commits-since/EhsanBitaraf/triple-a/v1.0.0.svg)](https://github.com/EhsanBitaraf/triple-a/commit/master) -->
 
 
+
+- [Main Features](#-main-features)
+- [How to use ](#how-to-use)
+  * [Setup](#setup)
+  * [Functional Use](#functional-use)
+    + [Training NER for Article Title](#training-ner-for-article-title)
+  * [Command Line (CLI) Use](#command-line-cli-use)
+    + [Get and Save list of article identifier base on search term](#get-and-save-list-of-article-identifier-base-on-search-term)
+    + [Move core pipeline state](#move-core-pipeline-state)
+    + [Run custom pipeline](#run-custom-pipeline)
+      - [NER Article Title](#ner-article-title)
+      - [Country-based Co-authorship](#country-based-co-authorship)
+    + [Import Single Reference File](#import-single-reference-file)
+      - [Extract Triple from Abstract](#extract-triple-from-abstract)
+    + [Export graph](#export-graph)
+    + [Visualizing Graph](#visualizing-graph)
+    + [Analysis Graph](#analysis-graph)
+    + [Work with Article Repository](#work-with-article-repository)
+    + [Configuration](#configuration)
+- [Testing](#testing)
+- [Dependencies](#dependencies)
+- [Use case](#use-case)
+  * [Bio Bank](#bio-bank)
+  * [Registry of Breast Cancer](#registry-of-breast-cancer)
+  * [EHR](#ehr)
+- [Graph Visualization ](#graph-visualization)
+- [Graph Analysis](#graph-analysis)
+- [Knowledge Extraction](#knowledge-extraction)
+- [Related Article](#related-article)
+- [Code Quality](#code-quality)
+- [Citation](#citation)
+- [License](#license)
+
+
 # 🎮 Main Features
 
 # How to use 
@@ -273,6 +307,34 @@ Making a graph with the `graphdict` format and saving it in a file `C:\Users\Dr 
 python .\triplea\cli\aaa.py export_graph -g article-reference -g article-cited -f graphdict -o "C:\Users\Dr bitaraf\Documents\graph\article.json"
 ```
 
+Making a graph with the `graphml` format and saving it in a file `C:\graph-repo\country-authorship.jgraphmlson`.This graph contains article, country, and relation between them:
+```shell
+python .\triplea\cli\aaa.py export_graph -g country-authorship -f graphml -o "C:\graph-repo\country-authorship"
+```
+
+
+Types of graph generators that can be used in the `-g` parameter:
+
+|Name|Description|
+|----|-----------|
+|store|It considers all the nodes and edges that are stored in the database|
+|gen-all|It considers all possible nodes and edges|
+|article-topic|It considers article and topic as nodes and edges between them|
+|article-author-affiliation|It considers article, author and affiliation as nodes and edges between them|
+|article-keyword|It considers article and keyword as nodes and edges between them|
+|article-reference|It considers article and reference as nodes and edges between them|
+|article-cited|It considers article and cited as nodes and edges between them|
+|country-authorship||
+
+Types of graph file format that can be used in the `-f` parameter:
+|Name|Description|
+|----|-----------|
+|graphdict|This format is a customized format for citation graphs in the form of a Python dictionary.|
+|graphjson||
+|gson||
+|gpickle|Write graph in Python pickle format. Pickles are a serialized byte stream of a Python object|
+|graphml|The GraphML file format uses .graphml extension and is XML structured. It supports attributes for nodes and edges, hierarchical graphs and benefits from a flexible architecture.|
+|gexf|GEXF (Graph Exchange XML Format) is an XML-based file format for storing a single undirected or directed graph.|
 
 ### Visualizing Graph
 Several visualizator are used to display graphs in this program. These include:

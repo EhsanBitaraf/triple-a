@@ -3,6 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## v0.0.2 - 2023-03-25
 ### Improvements
+- Add Country Based Co Authorship in Jupyter Lab
 - Add CLI pipeline 2023-06-15
 - Manage Triple in MongoDB but not in TinyDB
 - Add `get_article_pmid_list_by_cstate()` :test_tube:Not Complete
