@@ -246,6 +246,16 @@ output:
 ### Run custom pipeline
 Apart from the core pipelines that should be used to prepare articles, customized pipelines can also be used. Custom pipelines may be implemented to extract knowledge from texts and NLP processing. These pipelines themselves can form a new graph other than the citation graph or in combination with it.
 
+
+List of Custom Pipeline
+
+|Action|Tag Name|Description|
+|------|--------|-----------|
+|Triple extraction from article abstract|FlagExtractKG||
+|Topic extraction from article abstract|FlagExtractTopic||
+|Convert Affiliation text to structural data|FlagAffiliationMining| |
+
+
 #### NER Article Title
 You can try the NER method to extract the major topic of the article's title by using the following command. This command is independent and is used for testing and is not stored in the Arepo.
 
@@ -264,6 +274,29 @@ There are several software tools available that can help you produce country-bas
 
 [Sci2 Tool](https://sci2.cns.iu.edu/user/index.php): The Science of Science (Sci2) Tool is a Java-based software package (in [GitHub](https://github.com/CIShell)) that supports the analysis and visualization of scientific networks. It offers a variety of functionalities for constructing and analyzing co-authorship networks, including country-based analysis. It allows users to perform data preprocessing, network analysis, and visualization within a single integrated environment.
 
+
+
+To convert affiliation into a hierarchical structure of country, city and centers, you can use the following command:
+
+```shell
+python .\triplea\cli\aaa.py pipeline -n FlagAffiliationMining
+```
+
+
+#### Extract Triple from Abstract
+
+```shell
+python .\triplea\cli\aaa.py pipeline --name FlagExtractKG
+```
+
+
+
+#### Extract Topic from Abstract
+
+```shell
+python .\triplea\cli\aaa.py pipeline --name FlagExtractTopic
+```
+
 ### Import Single Reference File
 Import file type is `.bib` , `.enw` , `.ris`
 
@@ -276,11 +309,7 @@ output:
 ![](docs/assets/img/import-output.png)
 
 
-#### Extract Triple from Abstract
 
-```shell
-python .\triplea\cli\aaa.py pipeline --name FlagExtractKG
-```
 
 
 

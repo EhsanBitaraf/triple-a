@@ -66,26 +66,27 @@ def check_map_topic():
 
 
 if __name__ == "__main__":
-    a = persist.get_article_by_pmid('33952250')
+    a = persist.get_article_by_pmid('37115160')
     updated_article = Article(**a.copy())
-    graph_extract_article_country(updated_article)
-    # updated_article = state_manager.affiliation_mining(updated_article)
+    # graph_extract_article_country(updated_article)
+    updated_article = state_manager.extract_topic_abstract(updated_article)
 
-    l_pmid = persist.get_article_pmid_list_by_cstate( 0, "FlagAffiliationMining" )
+    l_pmid = persist.get_article_pmid_list_by_cstate( 0, "FlagExtractTopic" )
     total_article_in_current_state = len(l_pmid)
     number_of_article_move_forward = 0
-    logger.DEBUG(str(len(l_pmid)) + " Article(s) is in FlagAffiliationMining " + str(0))
+    logger.DEBUG(str(len(l_pmid)) + " Article(s) is in FlagExtractTopic " + str(0))
 
     bar = click.progressbar(length=len(l_pmid), show_pos=True, show_percent=True)
 
     refresh_point = 0
+    elapsed = 0
     for id in l_pmid:
+        start_time = time.time()
         try:
             number_of_article_move_forward = number_of_article_move_forward + 1
             current_state = None
 
             if refresh_point == 50:
-                
                 refresh_point = 0
                 persist.refresh()
                 print()
@@ -94,7 +95,7 @@ if __name__ == "__main__":
                     forecolore="yellow",
                 )
                 min = (
-                    total_article_in_current_state - number_of_article_move_forward
+                    (total_article_in_current_state - number_of_article_move_forward) * elapsed
                 ) / 60
                 logger.INFO(
                     f"It takes at least {str(int(min))} minutes or {str(int(min/60))} hours",
@@ -111,32 +112,29 @@ if __name__ == "__main__":
                 print(logger.ERROR(f"Error in parsing article. PMID = {id}"))
                 raise Exception("Article Not Parsed.")
             try:
-                current_state = updated_article.FlagExtractKG
+                current_state = updated_article.FlagExtractTopic #----------------------------------------------------
             except Exception:
                 current_state = 0
 
-            # logger.DEBUG('Article ' + updated_article.PMID + ' with state ' + str(current_state) + ' forward to ' + str(current_state + 1))
             bar.label = (
                 "Article "
                 + updated_article.PMID
-                + " affiliation mining."
+                + " , topic were extracted."
             )
             bar.update(1)
-            # # for re run
-            # if current_state == 2 : current_state = 1
 
             if current_state is None:
-                updated_article = state_manager.affiliation_mining(updated_article)
+                updated_article = state_manager.extract_topic_abstract(updated_article)
                 persist.update_article_by_pmid(updated_article,
                                                 updated_article.PMID)
 
             elif current_state == -1:  
-                updated_article = state_manager.affiliation_mining(updated_article)
+                updated_article = state_manager.extract_topic_abstract(updated_article)
                 persist.update_article_by_pmid(updated_article,
                                                 updated_article.PMID)
 
             elif current_state == 0:  
-                updated_article = state_manager.affiliation_mining(updated_article)
+                updated_article = state_manager.extract_topic_abstract(updated_article)
                 persist.update_article_by_pmid(updated_article,
                                                updated_article.PMID)
 
@@ -165,4 +163,5 @@ if __name__ == "__main__":
                 print(exc_tb.tb_lineno)
                 logger.ERROR(f"Error {exc_type}")
                 logger.ERROR(f"Error {exc_value}")
+        elapsed = time.time() - start_time
     persist.refresh()

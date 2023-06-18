@@ -1,5 +1,9 @@
 import click
-from triplea.service.repository.pipeline_flag import go_extract_triple
+from triplea.service.repository.pipeline_flag import (
+    go_extract_triple,
+    go_affiliation_mining,
+    go_extract_topic,
+)
 from triplea.cli.main import cli
 
 
@@ -9,6 +13,9 @@ def pipeline(name: str):
     if name == "FlagExtractKG":
         go_extract_triple()
     elif name == "FlagExtractTopic":
-        pass
+        go_extract_topic()
+    elif name == "FlagAffiliationMining":
+        go_affiliation_mining()
+
     else:
         raise NotImplementedError

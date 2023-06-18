@@ -80,7 +80,6 @@ Update articledata SET ReferenceCrawlerDeep = 0 where ReferenceCrawlerDeep = 1
 ```
 * Not work in Studio3d
 
-
 ```
 use articledata;
 db.articledata.updateMany(
@@ -88,4 +87,51 @@ db.articledata.updateMany(
   { $set: { ReferenceCrawlerDeep: 0 } }
 );
 
+```
+
+
+# Get List of Keywords
+
+```
+db.getCollection("articledata").aggregate([
+  { $unwind: "$Keywords" },
+  { $group: { _id: "$Keywords.Text", count: { $sum: 1 } } },
+  { $sort: { count: -1 } }
+])
+```
+
+
+# Get Article List With Specific Keyword
+
+```
+db.getCollection("articledata").find({$or:[{"Keywords.Text": "biobank"},{"Keywords.Text": "bank"}]}, {"Title": 1 , "PMID" : 1})
+```
+
+# Get List of Topics
+
+```
+db.getCollection("articledata").aggregate([
+  { $unwind: "$Topics" },
+  { $group: { _id: "$Topics", count: { $sum: 1 } } },
+  { $sort: { count: -1 } }
+])
+```
+
+# Get Article List With Specific Topic
+
+
+```
+db.getCollection("articledata").find({$or:[{"Topics": "biobank"},{"Topics": "Bank"}]}, {"Title": 1 , "PMID" : 1})
+```
+
+or like type:
+
+```
+db.getCollection("articledata").find(
+{$or:[
+    {"Topics": /biobank/ },
+    {"Topics": /Biobank/},
+    {"Topics": /Bio-bank/}
+    ]
+    }, {"Title": 1 , "PMID" : 1})
 ```

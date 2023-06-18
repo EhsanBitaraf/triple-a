@@ -54,10 +54,10 @@ class DB_MongoDB(DataBase):
             myquery = { 
                         "$or" : [
                             { 
-                                "FlagExtractKG" : None
+                                tag_field : None
                             }, 
                             { 
-                                "FlagExtractKG" : 0
+                                tag_field : 0
                             }
                         ]
                     }

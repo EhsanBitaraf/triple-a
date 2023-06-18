@@ -83,89 +83,71 @@ def _is_country(txt:str):
         return False  
 
 def affiliation_mining(article: Article):
-    article.FlagAffiliationMining = 0 # Critical
+    article.FlagAffiliationMining = 1 
     if article.Authors is not None:
         for a in article.Authors:
             if a.Affiliations is not None:
                 for aff in a.Affiliations:
-                    # print()
-                    # print(aff.Text)
-                    aff_part = aff.Text.split(",")
-                    aff_part_number = len(aff_part)
-                    loc = []
-                    n=0
-                    for p in aff_part:
-                        
-                        if _is_university(p):
-                            loc.append({ "university" : p.strip()})
-                            n = n + 1
-                        elif _is_center(p):
-                            loc.append({ "center" : p.strip()})
-                            n = n + 1
-                        elif _is_department(p):
-                            loc.append({ "department" : p.strip()})
-                            n = n + 1
-                        elif _is_institute(p):
-                            loc.append({ "institute" : p.strip()})
-                            n = n + 1
-                        elif _is_hospital(p):
-                            loc.append({ "hospital" : p.strip()})
-                            n = n + 1
-                        elif _is_country(p.replace('.', '').strip()):
-                            loc.append({ "country" : p.replace('.', '').strip()})
-                            n = n + 1
-                        else:
-                            pass
-                            # print(p)
-                    if aff_part_number - n > 3:
-                        print()
-                        print(loc)
-                        print(aff.Text)
-                        print(aff_part_number - n)
+                    aff.Structural = get_affiliation_structured(aff.Text)
 
     return article
+
+
+def get_affiliation_structured(affiliation_text:str)-> dict:
+    if affiliation_text is None or affiliation_text == "":
+        return 
+    loc = []
+    aff_part = affiliation_text.split(",")
+    aff_part_number = len(aff_part)
+    country_exist = False
+    n=0
+    for p in aff_part:
+        if _is_university(p):
+            loc.append({ "university" : p.strip()})
+            n = n + 1
+        elif _is_center(p):
+            loc.append({ "center" : p.strip()})
+            n = n + 1
+        elif _is_department(p):
+            loc.append({ "department" : p.strip()})
+            n = n + 1
+        elif _is_institute(p):
+            loc.append({ "institute" : p.strip()})
+            n = n + 1
+        elif _is_hospital(p):
+            loc.append({ "hospital" : p.strip()})
+            n = n + 1
+        elif _is_country(p.replace('.', '').strip()):
+            loc.append({ "country" : p.replace('.', '').strip()})
+            country_exist = True
+            n = n + 1
+        else:
+            pass
+            # print(p)
+    if aff_part_number - n > 3:
+        pass
+        # print()
+        # print(loc)
+        # print(affiliation_text)
+        # print(aff_part_number - n)
+    if country_exist == False:
+        loc.append({ "country" : "NaN"})
+    
+    return loc
+
 
 
 def get_structured_affiliation(article: Article):
     loc = []
     if article.Authors is not None:
-         
         for a in article.Authors:
             if a.Affiliations is not None:
                 for aff in a.Affiliations:
-                    aff_part = aff.Text.split(",")
-                    aff_part_number = len(aff_part)
-                    country_exist = False
-                    n=0
-                    for p in aff_part:
-                        if _is_university(p):
-                            loc.append({ "university" : p.strip()})
-                            n = n + 1
-                        elif _is_center(p):
-                            loc.append({ "center" : p.strip()})
-                            n = n + 1
-                        elif _is_department(p):
-                            loc.append({ "department" : p.strip()})
-                            n = n + 1
-                        elif _is_institute(p):
-                            loc.append({ "institute" : p.strip()})
-                            n = n + 1
-                        elif _is_hospital(p):
-                            loc.append({ "hospital" : p.strip()})
-                            n = n + 1
-                        elif _is_country(p.replace('.', '').strip()):
-                            loc.append({ "country" : p.replace('.', '').strip()})
-                            country_exist = True
-                            n = n + 1
-                        else:
-                            pass
-                            # print(p)
-                    if country_exist == False:
-                        loc.append({ "country" : "NaN"})
-
-
+                    loc = loc.extend(get_affiliation_structured(aff.Text))
     return loc
 
+
+# This Method fo R&D
 def affiliation_mining1(article: Article):
     article.FlagAffiliationMining = 0 # Critical
     if article.Authors is not None:

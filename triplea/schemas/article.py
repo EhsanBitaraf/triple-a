@@ -1,6 +1,6 @@
 from pydantic import BaseModel, Field
 from typing import Optional
-
+from typing import Union
 
 class NamedEntity(BaseModel):
     Label: Optional[str] = Field(description="")
@@ -25,6 +25,8 @@ class Affiliation(BaseModel):
     Part5: Optional[str] = Field(description="")
     Part6: Optional[str] = Field(description="")
     Has_Extra: Optional[bool] = Field(description="")
+    Structural: Optional[list[dict]] = Field(description="")
+
 
 
 class Author(BaseModel):
@@ -42,17 +44,26 @@ class Author(BaseModel):
 
 class Article(BaseModel):
     PMID: Optional[str] = Field(
-        description="the PubMed (NLM database that incorporates MEDLINE) unique identifier, is a 1 to 8-digit accession number with no leading zeros."
+        description="""the PubMed (NLM database that incorporates MEDLINE)
+          unique identifier, is a 1 to 8-digit accession number 
+          with no leading zeros."""
     )
     DOI: Optional[str] = Field(description="")
     PMC: Optional[str] = Field(
-        description="This is a unique reference number or identifier that is assigned to every article that is accepted into PMC."
+        description="""This is a unique reference number or identifier 
+        that is assigned to every article that is accepted into PMC."""
     )
     Title: Optional[str] = Field(
-        description="Article Title contains the entire title of the journal article. Article Title is always in English; those titles originally published in a non-English language and translated for Article Title are enclosed in square brackets."
+        description="""Article Title contains the entire title of 
+        the journal article. Article Title is always in English;
+          those titles originally published in a non-English language
+            and translated for Article Title are enclosed 
+            in square brackets."""
     )
     Journal: Optional[str] = Field(
-        description="The full journal title (taken from NLM cataloging data following NLM rules for how to compile a serial name) is exported in this element."
+        description="""The full journal title 
+        (taken from NLM cataloging data following NLM rules 
+        for how to compile a serial name) is exported in this element."""
     )
     Authors: Optional[list[Author]] = Field(description="")
     Abstract: Optional[str] = Field(description="")
@@ -60,6 +71,7 @@ class Article(BaseModel):
     State: Optional[int] = Field(description="")
     QueryTranslation: Optional[str] = Field(description="")
     Keywords: Optional[list[Keyword]] = Field(description="")
+    Topics: Optional[list[str]] = Field(description="")
     References: Optional[list[str]] = Field(description="")
     CitedBy: Optional[list[str]] = Field(description="")
     InsertType: Optional[list[str]] = Field(description="")
@@ -68,3 +80,5 @@ class Article(BaseModel):
     NamedEntities: Optional[list[NamedEntity]] = Field(description="")
     FlagExtractKG : Optional[int] = Field(description="")
     FlagAffiliationMining : Optional[int] = Field(description="")
+    FlagExtractTopic: Optional[int] = Field(description="")
+

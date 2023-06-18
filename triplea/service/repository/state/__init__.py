@@ -11,7 +11,9 @@ from triplea.service.repository.state.custom.extract_kg_abstract import (
 from triplea.service.repository.state.custom.affiliation_mining import (
     affiliation_mining
 )
-
+from triplea.service.repository.state.custom.extract_topic import (
+    extract_topic_abstract
+)
 
 
 __all__ = [
@@ -22,4 +24,5 @@ __all__ = [
     "get_article_list_from_pubmed_all_store_to_arepo",
     "extract_triple_abstract_save",
     "affiliation_mining",
+    "extract_topic_abstract",
 ]
