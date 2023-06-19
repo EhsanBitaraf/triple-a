@@ -1,0 +1,19 @@
+name: Flake8
+
+on:
+  push:
+    branches: [main]
+
+
+  
+
+jobs:
+  flake8:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Flake8
+        uses: enricobacis/flake8-action@v1.4.0
+        with:
+          path: '.'
+          fail_on_error: true
