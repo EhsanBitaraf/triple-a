@@ -699,7 +699,9 @@ If you use `Triple A` for your scientific work, consider citing us! We're publis
   doi={10.1109/ICWR57742.2023.10139229}}
 ```
 
-[![DOI:10.1109/ICWR57742.2023.10139229](http://img.shields.io/badge/DOI-10.1109/ICWR57742.2023.10139229.svg)](https://doi.org/10.1109/ICWR57742.2023.10139229)
+[![DOI:10.1109/ICWR57742.2023.10139229](https://zenodo.org/badge/doi/10.1109/ICWR57742.2023.10139229.svg)](https://doi.org/10.1109/ICWR57742.2023.10139229)
+
+
 
 ---
 
