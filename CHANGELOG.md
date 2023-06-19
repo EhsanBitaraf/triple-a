@@ -3,6 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## v0.0.2 - 2023-03-25
 ### Improvements
+- Add selection-sampling
 - Complete `go_affiliation_mining()` & `go_extract_topic()`
 - Add Country Based Co Authorship in Jupyter Lab
 - Add CLI pipeline 2023-06-15

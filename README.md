@@ -27,19 +27,20 @@ This tool gives you the power to create a graph of articles and analyze it. This
 
 
 
-- [Main Features](#-main-features)
-- [How to use ](#how-to-use)
+- [🎮 Main Features](#---main-features)
+- [How to use](#how-to-use)
   * [Setup](#setup)
   * [Functional Use](#functional-use)
     + [Training NER for Article Title](#training-ner-for-article-title)
-  * [Command Line (CLI) Use](#command-line-cli-use)
+  * [Command Line (CLI) Use](#command-line--cli--use)
     + [Get and Save list of article identifier base on search term](#get-and-save-list-of-article-identifier-base-on-search-term)
     + [Move core pipeline state](#move-core-pipeline-state)
     + [Run custom pipeline](#run-custom-pipeline)
       - [NER Article Title](#ner-article-title)
       - [Country-based Co-authorship](#country-based-co-authorship)
-    + [Import Single Reference File](#import-single-reference-file)
       - [Extract Triple from Abstract](#extract-triple-from-abstract)
+      - [Extract Topic from Abstract](#extract-topic-from-abstract)
+    + [Import Single Reference File](#import-single-reference-file)
     + [Export graph](#export-graph)
     + [Visualizing Graph](#visualizing-graph)
     + [Analysis Graph](#analysis-graph)
@@ -51,13 +52,16 @@ This tool gives you the power to create a graph of articles and analyze it. This
   * [Bio Bank](#bio-bank)
   * [Registry of Breast Cancer](#registry-of-breast-cancer)
   * [EHR](#ehr)
-- [Graph Visualization ](#graph-visualization)
+- [Graph Visualization](#graph-visualization)
 - [Graph Analysis](#graph-analysis)
 - [Knowledge Extraction](#knowledge-extraction)
 - [Related Article](#related-article)
 - [Code Quality](#code-quality)
 - [Citation](#citation)
 - [License](#license)
+
+
+
 
 
 # 🎮 Main Features
@@ -296,6 +300,10 @@ python .\triplea\cli\aaa.py pipeline --name FlagExtractKG
 ```shell
 python .\triplea\cli\aaa.py pipeline --name FlagExtractTopic
 ```
+
+An example of working with the functions of this part using `Jupyter` is given in [here](./jupyter_lab/selection-sampling.ipynb). which is finally drawn using VOSviewer program as below:
+
+![](./docs/assets/img/topic-graph-biobank.png)
 
 ### Import Single Reference File
 Import file type is `.bib` , `.enw` , `.ris`
@@ -691,7 +699,7 @@ If you use `Triple A` for your scientific work, consider citing us! We're publis
   doi={10.1109/ICWR57742.2023.10139229}}
 ```
 
-[![DOI:10.1101/2021.01.08.425840](http://img.shields.io/badge/DOI-10.1101/2021.01.08.425840-B31B1B.svg)](https://doi.org/10.1101/2021.01.08.425840)
+[![DOI:10.1109/ICWR57742.2023.10139229](http://img.shields.io/badge/DOI-10.1109/ICWR57742.2023.10139229.svg)](https://doi.org/10.1109/ICWR57742.2023.10139229)
 
 ---
 
