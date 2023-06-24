@@ -98,19 +98,19 @@ def move_state_forward(
 
             if refresh_point == 500:
                 refresh_point = 0
-                persist.refresh()
-                print()
-                logger.INFO(
-                    f"There are {str(total_article_in_current_state - number_of_article_move_forward)} article(s) left ",
-                    forecolore="yellow",
-                )
-                min = (
-                    total_article_in_current_state - number_of_article_move_forward
-                ) / 60
-                logger.INFO(
-                    f"It takes at least {str(int(min))} minutes or {str(int(min/60))} hours",
-                    forecolore="yellow",
-                )
+                # persist.refresh()
+                # print()
+                # logger.INFO(
+                #     f"There are {str(total_article_in_current_state - number_of_article_move_forward)} article(s) left ",
+                #     forecolore="yellow",
+                # )
+                # min = (
+                #     total_article_in_current_state - number_of_article_move_forward
+                # ) / 60
+                # logger.INFO(
+                #     f"It takes at least {str(int(min))} minutes or {str(int(min/60))} hours",
+                #     forecolore="yellow",
+                # )
             else:
                 refresh_point = refresh_point + 1
 
@@ -202,14 +202,15 @@ def move_state_forward(
                 persist.update_article_by_pmid(updated_article, updated_article.PMID)
                 persist.refresh()
                 exc_type, exc_value, exc_tb = sys.exc_info()
+                print()
                 logger.ERROR(f"Error {exc_type}")
                 logger.ERROR(f"Error {exc_value}")
 
             elif current_state is None:
                 # Article Not Parsed.
-                print()
                 persist.refresh()
                 exc_type, exc_value, exc_tb = sys.exc_info()
+                print()
                 logger.ERROR(f"Error {exc_type}")
                 logger.ERROR(f"Error {exc_value}")
 

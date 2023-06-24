@@ -10,7 +10,8 @@ tps_limit = SETTINGS.AAA_TPS_LIMIT
 
 def expand_details(article: Article) -> Article:
     article.State = 1
-    sleep_time = 1 // tps_limit
+    sleep_time = 1 / tps_limit
+    sleep_time = 0.45 # Critical
     time.sleep(sleep_time)
     try:
         oa = get_article_details_from_pubmed(article.PMID)
@@ -18,6 +19,7 @@ def expand_details(article: Article) -> Article:
     except Exception:
         article.State = 0
         exc_type, exc_value, exc_tb = sys.exc_info()
+        print()
         logger.ERROR(f"Error {exc_type} Value : {exc_value}")
         logger.ERROR(f"Error {exc_tb}")
 

@@ -454,12 +454,12 @@ Article Repository (Arepo) is a database that stores the information of articles
 
 
 To get general information about the articles, nodes and egdes in the database, use the following command.
-```
+```shell
 python .\triplea\cli\aaa.py arepo -c info
 ```
 
 output:
-```
+```shell
 Number of article in article repository is 122
 0 Node(s) in article repository.
 0 Edge(s) in article repository.
@@ -577,6 +577,59 @@ For packaging and dependency management:
 # Use case
 With this tool, you can create datasets in different formats, here are examples of these datasets.
 
+
+## Breast Cancer
+
+Pubmed Query:
+```
+"breast neoplasms"[MeSH Terms] OR ("breast"[All Fields] AND "neoplasms"[All Fields]) OR "breast neoplasms"[All Fields] OR ("breast"[All Fields] AND "cancer"[All Fields]) OR "breast cancer"[All Fields]
+```
+
+`495,012` results
+
+Configuration:
+```
+AAA_MONGODB_DB_NAME = bcarticledata
+AAA_REFF_CRAWLER_DEEP = 0
+AAA_CITED_CRAWLER_DEEP = 0
+```
+
+`EDirect` used.
+
+Search with this command:
+
+```
+python .\triplea\cli\aaa.py search --searchterm r'"breast neoplasms"[MeSH Terms] OR ("breast"[All Fields] AND "neoplasms"[All Fields]) OR "breast neoplasms"[All Fields] OR ("breast"[All Fields] AND "cancer"[All Fields]) OR "breast cancer"[All Fields]'
+```
+
+if --searchterm argument is too complex use this:
+```
+python .\triplea\cli\aaa.py search
+```
+
+by Filter :
+```
+{
+    "mindate" : "2022/01/01",
+    "maxdate" : "2022/12/30"
+}
+```
+
+Get info of all downloaded article:
+```shell
+python .\triplea\cli\aaa.py arepo -c info
+```
+
+output:
+```shell
+Number of article in article repository is 30914
+0 Node(s) in article repository.
+0 Edge(s) in article repository.
+30914 article(s) in state 0.
+```
+
+
+
 ## Bio Bank
 
 Pubmed Query:
@@ -588,7 +641,7 @@ Pubmed Query:
 
 Search with this command:
 
-```
+```shell
 python .\triplea\cli\aaa.py search --searchterm "\"Biological Specimen Banks\"[Mesh] OR BioBanking OR biobank OR dataBank OR \"Bio Banking\" OR \"bio bank\" "
 ```
 
@@ -602,6 +655,7 @@ This query had more than 10,000 results, and as a result, the following text was
 
 To retrieve more than 10,000 UIDs from databases other than PubMed, submit multiple esearch requests while incrementing the value of retstart (see Application 3). For PubMed, ESearch can only retrieve the first 10,000 records matching the query. To obtain more than 10,000 PubMed records, consider using `<EDirect>` that contains additional logic to batch PubMed search results automatically so that an arbitrary number can be retrieved.
 
+This is hard code in `get_article_list_from_pubmed` methods in `PARAMS`.
 
 This Query Added lately:
 ```
@@ -610,7 +664,7 @@ This Query Added lately:
 
 `9,012` results
 
-```
+```shell
 python .\triplea\cli\aaa.py search --searchterm " \"bio-banking\"[Title/Abstract] OR \"bio-bank\"[Title/Abstract] OR \"data-bank\"[Title/Abstract] "
 ```
 

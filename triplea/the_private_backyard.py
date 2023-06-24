@@ -66,102 +66,110 @@ def check_map_topic():
 
 
 if __name__ == "__main__":
-    a = persist.get_article_by_pmid('37115160')
-    updated_article = Article(**a.copy())
-    # graph_extract_article_country(updated_article)
-    updated_article = state_manager.extract_topic_abstract(updated_article)
+    tps_limit = 3
+    sleep_time = 1 // tps_limit
+    sleep_time = 1 / 1
 
-    l_pmid = persist.get_article_pmid_list_by_cstate( 0, "FlagExtractTopic" )
-    total_article_in_current_state = len(l_pmid)
-    number_of_article_move_forward = 0
-    logger.DEBUG(str(len(l_pmid)) + " Article(s) is in FlagExtractTopic " + str(0))
+    print(f"sleep_time: {sleep_time}")
+    t1 = time.time()
+    time.sleep(sleep_time) 
+    print(time.time() - t1)   
+    # a = persist.get_article_by_pmid('37115160')
+    # updated_article = Article(**a.copy())
+    # # graph_extract_article_country(updated_article)
+    # updated_article = state_manager.extract_topic_abstract(updated_article)
 
-    bar = click.progressbar(length=len(l_pmid), show_pos=True, show_percent=True)
+    # l_pmid = persist.get_article_pmid_list_by_cstate( 0, "FlagExtractTopic" )
+    # total_article_in_current_state = len(l_pmid)
+    # number_of_article_move_forward = 0
+    # logger.DEBUG(str(len(l_pmid)) + " Article(s) is in FlagExtractTopic " + str(0))
 
-    refresh_point = 0
-    elapsed = 0
-    for id in l_pmid:
-        start_time = time.time()
-        try:
-            number_of_article_move_forward = number_of_article_move_forward + 1
-            current_state = None
+    # bar = click.progressbar(length=len(l_pmid), show_pos=True, show_percent=True)
 
-            if refresh_point == 50:
-                refresh_point = 0
-                persist.refresh()
-                print()
-                logger.INFO(
-                    f"There are {str(total_article_in_current_state - number_of_article_move_forward)} article(s) left ",
-                    forecolore="yellow",
-                )
-                min = (
-                    (total_article_in_current_state - number_of_article_move_forward) * elapsed
-                ) / 60
-                logger.INFO(
-                    f"It takes at least {str(int(min))} minutes or {str(int(min/60))} hours",
-                    forecolore="yellow",
-                )
-            else:
-                refresh_point = refresh_point + 1
+    # refresh_point = 0
+    # elapsed = 0
+    # for id in l_pmid:
+    #     start_time = time.time()
+    #     try:
+    #         number_of_article_move_forward = number_of_article_move_forward + 1
+    #         current_state = None
 
-            a = persist.get_article_by_pmid(id)
-            try:
-                updated_article = Article(**a.copy())
-            except Exception:
-                print()
-                print(logger.ERROR(f"Error in parsing article. PMID = {id}"))
-                raise Exception("Article Not Parsed.")
-            try:
-                current_state = updated_article.FlagExtractTopic #----------------------------------------------------
-            except Exception:
-                current_state = 0
+    #         if refresh_point == 50:
+    #             refresh_point = 0
+    #             persist.refresh()
+    #             print()
+    #             logger.INFO(
+    #                 f"There are {str(total_article_in_current_state - number_of_article_move_forward)} article(s) left ",
+    #                 forecolore="yellow",
+    #             )
+    #             min = (
+    #                 (total_article_in_current_state - number_of_article_move_forward) * elapsed
+    #             ) / 60
+    #             logger.INFO(
+    #                 f"It takes at least {str(int(min))} minutes or {str(int(min/60))} hours",
+    #                 forecolore="yellow",
+    #             )
+    #         else:
+    #             refresh_point = refresh_point + 1
 
-            bar.label = (
-                "Article "
-                + updated_article.PMID
-                + " , topic were extracted."
-            )
-            bar.update(1)
+    #         a = persist.get_article_by_pmid(id)
+    #         try:
+    #             updated_article = Article(**a.copy())
+    #         except Exception:
+    #             print()
+    #             print(logger.ERROR(f"Error in parsing article. PMID = {id}"))
+    #             raise Exception("Article Not Parsed.")
+    #         try:
+    #             current_state = updated_article.FlagExtractTopic #----------------------------------------------------
+    #         except Exception:
+    #             current_state = 0
 
-            if current_state is None:
-                updated_article = state_manager.extract_topic_abstract(updated_article)
-                persist.update_article_by_pmid(updated_article,
-                                                updated_article.PMID)
+    #         bar.label = (
+    #             "Article "
+    #             + updated_article.PMID
+    #             + " , topic were extracted."
+    #         )
+    #         bar.update(1)
 
-            elif current_state == -1:  
-                updated_article = state_manager.extract_topic_abstract(updated_article)
-                persist.update_article_by_pmid(updated_article,
-                                                updated_article.PMID)
+    #         if current_state is None:
+    #             updated_article = state_manager.extract_topic_abstract(updated_article)
+    #             persist.update_article_by_pmid(updated_article,
+    #                                             updated_article.PMID)
 
-            elif current_state == 0:  
-                updated_article = state_manager.extract_topic_abstract(updated_article)
-                persist.update_article_by_pmid(updated_article,
-                                               updated_article.PMID)
+    #         elif current_state == -1:  
+    #             updated_article = state_manager.extract_topic_abstract(updated_article)
+    #             persist.update_article_by_pmid(updated_article,
+    #                                             updated_article.PMID)
 
-            elif current_state == 1:  
-                pass
+    #         elif current_state == 0:  
+    #             updated_article = state_manager.extract_topic_abstract(updated_article)
+    #             persist.update_article_by_pmid(updated_article,
+    #                                            updated_article.PMID)
 
-            else:
-                raise NotImplementedError
+    #         elif current_state == 1:  
+    #             pass
 
-        except Exception:
-            if current_state == 0 or current_state is None:
-                updated_article = Article(**a.copy())
-                updated_article.State = -1
-                persist.update_article_by_pmid(updated_article,
-                                                updated_article.PMID)
-                persist.refresh()
-                exc_type, exc_value, exc_tb = sys.exc_info()
-                print()
-                logger.ERROR(f"Error {exc_type}")
-                logger.ERROR(f"Error {exc_value}")
+    #         else:
+    #             raise NotImplementedError
 
-            else:
-                persist.refresh()
-                exc_type, exc_value, exc_tb = sys.exc_info()
-                print()
-                print(exc_tb.tb_lineno)
-                logger.ERROR(f"Error {exc_type}")
-                logger.ERROR(f"Error {exc_value}")
-        elapsed = time.time() - start_time
-    persist.refresh()
+    #     except Exception:
+    #         if current_state == 0 or current_state is None:
+    #             updated_article = Article(**a.copy())
+    #             updated_article.State = -1
+    #             persist.update_article_by_pmid(updated_article,
+    #                                             updated_article.PMID)
+    #             persist.refresh()
+    #             exc_type, exc_value, exc_tb = sys.exc_info()
+    #             print()
+    #             logger.ERROR(f"Error {exc_type}")
+    #             logger.ERROR(f"Error {exc_value}")
+
+    #         else:
+    #             persist.refresh()
+    #             exc_type, exc_value, exc_tb = sys.exc_info()
+    #             print()
+    #             print(exc_tb.tb_lineno)
+    #             logger.ERROR(f"Error {exc_type}")
+    #             logger.ERROR(f"Error {exc_value}")
+    #     elapsed = time.time() - start_time
+    # persist.refresh()
