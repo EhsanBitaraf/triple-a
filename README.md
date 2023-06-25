@@ -628,7 +628,20 @@ Number of article in article repository is 30914
 30914 article(s) in state 0.
 ```
 
+Run Core pipeline to next status
+```shell
+python .\triplea\cli\aaa.py next --state 0
+```
 
+then parsing article:
+```shell
+python .\triplea\cli\aaa.py next --state 1
+```
+
+Extract Triple is type of custom pipeline. you can run this:
+```shell
+python .\triplea\cli\aaa.py pipeline --name FlagExtractKG
+```
 
 ## Bio Bank
 

@@ -251,7 +251,8 @@ def parsing_details(article: Article) -> Article:
             article.ReferenceCrawlerDeep = 0
 
         reference_list = []
-        for ref in PubmedData["ReferenceList"]["Reference"]:
+        if type(PubmedData["ReferenceList"]["Reference"]) == dict:
+            ref = PubmedData["ReferenceList"]["Reference"]
             if "ArticleIdList" in ref:
                 if type(ref["ArticleIdList"]["ArticleId"]) == dict:
                     if ref["ArticleIdList"]["ArticleId"][
@@ -267,6 +268,23 @@ def parsing_details(article: Article) -> Article:
                             reference_list.append(ref_id["#text"])
                 else:
                     raise NotImplementedError
+        else:
+            for ref in PubmedData["ReferenceList"]["Reference"]:
+                if "ArticleIdList" in ref:
+                    if type(ref["ArticleIdList"]["ArticleId"]) == dict:
+                        if ref["ArticleIdList"]["ArticleId"][
+                            "@IdType"
+                            ] == "pubmed":
+                            reference_list.append(
+                                ref["ArticleIdList"]["ArticleId"]["#text"]
+                            )
+
+                    elif type(ref["ArticleIdList"]["ArticleId"]) == list:
+                        for ref_id in ref["ArticleIdList"]["ArticleId"]:
+                            if ref_id["@IdType"] == "pubmed":
+                                reference_list.append(ref_id["#text"])
+                    else:
+                        raise NotImplementedError
 
         article.References = reference_list
 

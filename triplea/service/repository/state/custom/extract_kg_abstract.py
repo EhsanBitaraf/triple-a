@@ -6,11 +6,12 @@ import triplea.service.repository.persist as persist
 
 def extract_triple_abstract_save(article: Article):
     article.FlagExtractKG = 1
-    triples_list = extract_triples(article.Abstract)
+    if article.Abstract is not None:
+        triples_list = extract_triples(article.Abstract)
 
-    for t in triples_list:
-        t['PMID'] = article.PMID
-        persist.create_triple(t)
+        for t in triples_list:
+            t['PMID'] = article.PMID
+            persist.create_triple(t)
 
     return article
 

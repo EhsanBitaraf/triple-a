@@ -30,7 +30,7 @@ def next(current_state: int):
             f"Next State {next_state} for get detail information of article ..."
         )
     elif next_state == 2:
-        logger.INFO(f"Next State {next_state} for extract graph ...")
+        logger.INFO(f"Next State {next_state} for parse details info ...")
     elif next_state == 3:
         logger.INFO(f"Next State {next_state} for get Citation ...")
     else:

@@ -1,4 +1,5 @@
 import sys
+import traceback
 from typing import Optional
 import click
 from triplea.config.settings import SETTINGS
@@ -187,13 +188,6 @@ def move_state_forward(
                 # else:
                 #     logger.ERROR('Duplication has Occurred')
 
-            elif persist.current_state == 4:  # Net state:Create Knowledge
-                pass
-                # updated_article = _create_knowledge(updated_article)
-                # # l = update_article_by_pmid(updated_article , updated_article.PMID)
-
-            else:
-                raise NotImplementedError
 
         except Exception:
             if current_state == 1:
@@ -224,16 +218,18 @@ def move_state_forward(
                 logger.ERROR(f"Error {exc_type}")
                 logger.ERROR(f"Error {exc_value}")
 
+   
             else:
                 persist.refresh()
                 exc_type, exc_value, exc_tb = sys.exc_info()
-
                 print()
                 print(exc_tb.tb_lineno)
-                raise
-
+                print()
+                traceback.print_tb(exc_tb)
                 logger.ERROR(f"Error {exc_type}")
                 logger.ERROR(f"Error {exc_value}")
+                logger.ERROR(f"Error {exc_tb}")
+
     persist.refresh()
 
 

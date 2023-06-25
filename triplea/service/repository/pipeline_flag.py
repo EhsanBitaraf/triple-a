@@ -1,5 +1,6 @@
 import sys
 import time
+import traceback
 import click
 from triplea.schemas.article import Article
 import triplea.service.repository.persist as persist
@@ -8,6 +9,8 @@ from triplea.service.click_logger import logger
 
 
 def go_extract_triple():
+    online_bar = True
+    max_refresh_point = 500
     l_pmid = persist.get_article_pmid_list_by_cstate( 0, "FlagExtractKG" )
     total_article_in_current_state = len(l_pmid)
     number_of_article_move_forward = 0
@@ -21,21 +24,20 @@ def go_extract_triple():
             number_of_article_move_forward = number_of_article_move_forward + 1
             current_state = None
 
-            if refresh_point == 500:
+            if refresh_point == max_refresh_point:
                 refresh_point = 0
                 persist.refresh()
-                print()
-                logger.INFO(
-                    f"There are {str(total_article_in_current_state - number_of_article_move_forward)} article(s) left ",
-                    forecolore="yellow",
-                )
-                min = (
-                    total_article_in_current_state - number_of_article_move_forward
-                ) / 60
-                logger.INFO(
-                    f"It takes at least {str(int(min))} minutes or {str(int(min/60))} hours",
-                    forecolore="yellow",
-                )
+                if online_bar:
+                    print()
+                    logger.INFO(
+                        f"There are {str(total_article_in_current_state - number_of_article_move_forward)} article(s) left ",
+                        forecolore="yellow",
+                    )
+                if online_bar == False:
+                    bar.label = (
+                        f"There are {str(total_article_in_current_state - number_of_article_move_forward)} article(s) left "
+                    )
+                    bar.update(max_refresh_point)
             else:
                 refresh_point = refresh_point + 1
 
@@ -51,15 +53,13 @@ def go_extract_triple():
             except Exception:
                 current_state = 0
 
-            # logger.DEBUG('Article ' + updated_article.PMID + ' with state ' + str(current_state) + ' forward to ' + str(current_state + 1))
-            bar.label = (
+            if online_bar:
+                bar.label = (
                 "Article "
                 + updated_article.PMID
                 + " Extract Knowledge Triple From Abstract"
-            )
-            bar.update(1)
-            # # for re run
-            # if current_state == 2 : current_state = 1
+                )
+                bar.update(1)
 
             if current_state is None:
                 updated_article = state_manager.extract_triple_abstract_save(updated_article)
@@ -81,11 +81,11 @@ def go_extract_triple():
 
             else:
                 raise NotImplementedError
-
+            
         except Exception:
             if current_state == 0 or current_state is None:
                 updated_article = Article(**a.copy())
-                updated_article.State = -1
+                updated_article.FlagExtractKG = 0
                 persist.update_article_by_pmid(updated_article,
                                                 updated_article.PMID)
                 persist.refresh()
@@ -99,9 +99,11 @@ def go_extract_triple():
                 exc_type, exc_value, exc_tb = sys.exc_info()
                 print()
                 print(exc_tb.tb_lineno)
-                raise
+                print()
+                traceback.print_tb(exc_tb)
                 logger.ERROR(f"Error {exc_type}")
                 logger.ERROR(f"Error {exc_value}")
+                logger.ERROR(f"Error {exc_tb}")
     persist.refresh()    
 
 def go_extract_topic():

@@ -1,0 +1,369 @@
+{ 
+    "_id" : ObjectId("64968839d21285a9f064e126"), 
+    "Abstract" : null, 
+    "Authors" : null, 
+    "CiteCrawlerDeep" : NumberInt(0), 
+    "CitedBy" : null, 
+    "DOI" : null, 
+    "FlagAffiliationMining" : null, 
+    "FlagExtractKG" : null, 
+    "FlagExtractTopic" : null, 
+    "InsertType" : null, 
+    "Journal" : null, 
+    "Keywords" : null, 
+    "NamedEntities" : null, 
+    "OreginalArticle" : {
+        "PubmedArticleSet" : {
+            "PubmedArticle" : {
+                "MedlineCitation" : {
+                    "@IndexingMethod" : "Automated", 
+                    "@Owner" : "NLM", 
+                    "@Status" : "MEDLINE", 
+                    "Article" : {
+                        "@PubModel" : "Print-Electronic", 
+                        "Abstract" : {
+                            "AbstractText" : "Breast cancer (BC) and colorectal cancer (CRC) are among the most common cancers in Iran. We aimed to develop a risk assessment model to predict the development of cardiovascular events in these patients by performing a 5 year prospective cohort study on a newly diagnosed patients with BC or CRC before they receive any treatment. A multi-center prospective cohort study of 2700 newly diagnosed BC and CRC patients has been started in Iran since 2019 and will be continued until 2024. Demographics, socioeconomic status, life style behaviors, psychological characteristics and type of cancer treatments will be collected by standard questionnaires and blood pressure, obesity indices will be measured. Blood sampling, ECG, and echocardiography will be done in all patients at base line, 6 and 12 months, then at annual basis for five years. Incidence of heart failure, acute coronary syndrome, stroke and CVD related death are the primary outcome of this study. In this preliminary analysis, 70 patients with BC and 30 patients with CRC were enrolled in this study from April 2019 to November 2019. Mean age of BC and CRC patients was 48 ± 10.5 and 61 ± 13.2 respectively. 98.6% of patients in BC group and 60% of CRC groups were female. This study will be a platform for other cancers to develop CVD risk assessment charts that can cover other cancers. Patients who lie in the high risk category according to the newly developed risk assessment chart, should receive special management and preventive interventions.", 
+                            "CopyrightInformation" : "Copyright © 2021 Elsevier Inc. All rights reserved."
+                        }, 
+                        "ArticleDate" : {
+                            "@DateType" : "Electronic", 
+                            "Day" : "04", 
+                            "Month" : "08", 
+                            "Year" : "2021"
+                        }, 
+                        "ArticleTitle" : "Rational, Design and Preliminary Results of a Cohort Study on Breast and Colorectal Cancer to Develop a Risk Assessment Model to Predict Future Cardiovascular Events. \"Cardio Vascular Events in Breast and Colorectal Cancers (CIBC) Study\".", 
+                        "AuthorList" : {
+                            "@CompleteYN" : "Y", 
+                            "Author" : [
+                                {
+                                    "@ValidYN" : "Y", 
+                                    "AffiliationInfo" : {
+                                        "Affiliation" : "Interventional Cardiology Research Center, Cardiovascular Research Institute, Isfahan University of Medical Sciences, Isfahan, Iran."
+                                    }, 
+                                    "ForeName" : "Kiyan", 
+                                    "Initials" : "K", 
+                                    "LastName" : "Heshmat-Ghahdarijani"
+                                }, 
+                                {
+                                    "@ValidYN" : "Y", 
+                                    "AffiliationInfo" : {
+                                        "Affiliation" : "Hypertension Research Center, Cardiovascular Research Institute, Isfahan University of Medical Sciences, Isfahan, Iran."
+                                    }, 
+                                    "ForeName" : "Jamshid", 
+                                    "Initials" : "J", 
+                                    "LastName" : "Najafian"
+                                }, 
+                                {
+                                    "@ValidYN" : "Y", 
+                                    "AffiliationInfo" : {
+                                        "Affiliation" : "Isfahan Cardiovascular Research Center, Cardiovascular Research Institute, Isfahan University of Medical Sciences, Isfahan, Iran."
+                                    }, 
+                                    "ForeName" : "Zamaneh", 
+                                    "Initials" : "Z", 
+                                    "LastName" : "Vafaei"
+                                }, 
+                                {
+                                    "@ValidYN" : "Y", 
+                                    "AffiliationInfo" : {
+                                        "Affiliation" : "Heart Failure Research Center, Cardiovascular Research Institute, Isfahan University of Medical Sciences, Isfahan, Iran."
+                                    }, 
+                                    "ForeName" : "Samaneh", 
+                                    "Initials" : "S", 
+                                    "LastName" : "Mostafavi"
+                                }, 
+                                {
+                                    "@ValidYN" : "Y", 
+                                    "AffiliationInfo" : {
+                                        "Affiliation" : "Pediatric Cardiovascular Research Center, Cardiovascular Research Institute, Isfahan University of Medical Sciences, Isfahan, Iran."
+                                    }, 
+                                    "ForeName" : "Noushin", 
+                                    "Initials" : "N", 
+                                    "LastName" : "Mohammadifard"
+                                }, 
+                                {
+                                    "@ValidYN" : "Y", 
+                                    "AffiliationInfo" : {
+                                        "Affiliation" : "Department of Epidemiology and Biostatistics, School of Health, Isfahan University of Medical Sciences, Isfahan, Iran."
+                                    }, 
+                                    "ForeName" : "Marjan", 
+                                    "Initials" : "M", 
+                                    "LastName" : "Mansourian"
+                                }, 
+                                {
+                                    "@ValidYN" : "Y", 
+                                    "AffiliationInfo" : {
+                                        "Affiliation" : "Cardio-Oncology Research Center, Rajaie Cardiovascular Medical and Research Center, Iran University of Medical Science, Tehran, Iran."
+                                    }, 
+                                    "ForeName" : "Farzaneh", 
+                                    "Initials" : "F", 
+                                    "LastName" : "Ashrafi"
+                                }, 
+                                {
+                                    "@ValidYN" : "Y", 
+                                    "AffiliationInfo" : {
+                                        "Affiliation" : "Department of Internal Medicine, School of Medicine Cancer Prevention Research Center Seyyed AlShohada Hospital Isfahan University of Medical Sciences, Isfahan, Iran."
+                                    }, 
+                                    "ForeName" : "Mehran", 
+                                    "Initials" : "M", 
+                                    "LastName" : "Sharifi"
+                                }, 
+                                {
+                                    "@ValidYN" : "Y", 
+                                    "AffiliationInfo" : {
+                                        "Affiliation" : "Cancer Prevention Research Center, Isfahan University of Medical Sciences, Isfahan, Iran."
+                                    }, 
+                                    "ForeName" : "Mohammadreza", 
+                                    "Initials" : "M", 
+                                    "LastName" : "Khosravifarsani"
+                                }, 
+                                {
+                                    "@ValidYN" : "Y", 
+                                    "AffiliationInfo" : {
+                                        "Affiliation" : "Department of Medical Oncology- Hematology, Isfahan University of Medical Sciences, Isfahan, Iran."
+                                    }, 
+                                    "ForeName" : "Ali", 
+                                    "Initials" : "A", 
+                                    "LastName" : "Darakhshandeh"
+                                }, 
+                                {
+                                    "@ValidYN" : "Y", 
+                                    "AffiliationInfo" : {
+                                        "Affiliation" : "Poursina Hakim Research and Therapeutic Institute, Isfahan University of Medical Sciences, Isfahan, Iran."
+                                    }, 
+                                    "ForeName" : "Emami", 
+                                    "Initials" : "E", 
+                                    "LastName" : "Mohammad Hassan"
+                                }, 
+                                {
+                                    "@ValidYN" : "Y", 
+                                    "AffiliationInfo" : {
+                                        "Affiliation" : "Applied Physiology Research Center, Cardiovascular Research Institute, Isfahan University of Medical Sciences, Isfahan, Iran."
+                                    }, 
+                                    "ForeName" : "Javanmard", 
+                                    "Initials" : "J", 
+                                    "LastName" : "Shaghayegh Haghjooy"
+                                }, 
+                                {
+                                    "@ValidYN" : "Y", 
+                                    "AffiliationInfo" : {
+                                        "Affiliation" : "Isfahan Cardiovascular Research Center, Cardiovascular Research Institute, Isfahan University of Medical Sciences, Isfahan, Iran. Electronic address: nsarrafzadegan@gmail.com."
+                                    }, 
+                                    "ForeName" : "Nizal", 
+                                    "Initials" : "N", 
+                                    "LastName" : "Sarrafzadegan"
+                                }
+                            ]
+                        }, 
+                        "ELocationID" : [
+                            {
+                                "#text" : "10.1016/j.cpcardiol.2021.100958", 
+                                "@EIdType" : "doi", 
+                                "@ValidYN" : "Y"
+                            }, 
+                            {
+                                "#text" : "S0146-2806(21)00173-0", 
+                                "@EIdType" : "pii", 
+                                "@ValidYN" : "Y"
+                            }
+                        ], 
+                        "Journal" : {
+                            "ISOAbbreviation" : "Curr Probl Cardiol", 
+                            "ISSN" : {
+                                "#text" : "1535-6280", 
+                                "@IssnType" : "Electronic"
+                            }, 
+                            "JournalIssue" : {
+                                "@CitedMedium" : "Internet", 
+                                "Issue" : "10", 
+                                "PubDate" : {
+                                    "Month" : "Oct", 
+                                    "Year" : "2022"
+                                }, 
+                                "Volume" : "47"
+                            }, 
+                            "Title" : "Current problems in cardiology"
+                        }, 
+                        "Language" : "eng", 
+                        "Pagination" : {
+                            "MedlinePgn" : "100958", 
+                            "StartPage" : "100958"
+                        }, 
+                        "PublicationTypeList" : {
+                            "PublicationType" : [
+                                {
+                                    "#text" : "Journal Article", 
+                                    "@UI" : "D016428"
+                                }, 
+                                {
+                                    "#text" : "Review", 
+                                    "@UI" : "D016454"
+                                }
+                            ]
+                        }
+                    }, 
+                    "CitationSubset" : "IM", 
+                    "DateCompleted" : {
+                        "Day" : "30", 
+                        "Month" : "08", 
+                        "Year" : "2022"
+                    }, 
+                    "DateRevised" : {
+                        "Day" : "30", 
+                        "Month" : "08", 
+                        "Year" : "2022"
+                    }, 
+                    "KeywordList" : {
+                        "@Owner" : "NOTNLM", 
+                        "Keyword" : {
+                            "@MajorTopicYN" : "N"
+                        }
+                    }, 
+                    "MedlineJournalInfo" : {
+                        "Country" : "Netherlands", 
+                        "ISSNLinking" : "0146-2806", 
+                        "MedlineTA" : "Curr Probl Cardiol", 
+                        "NlmUniqueID" : "7701802"
+                    }, 
+                    "MeshHeadingList" : {
+                        "MeshHeading" : [
+                            {
+                                "DescriptorName" : {
+                                    "#text" : "Breast Neoplasms", 
+                                    "@MajorTopicYN" : "Y", 
+                                    "@UI" : "D001943"
+                                }
+                            }, 
+                            {
+                                "DescriptorName" : {
+                                    "#text" : "Cardiovascular Diseases", 
+                                    "@MajorTopicYN" : "Y", 
+                                    "@UI" : "D002318"
+                                }
+                            }, 
+                            {
+                                "DescriptorName" : {
+                                    "#text" : "Cohort Studies", 
+                                    "@MajorTopicYN" : "N", 
+                                    "@UI" : "D015331"
+                                }
+                            }, 
+                            {
+                                "DescriptorName" : {
+                                    "#text" : "Colorectal Neoplasms", 
+                                    "@MajorTopicYN" : "Y", 
+                                    "@UI" : "D015179"
+                                }
+                            }, 
+                            {
+                                "DescriptorName" : {
+                                    "#text" : "Female", 
+                                    "@MajorTopicYN" : "N", 
+                                    "@UI" : "D005260"
+                                }
+                            }, 
+                            {
+                                "DescriptorName" : {
+                                    "#text" : "Humans", 
+                                    "@MajorTopicYN" : "N", 
+                                    "@UI" : "D006801"
+                                }
+                            }, 
+                            {
+                                "DescriptorName" : {
+                                    "#text" : "Male", 
+                                    "@MajorTopicYN" : "N", 
+                                    "@UI" : "D008297"
+                                }
+                            }, 
+                            {
+                                "DescriptorName" : {
+                                    "#text" : "Prospective Studies", 
+                                    "@MajorTopicYN" : "N", 
+                                    "@UI" : "D011446"
+                                }
+                            }, 
+                            {
+                                "DescriptorName" : {
+                                    "#text" : "Risk Assessment", 
+                                    "@MajorTopicYN" : "N", 
+                                    "@UI" : "D018570"
+                                }
+                            }
+                        ]
+                    }, 
+                    "PMID" : {
+                        "#text" : "34358588", 
+                        "@Version" : "1"
+                    }
+                }, 
+                "PubmedData" : {
+                    "ArticleIdList" : {
+                        "ArticleId" : [
+                            {
+                                "#text" : "34358588", 
+                                "@IdType" : "pubmed"
+                            }, 
+                            {
+                                "#text" : "10.1016/j.cpcardiol.2021.100958", 
+                                "@IdType" : "doi"
+                            }, 
+                            {
+                                "#text" : "S0146-2806(21)00173-0", 
+                                "@IdType" : "pii"
+                            }
+                        ]
+                    }, 
+                    "History" : {
+                        "PubMedPubDate" : [
+                            {
+                                "@PubStatus" : "received", 
+                                "Day" : "26", 
+                                "Month" : "7", 
+                                "Year" : "2021"
+                            }, 
+                            {
+                                "@PubStatus" : "accepted", 
+                                "Day" : "30", 
+                                "Month" : "7", 
+                                "Year" : "2021"
+                            }, 
+                            {
+                                "@PubStatus" : "pubmed", 
+                                "Day" : "7", 
+                                "Hour" : "6", 
+                                "Minute" : "0", 
+                                "Month" : "8", 
+                                "Year" : "2021"
+                            }, 
+                            {
+                                "@PubStatus" : "medline", 
+                                "Day" : "31", 
+                                "Hour" : "6", 
+                                "Minute" : "0", 
+                                "Month" : "8", 
+                                "Year" : "2022"
+                            }, 
+                            {
+                                "@PubStatus" : "entrez", 
+                                "Day" : "6", 
+                                "Hour" : "20", 
+                                "Minute" : "12", 
+                                "Month" : "8", 
+                                "Year" : "2021"
+                            }
+                        ]
+                    }, 
+                    "PublicationStatus" : "ppublish"
+                }
+            }
+        }
+    }, 
+    "PMC" : null, 
+    "PMID" : "34358588", 
+    "QueryTranslation" : "(\"breast neoplasms\"[MeSH Terms] OR (\"breast\"[All Fields] AND \"neoplasms\"[All Fields]) OR \"breast neoplasms\"[All Fields] OR (\"breast\"[All Fields] AND \"cancer\"[All Fields]) OR \"breast cancer\"[All Fields]) AND 2022/09/01:2022/10/01[Date - Publication]", 
+    "ReferenceCrawlerDeep" : NumberInt(0), 
+    "References" : null, 
+    "State" : NumberInt(-1), 
+    "Title" : null, 
+    "Topics" : null
+}

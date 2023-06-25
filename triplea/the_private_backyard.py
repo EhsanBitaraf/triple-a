@@ -22,6 +22,8 @@ from triplea.service.graph.extract import Emmanuel, check_upper_term, _t_emmanue
 from triplea.service.click_logger import logger
 from triplea.service.graph.extract.country_based_co_authorship import graph_extract_article_country
 import triplea.service.repository.persist as persist
+from triplea.service.repository.pipeline_core import move_state_forward
+from triplea.service.repository.pipeline_flag import go_extract_triple
 import triplea.service.repository.state as state_manager
 from triplea.service.repository.state.custom.affiliation_mining import country_list
 
@@ -66,14 +68,20 @@ def check_map_topic():
 
 
 if __name__ == "__main__":
-    tps_limit = 3
-    sleep_time = 1 // tps_limit
-    sleep_time = 1 / 1
+    # tps_limit = 3
+    # sleep_time = 1 // tps_limit
+    # sleep_time = 1 / 1
 
-    print(f"sleep_time: {sleep_time}")
-    t1 = time.time()
-    time.sleep(sleep_time) 
-    print(time.time() - t1)   
+    # print(f"sleep_time: {sleep_time}")
+    # t1 = time.time()
+    # time.sleep(sleep_time) 
+    # print(time.time() - t1)   
+
+
+    # move_state_forward(-5)
+    go_extract_triple()
+
+
     # a = persist.get_article_by_pmid('37115160')
     # updated_article = Article(**a.copy())
     # # graph_extract_article_country(updated_article)
