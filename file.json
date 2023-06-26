@@ -1,16 +1,314 @@
 { 
-    "_id" : ObjectId("64968839d21285a9f064e126"), 
-    "Abstract" : null, 
-    "Authors" : null, 
-    "CiteCrawlerDeep" : NumberInt(0), 
+    "_id" : 1, 
+    "Abstract" : "Muscle strength is highly heritable and predictive for multiple adverse health outcomes including mortality. Here, we present a rare protein-coding variant association study in 340,319 individuals for hand grip strength, a proxy measure of muscle strength. We show that the exome-wide burden of rare protein-truncating and damaging missense variants is associated with a reduction in hand grip strength. We identify six significant hand grip strength genes, KDM5B, OBSCN, GIGYF1, TTN, RB1CC1, and EIF3J. In the example of the titin (TTN) locus we demonstrate a convergence of rare with common variant association signals and uncover genetic relationships between reduced hand grip strength and disease. Finally, we identify shared mechanisms between brain and muscle function and uncover additive effects between rare and common genetic variation on muscle strength.", 
+    "Authors" : [
+        {
+            "Affiliations" : [
+                {
+                    "Has_Extra" : false, 
+                    "HashID" : "-4997837875726875835", 
+                    "Part1" : "Research and Development", 
+                    "Part2" : "Biogen Inc.", 
+                    "Part3" : "Cambridge", 
+                    "Part4" : "MA", 
+                    "Part5" : "USA. yunfeng.huang@biogen.com.", 
+                    "Part6" : null, 
+                    "Structural" : [
+                        {
+                            "country" : "NaN"
+                        }
+                    ], 
+                    "Text" : "Research and Development, Biogen Inc., Cambridge, MA, USA. yunfeng.huang@biogen.com."
+                }
+            ], 
+            "ForeName" : "Yunfeng", 
+            "FullName" : "Yunfeng Huang", 
+            "HashID" : "8687069451368882629", 
+            "LastName" : "Huang", 
+            "ORCID" : "0000-0003-2120-3328"
+        }, 
+        {
+            "Affiliations" : [
+                {
+                    "Has_Extra" : false, 
+                    "HashID" : "-4997837875726875835", 
+                    "Part1" : "Research and Development", 
+                    "Part2" : "Biogen Inc.", 
+                    "Part3" : "Cambridge", 
+                    "Part4" : "MA", 
+                    "Part5" : "USA.", 
+                    "Part6" : null, 
+                    "Structural" : [
+                        {
+                            "country" : "USA"
+                        }
+                    ], 
+                    "Text" : "Research and Development, Biogen Inc., Cambridge, MA, USA."
+                }
+            ], 
+            "ForeName" : "Dora", 
+            "FullName" : "Dora Bodnar", 
+            "HashID" : "6991676959998528049", 
+            "LastName" : "Bodnar", 
+            "ORCID" : null
+        }, 
+        {
+            "Affiliations" : [
+                {
+                    "Has_Extra" : false, 
+                    "HashID" : "-4997837875726875835", 
+                    "Part1" : "Research and Development", 
+                    "Part2" : "Biogen Inc.", 
+                    "Part3" : "Cambridge", 
+                    "Part4" : "MA", 
+                    "Part5" : "USA.", 
+                    "Part6" : null, 
+                    "Structural" : [
+                        {
+                            "country" : "USA"
+                        }
+                    ], 
+                    "Text" : "Research and Development, Biogen Inc., Cambridge, MA, USA."
+                }
+            ], 
+            "ForeName" : "Chia-Yen", 
+            "FullName" : "Chia-Yen Chen", 
+            "HashID" : "-7939127486519862923", 
+            "LastName" : "Chen", 
+            "ORCID" : null
+        }, 
+        {
+            "Affiliations" : [
+                {
+                    "Has_Extra" : false, 
+                    "HashID" : "830936887495451964", 
+                    "Part1" : "Wellcome Sanger Institute", 
+                    "Part2" : "Hinxton", 
+                    "Part3" : "Cambridge", 
+                    "Part4" : "United Kingdom.", 
+                    "Part5" : null, 
+                    "Part6" : null, 
+                    "Structural" : [
+                        {
+                            "institute" : "Wellcome Sanger Institute"
+                        }, 
+                        {
+                            "country" : "United Kingdom"
+                        }
+                    ], 
+                    "Text" : "Wellcome Sanger Institute, Hinxton, Cambridge, United Kingdom."
+                }
+            ], 
+            "ForeName" : "Gabriela", 
+            "FullName" : "Gabriela Sanchez-Andrade", 
+            "HashID" : "-8974245513291008428", 
+            "LastName" : "Sanchez-Andrade", 
+            "ORCID" : "0000-0003-4868-2955"
+        }, 
+        {
+            "Affiliations" : [
+                {
+                    "Has_Extra" : false, 
+                    "HashID" : "830936887495451964", 
+                    "Part1" : "Wellcome Sanger Institute", 
+                    "Part2" : "Hinxton", 
+                    "Part3" : "Cambridge", 
+                    "Part4" : "United Kingdom.", 
+                    "Part5" : null, 
+                    "Part6" : null, 
+                    "Structural" : [
+                        {
+                            "institute" : "Wellcome Sanger Institute"
+                        }, 
+                        {
+                            "country" : "United Kingdom"
+                        }
+                    ], 
+                    "Text" : "Wellcome Sanger Institute, Hinxton, Cambridge, United Kingdom."
+                }
+            ], 
+            "ForeName" : "Mark", 
+            "FullName" : "Mark Sanderson", 
+            "HashID" : "-3436693571606082351", 
+            "LastName" : "Sanderson", 
+            "ORCID" : null
+        }, 
+        {
+            "Affiliations" : null, 
+            "ForeName" : null, 
+            "FullName" : "Biogen Biobank Team", 
+            "HashID" : "1150322380707702715", 
+            "LastName" : null, 
+            "ORCID" : null
+        }, 
+        {
+            "Affiliations" : [
+                {
+                    "Has_Extra" : false, 
+                    "HashID" : "-4997837875726875835", 
+                    "Part1" : "Research and Development", 
+                    "Part2" : "Biogen Inc.", 
+                    "Part3" : "Cambridge", 
+                    "Part4" : "MA", 
+                    "Part5" : "USA.", 
+                    "Part6" : null, 
+                    "Structural" : [
+                        {
+                            "country" : "USA"
+                        }
+                    ], 
+                    "Text" : "Research and Development, Biogen Inc., Cambridge, MA, USA."
+                }
+            ], 
+            "ForeName" : "Jun", 
+            "FullName" : "Jun Shi", 
+            "HashID" : "7792137970685697614", 
+            "LastName" : "Shi", 
+            "ORCID" : null
+        }, 
+        {
+            "Affiliations" : [
+                {
+                    "Has_Extra" : false, 
+                    "HashID" : "-4997837875726875835", 
+                    "Part1" : "Research and Development", 
+                    "Part2" : "Biogen Inc.", 
+                    "Part3" : "Cambridge", 
+                    "Part4" : "MA", 
+                    "Part5" : "USA.", 
+                    "Part6" : null, 
+                    "Structural" : [
+                        {
+                            "country" : "USA"
+                        }
+                    ], 
+                    "Text" : "Research and Development, Biogen Inc., Cambridge, MA, USA."
+                }
+            ], 
+            "ForeName" : "Katherine G", 
+            "FullName" : "Katherine G Meilleur", 
+            "HashID" : "-7427217758575722012", 
+            "LastName" : "Meilleur", 
+            "ORCID" : null
+        }, 
+        {
+            "Affiliations" : [
+                {
+                    "Has_Extra" : false, 
+                    "HashID" : "830936887495451964", 
+                    "Part1" : "Wellcome Sanger Institute", 
+                    "Part2" : "Hinxton", 
+                    "Part3" : "Cambridge", 
+                    "Part4" : "United Kingdom.", 
+                    "Part5" : null, 
+                    "Part6" : null, 
+                    "Structural" : [
+                        {
+                            "institute" : "Wellcome Sanger Institute"
+                        }, 
+                        {
+                            "country" : "United Kingdom"
+                        }
+                    ], 
+                    "Text" : "Wellcome Sanger Institute, Hinxton, Cambridge, United Kingdom."
+                }
+            ], 
+            "ForeName" : "Matthew E", 
+            "FullName" : "Matthew E Hurles", 
+            "HashID" : "-3586256283503835884", 
+            "LastName" : "Hurles", 
+            "ORCID" : "0000-0002-2333-7015"
+        }, 
+        {
+            "Affiliations" : [
+                {
+                    "Has_Extra" : false, 
+                    "HashID" : "830936887495451964", 
+                    "Part1" : "Wellcome Sanger Institute", 
+                    "Part2" : "Hinxton", 
+                    "Part3" : "Cambridge", 
+                    "Part4" : "United Kingdom.", 
+                    "Part5" : null, 
+                    "Part6" : null, 
+                    "Structural" : [
+                        {
+                            "institute" : "Wellcome Sanger Institute"
+                        }, 
+                        {
+                            "country" : "United Kingdom"
+                        }
+                    ], 
+                    "Text" : "Wellcome Sanger Institute, Hinxton, Cambridge, United Kingdom."
+                }
+            ], 
+            "ForeName" : "Sebastian S", 
+            "FullName" : "Sebastian S Gerety", 
+            "HashID" : "-3058490308612308850", 
+            "LastName" : "Gerety", 
+            "ORCID" : "0000-0002-6126-5040"
+        }, 
+        {
+            "Affiliations" : [
+                {
+                    "Has_Extra" : false, 
+                    "HashID" : "-4997837875726875835", 
+                    "Part1" : "Research and Development", 
+                    "Part2" : "Biogen Inc.", 
+                    "Part3" : "Cambridge", 
+                    "Part4" : "MA", 
+                    "Part5" : "USA.", 
+                    "Part6" : null, 
+                    "Structural" : [
+                        {
+                            "country" : "USA"
+                        }
+                    ], 
+                    "Text" : "Research and Development, Biogen Inc., Cambridge, MA, USA."
+                }
+            ], 
+            "ForeName" : "Ellen A", 
+            "FullName" : "Ellen A Tsai", 
+            "HashID" : "-8167160525934457580", 
+            "LastName" : "Tsai", 
+            "ORCID" : "0000-0002-5625-1189"
+        }, 
+        {
+            "Affiliations" : [
+                {
+                    "Has_Extra" : false, 
+                    "HashID" : "-4997837875726875835", 
+                    "Part1" : "Research and Development", 
+                    "Part2" : "Biogen Inc.", 
+                    "Part3" : "Cambridge", 
+                    "Part4" : "MA", 
+                    "Part5" : "USA. heiko.runz@gmail.com.", 
+                    "Part6" : null, 
+                    "Structural" : [
+                        {
+                            "country" : "NaN"
+                        }
+                    ], 
+                    "Text" : "Research and Development, Biogen Inc., Cambridge, MA, USA. heiko.runz@gmail.com."
+                }
+            ], 
+            "ForeName" : "Heiko", 
+            "FullName" : "Heiko Runz", 
+            "HashID" : "-6708993845805043883", 
+            "LastName" : "Runz", 
+            "ORCID" : "0000-0002-2133-7345"
+        }
+    ], 
+    "CiteCrawlerDeep" : 1, 
     "CitedBy" : null, 
-    "DOI" : null, 
-    "FlagAffiliationMining" : null, 
-    "FlagExtractKG" : null, 
-    "FlagExtractTopic" : null, 
+    "DOI" : "10.1038/s41467-023-39247-1", 
+    "FlagAffiliationMining" : 1, 
+    "FlagExtractKG" : 1, 
+    "FlagExtractTopic" : 1, 
     "InsertType" : null, 
-    "Journal" : null, 
-    "Keywords" : null, 
+    "Journal" : "Nature communications", 
+    "Keywords" : [
+
+    ], 
     "NamedEntities" : null, 
     "OreginalArticle" : {
         "PubmedArticleSet" : {
@@ -18,281 +316,325 @@
                 "MedlineCitation" : {
                     "@IndexingMethod" : "Automated", 
                     "@Owner" : "NLM", 
-                    "@Status" : "MEDLINE", 
+                    "@Status" : "Publisher", 
                     "Article" : {
-                        "@PubModel" : "Print-Electronic", 
+                        "@PubModel" : "Electronic", 
                         "Abstract" : {
-                            "AbstractText" : "Breast cancer (BC) and colorectal cancer (CRC) are among the most common cancers in Iran. We aimed to develop a risk assessment model to predict the development of cardiovascular events in these patients by performing a 5 year prospective cohort study on a newly diagnosed patients with BC or CRC before they receive any treatment. A multi-center prospective cohort study of 2700 newly diagnosed BC and CRC patients has been started in Iran since 2019 and will be continued until 2024. Demographics, socioeconomic status, life style behaviors, psychological characteristics and type of cancer treatments will be collected by standard questionnaires and blood pressure, obesity indices will be measured. Blood sampling, ECG, and echocardiography will be done in all patients at base line, 6 and 12 months, then at annual basis for five years. Incidence of heart failure, acute coronary syndrome, stroke and CVD related death are the primary outcome of this study. In this preliminary analysis, 70 patients with BC and 30 patients with CRC were enrolled in this study from April 2019 to November 2019. Mean age of BC and CRC patients was 48 ± 10.5 and 61 ± 13.2 respectively. 98.6% of patients in BC group and 60% of CRC groups were female. This study will be a platform for other cancers to develop CVD risk assessment charts that can cover other cancers. Patients who lie in the high risk category according to the newly developed risk assessment chart, should receive special management and preventive interventions.", 
-                            "CopyrightInformation" : "Copyright © 2021 Elsevier Inc. All rights reserved."
+                            "AbstractText" : "Muscle strength is highly heritable and predictive for multiple adverse health outcomes including mortality. Here, we present a rare protein-coding variant association study in 340,319 individuals for hand grip strength, a proxy measure of muscle strength. We show that the exome-wide burden of rare protein-truncating and damaging missense variants is associated with a reduction in hand grip strength. We identify six significant hand grip strength genes, KDM5B, OBSCN, GIGYF1, TTN, RB1CC1, and EIF3J. In the example of the titin (TTN) locus we demonstrate a convergence of rare with common variant association signals and uncover genetic relationships between reduced hand grip strength and disease. Finally, we identify shared mechanisms between brain and muscle function and uncover additive effects between rare and common genetic variation on muscle strength.", 
+                            "CopyrightInformation" : "© 2023. The Author(s)."
                         }, 
                         "ArticleDate" : {
                             "@DateType" : "Electronic", 
-                            "Day" : "04", 
-                            "Month" : "08", 
-                            "Year" : "2021"
+                            "Day" : "10", 
+                            "Month" : "06", 
+                            "Year" : "2023"
                         }, 
-                        "ArticleTitle" : "Rational, Design and Preliminary Results of a Cohort Study on Breast and Colorectal Cancer to Develop a Risk Assessment Model to Predict Future Cardiovascular Events. \"Cardio Vascular Events in Breast and Colorectal Cancers (CIBC) Study\".", 
+                        "ArticleTitle" : "Rare genetic variants impact muscle strength.", 
                         "AuthorList" : {
                             "@CompleteYN" : "Y", 
                             "Author" : [
                                 {
                                     "@ValidYN" : "Y", 
                                     "AffiliationInfo" : {
-                                        "Affiliation" : "Interventional Cardiology Research Center, Cardiovascular Research Institute, Isfahan University of Medical Sciences, Isfahan, Iran."
+                                        "Affiliation" : "Research and Development, Biogen Inc., Cambridge, MA, USA. yunfeng.huang@biogen.com."
                                     }, 
-                                    "ForeName" : "Kiyan", 
-                                    "Initials" : "K", 
-                                    "LastName" : "Heshmat-Ghahdarijani"
+                                    "ForeName" : "Yunfeng", 
+                                    "Identifier" : {
+                                        "#text" : "0000-0003-2120-3328", 
+                                        "@Source" : "ORCID"
+                                    }, 
+                                    "Initials" : "Y", 
+                                    "LastName" : "Huang"
                                 }, 
                                 {
                                     "@ValidYN" : "Y", 
                                     "AffiliationInfo" : {
-                                        "Affiliation" : "Hypertension Research Center, Cardiovascular Research Institute, Isfahan University of Medical Sciences, Isfahan, Iran."
+                                        "Affiliation" : "Research and Development, Biogen Inc., Cambridge, MA, USA."
                                     }, 
-                                    "ForeName" : "Jamshid", 
+                                    "ForeName" : "Dora", 
+                                    "Initials" : "D", 
+                                    "LastName" : "Bodnar"
+                                }, 
+                                {
+                                    "@ValidYN" : "Y", 
+                                    "AffiliationInfo" : {
+                                        "Affiliation" : "Research and Development, Biogen Inc., Cambridge, MA, USA."
+                                    }, 
+                                    "ForeName" : "Chia-Yen", 
+                                    "Initials" : "CY", 
+                                    "LastName" : "Chen"
+                                }, 
+                                {
+                                    "@ValidYN" : "Y", 
+                                    "AffiliationInfo" : {
+                                        "Affiliation" : "Wellcome Sanger Institute, Hinxton, Cambridge, United Kingdom."
+                                    }, 
+                                    "ForeName" : "Gabriela", 
+                                    "Identifier" : {
+                                        "#text" : "0000-0003-4868-2955", 
+                                        "@Source" : "ORCID"
+                                    }, 
+                                    "Initials" : "G", 
+                                    "LastName" : "Sanchez-Andrade"
+                                }, 
+                                {
+                                    "@ValidYN" : "Y", 
+                                    "AffiliationInfo" : {
+                                        "Affiliation" : "Wellcome Sanger Institute, Hinxton, Cambridge, United Kingdom."
+                                    }, 
+                                    "ForeName" : "Mark", 
+                                    "Initials" : "M", 
+                                    "LastName" : "Sanderson"
+                                }, 
+                                {
+                                    "@ValidYN" : "Y", 
+                                    "CollectiveName" : "Biogen Biobank Team"
+                                }, 
+                                {
+                                    "@ValidYN" : "Y", 
+                                    "AffiliationInfo" : {
+                                        "Affiliation" : "Research and Development, Biogen Inc., Cambridge, MA, USA."
+                                    }, 
+                                    "ForeName" : "Jun", 
                                     "Initials" : "J", 
-                                    "LastName" : "Najafian"
+                                    "LastName" : "Shi"
                                 }, 
                                 {
                                     "@ValidYN" : "Y", 
                                     "AffiliationInfo" : {
-                                        "Affiliation" : "Isfahan Cardiovascular Research Center, Cardiovascular Research Institute, Isfahan University of Medical Sciences, Isfahan, Iran."
+                                        "Affiliation" : "Research and Development, Biogen Inc., Cambridge, MA, USA."
                                     }, 
-                                    "ForeName" : "Zamaneh", 
-                                    "Initials" : "Z", 
-                                    "LastName" : "Vafaei"
+                                    "ForeName" : "Katherine G", 
+                                    "Initials" : "KG", 
+                                    "LastName" : "Meilleur"
                                 }, 
                                 {
                                     "@ValidYN" : "Y", 
                                     "AffiliationInfo" : {
-                                        "Affiliation" : "Heart Failure Research Center, Cardiovascular Research Institute, Isfahan University of Medical Sciences, Isfahan, Iran."
+                                        "Affiliation" : "Wellcome Sanger Institute, Hinxton, Cambridge, United Kingdom."
                                     }, 
-                                    "ForeName" : "Samaneh", 
-                                    "Initials" : "S", 
-                                    "LastName" : "Mostafavi"
+                                    "ForeName" : "Matthew E", 
+                                    "Identifier" : {
+                                        "#text" : "0000-0002-2333-7015", 
+                                        "@Source" : "ORCID"
+                                    }, 
+                                    "Initials" : "ME", 
+                                    "LastName" : "Hurles"
                                 }, 
                                 {
                                     "@ValidYN" : "Y", 
                                     "AffiliationInfo" : {
-                                        "Affiliation" : "Pediatric Cardiovascular Research Center, Cardiovascular Research Institute, Isfahan University of Medical Sciences, Isfahan, Iran."
+                                        "Affiliation" : "Wellcome Sanger Institute, Hinxton, Cambridge, United Kingdom."
                                     }, 
-                                    "ForeName" : "Noushin", 
-                                    "Initials" : "N", 
-                                    "LastName" : "Mohammadifard"
+                                    "ForeName" : "Sebastian S", 
+                                    "Identifier" : {
+                                        "#text" : "0000-0002-6126-5040", 
+                                        "@Source" : "ORCID"
+                                    }, 
+                                    "Initials" : "SS", 
+                                    "LastName" : "Gerety"
                                 }, 
                                 {
                                     "@ValidYN" : "Y", 
                                     "AffiliationInfo" : {
-                                        "Affiliation" : "Department of Epidemiology and Biostatistics, School of Health, Isfahan University of Medical Sciences, Isfahan, Iran."
+                                        "Affiliation" : "Research and Development, Biogen Inc., Cambridge, MA, USA."
                                     }, 
-                                    "ForeName" : "Marjan", 
-                                    "Initials" : "M", 
-                                    "LastName" : "Mansourian"
+                                    "ForeName" : "Ellen A", 
+                                    "Identifier" : {
+                                        "#text" : "0000-0002-5625-1189", 
+                                        "@Source" : "ORCID"
+                                    }, 
+                                    "Initials" : "EA", 
+                                    "LastName" : "Tsai"
                                 }, 
                                 {
                                     "@ValidYN" : "Y", 
                                     "AffiliationInfo" : {
-                                        "Affiliation" : "Cardio-Oncology Research Center, Rajaie Cardiovascular Medical and Research Center, Iran University of Medical Science, Tehran, Iran."
+                                        "Affiliation" : "Research and Development, Biogen Inc., Cambridge, MA, USA. heiko.runz@gmail.com."
                                     }, 
-                                    "ForeName" : "Farzaneh", 
-                                    "Initials" : "F", 
-                                    "LastName" : "Ashrafi"
-                                }, 
-                                {
-                                    "@ValidYN" : "Y", 
-                                    "AffiliationInfo" : {
-                                        "Affiliation" : "Department of Internal Medicine, School of Medicine Cancer Prevention Research Center Seyyed AlShohada Hospital Isfahan University of Medical Sciences, Isfahan, Iran."
+                                    "ForeName" : "Heiko", 
+                                    "Identifier" : {
+                                        "#text" : "0000-0002-2133-7345", 
+                                        "@Source" : "ORCID"
                                     }, 
-                                    "ForeName" : "Mehran", 
-                                    "Initials" : "M", 
-                                    "LastName" : "Sharifi"
-                                }, 
-                                {
-                                    "@ValidYN" : "Y", 
-                                    "AffiliationInfo" : {
-                                        "Affiliation" : "Cancer Prevention Research Center, Isfahan University of Medical Sciences, Isfahan, Iran."
-                                    }, 
-                                    "ForeName" : "Mohammadreza", 
-                                    "Initials" : "M", 
-                                    "LastName" : "Khosravifarsani"
-                                }, 
-                                {
-                                    "@ValidYN" : "Y", 
-                                    "AffiliationInfo" : {
-                                        "Affiliation" : "Department of Medical Oncology- Hematology, Isfahan University of Medical Sciences, Isfahan, Iran."
-                                    }, 
-                                    "ForeName" : "Ali", 
-                                    "Initials" : "A", 
-                                    "LastName" : "Darakhshandeh"
-                                }, 
-                                {
-                                    "@ValidYN" : "Y", 
-                                    "AffiliationInfo" : {
-                                        "Affiliation" : "Poursina Hakim Research and Therapeutic Institute, Isfahan University of Medical Sciences, Isfahan, Iran."
-                                    }, 
-                                    "ForeName" : "Emami", 
-                                    "Initials" : "E", 
-                                    "LastName" : "Mohammad Hassan"
-                                }, 
-                                {
-                                    "@ValidYN" : "Y", 
-                                    "AffiliationInfo" : {
-                                        "Affiliation" : "Applied Physiology Research Center, Cardiovascular Research Institute, Isfahan University of Medical Sciences, Isfahan, Iran."
-                                    }, 
-                                    "ForeName" : "Javanmard", 
-                                    "Initials" : "J", 
-                                    "LastName" : "Shaghayegh Haghjooy"
-                                }, 
-                                {
-                                    "@ValidYN" : "Y", 
-                                    "AffiliationInfo" : {
-                                        "Affiliation" : "Isfahan Cardiovascular Research Center, Cardiovascular Research Institute, Isfahan University of Medical Sciences, Isfahan, Iran. Electronic address: nsarrafzadegan@gmail.com."
-                                    }, 
-                                    "ForeName" : "Nizal", 
-                                    "Initials" : "N", 
-                                    "LastName" : "Sarrafzadegan"
+                                    "Initials" : "H", 
+                                    "LastName" : "Runz"
                                 }
                             ]
                         }, 
-                        "ELocationID" : [
-                            {
-                                "#text" : "10.1016/j.cpcardiol.2021.100958", 
-                                "@EIdType" : "doi", 
-                                "@ValidYN" : "Y"
-                            }, 
-                            {
-                                "#text" : "S0146-2806(21)00173-0", 
-                                "@EIdType" : "pii", 
-                                "@ValidYN" : "Y"
-                            }
-                        ], 
+                        "ELocationID" : {
+                            "#text" : "10.1038/s41467-023-39247-1", 
+                            "@EIdType" : "doi", 
+                            "@ValidYN" : "Y"
+                        }, 
                         "Journal" : {
-                            "ISOAbbreviation" : "Curr Probl Cardiol", 
+                            "ISOAbbreviation" : "Nat Commun", 
                             "ISSN" : {
-                                "#text" : "1535-6280", 
+                                "#text" : "2041-1723", 
                                 "@IssnType" : "Electronic"
                             }, 
                             "JournalIssue" : {
                                 "@CitedMedium" : "Internet", 
-                                "Issue" : "10", 
+                                "Issue" : "1", 
                                 "PubDate" : {
-                                    "Month" : "Oct", 
-                                    "Year" : "2022"
+                                    "Day" : "10", 
+                                    "Month" : "Jun", 
+                                    "Year" : "2023"
                                 }, 
-                                "Volume" : "47"
+                                "Volume" : "14"
                             }, 
-                            "Title" : "Current problems in cardiology"
+                            "Title" : "Nature communications"
                         }, 
                         "Language" : "eng", 
                         "Pagination" : {
-                            "MedlinePgn" : "100958", 
-                            "StartPage" : "100958"
+                            "MedlinePgn" : "3449", 
+                            "StartPage" : "3449"
                         }, 
                         "PublicationTypeList" : {
-                            "PublicationType" : [
-                                {
-                                    "#text" : "Journal Article", 
-                                    "@UI" : "D016428"
-                                }, 
-                                {
-                                    "#text" : "Review", 
-                                    "@UI" : "D016454"
-                                }
-                            ]
+                            "PublicationType" : {
+                                "#text" : "Journal Article", 
+                                "@UI" : "D016428"
+                            }
                         }
                     }, 
                     "CitationSubset" : "IM", 
-                    "DateCompleted" : {
-                        "Day" : "30", 
-                        "Month" : "08", 
-                        "Year" : "2022"
-                    }, 
                     "DateRevised" : {
-                        "Day" : "30", 
-                        "Month" : "08", 
-                        "Year" : "2022"
+                        "Day" : "10", 
+                        "Month" : "06", 
+                        "Year" : "2023"
                     }, 
-                    "KeywordList" : {
-                        "@Owner" : "NOTNLM", 
-                        "Keyword" : {
-                            "@MajorTopicYN" : "N"
-                        }
-                    }, 
-                    "MedlineJournalInfo" : {
-                        "Country" : "Netherlands", 
-                        "ISSNLinking" : "0146-2806", 
-                        "MedlineTA" : "Curr Probl Cardiol", 
-                        "NlmUniqueID" : "7701802"
-                    }, 
-                    "MeshHeadingList" : {
-                        "MeshHeading" : [
+                    "InvestigatorList" : {
+                        "Investigator" : [
                             {
-                                "DescriptorName" : {
-                                    "#text" : "Breast Neoplasms", 
-                                    "@MajorTopicYN" : "Y", 
-                                    "@UI" : "D001943"
-                                }
+                                "@ValidYN" : "Y", 
+                                "ForeName" : "Christopher D", 
+                                "Initials" : "CD", 
+                                "LastName" : "Whelan"
                             }, 
                             {
-                                "DescriptorName" : {
-                                    "#text" : "Cardiovascular Diseases", 
-                                    "@MajorTopicYN" : "Y", 
-                                    "@UI" : "D002318"
-                                }
+                                "@ValidYN" : "Y", 
+                                "ForeName" : "Paola", 
+                                "Initials" : "P", 
+                                "LastName" : "Bronson"
                             }, 
                             {
-                                "DescriptorName" : {
-                                    "#text" : "Cohort Studies", 
-                                    "@MajorTopicYN" : "N", 
-                                    "@UI" : "D015331"
-                                }
+                                "@ValidYN" : "Y", 
+                                "ForeName" : "David", 
+                                "Initials" : "D", 
+                                "LastName" : "Sexton"
                             }, 
                             {
-                                "DescriptorName" : {
-                                    "#text" : "Colorectal Neoplasms", 
-                                    "@MajorTopicYN" : "Y", 
-                                    "@UI" : "D015179"
-                                }
+                                "@ValidYN" : "Y", 
+                                "ForeName" : "Sally", 
+                                "Initials" : "S", 
+                                "LastName" : "John"
                             }, 
                             {
-                                "DescriptorName" : {
-                                    "#text" : "Female", 
-                                    "@MajorTopicYN" : "N", 
-                                    "@UI" : "D005260"
-                                }
+                                "@ValidYN" : "Y", 
+                                "ForeName" : "Eric", 
+                                "Initials" : "E", 
+                                "LastName" : "Marshall"
                             }, 
                             {
-                                "DescriptorName" : {
-                                    "#text" : "Humans", 
-                                    "@MajorTopicYN" : "N", 
-                                    "@UI" : "D006801"
-                                }
+                                "@ValidYN" : "Y", 
+                                "ForeName" : "Mehool", 
+                                "Initials" : "M", 
+                                "LastName" : "Patel"
                             }, 
                             {
-                                "DescriptorName" : {
-                                    "#text" : "Male", 
-                                    "@MajorTopicYN" : "N", 
-                                    "@UI" : "D008297"
-                                }
+                                "@ValidYN" : "Y", 
+                                "ForeName" : "Saranya", 
+                                "Initials" : "S", 
+                                "LastName" : "Duraisamy"
                             }, 
                             {
-                                "DescriptorName" : {
-                                    "#text" : "Prospective Studies", 
-                                    "@MajorTopicYN" : "N", 
-                                    "@UI" : "D011446"
-                                }
+                                "@ValidYN" : "Y", 
+                                "ForeName" : "Timothy", 
+                                "Initials" : "T", 
+                                "LastName" : "Swan"
                             }, 
                             {
-                                "DescriptorName" : {
-                                    "#text" : "Risk Assessment", 
-                                    "@MajorTopicYN" : "N", 
-                                    "@UI" : "D018570"
-                                }
+                                "@ValidYN" : "Y", 
+                                "ForeName" : "Denis", 
+                                "Initials" : "D", 
+                                "LastName" : "Baird"
+                            }, 
+                            {
+                                "@ValidYN" : "Y", 
+                                "ForeName" : "Susan", 
+                                "Initials" : "S", 
+                                "LastName" : "Eaton"
+                            }, 
+                            {
+                                "@ValidYN" : "Y", 
+                                "ForeName" : "Jake", 
+                                "Initials" : "J", 
+                                "LastName" : "Gagnon"
+                            }, 
+                            {
+                                "@ValidYN" : "Y", 
+                                "ForeName" : "Feng", 
+                                "Initials" : "F", 
+                                "LastName" : "Gao"
+                            }, 
+                            {
+                                "@ValidYN" : "Y", 
+                                "ForeName" : "Cynthia", 
+                                "Initials" : "C", 
+                                "LastName" : "Gubbels"
+                            }, 
+                            {
+                                "@ValidYN" : "Y", 
+                                "ForeName" : "Varant", 
+                                "Initials" : "V", 
+                                "LastName" : "Kupelian"
+                            }, 
+                            {
+                                "@ValidYN" : "Y", 
+                                "ForeName" : "Kejie", 
+                                "Initials" : "K", 
+                                "LastName" : "Li"
+                            }, 
+                            {
+                                "@ValidYN" : "Y", 
+                                "ForeName" : "Dawei", 
+                                "Initials" : "D", 
+                                "LastName" : "Liu"
+                            }, 
+                            {
+                                "@ValidYN" : "Y", 
+                                "ForeName" : "Stephanie", 
+                                "Initials" : "S", 
+                                "LastName" : "Loomis"
+                            }, 
+                            {
+                                "@ValidYN" : "Y", 
+                                "ForeName" : "Helen", 
+                                "Initials" : "H", 
+                                "LastName" : "McLaughlin"
+                            }, 
+                            {
+                                "@ValidYN" : "Y", 
+                                "ForeName" : "Adele", 
+                                "Initials" : "A", 
+                                "LastName" : "Mitchell"
+                            }, 
+                            {
+                                "@ValidYN" : "Y", 
+                                "ForeName" : "Benjamin", 
+                                "Initials" : "B", 
+                                "LastName" : "Sun"
                             }
                         ]
                     }, 
+                    "MedlineJournalInfo" : {
+                        "Country" : "England", 
+                        "ISSNLinking" : "2041-1723", 
+                        "MedlineTA" : "Nat Commun", 
+                        "NlmUniqueID" : "101528555"
+                    }, 
                     "PMID" : {
-                        "#text" : "34358588", 
+                        "#text" : "37301943", 
                         "@Version" : "1"
                     }
                 }, 
@@ -300,15 +642,15 @@
                     "ArticleIdList" : {
                         "ArticleId" : [
                             {
-                                "#text" : "34358588", 
+                                "#text" : "37301943", 
                                 "@IdType" : "pubmed"
                             }, 
                             {
-                                "#text" : "10.1016/j.cpcardiol.2021.100958", 
+                                "#text" : "10.1038/s41467-023-39247-1", 
                                 "@IdType" : "doi"
                             }, 
                             {
-                                "#text" : "S0146-2806(21)00173-0", 
+                                "#text" : "10.1038/s41467-023-39247-1", 
                                 "@IdType" : "pii"
                             }
                         ]
@@ -317,53 +659,358 @@
                         "PubMedPubDate" : [
                             {
                                 "@PubStatus" : "received", 
-                                "Day" : "26", 
+                                "Day" : "8", 
                                 "Month" : "7", 
-                                "Year" : "2021"
-                            }, 
-                            {
-                                "@PubStatus" : "accepted", 
-                                "Day" : "30", 
-                                "Month" : "7", 
-                                "Year" : "2021"
-                            }, 
-                            {
-                                "@PubStatus" : "pubmed", 
-                                "Day" : "7", 
-                                "Hour" : "6", 
-                                "Minute" : "0", 
-                                "Month" : "8", 
-                                "Year" : "2021"
-                            }, 
-                            {
-                                "@PubStatus" : "medline", 
-                                "Day" : "31", 
-                                "Hour" : "6", 
-                                "Minute" : "0", 
-                                "Month" : "8", 
                                 "Year" : "2022"
                             }, 
                             {
+                                "@PubStatus" : "accepted", 
+                                "Day" : "5", 
+                                "Month" : "6", 
+                                "Year" : "2023"
+                            }, 
+                            {
+                                "@PubStatus" : "medline", 
+                                "Day" : "11", 
+                                "Hour" : "1", 
+                                "Minute" : "6", 
+                                "Month" : "6", 
+                                "Year" : "2023"
+                            }, 
+                            {
+                                "@PubStatus" : "pubmed", 
+                                "Day" : "11", 
+                                "Hour" : "1", 
+                                "Minute" : "6", 
+                                "Month" : "6", 
+                                "Year" : "2023"
+                            }, 
+                            {
                                 "@PubStatus" : "entrez", 
-                                "Day" : "6", 
-                                "Hour" : "20", 
-                                "Minute" : "12", 
-                                "Month" : "8", 
-                                "Year" : "2021"
+                                "Day" : "10", 
+                                "Hour" : "23", 
+                                "Minute" : "22", 
+                                "Month" : "6", 
+                                "Year" : "2023"
                             }
                         ]
                     }, 
-                    "PublicationStatus" : "ppublish"
+                    "PublicationStatus" : "epublish", 
+                    "ReferenceList" : {
+                        "Reference" : [
+                            {
+                                "ArticleIdList" : {
+                                    "ArticleId" : [
+                                        {
+                                            "#text" : "10.2466/pms.2001.93.2.323", 
+                                            "@IdType" : "doi"
+                                        }, 
+                                        {
+                                            "#text" : "11769883", 
+                                            "@IdType" : "pubmed"
+                                        }
+                                    ]
+                                }, 
+                                "Citation" : "Bohannon, R. W. Dynamometer measurements of hand-grip strength predict multiple outcomes. Percept. Mot. Skills 93, 323–328 (2001)."
+                            }, 
+                            {
+                                "ArticleIdList" : {
+                                    "ArticleId" : {
+                                        "#text" : "10.1359/jbmr.1997.12.12.2076", 
+                                        "@IdType" : "doi"
+                                    }
+                                }, 
+                                "Citation" : "Arden, N. K. & Spector, T. D. Genetic influences on muscle strength, lean body mass, and bone mineral density: a twin study. J. Bone Min. Res. 12, 2076–2081 (1997)."
+                            }, 
+                            {
+                                "ArticleIdList" : {
+                                    "ArticleId" : [
+                                        {
+                                            "#text" : "10.1093/nar/gky1120", 
+                                            "@IdType" : "doi"
+                                        }, 
+                                        {
+                                            "#text" : "30445434", 
+                                            "@IdType" : "pubmed"
+                                        }
+                                    ]
+                                }, 
+                                "Citation" : "Buniello, A. et al. The NHGRI-EBI GWAS Catalog of published genome-wide association studies, targeted arrays and summary statistics 2019. Nucleic Acids Res. 47, D1005–D1012 (2019)."
+                            }, 
+                            {
+                                "Citation" : "Liu, J. Z. et al. The burden of rare protein-truncating genetic variants on human lifespan. Nat. Aging https://doi.org/10.1038/s43587-022-00182-3 (2022)."
+                            }, 
+                            {
+                                "ArticleIdList" : {
+                                    "ArticleId" : [
+                                        {
+                                            "#text" : "10.1038/nature19057", 
+                                            "@IdType" : "doi"
+                                        }, 
+                                        {
+                                            "#text" : "27535533", 
+                                            "@IdType" : "pubmed"
+                                        }, 
+                                        {
+                                            "#text" : "5018207", 
+                                            "@IdType" : "pmc"
+                                        }
+                                    ]
+                                }, 
+                                "Citation" : "Lek, M. et al. Analysis of protein-coding genetic variation in 60,706 humans. Nature 536, 285–291 (2016)."
+                            }, 
+                            {
+                                "ArticleIdList" : {
+                                    "ArticleId" : {
+                                        "#text" : "10.1126/science.aaz1776", 
+                                        "@IdType" : "doi"
+                                    }
+                                }, 
+                                "Citation" : "Consortium, G. The GTEx Consortium atlas of genetic regulatory effects across human tissues. Science 369, 1318–1330 (2020)."
+                            }, 
+                            {
+                                "ArticleIdList" : {
+                                    "ArticleId" : [
+                                        {
+                                            "#text" : "10.1371/journal.pcbi.1004219", 
+                                            "@IdType" : "doi"
+                                        }, 
+                                        {
+                                            "#text" : "25885710", 
+                                            "@IdType" : "pubmed"
+                                        }, 
+                                        {
+                                            "#text" : "4401657", 
+                                            "@IdType" : "pmc"
+                                        }
+                                    ]
+                                }, 
+                                "Citation" : "de Leeuw, C. A., Mooij, J. M., Heskes, T. & Posthuma, D. MAGMA: generalized gene-set analysis of GWAS data. PLoS Comput. Biol. 11, e1004219 (2015)."
+                            }, 
+                            {
+                                "ArticleIdList" : {
+                                    "ArticleId" : [
+                                        {
+                                            "#text" : "10.1038/s41436-021-01172-3", 
+                                            "@IdType" : "doi"
+                                        }, 
+                                        {
+                                            "#text" : "34012068", 
+                                            "@IdType" : "pubmed"
+                                        }
+                                    ]
+                                }, 
+                                "Citation" : "Miller, D. T. et al. ACMG SF v3.0 list for reporting of secondary findings in clinical exome and genome sequencing: a policy statement of the American College of Medical Genetics and Genomics (ACMG). Genet. Med. 23, 1381–1390 (2021)."
+                            }, 
+                            {
+                                "ArticleIdList" : {
+                                    "ArticleId" : [
+                                        {
+                                            "#text" : "10.1038/ncomms16015", 
+                                            "@IdType" : "doi"
+                                        }, 
+                                        {
+                                            "#text" : "29313844", 
+                                            "@IdType" : "pubmed"
+                                        }, 
+                                        {
+                                            "#text" : "5510175", 
+                                            "@IdType" : "pmc"
+                                        }
+                                    ]
+                                }, 
+                                "Citation" : "Willems, S. M. et al. Large-scale GWAS identifies multiple loci for hand grip strength providing biological insights into muscular fitness. Nat. Commun. 8, 16015 (2017)."
+                            }, 
+                            {
+                                "Citation" : "Chen, C. Y. et al. The impact of rare protein coding genetic variation on adult cognitive function. Nat. Genet. https://doi.org/10.1038/s41588-023-01398-8 (2023)."
+                            }, 
+                            {
+                                "ArticleIdList" : {
+                                    "ArticleId" : [
+                                        {
+                                            "#text" : "10.1016/j.ajhg.2017.11.013", 
+                                            "@IdType" : "doi"
+                                        }, 
+                                        {
+                                            "#text" : "29276005", 
+                                            "@IdType" : "pubmed"
+                                        }
+                                    ]
+                                }, 
+                                "Citation" : "Faundes, V. et al. Histone lysine methylases and demethylases in the landscape of human developmental disorders. Am. J. Hum. Genet. 102, 175–187 (2018)."
+                            }, 
+                            {
+                                "ArticleIdList" : {
+                                    "ArticleId" : [
+                                        {
+                                            "#text" : "10.1126/science.aar6731", 
+                                            "@IdType" : "doi"
+                                        }, 
+                                        {
+                                            "#text" : "30409806", 
+                                            "@IdType" : "pubmed"
+                                        }, 
+                                        {
+                                            "#text" : "6726470", 
+                                            "@IdType" : "pmc"
+                                        }
+                                    ]
+                                }, 
+                                "Citation" : "Martin, H. C. et al. Quantifying the contribution of recessive coding variation to developmental disorders. Science 362, 1161–1164 (2018)."
+                            }, 
+                            {
+                                "ArticleIdList" : {
+                                    "ArticleId" : [
+                                        {
+                                            "#text" : "10.1038/s41586-021-03855-y", 
+                                            "@IdType" : "doi"
+                                        }, 
+                                        {
+                                            "#text" : "34375979", 
+                                            "@IdType" : "pubmed"
+                                        }, 
+                                        {
+                                            "#text" : "8458098", 
+                                            "@IdType" : "pmc"
+                                        }
+                                    ]
+                                }, 
+                                "Citation" : "Wang, Q. et al. Rare variant contribution to human disease in 281,104 UK Biobank exomes. Nature 597, 527–532 (2021)."
+                            }, 
+                            {
+                                "ArticleIdList" : {
+                                    "ArticleId" : [
+                                        {
+                                            "#text" : "10.1038/s41586-020-2853-0", 
+                                            "@IdType" : "doi"
+                                        }, 
+                                        {
+                                            "#text" : "33087929", 
+                                            "@IdType" : "pubmed"
+                                        }, 
+                                        {
+                                            "#text" : "7759458", 
+                                            "@IdType" : "pmc"
+                                        }
+                                    ]
+                                }, 
+                                "Citation" : "Van Hout, C. V. et al. Exome sequencing and characterization of 49,960 individuals in the UK Biobank. Nature 586, 749–756 (2020)."
+                            }, 
+                            {
+                                "ArticleIdList" : {
+                                    "ArticleId" : [
+                                        {
+                                            "#text" : "10.1093/nar/gky1016", 
+                                            "@IdType" : "doi"
+                                        }, 
+                                        {
+                                            "#text" : "30371827", 
+                                            "@IdType" : "pubmed"
+                                        }
+                                    ]
+                                }, 
+                                "Citation" : "Rentzsch, P., Witten, D., Cooper, G. M., Shendure, J. & Kircher, M. CADD: predicting the deleteriousness of variants throughout the human genome. Nucleic Acids Res. 47, D886–d894 (2019)."
+                            }, 
+                            {
+                                "ArticleIdList" : {
+                                    "ArticleId" : [
+                                        {
+                                            "#text" : "10.1038/s41588-021-00870-7", 
+                                            "@IdType" : "doi"
+                                        }, 
+                                        {
+                                            "#text" : "34017140", 
+                                            "@IdType" : "pubmed"
+                                        }
+                                    ]
+                                }, 
+                                "Citation" : "Mbatchou, J. et al. Computationally efficient whole-genome regression for quantitative and binary traits. Nat. Genet. 53, 1097–1103 (2021)."
+                            }, 
+                            {
+                                "ArticleIdList" : {
+                                    "ArticleId" : {
+                                        "#text" : "10.1111/rssb.12388", 
+                                        "@IdType" : "doi"
+                                    }
+                                }, 
+                                "Citation" : "Wang, G., Sarkar, A., Carbonetto, P. & Stephens, M. A simple new approach to variable selection in regression, with application to genetic fine mapping. J. R. Stat. Soc. 82, 1273–1300 (2020)."
+                            }, 
+                            {
+                                "ArticleIdList" : {
+                                    "ArticleId" : [
+                                        {
+                                            "#text" : "10.1073/pnas.0506580102", 
+                                            "@IdType" : "doi"
+                                        }, 
+                                        {
+                                            "#text" : "16199517", 
+                                            "@IdType" : "pubmed"
+                                        }, 
+                                        {
+                                            "#text" : "1239896", 
+                                            "@IdType" : "pmc"
+                                        }
+                                    ]
+                                }, 
+                                "Citation" : "Subramanian, A. et al. Gene set enrichment analysis: a knowledge-based approach for interpreting genome-wide expression profiles. Proc. Natl Acad. Sci. USA 102, 15545–15550 (2005)."
+                            }, 
+                            {
+                                "ArticleIdList" : {
+                                    "ArticleId" : [
+                                        {
+                                            "#text" : "10.1038/s41467-019-09718-5", 
+                                            "@IdType" : "doi"
+                                        }, 
+                                        {
+                                            "#text" : "30992449", 
+                                            "@IdType" : "pubmed"
+                                        }, 
+                                        {
+                                            "#text" : "6467998", 
+                                            "@IdType" : "pmc"
+                                        }
+                                    ]
+                                }, 
+                                "Citation" : "Ge, T., Chen, C. Y., Ni, Y., Feng, Y. A. & Smoller, J. W. Polygenic prediction via Bayesian regression and continuous shrinkage priors. Nat. Commun. 10, 1776 (2019)."
+                            }
+                        ]
+                    }
                 }
             }
         }
     }, 
     "PMC" : null, 
-    "PMID" : "34358588", 
-    "QueryTranslation" : "(\"breast neoplasms\"[MeSH Terms] OR (\"breast\"[All Fields] AND \"neoplasms\"[All Fields]) OR \"breast neoplasms\"[All Fields] OR (\"breast\"[All Fields] AND \"cancer\"[All Fields]) OR \"breast cancer\"[All Fields]) AND 2022/09/01:2022/10/01[Date - Publication]", 
-    "ReferenceCrawlerDeep" : NumberInt(0), 
-    "References" : null, 
-    "State" : NumberInt(-1), 
-    "Title" : null, 
-    "Topics" : null
+    "PMID" : "37301943", 
+    "QueryTranslation" : "\"Biological Specimen Banks\"[MeSH Terms] OR (\"biobank\"[All Fields] OR \"biobank s\"[All Fields] OR \"biobanked\"[All Fields] OR \"biobankers\"[All Fields] OR \"biobanking\"[All Fields] OR \"Biological Specimen Banks\"[MeSH Terms] OR (\"biological\"[All Fields] AND \"specimen\"[All Fields] AND \"banks\"[All Fields]) OR \"Biological Specimen Banks\"[All Fields] OR \"biobanks\"[All Fields]) OR (\"biobank\"[All Fields] OR \"biobank s\"[All Fields] OR \"biobanked\"[All Fields] OR \"biobankers\"[All Fields] OR \"biobanking\"[All Fields] OR \"Biological Specimen Banks\"[MeSH Terms] OR (\"biological\"[All Fields] AND \"specimen\"[All Fields] AND \"banks\"[All Fields]) OR \"Biological Specimen Banks\"[All Fields] OR \"biobanks\"[All Fields]) OR (\"databank\"[All Fields] OR \"databanks\"[All Fields]) OR \"Bio Banking\"[All Fields] OR \"bio bank\"[All Fields]", 
+    "ReferenceCrawlerDeep" : 1, 
+    "References" : [
+        "11769883", 
+        "30445434", 
+        "27535533", 
+        "25885710", 
+        "34012068", 
+        "29313844", 
+        "29276005", 
+        "30409806", 
+        "34375979", 
+        "33087929", 
+        "30371827", 
+        "34017140", 
+        "16199517", 
+        "30992449"
+    ], 
+    "State" : 1, 
+    "Title" : "Rare genetic variants impact muscle strength.", 
+    "Topics" : [
+        "hand grip strength", 
+        "reduced hand grip strength", 
+        "Muscle strength", 
+        "muscle strength", 
+        "common variant association signals", 
+        "multiple adverse health outcomes", 
+        "rare protein", 
+        "six significant hand grip strength genes", 
+        "TTN", 
+        "mortality"
+    ]
 }
