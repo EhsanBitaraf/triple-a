@@ -65,7 +65,10 @@ This tool gives you the power to create a graph of articles and analyze it. This
 
 
 # 🎮 Main Features
-
+- Single paper analysis
+- Dynamic citations deep definition for meta data fetch
+- Network Analysis (Per Node/Overall Graph)
+- Import bibliography file
 # How to use 
 
 ## Setup
