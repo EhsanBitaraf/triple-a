@@ -17,3 +17,9 @@
 
 [Efficient algorithms for citation network analysis](https://arxiv.org/pdf/cs/0309023.pdf)
 
+
+[MapAffil: A Bibliographic Tool for Mapping Author Affiliation Strings to Cities and Their Geocodes Worldwide](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4861081/)
+
+
+[Relational Triple Extraction: One Step is Enough](https://www.ijcai.org/proceedings/2022/0605.pdf)
+
