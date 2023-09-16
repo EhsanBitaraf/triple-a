@@ -59,6 +59,12 @@ def sorted_betweenness_centrality(G):
     return dcs
 
 
+def sorted_closeness_centrality(G):
+    dcs = pd.Series(nx.closeness_centrality(G))
+    dcs = dcs.sort_values(ascending=False)
+    return dcs
+
+
 def sorted_clustering(G):
     dcs = pd.Series(nx.clustering(G))
     dcs = dcs.sort_values(ascending=False)

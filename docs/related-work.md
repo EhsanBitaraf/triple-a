@@ -83,6 +83,22 @@ A Python Parser for PubMed Open-Access XML Subset and MEDLINE XML Dataset
 
 https://github.com/titipata/pubmed_parser
 
+## PaperBot
+open-source web-based search and metadata organization of scientific literature 
+
+https://pubmed.ncbi.nlm.nih.gov/30678631/
+
+https://github.com/NeuroMorphoOrg/PaperBot
+
+## bibliometrix: An R-tool for comprehensive science mapping analysis
+
+https://www.sciencedirect.com/science/article/abs/pii/S1751157717300500
+
+
+https://www.bibliometrix.org/home/
+
+Numerous software tools support bibliometric analysis; however, many of these do not assist scholars in a complete recommended workflow. The most relevant tools are CitNetExplorer (van Eck & Waltman, 2014), VOSviewer (van Eck & Waltman, 2010), SciMAT (Cobo, López-Herrera, Herrera-Viedma, & Herrera, 2012), BibExcel (Persson, Danell, & Schneider, 2009), Science of Science (Sci2) Tool (Sci2 Team, 2009), CiteSpace (Chen, 2006), and VantagePoint (www.thevantagepoint.com).
+
 # Reference
 
 Tools to visualize connections between academic publications

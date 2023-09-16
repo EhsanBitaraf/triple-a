@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 
 ## v0.0.2 - 2023-03-25
 ### Improvements
+- Add betweenness_centrality in jupyterlab
+- Add sorted_closeness_centrality 2023-09-13 ([Issue #32](https://github.com/EhsanBitaraf/triple-a/issues/32))
 - Add Extract4LLM in the_private_backyard2.py (not complete) 2023-07-03
 - Add selection-sampling
 - Complete `go_affiliation_mining()` & `go_extract_topic()`
