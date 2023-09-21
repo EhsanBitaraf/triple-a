@@ -7,6 +7,7 @@ from triplea.cli.ner import ner_title  # ner
 from triplea.cli.next import next  # next
 from triplea.cli.search import get_article  # search
 from triplea.cli.go import go  # go
+from triplea.cli.export_graph import export_graph  # exportgraph
 from triplea.cli.export import export  # export
 from triplea.cli.visualize import visualize  # visualize
 from triplea.cli.analysis import analysis  # analysis

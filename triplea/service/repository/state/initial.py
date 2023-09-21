@@ -190,6 +190,7 @@ if __name__ == "__main__":
 
     start = 1
     retmax = 10000
-    searchterm = '"breast neoplasms"[MeSH Terms] OR ("breast"[All Fields] AND "neoplasms"[All Fields]) OR "breast neoplasms"[All Fields] OR ("breast"[All Fields] AND "cancer"[All Fields]) OR "breast cancer"[All Fields]'
+    # searchterm = '"breast neoplasms"[MeSH Terms] OR ("breast"[All Fields] AND "neoplasms"[All Fields]) OR "breast neoplasms"[All Fields] OR ("breast"[All Fields] AND "cancer"[All Fields]) OR "breast cancer"[All Fields]'
+    searchterm = '((Bibliometric analysis[MeSH Terms])) OR ("Bibliometric analysis"[Title/Abstract])'
     chunkdata = get_article_list_from_pubmed(start, retmax, searchterm)
     _save_article_pmid_list_in_arepo(chunkdata)
