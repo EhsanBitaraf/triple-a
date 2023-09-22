@@ -1,10 +1,32 @@
 import json
+import sys
 import click
 from triplea.cli.main import cli
 import triplea.service.repository.persist as persist
 from triplea.service.click_logger import logger
 
 
+"""
+Access Article Repository.
+
+This function is used as a command in a command-line interface (CLI). It takes three optional arguments: `command`, `pmid`, and `output`. The function performs different actions based on the value of the `command` argument and outputs information to the console and/or a file.
+
+Parameters:
+    command (str, optional): The command to be executed. Valid values are "info", "convert", and "sdd".
+    pmid (str, optional): The PubMed ID of an article.
+    output (str, optional): The file path where the output should be saved.
+
+Returns:
+    None
+
+Raises:
+    NotImplementedError: If the `command` is "convert".
+
+Example Usage:
+    arepo --command info
+
+This command will execute the `arepo` function with the `command` argument set to "info". It will retrieve information about the articles in the repository and display it on the console.
+"""
 @cli.command("arepo", help="Access Article Repository.")
 @click.option(
     "--command",
@@ -64,11 +86,13 @@ def arepo(command, pmid, output):
         pass
     else:
         logger.ERROR(f"Invalid value for '--command' / '-c': {command}")
+        sys.exit(1)
 
     if pmid is not None:
         a = persist.get_article_by_pmid(pmid)
         if a is None:
             logger.ERROR("Not found.")
+            sys.exit(1)
             return
 
         output_data = a

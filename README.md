@@ -308,17 +308,30 @@ An example of working with the functions of this part using `Jupyter` is given i
 
 ![](./docs/assets/img/topic-graph-biobank.png)
 
-### Import Single Reference File
+### Import Data
+
+#### Import Single Reference File
 Import file type is `.bib` , `.enw` , `.ris`
 
 ```shell
-python .\triplea\cli\import.py "C:\...\bc.ris"
+python .\triplea\cli\importbib.py "C:\...\bc.ris"
 ```
 
 output:
 
 ![](docs/assets/img/import-output.png)
 
+
+#### Import Triplea Format
+
+```sh
+python .\triplea\cli\aaa.py import --help
+```
+
+
+```sh
+python .\triplea\cli\aaa.py import --type triplea --format json --bar True "C:\BibliometricAnalysis.json"
+```
 
 
 
@@ -525,11 +538,11 @@ Below is a summary of important environment variables in this project:
 
 # Testing
 
-```
+```sh
 poetry run pytest
 ```
 
-```
+```sh
 poetry run pytest --cov
 ```
 

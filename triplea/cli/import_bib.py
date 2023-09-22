@@ -1,9 +1,8 @@
 import click
 from triplea.service.click_logger import logger
-from triplea.service.repository.state.initial import (
-    get_article_from_bibliography_file_format,
-)
+
 from triplea.cli.main import cli
+from triplea.service.repository.import_file.bib import get_article_from_bibliography_file_format
 
 
 @cli.command("importbib", help="import article from .bib , .enw , .ris file format.")

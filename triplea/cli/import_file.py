@@ -1,8 +1,5 @@
 import click
 from triplea.service.click_logger import logger
-from triplea.service.repository.state.initial import (
-    get_article_from_bibliography_file_format,
-)
 from triplea.cli.main import cli
 import triplea.service.repository.import_file as imp
 
@@ -57,12 +54,12 @@ import triplea.service.repository.import_file as imp
 )
 def import_file(filename,import_type,format_type,proccess_bar):
     logger.INFO("""import article from specific file format
-                 to article repository.""")
+    to article repository.""")
     if import_type == "triplea":
         if format_type == "json":
             imp.import_triplea_json(filename,proccess_bar)
             
-        if format_type == "csv":
+        elif format_type == "csv":
             raise NotImplementedError
         else:
             logger.ERROR("Invalid Format.")

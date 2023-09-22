@@ -2,5 +2,10 @@
     "editor.rulers": [
         79
     ],
-    "mdb.defaultLimit": 20
+    "mdb.defaultLimit": 20,
+    "python.testing.pytestArgs": [
+        "tests"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true
 }

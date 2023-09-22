@@ -1,15 +1,10 @@
 
 import json
 import click
-# from triplea.service.repository.persist import create_article
-# import triplea.service.repository.persist as persist
+import triplea.service.repository.persist as persist
+from triplea.service.click_logger import logger
 
-from persist import create_article
-
-
-
-
-def import_triplea_json(filename, proccess_bar=True):
+def import_triplea_json(filename, proccess_bar=False):
     """
     Imports data from a JSON file and creates articles in a repository using the imported data.
 
@@ -26,12 +21,12 @@ def import_triplea_json(filename, proccess_bar=True):
     # Opening JSON file
     with open(filename) as f:
         data = json.load(f)
-    print(type(data))
+    logger.INFO(f"{len(data)} articles have been entered.")
     if proccess_bar:
         bar = click.progressbar(length=len(data), show_pos=True, show_percent=True)
 
     for a in data:
-        create_article(a)
+        persist.create_article(a)
         if proccess_bar:
             bar.label = (
                 "Article "
@@ -39,8 +34,8 @@ def import_triplea_json(filename, proccess_bar=True):
                 + " write in article repo. "
             )
             bar.update(1)
+    print()
+    persist.refresh()
+    logger.INFO("Import Complete.")
 
-
-if __name__ == "__main__":
-    import_triplea_json(r"C:\Users\Bitaraf\Desktop\ff\BibliometricAnalysis.json")
     

@@ -11,7 +11,23 @@ This is a pytest fixture that sets up a graph object by reading a graphml file.
 @pytest.fixture
 def graph52():
     # set up code goes here
-    # G = nx.read_graphml('graph' / 'g52.graphml')
-    G = nx.read_graphml('tests\\fixtures\\g52.graphml')
-    yield G
-    
+    try:
+        G = nx.read_graphml('tests\\fixtures\\g52.graphml')
+    except FileNotFoundError:
+        print("File 'g52.graphml' does not exist.")
+    except nx.NetworkXError:
+        print("Error reading 'g52.graphml' file.")
+    else:
+        return G
+
+
+def graph52_instance():
+    # set up code goes here
+    try:
+        G = nx.read_graphml('tests\\fixtures\\g52.graphml')
+    except FileNotFoundError:
+        print("File 'g52.graphml' does not exist.")
+    except nx.NetworkXError:
+        print("Error reading 'g52.graphml' file.")
+    else:
+        return G
