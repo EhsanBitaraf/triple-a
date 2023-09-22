@@ -3,6 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## v0.0.2 - 2023-03-25
 ### Improvements
+- Add Import File
 - Add export triplea format
 - 🥳Maryam Jafarpour's thesis defense took place 2023-09-20
 - Add export rayyan format : `triplea\service\repository\export\rayyan_format.py`

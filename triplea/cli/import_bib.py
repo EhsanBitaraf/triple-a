@@ -6,7 +6,7 @@ from triplea.service.repository.state.initial import (
 from triplea.cli.main import cli
 
 
-@cli.command("import", help="import article from .bib , .enw , .ris file format.")
+@cli.command("importbib", help="import article from .bib , .enw , .ris file format.")
 @click.argument("filename", type=click.Path(exists=True))
 def import_single_file(filename):
     logger.INFO("Import file type : .bib , .enw , .ris")

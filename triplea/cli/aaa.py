@@ -1,7 +1,8 @@
 import click
 import triplea as tr
 from triplea.cli.main import cli  # main.py
-from triplea.cli.import_bib import import_single_file  # import
+from triplea.cli.import_bib import import_single_file  # importbib
+from triplea.cli.import_file import import_file  # import
 from triplea.cli.config import configuration  # config
 from triplea.cli.ner import ner_title  # ner
 from triplea.cli.next import next  # next
