@@ -334,8 +334,34 @@ python .\triplea\cli\aaa.py import --type triplea --format json --bar True "C:\B
 ```
 
 
+### Export Data
+Various data export can be created from the article repository. These outputs are used to create raw datasets.
+
+|Type|Format|
+|-|-|
+|triplea|json, csv|
+|rayyan*|csv|
+|RefMan*|ris|
 
 
+* It has not yet been implemented.
+
+
+For guidance from the export command, you can act like this:
+```sh
+python .\triplea\cli\aaa.py export --help
+```
+
+For Example :
+
+
+```sh
+python .\triplea\cli\aaa.py export --type triplea --format json --limit 100 --output "test_export.json"
+```
+
+```sh
+python .\triplea\cli\aaa.py export --type triplea --format json --output "test_export.json"
+```
 
 ### Export graph
 
