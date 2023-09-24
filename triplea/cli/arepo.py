@@ -9,10 +9,14 @@ from triplea.service.click_logger import logger
 """
 Access Article Repository.
 
-This function is used as a command in a command-line interface (CLI). It takes three optional arguments: `command`, `pmid`, and `output`. The function performs different actions based on the value of the `command` argument and outputs information to the console and/or a file.
+This function is used as a command in a command-line interface (CLI).
+It takes three optional arguments: `command`, `pmid`, and `output`.
+The function performs different actions based on the value of
+the `command` argument and outputs information to the console and/or a file.
 
 Parameters:
-    command (str, optional): The command to be executed. Valid values are "info", "convert", and "sdd".
+    command (str, optional): The command to be executed.
+        Valid values are "info", "convert", and "sdd".
     pmid (str, optional): The PubMed ID of an article.
     output (str, optional): The file path where the output should be saved.
 
@@ -25,8 +29,13 @@ Raises:
 Example Usage:
     arepo --command info
 
-This command will execute the `arepo` function with the `command` argument set to "info". It will retrieve information about the articles in the repository and display it on the console.
+This command will execute the `arepo` function with
+the `command` argument set to "info".
+It will retrieve information about the articles
+in the repository and display it on the console.
 """
+
+
 @cli.command("arepo", help="Access Article Repository.")
 @click.option(
     "--command",
@@ -64,10 +73,17 @@ This command will execute the `arepo` function with the `command` argument set t
 def arepo(command, pmid, output):
     if command == "info":
         logger.INFO(
-            "Number of article in article repository is " + str(persist.get_all_article_count())
+            "Number of article in article repository is "
+            + str(persist.get_all_article_count())
         )
-        logger.INFO(f"{persist.get_all_node_count()} Node(s) in article repository.")
-        logger.INFO(f"{persist.get_all_edge_count()} Edge(s) in article repository.")
+        logger.INFO(
+            f"""{persist.get_all_node_count()} Node(s)
+                    in article repository."""
+        )
+        logger.INFO(
+            f"""{persist.get_all_edge_count()} Edge(s)
+                    in article repository."""
+        )
         data = persist.get_article_group_by_state()
         for i in range(-3, 7):
             w = 0

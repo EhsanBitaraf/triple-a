@@ -7,6 +7,29 @@ import traceback
 
 
 
+"""
+This function exports article data from a database to a CSV file in a specific format.
+
+Inputs:
+- None
+
+Outputs:
+- A string containing the CSV data representing the exported articles.
+
+Example Usage:
+csv_data = export_rayyan_csv()
+print(csv_data)
+
+Code Analysis:
+1. Retrieve a list of PubMed IDs (PMIDs) from the database.
+2. Initialize variables for tracking the total number of articles and the number of articles processed.
+3. Initialize variables for storing the CSV data, nodes, and edges.
+4. Iterate over each PMID in the list.
+5. Retrieve the article data from the database using the PMID.
+6. Parse the article data and extract the relevant fields.
+7. Format the fields and append them to the CSV data.
+8. Return the CSV data.
+"""
 def export_rayyan_csv()-> str:
     l_pmid = persist.get_all_article_pmid_list()
     logger.DEBUG(f"{str(len(l_pmid))} Article(s) Selected.")
@@ -30,7 +53,7 @@ def export_rayyan_csv()-> str:
                     f"There are {str(total_article_in_current_state - number_of_article_move_forward)} article(s) left ... ",
                     forecolore="yellow",
                 )
-                break # for test first 500
+                
             else:
                 refresh_point = refresh_point + 1
 

@@ -2,8 +2,11 @@
 # `branches: [main], then this actions runs _twice_ on pull requests, which is
 # annoying.
 name: testing poetry
-on:
-  pull_request
+on: 
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
 
 jobs:
   test:

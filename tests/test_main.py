@@ -1,7 +1,8 @@
 from click.testing import CliRunner
 from triplea.cli.main import cli
 from triplea import __version__
-
+import networkx as nx
+from tests.fixtures.graph_52 import graph52
 
 def test_cli_version():
   runner = CliRunner()
@@ -14,3 +15,8 @@ def test_cli_version():
 
 # if __name__ == "__main__":
 #   test_cli_version()
+
+def test_fixture_graph52(graph52):
+    assert isinstance(graph52, nx.Graph)
+    assert len(graph52.nodes) == 962
+    assert len(graph52.edges) == 1460

@@ -7,7 +7,8 @@ from triplea.cli.main import cli
 
 @cli.command(
     "next",
-    help="Moves the articles state in the Arepo from the current state to the next state.",
+    help="""Moves the articles state in the Arepo from the current state
+    to the next state.""",
 )
 @click.option(
     "--state",
@@ -27,7 +28,8 @@ def next(current_state: int):
     next_state = current_state + 1
     if next_state == 1:
         logger.INFO(
-            f"Next State {next_state} for get detail information of article ..."
+            f"""Next State {next_state} for get detail information
+            of article ..."""
         )
     elif next_state == 2:
         logger.INFO(f"Next State {next_state} for parse details info ...")

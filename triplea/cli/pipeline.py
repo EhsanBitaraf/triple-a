@@ -8,7 +8,7 @@ from triplea.cli.main import cli
 
 
 @cli.command("pipeline", help="Run Custom PipeLine in arepo.")
-@click.option("--name", "-n","name", help="Name of pipeline")
+@click.option("--name", "-n", "name", help="Name of pipeline")
 def pipeline(name: str):
     if name == "FlagExtractKG":
         go_extract_triple()

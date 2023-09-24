@@ -3,16 +3,17 @@ All notable changes to this project will be documented in this file.
 
 ## v0.0.2 - 2023-03-25
 ### Improvements
+- Add `export_triplea_csv`
 - Add Import File
 - Add export triplea format
 - 🥳Maryam Jafarpour's thesis defense took place 2023-09-20
 - Add export rayyan format : `triplea\service\repository\export\rayyan_format.py`
 - Add betweenness_centrality in jupyterlab
 - Add sorted_closeness_centrality 2023-09-13 ([Issue #32](https://github.com/EhsanBitaraf/triple-a/issues/32))
-- Add Extract4LLM in the_private_backyard2.py (not complete) 2023-07-03
+- Add export_llm 2023-07-03
 - Add selection-sampling
 - Complete `go_affiliation_mining()` & `go_extract_topic()`
-- Add Country Based Co Authorship in Jupyter Lab
+- Add Country Based Co-Authorship in Jupyter Lab
 - Add CLI pipeline 2023-06-15
 - Manage Triple in MongoDB but not in TinyDB
 - Add `get_article_pmid_list_by_cstate()` :test_tube:Not Complete
@@ -29,6 +30,9 @@ All notable changes to this project will be documented in this file.
 - Add remove_duplicate in cli.export
 
 ### Bug Fixes
+- `$ black .\triplea\cli\`
+- Fix Test
+- Fix `sys.exit(1)` in CLI function
 - Change `triplea\cli\export_graph.py` to `triplea\cli\export.py` 2023-09-19
 - Fix DOI
 - Fix Security [Issue #3](https://github.com/EhsanBitaraf/triple-a/security/dependabot/3)  Bump tornado from 6.2 to 6.3.2 [#24](https://github.com/EhsanBitaraf/triple-a/pull/24)

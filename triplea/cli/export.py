@@ -1,8 +1,6 @@
-import json
+import sys
 import click
 from triplea.cli.main import cli
-import triplea.service.graph.extract as gextract
-import triplea.service.graph.export as gexport
 import triplea.service.repository.export as repo_export
 from triplea.service.click_logger import logger
 
@@ -20,14 +18,14 @@ from triplea.service.click_logger import logger
     ),
     multiple=False,
     required=True,
-    help="""Export article in article repository 
-                                The type of output file format can be different. These include:
+    help="""Export article in article repository
+            The type of output file format can be different. These include:
 
-                                rayyan : 
+            rayyan :
 
-                                triplea : 
+            triplea :
 
-                                """,
+            """,
 )
 @click.option(
     "--format",
@@ -37,7 +35,7 @@ from triplea.service.click_logger import logger
     multiple=False,
     required=True,
     help="""Export article repository in specific format.
-                                csv : 
+                                csv :
 
                                 json :
 
@@ -73,41 +71,54 @@ from triplea.service.click_logger import logger
     default=0,
     help=".",
 )
-def export(export_type, format_type, output_file, proccess_bar,limit_sample):
+def export(export_type, format_type, output_file, proccess_bar, limit_sample):
     """
     Export articles from a repository in a specific format.
 
     Args:
-        export_type (str): Specifies the type of export, either "triplea" or "rayyan".
-        format_type (str): Specifies the format of the exported file, either "csv" or "json".
-        output_file (str): Specifies the name and path of the output file.
-        proccess_bar (bool): Specifies whether to display a progress bar during the export process.
+        export_type (str):
+        Specifies the type of export, either "triplea" or "rayyan".
+        format_type (str):
+        Specifies the format of the exported file, either "csv" or "json".
+        output_file (str):
+        Specifies the name and path of the output file.
+        proccess_bar (bool):
+        Specifies whether to display a progress bar during the export process.
 
     Raises:
-        NotImplementedError: If the format type is "csv" and the export type is "triplea".
+        NotImplementedError:
+        If the format type is "csv" and the export type is "triplea".
 
     Returns:
         None
     """
     if export_type == "triplea":
-        if format_type=="csv":
-            raise NotImplementedError
-        elif format_type=="json":
-            json_str = repo_export.export_triplea_json(proccess_bar,limit_sample)
+        if format_type == "csv":
+            csv = repo_export.export_triplea_csv(proccess_bar, limit_sample)
+            with open(output_file, "w", encoding="utf-8") as file1:
+                file1.write(csv)
+        elif format_type == "json":
+            json_str = repo_export.export_triplea_json(
+                proccess_bar,
+                limit_sample
+                )
             with open(output_file, "w", encoding="utf-8") as file1:
                 file1.write(json_str)
         else:
             logger.ERROR("Invalid Format.")
+            sys.exit(1)
 
     elif export_type == "rayyan":
-        if format_type=="csv":
+        if format_type == "csv":
             csv = repo_export.export_rayyan_csv()
             with open(output_file, "w", encoding="utf-8") as file1:
                 file1.write(csv)
         else:
             logger.ERROR("Invalid Format.")
-
-
+            sys.exit(1)
 
     else:
         logger.ERROR(f"Invalid value for '--type' / '-t': {export_type}")
+        sys.exit(1)
+
+    sys.exit(0)

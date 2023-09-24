@@ -150,3 +150,12 @@ black .\visualization\
 ```
 flake8 .\triplea\ --count --exit-zero --max-complexity=10 --format pylint --ignore F401,W503,W504,E203 --max-line-length=451 --statistics
 ```
+
+
+```
+flake8 --config=.flake8 --output-file out-flake8.txt .\triplea\cli\
+```
+
+```
+black .\triplea\cli\
+```

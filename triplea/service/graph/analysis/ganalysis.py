@@ -102,17 +102,27 @@ def get_top_keys(dictionary, top):
     return top
 
 def get_avg_shortest_path_length_per_node(G):
-    # Calculate the average shortest-path length for each node
-    avg_shortest_path_lengths = nx.shortest_path_length(G)
+    """
+    Calculate the average shortest-path length for each node in the graph.
 
-    # Print the results
-    ll = {}
+    Parameters:
+    G (networkx.Graph): The input graph.
+
+    Returns:
+    pandas.Series: A series containing the average shortest-path length for each node, sorted in descending order.
+    """
+
+    # Calculate the average shortest-path length for each node
+    avg_shortest_path_lengths = dict(nx.all_pairs_shortest_path_length(G))
+
+    # Store the average shortest-path length for each node in a list of tuples
+    ll = []
     for node in avg_shortest_path_lengths:
         avg_shortest_path_length = sum(avg_shortest_path_lengths[node].values()) / (len(G) - 1)
-        ll[node] = avg_shortest_path_length
-        # print(f"The average shortest-path length for node {node} is {avg_shortest_path_length:.2f}")
+        ll.append((node, avg_shortest_path_length))
 
-    dcs = pd.Series(ll)
+    # Convert the list of tuples to a pandas Series and sort it in descending order
+    dcs = pd.Series(dict(ll))
     dcs = dcs.sort_values(ascending=False)
 
     return dcs

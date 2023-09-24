@@ -156,7 +156,7 @@ def export_gexf_from_arepo(filename: str):
     """
     G = export_networkX_from_arepo()
     # saving graph created above in gexf format
-    nx.write_gexf(G, filename + ".gexf")
+    nx.write_gexf(G, filename)
 
 
 def export_gexf_from_graphdict(graphdict: dict, filename: str):
@@ -170,7 +170,7 @@ def export_gexf_from_graphdict(graphdict: dict, filename: str):
     :type filename: str
     """
     G = export_networkx_from_graphdict(graphdict)
-    nx.write_gexf(G, filename + ".gexf")
+    nx.write_gexf(G, filename )
 
 
 def export_graphml_from_arepo(filename: str):
@@ -182,7 +182,7 @@ def export_graphml_from_arepo(filename: str):
     """
     G = export_networkX_from_arepo()
     # saving graph created above in graphml format
-    nx.write_graphml(G, filename + ".graphml")
+    nx.write_graphml(G, filename )
 
 
 def export_graphml_from_networkx(G: nx.Graph, filename: str):
@@ -195,7 +195,7 @@ def export_graphml_from_networkx(G: nx.Graph, filename: str):
     :param filename: the name of the file you want to save the graph as
     :type filename: str
     """
-    nx.write_graphml(G, filename + ".graphml")
+    nx.write_graphml(G, filename)
 
 
 def export_graphml_from_graphdict(graphdict: dict, filename: str):
@@ -206,7 +206,7 @@ def export_graphml_from_graphdict(graphdict: dict, filename: str):
     :type filename: str
     """
     G = export_networkx_from_graphdict(graphdict)
-    nx.write_graphml(G, filename + ".graphml")
+    nx.write_graphml(G, filename)
 
 
 def export_gson_from_graphdict(graphdict) -> dict:

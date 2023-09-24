@@ -340,7 +340,7 @@ Various data export can be created from the article repository. These outputs ar
 |Type|Format|
 |-|-|
 |triplea|json, csv|
-|rayyan*|csv|
+|rayyan|csv|
 |RefMan*|ris|
 
 
@@ -355,15 +355,29 @@ python .\triplea\cli\aaa.py export --help
 For Example :
 
 
+
+
+The export is limited to 100 samples, and the resulting exported articles are saved in the file Triple Json format named "test_export.json".
 ```sh
 python .\triplea\cli\aaa.py export --type triplea --format json --limit 100 --output "test_export.json"
 ```
+
 
 ```sh
 python .\triplea\cli\aaa.py export --type triplea --format json --output "test_export.json"
 ```
 
-### Export graph
+Export Triplea CSV format:
+```sh
+python .\triplea\cli\aaa.py export --type triplea --format csv --output "test_export.csv"
+```
+
+Export for Rayyan CSV format:
+```sh
+python .\triplea\cli\aaa.py export --type rayyan --format csv --output "test_export.csv"
+```
+
+### Export Graph
 
 for details information:
 ```

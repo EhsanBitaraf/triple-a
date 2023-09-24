@@ -1,0 +1,8 @@
+[flake8]
+max-line-length = 90
+exclude = .git,.vscode,alembic,venv,docs,__pycache__,__init__.py,.mypy_cache,.pytest_cache
+max-complexity = 20
+tee = True
+statistics = True
+show-source = True
+format=pylint

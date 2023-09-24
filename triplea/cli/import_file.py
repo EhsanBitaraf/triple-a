@@ -4,8 +4,11 @@ from triplea.cli.main import cli
 import triplea.service.repository.import_file as imp
 
 
-@cli.command("import", help="""import article from specific file format
-              to article repository.""")
+@cli.command(
+    "import",
+    help="""import article from specific file format
+              to article repository.""",
+)
 @click.argument("filename", type=click.Path(exists=True))
 @click.option(
     "--type",
@@ -22,9 +25,9 @@ import triplea.service.repository.import_file as imp
     help="""import article from specific file format to article repository.
             The type of input file format can be different. These include:
 
-                                rayyan : 
+                                rayyan :
 
-                                triplea : 
+                                triplea :
 
                                 """,
 )
@@ -36,7 +39,7 @@ import triplea.service.repository.import_file as imp
     multiple=False,
     required=True,
     help="""Import article repository in specific format.
-                                csv : 
+                                csv :
 
                                 json :
 
@@ -52,13 +55,15 @@ import triplea.service.repository.import_file as imp
     default=True,
     help="Run proccess bar in command line.",
 )
-def import_file(filename,import_type,format_type,proccess_bar):
-    logger.INFO("""import article from specific file format
-    to article repository.""")
+def import_file(filename, import_type, format_type, proccess_bar):
+    logger.INFO(
+        """import article from specific file format
+    to article repository."""
+    )
     if import_type == "triplea":
         if format_type == "json":
-            imp.import_triplea_json(filename,proccess_bar)
-            
+            imp.import_triplea_json(filename, proccess_bar)
+
         elif format_type == "csv":
             raise NotImplementedError
         else:
@@ -68,4 +73,3 @@ def import_file(filename,import_type,format_type,proccess_bar):
         raise NotImplementedError
     else:
         logger.ERROR("Invalid Type.")
-    
