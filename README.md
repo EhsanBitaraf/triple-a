@@ -339,7 +339,7 @@ Various data export can be created from the article repository. These outputs ar
 
 |Type|Format|
 |-|-|
-|triplea|json, csv|
+|triplea|json, csv , *csvs*|
 |rayyan|csv|
 |RefMan*|ris|
 
@@ -371,6 +371,12 @@ Export Triplea CSV format:
 ```sh
 python .\triplea\cli\aaa.py export --type triplea --format csv --output "test_export.csv"
 ```
+
+
+```sh
+python .\triplea\cli\aaa.py export --type triplea --format csvs --output "test_export.csv"
+```
+
 
 Export for Rayyan CSV format:
 ```sh
