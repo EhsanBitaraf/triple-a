@@ -3,6 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## v0.0.2 - 2023-03-25
 ### Improvements
+- Add `export_article` Alternative to export one article
 - Add `export_triplea_csvs_in_relational_mode_save_file`
 - Add `export_triplea_csv`
 - Add Import File

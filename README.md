@@ -374,7 +374,7 @@ python .\triplea\cli\aaa.py export --type triplea --format csv --output "test_ex
 
 
 ```sh
-python .\triplea\cli\aaa.py export --type triplea --format csvs --output "test_export.csv"
+python .\triplea\cli\aaa.py export --type triplea --format csvs --output "export.csv"
 ```
 
 
@@ -386,7 +386,7 @@ python .\triplea\cli\aaa.py export --type rayyan --format csv --output "test_exp
 ### Export Graph
 
 for details information:
-```
+```sh
 python .\triplea\cli\aaa.py export_graph --help
 ```
 
@@ -531,7 +531,7 @@ Number of article in article repository is 122
 
 
 Get article data by PMID
-```
+```sh
 python .\triplea\cli\aaa.py arepo -pmid 31398071
 ```
 
@@ -548,8 +548,13 @@ Keywords: Adult, Aged, Breast Neoplasms, Female, Humans, Lymphatic Metastasis, M
 ```
 
 Get article data by PMID and save to `article.json` file.
-```
+```sh
 python .\triplea\cli\aaa.py arepo -pmid 31398071 -o article.json
+```
+
+another command fo this:
+```sh
+python .\triplea\cli\aaa.py export_article --idtype pmid --id 31398071 --format json --output "article.json"
 ```
 
 ### Configuration
@@ -591,6 +596,15 @@ poetry run pytest
 ```sh
 poetry run pytest --cov
 ```
+
+
+For unit test check :
+
+bibilometric:
+
+37283018
+
+35970485
 
 # Dependencies
 

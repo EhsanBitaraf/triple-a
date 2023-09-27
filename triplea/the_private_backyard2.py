@@ -12,25 +12,16 @@ from triplea.schemas.article import Article
 from triplea.schemas.node import Node
 from triplea.service.graph.analysis.info import info
 from triplea.service.repository.export.llm import export_pretrain_llm_in_dir
+from triplea.service.repository.export.triplea_format import export_triplea_csvs_in_relational_mode_save_file
 import triplea.service.repository.persist as persist
 import triplea.service.graph.export.export as gexport
 import triplea.service.graph.analysis.ganalysis as ganaliz
 import traceback
 import os
 
+from triplea.service.repository.pipeline_core import move_state_forward
+
 if __name__ == "__main__":
     pass
-    # export_pretrain_llm_in_dir(r"C:\Users\Bitaraf\Desktop\ff\hgj\i90",Merge=True,proccess_bar=True,limit_sample=0)
-
-    output_file = r"C:\Users\Bitaraf\Desktop\ff\hgj\i90\a.text"
-    file_name = os.path.basename(output_file)
-    file = os.path.splitext(file_name)
-    fname = file[0] 
-    fextention = file[1]
-
-
-    dir = output_file.replace(fname + fextention, '')
-    if fextention is None:
-        fextention= '.csv'
-
-    print(dir)
+    # export_triplea_csvs_in_relational_mode_save_file('export.csv')
+    move_state_forward(2)

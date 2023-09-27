@@ -8,16 +8,8 @@ from triplea.schemas.article import Article
 import triplea.service.repository.persist as persist
 import traceback
 
-def safe_csv(text:str) -> str:
-    if text is None:
-        return ""
-    if text.__contains__(","):
-        if text.__contains__('"'):
-            text = text.replace('"', ' ')
-        else:
-            text =  f'"{text[:-1]}"'
+from triplea.utils.general import safe_csv
 
-    return text
 
 def export_triplea_json(proccess_bar=False, limit_sample=0)-> str:
     l_pmid = persist.get_all_article_pmid_list()
@@ -191,7 +183,7 @@ def export_triplea_csv(proccess_bar=False, limit_sample=0)-> str:
 
 def export_triplea_csvs_in_relational_mode_save_file(output_file:str,
         proccess_bar=False,
-          limit_sample=0):
+        limit_sample=0):
     
     l_pmid = persist.get_all_article_pmid_list()
     logger.DEBUG(f"{str(len(l_pmid))} Article(s) Selected.")
@@ -199,15 +191,15 @@ def export_triplea_csvs_in_relational_mode_save_file(output_file:str,
     total_article_in_current_state = len(l_pmid)
     refresh_point = 0
     csv = ""
-    authors_csv = "key,authors" + "\n"
+    authors_csv = "key,authors,affiliations" + "\n"
     keywords_csv = "key,keywords" + "\n"
     topics_csv="key,topics" + "\n"
-    csv = csv + """key,title,pmid,year,publisher,url,abstract,state,doi""" + "\n"
+    csv = csv + """key,title,pmid,year,publisher,url,abstract,state,doi,journal_issn,journal_iso_abbreviation,language,publication_type""" + "\n"
     n = 0
     for id in l_pmid:
         try:
             n = n + 1
-            if refresh_point == 50:
+            if refresh_point == 500:
                 refresh_point = 0
                 print()
                 logger.INFO(
@@ -217,7 +209,9 @@ def export_triplea_csvs_in_relational_mode_save_file(output_file:str,
             else:
                 refresh_point = refresh_point + 1
 
-            a = persist.get_article_by_pmid(id)
+            # a = persist.get_article_by_pmid(id)
+            a = persist.get_article_by_pmid('21048984')
+            
             try:
                 updated_article = Article(**a.copy())
             except Exception:
@@ -227,30 +221,75 @@ def export_triplea_csvs_in_relational_mode_save_file(output_file:str,
 
 
 
-            if updated_article.Title.__contains__(","):
-                title = updated_article.Title.replace('"', ' ')
-                title = f'"{title}"' 
-            else:
-                title = updated_article.Title
+
+            title = ""
+            year = ""
+            publisher = ""
+            journal_issn = ""
+            journal_iso_abbreviation = ""
+            language = ""
+            publication_type = ""
+
+
+            if updated_article.Title is not None:
+                title = safe_csv(updated_article.Title)
+
+            # try:
+            #     year = updated_article.OreginalArticle['PubmedArticleSet']['PubmedArticle']['MedlineCitation']['Article']['ArticleDate']['Year']
+            # except:
+            #     try:
+            #         year = updated_article.OreginalArticle['PubmedArticleSet']['PubmedArticle']['MedlineCitation']['Article']['DateCompleted']['Year'] 
+            #     except:
+            #         try:
+            #             year = updated_article.OreginalArticle['PubmedArticleSet']['PubmedArticle']['MedlineCitation']['DateCompleted']['Year'] 
+            #         except: 
+            #             year = "0"
+            #             # with open("sample.json", "w") as outfile:
+            #             #     json.dump(updated_article.OreginalArticle, outfile)
                 
-            authors = ""
+
             try:
-                year = updated_article.OreginalArticle['PubmedArticleSet']['PubmedArticle']['MedlineCitation']['Article']['ArticleDate']['Year']
+                year = updated_article.OreginalArticle['PubmedArticleSet']['PubmedArticle']['MedlineCitation']['Article']['Journal']['JournalIssue']['PubDate']['Year']
             except:
                 try:
-                    year = updated_article.OreginalArticle['PubmedArticleSet']['PubmedArticle']['MedlineCitation']['Article']['DateCompleted']['Year'] 
+                    year = updated_article.OreginalArticle['PubmedArticleSet']['PubmedArticle']['MedlineCitation']['Article']['Journal']['JournalIssue']['PubDate']['MedlineDate']
                 except:
-                    try:
-                        year = updated_article.OreginalArticle['PubmedArticleSet']['PubmedArticle']['MedlineCitation']['DateCompleted']['Year'] 
-                    except: 
-                        year = "0"
-                    
+                    year = "0"
+                    # with open("sample.json", "w") as outfile:
+                    #     json.dump(updated_article.OreginalArticle, outfile)            
 
-                        # with open("sample.json", "w") as outfile:
-                        #     json.dump(updated_article.OreginalArticle, outfile)
-                
+            publisher = safe_csv(updated_article.Journal)
+            try:
+                journal_issn = updated_article.OreginalArticle['PubmedArticleSet']['PubmedArticle']['MedlineCitation']['Article']['Journal']['ISSN']['#text']
+            except:
+                journal_issn = ""
 
-            publisher = updated_article.Journal
+
+            journal_iso_abbreviation = updated_article.OreginalArticle['PubmedArticleSet']['PubmedArticle']['MedlineCitation']['Article']['Journal']['ISOAbbreviation']
+            lang = updated_article.OreginalArticle['PubmedArticleSet']['PubmedArticle']['MedlineCitation']['Article']['Language']
+            if isinstance(lang,list):
+                for l in lang:
+                    language = l + ', ' + language
+                language = language[:-1] 
+
+
+            
+            p = updated_article.OreginalArticle['PubmedArticleSet']['PubmedArticle']['MedlineCitation']['Article']['PublicationTypeList']['PublicationType']
+            if isinstance(p,list):
+                for i in p:
+                    chunk = i['#text']
+                    publication_type = chunk + ', ' + publication_type
+                # publication_type = p[0]['#text']
+                publication_type = publication_type[:-1]
+            else:
+                publication_type = updated_article.OreginalArticle['PubmedArticleSet']['PubmedArticle']['MedlineCitation']['Article']['PublicationTypeList']['PublicationType']['#text']
+            
+            journal_iso_abbreviation = safe_csv(journal_iso_abbreviation)
+            language = safe_csv(language)
+            publication_type = safe_csv(publication_type)
+
+            
+
             url= f"https://pubmed.ncbi.nlm.nih.gov/{updated_article.PMID}/"
 
             if updated_article.Abstract is None:
@@ -261,19 +300,24 @@ def export_triplea_csvs_in_relational_mode_save_file(output_file:str,
                     abstract = f'"{abstract}"' 
                 else:
                     abstract = updated_article.Abstract
-            notes = ""
             doi = updated_article.DOI
             pmid = updated_article.PMID
             state = updated_article.State
-            keywords = ""
 
 
-            for au in updated_article.Authors:
-                authors_csv = authors_csv + f"{n},{safe_csv(au.FullName)}" + "\n"
+            if updated_article.Authors is not None:
+                for au in updated_article.Authors:
+                    if au.Affiliations is not None:
+                        aff = au.Affiliations[0].Text
+                    else:
+                        aff = None
 
-            for k in updated_article.Keywords:
-                if k is not None:
-                    keywords_csv = keywords_csv + f"{n},{safe_csv(k.Text)}" + "\n"
+                    authors_csv = authors_csv + f"{n},{safe_csv(au.FullName)},{safe_csv(aff)}" + "\n"
+
+            if updated_article.Keywords is not None:
+                for k in updated_article.Keywords:
+                    if k is not None:
+                        keywords_csv = keywords_csv + f"{n},{safe_csv(k.Text)}" + "\n"
                     
             if updated_article.Topics is not None:
                 for topic in updated_article.Topics:
@@ -281,7 +325,7 @@ def export_triplea_csvs_in_relational_mode_save_file(output_file:str,
                         topics_csv = topics_csv + f"{n},{safe_csv(topic)}" + "\n"
 
 
-            csv = csv + f"""{n},{title},{pmid},{year},{publisher},{url},{abstract},{state},{doi}""" + "\n"
+            csv = csv + f"""{n},{title},{pmid},{year},{publisher},{url},{abstract},{state},{doi},{journal_issn},{journal_iso_abbreviation},{language},{publication_type}""" + "\n"
 
 
             #------------------Write to file ----------------
@@ -315,7 +359,8 @@ def export_triplea_csvs_in_relational_mode_save_file(output_file:str,
         except Exception:
                 exc_type, exc_value, exc_tb = sys.exc_info()
                 print()
-                print(exc_tb.tb_lineno)
+                print(f"line : {exc_tb.tb_lineno}")
+                print(f"PMID : {updated_article.PMID}")
                 logger.ERROR(f"Error {exc_type}")
                 logger.ERROR(f"Error {exc_value}")
                 traceback.print_tb(exc_tb)

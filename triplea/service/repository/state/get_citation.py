@@ -44,9 +44,11 @@ def get_citation(article: Article):
                             deep=3,
                         )
                         new_ccd = article.CiteCrawlerDeep - 1
-                        for c in lc:
-                            persist.insert_new_pmid(pmid=c, cite_crawler_deep=new_ccd)
+                        # CRITICAL Temporary Disable
+                        # for c in lc:
+                        #     persist.insert_new_pmid(pmid=c, cite_crawler_deep=new_ccd)
         else:
             pass
+            article.State = 3
             # logger.DEBUG(f'Article {pmid} Cite Crawler Deep = {article.CiteCrawlerDeep}.'  , deep = 5)
     return article

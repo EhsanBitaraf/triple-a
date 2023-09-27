@@ -116,6 +116,8 @@ def move_state_forward(
                 refresh_point = refresh_point + 1
 
             a = persist.get_article_by_pmid(id)
+            # a = persist.get_article_by_pmid('35970485') # CRITICAL For Test and Debug
+            
             try:
                 updated_article = Article(**a.copy())
             except Exception:

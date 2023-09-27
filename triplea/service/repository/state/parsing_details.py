@@ -50,7 +50,10 @@ def _convert_dict_to_class_author(data: dict) -> Author:
     """
     if "CollectiveName" in data:
         my_author = Author()
-        my_author.FullName = data["CollectiveName"]
+        if '#text' in data["CollectiveName"]:
+            my_author.FullName = data["CollectiveName"]['#text']
+        else:
+            my_author.FullName = data["CollectiveName"]
         my_author.HashID = str(hash(my_author.FullName))
         return my_author
 
@@ -90,7 +93,11 @@ def _convert_dict_to_class_keyword(data: dict) -> Keyword:
     :return: A Keyword object
     """
     my_keyword = Keyword()
-    my_keyword.Text = data["#text"]
+    if '#text' in data:
+        my_keyword.Text = data["#text"]
+    else:
+        my_keyword.Text = data["i"]  # in PMID 37283018
+
     if "," in my_keyword.Text:
         pass
         # logger.ERROR ('The keyword text has the character ",".')
@@ -102,6 +109,8 @@ def _convert_dict_to_class_keyword(data: dict) -> Keyword:
     my_keyword.IS_Mesh = False
     return my_keyword
 
+def _convert_dict_to_reffrence():
+    pass
 
 def parsing_details(article: Article) -> Article:
     article.State = 2
@@ -153,13 +162,20 @@ def parsing_details(article: Article) -> Article:
             for a_id in ArticleId:
                 if a_id["@IdType"] == "doi":
                     article.DOI = a_id["#text"]
-                if a_id["@IdType"] == "pmc":
+                elif a_id["@IdType"] == "pmc":
                     article.PMC = a_id["#text"]
+                else:
+                    print()
+                    print(f'article() id type unhandel: {a_id["@IdType"]}')
         elif type(ArticleId) == dict:
             if ArticleId["@IdType"] == "doi":
                 article.DOI = a_id["#text"]
-            if ArticleId["@IdType"] == "pmc":
+            elif ArticleId["@IdType"] == "pmc":
                 article.PMC = a_id["#text"]
+            else:
+                print()
+                print(f'article id type unhandel: {a_id["@IdType"]}')                
+
         else:
             raise NotImplementedError
 
@@ -251,25 +267,10 @@ def parsing_details(article: Article) -> Article:
             article.ReferenceCrawlerDeep = 0
 
         reference_list = []
-        if type(PubmedData["ReferenceList"]["Reference"]) == dict:
-            ref = PubmedData["ReferenceList"]["Reference"]
-            if "ArticleIdList" in ref:
-                if type(ref["ArticleIdList"]["ArticleId"]) == dict:
-                    if ref["ArticleIdList"]["ArticleId"][
-                        "@IdType"
-                        ] == "pubmed":
-                        reference_list.append(
-                            ref["ArticleIdList"]["ArticleId"]["#text"]
-                        )
-
-                elif type(ref["ArticleIdList"]["ArticleId"]) == list:
-                    for ref_id in ref["ArticleIdList"]["ArticleId"]:
-                        if ref_id["@IdType"] == "pubmed":
-                            reference_list.append(ref_id["#text"])
-                else:
-                    raise NotImplementedError
-        else:
-            for ref in PubmedData["ReferenceList"]["Reference"]:
+        
+        if isinstance(PubmedData["ReferenceList"],list):
+            print(PubmedData["ReferenceList"])
+            for ref in PubmedData["ReferenceList"]:
                 if "ArticleIdList" in ref:
                     if type(ref["ArticleIdList"]["ArticleId"]) == dict:
                         if ref["ArticleIdList"]["ArticleId"][
@@ -285,6 +286,43 @@ def parsing_details(article: Article) -> Article:
                                 reference_list.append(ref_id["#text"])
                     else:
                         raise NotImplementedError
+                        
+
+        else:
+            if type(PubmedData["ReferenceList"]["Reference"]) == dict:
+                ref = PubmedData["ReferenceList"]["Reference"]
+                if "ArticleIdList" in ref:
+                    if type(ref["ArticleIdList"]["ArticleId"]) == dict:
+                        if ref["ArticleIdList"]["ArticleId"][
+                            "@IdType"
+                            ] == "pubmed":
+                            reference_list.append(
+                                ref["ArticleIdList"]["ArticleId"]["#text"]
+                            )
+
+                    elif type(ref["ArticleIdList"]["ArticleId"]) == list:
+                        for ref_id in ref["ArticleIdList"]["ArticleId"]:
+                            if ref_id["@IdType"] == "pubmed":
+                                reference_list.append(ref_id["#text"])
+                    else:
+                        raise NotImplementedError
+            else:
+                for ref in PubmedData["ReferenceList"]["Reference"]:
+                    if "ArticleIdList" in ref:
+                        if type(ref["ArticleIdList"]["ArticleId"]) == dict:
+                            if ref["ArticleIdList"]["ArticleId"][
+                                "@IdType"
+                                ] == "pubmed":
+                                reference_list.append(
+                                    ref["ArticleIdList"]["ArticleId"]["#text"]
+                                )
+
+                        elif type(ref["ArticleIdList"]["ArticleId"]) == list:
+                            for ref_id in ref["ArticleIdList"]["ArticleId"]:
+                                if ref_id["@IdType"] == "pubmed":
+                                    reference_list.append(ref_id["#text"])
+                        else:
+                            raise NotImplementedError
 
         article.References = reference_list
 
