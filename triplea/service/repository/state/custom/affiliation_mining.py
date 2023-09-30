@@ -1,7 +1,6 @@
 import sys
 from triplea.schemas.article import Article
 from triplea.service.click_logger import logger
-from triplea.service.nlp.triple_extract import extract_triples
 import triplea.service.repository.persist as persist
 from triplea.config.settings import ROOT
 

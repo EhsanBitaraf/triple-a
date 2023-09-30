@@ -1,6 +1,6 @@
 from string import printable
 import click
-from triplea.service.nlp.ner import get_title_ner
+# from triplea.service.nlp.ner import get_title_ner  # Expire Module
 from triplea.service.click_logger import logger
 from triplea.cli.main import cli
 
@@ -11,7 +11,8 @@ def ner_title(title):
     logger.INFO("NER this Title base on custom mode for extracting major topic:")
     logger.INFO(title)
     try:
-        ner = get_title_ner(title)
+        # ner = get_title_ner(title)  # Expire Module
+        ner = ""
     except Exception:
         logger.ERROR("Error")
         raise

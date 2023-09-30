@@ -1,3 +1,5 @@
+import json
+import sys
 import click
 from triplea.cli.main import cli
 import triplea.service.graph.extract as gextract
@@ -126,6 +128,81 @@ def visualize(generate_type, port):
     e = gextract.Emmanuel(l_edges)
     graphdict = {"nodes": n, "edges": e}
     logger.DEBUG("Update Graph Data ...")
+    graphdatarefresh.refresh_interactivegraph(graphdict)
+    graphdatarefresh.refresh_alchemy(graphdict)
+
+    with socketserver.TCPServer(("", port), Handler) as httpd:
+        logger.INFO(f"serving at http://localhost:{port} ....")
+        httpd.serve_forever()
+
+
+
+@cli.command("visualize_file", help="Visualize Graph File.")
+@click.argument(
+    "file",
+    type=str,
+    required=True,
+    metavar="File",
+    # help="Directory path of output.",
+)
+@click.option(
+    "--format",
+    "-f",
+    "format_type",
+    type=click.Choice(["graphdict",
+                       "graphjson",
+                       "gson",
+                       "gpickle",
+                       "graphml",
+                       "gexf"]),
+    multiple=False,
+    required=True,
+    help="""Generate graph and export.
+    graphdict : This format is a customized format for citation graphs
+      in the form of a Python dictionary.
+
+    graphjson :
+
+    gson :
+
+    gpickle : Write graph in Python pickle format.
+      Pickles are a serialized byte stream of a Python object
+
+    graphml : The GraphML file format uses .graphml extension
+    and is XML structured. It supports attributes for nodes and edges,
+      hierarchical graphs and benefits from a flexible architecture.
+
+    gexf : GEXF (Graph Exchange XML Format) is an XML-based file format
+      for storing a single undirected or directed graph.
+
+                                """,
+)
+@click.option("--port", "-p", "port", default=8000, help="port")
+def visualize_file(file,format_type, port):
+
+    if format_type == "graphdict":
+        with open(file, "r") as f:
+            graphdict = json.load(f)
+    elif format_type == "graphjson":
+        raise NotImplementedError
+
+    elif format_type == "gson":
+        raise NotImplementedError
+
+    elif format_type == "gpickle":
+        raise NotImplementedError
+        
+    elif format_type == "graphml":
+        raise NotImplementedError
+        
+    elif format_type == "gexf":
+        raise NotImplementedError
+        
+    else:
+        logger.ERROR(f"Invalid value for '--format' / '-f': {format_type}")
+        sys.exit(1)
+
+
     graphdatarefresh.refresh_interactivegraph(graphdict)
     graphdatarefresh.refresh_alchemy(graphdict)
 

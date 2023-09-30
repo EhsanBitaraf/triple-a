@@ -1,11 +1,11 @@
 from triplea.schemas.article import Article
 from triplea.schemas.node import Edge, Node
-import spacy
-import pytextrank
+# import spacy
+# import pytextrank
 from triplea.service.click_logger import logger
 
-nlp = spacy.load("en_core_web_sm")
-nlp.add_pipe("topicrank")
+# nlp = spacy.load("en_core_web_sm")
+# nlp.add_pipe("topicrank")
 
 
 def graph_extract_article_topic(article: Article) -> dict:
@@ -26,16 +26,12 @@ def graph_extract_article_topic(article: Article) -> dict:
     node_article.Type = "Article"
     nodes.append(node_article.dict())
 
-    if article.Title is None or article.Title == "":
-        print()
-        logger.WARNING(f"Article title is empty. PMID : {article.PMID}")
-    else:
-        doc = nlp(article.Title)
 
-        for t in doc._.phrases[:10]:
+    if article.Topics is not None:
+        for t in article.Topics:
             node_topic = Node()
-            node_topic.Identifier = t.text.lower()
-            node_topic.Name = t.text.lower()
+            node_topic.Identifier = t['text'].lower()
+            node_topic.Name = t['text'].lower()
             node_topic.Type = "Topic"
             nodes.append(node_topic.dict())
 
@@ -43,8 +39,10 @@ def graph_extract_article_topic(article: Article) -> dict:
             edge.SourceID = node_article.Identifier
             edge.DestinationID = node_topic.Identifier
             edge.Type = "TOPIC"
-            edge.Weight = t.rank
+            edge.Weight = t['rank']
             edge.HashID = str(hash(edge.SourceID + edge.DestinationID + edge.Type))
             edges.append(edge.dict())
+    else:
+        logger.WARNING(f"Article Topics is empty. PMID : {article.PMID}")
 
     return {"nodes": nodes, "edges": edges}

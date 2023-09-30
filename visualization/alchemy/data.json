@@ -2,621 +2,4556 @@
     "comment": "This file generate autommaticlly by TripleA",
     "nodes": [
         {
-            "caption": "36467335",
+            "caption": "28096979",
             "type": "Article",
-            "id": "36467335"
+            "id": "28096979"
         },
         {
-            "caption": "33952250",
+            "caption": "new anti-tb drugs",
+            "type": "Topic",
+            "id": "new anti-tb drugs"
+        },
+        {
+            "caption": "worldwide tb control",
+            "type": "Topic",
+            "id": "worldwide tb control"
+        },
+        {
+            "caption": "tb",
+            "type": "Topic",
+            "id": "tb"
+        },
+        {
+            "caption": "tuberculosis research",
+            "type": "Topic",
+            "id": "tuberculosis research"
+        },
+        {
+            "caption": "general medicine",
+            "type": "Topic",
+            "id": "general medicine"
+        },
+        {
+            "caption": "drug resistance",
+            "type": "Topic",
+            "id": "drug resistance"
+        },
+        {
+            "caption": "tuberculosis",
+            "type": "Topic",
+            "id": "tuberculosis"
+        },
+        {
+            "caption": "south africa",
+            "type": "Topic",
+            "id": "south africa"
+        },
+        {
+            "caption": "top productive countries",
+            "type": "Topic",
+            "id": "top productive countries"
+        },
+        {
+            "caption": "active journals",
+            "type": "Topic",
+            "id": "active journals"
+        },
+        {
+            "caption": "28005974",
             "type": "Article",
-            "id": "33952250"
+            "id": "28005974"
         },
         {
-            "caption": "China",
-            "type": "Country",
-            "id": "China"
+            "caption": "novel research methods",
+            "type": "Topic",
+            "id": "novel research methods"
         },
         {
-            "caption": "29580128",
+            "caption": "qualitative methods",
+            "type": "Topic",
+            "id": "qualitative methods"
+        },
+        {
+            "caption": "high social validation",
+            "type": "Topic",
+            "id": "high social validation"
+        },
+        {
+            "caption": "methods",
+            "type": "Topic",
+            "id": "methods"
+        },
+        {
+            "caption": "social validation",
+            "type": "Topic",
+            "id": "social validation"
+        },
+        {
+            "caption": "novel research",
+            "type": "Topic",
+            "id": "novel research"
+        },
+        {
+            "caption": "social studies",
+            "type": "Topic",
+            "id": "social studies"
+        },
+        {
+            "caption": "high-throughput toxicology methods",
+            "type": "Topic",
+            "id": "high-throughput toxicology methods"
+        },
+        {
+            "caption": "mixed qualitative and quantitative methods",
+            "type": "Topic",
+            "id": "mixed qualitative and quantitative methods"
+        },
+        {
+            "caption": "27990374",
             "type": "Article",
-            "id": "29580128"
+            "id": "27990374"
         },
         {
-            "caption": "USA",
-            "type": "Country",
-            "id": "USA"
+            "caption": "country",
+            "type": "Topic",
+            "id": "country"
         },
         {
-            "caption": "31718602",
+            "caption": "research expenditure",
+            "type": "Topic",
+            "id": "research expenditure"
+        },
+        {
+            "caption": "mean impact factor",
+            "type": "Topic",
+            "id": "mean impact factor"
+        },
+        {
+            "caption": "research productivity",
+            "type": "Topic",
+            "id": "research productivity"
+        },
+        {
+            "caption": "ophthalmic research",
+            "type": "Topic",
+            "id": "ophthalmic research"
+        },
+        {
+            "caption": "research output",
+            "type": "Topic",
+            "id": "research output"
+        },
+        {
+            "caption": "articles",
+            "type": "Topic",
+            "id": "articles"
+        },
+        {
+            "caption": "scholarly impact",
+            "type": "Topic",
+            "id": "scholarly impact"
+        },
+        {
+            "caption": "27990373",
             "type": "Article",
-            "id": "31718602"
+            "id": "27990373"
         },
         {
-            "caption": "20627830",
+            "caption": "dr publications",
+            "type": "Topic",
+            "id": "dr publications"
+        },
+        {
+            "caption": "estimated publication number",
+            "type": "Topic",
+            "id": "estimated publication number"
+        },
+        {
+            "caption": "developed countries",
+            "type": "Topic",
+            "id": "developed countries"
+        },
+        {
+            "caption": "developing countries",
+            "type": "Topic",
+            "id": "developing countries"
+        },
+        {
+            "caption": "dr studies",
+            "type": "Topic",
+            "id": "dr studies"
+        },
+        {
+            "caption": "dr title",
+            "type": "Topic",
+            "id": "dr title"
+        },
+        {
+            "caption": "dr",
+            "type": "Topic",
+            "id": "dr"
+        },
+        {
+            "caption": "more dr studies",
+            "type": "Topic",
+            "id": "more dr studies"
+        },
+        {
+            "caption": "publications",
+            "type": "Topic",
+            "id": "publications"
+        },
+        {
+            "caption": "academic publication",
+            "type": "Topic",
+            "id": "academic publication"
+        },
+        {
+            "caption": "27978538",
             "type": "Article",
-            "id": "20627830"
+            "id": "27978538"
         },
         {
-            "caption": "Norway",
-            "type": "Country",
-            "id": "Norway"
+            "caption": "more narrative articles",
+            "type": "Topic",
+            "id": "more narrative articles"
         },
         {
-            "caption": "35139887",
+            "caption": "more narrative climate change writing",
+            "type": "Topic",
+            "id": "more narrative climate change writing"
+        },
+        {
+            "caption": "climate literature",
+            "type": "Topic",
+            "id": "climate literature"
+        },
+        {
+            "caption": "climate change",
+            "type": "Topic",
+            "id": "climate change"
+        },
+        {
+            "caption": "more narrative abstracts",
+            "type": "Topic",
+            "id": "more narrative abstracts"
+        },
+        {
+            "caption": "scientific literature",
+            "type": "Topic",
+            "id": "scientific literature"
+        },
+        {
+            "caption": "influence",
+            "type": "Topic",
+            "id": "influence"
+        },
+        {
+            "caption": "individual papers",
+            "type": "Topic",
+            "id": "individual papers"
+        },
+        {
+            "caption": "climate change science",
+            "type": "Topic",
+            "id": "climate change science"
+        },
+        {
+            "caption": "27973611",
             "type": "Article",
-            "id": "35139887"
+            "id": "27973611"
         },
         {
-            "caption": "32929060",
+            "caption": "acupuncture research publications",
+            "type": "Topic",
+            "id": "acupuncture research publications"
+        },
+        {
+            "caption": "acupuncture research",
+            "type": "Topic",
+            "id": "acupuncture research"
+        },
+        {
+            "caption": "published research",
+            "type": "Topic",
+            "id": "published research"
+        },
+        {
+            "caption": "acupuncture publication",
+            "type": "Topic",
+            "id": "acupuncture publication"
+        },
+        {
+            "caption": "broader publication rates",
+            "type": "Topic",
+            "id": "broader publication rates"
+        },
+        {
+            "caption": "biomedical research",
+            "type": "Topic",
+            "id": "biomedical research"
+        },
+        {
+            "caption": "impact factors",
+            "type": "Topic",
+            "id": "impact factors"
+        },
+        {
+            "caption": "journals",
+            "type": "Topic",
+            "id": "journals"
+        },
+        {
+            "caption": "comprehensive fields",
+            "type": "Topic",
+            "id": "comprehensive fields"
+        },
+        {
+            "caption": "27973571",
             "type": "Article",
-            "id": "32929060"
+            "id": "27973571"
         },
         {
-            "caption": "29881292",
+            "caption": "early terminated trials",
+            "type": "Topic",
+            "id": "early terminated trials"
+        },
+        {
+            "caption": "adjusted or",
+            "type": "Topic",
+            "id": "adjusted or"
+        },
+        {
+            "caption": "clinical drug trials",
+            "type": "Topic",
+            "id": "clinical drug trials"
+        },
+        {
+            "caption": "clinical trials",
+            "type": "Topic",
+            "id": "clinical trials"
+        },
+        {
+            "caption": "trials",
+            "type": "Topic",
+            "id": "trials"
+        },
+        {
+            "caption": "trial",
+            "type": "Topic",
+            "id": "trial"
+        },
+        {
+            "caption": "multicenter trials",
+            "type": "Topic",
+            "id": "multicenter trials"
+        },
+        {
+            "caption": "or",
+            "type": "Topic",
+            "id": "or"
+        },
+        {
+            "caption": "early terminated clinical drug trials",
+            "type": "Topic",
+            "id": "early terminated clinical drug trials"
+        },
+        {
+            "caption": "27942087",
             "type": "Article",
-            "id": "29881292"
+            "id": "27942087"
         },
         {
-            "caption": "People's Republic of China",
-            "type": "Country",
-            "id": "People's Republic of China"
+            "caption": "research applications",
+            "type": "Topic",
+            "id": "research applications"
         },
         {
-            "caption": "27603915",
+            "caption": "research output growth patterns",
+            "type": "Topic",
+            "id": "research output growth patterns"
+        },
+        {
+            "caption": "research application orientation domains",
+            "type": "Topic",
+            "id": "research application orientation domains"
+        },
+        {
+            "caption": "hospitals",
+            "type": "Topic",
+            "id": "hospitals"
+        },
+        {
+            "caption": "scientific knowledge production",
+            "type": "Topic",
+            "id": "scientific knowledge production"
+        },
+        {
+            "caption": "recent years",
+            "type": "Topic",
+            "id": "recent years"
+        },
+        {
+            "caption": "university",
+            "type": "Topic",
+            "id": "university"
+        },
+        {
+            "caption": "(same research journals",
+            "type": "Topic",
+            "id": "(same research journals"
+        },
+        {
+            "caption": "publication outlets",
+            "type": "Topic",
+            "id": "publication outlets"
+        },
+        {
+            "caption": "new publication outlets",
+            "type": "Topic",
+            "id": "new publication outlets"
+        },
+        {
+            "caption": "27942081",
             "type": "Article",
-            "id": "27603915"
+            "id": "27942081"
         },
         {
-            "caption": "31302201",
+            "caption": "countries",
+            "type": "Topic",
+            "id": "countries"
+        },
+        {
+            "caption": "many countries",
+            "type": "Topic",
+            "id": "many countries"
+        },
+        {
+            "caption": "qualitative outputs",
+            "type": "Topic",
+            "id": "qualitative outputs"
+        },
+        {
+            "caption": "impact",
+            "type": "Topic",
+            "id": "impact"
+        },
+        {
+            "caption": "countries scientific output",
+            "type": "Topic",
+            "id": "countries scientific output"
+        },
+        {
+            "caption": "qualitative data",
+            "type": "Topic",
+            "id": "qualitative data"
+        },
+        {
+            "caption": "the scientific world output",
+            "type": "Topic",
+            "id": "the scientific world output"
+        },
+        {
+            "caption": "group iii",
+            "type": "Topic",
+            "id": "group iii"
+        },
+        {
+            "caption": "group ii",
+            "type": "Topic",
+            "id": "group ii"
+        },
+        {
+            "caption": "double-counted world articles",
+            "type": "Topic",
+            "id": "double-counted world articles"
+        },
+        {
+            "caption": "27915354",
             "type": "Article",
-            "id": "31302201"
+            "id": "27915354"
         },
         {
-            "caption": "31301674",
+            "caption": "individual library users",
+            "type": "Topic",
+            "id": "individual library users"
+        },
+        {
+            "caption": "faculty access",
+            "type": "Topic",
+            "id": "faculty access"
+        },
+        {
+            "caption": "digital access",
+            "type": "Topic",
+            "id": "digital access"
+        },
+        {
+            "caption": "global challenges",
+            "type": "Topic",
+            "id": "global challenges"
+        },
+        {
+            "caption": "libraries",
+            "type": "Topic",
+            "id": "libraries"
+        },
+        {
+            "caption": "access",
+            "type": "Topic",
+            "id": "access"
+        },
+        {
+            "caption": "faculty members",
+            "type": "Topic",
+            "id": "faculty members"
+        },
+        {
+            "caption": "journal articles",
+            "type": "Topic",
+            "id": "journal articles"
+        },
+        {
+            "caption": "technology",
+            "type": "Topic",
+            "id": "technology"
+        },
+        {
+            "caption": "research",
+            "type": "Topic",
+            "id": "research"
+        },
+        {
+            "caption": "27870854",
             "type": "Article",
-            "id": "31301674"
+            "id": "27870854"
         },
         {
-            "caption": "31717266",
+            "caption": "top cited papers",
+            "type": "Topic",
+            "id": "top cited papers"
+        },
+        {
+            "caption": "irrelevant papers",
+            "type": "Topic",
+            "id": "irrelevant papers"
+        },
+        {
+            "caption": "productivity",
+            "type": "Topic",
+            "id": "productivity"
+        },
+        {
+            "caption": "other words",
+            "type": "Topic",
+            "id": "other words"
+        },
+        {
+            "caption": "perverse effects",
+            "type": "Topic",
+            "id": "perverse effects"
+        },
+        {
+            "caption": "highly cited papers",
+            "type": "Topic",
+            "id": "highly cited papers"
+        },
+        {
+            "caption": "production",
+            "type": "Topic",
+            "id": "production"
+        },
+        {
+            "caption": "a diminishing marginal result",
+            "type": "Topic",
+            "id": "a diminishing marginal result"
+        },
+        {
+            "caption": "accountability focus",
+            "type": "Topic",
+            "id": "accountability focus"
+        },
+        {
+            "caption": "increased use",
+            "type": "Topic",
+            "id": "increased use"
+        },
+        {
+            "caption": "27861511",
             "type": "Article",
-            "id": "31717266"
+            "id": "27861511"
         },
         {
-            "caption": "31774607",
+            "caption": "journal outputs",
+            "type": "Topic",
+            "id": "journal outputs"
+        },
+        {
+            "caption": "several journals",
+            "type": "Topic",
+            "id": "several journals"
+        },
+        {
+            "caption": "traditional journals",
+            "type": "Topic",
+            "id": "traditional journals"
+        },
+        {
+            "caption": "sub-disciplinary output",
+            "type": "Topic",
+            "id": "sub-disciplinary output"
+        },
+        {
+            "caption": "oamj author characteristics",
+            "type": "Topic",
+            "id": "oamj author characteristics"
+        },
+        {
+            "caption": "broad disciplinary scope",
+            "type": "Topic",
+            "id": "broad disciplinary scope"
+        },
+        {
+            "caption": "citation rates",
+            "type": "Topic",
+            "id": "citation rates"
+        },
+        {
+            "caption": "citation profiles",
+            "type": "Topic",
+            "id": "citation profiles"
+        },
+        {
+            "caption": "27847921",
             "type": "Article",
-            "id": "31774607"
+            "id": "27847921"
         },
         {
-            "caption": "32733556",
+            "caption": "editorial",
+            "type": "Topic",
+            "id": "editorial"
+        },
+        {
+            "caption": "no summary",
+            "type": "Topic",
+            "id": "no summary"
+        },
+        {
+            "caption": "27845319",
             "type": "Article",
-            "id": "32733556"
+            "id": "27845319"
         },
         {
-            "caption": "32318335",
+            "caption": "publication activity",
+            "type": "Topic",
+            "id": "publication activity"
+        },
+        {
+            "caption": "publication",
+            "type": "Topic",
+            "id": "publication"
+        },
+        {
+            "caption": "publishing activities",
+            "type": "Topic",
+            "id": "publishing activities"
+        },
+        {
+            "caption": "russian institutes",
+            "type": "Topic",
+            "id": "russian institutes"
+        },
+        {
+            "caption": "institutes",
+            "type": "Topic",
+            "id": "institutes"
+        },
+        {
+            "caption": "rsci",
+            "type": "Topic",
+            "id": "rsci"
+        },
+        {
+            "caption": "addiction",
+            "type": "Topic",
+            "id": "addiction"
+        },
+        {
+            "caption": "psychiatry",
+            "type": "Topic",
+            "id": "psychiatry"
+        },
+        {
+            "caption": "27843745",
             "type": "Article",
-            "id": "32318335"
+            "id": "27843745"
         },
         {
-            "caption": "South Africa",
-            "type": "Country",
-            "id": "South Africa"
+            "caption": "poverty",
+            "type": "Topic",
+            "id": "poverty"
         },
         {
-            "caption": "Romania",
-            "type": "Country",
-            "id": "Romania"
+            "caption": "retrieved articles",
+            "type": "Topic",
+            "id": "retrieved articles"
         },
         {
-            "caption": "28720111",
+            "caption": "published articles",
+            "type": "Topic",
+            "id": "published articles"
+        },
+        {
+            "caption": "high impact journals",
+            "type": "Topic",
+            "id": "high impact journals"
+        },
+        {
+            "caption": "high influential medical journals",
+            "type": "Topic",
+            "id": "high influential medical journals"
+        },
+        {
+            "caption": "poverty-related health problems",
+            "type": "Topic",
+            "id": "poverty-related health problems"
+        },
+        {
+            "caption": "mental health",
+            "type": "Topic",
+            "id": "mental health"
+        },
+        {
+            "caption": "top articles",
+            "type": "Topic",
+            "id": "top articles"
+        },
+        {
+            "caption": "27835703",
             "type": "Article",
-            "id": "28720111"
+            "id": "27835703"
         },
         {
-            "caption": "30123182",
+            "caption": "journal impact factor",
+            "type": "Topic",
+            "id": "journal impact factor"
+        },
+        {
+            "caption": "lower impact factors",
+            "type": "Topic",
+            "id": "lower impact factors"
+        },
+        {
+            "caption": "research impact",
+            "type": "Topic",
+            "id": "research impact"
+        },
+        {
+            "caption": "twitter activity",
+            "type": "Topic",
+            "id": "twitter activity"
+        },
+        {
+            "caption": "considerable twitter activity",
+            "type": "Topic",
+            "id": "considerable twitter activity"
+        },
+        {
+            "caption": "traditional citation rates",
+            "type": "Topic",
+            "id": "traditional citation rates"
+        },
+        {
+            "caption": "impactful journals",
+            "type": "Topic",
+            "id": "impactful journals"
+        },
+        {
+            "caption": "twitter use",
+            "type": "Topic",
+            "id": "twitter use"
+        },
+        {
+            "caption": "27832084",
             "type": "Article",
-            "id": "30123182"
+            "id": "27832084"
         },
         {
-            "caption": "Canada",
-            "type": "Country",
-            "id": "Canada"
+            "caption": "chinese universities",
+            "type": "Topic",
+            "id": "chinese universities"
         },
         {
-            "caption": "20619301",
+            "caption": "co-authored publications",
+            "type": "Topic",
+            "id": "co-authored publications"
+        },
+        {
+            "caption": "us universities",
+            "type": "Topic",
+            "id": "us universities"
+        },
+        {
+            "caption": "domestic industry",
+            "type": "Topic",
+            "id": "domestic industry"
+        },
+        {
+            "caption": "collaboration intensity",
+            "type": "Topic",
+            "id": "collaboration intensity"
+        },
+        {
+            "caption": "large research universities",
+            "type": "Topic",
+            "id": "large research universities"
+        },
+        {
+            "caption": "total publications",
+            "type": "Topic",
+            "id": "total publications"
+        },
+        {
+            "caption": "university-industry co-authored publications",
+            "type": "Topic",
+            "id": "university-industry co-authored publications"
+        },
+        {
+            "caption": "industry",
+            "type": "Topic",
+            "id": "industry"
+        },
+        {
+            "caption": "collaborations",
+            "type": "Topic",
+            "id": "collaborations"
+        },
+        {
+            "caption": "27803848",
             "type": "Article",
-            "id": "20619301"
+            "id": "27803848"
         },
         {
-            "caption": "Korea",
-            "type": "Country",
-            "id": "Korea"
+            "caption": "ep research",
+            "type": "Topic",
+            "id": "ep research"
         },
         {
-            "caption": "34722255",
+            "caption": "ep",
+            "type": "Topic",
+            "id": "ep"
+        },
+        {
+            "caption": "top citation analysis",
+            "type": "Topic",
+            "id": "top citation analysis"
+        },
+        {
+            "caption": "index expanded",
+            "type": "Topic",
+            "id": "index expanded"
+        },
+        {
+            "caption": "further analysis",
+            "type": "Topic",
+            "id": "further analysis"
+        },
+        {
+            "caption": "citation analysis",
+            "type": "Topic",
+            "id": "citation analysis"
+        },
+        {
+            "caption": "bibliometric analysis",
+            "type": "Topic",
+            "id": "bibliometric analysis"
+        },
+        {
+            "caption": "women",
+            "type": "Topic",
+            "id": "women"
+        },
+        {
+            "caption": "the science citation index expanded",
+            "type": "Topic",
+            "id": "the science citation index expanded"
+        },
+        {
+            "caption": "27796896",
             "type": "Article",
-            "id": "34722255"
+            "id": "27796896"
         },
         {
-            "caption": "Belgium",
-            "type": "Country",
-            "id": "Belgium"
+            "caption": "skin tcs",
+            "type": "Topic",
+            "id": "skin tcs"
         },
         {
-            "caption": "32147678",
+            "caption": "other cells",
+            "type": "Topic",
+            "id": "other cells"
+        },
+        {
+            "caption": "cell body",
+            "type": "Topic",
+            "id": "cell body"
+        },
+        {
+            "caption": "immune reactive cells",
+            "type": "Topic",
+            "id": "immune reactive cells"
+        },
+        {
+            "caption": "stem cells",
+            "type": "Topic",
+            "id": "stem cells"
+        },
+        {
+            "caption": "interstitial cells",
+            "type": "Topic",
+            "id": "interstitial cells"
+        },
+        {
+            "caption": "tcs ultrastructural changes",
+            "type": "Topic",
+            "id": "tcs ultrastructural changes"
+        },
+        {
+            "caption": "cells",
+            "type": "Topic",
+            "id": "cells"
+        },
+        {
+            "caption": "tcs ultrastructural features",
+            "type": "Topic",
+            "id": "tcs ultrastructural features"
+        },
+        {
+            "caption": "other interstitial structures",
+            "type": "Topic",
+            "id": "other interstitial structures"
+        },
+        {
+            "caption": "27796877",
             "type": "Article",
-            "id": "32147678"
+            "id": "27796877"
         },
         {
-            "caption": "26885027",
+            "caption": "neighboring cells",
+            "type": "Topic",
+            "id": "neighboring cells"
+        },
+        {
+            "caption": "different species",
+            "type": "Topic",
+            "id": "different species"
+        },
+        {
+            "caption": "various organs",
+            "type": "Topic",
+            "id": "various organs"
+        },
+        {
+            "caption": "various tissues",
+            "type": "Topic",
+            "id": "various tissues"
+        },
+        {
+            "caption": "tcs",
+            "type": "Topic",
+            "id": "tcs"
+        },
+        {
+            "caption": "omics science",
+            "type": "Topic",
+            "id": "omics science"
+        },
+        {
+            "caption": "interstitial cajal-like cells",
+            "type": "Topic",
+            "id": "interstitial cajal-like cells"
+        },
+        {
+            "caption": "mechanical sensor",
+            "type": "Topic",
+            "id": "mechanical sensor"
+        },
+        {
+            "caption": "27795894",
             "type": "Article",
-            "id": "26885027"
+            "id": "27795894"
         },
         {
-            "caption": "32133796",
+            "caption": "proximity driving collaborations",
+            "type": "Topic",
+            "id": "proximity driving collaborations"
+        },
+        {
+            "caption": "personal proximity",
+            "type": "Topic",
+            "id": "personal proximity"
+        },
+        {
+            "caption": "research collaborations",
+            "type": "Topic",
+            "id": "research collaborations"
+        },
+        {
+            "caption": "proximity",
+            "type": "Topic",
+            "id": "proximity"
+        },
+        {
+            "caption": "social proximity",
+            "type": "Topic",
+            "id": "social proximity"
+        },
+        {
+            "caption": "temporary geographical proximity",
+            "type": "Topic",
+            "id": "temporary geographical proximity"
+        },
+        {
+            "caption": "collaboration",
+            "type": "Topic",
+            "id": "collaboration"
+        },
+        {
+            "caption": "dutch nanotechnology researchers",
+            "type": "Topic",
+            "id": "dutch nanotechnology researchers"
+        },
+        {
+            "caption": "personal elements",
+            "type": "Topic",
+            "id": "personal elements"
+        },
+        {
+            "caption": "personal traits",
+            "type": "Topic",
+            "id": "personal traits"
+        },
+        {
+            "caption": "27795591",
             "type": "Article",
-            "id": "32133796"
+            "id": "27795591"
         },
         {
-            "caption": "29245011",
+            "caption": "multi-metrics systems",
+            "type": "Topic",
+            "id": "multi-metrics systems"
+        },
+        {
+            "caption": "uic metrics",
+            "type": "Topic",
+            "id": "uic metrics"
+        },
+        {
+            "caption": "metrics",
+            "type": "Topic",
+            "id": "metrics"
+        },
+        {
+            "caption": "such university ranking systems",
+            "type": "Topic",
+            "id": "such university ranking systems"
+        },
+        {
+            "caption": "world university rankings",
+            "type": "Topic",
+            "id": "world university rankings"
+        },
+        {
+            "caption": "universities",
+            "type": "Topic",
+            "id": "universities"
+        },
+        {
+            "caption": "systems",
+            "type": "Topic",
+            "id": "systems"
+        },
+        {
+            "caption": "university-industry r&d linkage metrics",
+            "type": "Topic",
+            "id": "university-industry r&d linkage metrics"
+        },
+        {
+            "caption": "metrics and composite scores",
+            "type": "Topic",
+            "id": "metrics and composite scores"
+        },
+        {
+            "caption": "size-independent metrics",
+            "type": "Topic",
+            "id": "size-independent metrics"
+        },
+        {
+            "caption": "27785365",
             "type": "Article",
-            "id": "29245011"
+            "id": "27785365"
         },
         {
-            "caption": "35284103",
+            "caption": "exertional heat stroke research",
+            "type": "Topic",
+            "id": "exertional heat stroke research"
+        },
+        {
+            "caption": "exertional heat stroke",
+            "type": "Topic",
+            "id": "exertional heat stroke"
+        },
+        {
+            "caption": "exertional heat stroke studies",
+            "type": "Topic",
+            "id": "exertional heat stroke studies"
+        },
+        {
+            "caption": "heat stroke",
+            "type": "Topic",
+            "id": "heat stroke"
+        },
+        {
+            "caption": "science",
+            "type": "Topic",
+            "id": "science"
+        },
+        {
+            "caption": "journal distribution",
+            "type": "Topic",
+            "id": "journal distribution"
+        },
+        {
+            "caption": "constant concerns",
+            "type": "Topic",
+            "id": "constant concerns"
+        },
+        {
+            "caption": "27740513",
             "type": "Article",
-            "id": "35284103"
+            "id": "27740513"
         },
         {
-            "caption": "23391414",
+            "caption": "27706245",
             "type": "Article",
-            "id": "23391414"
+            "id": "27706245"
         },
         {
-            "caption": "19914236",
+            "caption": "retraction articles",
+            "type": "Topic",
+            "id": "retraction articles"
+        },
+        {
+            "caption": "retraction guidelines",
+            "type": "Topic",
+            "id": "retraction guidelines"
+        },
+        {
+            "caption": "retraction",
+            "type": "Topic",
+            "id": "retraction"
+        },
+        {
+            "caption": "retractions",
+            "type": "Topic",
+            "id": "retractions"
+        },
+        {
+            "caption": "appropriate retraction practices",
+            "type": "Topic",
+            "id": "appropriate retraction practices"
+        },
+        {
+            "caption": "author dispute",
+            "type": "Topic",
+            "id": "author dispute"
+        },
+        {
+            "caption": "scientific error",
+            "type": "Topic",
+            "id": "scientific error"
+        },
+        {
+            "caption": "duplicate publication",
+            "type": "Topic",
+            "id": "duplicate publication"
+        },
+        {
+            "caption": "0.051%",
+            "type": "Topic",
+            "id": "0.051%"
+        },
+        {
+            "caption": "15.4%",
+            "type": "Topic",
+            "id": "15.4%"
+        },
+        {
+            "caption": "27652107",
             "type": "Article",
-            "id": "19914236"
+            "id": "27652107"
         },
         {
-            "caption": "19400945",
+            "caption": "paracetamol poisoning treatment",
+            "type": "Topic",
+            "id": "paracetamol poisoning treatment"
+        },
+        {
+            "caption": "toxicology literature",
+            "type": "Topic",
+            "id": "toxicology literature"
+        },
+        {
+            "caption": "p",
+            "type": "Topic",
+            "id": "p"
+        },
+        {
+            "caption": "paracetamol poisoning",
+            "type": "Topic",
+            "id": "paracetamol poisoning"
+        },
+        {
+            "caption": "published paracetamol research",
+            "type": "Topic",
+            "id": "published paracetamol research"
+        },
+        {
+            "caption": "average citations",
+            "type": "Topic",
+            "id": "average citations"
+        },
+        {
+            "caption": "high income countries",
+            "type": "Topic",
+            "id": "high income countries"
+        },
+        {
+            "caption": "27652054",
             "type": "Article",
-            "id": "19400945"
+            "id": "27652054"
         },
         {
-            "caption": "31619268",
+            "caption": "asd research",
+            "type": "Topic",
+            "id": "asd research"
+        },
+        {
+            "caption": "article",
+            "type": "Topic",
+            "id": "article"
+        },
+        {
+            "caption": "asd",
+            "type": "Topic",
+            "id": "asd"
+        },
+        {
+            "caption": "autism spectrum disorders",
+            "type": "Topic",
+            "id": "autism spectrum disorders"
+        },
+        {
+            "caption": "total citations",
+            "type": "Topic",
+            "id": "total citations"
+        },
+        {
+            "caption": "=",
+            "type": "Topic",
+            "id": "="
+        },
+        {
+            "caption": "such disorders",
+            "type": "Topic",
+            "id": "such disorders"
+        },
+        {
+            "caption": "27651823",
             "type": "Article",
-            "id": "31619268"
+            "id": "27651823"
         },
         {
-            "caption": "34250022",
+            "caption": "city regions",
+            "type": "Topic",
+            "id": "city regions"
+        },
+        {
+            "caption": "gender representations",
+            "type": "Topic",
+            "id": "gender representations"
+        },
+        {
+            "caption": "gender distribution",
+            "type": "Topic",
+            "id": "gender distribution"
+        },
+        {
+            "caption": "analysis",
+            "type": "Topic",
+            "id": "analysis"
+        },
+        {
+            "caption": "bibliometric data",
+            "type": "Topic",
+            "id": "bibliometric data"
+        },
+        {
+            "caption": "gender inequalities",
+            "type": "Topic",
+            "id": "gender inequalities"
+        },
+        {
+            "caption": "research fields",
+            "type": "Topic",
+            "id": "research fields"
+        },
+        {
+            "caption": "cities",
+            "type": "Topic",
+            "id": "cities"
+        },
+        {
+            "caption": "academic science",
+            "type": "Topic",
+            "id": "academic science"
+        },
+        {
+            "caption": "large bibliometric databases",
+            "type": "Topic",
+            "id": "large bibliometric databases"
+        },
+        {
+            "caption": "27644176",
             "type": "Article",
-            "id": "34250022"
+            "id": "27644176"
         },
         {
-            "caption": "22247839",
+            "caption": "27635223",
             "type": "Article",
-            "id": "22247839"
+            "id": "27635223"
         },
         {
-            "caption": "India",
-            "type": "Country",
-            "id": "India"
+            "caption": "publication sets",
+            "type": "Topic",
+            "id": "publication sets"
         },
         {
-            "caption": "28449441",
+            "caption": "publication counts",
+            "type": "Topic",
+            "id": "publication counts"
+        },
+        {
+            "caption": "identical publications",
+            "type": "Topic",
+            "id": "identical publications"
+        },
+        {
+            "caption": "journal publications",
+            "type": "Topic",
+            "id": "journal publications"
+        },
+        {
+            "caption": "citation counts",
+            "type": "Topic",
+            "id": "citation counts"
+        },
+        {
+            "caption": "databases",
+            "type": "Topic",
+            "id": "databases"
+        },
+        {
+            "caption": "average number",
+            "type": "Topic",
+            "id": "average number"
+        },
+        {
+            "caption": "bibliometric indicators",
+            "type": "Topic",
+            "id": "bibliometric indicators"
+        },
+        {
+            "caption": "27627767",
             "type": "Article",
-            "id": "28449441"
+            "id": "27627767"
         },
         {
-            "caption": "Japan",
-            "type": "Country",
-            "id": "Japan"
+            "caption": "many existing indices",
+            "type": "Topic",
+            "id": "many existing indices"
         },
         {
-            "caption": "33292213",
+            "caption": "source popularity",
+            "type": "Topic",
+            "id": "source popularity"
+        },
+        {
+            "caption": "notable predictive power",
+            "type": "Topic",
+            "id": "notable predictive power"
+        },
+        {
+            "caption": "citations",
+            "type": "Topic",
+            "id": "citations"
+        },
+        {
+            "caption": "the technical indices",
+            "type": "Topic",
+            "id": "the technical indices"
+        },
+        {
+            "caption": "true impact",
+            "type": "Topic",
+            "id": "true impact"
+        },
+        {
+            "caption": "pagerank",
+            "type": "Topic",
+            "id": "pagerank"
+        },
+        {
+            "caption": "microsoft academic search",
+            "type": "Topic",
+            "id": "microsoft academic search"
+        },
+        {
+            "caption": "institutions",
+            "type": "Topic",
+            "id": "institutions"
+        },
+        {
+            "caption": "several technical indicators",
+            "type": "Topic",
+            "id": "several technical indicators"
+        },
+        {
+            "caption": "27611317",
             "type": "Article",
-            "id": "33292213"
+            "id": "27611317"
         },
         {
-            "caption": "28701486",
+            "caption": "treg research",
+            "type": "Topic",
+            "id": "treg research"
+        },
+        {
+            "caption": "research hotspots",
+            "type": "Topic",
+            "id": "research hotspots"
+        },
+        {
+            "caption": "research areas",
+            "type": "Topic",
+            "id": "research areas"
+        },
+        {
+            "caption": "future research directions",
+            "type": "Topic",
+            "id": "future research directions"
+        },
+        {
+            "caption": "publication outputs",
+            "type": "Topic",
+            "id": "publication outputs"
+        },
+        {
+            "caption": "gene therapy",
+            "type": "Topic",
+            "id": "gene therapy"
+        },
+        {
+            "caption": "treg",
+            "type": "Topic",
+            "id": "treg"
+        },
+        {
+            "caption": "further study",
+            "type": "Topic",
+            "id": "further study"
+        },
+        {
+            "caption": "the research hotspots",
+            "type": "Topic",
+            "id": "the research hotspots"
+        },
+        {
+            "caption": "27606817",
             "type": "Article",
-            "id": "28701486"
+            "id": "27606817"
         },
         {
-            "caption": "34145432",
+            "caption": "scholarly articles",
+            "type": "Topic",
+            "id": "scholarly articles"
+        },
+        {
+            "caption": "suspected coi",
+            "type": "Topic",
+            "id": "suspected coi"
+        },
+        {
+            "caption": "great attentions",
+            "type": "Topic",
+            "id": "great attentions"
+        },
+        {
+            "caption": "collaboration times",
+            "type": "Topic",
+            "id": "collaboration times"
+        },
+        {
+            "caption": "anomalous citations patterns",
+            "type": "Topic",
+            "id": "anomalous citations patterns"
+        },
+        {
+            "caption": "contributed citations",
+            "type": "Topic",
+            "id": "contributed citations"
+        },
+        {
+            "caption": "great significance",
+            "type": "Topic",
+            "id": "great significance"
+        },
+        {
+            "caption": "coi",
+            "type": "Topic",
+            "id": "coi"
+        },
+        {
+            "caption": "times",
+            "type": "Topic",
+            "id": "times"
+        },
+        {
+            "caption": "27606209",
             "type": "Article",
-            "id": "34145432"
+            "id": "27606209"
         },
         {
-            "caption": "Egypt",
-            "type": "Country",
-            "id": "Egypt"
+            "caption": "verbal behavior",
+            "type": "Topic",
+            "id": "verbal behavior"
         },
         {
-            "caption": "20162579",
+            "caption": "frequent contributors",
+            "type": "Topic",
+            "id": "frequent contributors"
+        },
+        {
+            "caption": "past volumes",
+            "type": "Topic",
+            "id": "past volumes"
+        },
+        {
+            "caption": "tavb",
+            "type": "Topic",
+            "id": "tavb"
+        },
+        {
+            "caption": "a comprehensive status update",
+            "type": "Topic",
+            "id": "a comprehensive status update"
+        },
+        {
+            "caption": "a healthy state",
+            "type": "Topic",
+            "id": "a healthy state"
+        },
+        {
+            "caption": "the journal",
+            "type": "Topic",
+            "id": "the journal"
+        },
+        {
+            "caption": "a status update",
+            "type": "Topic",
+            "id": "a status update"
+        },
+        {
+            "caption": "27606064",
             "type": "Article",
-            "id": "20162579"
+            "id": "27606064"
         },
         {
-            "caption": "31014355",
+            "caption": "related articles",
+            "type": "Topic",
+            "id": "related articles"
+        },
+        {
+            "caption": "contaminated water",
+            "type": "Topic",
+            "id": "contaminated water"
+        },
+        {
+            "caption": "water microbiology",
+            "type": "Topic",
+            "id": "water microbiology"
+        },
+        {
+            "caption": "water",
+            "type": "Topic",
+            "id": "water"
+        },
+        {
+            "caption": "drinking water",
+            "type": "Topic",
+            "id": "drinking water"
+        },
+        {
+            "caption": "recreational water",
+            "type": "Topic",
+            "id": "recreational water"
+        },
+        {
+            "caption": "safe water",
+            "type": "Topic",
+            "id": "safe water"
+        },
+        {
+            "caption": "27599949",
             "type": "Article",
-            "id": "31014355"
+            "id": "27599949"
         },
         {
-            "caption": "Spain",
-            "type": "Country",
-            "id": "Spain"
+            "caption": "indicator",
+            "type": "Topic",
+            "id": "indicator"
         },
         {
-            "caption": "Iran",
-            "type": "Country",
-            "id": "Iran"
+            "caption": "indicators",
+            "type": "Topic",
+            "id": "indicators"
         },
         {
-            "caption": "24104470",
+            "caption": "several indicators",
+            "type": "Topic",
+            "id": "several indicators"
+        },
+        {
+            "caption": "spanish clinical researchers",
+            "type": "Topic",
+            "id": "spanish clinical researchers"
+        },
+        {
+            "caption": "research experience",
+            "type": "Topic",
+            "id": "research experience"
+        },
+        {
+            "caption": "consolidated research experience",
+            "type": "Topic",
+            "id": "consolidated research experience"
+        },
+        {
+            "caption": "researchers",
+            "type": "Topic",
+            "id": "researchers"
+        },
+        {
+            "caption": "scientific production",
+            "type": "Topic",
+            "id": "scientific production"
+        },
+        {
+            "caption": "h index",
+            "type": "Topic",
+            "id": "h index"
+        },
+        {
+            "caption": "27569016",
             "type": "Article",
-            "id": "24104470"
+            "id": "27569016"
         },
         {
-            "caption": "12483536",
+            "caption": "different areas",
+            "type": "Topic",
+            "id": "different areas"
+        },
+        {
+            "caption": "different latitudesneeds",
+            "type": "Topic",
+            "id": "different latitudesneeds"
+        },
+        {
+            "caption": "intermittent explosive disorder",
+            "type": "Topic",
+            "id": "intermittent explosive disorder"
+        },
+        {
+            "caption": "recurrent aggression episodes",
+            "type": "Topic",
+            "id": "recurrent aggression episodes"
+        },
+        {
+            "caption": "ied prevalence",
+            "type": "Topic",
+            "id": "ied prevalence"
+        },
+        {
+            "caption": "ied",
+            "type": "Topic",
+            "id": "ied"
+        },
+        {
+            "caption": "impulsive aggression",
+            "type": "Topic",
+            "id": "impulsive aggression"
+        },
+        {
+            "caption": "disorder",
+            "type": "Topic",
+            "id": "disorder"
+        },
+        {
+            "caption": "men males",
+            "type": "Topic",
+            "id": "men males"
+        },
+        {
+            "caption": "27560807",
             "type": "Article",
-            "id": "12483536"
+            "id": "27560807"
         },
         {
-            "caption": "27942222",
+            "caption": "scholarly journals",
+            "type": "Topic",
+            "id": "scholarly journals"
+        },
+        {
+            "caption": "biased journal rankings",
+            "type": "Topic",
+            "id": "biased journal rankings"
+        },
+        {
+            "caption": "citation based measure",
+            "type": "Topic",
+            "id": "citation based measure"
+        },
+        {
+            "caption": "citation data",
+            "type": "Topic",
+            "id": "citation data"
+        },
+        {
+            "caption": "impact factor biased journal self-citations",
+            "type": "Topic",
+            "id": "impact factor biased journal self-citations"
+        },
+        {
+            "caption": "coercive journal self-citation malpractices",
+            "type": "Topic",
+            "id": "coercive journal self-citation malpractices"
+        },
+        {
+            "caption": "journal self-citations",
+            "type": "Topic",
+            "id": "journal self-citations"
+        },
+        {
+            "caption": "impact factor",
+            "type": "Topic",
+            "id": "impact factor"
+        },
+        {
+            "caption": "inflated perceived importance",
+            "type": "Topic",
+            "id": "inflated perceived importance"
+        },
+        {
+            "caption": "27559228",
             "type": "Article",
-            "id": "27942222"
+            "id": "27559228"
         },
         {
-            "caption": "8950993",
+            "caption": "ascr papers",
+            "type": "Topic",
+            "id": "ascr papers"
+        },
+        {
+            "caption": "other ascr papers",
+            "type": "Topic",
+            "id": "other ascr papers"
+        },
+        {
+            "caption": "ascr outputs",
+            "type": "Topic",
+            "id": "ascr outputs"
+        },
+        {
+            "caption": "adult social care research",
+            "type": "Topic",
+            "id": "adult social care research"
+        },
+        {
+            "caption": "additional papers",
+            "type": "Topic",
+            "id": "additional papers"
+        },
+        {
+            "caption": "uk",
+            "type": "Topic",
+            "id": "uk"
+        },
+        {
+            "caption": "total output",
+            "type": "Topic",
+            "id": "total output"
+        },
+        {
+            "caption": "adult social care",
+            "type": "Topic",
+            "id": "adult social care"
+        },
+        {
+            "caption": "papers",
+            "type": "Topic",
+            "id": "papers"
+        },
+        {
+            "caption": "ascr",
+            "type": "Topic",
+            "id": "ascr"
+        },
+        {
+            "caption": "27556222",
             "type": "Article",
-            "id": "8950993"
+            "id": "27556222"
         },
         {
-            "caption": "26662309",
+            "caption": "cnpq grant categories",
+            "type": "Topic",
+            "id": "cnpq grant categories"
+        },
+        {
+            "caption": "grant category 1c",
+            "type": "Topic",
+            "id": "grant category 1c"
+        },
+        {
+            "caption": "grant allocation",
+            "type": "Topic",
+            "id": "grant allocation"
+        },
+        {
+            "caption": "productivity grant",
+            "type": "Topic",
+            "id": "productivity grant"
+        },
+        {
+            "caption": "grants",
+            "type": "Topic",
+            "id": "grants"
+        },
+        {
+            "caption": "citation",
+            "type": "Topic",
+            "id": "citation"
+        },
+        {
+            "caption": "cnpq",
+            "type": "Topic",
+            "id": "cnpq"
+        },
+        {
+            "caption": "pharmacology",
+            "type": "Topic",
+            "id": "pharmacology"
+        },
+        {
+            "caption": "new differences",
+            "type": "Topic",
+            "id": "new differences"
+        },
+        {
+            "caption": "27548723",
             "type": "Article",
-            "id": "26662309"
+            "id": "27548723"
         },
         {
-            "caption": "31921634",
+            "caption": "oa articles",
+            "type": "Topic",
+            "id": "oa articles"
+        },
+        {
+            "caption": "non-oa articles",
+            "type": "Topic",
+            "id": "non-oa articles"
+        },
+        {
+            "caption": "citation figures",
+            "type": "Topic",
+            "id": "citation figures"
+        },
+        {
+            "caption": "subscription fees",
+            "type": "Topic",
+            "id": "subscription fees"
+        },
+        {
+            "caption": "more controversy",
+            "type": "Topic",
+            "id": "more controversy"
+        },
+        {
+            "caption": "open access",
+            "type": "Topic",
+            "id": "open access"
+        },
+        {
+            "caption": "oa) articles-articles",
+            "type": "Topic",
+            "id": "oa) articles-articles"
+        },
+        {
+            "caption": "oa",
+            "type": "Topic",
+            "id": "oa"
+        },
+        {
+            "caption": "course",
+            "type": "Topic",
+            "id": "course"
+        },
+        {
+            "caption": "27527881",
             "type": "Article",
-            "id": "31921634"
+            "id": "27527881"
         },
         {
-            "caption": "Mexico",
-            "type": "Country",
-            "id": "Mexico"
-        },
-        {
-            "caption": "29217194",
+            "caption": "27509942",
             "type": "Article",
-            "id": "29217194"
+            "id": "27509942"
         },
         {
-            "caption": "25058905",
+            "caption": "cancer therapy",
+            "type": "Topic",
+            "id": "cancer therapy"
+        },
+        {
+            "caption": "targeted cancer therapy",
+            "type": "Topic",
+            "id": "targeted cancer therapy"
+        },
+        {
+            "caption": "drug toxicity",
+            "type": "Topic",
+            "id": "drug toxicity"
+        },
+        {
+            "caption": "cancer",
+            "type": "Topic",
+            "id": "cancer"
+        },
+        {
+            "caption": "drug effectiveness",
+            "type": "Topic",
+            "id": "drug effectiveness"
+        },
+        {
+            "caption": "chemotherapeutic drugs",
+            "type": "Topic",
+            "id": "chemotherapeutic drugs"
+        },
+        {
+            "caption": "research area",
+            "type": "Topic",
+            "id": "research area"
+        },
+        {
+            "caption": "drug discovery",
+            "type": "Topic",
+            "id": "drug discovery"
+        },
+        {
+            "caption": "cell derived nps",
+            "type": "Topic",
+            "id": "cell derived nps"
+        },
+        {
+            "caption": "27504147",
             "type": "Article",
-            "id": "25058905"
+            "id": "27504147"
         },
         {
-            "caption": "34991659",
+            "caption": "pediatrics",
+            "type": "Topic",
+            "id": "pediatrics"
+        },
+        {
+            "caption": "income",
+            "type": "Topic",
+            "id": "income"
+        },
+        {
+            "caption": "finland",
+            "type": "Topic",
+            "id": "finland"
+        },
+        {
+            "caption": "research activity",
+            "type": "Topic",
+            "id": "research activity"
+        },
+        {
+            "caption": "worldwide research activity",
+            "type": "Topic",
+            "id": "worldwide research activity"
+        },
+        {
+            "caption": "scopus database",
+            "type": "Topic",
+            "id": "scopus database"
+        },
+        {
+            "caption": "probiotic research",
+            "type": "Topic",
+            "id": "probiotic research"
+        },
+        {
+            "caption": "27486847",
             "type": "Article",
-            "id": "34991659"
+            "id": "27486847"
         },
         {
-            "caption": "32021307",
+            "caption": "further links",
+            "type": "Topic",
+            "id": "further links"
+        },
+        {
+            "caption": "complex networks",
+            "type": "Topic",
+            "id": "complex networks"
+        },
+        {
+            "caption": "further citations",
+            "type": "Topic",
+            "id": "further citations"
+        },
+        {
+            "caption": "trendy networks",
+            "type": "Topic",
+            "id": "trendy networks"
+        },
+        {
+            "caption": "links",
+            "type": "Topic",
+            "id": "links"
+        },
+        {
+            "caption": "networks",
+            "type": "Topic",
+            "id": "networks"
+        },
+        {
+            "caption": "ability",
+            "type": "Topic",
+            "id": "ability"
+        },
+        {
+            "caption": "modular community structure",
+            "type": "Topic",
+            "id": "modular community structure"
+        },
+        {
+            "caption": "structure",
+            "type": "Topic",
+            "id": "structure"
+        },
+        {
+            "caption": "complex structural traits",
+            "type": "Topic",
+            "id": "complex structural traits"
+        },
+        {
+            "caption": "27478725",
             "type": "Article",
-            "id": "32021307"
+            "id": "27478725"
         },
         {
-            "caption": "34959269",
+            "caption": "tramadol",
+            "type": "Topic",
+            "id": "tramadol"
+        },
+        {
+            "caption": "arzneimittel forschung drug research journal",
+            "type": "Topic",
+            "id": "arzneimittel forschung drug research journal"
+        },
+        {
+            "caption": "analgesia journal",
+            "type": "Topic",
+            "id": "analgesia journal"
+        },
+        {
+            "caption": "tramadol research",
+            "type": "Topic",
+            "id": "tramadol research"
+        },
+        {
+            "caption": "retrieved tramadol documents",
+            "type": "Topic",
+            "id": "retrieved tramadol documents"
+        },
+        {
+            "caption": "worldwide research productivity",
+            "type": "Topic",
+            "id": "worldwide research productivity"
+        },
+        {
+            "caption": "global research productivity",
+            "type": "Topic",
+            "id": "global research productivity"
+        },
+        {
+            "caption": "tramadol publications",
+            "type": "Topic",
+            "id": "tramadol publications"
+        },
+        {
+            "caption": "research quantity",
+            "type": "Topic",
+            "id": "research quantity"
+        },
+        {
+            "caption": "tramadol dependence",
+            "type": "Topic",
+            "id": "tramadol dependence"
+        },
+        {
+            "caption": "27472663",
             "type": "Article",
-            "id": "34959269"
+            "id": "27472663"
         },
         {
-            "caption": "20099276",
+            "caption": "high impact papers",
+            "type": "Topic",
+            "id": "high impact papers"
+        },
+        {
+            "caption": "climate change research",
+            "type": "Topic",
+            "id": "climate change research"
+        },
+        {
+            "caption": "climate modeling",
+            "type": "Topic",
+            "id": "climate modeling"
+        },
+        {
+            "caption": "human induced climate change",
+            "type": "Topic",
+            "id": "human induced climate change"
+        },
+        {
+            "caption": "specific research topics",
+            "type": "Topic",
+            "id": "specific research topics"
+        },
+        {
+            "caption": "citation impact",
+            "type": "Topic",
+            "id": "citation impact"
+        },
+        {
+            "caption": "27445772",
             "type": "Article",
-            "id": "20099276"
+            "id": "27445772"
         },
         {
-            "caption": "29593419",
+            "caption": "neuroethics research",
+            "type": "Topic",
+            "id": "neuroethics research"
+        },
+        {
+            "caption": "neuroscience research",
+            "type": "Topic",
+            "id": "neuroscience research"
+        },
+        {
+            "caption": "neuroethics researchers",
+            "type": "Topic",
+            "id": "neuroethics researchers"
+        },
+        {
+            "caption": "many neuroethics researchers",
+            "type": "Topic",
+            "id": "many neuroethics researchers"
+        },
+        {
+            "caption": "neuroethics",
+            "type": "Topic",
+            "id": "neuroethics"
+        },
+        {
+            "caption": "different research topics",
+            "type": "Topic",
+            "id": "different research topics"
+        },
+        {
+            "caption": "neuroscience",
+            "type": "Topic",
+            "id": "neuroscience"
+        },
+        {
+            "caption": "bioethics",
+            "type": "Topic",
+            "id": "bioethics"
+        },
+        {
+            "caption": "moral psychologists",
+            "type": "Topic",
+            "id": "moral psychologists"
+        },
+        {
+            "caption": "27382475",
             "type": "Article",
-            "id": "29593419"
+            "id": "27382475"
         },
         {
-            "caption": "32246957",
+            "caption": "arab countries",
+            "type": "Topic",
+            "id": "arab countries"
+        },
+        {
+            "caption": "pharmaceutical wastewater research",
+            "type": "Topic",
+            "id": "pharmaceutical wastewater research"
+        },
+        {
+            "caption": "non-arab middle easter countries",
+            "type": "Topic",
+            "id": "non-arab middle easter countries"
+        },
+        {
+            "caption": "pharmaceutical wastewater",
+            "type": "Topic",
+            "id": "pharmaceutical wastewater"
+        },
+        {
+            "caption": "pharmaceutical wastewater literature",
+            "type": "Topic",
+            "id": "pharmaceutical wastewater literature"
+        },
+        {
+            "caption": "arab researchers",
+            "type": "Topic",
+            "id": "arab researchers"
+        },
+        {
+            "caption": "arab",
+            "type": "Topic",
+            "id": "arab"
+        },
+        {
+            "caption": "non-arab",
+            "type": "Topic",
+            "id": "non-arab"
+        },
+        {
+            "caption": "wastewater",
+            "type": "Topic",
+            "id": "wastewater"
+        },
+        {
+            "caption": "27350453",
             "type": "Article",
-            "id": "32246957"
+            "id": "27350453"
         },
         {
-            "caption": "Russia",
-            "type": "Country",
-            "id": "Russia"
+            "caption": "citations number",
+            "type": "Topic",
+            "id": "citations number"
         },
         {
-            "caption": "32127478",
-            "type": "Article",
-            "id": "32127478"
+            "caption": "number",
+            "type": "Topic",
+            "id": "number"
         },
         {
-            "caption": "30841468",
-            "type": "Article",
-            "id": "30841468"
+            "caption": "scientific journals",
+            "type": "Topic",
+            "id": "scientific journals"
+        },
+        {
+            "caption": "growing number",
+            "type": "Topic",
+            "id": "growing number"
+        },
+        {
+            "caption": "scientific research",
+            "type": "Topic",
+            "id": "scientific research"
+        },
+        {
+            "caption": "several scientific associations",
+            "type": "Topic",
+            "id": "several scientific associations"
+        },
+        {
+            "caption": "scientific papers",
+            "type": "Topic",
+            "id": "scientific papers"
+        },
+        {
+            "caption": "authors",
+            "type": "Topic",
+            "id": "authors"
+        },
+        {
+            "caption": "same name",
+            "type": "Topic",
+            "id": "same name"
         }
     ],
     "edges": [
         {
-            "source": "33952250",
-            "target": "China",
-            "caption": "IS"
+            "source": "28096979",
+            "target": "new anti-tb drugs",
+            "caption": "TOPIC"
         },
         {
-            "source": "29580128",
-            "target": "China",
-            "caption": "IS"
+            "source": "28096979",
+            "target": "worldwide tb control",
+            "caption": "TOPIC"
         },
         {
-            "source": "29580128",
-            "target": "USA",
-            "caption": "IS"
+            "source": "28096979",
+            "target": "tb",
+            "caption": "TOPIC"
         },
         {
-            "source": "31718602",
-            "target": "USA",
-            "caption": "IS"
+            "source": "28096979",
+            "target": "tuberculosis research",
+            "caption": "TOPIC"
         },
         {
-            "source": "31718602",
-            "target": "China",
-            "caption": "IS"
+            "source": "28096979",
+            "target": "general medicine",
+            "caption": "TOPIC"
         },
         {
-            "source": "20627830",
-            "target": "Norway",
-            "caption": "IS"
+            "source": "28096979",
+            "target": "drug resistance",
+            "caption": "TOPIC"
         },
         {
-            "source": "35139887",
-            "target": "USA",
-            "caption": "IS"
+            "source": "28096979",
+            "target": "tuberculosis",
+            "caption": "TOPIC"
         },
         {
-            "source": "32929060",
-            "target": "China",
-            "caption": "IS"
+            "source": "28096979",
+            "target": "south africa",
+            "caption": "TOPIC"
         },
         {
-            "source": "29881292",
-            "target": "People's Republic of China",
-            "caption": "IS"
+            "source": "28096979",
+            "target": "top productive countries",
+            "caption": "TOPIC"
         },
         {
-            "source": "29881292",
-            "target": "USA",
-            "caption": "IS"
+            "source": "28096979",
+            "target": "active journals",
+            "caption": "TOPIC"
         },
         {
-            "source": "27603915",
-            "target": "China",
-            "caption": "IS"
+            "source": "28005974",
+            "target": "novel research methods",
+            "caption": "TOPIC"
         },
         {
-            "source": "31302201",
-            "target": "China",
-            "caption": "IS"
+            "source": "28005974",
+            "target": "qualitative methods",
+            "caption": "TOPIC"
         },
         {
-            "source": "31301674",
-            "target": "China",
-            "caption": "IS"
+            "source": "28005974",
+            "target": "high social validation",
+            "caption": "TOPIC"
         },
         {
-            "source": "31717266",
-            "target": "China",
-            "caption": "IS"
+            "source": "28005974",
+            "target": "methods",
+            "caption": "TOPIC"
         },
         {
-            "source": "31774607",
-            "target": "China",
-            "caption": "IS"
+            "source": "28005974",
+            "target": "social validation",
+            "caption": "TOPIC"
         },
         {
-            "source": "32733556",
-            "target": "China",
-            "caption": "IS"
+            "source": "28005974",
+            "target": "novel research",
+            "caption": "TOPIC"
         },
         {
-            "source": "32318335",
-            "target": "South Africa",
-            "caption": "IS"
+            "source": "28005974",
+            "target": "social studies",
+            "caption": "TOPIC"
         },
         {
-            "source": "32318335",
-            "target": "Romania",
-            "caption": "IS"
+            "source": "28005974",
+            "target": "high-throughput toxicology methods",
+            "caption": "TOPIC"
         },
         {
-            "source": "28720111",
-            "target": "China",
-            "caption": "IS"
+            "source": "28005974",
+            "target": "mixed qualitative and quantitative methods",
+            "caption": "TOPIC"
         },
         {
-            "source": "30123182",
-            "target": "Canada",
-            "caption": "IS"
+            "source": "27990374",
+            "target": "country",
+            "caption": "TOPIC"
         },
         {
-            "source": "20619301",
-            "target": "Korea",
-            "caption": "IS"
+            "source": "27990374",
+            "target": "research expenditure",
+            "caption": "TOPIC"
         },
         {
-            "source": "34722255",
-            "target": "Belgium",
-            "caption": "IS"
+            "source": "27990374",
+            "target": "mean impact factor",
+            "caption": "TOPIC"
         },
         {
-            "source": "32147678",
-            "target": "China",
-            "caption": "IS"
+            "source": "27990374",
+            "target": "research productivity",
+            "caption": "TOPIC"
         },
         {
-            "source": "26885027",
-            "target": "China",
-            "caption": "IS"
+            "source": "27990374",
+            "target": "ophthalmic research",
+            "caption": "TOPIC"
         },
         {
-            "source": "32133796",
-            "target": "China",
-            "caption": "IS"
+            "source": "27990374",
+            "target": "research output",
+            "caption": "TOPIC"
         },
         {
-            "source": "29245011",
-            "target": "USA",
-            "caption": "IS"
+            "source": "27990374",
+            "target": "articles",
+            "caption": "TOPIC"
         },
         {
-            "source": "35284103",
-            "target": "China",
-            "caption": "IS"
+            "source": "27990374",
+            "target": "scholarly impact",
+            "caption": "TOPIC"
         },
         {
-            "source": "23391414",
-            "target": "USA",
-            "caption": "IS"
+            "source": "27990373",
+            "target": "dr publications",
+            "caption": "TOPIC"
         },
         {
-            "source": "19914236",
-            "target": "USA",
-            "caption": "IS"
+            "source": "27990373",
+            "target": "estimated publication number",
+            "caption": "TOPIC"
         },
         {
-            "source": "31619268",
-            "target": "China",
-            "caption": "IS"
+            "source": "27990373",
+            "target": "developed countries",
+            "caption": "TOPIC"
         },
         {
-            "source": "34250022",
-            "target": "China",
-            "caption": "IS"
+            "source": "27990373",
+            "target": "developing countries",
+            "caption": "TOPIC"
         },
         {
-            "source": "22247839",
-            "target": "India",
-            "caption": "IS"
+            "source": "27990373",
+            "target": "dr studies",
+            "caption": "TOPIC"
         },
         {
-            "source": "28449441",
-            "target": "Japan",
-            "caption": "IS"
+            "source": "27990373",
+            "target": "dr title",
+            "caption": "TOPIC"
         },
         {
-            "source": "33292213",
-            "target": "China",
-            "caption": "IS"
+            "source": "27990373",
+            "target": "dr",
+            "caption": "TOPIC"
         },
         {
-            "source": "34145432",
-            "target": "Egypt",
-            "caption": "IS"
+            "source": "27990373",
+            "target": "more dr studies",
+            "caption": "TOPIC"
         },
         {
-            "source": "34145432",
-            "target": "USA",
-            "caption": "IS"
+            "source": "27990373",
+            "target": "publications",
+            "caption": "TOPIC"
         },
         {
-            "source": "20162579",
-            "target": "China",
-            "caption": "IS"
+            "source": "27990373",
+            "target": "academic publication",
+            "caption": "TOPIC"
         },
         {
-            "source": "31014355",
-            "target": "Spain",
-            "caption": "IS"
+            "source": "27978538",
+            "target": "more narrative articles",
+            "caption": "TOPIC"
         },
         {
-            "source": "31014355",
-            "target": "Iran",
-            "caption": "IS"
+            "source": "27978538",
+            "target": "more narrative climate change writing",
+            "caption": "TOPIC"
         },
         {
-            "source": "24104470",
-            "target": "Spain",
-            "caption": "IS"
+            "source": "27978538",
+            "target": "climate literature",
+            "caption": "TOPIC"
         },
         {
-            "source": "12483536",
-            "target": "USA",
-            "caption": "IS"
+            "source": "27978538",
+            "target": "climate change",
+            "caption": "TOPIC"
         },
         {
-            "source": "27942222",
-            "target": "People's Republic of China",
-            "caption": "IS"
+            "source": "27978538",
+            "target": "more narrative abstracts",
+            "caption": "TOPIC"
         },
         {
-            "source": "8950993",
-            "target": "USA",
-            "caption": "IS"
+            "source": "27978538",
+            "target": "scientific literature",
+            "caption": "TOPIC"
         },
         {
-            "source": "26662309",
-            "target": "People's Republic of China",
-            "caption": "IS"
+            "source": "27978538",
+            "target": "articles",
+            "caption": "TOPIC"
         },
         {
-            "source": "26662309",
-            "target": "China",
-            "caption": "IS"
+            "source": "27978538",
+            "target": "influence",
+            "caption": "TOPIC"
         },
         {
-            "source": "31921634",
-            "target": "Mexico",
-            "caption": "IS"
+            "source": "27978538",
+            "target": "individual papers",
+            "caption": "TOPIC"
         },
         {
-            "source": "29217194",
-            "target": "China",
-            "caption": "IS"
+            "source": "27978538",
+            "target": "climate change science",
+            "caption": "TOPIC"
         },
         {
-            "source": "25058905",
-            "target": "USA",
-            "caption": "IS"
+            "source": "27973611",
+            "target": "acupuncture research publications",
+            "caption": "TOPIC"
         },
         {
-            "source": "34991659",
-            "target": "China",
-            "caption": "IS"
+            "source": "27973611",
+            "target": "acupuncture research",
+            "caption": "TOPIC"
         },
         {
-            "source": "32021307",
-            "target": "People's Republic of China",
-            "caption": "IS"
+            "source": "27973611",
+            "target": "published research",
+            "caption": "TOPIC"
         },
         {
-            "source": "34959269",
-            "target": "USA",
-            "caption": "IS"
+            "source": "27973611",
+            "target": "acupuncture publication",
+            "caption": "TOPIC"
         },
         {
-            "source": "29593419",
-            "target": "People's Republic of China",
-            "caption": "IS"
+            "source": "27973611",
+            "target": "broader publication rates",
+            "caption": "TOPIC"
         },
         {
-            "source": "32246957",
-            "target": "Russia",
-            "caption": "IS"
+            "source": "27973611",
+            "target": "biomedical research",
+            "caption": "TOPIC"
         },
         {
-            "source": "32246957",
-            "target": "USA",
-            "caption": "IS"
+            "source": "27973611",
+            "target": "impact factors",
+            "caption": "TOPIC"
         },
         {
-            "source": "30841468",
-            "target": "China",
-            "caption": "IS"
+            "source": "27973611",
+            "target": "journals",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27973611",
+            "target": "comprehensive fields",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27973571",
+            "target": "early terminated trials",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27973571",
+            "target": "adjusted or",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27973571",
+            "target": "clinical drug trials",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27973571",
+            "target": "clinical trials",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27973571",
+            "target": "trials",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27973571",
+            "target": "trial",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27973571",
+            "target": "multicenter trials",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27973571",
+            "target": "or",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27973571",
+            "target": "early terminated clinical drug trials",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27942087",
+            "target": "research applications",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27942087",
+            "target": "research output growth patterns",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27942087",
+            "target": "research application orientation domains",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27942087",
+            "target": "hospitals",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27942087",
+            "target": "scientific knowledge production",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27942087",
+            "target": "recent years",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27942087",
+            "target": "university",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27942087",
+            "target": "(same research journals",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27942087",
+            "target": "publication outlets",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27942087",
+            "target": "new publication outlets",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27942081",
+            "target": "countries",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27942081",
+            "target": "many countries",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27942081",
+            "target": "qualitative outputs",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27942081",
+            "target": "impact",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27942081",
+            "target": "countries scientific output",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27942081",
+            "target": "qualitative data",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27942081",
+            "target": "the scientific world output",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27942081",
+            "target": "group iii",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27942081",
+            "target": "group ii",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27942081",
+            "target": "double-counted world articles",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27915354",
+            "target": "individual library users",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27915354",
+            "target": "faculty access",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27915354",
+            "target": "digital access",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27915354",
+            "target": "global challenges",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27915354",
+            "target": "libraries",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27915354",
+            "target": "access",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27915354",
+            "target": "faculty members",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27915354",
+            "target": "journal articles",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27915354",
+            "target": "technology",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27915354",
+            "target": "research",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27870854",
+            "target": "top cited papers",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27870854",
+            "target": "irrelevant papers",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27870854",
+            "target": "productivity",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27870854",
+            "target": "other words",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27870854",
+            "target": "perverse effects",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27870854",
+            "target": "highly cited papers",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27870854",
+            "target": "production",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27870854",
+            "target": "a diminishing marginal result",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27870854",
+            "target": "accountability focus",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27870854",
+            "target": "increased use",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27861511",
+            "target": "journal outputs",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27861511",
+            "target": "several journals",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27861511",
+            "target": "traditional journals",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27861511",
+            "target": "journals",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27861511",
+            "target": "sub-disciplinary output",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27861511",
+            "target": "oamj author characteristics",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27861511",
+            "target": "broad disciplinary scope",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27861511",
+            "target": "citation rates",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27861511",
+            "target": "citation profiles",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27847921",
+            "target": "editorial",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27847921",
+            "target": "no summary",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27845319",
+            "target": "publication activity",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27845319",
+            "target": "publication",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27845319",
+            "target": "publications",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27845319",
+            "target": "publishing activities",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27845319",
+            "target": "russian institutes",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27845319",
+            "target": "institutes",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27845319",
+            "target": "rsci",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27845319",
+            "target": "addiction",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27845319",
+            "target": "psychiatry",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27843745",
+            "target": "poverty",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27843745",
+            "target": "retrieved articles",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27843745",
+            "target": "published articles",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27843745",
+            "target": "high impact journals",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27843745",
+            "target": "high influential medical journals",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27843745",
+            "target": "poverty-related health problems",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27843745",
+            "target": "articles",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27843745",
+            "target": "mental health",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27843745",
+            "target": "top articles",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27835703",
+            "target": "journal impact factor",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27835703",
+            "target": "lower impact factors",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27835703",
+            "target": "research impact",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27835703",
+            "target": "twitter activity",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27835703",
+            "target": "considerable twitter activity",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27835703",
+            "target": "traditional citation rates",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27835703",
+            "target": "citation rates",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27835703",
+            "target": "journals",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27835703",
+            "target": "impactful journals",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27835703",
+            "target": "twitter use",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27832084",
+            "target": "chinese universities",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27832084",
+            "target": "co-authored publications",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27832084",
+            "target": "us universities",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27832084",
+            "target": "domestic industry",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27832084",
+            "target": "collaboration intensity",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27832084",
+            "target": "large research universities",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27832084",
+            "target": "total publications",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27832084",
+            "target": "university-industry co-authored publications",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27832084",
+            "target": "industry",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27832084",
+            "target": "collaborations",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27803848",
+            "target": "ep research",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27803848",
+            "target": "ep",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27803848",
+            "target": "top citation analysis",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27803848",
+            "target": "index expanded",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27803848",
+            "target": "further analysis",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27803848",
+            "target": "citation analysis",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27803848",
+            "target": "bibliometric analysis",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27803848",
+            "target": "women",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27803848",
+            "target": "the science citation index expanded",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27803848",
+            "target": "articles",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27796896",
+            "target": "skin tcs",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27796896",
+            "target": "other cells",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27796896",
+            "target": "cell body",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27796896",
+            "target": "immune reactive cells",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27796896",
+            "target": "stem cells",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27796896",
+            "target": "interstitial cells",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27796896",
+            "target": "tcs ultrastructural changes",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27796896",
+            "target": "cells",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27796896",
+            "target": "tcs ultrastructural features",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27796896",
+            "target": "other interstitial structures",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27796877",
+            "target": "interstitial cells",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27796877",
+            "target": "neighboring cells",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27796877",
+            "target": "other cells",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27796877",
+            "target": "different species",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27796877",
+            "target": "various organs",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27796877",
+            "target": "various tissues",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27796877",
+            "target": "tcs",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27796877",
+            "target": "omics science",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27796877",
+            "target": "interstitial cajal-like cells",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27796877",
+            "target": "mechanical sensor",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27795894",
+            "target": "proximity driving collaborations",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27795894",
+            "target": "personal proximity",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27795894",
+            "target": "research collaborations",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27795894",
+            "target": "proximity",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27795894",
+            "target": "social proximity",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27795894",
+            "target": "temporary geographical proximity",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27795894",
+            "target": "collaboration",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27795894",
+            "target": "dutch nanotechnology researchers",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27795894",
+            "target": "personal elements",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27795894",
+            "target": "personal traits",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27795591",
+            "target": "multi-metrics systems",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27795591",
+            "target": "uic metrics",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27795591",
+            "target": "metrics",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27795591",
+            "target": "such university ranking systems",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27795591",
+            "target": "world university rankings",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27795591",
+            "target": "universities",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27795591",
+            "target": "systems",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27795591",
+            "target": "university-industry r&d linkage metrics",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27795591",
+            "target": "metrics and composite scores",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27795591",
+            "target": "size-independent metrics",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27785365",
+            "target": "exertional heat stroke research",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27785365",
+            "target": "exertional heat stroke",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27785365",
+            "target": "exertional heat stroke studies",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27785365",
+            "target": "heat stroke",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27785365",
+            "target": "science",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27785365",
+            "target": "research",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27785365",
+            "target": "journal distribution",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27785365",
+            "target": "constant concerns",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27706245",
+            "target": "retraction articles",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27706245",
+            "target": "retraction guidelines",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27706245",
+            "target": "retraction",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27706245",
+            "target": "retractions",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27706245",
+            "target": "appropriate retraction practices",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27706245",
+            "target": "author dispute",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27706245",
+            "target": "scientific error",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27706245",
+            "target": "duplicate publication",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27706245",
+            "target": "0.051%",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27706245",
+            "target": "15.4%",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27652107",
+            "target": "paracetamol poisoning treatment",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27652107",
+            "target": "articles",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27652107",
+            "target": "toxicology literature",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27652107",
+            "target": "p",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27652107",
+            "target": "publication",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27652107",
+            "target": "publications",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27652107",
+            "target": "paracetamol poisoning",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27652107",
+            "target": "published paracetamol research",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27652107",
+            "target": "average citations",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27652107",
+            "target": "high income countries",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27652054",
+            "target": "asd research",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27652054",
+            "target": "retrieved articles",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27652054",
+            "target": "articles",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27652054",
+            "target": "article",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27652054",
+            "target": "asd",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27652054",
+            "target": "autism spectrum disorders",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27652054",
+            "target": "total citations",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27652054",
+            "target": "=",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27652054",
+            "target": "such disorders",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27651823",
+            "target": "city regions",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27651823",
+            "target": "gender representations",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27651823",
+            "target": "gender distribution",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27651823",
+            "target": "analysis",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27651823",
+            "target": "bibliometric data",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27651823",
+            "target": "gender inequalities",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27651823",
+            "target": "research fields",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27651823",
+            "target": "cities",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27651823",
+            "target": "academic science",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27651823",
+            "target": "large bibliometric databases",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27635223",
+            "target": "publication sets",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27635223",
+            "target": "publication counts",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27635223",
+            "target": "identical publications",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27635223",
+            "target": "publication",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27635223",
+            "target": "publications",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27635223",
+            "target": "journal publications",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27635223",
+            "target": "citation counts",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27635223",
+            "target": "databases",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27635223",
+            "target": "average number",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27635223",
+            "target": "bibliometric indicators",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27627767",
+            "target": "many existing indices",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27627767",
+            "target": "source popularity",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27627767",
+            "target": "notable predictive power",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27627767",
+            "target": "citations",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27627767",
+            "target": "the technical indices",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27627767",
+            "target": "true impact",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27627767",
+            "target": "pagerank",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27627767",
+            "target": "microsoft academic search",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27627767",
+            "target": "institutions",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27627767",
+            "target": "several technical indicators",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27611317",
+            "target": "treg research",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27611317",
+            "target": "research hotspots",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27611317",
+            "target": "research areas",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27611317",
+            "target": "future research directions",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27611317",
+            "target": "publication outputs",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27611317",
+            "target": "publications",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27611317",
+            "target": "gene therapy",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27611317",
+            "target": "treg",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27611317",
+            "target": "further study",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27611317",
+            "target": "the research hotspots",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27606817",
+            "target": "scholarly articles",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27606817",
+            "target": "articles",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27606817",
+            "target": "suspected coi",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27606817",
+            "target": "great attentions",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27606817",
+            "target": "collaboration times",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27606817",
+            "target": "anomalous citations patterns",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27606817",
+            "target": "contributed citations",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27606817",
+            "target": "great significance",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27606817",
+            "target": "coi",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27606817",
+            "target": "times",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27606209",
+            "target": "publication",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27606209",
+            "target": "scholarly impact",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27606209",
+            "target": "verbal behavior",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27606209",
+            "target": "frequent contributors",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27606209",
+            "target": "past volumes",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27606209",
+            "target": "tavb",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27606209",
+            "target": "a comprehensive status update",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27606209",
+            "target": "a healthy state",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27606209",
+            "target": "the journal",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27606209",
+            "target": "a status update",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27606064",
+            "target": "retrieved articles",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27606064",
+            "target": "related articles",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27606064",
+            "target": "contaminated water",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27606064",
+            "target": "article",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27606064",
+            "target": "articles",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27606064",
+            "target": "water microbiology",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27606064",
+            "target": "water",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27606064",
+            "target": "drinking water",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27606064",
+            "target": "recreational water",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27606064",
+            "target": "safe water",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27599949",
+            "target": "indicator",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27599949",
+            "target": "indicators",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27599949",
+            "target": "several indicators",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27599949",
+            "target": "spanish clinical researchers",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27599949",
+            "target": "research experience",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27599949",
+            "target": "consolidated research experience",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27599949",
+            "target": "researchers",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27599949",
+            "target": "scientific production",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27599949",
+            "target": "h index",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27599949",
+            "target": "production",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27569016",
+            "target": "different areas",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27569016",
+            "target": "different latitudesneeds",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27569016",
+            "target": "intermittent explosive disorder",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27569016",
+            "target": "recurrent aggression episodes",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27569016",
+            "target": "ied prevalence",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27569016",
+            "target": "ied",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27569016",
+            "target": "impulsive aggression",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27569016",
+            "target": "disorder",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27569016",
+            "target": "men males",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27560807",
+            "target": "journals",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27560807",
+            "target": "scholarly journals",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27560807",
+            "target": "biased journal rankings",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27560807",
+            "target": "citation based measure",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27560807",
+            "target": "citation data",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27560807",
+            "target": "impact factor biased journal self-citations",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27560807",
+            "target": "coercive journal self-citation malpractices",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27560807",
+            "target": "journal self-citations",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27560807",
+            "target": "impact factor",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27560807",
+            "target": "inflated perceived importance",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27559228",
+            "target": "ascr papers",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27559228",
+            "target": "other ascr papers",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27559228",
+            "target": "ascr outputs",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27559228",
+            "target": "adult social care research",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27559228",
+            "target": "additional papers",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27559228",
+            "target": "uk",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27559228",
+            "target": "total output",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27559228",
+            "target": "adult social care",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27559228",
+            "target": "papers",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27559228",
+            "target": "ascr",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27556222",
+            "target": "cnpq grant categories",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27556222",
+            "target": "grant category 1c",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27556222",
+            "target": "grant allocation",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27556222",
+            "target": "productivity grant",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27556222",
+            "target": "grants",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27556222",
+            "target": "citation",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27556222",
+            "target": "citations",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27556222",
+            "target": "cnpq",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27556222",
+            "target": "pharmacology",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27556222",
+            "target": "new differences",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27548723",
+            "target": "oa articles",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27548723",
+            "target": "articles",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27548723",
+            "target": "non-oa articles",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27548723",
+            "target": "citation figures",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27548723",
+            "target": "subscription fees",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27548723",
+            "target": "more controversy",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27548723",
+            "target": "open access",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27548723",
+            "target": "oa) articles-articles",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27548723",
+            "target": "oa",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27548723",
+            "target": "course",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27509942",
+            "target": "cancer therapy",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27509942",
+            "target": "targeted cancer therapy",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27509942",
+            "target": "drug toxicity",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27509942",
+            "target": "cancer",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27509942",
+            "target": "drug effectiveness",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27509942",
+            "target": "chemotherapeutic drugs",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27509942",
+            "target": "research area",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27509942",
+            "target": "drug discovery",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27509942",
+            "target": "cell derived nps",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27504147",
+            "target": "published articles",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27504147",
+            "target": "pediatrics",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27504147",
+            "target": "income",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27504147",
+            "target": "finland",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27504147",
+            "target": "research activity",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27504147",
+            "target": "worldwide research activity",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27504147",
+            "target": "scopus database",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27504147",
+            "target": "article",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27504147",
+            "target": "articles",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27504147",
+            "target": "probiotic research",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27486847",
+            "target": "further links",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27486847",
+            "target": "complex networks",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27486847",
+            "target": "further citations",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27486847",
+            "target": "trendy networks",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27486847",
+            "target": "links",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27486847",
+            "target": "networks",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27486847",
+            "target": "ability",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27486847",
+            "target": "modular community structure",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27486847",
+            "target": "structure",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27486847",
+            "target": "complex structural traits",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27478725",
+            "target": "tramadol",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27478725",
+            "target": "arzneimittel forschung drug research journal",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27478725",
+            "target": "analgesia journal",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27478725",
+            "target": "tramadol research",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27478725",
+            "target": "retrieved tramadol documents",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27478725",
+            "target": "worldwide research productivity",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27478725",
+            "target": "global research productivity",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27478725",
+            "target": "tramadol publications",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27478725",
+            "target": "research quantity",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27478725",
+            "target": "tramadol dependence",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27472663",
+            "target": "high impact papers",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27472663",
+            "target": "climate change research",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27472663",
+            "target": "papers",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27472663",
+            "target": "climate change",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27472663",
+            "target": "climate modeling",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27472663",
+            "target": "human induced climate change",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27472663",
+            "target": "specific research topics",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27472663",
+            "target": "citation impact",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27472663",
+            "target": "climate change research",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27472663",
+            "target": "research",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27445772",
+            "target": "neuroethics research",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27445772",
+            "target": "neuroscience research",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27445772",
+            "target": "neuroethics researchers",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27445772",
+            "target": "many neuroethics researchers",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27445772",
+            "target": "neuroethics",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27445772",
+            "target": "different research topics",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27445772",
+            "target": "research",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27445772",
+            "target": "neuroscience",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27445772",
+            "target": "bioethics",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27445772",
+            "target": "moral psychologists",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27382475",
+            "target": "arab countries",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27382475",
+            "target": "pharmaceutical wastewater research",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27382475",
+            "target": "non-arab middle easter countries",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27382475",
+            "target": "pharmaceutical wastewater",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27382475",
+            "target": "pharmaceutical wastewater literature",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27382475",
+            "target": "many countries",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27382475",
+            "target": "arab researchers",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27382475",
+            "target": "arab",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27382475",
+            "target": "non-arab",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27382475",
+            "target": "wastewater",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27350453",
+            "target": "citations number",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27350453",
+            "target": "number",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27350453",
+            "target": "scientific journals",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27350453",
+            "target": "growing number",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27350453",
+            "target": "scientific research",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27350453",
+            "target": "several scientific associations",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27350453",
+            "target": "scientific papers",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27350453",
+            "target": "authors",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27350453",
+            "target": "same name",
+            "caption": "TOPIC"
+        },
+        {
+            "source": "27350453",
+            "target": "impact factor",
+            "caption": "TOPIC"
         }
     ]
 }

@@ -31,6 +31,13 @@ class Settings(BaseSettings):
         "AAA_REFF_CRAWLER_DEEP", 1)
     AAA_CITED_CRAWLER_DEEP: Optional[int] = os.getenv(
         "AAA_CITED_CRAWLER_DEEP", 1)
+    
+    AAA_CLIENT_AGENT: Optional[str] = os.getenv(
+        "AAA_CLIENT_AGENT",
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/109.0")
+    AAA_TOPIC_EXTRACT_ENDPOINT:Optional[str] = os.getenv(
+        "AAA_TOPIC_EXTRACT_ENDPOINT",
+          "http://localhost:8001/api/v1/topic/")
 
     # class Config:
     #     case_sensitive = True

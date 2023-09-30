@@ -34,7 +34,7 @@ def get_article_list_from_pubmed(retstart: int, retmax: int, search_term: str) -
     }
 
     headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/109.0"
+        "User-Agent": SETTINGS.AAA_CLIENT_AGENT
     }
 
     # To use HTTP Basic Auth with your proxy, use the http://user:password@host.com/ syntax:
@@ -77,7 +77,7 @@ def get_article_details_from_pubmed(PMID) -> dict:
     }
 
     headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/109.0"
+        "User-Agent": SETTINGS.AAA_CLIENT_AGENT
     }
 
     # To use HTTP Basic Auth with your proxy, use the http://user:password@host.com/ syntax:
@@ -108,7 +108,7 @@ def get_cited_article_from_pubmed(PMID) -> dict:
     }
 
     headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/109.0"
+        "User-Agent": SETTINGS.AAA_CLIENT_AGENT
     }
 
     # To use HTTP Basic Auth with your proxy, use the http://user:password@host.com/ syntax:

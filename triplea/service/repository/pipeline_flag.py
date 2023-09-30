@@ -133,13 +133,6 @@ def go_extract_topic():
                         f"There are {str(total_article_in_current_state - number_of_article_move_forward)} article(s) left ",
                         forecolore="yellow",
                     )
-                    # min = (
-                    #     (total_article_in_current_state - number_of_article_move_forward) * elapsed
-                    # ) / 60
-                    # logger.INFO(
-                    #     f"It takes at least {str(int(min))} minutes or {str(int(min/60))} hours",
-                    #     forecolore="yellow",
-                    # )
                 if online_bar == False:
                     bar.label = (
                         f"There are {str(total_article_in_current_state - number_of_article_move_forward)} article(s) left "
@@ -192,7 +185,7 @@ def go_extract_topic():
         except Exception:
             if current_state == 0 or current_state is None:
                 updated_article = Article(**a.copy())
-                updated_article.State = -1
+                updated_article.FlagExtractTopic = -1
                 persist.update_article_by_pmid(updated_article,
                                                 updated_article.PMID)
                 persist.refresh()

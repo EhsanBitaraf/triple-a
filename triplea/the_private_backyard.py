@@ -10,6 +10,8 @@ from netwulf import visualize
 import click
 
 import json
+from triplea.cli.export_graph import export_graph
+from triplea.client.topic_extraction import extract_topic
 from triplea.schemas.article import Article
 from triplea.service.graph import extract
 
@@ -23,7 +25,7 @@ from triplea.service.click_logger import logger
 from triplea.service.graph.extract.country_based_co_authorship import graph_extract_article_country
 import triplea.service.repository.persist as persist
 from triplea.service.repository.pipeline_core import move_state_forward
-from triplea.service.repository.pipeline_flag import go_extract_triple
+from triplea.service.repository.pipeline_flag import go_extract_topic, go_extract_triple
 import triplea.service.repository.state as state_manager
 from triplea.service.repository.state.custom.affiliation_mining import country_list
 
@@ -68,116 +70,49 @@ def check_map_topic():
 
 
 if __name__ == "__main__":
-    # tps_limit = 3
-    # sleep_time = 1 // tps_limit
-    # sleep_time = 1 / 1
+    pass
 
-    # print(f"sleep_time: {sleep_time}")
-    # t1 = time.time()
-    # time.sleep(sleep_time) 
-    # print(time.time() - t1)   
+    # remove_duplicate = True
+    # format_type = "graphdict"
+    # proccess_bar = False
+    # output_file = "topic.json"
 
 
-    # move_state_forward(-5)
-    go_extract_triple()
+
+    # l_nodes = []
+    # l_edges = []
+    # graphdict = gextract.graph_extractor(
+    #     gextract.graph_extract_article_topic,
+    #     proccess_bar=proccess_bar,
+    #     remove_duplicate=remove_duplicate,
+    # )
+    # l_nodes.extend(graphdict["nodes"])
+    # l_edges.extend(graphdict["edges"])
+    # logger.DEBUG("Save temp file with duplication.")
+    # data = json.dumps({"nodes": l_nodes, "edges": l_edges}, indent=4)
+    # with open("temp-with-duplication.json", "w") as outfile:
+    #     outfile.write(data)
+    #     outfile.close()
+    # if remove_duplicate:
+    #     logger.DEBUG("Remove duplication in Nodes & Edges. ")
+    #     n = gextract.thefourtheye_2(l_nodes)
+    #     e = gextract.thefourtheye_2(l_edges)
+        
+    #     n = list(n)
+    #     e = list(e)
+    #     graphdict = {"nodes": n, "edges": e}
+    # else:
+    #     graphdict = {"nodes": l_nodes, "edges": l_edges}
+
+    # if format_type == "graphdict":
+    #     data1 = json.dumps(graphdict, indent=4)
+    #     with open(output_file, "w") as outfile:
+    #         outfile.write(data1)
 
 
-    # a = persist.get_article_by_pmid('37115160')
-    # updated_article = Article(**a.copy())
-    # # graph_extract_article_country(updated_article)
-    # updated_article = state_manager.extract_topic_abstract(updated_article)
-
-    # l_pmid = persist.get_article_pmid_list_by_cstate( 0, "FlagExtractTopic" )
-    # total_article_in_current_state = len(l_pmid)
-    # number_of_article_move_forward = 0
-    # logger.DEBUG(str(len(l_pmid)) + " Article(s) is in FlagExtractTopic " + str(0))
-
-    # bar = click.progressbar(length=len(l_pmid), show_pos=True, show_percent=True)
-
-    # refresh_point = 0
-    # elapsed = 0
-    # for id in l_pmid:
-    #     start_time = time.time()
-    #     try:
-    #         number_of_article_move_forward = number_of_article_move_forward + 1
-    #         current_state = None
-
-    #         if refresh_point == 50:
-    #             refresh_point = 0
-    #             persist.refresh()
-    #             print()
-    #             logger.INFO(
-    #                 f"There are {str(total_article_in_current_state - number_of_article_move_forward)} article(s) left ",
-    #                 forecolore="yellow",
-    #             )
-    #             min = (
-    #                 (total_article_in_current_state - number_of_article_move_forward) * elapsed
-    #             ) / 60
-    #             logger.INFO(
-    #                 f"It takes at least {str(int(min))} minutes or {str(int(min/60))} hours",
-    #                 forecolore="yellow",
-    #             )
-    #         else:
-    #             refresh_point = refresh_point + 1
-
-    #         a = persist.get_article_by_pmid(id)
-    #         try:
-    #             updated_article = Article(**a.copy())
-    #         except Exception:
-    #             print()
-    #             print(logger.ERROR(f"Error in parsing article. PMID = {id}"))
-    #             raise Exception("Article Not Parsed.")
-    #         try:
-    #             current_state = updated_article.FlagExtractTopic #----------------------------------------------------
-    #         except Exception:
-    #             current_state = 0
-
-    #         bar.label = (
-    #             "Article "
-    #             + updated_article.PMID
-    #             + " , topic were extracted."
-    #         )
-    #         bar.update(1)
-
-    #         if current_state is None:
-    #             updated_article = state_manager.extract_topic_abstract(updated_article)
-    #             persist.update_article_by_pmid(updated_article,
-    #                                             updated_article.PMID)
-
-    #         elif current_state == -1:  
-    #             updated_article = state_manager.extract_topic_abstract(updated_article)
-    #             persist.update_article_by_pmid(updated_article,
-    #                                             updated_article.PMID)
-
-    #         elif current_state == 0:  
-    #             updated_article = state_manager.extract_topic_abstract(updated_article)
-    #             persist.update_article_by_pmid(updated_article,
-    #                                            updated_article.PMID)
-
-    #         elif current_state == 1:  
-    #             pass
-
-    #         else:
-    #             raise NotImplementedError
-
-    #     except Exception:
-    #         if current_state == 0 or current_state is None:
-    #             updated_article = Article(**a.copy())
-    #             updated_article.State = -1
-    #             persist.update_article_by_pmid(updated_article,
-    #                                             updated_article.PMID)
-    #             persist.refresh()
-    #             exc_type, exc_value, exc_tb = sys.exc_info()
-    #             print()
-    #             logger.ERROR(f"Error {exc_type}")
-    #             logger.ERROR(f"Error {exc_value}")
-
-    #         else:
-    #             persist.refresh()
-    #             exc_type, exc_value, exc_tb = sys.exc_info()
-    #             print()
-    #             print(exc_tb.tb_lineno)
-    #             logger.ERROR(f"Error {exc_type}")
-    #             logger.ERROR(f"Error {exc_value}")
-    #     elapsed = time.time() - start_time
-    # persist.refresh()
+    import visualization.gdatarefresh as graphdatarefresh
+    file = "topic1.json"
+    with open(file, "r") as f:
+        graphdict = json.load(f)
+    graphdatarefresh.refresh_interactivegraph(graphdict)
+    graphdatarefresh.refresh_alchemy(graphdict)

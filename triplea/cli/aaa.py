@@ -13,6 +13,7 @@ from triplea.cli.export import export  # export # noqa: F401
 from triplea.cli.export_pretrain_llm import export_llm  # exportllm # noqa: F401
 from triplea.cli.export_article import cli_export_article # export_article # noqa: F401
 from triplea.cli.visualize import visualize  # visualize # noqa: F401
+from triplea.cli.visualize import visualize_file  # visualize_file # noqa: F401
 from triplea.cli.analysis import analysis  # analysis # noqa: F401
 from triplea.cli.arepo import arepo  # arepo # noqa: F401
 from triplea.cli.pipeline import pipeline  # pipeline # noqa: F401

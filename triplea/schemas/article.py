@@ -71,7 +71,7 @@ class Article(BaseModel):
     State: Optional[int] = Field(description="")
     QueryTranslation: Optional[str] = Field(description="")
     Keywords: Optional[list[Keyword]] = Field(description="")
-    Topics: Optional[list[str]] = Field(description="")
+    Topics: Optional[list[dict]] = Field(description="")
     References: Optional[list[str]] = Field(description="")
     CitedBy: Optional[list[str]] = Field(description="")
     InsertType: Optional[list[str]] = Field(description="")

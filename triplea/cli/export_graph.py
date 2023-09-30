@@ -260,6 +260,8 @@ def export_graph(
         logger.DEBUG("Remove duplication in Nodes & Edges. ")
         n = gextract.thefourtheye_2(l_nodes)
         e = gextract.thefourtheye_2(l_edges)
+        n = list(n)
+        e = list(e)
         graphdict = {"nodes": n, "edges": e}
     else:
         graphdict = {"nodes": l_nodes, "edges": l_edges}

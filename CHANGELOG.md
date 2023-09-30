@@ -1,6 +1,17 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## v0.0.3 - 2023-09-27
+### Improvements
+- Add cli.visualize_file  for visual graph file
+- Add Client Topic Extraction
+- Change Topics (list[str] to list[dict])
+
+
+### Bug Fixes
+- Remove spacy, transformers = {extras = ["torch"], version = "^4.30.0"}, pytextrank
+
+
 ## v0.0.2 - 2023-03-25
 ### Improvements
 - Add `export_article` Alternative to export one article

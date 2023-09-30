@@ -469,6 +469,13 @@ output:
 ![](docs/assets/img/graph-alchemy.png)
 
 
+Visulaize File
+
+A file related to the extracted graph can be visualized in different formats with the following command:
+```sh
+python .\triplea\cli\aaa.py visualize_file --format graphdict "graph.json"
+```
+
 ### Analysis Graph
 
 
