@@ -8,7 +8,17 @@ from triplea.service.click_logger import logger
 
 def extract_topic_abstract(article: Article):
     article.FlagExtractTopic = 1
-    text = article.Title + ' ' + article.Abstract
+    if article.Title is None:
+        title = ""
+    else:
+        title = article.Title
+
+    if article.Abstract is None:
+        abstract = ""
+    else:
+        abstract = article.Abstract
+        
+    text = title + ' ' + abstract
     text = text.replace("\n", "")
     try:
         result = extract_topic(text, "textrank")

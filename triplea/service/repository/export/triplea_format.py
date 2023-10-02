@@ -189,28 +189,40 @@ def export_triplea_csvs_in_relational_mode_save_file(output_file:str,
     logger.DEBUG(f"{str(len(l_pmid))} Article(s) Selected.")
 
     total_article_in_current_state = len(l_pmid)
+
+    if proccess_bar:
+        bar = click.progressbar(length=len(l_pmid),
+                                show_pos=True,
+                                show_percent=True)
+    max_refresh_point = 500
     refresh_point = 0
     csv = ""
-    authors_csv = "key,authors,affiliations" + "\n"
+    authors_csv = "key,authors,affiliations,country,university,institute,center,hospital,department" + "\n"
     keywords_csv = "key,keywords" + "\n"
-    topics_csv="key,topics" + "\n"
-    csv = csv + """key,title,pmid,year,publisher,url,abstract,state,doi,journal_issn,journal_iso_abbreviation,language,publication_type""" + "\n"
+    topics_csv="key,topics,rank" + "\n"
+    csv = csv + """key,title,pmid,year,publisher,url,abstract,state,doi,journal_issn,journal_iso_abbreviation,language,publication_type,citation""" + "\n"
     n = 0
     for id in l_pmid:
         try:
             n = n + 1
-            if refresh_point == 500:
+            if refresh_point == max_refresh_point:
                 refresh_point = 0
-                print()
-                logger.INFO(
-                    f"There are {str(total_article_in_current_state - n)} article(s) left ... ",
-                    forecolore="yellow",
-                )
+                if proccess_bar:
+                    print()
+                    logger.INFO(
+                        f"There are {str(total_article_in_current_state - n)} article(s) left ",
+                        forecolore="yellow",
+                    )
+                if proccess_bar == False:
+                    bar.label = (
+                        f"There are {str(total_article_in_current_state - n)} article(s) left "
+                    )
+                    bar.update(max_refresh_point)
             else:
                 refresh_point = refresh_point + 1
 
-            # a = persist.get_article_by_pmid(id)
-            a = persist.get_article_by_pmid('21048984')
+            a = persist.get_article_by_pmid(id)
+            # a = persist.get_article_by_pmid('18194356') # CRITICAL
             
             try:
                 updated_article = Article(**a.copy())
@@ -270,7 +282,11 @@ def export_triplea_csvs_in_relational_mode_save_file(output_file:str,
             if isinstance(lang,list):
                 for l in lang:
                     language = l + ', ' + language
-                language = language[:-1] 
+                language = language[:-1]
+            else:
+                language = lang
+            language = safe_csv(language)
+
 
 
             
@@ -285,7 +301,7 @@ def export_triplea_csvs_in_relational_mode_save_file(output_file:str,
                 publication_type = updated_article.OreginalArticle['PubmedArticleSet']['PubmedArticle']['MedlineCitation']['Article']['PublicationTypeList']['PublicationType']['#text']
             
             journal_iso_abbreviation = safe_csv(journal_iso_abbreviation)
-            language = safe_csv(language)
+            
             publication_type = safe_csv(publication_type)
 
             
@@ -304,15 +320,45 @@ def export_triplea_csvs_in_relational_mode_save_file(output_file:str,
             pmid = updated_article.PMID
             state = updated_article.State
 
+            citation = 0
+            if updated_article.CitedBy is not None:
+                citation = len(updated_article.CitedBy)
+
+                
+
 
             if updated_article.Authors is not None:
                 for au in updated_article.Authors:
                     if au.Affiliations is not None:
-                        aff = au.Affiliations[0].Text
+                        first_aff = au.Affiliations[0]
+                        department = ""
+                        hospital = ""
+                        institute =""
+                        country = ""
+                        university=""
+                        center  = ""
+                        if  first_aff.Structural is not None:
+                            for s in first_aff.Structural:
+                                if 'department' in s:
+                                    department = s['department']
+                                elif 'hospital' in s:
+                                    hospital = s['hospital']
+                                elif 'institute' in s:
+                                    institute = s['institute']
+                                elif 'country' in s:
+                                    country = s['country']                             
+                                elif 'university' in s:
+                                    university = s['university']
+                                elif 'center' in s:
+                                    center = s['center']
+                                else:
+                                    print(s)
+                        aff = first_aff.Text
                     else:
                         aff = None
-
-                    authors_csv = authors_csv + f"{n},{safe_csv(au.FullName)},{safe_csv(aff)}" + "\n"
+                    
+                    str_aff = f"{safe_csv(country)},{safe_csv(university)},{safe_csv(institute)},{safe_csv(center)},{safe_csv(hospital)},{safe_csv(department)}"
+                    authors_csv = authors_csv + f"{n},{safe_csv(au.FullName)},{safe_csv(aff)},{str_aff}" + "\n"
 
             if updated_article.Keywords is not None:
                 for k in updated_article.Keywords:
@@ -322,11 +368,19 @@ def export_triplea_csvs_in_relational_mode_save_file(output_file:str,
             if updated_article.Topics is not None:
                 for topic in updated_article.Topics:
                     if topic is not None:
-                        topics_csv = topics_csv + f"{n},{safe_csv(topic)}" + "\n"
+                        topics_csv = topics_csv + f"{n},{safe_csv(topic['text'])},{topic['rank']}" + "\n"
 
 
-            csv = csv + f"""{n},{title},{pmid},{year},{publisher},{url},{abstract},{state},{doi},{journal_issn},{journal_iso_abbreviation},{language},{publication_type}""" + "\n"
+            csv = csv + f"""{n},{title},{pmid},{year},{publisher},{url},{abstract},{state},{doi},{journal_issn},{journal_iso_abbreviation},{language},{publication_type},{citation}""" + "\n"
 
+
+            if proccess_bar:
+                bar.label = (
+                    "Article "
+                    + updated_article.PMID
+                    + " , exported."
+                )
+                bar.update(1)
 
             #------------------Write to file ----------------
             file_name = os.path.basename(output_file)

@@ -3,12 +3,14 @@ All notable changes to this project will be documented in this file.
 
 ## v0.0.3 - 2023-09-27
 ### Improvements
+- Change go_extract_triple (Not Complete)
 - Add cli.visualize_file  for visual graph file
 - Add Client Topic Extraction
 - Change Topics (list[str] to list[dict])
 
 
 ### Bug Fixes
+- Fix language parsing in `export_triplea_csvs_in_relational_mode_save_file`
 - Remove spacy, transformers = {extras = ["torch"], version = "^4.30.0"}, pytextrank
 
 

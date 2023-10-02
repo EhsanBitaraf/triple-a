@@ -106,36 +106,38 @@ def go_extract_triple():
                 logger.ERROR(f"Error {exc_tb}")
     persist.refresh()    
 
-def go_extract_topic():
-    online_bar = False
-    max_refresh_point = 50
+def go_extract_topic(proccess_bar=False):
+    max_refresh_point = 500
     l_pmid = persist.get_article_pmid_list_by_cstate( 0, "FlagExtractTopic" )
     total_article_in_current_state = len(l_pmid)
-    number_of_article_move_forward = 0
+    n = 0
     logger.DEBUG(str(len(l_pmid)) + " Article(s) is in FlagExtractTopic " + str(0))
 
-    bar = click.progressbar(length=len(l_pmid), show_pos=True, show_percent=True)
+    if proccess_bar:
+        bar = click.progressbar(length=len(l_pmid),
+                                show_pos=True,
+                                show_percent=True)
 
     refresh_point = 0
     elapsed = 0
     for id in l_pmid:
         start_time = time.time()
         try:
-            number_of_article_move_forward = number_of_article_move_forward + 1
+            n = n + 1
             current_state = None
 
             if refresh_point == max_refresh_point:
                 refresh_point = 0
                 persist.refresh()
-                if online_bar:
+                if proccess_bar:
                     print()
                     logger.INFO(
-                        f"There are {str(total_article_in_current_state - number_of_article_move_forward)} article(s) left ",
+                        f"There are {str(total_article_in_current_state - n)} article(s) left ",
                         forecolore="yellow",
                     )
-                if online_bar == False:
+                if proccess_bar == False:
                     bar.label = (
-                        f"There are {str(total_article_in_current_state - number_of_article_move_forward)} article(s) left "
+                        f"There are {str(total_article_in_current_state - n)} article(s) left "
                     )
                     bar.update(max_refresh_point)
             else:
@@ -149,11 +151,11 @@ def go_extract_topic():
                 print(logger.ERROR(f"Error in parsing article. PMID = {id}"))
                 raise Exception("Article Not Parsed.")
             try:
-                current_state = updated_article.FlagExtractTopic #----------------------------------------------------
+                current_state = updated_article.FlagExtractTopic #------------
             except Exception:
                 current_state = 0
 
-            if online_bar:
+            if proccess_bar:
                 bar.label = (
                     "Article "
                     + updated_article.PMID
@@ -162,17 +164,23 @@ def go_extract_topic():
                 bar.update(1)
 
             if current_state is None:
-                updated_article = state_manager.extract_topic_abstract(updated_article)
+                updated_article = state_manager.extract_topic_abstract(
+                    updated_article
+                    )
                 persist.update_article_by_pmid(updated_article,
                                                 updated_article.PMID)
 
             elif current_state == -1:  
-                updated_article = state_manager.extract_topic_abstract(updated_article)
+                updated_article = state_manager.extract_topic_abstract(
+                    updated_article
+                    )
                 persist.update_article_by_pmid(updated_article,
                                                 updated_article.PMID)
 
             elif current_state == 0:  
-                updated_article = state_manager.extract_topic_abstract(updated_article)
+                updated_article = state_manager.extract_topic_abstract(
+                    updated_article
+                    )
                 persist.update_article_by_pmid(updated_article,
                                                updated_article.PMID)
 
