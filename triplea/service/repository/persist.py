@@ -141,6 +141,14 @@ def get_article_group_by_state():
     """
     return db.get_article_group_by_state()
 
+#region Extra Article Method
+
+def change_flag_extract_topic(current_value,set_value):
+    return db.change_flag_extract_topic(current_value,set_value)
+
+#endregion
+
+
 #endregion
 
 #region Node

@@ -34,11 +34,17 @@ pymongo = "^4.3.3"
 py2neo = "^2021.2.3"
 ipykernel = "^6.21.2"
 ipywidgets = "^8.0.4"
+httpx = "^0.25.0"
+requests = "^2.31.0"
 
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.1.0"
 pytest-cov = "^4.0.0"
+
+
+[tool.poetry.scripts]
+aaa = "triplea:cli.aaa"
 
 [build-system]
 requires = ["poetry-core"]

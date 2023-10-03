@@ -106,8 +106,8 @@ def go_extract_triple():
                 logger.ERROR(f"Error {exc_tb}")
     persist.refresh()    
 
-def go_extract_topic(proccess_bar=False):
-    max_refresh_point = 500
+def go_extract_topic(proccess_bar=True):
+    max_refresh_point = 5
     l_pmid = persist.get_article_pmid_list_by_cstate( 0, "FlagExtractTopic" )
     total_article_in_current_state = len(l_pmid)
     n = 0

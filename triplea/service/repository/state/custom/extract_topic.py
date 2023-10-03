@@ -26,8 +26,7 @@ def extract_topic_abstract(article: Article):
     except:
         exc_type, exc_value, exc_tb = sys.exc_info()
         print()
-        print(exc_tb.tb_frame)
-        print()
+        # print(exc_tb.tb_frame)
 
         logger.ERROR(f"Error Line {exc_tb.tb_lineno}")
         logger.ERROR(f"Error {exc_value}")

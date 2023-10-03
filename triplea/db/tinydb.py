@@ -85,6 +85,15 @@ class DB_TinyDB(DataBase):
         """
         return len(self.db)
 
+
+#region Extra Article Method
+
+    def change_flag_extract_topic(self,current_value,set_value):
+        # Update the value of "FlagExtractTopic" from 0 to 1
+        return self.db.update({'FlagExtractTopic': set_value}, Query().FlagExtractTopic == current_value)
+
+#endregion
+
     def add_new_node(self, node: Node) -> int:
         node_json = json.loads(
             json.dumps(node, default=lambda o: o.__dict__, sort_keys=True, indent=4)

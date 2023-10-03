@@ -19,11 +19,15 @@ This tool gives you the power to create a graph of articles and analyze it. This
 
 ![Build and push images](https://github.com/EhsanBitaraf/triple-a/workflows/push%20docker%20image/badge.svg)
 
+![Testing](https://github.com/EhsanBitaraf/triple-a/actions/workflows/test-poetry-action.yml)
+
+![Code Quality](https://github.com/EhsanBitaraf/triple-a/actions/workflows/python-flake.yml)
+
 <!-- ![Release](https://img.shields.io/github/release-date/EhsanBitaraf/triple-a) -->
 
-<!-- ![PyPI - Wheel](https://img.shields.io/pypi/EhsanBitaraf/triple-a) -->
+![PyPI - Wheel](https://img.shields.io/pypi/EhsanBitaraf/triple-a)
 
-<!-- [![GitHub commits](https://img.shields.io/github/commits-since/EhsanBitaraf/triple-a/v1.0.0.svg)](https://github.com/EhsanBitaraf/triple-a/commit/master) -->
+[![GitHub commits](https://img.shields.io/github/commits-since/EhsanBitaraf/triple-a/v1.0.0.svg)](https://github.com/EhsanBitaraf/triple-a/commit/master)
 
 
 

@@ -24,8 +24,10 @@ from triplea.service.repository.pipeline_flag import go_affiliation_mining, go_e
 
 if __name__ == "__main__":
     pass
-    export_triplea_csvs_in_relational_mode_save_file('export.csv',
-                                                     proccess_bar=True)
+    # export_triplea_csvs_in_relational_mode_save_file('export.csv',
+    #                                                  proccess_bar=True)
     # move_state_forward(2)
     # go_affiliation_mining()
-    # go_extract_topic(proccess_bar=True)
+
+    # persist.change_flag_extract_topic(1,0)
+    go_extract_topic(proccess_bar=True)

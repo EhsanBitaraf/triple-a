@@ -1,6 +1,6 @@
 #https://github.com/marketplace/actions/install-poetry-action
 
-name: test-poetry-action
+name: Testing
 
 on: 
   pull_request:

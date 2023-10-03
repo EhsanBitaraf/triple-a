@@ -147,6 +147,15 @@ class DB_MongoDB(DataBase):
         ]
         return list(self.col_article.aggregate(pipeline))
 
+#region Extra Article Method
+
+    def change_flag_extract_topic(self,current_value,set_value):
+        myquery = {"FlagExtractTopic": current_value}
+        sett = {"$set": {"FlagExtractTopic": set_value}}
+        r = self.col_article.update_many(myquery, sett)
+        return r
+
+#endregion
 
 # endregion
 
