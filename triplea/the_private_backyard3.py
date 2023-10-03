@@ -28,8 +28,8 @@ if __name__ == "__main__":
     col_nodes = db["nodes"]
     col_edges = db["edges"]
     col_triple = db["triple"]
-    myquery = {"CiteCrawlerDeep": 0}
-    sett = {"$set": {"CiteCrawlerDeep": 1}}
+    myquery = {"FlagExtractTopic": 0}
+    sett = {"$set": {"Topics": []}}
     r = col_article.update_many(myquery, sett)
  
 

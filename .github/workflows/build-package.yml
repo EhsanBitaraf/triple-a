@@ -1,0 +1,37 @@
+name: Build and Publish Package
+
+on: 
+    pull_request:
+      branches: [main]
+    push:
+      branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+
+      - name: Install Poetry
+        run: |
+          pip install poetry
+
+      - name: Build Package
+        run: |
+          poetry install --no-dev
+          poetry build
+
+      - name: Publish Package to PyPI
+        env:
+          TWINE_USERNAME: ${{ secrets.TWINE_USERNAME }}
+          TWINE_PASSWORD: ${{ secrets.TWINE_PASSWORD }}
+        run: |
+          pip install twine
+          twine upload dist/*

@@ -93,7 +93,7 @@ Activate environment variable:
 
 *Windows*
 ```shell
-.\venv\Scripts\activate
+$ .\venv\Scripts\activate
 ```
 
 *Linux*
