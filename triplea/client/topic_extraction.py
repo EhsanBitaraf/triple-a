@@ -4,6 +4,9 @@ import requests
 import json
 from triplea.service.click_logger import logger
 
+# https://stackoverflow.com/questions/62599036/python-requests-is-slow-and-takes-very-long-to-complete-http-or-https-request
+session = requests.Session()
+
 # import httpx
 # async def extract_topic(text: str,
 #                    method: str,
@@ -109,7 +112,7 @@ def extract_topic(text: str,
     # sending get request and saving the response as response object
     try:
         j_data = json.dumps(data)
-        r = requests.post(url=URL,
+        r = session.post(url=URL,
                         data=j_data,
                         headers=headers,
                         proxies=proxy_servers)

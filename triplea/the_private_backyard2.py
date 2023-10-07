@@ -21,13 +21,24 @@ import os
 
 from triplea.service.repository.pipeline_core import move_state_forward
 from triplea.service.repository.pipeline_flag import go_affiliation_mining, go_extract_topic
+from triplea.service.repository.state.custom.affiliation_mining import get_affiliation_structured
 
 if __name__ == "__main__":
     pass
     # export_triplea_csvs_in_relational_mode_save_file('export.csv',
-    #                                                  proccess_bar=True)
+    #                                                  proccess_bar=True,limit_sample=0)
     # move_state_forward(2)
     # go_affiliation_mining()
 
     # persist.change_flag_extract_topic(1,0)
-    go_extract_topic(proccess_bar=True)
+    # go_extract_topic(proccess_bar=True)
+
+
+    aff_text = "Institute for Molecular Medicine Finland (FIMM), Helsinki Institute of Life Science (HiLIFE), University of Helsinki, Helsinki, Finland. aarno.palotie@helsinki.fi"
+    aff_text = "Department of Neurology and Institute of Neurology, Huashan Hospital, State Key Laboratory of Medical Neurobiology and MOE Frontiers Center for Brain Science, Shanghai Medical College, Fudan University, National Center for Neurological Disorders, Shanghai, China. jintai_yu@fudan.edu.cn"
+    aff_text = "Department of Ophthalmology, University of Washington, Seattle, Washington, USA"
+    print(get_affiliation_structured(aff_text))
+    
+    from triplea.service.repository.state.custom.affiliation_mining import _is_country
+    print(_is_country("Finland. aarno.palotie@helsinki.fi"))
+    print(_is_country("Finland"))

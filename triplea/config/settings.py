@@ -4,6 +4,7 @@ from typing import List, Optional
 
 from pydantic import AnyHttpUrl, BaseSettings, EmailStr, validator, Field
 from dotenv import load_dotenv
+import tomli
 
 # Project Directories
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -11,6 +12,10 @@ DB_ROOT_PATH = ROOT.parent / "database"
 ENV_PATH_FILE = ROOT / "config" / "environment_variable" / ".env"
 
 load_dotenv(ENV_PATH_FILE, override=True)
+
+with open('pyproject.toml', 'rb') as f:
+    pyproject = tomli.load(f)
+    version = pyproject['tool']['poetry']['version']
 
 class Settings(BaseSettings):
     # ---------------My Envirement Varable-------------------------------
@@ -38,6 +43,8 @@ class Settings(BaseSettings):
     AAA_TOPIC_EXTRACT_ENDPOINT:Optional[str] = os.getenv(
         "AAA_TOPIC_EXTRACT_ENDPOINT",
           "http://localhost:8001/api/v1/topic/")
+    
+    VERSION : Optional[str]  = version + '.002' # Change this micro version in the development process
 
     # class Config:
     #     case_sensitive = True

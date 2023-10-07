@@ -93,6 +93,21 @@ def affiliation_mining(article: Article):
 
 
 def get_affiliation_structured(affiliation_text:str)-> dict:
+    """
+    Extracts structured information from an affiliation text.
+
+    Args:
+        affiliation_text (str): The affiliation text to be processed.
+
+    Returns:
+        list: A list of dictionaries representing the structured affiliation information extracted from the affiliation text.
+
+    Example:
+        affiliation_text = "University of XYZ, Department of Computer Science, Country XYZ"
+        structured_affiliation = get_affiliation_structured(affiliation_text)
+        print(structured_affiliation)
+        # Output: [{'university': 'University of XYZ'}, {'department': 'Department of Computer Science'}, {'country': 'Country XYZ'}]
+    """
     if affiliation_text is None or affiliation_text == "":
         return 
     loc = []
@@ -122,7 +137,7 @@ def get_affiliation_structured(affiliation_text:str)-> dict:
             n = n + 1
         else:
             pass
-            # print(p)
+            print(p)
     if aff_part_number - n > 3:
         pass
         # print()

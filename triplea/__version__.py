@@ -1,4 +1,8 @@
-__version__ = "0.0.2"
+
+from triplea.config.settings import SETTINGS
+
+# __version__ = "0.0.2" # Change Policy
+__version__ = SETTINGS.VERSION
 __title__ = "Triplea"
 __description__ = "Article Analysis Assistant "
 __url__ = "https://github.com/EhsanBitaraf/triple-a"

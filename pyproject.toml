@@ -36,6 +36,7 @@ ipykernel = "^6.21.2"
 ipywidgets = "^8.0.4"
 httpx = "^0.25.0"
 requests = "^2.31.0"
+tomli = "^2.0.1"
 
 
 [tool.poetry.group.dev.dependencies]

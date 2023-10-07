@@ -182,7 +182,7 @@ def export_triplea_csv(proccess_bar=False, limit_sample=0)-> str:
     return csv
 
 def export_triplea_csvs_in_relational_mode_save_file(output_file:str,
-        proccess_bar=False,
+        proccess_bar=True,
         limit_sample=0):
     
     l_pmid = persist.get_all_article_pmid_list()
@@ -190,10 +190,10 @@ def export_triplea_csvs_in_relational_mode_save_file(output_file:str,
 
     total_article_in_current_state = len(l_pmid)
 
-    if proccess_bar:
-        bar = click.progressbar(length=len(l_pmid),
-                                show_pos=True,
-                                show_percent=True)
+
+    bar = click.progressbar(length=len(l_pmid),
+                            show_pos=True,
+                            show_percent=True)
     max_refresh_point = 500
     refresh_point = 0
     csv = ""
@@ -202,9 +202,47 @@ def export_triplea_csvs_in_relational_mode_save_file(output_file:str,
     topics_csv="key,topics,rank" + "\n"
     csv = csv + """key,title,pmid,year,publisher,url,abstract,state,doi,journal_issn,journal_iso_abbreviation,language,publication_type,citation""" + "\n"
     n = 0
+    # -------------------Create File-------------------------------
+    file_name = os.path.basename(output_file)
+    file = os.path.splitext(file_name)
+    fname = file[0] 
+    fextention = file[1]
+
+
+    dir = output_file.replace(fname + fextention, '')
+    if fextention is None:
+        fextention= '.csv'
+
+    main_file = os.path.join(dir, fname + fextention)
+    authors_file = os.path.join(dir, fname + '_authors' + fextention)
+    keywords_file = os.path.join(dir, fname + '_keywords' + fextention)
+    topics_file = os.path.join(dir, fname + '_topics' + fextention)
+
+    with open(main_file, "w", encoding="utf-8") as file1:
+        file1.write(csv)
+        csv = ""
+
+    with open(authors_file, "w", encoding="utf-8") as file2:
+        file2.write(authors_csv)
+        authors_csv = ""
+
+    with open(keywords_file, "w", encoding="utf-8") as file3:
+        file3.write(keywords_csv)
+        keywords_csv = ""
+
+    with open(topics_file, "w", encoding="utf-8") as file4:
+        file4.write(topics_csv)
+        topics_csv = ""
+
+    f_main = open(main_file, 'a', encoding="utf-8")
+    f_authors = open(authors_file, 'a', encoding="utf-8")
+    f_keywords = open(keywords_file, 'a', encoding="utf-8")
+    f_topics = open(topics_file, "a", encoding="utf-8")
+
     for id in l_pmid:
         try:
             n = n + 1
+
             if refresh_point == max_refresh_point:
                 refresh_point = 0
                 if proccess_bar:
@@ -220,6 +258,11 @@ def export_triplea_csvs_in_relational_mode_save_file(output_file:str,
                     bar.update(max_refresh_point)
             else:
                 refresh_point = refresh_point + 1
+
+            if limit_sample != 0:  # Unlimited
+                if n > limit_sample:
+                    break
+
 
             a = persist.get_article_by_pmid(id)
             # a = persist.get_article_by_pmid('18194356') # CRITICAL
@@ -383,32 +426,20 @@ def export_triplea_csvs_in_relational_mode_save_file(output_file:str,
                 bar.update(1)
 
             #------------------Write to file ----------------
-            file_name = os.path.basename(output_file)
-            file = os.path.splitext(file_name)
-            fname = file[0] 
-            fextention = file[1]
+            f_main.write(csv)
+            csv = ""
 
 
-            dir = output_file.replace(fname + fextention, '')
-            if fextention is None:
-                fextention= '.csv'
+            f_authors.write(authors_csv)
+            authors_csv = ""
 
-            main_file = os.path.join(dir, fname + fextention)
-            authors_file = os.path.join(dir, fname + '_authors' + fextention)
-            keywords_file = os.path.join(dir, fname + '_keywords' + fextention)
-            topics_file = os.path.join(dir, fname + '_topics' + fextention)
 
-            with open(main_file, "w", encoding="utf-8") as file1:
-                file1.write(csv)
+            f_keywords.write(keywords_csv)
+            keywords_csv = ""
 
-            with open(authors_file, "w", encoding="utf-8") as file2:
-                file2.write(authors_csv)
 
-            with open(keywords_file, "w", encoding="utf-8") as file3:
-                file3.write(keywords_csv)
-
-            with open(topics_file, "w", encoding="utf-8") as file4:
-                file4.write(topics_csv)
+            f_topics.write(topics_csv)
+            topics_csv = ""
 
         except Exception:
                 exc_type, exc_value, exc_tb = sys.exc_info()
@@ -419,5 +450,9 @@ def export_triplea_csvs_in_relational_mode_save_file(output_file:str,
                 logger.ERROR(f"Error {exc_value}")
                 traceback.print_tb(exc_tb)
 
+    f_main.close()
+    f_authors.close()
+    f_keywords.close()
+    f_topics.close()
     logger.INFO("Export Complete.")
 
