@@ -8,11 +8,15 @@ import triplea.service.repository.persist as persist
 
 def _save_article_pmid_list_in_arepo(data: dict) -> None:
     """
-    > If the data is in the right format, then for each PMID in the data, insert the PMID into the
-    knowledge repository. If the PMID is not a duplicate, then log the PMID as added to the knowledge
+    > If the data is in the right format, then for each PMID in the data,
+      insert the PMID into the
+    knowledge repository. If the PMID is not a duplicate,
+      then log the PMID as added to the knowledge
     repository
 
-    :param data: The output format from the pubmed service is for a list of PMIDs that is output from the `get_article_list_from_pubmed` method.
+    :param data: The output format from the pubmed service is for
+      a list of PMIDs that is output from
+        the `get_article_list_from_pubmed` method.
     :type data: dict
     """
     if "esearchresult" in data:
@@ -29,13 +33,11 @@ def _save_article_pmid_list_in_arepo(data: dict) -> None:
             if i is None:  # PMID is Duplicate
                 logger.INFO(f"{pmid} is exist in knowledge repository. ({n})")
             else:
-                # logger.INFO('add ' + pmid + ' to knowledge repository. get ' + str(i))
                 logger.INFO(f"add {pmid} to knowledge repository. ({n})")
     else:
         persist.refresh()
         logger.ERROR("data is not in right format.")
     persist.refresh()
-
 
 
 def get_article_list_from_pubmed_all_store_to_arepo(
@@ -45,16 +47,19 @@ def get_article_list_from_pubmed_all_store_to_arepo(
     retmax: Optional[int] = 10000,
 ) -> None:
     """
-    It takes a search term, and returns a list of all the articles that match that search term
+    It takes a search term,
+      and returns a list of all the articles that match that search term
 
     :param searchterm: The search term you want to use to search PubMed
     :type searchterm: str
     :param tps_limit: The number of requests per second, defaults to 1
     :type tps_limit: Optional[int] (optional)
-    :param big_ret: If True, the function will return a maximum of 10,000 records. If False, it will
+    :param big_ret: If True, the function will return a maximum
+      of 10,000 records. If False, it will
     return a maximum of 20 records, defaults to True
     :type big_ret: Optional[bool] (optional)
-    :param retmax: The number of articles to return per request, defaults to 10000
+    :param retmax: The number of articles to return per request,
+      defaults to 10000
     :type retmax: Optional[int] (optional)
     """
     sleep_time = 1 // tps_limit
@@ -97,17 +102,9 @@ def get_article_list_from_pubmed_all_store_to_arepo(
     # for last round
     start = ((i + 1) * retmax) - retmax
     mid = total - (retmax * round)
-    logger.INFO(
-        "Round ("
-        + str(i + 1)
-        + ") : "
-        + "Get another "
-        + str(mid)
-        + " record (total "
-        + str(total)
-        + " record)",
-        deep=13,
-    )
+    logger.INFO(f"""Round ({str(i + 1)}):
+                 Get another {str(mid)} record (total {str(total)} record)""",
+                deep=13)
     chunkdata = get_article_list_from_pubmed(start, retmax, searchterm)
     _save_article_pmid_list_in_arepo(chunkdata)
 
@@ -121,6 +118,7 @@ if __name__ == "__main__":
     start = 1
     retmax = 10000
     # searchterm = '"breast neoplasms"[MeSH Terms] OR ("breast"[All Fields] AND "neoplasms"[All Fields]) OR "breast neoplasms"[All Fields] OR ("breast"[All Fields] AND "cancer"[All Fields]) OR "breast cancer"[All Fields]'
-    searchterm = '((Bibliometric analysis[MeSH Terms])) OR ("Bibliometric analysis"[Title/Abstract])'
+    # searchterm = '((Bibliometric analysis[MeSH Terms])) OR ("Bibliometric analysis"[Title/Abstract])'
+    searchterm = '"Rajaie Cardiovascular"[Affiliation]'
     chunkdata = get_article_list_from_pubmed(start, retmax, searchterm)
     _save_article_pmid_list_in_arepo(chunkdata)

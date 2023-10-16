@@ -4,6 +4,7 @@ import xmltodict
 import json
 from triplea.service.click_logger import logger
 
+
 def get_article_list_from_pubmed(retstart: int, retmax: int, search_term: str) -> dict:
     """
     This function takes in a search term, and returns a dictionary of the results of the search
@@ -33,9 +34,7 @@ def get_article_list_from_pubmed(retstart: int, retmax: int, search_term: str) -
         # "maxdate" : "2023/09/17"
     }
 
-    headers = {
-        "User-Agent": SETTINGS.AAA_CLIENT_AGENT
-    }
+    headers = {"User-Agent": SETTINGS.AAA_CLIENT_AGENT}
 
     # To use HTTP Basic Auth with your proxy, use the http://user:password@host.com/ syntax:
     if SETTINGS.AAA_PROXY_HTTP is not None:
@@ -76,9 +75,7 @@ def get_article_details_from_pubmed(PMID) -> dict:
         "retmode": "xml",
     }
 
-    headers = {
-        "User-Agent": SETTINGS.AAA_CLIENT_AGENT
-    }
+    headers = {"User-Agent": SETTINGS.AAA_CLIENT_AGENT}
 
     # To use HTTP Basic Auth with your proxy, use the http://user:password@host.com/ syntax:
     if SETTINGS.AAA_PROXY_HTTP is not None:
@@ -107,9 +104,7 @@ def get_cited_article_from_pubmed(PMID) -> dict:
         "retmode": "json",
     }
 
-    headers = {
-        "User-Agent": SETTINGS.AAA_CLIENT_AGENT
-    }
+    headers = {"User-Agent": SETTINGS.AAA_CLIENT_AGENT}
 
     # To use HTTP Basic Auth with your proxy, use the http://user:password@host.com/ syntax:
     if SETTINGS.AAA_PROXY_HTTP is not None:
@@ -134,12 +129,12 @@ def get_cited_article_from_pubmed(PMID) -> dict:
                 for linkdb in link["linksetdbs"]:
                     rd = linkdb["linkname"]
                     if (
-                        rd == "pubmed_pubmed" or
-                        rd == "pubmed_pubmed_alsoviewed" or
-                        rd == "pubmed_pubmed_combined" or
-                        rd == "pubmed_pubmed_five" or
-                        rd == "pubmed_pubmed_reviews" or
-                        rd == "pubmed_pubmed_reviews_five"
+                        rd == "pubmed_pubmed"
+                        or rd == "pubmed_pubmed_alsoviewed"
+                        or rd == "pubmed_pubmed_combined"
+                        or rd == "pubmed_pubmed_five"
+                        or rd == "pubmed_pubmed_reviews"
+                        or rd == "pubmed_pubmed_reviews_five"
                     ):
                         pass
                     else:

@@ -1,5 +1,3 @@
-
-
 def average_neighbor_number(G) -> float:
     """
     For each node in the graph, count the number of neighbors and calculate average neighbor number for graph.
@@ -18,4 +16,3 @@ def average_neighbor_number(G) -> float:
         sum_neighbors = sum_neighbors + num_neighbors
 
     return sum_neighbors / i
-

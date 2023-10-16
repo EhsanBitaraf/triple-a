@@ -152,7 +152,8 @@ def export_gpickle_from_graphdict(graphdict: dict, filename: str):
 
 def export_gexf_from_arepo(filename: str):
     """
-    It read article repository and extract node & edge from it, and then saves it in the [gexf format](https://gexf.net/)
+    It read article repository and extract node & edge from it,
+    and then saves it in the [gexf format](https://gexf.net/)
     """
     G = export_networkX_from_arepo()
     # saving graph created above in gexf format
@@ -163,31 +164,35 @@ def export_gexf_from_graphdict(graphdict: dict, filename: str):
     """
     It takes a graph dictionary and exports it as a GEXF file
 
-    :param graphdict: a dictionary of dictionaries, where the keys are the nodes and the values are
-    dictionaries of the nodes' neighbors and the weights of the edges between them
+    :param graphdict: a dictionary of dictionaries,
+      where the keys are the nodes and the values are
+    dictionaries of the nodes' neighbors and the weights of the edges
+      between them
     :type graphdict: dict
     :param filename: the name of the file you want to save the graph as
     :type filename: str
     """
     G = export_networkx_from_graphdict(graphdict)
-    nx.write_gexf(G, filename )
+    nx.write_gexf(G, filename)
 
 
 def export_graphml_from_arepo(filename: str):
     """
-    It read article repository and extract node & edge from it and exports it as a [graphml file](http://graphml.graphdrawing.org/)
+    It read article repository and extract node & edge from it
+      and exports it as a [graphml file](http://graphml.graphdrawing.org/)
 
     :param filename: the name of the file you want to save the graphml file as
     :type filename: str
     """
     G = export_networkX_from_arepo()
     # saving graph created above in graphml format
-    nx.write_graphml(G, filename )
+    nx.write_graphml(G, filename)
 
 
 def export_graphml_from_networkx(G: nx.Graph, filename: str):
     """
-    It takes a networkx graph and a filename, and exports the graph to a graphml file with the given
+    It takes a networkx graph and a filename, and exports the graph
+      to a graphml file with the given
     filename
 
     :param G: the networkx graph object
@@ -271,7 +276,8 @@ def export_networkx_from_graphdict(
     """
     It takes a graph dictionary and returns a networkx graph
 
-    :param graphdict: The graph dictionary that you want to convert to a networkx graph
+    :param graphdict: The graph dictionary that you want to convert
+      to a networkx graph
     :param graph_type: Optional[str] = 'directed', defaults to directed
     :type graph_type: Optional[str] (optional)
     :return: A networkx graph object
@@ -292,7 +298,7 @@ def export_networkx_from_graphdict(
     return G
 
 
-# #-------------------------------------------------------------------------------------------------------------
+# #----------------------------------------------------------------------------
 def export_networkX(
     nodes: list[Node], edges: list[Edge], graph_type: Optional[str] = "directed"
 ):

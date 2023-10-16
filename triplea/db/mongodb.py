@@ -17,7 +17,7 @@ class DB_MongoDB(DataBase):
     col_edges = db["edges"]
     col_triple = db["triple"]
 
-#region Article
+    # region Article
 
     def add_new_article(self, article: Article) -> int:
         article_json = json.loads(
@@ -48,23 +48,13 @@ class DB_MongoDB(DataBase):
             return []
         else:
             return new_la
-        
+
     def get_article_pmid_list_by_cstate(self, state: int, tag_field: str):
         if state is None or state == 0:
-            myquery = { 
-                        "$or" : [
-                            { 
-                                tag_field : None
-                            }, 
-                            { 
-                                tag_field : 0
-                            }
-                        ]
-                    }
+            myquery = {"$or": [{tag_field: None}, {tag_field: 0}]}
         else:
             myquery = {tag_field: state}
 
-        
         cursor = self.col_article.find(myquery, projection={"PMID": "$PMID", "_id": 0})
 
         la = list(cursor)
@@ -147,19 +137,19 @@ class DB_MongoDB(DataBase):
         ]
         return list(self.col_article.aggregate(pipeline))
 
-#region Extra Article Method
+    # region Extra Article Method
 
-    def change_flag_extract_topic(self,current_value,set_value):
+    def change_flag_extract_topic(self, current_value, set_value):
         myquery = {"FlagExtractTopic": current_value}
         sett = {"$set": {"FlagExtractTopic": set_value}}
         r = self.col_article.update_many(myquery, sett)
         return r
 
-#endregion
+    # endregion
 
-# endregion
+    # endregion
 
-# region Node
+    # region Node
 
     def add_new_node(self, node: Node) -> int:
         node_json = json.loads(
@@ -181,9 +171,9 @@ class DB_MongoDB(DataBase):
     def get_all_nodes(self):
         raise NotImplementedError
 
-# endregion
+    # endregion
 
-# region Edge
+    # region Edge
 
     def add_new_edge(self, edge: Edge) -> int:
         edge_json = json.loads(
@@ -205,9 +195,9 @@ class DB_MongoDB(DataBase):
     def get_all_edges(self):
         raise NotImplementedError
 
-# endregion
+    # endregion
 
-# region Triple
+    # region Triple
     def add_new_triple(self, edge: dict) -> int:
         triple_json = json.loads(
             json.dumps(edge, default=lambda o: o.__dict__, sort_keys=True, indent=4)
@@ -215,8 +205,7 @@ class DB_MongoDB(DataBase):
         result = self.col_triple.insert_one(triple_json)
         return result.inserted_id
 
-# endregion
-
+    # endregion
 
     def close(self):
         self.client.close

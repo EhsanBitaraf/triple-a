@@ -8,7 +8,7 @@ if match:
     city = match.group(1)
     state = match.group(2)
     country = match.group(3)
-    
+
     print(f"City: {city}")
     print(f"State: {state}")
     print(f"Country: {country}")

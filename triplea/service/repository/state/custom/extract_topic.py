@@ -2,8 +2,8 @@ import sys
 from triplea.client.topic_extraction import extract_topic
 from triplea.schemas.article import Article
 from triplea.service.click_logger import logger
-# from triplea.service.nlp.topic_extract import extract_textrank
 
+# from triplea.service.nlp.topic_extract import extract_textrank
 
 
 def extract_topic_abstract(article: Article):
@@ -17,8 +17,8 @@ def extract_topic_abstract(article: Article):
         abstract = ""
     else:
         abstract = article.Abstract
-        
-    text = title + ' ' + abstract
+
+    text = title + " " + abstract
     text = text.replace("\n", "")
     try:
         result = extract_topic(text, "textrank")
@@ -32,10 +32,7 @@ def extract_topic_abstract(article: Article):
         logger.ERROR(f"Error {exc_value}")
         article.FlagExtractTopic = -1
 
-    
-
     # Expire Module
-
 
     # topic_list = []
     # topic_list_phrase = []
@@ -44,7 +41,7 @@ def extract_topic_abstract(article: Article):
 
     # # print()
     # # print(f"Title : {article.Title}")
-    
+
     # if topic_list_phrase is not None:
 
     #     for t in topic_list_phrase:
@@ -54,7 +51,7 @@ def extract_topic_abstract(article: Article):
     #         # print(type(t))
     #         # print(t)
     #         # print(t.text)
-            
+
     # # print(topic_list)
     # article.Topics = topic_list
     return article

@@ -30,7 +30,7 @@
 #     nlp = English()
 #     #nlp.add_pipe(nlp.create_pipe('sentencizer'))
 #     nlp.add_pipe('sentencizer')
- 
+
 #     document = nlp(text)
 #     return [sent.text.strip() for sent in document.sents]
 
@@ -89,7 +89,7 @@
 #                 if tokens[token.i + 1].dep_ == "aux":
 #                     relation = appendChunk(relation, tokens[token.i + 1].lemma_)
 #                     relation = appendChunk(relation, tokens[token.i + 2].lemma_)
-                    
+
 #                 firstRelation = True
 #         if isConstructionCandidate(token):
 #             pLog("isConstructionCandidate")
@@ -116,7 +116,7 @@
 #                         pLog("Inja")
 #                         subject = tokens[i-1].text + subject
 #                     if "compound" in tokens[i-1].dep_:
-#                         subject = tokens[i-1].text + subject        
+#                         subject = tokens[i-1].text + subject
 #                     pLog("subject tokens[i-1].text (" + tokens[i-1].text + ") ----------------> " + subject)
 #                 firstSubject = True
 
@@ -149,7 +149,6 @@
 #     return triples
 
 
-
 # def extract_triples(text:str):
 #     sentences = getSentences(text)
 
@@ -165,7 +164,7 @@
 #         dict['sentence'] = sentence
 #         kg.append(dict)
 
-    
+
 #     return kg
 
 # if __name__ == "__main__":

@@ -2,6 +2,7 @@ import networkx as nx
 from networkx import is_directed
 import time
 
+
 def info(G, format="stdout"):
     start_time = time.time()
     graph_type = ""
@@ -26,7 +27,6 @@ def info(G, format="stdout"):
         diameter = nx.diameter(G)
         num_components = nx.number_connected_components(G)
 
-
     density = nx.density(G)
     transitivity = nx.transitivity(G)
     number_of_edges = nx.number_of_edges(G)
@@ -36,21 +36,21 @@ def info(G, format="stdout"):
         dag_longest_path_length = nx.dag_longest_path_length(G)
     except Exception:
         # Graph contains a cycle or graph changed during iteration
-        dag_longest_path_length = 'NaN'
+        dag_longest_path_length = "NaN"
 
     average_clustering = nx.average_clustering(G)
     degree_assortativity_coefficient = nx.degree_assortativity_coefficient(G)
-    
+
     try:
         radius = nx.algorithms.distance_measures.radius(G)
     except Exception as ex:
-        radius = f'NaN {ex}'
+        radius = f"NaN {ex}"
 
     end_time = time.time()
     elapsed_time = end_time - start_time
     report_time = start_time
-    
-    if format=="stdout":
+
+    if format == "stdout":
         print(f"Report Time : {report_time}")
         print(f"Elapsed Time Calculation Report : {elapsed_time}")
         print(f"Graph Type: {graph_type}")
@@ -69,7 +69,7 @@ def info(G, format="stdout"):
         print(f"WCC: {wcc}")
         print(f"Reciprocity : {reciprocity}")
         print(f"Graph Diameter : {diameter}")
-        print(f"Number of Components : {num_components}")    
+        print(f"Number of Components : {num_components}")
 
         # bet_cen = nx.betweenness_centrality(G)
         # clo_cen = nx.closeness_centrality(G)
@@ -77,32 +77,32 @@ def info(G, format="stdout"):
         # print(f'Graph Betweenness Centrality: {get_top_keys(bet_cen,1)}')
         # print(f'Graph Closeness Centrality: {get_top_keys(clo_cen,1)}')
         # print(f'Graph Eigenvector Centrality : {get_top_keys(eig_cen, 1)}')
-    elif format=="json":
+    elif format == "json":
         data = {
-            "Report Time" : report_time,
-            "Elapsed Time Calculation Report" : elapsed_time,
-            "Graph Type" : graph_type,
-            "Graph Nodes" : number_of_nodes,
-            "Graph Edges" : number_of_edges,
-            "Graph Average Degree" : avg_deg,
-            "Graph Density" : density,
-            "Graph Transitivity" : transitivity,
-            "Graph max path length" : dag_longest_path_length,
-            "Graph Average Clustering Coefficient" : average_clustering,
-            "Graph Degree Assortativity Coefficient" : degree_assortativity_coefficient,
-            "Graph Radius" : radius,
-            "SCC" : scc,
-            "WCC" : wcc,
-            "Reciprocity" : reciprocity,
-            "Graph Diameter" : diameter,
-            "Number of Components" : num_components,
+            "Report Time": report_time,
+            "Elapsed Time Calculation Report": elapsed_time,
+            "Graph Type": graph_type,
+            "Graph Nodes": number_of_nodes,
+            "Graph Edges": number_of_edges,
+            "Graph Average Degree": avg_deg,
+            "Graph Density": density,
+            "Graph Transitivity": transitivity,
+            "Graph max path length": dag_longest_path_length,
+            "Graph Average Clustering Coefficient": average_clustering,
+            "Graph Degree Assortativity Coefficient": degree_assortativity_coefficient,
+            "Graph Radius": radius,
+            "SCC": scc,
+            "WCC": wcc,
+            "Reciprocity": reciprocity,
+            "Graph Diameter": diameter,
+            "Number of Components": num_components,
         }
         return data
-    elif format=="string":
+    elif format == "string":
         rep = ""
         rep += f"Report Time : {report_time}"
-        rep +=f"Elapsed Time Calculation Report : {elapsed_time}"
-        rep +=f"Graph Type: {graph_type}"
+        rep += f"Elapsed Time Calculation Report : {elapsed_time}"
+        rep += f"Graph Type: {graph_type}"
         rep += f"Graph Nodes: {number_of_nodes}"
         rep += f"Graph Edges: {number_of_edges}"
         rep += f"Graph Average Degree : {avg_deg}"

@@ -22,9 +22,8 @@
 # #             if object:
 # #                 triples.append((subject, predicate, object))
 
-    
-# #     return triples
 
+# #     return triples
 
 
 # if __name__ == "__main__":
@@ -54,4 +53,3 @@
 #                     object = child.text
 #             if object:
 #                 triples.append((subject, predicate, object))
-

@@ -16,6 +16,8 @@ def pipeline(name: str):
         go_extract_topic()
     elif name == "FlagAffiliationMining":
         go_affiliation_mining()
+    elif name == "FlagAffiliationMining_Titipata":
+        go_affiliation_mining(method="Titipata")
 
     else:
         raise NotImplementedError

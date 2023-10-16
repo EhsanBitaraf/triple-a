@@ -99,12 +99,12 @@ def move_state_forward(
 
             if refresh_point == 500:
                 refresh_point = 0
-                # persist.refresh()
-                # print()
-                # logger.INFO(
-                #     f"There are {str(total_article_in_current_state - number_of_article_move_forward)} article(s) left ",
-                #     forecolore="yellow",
-                # )
+                persist.refresh()
+                print()
+                logger.INFO(
+                    f"There are {str(total_article_in_current_state - number_of_article_move_forward)} article(s) left ",
+                    forecolore="yellow",
+                )
                 # min = (
                 #     total_article_in_current_state - number_of_article_move_forward
                 # ) / 60
@@ -117,7 +117,7 @@ def move_state_forward(
 
             a = persist.get_article_by_pmid(id)
             # a = persist.get_article_by_pmid('35970485') # CRITICAL For Test and Debug
-            
+
             try:
                 updated_article = Article(**a.copy())
             except Exception:
@@ -190,7 +190,6 @@ def move_state_forward(
                 # else:
                 #     logger.ERROR('Duplication has Occurred')
 
-
         except Exception:
             if current_state == 1:
                 updated_article = Article(**a.copy())
@@ -220,7 +219,6 @@ def move_state_forward(
                 logger.ERROR(f"Error {exc_type}")
                 logger.ERROR(f"Error {exc_value}")
 
-   
             else:
                 persist.refresh()
                 exc_type, exc_value, exc_tb = sys.exc_info()

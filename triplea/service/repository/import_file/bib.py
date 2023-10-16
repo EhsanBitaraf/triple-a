@@ -73,4 +73,3 @@ def get_article_from_bibliography_file_format(filepath: str):
     logger.INFO("The article was registered in Arepo.")
 
     return True
-

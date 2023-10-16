@@ -84,19 +84,27 @@ def configuration(command):
                         f"""AAA_MONGODB_CONNECTION_URL=
                         {AAA_MONGODB_CONNECTION_URL} \n"""
                     )
-                    file.writelines(f"""AAA_MONGODB_DB_NAME=
-                                    {AAA_MONGODB_DB_NAME} \n""")
+                    file.writelines(
+                        f"""AAA_MONGODB_DB_NAME=
+                                    {AAA_MONGODB_DB_NAME} \n"""
+                    )
                 elif TRIPLEA_DB_TYPE == "TinyDB":
-                    file.writelines(f"""AAA_TINYDB_FILENAME=
-                                    {AAA_TINYDB_FILENAME} \n""")
+                    file.writelines(
+                        f"""AAA_TINYDB_FILENAME=
+                                    {AAA_TINYDB_FILENAME} \n"""
+                    )
 
                 file.writelines(f"AAA_TPS_LIMIT={AAA_TPS_LIMIT} \n")
                 file.writelines(f"AAA_PROXY_HTTP={AAA_PROXY_HTTP} \n")
                 file.writelines(f"AAA_PROXY_HTTPS={AAA_PROXY_HTTPS} \n")
-                file.writelines(f"""AAA_REFF_CRAWLER_DEEP=
-                                {AAA_REFF_CRAWLER_DEEP} \n""")
-                file.writelines(f"""AAA_CITED_CRAWLER_DEEP=
-                                {AAA_CITED_CRAWLER_DEEP} \n""")
+                file.writelines(
+                    f"""AAA_REFF_CRAWLER_DEEP=
+                                {AAA_REFF_CRAWLER_DEEP} \n"""
+                )
+                file.writelines(
+                    f"""AAA_CITED_CRAWLER_DEEP=
+                                {AAA_CITED_CRAWLER_DEEP} \n"""
+                )
 
     else:
         raise NotImplementedError

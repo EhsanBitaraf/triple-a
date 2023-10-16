@@ -1,16 +1,21 @@
 from triplea.config.settings import SETTINGS
 import requests
-import json
 from triplea.service.click_logger import logger
+from urllib.parse import quote
+
+session = requests.Session()
 
 
-def extract_triple(text: str) -> list:
-    URL = SETTINGS.AAA_TOPIC_EXTRACT_ENDPOINT
+def parse_affiliation(text: str) -> list:
+    URL = f"{SETTINGS.AAA_TOPIC_EXTRACT_ENDPOINT}/affiliation"
 
-    # data to be sent to api
-    data = {
-        "text": text.replace("\n", " "),
-    }
+    # # data to be sent to api
+    # PARAMS = {
+    #     "text": text,
+    # }
+
+    text_encode = quote(text)
+    url = f"{URL}/{text_encode}"
 
     headers = {
         "User-Agent": SETTINGS.AAA_CLIENT_AGENT,
@@ -28,20 +33,23 @@ def extract_triple(text: str) -> list:
 
     # sending get request and saving the response as response object
     try:
-        r = requests.post(
-            url=URL, data=json.dumps(data), headers=headers, proxies=proxy_servers
-        )
+        r = session.get(url=url, headers=headers, proxies=proxy_servers)
+
     except Exception:
         raise Exception("Connection Error.")
 
     # extracting data in json format
     try:
-        data = r.json()
-        if "status" in data:
-            return data["result"]
+        if r.status_code == 200:
+            data = r.json()
+            if "status" in data:
+                return data["result"]
+            else:
+                logger.ERROR("status not exist.")
+                raise
         else:
-            logger.ERROR("status not exist.")
-            raise
+            logger.ERROR(f"ERROR : {r.status_code}")
+            logger.ERROR(f"Reason : {r.reason}")
 
     except Exception as ex:
         logger.ERROR(f"Error : {ex}")

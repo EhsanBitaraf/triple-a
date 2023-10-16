@@ -7,7 +7,7 @@
 # def extract_triples(text):
 #     triples = []
 #     doc = nlp(text)
-    
+
 #     for sentence in doc.sents:
 #         for token in sentence:
 #             if "subj" in token.dep_:
@@ -15,7 +15,7 @@
 #                 predicate = token.head.text
 #                 object_ = token.head.head.text
 #                 triples.append((subject, predicate, object_))
-    
+
 #     return triples
 
 # if __name__ == "__main__":

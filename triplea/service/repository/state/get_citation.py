@@ -2,7 +2,7 @@ import sys
 from triplea.client.pubmed import get_cited_article_from_pubmed
 from triplea.schemas.article import Article
 from triplea.service.click_logger import logger
-import triplea.service.repository.persist as persist
+
 
 
 def get_citation(article: Article):

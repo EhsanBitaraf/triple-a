@@ -1,8 +1,8 @@
-
 import json
 import click
 import triplea.service.repository.persist as persist
 from triplea.service.click_logger import logger
+
 
 def import_triplea_json(filename, proccess_bar=False):
     """
@@ -28,14 +28,8 @@ def import_triplea_json(filename, proccess_bar=False):
     for a in data:
         persist.create_article(a)
         if proccess_bar:
-            bar.label = (
-                "Article "
-                + a['PMID']
-                + " write in article repo. "
-            )
+            bar.label = "Article " + a["PMID"] + " write in article repo. "
             bar.update(1)
     print()
     persist.refresh()
     logger.INFO("Import Complete.")
-
-    

@@ -1,4 +1,3 @@
-import time
 from triplea.config.settings import SETTINGS
 import requests
 import json
@@ -16,7 +15,7 @@ session = requests.Session()
 
 #     URL  = SETTINGS.AAA_TOPIC_EXTRACT_ENDPOINT
 
-    
+
 #     # data to be sent to api
 #     data = {
 #             "Text": text.replace("\n"," "),
@@ -47,53 +46,47 @@ session = requests.Session()
 #     #                     proxies=proxy_servers)
 #     # except Exception:
 #     #     raise Exception("Connection Error.")
-    
-
-    # async with httpx.AsyncClient() as client:
-    #     response = await client.post(url=URL,
-    #                     data=json.dumps(data),
-    #                     headers=headers,
-    #                     proxies=proxy_servers)
-    #     response.raise_for_status()
-
-    #     data =  response.json()
-    #     if 'status' in data:
-    #         return data['r']
-    #     else:
-    #         logger.ERROR('status not exist.')
-    #         raise
-
-    # # extracting data in json format
-    # try:
-    #     data = r.json()
-    #     if 'status' in data:
-    #         return data['r']
-    #     else:
-    #         logger.ERROR('status not exist.')
-    #         raise
-
-    # except Exception as ex:
-    #     logger.ERROR(f"Error : {ex}")
-    #     logger.ERROR(f"{type(r)}  {r} ")
-    #     raise
 
 
-def extract_topic(text: str,
-                   method: str,
-                   top:int=10,
-                   threshold:float=0) -> list:
+# async with httpx.AsyncClient() as client:
+#     response = await client.post(url=URL,
+#                     data=json.dumps(data),
+#                     headers=headers,
+#                     proxies=proxy_servers)
+#     response.raise_for_status()
+
+#     data =  response.json()
+#     if 'status' in data:
+#         return data['r']
+#     else:
+#         logger.ERROR('status not exist.')
+#         raise
+
+# # extracting data in json format
+# try:
+#     data = r.json()
+#     if 'status' in data:
+#         return data['r']
+#     else:
+#         logger.ERROR('status not exist.')
+#         raise
+
+# except Exception as ex:
+#     logger.ERROR(f"Error : {ex}")
+#     logger.ERROR(f"{type(r)}  {r} ")
+#     raise
 
 
-    URL  = SETTINGS.AAA_TOPIC_EXTRACT_ENDPOINT
+def extract_topic(text: str, method: str, top: int = 10, threshold: float = 0) -> list:
+    URL = f"{SETTINGS.AAA_TOPIC_EXTRACT_ENDPOINT}/topic"
 
-    
     # data to be sent to api
     data = {
-            "Text": text.replace("\n"," "),
-            "Method": method,
-            "Top": top,
-            "Threshold": threshold
-            }
+        "Text": text.replace("\n", " "),
+        "Method": method,
+        "Top": top,
+        "Threshold": threshold,
+    }
 
     headers = {
         "User-Agent": SETTINGS.AAA_CLIENT_AGENT,
@@ -112,10 +105,7 @@ def extract_topic(text: str,
     # sending get request and saving the response as response object
     try:
         j_data = json.dumps(data)
-        r = session.post(url=URL,
-                        data=j_data,
-                        headers=headers,
-                        proxies=proxy_servers)
+        r = session.post(url=URL, data=j_data, headers=headers, proxies=proxy_servers)
 
     except Exception:
         raise Exception("Connection Error.")
@@ -123,10 +113,10 @@ def extract_topic(text: str,
     # extracting data in json format
     try:
         data = r.json()
-        if 'status' in data:
-            return data['r']
+        if "status" in data:
+            return data["r"]
         else:
-            logger.ERROR('status not exist.')
+            logger.ERROR("status not exist.")
             raise
 
     except Exception as ex:

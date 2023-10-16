@@ -1,5 +1,6 @@
 from string import printable
 import click
+
 # from triplea.service.nlp.ner import get_title_ner  # Expire Module
 from triplea.service.click_logger import logger
 from triplea.cli.main import cli

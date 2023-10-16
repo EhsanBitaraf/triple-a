@@ -5,11 +5,7 @@ from triplea.schemas.node import Edge, Node
 from triplea.service.click_logger import logger
 
 
-
-
-
-
-#region Article
+# region Article
 
 
 def create_article(article: Article):
@@ -133,6 +129,7 @@ def get_all_article_count() -> int:
     """
     return db.get_all_article_count()
 
+
 def get_article_group_by_state():
     """
     It returns a list of dictionaries, each dictionary containing the state name and the number of
@@ -141,17 +138,21 @@ def get_article_group_by_state():
     """
     return db.get_article_group_by_state()
 
-#region Extra Article Method
 
-def change_flag_extract_topic(current_value,set_value):
-    return db.change_flag_extract_topic(current_value,set_value)
-
-#endregion
+# region Extra Article Method
 
 
-#endregion
+def change_flag_extract_topic(current_value, set_value):
+    return db.change_flag_extract_topic(current_value, set_value)
 
-#region Node
+
+# endregion
+
+
+# endregion
+
+# region Node
+
 
 def create_node(node: Node) -> int:
     """
@@ -183,9 +184,11 @@ def get_all_nodes():
     """
     return db.get_all_nodes()
 
-#endregion
 
-#region Edge
+# endregion
+
+# region Edge
+
 
 def create_edge(edge: Edge) -> int:
     """
@@ -223,9 +226,10 @@ def get_all_edges():
     return db.get_all_edges()
 
 
-#endregion
+# endregion
 
-#region Triple
+# region Triple
+
 
 def create_triple(triple: dict) -> int:
     # Duplication is not checked in this method,
@@ -233,7 +237,9 @@ def create_triple(triple: dict) -> int:
 
     return db.add_new_triple(triple)
 
-#endregion
+
+# endregion
+
 
 def refresh():
     """

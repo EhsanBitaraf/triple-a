@@ -4,7 +4,8 @@ from typing import Optional
 # custom_encoder = lambda obj:  dict(_type=type(obj).__name__, **obj.dict())
 
 
-# It creates a class called Node with the following attributes: Type, Identifier, and Name.
+# It creates a class called Node with the following attributes:
+#  Type, Identifier, and Name.
 class Node(BaseModel):
     Type: Optional[str] = Field(description="")
     Identifier: Optional[str] = Field(description="")
@@ -15,7 +16,9 @@ class Node(BaseModel):
     #         sort_keys=True, indent=4)
 
     def json(self):
-        return {"Type": self.Type, "Identifier": self.Identifier, "Name": self.Name}
+        return {"Type": self.Type,
+                "Identifier": self.Identifier,
+                "Name": self.Name}
 
     # class Config:
     #     json_encoders = {
@@ -23,7 +26,8 @@ class Node(BaseModel):
     #     }
 
 
-# The Edge class is a model that has four fields: HashID, SourceID, DestinationID, and Type
+# The Edge class is a model that has four fields:
+#  HashID, SourceID, DestinationID, and Type
 class Edge(BaseModel):
     HashID: Optional[str] = Field(description="")
     SourceID: Optional[str] = Field(description="")

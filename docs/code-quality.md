@@ -86,7 +86,7 @@ Flake8 Rules
 
 https://www.flake8rules.com/
 
-Sample command:
+## Sample command:
 
 ```
 flake8 --show-source .\triplea\cli\main.py
@@ -159,3 +159,199 @@ flake8 --config=.flake8 --output-file out-flake8.txt .\triplea\cli\
 ```
 black .\triplea\cli\
 ```
+
+
+## History
+
+### All
+
+```sh
+flake8 --config=.flake8 --count --output-file out-flake8.txt .\triplea\ --no-show-source  --statistics
+```
+
+
+2023-10-15
+```
+4     C901 'export_rayyan_csv' is too complex (21)
+24    E116 unexpected indentation (comment)
+6     E117 over-indented
+3     E122 continuation line missing indentation or outdented
+3     E125 continuation line with same indent as next logical line
+14    E127 continuation line over-indented for visual indent
+8     E128 continuation line under-indented for visual indent
+1     E131 continuation line unaligned for hanging indent
+17    E201 whitespace after '('
+14    E202 whitespace before ')'
+38    E203 whitespace before ':'
+1     E211 whitespace before '('
+6     E221 multiple spaces before operator
+7     E222 multiple spaces after operator
+24    E225 missing whitespace around operator
+43    E231 missing whitespace after ','
+4     E251 unexpected spaces around keyword / parameter equals
+4     E252 missing whitespace around parameter equals
+15    E261 at least two spaces before inline comment
+5     E262 inline comment should start with '# '
+24    E265 block comment should start with '# '
+1     E271 multiple spaces after keyword
+1     E301 expected 1 blank line, found 0
+32    E302 expected 2 blank lines, found 1
+84    E303 too many blank lines (3)
+1     E402 module level import not at top of file
+143   E501 line too long (112 > 90 characters)
+1     E711 comparison to None should be 'if cond is None:'
+4     E712 comparison to False should be 'if cond is False:' or 'if not cond:'
+11    E722 do not use bare 'except'
+1     E741 ambiguous variable name 'l'
+78    F401 'json' imported but unused
+1     F821 undefined name 'topics'
+29    F841 local variable 'output_data' is assigned to but never used
+63    W291 trailing whitespace
+13    W292 no newline at end of file
+84    W293 blank line contains whitespace
+11    W391 blank line at end of file
+```
+
+select
+```sh
+flake8 --config=.flake8 --count --output-file out-flake8.txt .\triplea\ --no-show-source  --statistics --select E501
+```
+
+ignore
+```sh
+flake8 --config=.flake8 --count --output-file out-flake8.txt .\triplea\ --no-show-source  --statistics --ignore E501,W503,E722
+```
+
+
+```sh
+black .\triplea\the_private_backyard.py
+
+black .\triplea\the_private_backyard1.py
+
+black .\triplea\the_private_backyard2.py
+
+black .\triplea\the_private_backyard3.py
+
+black .\triplea\the_private_backyard3.py
+
+black .\triplea\the_private_backyard_mongodb.py
+
+```
+
+2023-10-16
+```
+4     C901 'export_rayyan_csv' is too complex (21)
+1     E303 too many blank lines (3)
+82    E501 line too long (110 > 90 characters)
+10    E722 do not use bare 'except'
+1     E741 ambiguous variable name 'l'
+1     F821 undefined name 'topics'
+5     F841 local variable 'city' is assigned to but never used
+104
+```
+104
+
+### cli
+
+```sh
+black .\triplea\cli\
+```
+
+```sh
+flake8 --config=.flake8 --output-file out-flake8.txt .\triplea\cli\ --no-show-source  --statistics
+```
+
+0
+
+### client
+
+```sh
+black .\triplea\client\
+```
+
+```sh
+flake8 --config=.flake8 --output-file out-flake8.txt .\triplea\client\ --no-show-source  --statistics
+```
+
+0
+
+### config
+
+
+```sh
+black .\triplea\config\
+```
+
+```sh
+flake8 --config=.flake8 --output-file out-flake8.txt .\triplea\config\ --no-show-source  --statistics
+```
+
+0
+
+### db
+
+```sh
+black .\triplea\db\
+```
+
+```sh
+flake8 --config=.flake8 --output-file out-flake8.txt .\triplea\db\ --no-show-source  --statistics
+```
+0
+
+
+### schemas
+
+
+```sh
+black .\triplea\schemas\
+```
+
+```sh
+flake8 --config=.flake8 --output-file out-flake8.txt .\triplea\schemas\ --no-show-source  --statistics
+```
+
+0
+
+### service
+
+```sh
+black .\triplea\service\
+```
+
+```sh
+flake8 --config=.flake8 --count --output-file out-flake8.txt .\triplea\service\ --no-show-source  --statistics --ignore E501,W503,E722
+
+flake8 --config=.flake8 --count --output-file out-flake8.txt .\triplea\service\ --no-show-source  --statistics
+
+```
+
+510
+137
+113
+
+```
+4     C901 'export_rayyan_csv' is too complex (21)
+1     E303 too many blank lines (3)
+1     E402 module level import not at top of file
+82    E501 line too long (110 > 90 characters)
+2     E712 comparison to False should be 'if cond is False:' or 'if not cond:'
+10    E722 do not use bare 'except'
+1     E741 ambiguous variable name 'l'
+5     F401 'networkx.classes.function.is_directed' imported but unused
+1     F821 undefined name 'topics'
+6     F841 local variable 'elapsed' is assigned to but never used
+```
+
+### utils
+
+
+```sh
+black .\triplea\utils\
+```
+
+```sh
+flake8 --config=.flake8 --output-file out-flake8.txt .\triplea\utils\ --no-show-source  --statistics
+```
+
+0

@@ -15,7 +15,9 @@ from triplea.service.graph.extract.author import (
 from triplea.service.graph.extract.keyword import graph_extract_article_keyword
 from triplea.service.graph.extract.reference import graph_extract_article_reference
 from triplea.service.graph.extract.cited import graph_extract_article_cited
-from triplea.service.graph.extract.country_based_co_authorship import graph_extract_article_country
+from triplea.service.graph.extract.country_based_co_authorship import (
+    graph_extract_article_country,
+)
 
 
 __all__ = [
@@ -197,7 +199,6 @@ def graph_extractor(
                 else:
                     return {"nodes": l_nodes, "edges": l_edges}
 
-
         if article is not None:
             # data = _extract_article_topic(article)
             data = func(article)
@@ -223,7 +224,7 @@ def graph_extractor(
 def graph_extractor_all_entity(
     state: Optional[int] = None,
     limit_node: Optional[int] = 0,
-    remove_duplicate: Optional[bool] = True
+    remove_duplicate: Optional[bool] = True,
 ):
     """
     It takes a list of articles, extracts the graph from each article, and then combines all the graphs
@@ -276,11 +277,12 @@ def graph_extractor_all_entity(
                         logger.DEBUG("Remove duplication in Nodes & Edges. ")
                         n = Emmanuel(l_nodes)
                         e = Emmanuel(l_edges)
-                        logger.DEBUG(f"Final {len(n)} Nodes & {len(e)} Edges Extracted.")
+                        logger.DEBUG(
+                            f"Final {len(n)} Nodes & {len(e)} Edges Extracted."
+                        )
                         return {"nodes": n, "edges": e}
                     else:
                         return {"nodes": l_nodes, "edges": l_edges}
-
 
             if article is not None:
                 # Extracting the graph from the article.
@@ -313,7 +315,6 @@ def graph_extractor_all_entity(
         return {"nodes": n, "edges": e}
     else:
         return {"nodes": l_nodes, "edges": l_edges}
-
 
 
 def check_upper_term(n: dict, text: str):
@@ -367,5 +368,4 @@ if __name__ == "__main__":
     # graphdict = {"nodes": l_nodes, "edges": l_edges}
     # data= json.dumps(graphdict, indent=4)
     # with open("bcancer-all.json", "w") as outfile:
-    #     outfile.write(data)    
-
+    #     outfile.write(data)

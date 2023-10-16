@@ -33,12 +33,18 @@ class DB_TinyDB(DataBase):
         q = Query()
         l_pmid = [a.get("PMID") for a in self.db.search(q.State == state)]
         return l_pmid
-    
-    def get_article_pmid_list_by_cstate(self, state: int,tag_field: str):
+
+    def get_article_pmid_list_by_cstate(self, state: int, tag_field: str):
         q = Query()
-        if state is None or state ==0:
-            # query = (Query().FlagAffiliationMining == 0) | (Query().FlagAffiliationMining == None) | (~Query().FlagAffiliationMining.exists())
-            query = (Query()[tag_field] == 0) | (Query()[tag_field] == None) | (~Query()[tag_field].exists())
+        if state is None or state == 0:
+            # query = (Query().FlagAffiliationMining == 0)
+            # | (Query().FlagAffiliationMining == None)
+            # | (~Query().FlagAffiliationMining.exists())
+            query = (
+                (Query()[tag_field] == 0)
+                | (Query()[tag_field] is None)
+                | (~Query()[tag_field].exists())
+            )
             l_pmid = [a.get("PMID") for a in self.db.search(query)]
         else:
             l_pmid = [a.get("PMID") for a in self.db.search(q[tag_field] == state)]
@@ -85,14 +91,15 @@ class DB_TinyDB(DataBase):
         """
         return len(self.db)
 
+    # region Extra Article Method
 
-#region Extra Article Method
-
-    def change_flag_extract_topic(self,current_value,set_value):
+    def change_flag_extract_topic(self, current_value, set_value):
         # Update the value of "FlagExtractTopic" from 0 to 1
-        return self.db.update({'FlagExtractTopic': set_value}, Query().FlagExtractTopic == current_value)
+        return self.db.update(
+            {"FlagExtractTopic": set_value}, Query().FlagExtractTopic == current_value
+        )
 
-#endregion
+    # endregion
 
     def add_new_node(self, node: Node) -> int:
         node_json = json.loads(

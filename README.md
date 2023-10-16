@@ -77,6 +77,10 @@ https://badge.fury.io/for/py/Triple-a -->
 - Dynamic citations deep definition for meta data fetch
 - Network Analysis (Per Node/Overall Graph)
 - Import bibliography file
+- Use for [Bibliometric Analysis](https://researchguides.uic.edu/bibliometrics)
+
+
+
 # How to use 
 
 ## Setup
@@ -268,8 +272,8 @@ List of Custom Pipeline
 |------|--------|-----------|
 |Triple extraction from article abstract|FlagExtractKG||
 |Topic extraction from article abstract|FlagExtractTopic||
-|Convert Affiliation text to structural data|FlagAffiliationMining| |
-
+|Convert Affiliation text to structural data|FlagAffiliationMining|This is simple way for parse Affiliation text |
+|Convert Affiliation text to structural data|FlagAffiliationMining_Titipata|use [Titipat Achakulvisut Repo](https://github.com/titipata/affiliation_parser) for parsing Affiliation text|
 
 #### NER Article Title
 You can try the NER method to extract the major topic of the article's title by using the following command. This command is independent and is used for testing and is not stored in the Arepo.

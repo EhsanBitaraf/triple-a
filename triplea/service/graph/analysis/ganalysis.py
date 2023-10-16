@@ -5,7 +5,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 from netwulf import visualize
-from networkx.classes.function import is_directed
+# from networkx.classes.function import is_directed
 
 
 def visualize_and_grouping(G):
@@ -31,6 +31,7 @@ def sorted_average_neighbor_degree(G) -> pd.Series:
     dcs = pd.Series(nx.average_neighbor_degree(G))
     dcs = dcs.sort_values(ascending=False)
     return dcs
+
 
 # def sorted_in_degree(G)->pd.Series:
 #     # NetworkX provides a function for us to calculate degree centrality conveniently:
@@ -101,6 +102,7 @@ def get_top_keys(dictionary, top):
     top = {k: sort_items[k] for k in list(sort_items)[:top]}
     return top
 
+
 def get_avg_shortest_path_length_per_node(G):
     """
     Calculate the average shortest-path length for each node in the graph.
@@ -109,7 +111,8 @@ def get_avg_shortest_path_length_per_node(G):
     G (networkx.Graph): The input graph.
 
     Returns:
-    pandas.Series: A series containing the average shortest-path length for each node, sorted in descending order.
+    pandas.Series: A series containing the average shortest-path length
+    for each node, sorted in descending order.
     """
 
     # Calculate the average shortest-path length for each node
@@ -118,14 +121,18 @@ def get_avg_shortest_path_length_per_node(G):
     # Store the average shortest-path length for each node in a list of tuples
     ll = []
     for node in avg_shortest_path_lengths:
-        avg_shortest_path_length = sum(avg_shortest_path_lengths[node].values()) / (len(G) - 1)
+        avg_shortest_path_length = sum(avg_shortest_path_lengths[node].values()) / (
+            len(G) - 1
+        )
         ll.append((node, avg_shortest_path_length))
 
-    # Convert the list of tuples to a pandas Series and sort it in descending order
+    # Convert the list of tuples to a pandas Series
+    # and sort it in descending order
     dcs = pd.Series(dict(ll))
     dcs = dcs.sort_values(ascending=False)
 
     return dcs
+
 
 def get_clustering_coefficient_per_node(G):
     # Calculate the clustering coefficient for each node
@@ -138,13 +145,13 @@ def get_clustering_coefficient_per_node(G):
         else:
             num_connected = 0
             for i in range(len(neighbors)):
-                for j in range(i+1, len(neighbors)):
+                for j in range(i + 1, len(neighbors)):
                     if G.has_edge(neighbors[i], neighbors[j]):
                         num_connected += 1
-            cc = num_connected / (len(neighbors) * (len(neighbors)-1) / 2)
+            cc = num_connected / (len(neighbors) * (len(neighbors) - 1) / 2)
             # print(f"Node {node}: {cc}")
             s[node] = cc
-    
+
     dcs = pd.Series(s)
     dcs = dcs.sort_values(ascending=False)
 

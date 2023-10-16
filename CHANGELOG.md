@@ -1,6 +1,17 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+
+## v0.0.4 2023-10-14
+### Improvements
+- Add FlagAffiliationMining_TITIPATA from Api
+- Add ParseMethod field in Affiliation
+
+
+### Bug Fixes
+- Fix GitHub Action `pyhton-flake`
+
+
 ## v0.0.3 - 2023-09-27
 ### Improvements
 - Add micro version

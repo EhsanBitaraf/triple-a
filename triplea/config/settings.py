@@ -1,8 +1,7 @@
 import os
 import pathlib
-from typing import List, Optional
-
-from pydantic import AnyHttpUrl, BaseSettings, EmailStr, validator, Field
+from typing import Optional
+from pydantic import BaseSettings
 from dotenv import load_dotenv
 import tomli
 
@@ -13,9 +12,10 @@ ENV_PATH_FILE = ROOT / "config" / "environment_variable" / ".env"
 
 load_dotenv(ENV_PATH_FILE, override=True)
 
-with open('pyproject.toml', 'rb') as f:
+with open("pyproject.toml", "rb") as f:
     pyproject = tomli.load(f)
-    version = pyproject['tool']['poetry']['version']
+    version = pyproject["tool"]["poetry"]["version"]
+
 
 class Settings(BaseSettings):
     # ---------------My Envirement Varable-------------------------------
@@ -25,26 +25,27 @@ class Settings(BaseSettings):
     )
     AAA_MONGODB_CONNECTION_URL: Optional[str] = os.getenv(
         "AAA_MONGODB_CONNECTION_URL", "mongodb://user:pass@127.0.0.1:27017/"
-        )
+    )
     AAA_MONGODB_DB_NAME: Optional[str] = os.getenv(
-        "AAA_MONGODB_DB_NAME","default-aaa-mongo-db"
-        )
+        "AAA_MONGODB_DB_NAME", "default-aaa-mongo-db"
+    )
     AAA_TPS_LIMIT: Optional[int] = os.getenv("AAA_TPS_LIMIT", 1)
     AAA_PROXY_HTTP: Optional[str] = os.getenv("AAA_PROXY_HTTP", "")
     AAA_PROXY_HTTPS: Optional[str] = os.getenv("AAA_PROXY_HTTPS", "")
-    AAA_REFF_CRAWLER_DEEP: Optional[int] = os.getenv(
-        "AAA_REFF_CRAWLER_DEEP", 1)
-    AAA_CITED_CRAWLER_DEEP: Optional[int] = os.getenv(
-        "AAA_CITED_CRAWLER_DEEP", 1)
-    
+    AAA_REFF_CRAWLER_DEEP: Optional[int] = os.getenv("AAA_REFF_CRAWLER_DEEP", 1)
+    AAA_CITED_CRAWLER_DEEP: Optional[int] = os.getenv("AAA_CITED_CRAWLER_DEEP", 1)
+
     AAA_CLIENT_AGENT: Optional[str] = os.getenv(
         "AAA_CLIENT_AGENT",
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/109.0")
-    AAA_TOPIC_EXTRACT_ENDPOINT:Optional[str] = os.getenv(
-        "AAA_TOPIC_EXTRACT_ENDPOINT",
-          "http://localhost:8001/api/v1/topic/")
-    
-    VERSION : Optional[str]  = version + '.002' # Change this micro version in the development process
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/109.0",  # noqa: E501
+    )
+    AAA_TOPIC_EXTRACT_ENDPOINT: Optional[str] = os.getenv(
+        "AAA_TOPIC_EXTRACT_ENDPOINT", "http://localhost:8001/api/v1/topic/"
+    )
+
+    VERSION: Optional[str] = (
+        version + ".001"
+    )  # Change this micro version in the development process
 
     # class Config:
     #     case_sensitive = True

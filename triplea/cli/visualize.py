@@ -78,9 +78,7 @@ def visualize(generate_type, port):
             l_edges.extend(graphdict["edges"])
 
         elif g_type == "article-topic":
-            graphdict = gextract.graph_extractor(
-                gextract.graph_extract_article_topic
-                )
+            graphdict = gextract.graph_extractor(gextract.graph_extract_article_topic)
             l_nodes.extend(graphdict["nodes"])
             l_edges.extend(graphdict["edges"])
 
@@ -92,9 +90,7 @@ def visualize(generate_type, port):
             l_edges.extend(graphdict["edges"])
 
         elif g_type == "article-keyword":
-            graphdict = gextract.graph_extractor(
-                gextract.graph_extract_article_keyword
-                )
+            graphdict = gextract.graph_extractor(gextract.graph_extract_article_keyword)
             l_nodes.extend(graphdict["nodes"])
             l_edges.extend(graphdict["edges"])
 
@@ -106,21 +102,19 @@ def visualize(generate_type, port):
             l_edges.extend(graphdict["edges"])
 
         elif g_type == "article-cited":
-            graphdict = gextract.graph_extractor(
-                gextract.graph_extract_article_cited
-                )
+            graphdict = gextract.graph_extractor(gextract.graph_extract_article_cited)
             l_nodes.extend(graphdict["nodes"])
             l_edges.extend(graphdict["edges"])
 
         elif g_type == "country-authorship":
-            graphdict = gextract.graph_extractor(
-                gextract.graph_extract_article_country
-                )
+            graphdict = gextract.graph_extractor(gextract.graph_extract_article_country)
             l_nodes.extend(graphdict["nodes"])
             l_edges.extend(graphdict["edges"])
         else:
-            logger.ERROR(f"""Invalid value for
-                          '--generate' / '-g': {generate_type}""")
+            logger.ERROR(
+                f"""Invalid value for
+                          '--generate' / '-g': {generate_type}"""
+            )
 
     # print()
     # logger.DEBUG(f'Remove duplication in Nodes & Edges. ')
@@ -136,7 +130,6 @@ def visualize(generate_type, port):
         httpd.serve_forever()
 
 
-
 @cli.command("visualize_file", help="Visualize Graph File.")
 @click.argument(
     "file",
@@ -149,12 +142,7 @@ def visualize(generate_type, port):
     "--format",
     "-f",
     "format_type",
-    type=click.Choice(["graphdict",
-                       "graphjson",
-                       "gson",
-                       "gpickle",
-                       "graphml",
-                       "gexf"]),
+    type=click.Choice(["graphdict", "graphjson", "gson", "gpickle", "graphml", "gexf"]),
     multiple=False,
     required=True,
     help="""Generate graph and export.
@@ -178,8 +166,7 @@ def visualize(generate_type, port):
                                 """,
 )
 @click.option("--port", "-p", "port", default=8000, help="port")
-def visualize_file(file,format_type, port):
-
+def visualize_file(file, format_type, port):
     if format_type == "graphdict":
         with open(file, "r") as f:
             graphdict = json.load(f)
@@ -191,17 +178,16 @@ def visualize_file(file,format_type, port):
 
     elif format_type == "gpickle":
         raise NotImplementedError
-        
+
     elif format_type == "graphml":
         raise NotImplementedError
-        
+
     elif format_type == "gexf":
         raise NotImplementedError
-        
+
     else:
         logger.ERROR(f"Invalid value for '--format' / '-f': {format_type}")
         sys.exit(1)
-
 
     graphdatarefresh.refresh_interactivegraph(graphdict)
     graphdatarefresh.refresh_alchemy(graphdict)

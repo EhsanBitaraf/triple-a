@@ -31,7 +31,7 @@ from triplea.service.click_logger import logger
     "--format",
     "-f",
     "format_type",
-    type=click.Choice(["csv", "json","csvs"]),
+    type=click.Choice(["csv", "json", "csvs"]),
     multiple=False,
     required=True,
     help="""Export article repository in specific format.
@@ -40,7 +40,7 @@ from triplea.service.click_logger import logger
             json :
 
             csvs : Several csv files are created
-            and one-to-many relationships 
+            and one-to-many relationships
             are maintained in them
 
                                 """,
@@ -102,12 +102,11 @@ def export(export_type, format_type, output_file, proccess_bar, limit_sample):
             with open(output_file, "w", encoding="utf-8") as file1:
                 file1.write(csv)
         elif format_type == "csvs":
-            repo_export.export_triplea_csvs_in_relational_mode_save_file(output_file,proccess_bar, limit_sample)
+            repo_export.export_triplea_csvs_in_relational_mode_save_file(
+                output_file, proccess_bar, limit_sample
+            )
         elif format_type == "json":
-            json_str = repo_export.export_triplea_json(
-                proccess_bar,
-                limit_sample
-                )
+            json_str = repo_export.export_triplea_json(proccess_bar, limit_sample)
             with open(output_file, "w", encoding="utf-8") as file1:
                 file1.write(json_str)
         else:

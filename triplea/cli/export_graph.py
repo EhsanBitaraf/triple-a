@@ -117,12 +117,7 @@ Note:
     "--format",
     "-f",
     "format_type",
-    type=click.Choice(["graphdict",
-                       "graphjson",
-                       "gson",
-                       "gpickle",
-                       "graphml",
-                       "gexf"]),
+    type=click.Choice(["graphdict", "graphjson", "gson", "gpickle", "graphml", "gexf"]),
     multiple=False,
     required=True,
     help="""Generate graph and export.
@@ -245,8 +240,10 @@ def export_graph(
             l_edges.extend(graphdict["edges"])
 
         else:
-            logger.ERROR(f"""Invalid value for
-                          '--generate' / '-g': {generate_type}""")
+            logger.ERROR(
+                f"""Invalid value for
+                          '--generate' / '-g': {generate_type}"""
+            )
             sys.exit(1)
 
     print()

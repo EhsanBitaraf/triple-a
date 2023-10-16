@@ -29,6 +29,7 @@ jobs:
         pip install flake8
     - name: Lint with flake8
       run: |
+        flake8 ./triplea/ --count --no-show-source --statistics
         flake8 ./triplea/  --count --exit-zero  --max-complexity=20 --max-line-length=90 --no-show-source  --statistics
     - name: Fail if there are linting errors
       if: ${{ failure() }}

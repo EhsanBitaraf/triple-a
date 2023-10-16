@@ -1,5 +1,6 @@
 from triplea.schemas.article import Article
 from triplea.schemas.node import Edge, Node
+
 # import spacy
 # import pytextrank
 from triplea.service.click_logger import logger
@@ -26,12 +27,11 @@ def graph_extract_article_topic(article: Article) -> dict:
     node_article.Type = "Article"
     nodes.append(node_article.dict())
 
-
     if article.Topics is not None:
         for t in article.Topics:
             node_topic = Node()
-            node_topic.Identifier = t['text'].lower()
-            node_topic.Name = t['text'].lower()
+            node_topic.Identifier = t["text"].lower()
+            node_topic.Name = t["text"].lower()
             node_topic.Type = "Topic"
             nodes.append(node_topic.dict())
 
@@ -39,7 +39,7 @@ def graph_extract_article_topic(article: Article) -> dict:
             edge.SourceID = node_article.Identifier
             edge.DestinationID = node_topic.Identifier
             edge.Type = "TOPIC"
-            edge.Weight = t['rank']
+            edge.Weight = t["rank"]
             edge.HashID = str(hash(edge.SourceID + edge.DestinationID + edge.Type))
             edges.append(edge.dict())
     else:

@@ -90,6 +90,26 @@ https://pubmed.ncbi.nlm.nih.gov/30678631/
 
 https://github.com/NeuroMorphoOrg/PaperBot
 
+## Paperfetcher
+Paperfetcher: A tool to automate handsearching and citation searching for systematic reviews
+
+https://onlinelibrary.wiley.com/doi/epdf/10.1002/jrsm.1604
+
+https://paperfetcher.github.io/
+
+https://github.com/paperfetcher/paperfetcher-web-app
+
+https://github.com/paperfetcher/paperfetcher
+
+
+## paperscraper
+![Awesome Badges](https://img.shields.io/badge/badges-awesome-green.svg)
+Tools to scrape publication metadata from pubmed, arxiv, medrxiv and chemrxiv. 
+
+Since v0.2.4 paperscraper also supports scraping PDF files directly! Thanks to @daenuprobst for suggestions!
+
+https://github.com/PhosphorylatedRabbits/paperscraper
+
 ## bibliometrix: An R-tool for comprehensive science mapping analysis
 
 https://www.sciencedirect.com/science/article/abs/pii/S1751157717300500

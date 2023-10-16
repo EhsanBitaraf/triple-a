@@ -50,8 +50,8 @@ def _convert_dict_to_class_author(data: dict) -> Author:
     """
     if "CollectiveName" in data:
         my_author = Author()
-        if '#text' in data["CollectiveName"]:
-            my_author.FullName = data["CollectiveName"]['#text']
+        if "#text" in data["CollectiveName"]:
+            my_author.FullName = data["CollectiveName"]["#text"]
         else:
             my_author.FullName = data["CollectiveName"]
         my_author.HashID = str(hash(my_author.FullName))
@@ -93,10 +93,15 @@ def _convert_dict_to_class_keyword(data: dict) -> Keyword:
     :return: A Keyword object
     """
     my_keyword = Keyword()
-    if '#text' in data:
+    if "#text" in data:
         my_keyword.Text = data["#text"]
     else:
-        my_keyword.Text = data["i"]  # in PMID 37283018
+        if "i" in data:
+            my_keyword.Text = data["i"]  # in PMID 37283018
+        else:  # in 34358588
+            print()
+            print("Warning in _convert_dict_to_class_keyword line 103.")
+            my_keyword.Text = ""
 
     if "," in my_keyword.Text:
         pass
@@ -109,8 +114,10 @@ def _convert_dict_to_class_keyword(data: dict) -> Keyword:
     my_keyword.IS_Mesh = False
     return my_keyword
 
+
 def _convert_dict_to_reffrence():
     pass
+
 
 def parsing_details(article: Article) -> Article:
     article.State = 2
@@ -120,7 +127,7 @@ def parsing_details(article: Article) -> Article:
     if data is None:
         print()
         logger.ERROR(
-            f"""Error in Original Article data. It is Null.  
+            f"""Error in Original Article data. It is Null.
             PMID = {article.PMID}"""
         )
         article.State = backward_state
@@ -165,24 +172,26 @@ def parsing_details(article: Article) -> Article:
                 elif a_id["@IdType"] == "pmc":
                     article.PMC = a_id["#text"]
                 else:
-                    print()
-                    print(f'article() id type unhandel: {a_id["@IdType"]}')
+                    pass
+                    # print()
+                    # print(f'article() id type unhandel: {a_id["@IdType"]}')
         elif type(ArticleId) == dict:
             if ArticleId["@IdType"] == "doi":
                 article.DOI = a_id["#text"]
             elif ArticleId["@IdType"] == "pmc":
                 article.PMC = a_id["#text"]
             else:
-                print()
-                print(f'article id type unhandel: {a_id["@IdType"]}')                
+                pass
+                # print()
+                # print(f'article id type unhandel: {a_id["@IdType"]}')
 
         else:
             raise NotImplementedError
 
     # Update Article Title & Journal Title.
-    pubmed_article_data = data["PubmedArticleSet"]["PubmedArticle"][
-        "MedlineCitation"
-        ]["Article"]
+    pubmed_article_data = data["PubmedArticleSet"]["PubmedArticle"]["MedlineCitation"][
+        "Article"
+    ]
     article.Title = pubmed_article_data["ArticleTitle"]
     if type(article.Title) == dict:
         article.Title = pubmed_article_data["ArticleTitle"]["#text"]
@@ -214,9 +223,7 @@ def parsing_details(article: Article) -> Article:
             raise NotImplementedError
 
     # Creating a list of keywords. Merging Mesh List & Keyword List
-    medline_citation = data["PubmedArticleSet"]["PubmedArticle"][
-        "MedlineCitation"
-        ]
+    medline_citation = data["PubmedArticleSet"]["PubmedArticle"]["MedlineCitation"]
     keyword_list = []
     if "MeshHeadingList" in medline_citation:
         if type(medline_citation["MeshHeadingList"]["MeshHeading"]) == list:
@@ -267,15 +274,13 @@ def parsing_details(article: Article) -> Article:
             article.ReferenceCrawlerDeep = 0
 
         reference_list = []
-        
-        if isinstance(PubmedData["ReferenceList"],list):
+
+        if isinstance(PubmedData["ReferenceList"], list):
             print(PubmedData["ReferenceList"])
             for ref in PubmedData["ReferenceList"]:
                 if "ArticleIdList" in ref:
                     if type(ref["ArticleIdList"]["ArticleId"]) == dict:
-                        if ref["ArticleIdList"]["ArticleId"][
-                            "@IdType"
-                            ] == "pubmed":
+                        if ref["ArticleIdList"]["ArticleId"]["@IdType"] == "pubmed":
                             reference_list.append(
                                 ref["ArticleIdList"]["ArticleId"]["#text"]
                             )
@@ -286,16 +291,13 @@ def parsing_details(article: Article) -> Article:
                                 reference_list.append(ref_id["#text"])
                     else:
                         raise NotImplementedError
-                        
 
         else:
             if type(PubmedData["ReferenceList"]["Reference"]) == dict:
                 ref = PubmedData["ReferenceList"]["Reference"]
                 if "ArticleIdList" in ref:
                     if type(ref["ArticleIdList"]["ArticleId"]) == dict:
-                        if ref["ArticleIdList"]["ArticleId"][
-                            "@IdType"
-                            ] == "pubmed":
+                        if ref["ArticleIdList"]["ArticleId"]["@IdType"] == "pubmed":
                             reference_list.append(
                                 ref["ArticleIdList"]["ArticleId"]["#text"]
                             )
@@ -310,9 +312,7 @@ def parsing_details(article: Article) -> Article:
                 for ref in PubmedData["ReferenceList"]["Reference"]:
                     if "ArticleIdList" in ref:
                         if type(ref["ArticleIdList"]["ArticleId"]) == dict:
-                            if ref["ArticleIdList"]["ArticleId"][
-                                "@IdType"
-                                ] == "pubmed":
+                            if ref["ArticleIdList"]["ArticleId"]["@IdType"] == "pubmed":
                                 reference_list.append(
                                     ref["ArticleIdList"]["ArticleId"]["#text"]
                                 )
@@ -335,10 +335,7 @@ def parsing_details(article: Article) -> Article:
             )
             new_rcd = article.ReferenceCrawlerDeep - 1
             for ref_pmid in reference_list:
-                persist.insert_new_pmid(pmid=ref_pmid,
-                                        reference_crawler_deep=new_rcd)
-
-
+                persist.insert_new_pmid(pmid=ref_pmid, reference_crawler_deep=new_rcd)
 
     if "AuthorList" in pubmed_article_data:
         author_list = []
@@ -356,9 +353,7 @@ def parsing_details(article: Article) -> Article:
         article.Authors = author_list
     else:
         logger.WARNING(
-            f"Article {article.PMID} has no AuthorList",
-            forecolore="white",
-            deep=5
+            f"Article {article.PMID} has no AuthorList", forecolore="white", deep=5
         )
 
     return article

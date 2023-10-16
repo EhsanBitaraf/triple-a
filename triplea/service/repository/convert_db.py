@@ -23,9 +23,7 @@ def convert_arepo_mongodb_to_tinydb(
 
     destination_db = DB_TinyDB()
 
-    bar = click.progressbar(length=article_count,
-                            show_pos=True,
-                            show_percent=True)
+    bar = click.progressbar(length=article_count, show_pos=True, show_percent=True)
     n = 0
     for id in l_pmid:
         a = source_db.get_article_by_pmid(id)
