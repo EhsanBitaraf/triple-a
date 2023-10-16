@@ -10,6 +10,7 @@ All notable changes to this project will be documented in this file.
 
 ### Bug Fixes
 - Fix GitHub Action `pyhton-flake`
+- Package py2neo Lost. Disable `neo4j.py`
 
 
 ## v0.0.3 - 2023-09-27

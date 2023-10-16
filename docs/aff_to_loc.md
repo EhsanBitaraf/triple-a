@@ -54,3 +54,13 @@ Note that the geocoding process might not always yield accurate results, especia
 Remember to replace `'YOUR_API_KEY'` with the actual API key obtained from OpenCage Geocoding service.
 
 This is a basic example to get you started. Depending on the structure and format of the affiliation information you have, you may need to preprocess and clean the data to improve the geocoding results.
+
+##  affiliation_parser
+Simple python parser for MEDLINE, Pubmed OA affiliation string
+
+Fast and simple parser for MEDLINE and Pubmed Open-Access affiliation string. We can parse multiple fields from the affiliation string including department, affiliation, location, country, email and zip code from affiliation text.
+
+We also provide function to match affiliation string to [GRID](https://grid.ac/) dataset.
+
+
+https://github.com/titipata/affiliation_parser

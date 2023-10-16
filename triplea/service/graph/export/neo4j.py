@@ -1,5 +1,5 @@
 import click
-from py2neo import Graph
+# from py2neo import Graph
 import triplea.service.graph.extract as gextract
 
 
@@ -32,58 +32,59 @@ def export_to_neo4j(graphdict: dict, neoj4_bolt_url: str):
     :param neoj4_bolt_url: The URL of your Neo4j instance
     :type neoj4_bolt_url: str
     """
-    graph = Graph(neoj4_bolt_url)
-    n = len(graphdict["nodes"]) + len(graphdict["edges"])
-    bar = click.progressbar(length=n, show_pos=True, show_percent=True)
+    pass # Disable Because py2neo package lost.
+    # graph = Graph(neoj4_bolt_url)
+    # n = len(graphdict["nodes"]) + len(graphdict["edges"])
+    # bar = click.progressbar(length=n, show_pos=True, show_percent=True)
 
-    for n in graphdict["nodes"]:
-        name = _replace_specific_char(n["Name"])
-        identifier = n["Identifier"]
-        type = n["Type"]
+    # for n in graphdict["nodes"]:
+    #     name = _replace_specific_char(n["Name"])
+    #     identifier = n["Identifier"]
+    #     type = n["Type"]
 
-        a = (
-            "CREATE (n:"
-            + type
-            + '{Identifier: "'
-            + name
-            + '" , HashID: '
-            + identifier
-            + ' , Type: "'
-            + type
-            + '" })'
-        )
-        graph.run(a)
-        bar.update(1)
+    #     a = (
+    #         "CREATE (n:"
+    #         + type
+    #         + '{Identifier: "'
+    #         + name
+    #         + '" , HashID: '
+    #         + identifier
+    #         + ' , Type: "'
+    #         + type
+    #         + '" })'
+    #     )
+    #     graph.run(a)
+    #     bar.update(1)
 
-        #  "bolt://neo4j:ehsan006@172.18.244.140:7687"
+    #     #  "bolt://neo4j:ehsan006@172.18.244.140:7687"
 
-        # Get Node
-        # MATCH (n{Identifier : 36715845}) RETURN n
-        # Delete Node
-        # MATCH (n {Identifier: -5324177750855482371}) DETACH DELETE n
+    #     # Get Node
+    #     # MATCH (n{Identifier : 36715845}) RETURN n
+    #     # Delete Node
+    #     # MATCH (n {Identifier: -5324177750855482371}) DETACH DELETE n
 
-    for e in graphdict["edges"]:
-        hashid = e["HashID"]
-        src_id = e["SourceID"]
-        des_id = e["DestinationID"]
-        type = e["Type"]
+    # for e in graphdict["edges"]:
+    #     hashid = e["HashID"]
+    #     src_id = e["SourceID"]
+    #     des_id = e["DestinationID"]
+    #     type = e["Type"]
 
-        r = (
-            """
-            MATCH (a), (b) WHERE a.HashID = """
-            + src_id
-            + """ AND b.HashID = """
-            + des_id
-            + """
-            CREATE (a)-[r:"""
-            + type
-            + """ {HashID: """
-            + hashid
-            + """}]->(b) RETURN a,b
-            """
-        )
-        graph.run(r)
-        bar.update(1)
+    #     r = (
+    #         """
+    #         MATCH (a), (b) WHERE a.HashID = """
+    #         + src_id
+    #         + """ AND b.HashID = """
+    #         + des_id
+    #         + """
+    #         CREATE (a)-[r:"""
+    #         + type
+    #         + """ {HashID: """
+    #         + hashid
+    #         + """}]->(b) RETURN a,b
+    #         """
+    #     )
+    #     graph.run(r)
+    #     bar.update(1)
 
 
 if __name__ == "__main__":

@@ -4,10 +4,12 @@ from triplea.schemas.node import Edge, Node
 
 def graph_extract_article_author_affiliation(article: Article) -> dict:
     """
-    It takes an article object and returns a dictionary with two keys: nodes and edges. The nodes key
+    It takes an article object and returns a dictionary with two keys:
+     nodes and edges. The nodes key
     contains a list of nodes and the edges key contains a list of edges.
 
-    :param article: Article - This is the article object that we created earlier
+    :param article: Article - This is the article object
+      that we created earlier
     :type article: Article
     :return: A dictionary with two keys: nodes and edges.
     """
