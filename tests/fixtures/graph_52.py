@@ -15,7 +15,7 @@ This is a pytest fixture that sets up a graph object by reading a graphml file.
 def graph52():
     # set up code goes here
     try:
-        path_graph = os.path.join(ROOT, "tests" , "fixtures","g52.graphml")
+        path_graph = os.path.join(ROOT.parent, "tests" , "fixtures","g52.graphml")
         G = nx.read_graphml(path_graph)
         # G = nx.read_graphml('tests\\fixtures\\g52.graphml')
     except FileNotFoundError:
@@ -31,7 +31,7 @@ def graph52():
 def graph52_instance():
     # set up code goes here
     try:
-        path_graph = os.path.join(ROOT, "tests" , "fixtures","g52.graphml")
+        path_graph = os.path.join(ROOT.parent, "tests" , "fixtures","g52.graphml")
         G = nx.read_graphml(path_graph)
         # G = nx.read_graphml('tests\\fixtures\\g52.graphml')
     except FileNotFoundError:
