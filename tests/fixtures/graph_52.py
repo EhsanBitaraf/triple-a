@@ -14,7 +14,9 @@ def graph52():
     try:
         G = nx.read_graphml('tests\\fixtures\\g52.graphml')
     except FileNotFoundError:
+        G = nx.read_graphml('g52.graphml')
         print("File 'g52.graphml' does not exist.")
+        return G
     except nx.NetworkXError:
         print("Error reading 'g52.graphml' file.")
     else:
@@ -26,7 +28,9 @@ def graph52_instance():
     try:
         G = nx.read_graphml('tests\\fixtures\\g52.graphml')
     except FileNotFoundError:
+        G = nx.read_graphml('g52.graphml')
         print("File 'g52.graphml' does not exist.")
+        return G
     except nx.NetworkXError:
         print("Error reading 'g52.graphml' file.")
     else:

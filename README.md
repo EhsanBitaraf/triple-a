@@ -695,7 +695,7 @@ Commands:
 ```sh
 poetry run pytest
 ```
-
+poetry run pytest tests/
 ```sh
 poetry run pytest --cov
 ```
