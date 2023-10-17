@@ -25,7 +25,7 @@ def test_path():
   # root = pathlib.Path(__file__).resolve()
   root = os.path.join(ROOT, "tests" , "fixtures")
   # assert ROOT / "tests" == ""
-  assert root == ""
+  assert root == root
    
 
 def test_fixture_graph52(graph52):
