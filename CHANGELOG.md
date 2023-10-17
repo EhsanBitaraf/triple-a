@@ -4,11 +4,20 @@ All notable changes to this project will be documented in this file.
 
 ## v0.0.4 2023-10-14
 ### Improvements
+- Add Package Application with Pyinstaller
 - Add FlagAffiliationMining_TITIPATA from Api
 - Add ParseMethod field in Affiliation
 
 
 ### Bug Fixes
+- Change path of `country.txt`
+- Change 
+        [tool.poetry.scripts]
+        aaa = "triplea:cli.aaa"
+  To
+        [tool.poetry.scripts]
+        aaa = "triplea.cli.aaa:main"
+- Fix version in package  v0.0.4.002
 - Fix GitHub Action `pyhton-flake`
 - Package py2neo Lost. Disable `neo4j.py`
 

@@ -45,7 +45,7 @@ pytest = "^7.4.2"
 
 
 [tool.poetry.scripts]
-aaa = "triplea:cli.aaa"
+aaa = "triplea.cli.aaa:main"
 
 [build-system]
 requires = ["poetry-core"]

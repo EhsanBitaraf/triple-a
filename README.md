@@ -9,14 +9,23 @@ This tool gives you the power to create a graph of articles and analyze it. This
 
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![GitHub Last commit](https://img.shields.io/github/last-commit/EhsanBitaraf/triple-a)](https://github.com/EhsanBitaraf/triple-a/main)
+
 [![commits](https://badgen.net/github/commits/EhsanBitaraf/triple-a/main)](https://github.com/EhsanBitaraf/triple-a/commits/main?icon=github&color=green)
-![Release](https://img.shields.io/github/release/EhsanBitaraf/triple-a)
-![repo size](https://img.shields.io/github/repo-size/EhsanBitaraf/triple-a)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/EhsanBitaraf/triple-a)
+[![GitHub Last commit](https://img.shields.io/github/last-commit/EhsanBitaraf/triple-a)](https://github.com/EhsanBitaraf/triple-a/main)
 ![Open Issue](https://img.shields.io/github/issues-raw/EhsanBitaraf/triple-a)
-[![GitHub tag](https://img.shields.io/github/tag/EhsanBitaraf/triple-a.svg)](https://GitHub.com/EhsanBitaraf/triple-a/tags/)
+
+![Repo Size](https://img.shields.io/github/repo-size/EhsanBitaraf/triple-a)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/EhsanBitaraf/triple-a)
 ![Downloads](https://img.shields.io/github/downloads/EhsanBitaraf/triple-a/total)
+
+[![GitHub tag](https://img.shields.io/github/tag/EhsanBitaraf/triple-a.svg)](https://GitHub.com/EhsanBitaraf/triple-a/tags/)
+![Release](https://img.shields.io/github/release/EhsanBitaraf/triple-a)
+![Release](https://img.shields.io/github/release-date/EhsanBitaraf/triple-a)
+
+<!-- ![PyPI - Wheel](https://img.shields.io/pypi/EhsanBitaraf/triple-a) -->
+
+[![PyPI version](https://badge.fury.io/py/triplea.svg)](https://badge.fury.io/py/triplea)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/triplea)
 
 ![Build and push images](https://github.com/EhsanBitaraf/triple-a/workflows/push%20docker%20image/badge.svg)
 
@@ -24,9 +33,9 @@ This tool gives you the power to create a graph of articles and analyze it. This
 
 ![Code Quality](https://github.com/EhsanBitaraf/triple-a/actions/workflows/python-flake.yml/badge.svg)
 
-<!-- ![Release](https://img.shields.io/github/release-date/EhsanBitaraf/triple-a) -->
 
-<!-- ![PyPI - Wheel](https://img.shields.io/pypi/EhsanBitaraf/triple-a) -->
+
+
 
 <!-- test this :
 
@@ -84,7 +93,9 @@ https://badge.fury.io/for/py/Triple-a -->
 
 # How to use 
 
-## Setup
+## From Source
+
+### Setup
 
 Clone repository:
 ```shell
@@ -129,7 +140,7 @@ run cli:
 poetry run python triplea/cli/aaa.py 
 ```
 
-## Functional Use
+### Functional Use
 
 get list of PMID in state 0
 ```python
@@ -178,13 +189,13 @@ Save Title for Annotation
         file.write(article.Title  + "\n")
 ```
 
-### Training NER for Article Title
+#### Training NER for Article Title
 
 You can use NLP(Natural Language Processing) methods to extract information from the structure of the article and add it to your graph. For example, you can extract NER(Named-entity recognition) words from the title of the article and add to the graph. [Here's how to create a custom NER](docs/training-ner.md).
 
 
 
-## Command Line (CLI) Use
+### Command Line (CLI) Use
 
 By using the following command, you can see the command completion `help`. Each command has a separate `help`.
 
@@ -197,7 +208,7 @@ output:
 ![](docs/assets/img/aaa-help.png)
 
 
-### Get and Save list of article identifier base on search term
+#### Get and Save list of article identifier base on search term
 
 Get list of article identifier (PMID) base on search term and save into knowledge repository in first state (0):
 
@@ -215,7 +226,7 @@ output:
 
 ![](docs/assets/img/aaa-search.png)
 
-### Move core pipeline state
+#### Move core pipeline state
 The preparation of the article for extracting the graph has different steps that are placed in a pipeline. Each step is identified by a number in the state value. The following table describes the state number:
 
 *List of state number*
@@ -263,7 +274,7 @@ output:
 ![](docs/assets/img/aaa-go.png)
 
 
-### Run custom pipeline
+#### Run custom pipeline
 Apart from the core pipelines that should be used to prepare articles, customized pipelines can also be used. Custom pipelines may be implemented to extract knowledge from texts and NLP processing. These pipelines themselves can form a new graph other than the citation graph or in combination with it.
 
 
@@ -276,14 +287,14 @@ List of Custom Pipeline
 |Convert Affiliation text to structural data|FlagAffiliationMining|This is simple way for parse Affiliation text |
 |Convert Affiliation text to structural data|FlagAffiliationMining_Titipata|use [Titipat Achakulvisut Repo](https://github.com/titipata/affiliation_parser) for parsing Affiliation text|
 
-#### NER Article Title
+##### NER Article Title
 You can try the NER method to extract the major topic of the article's title by using the following command. This command is independent and is used for testing and is not stored in the Arepo.
 
 ```shell
 python .\triplea\cli\ner.py --title "The Iranian Integrated Care Electronic Health Record."
 ```
 
-#### Country-based Co-authorship
+##### Country-based Co-authorship
 A country-based co-authorship network refers to a network of collaborative relationships between researchers from different countries who have co-authored academic papers together. It represents the connections and collaborations that exist among researchers across national boundaries.
 
 By studying a country-based co-authorship network, researchers can gain insights into international collaborations, identify emerging research trends, foster interdisciplinary cooperation, and facilitate policy decisions related to research funding, academic mobility, and scientific development at a global scale.
@@ -303,7 +314,7 @@ python .\triplea\cli\aaa.py pipeline -n FlagAffiliationMining
 ```
 
 
-#### Extract Triple from Abstract
+##### Extract Triple from Abstract
 
 ```shell
 python .\triplea\cli\aaa.py pipeline --name FlagExtractKG
@@ -311,7 +322,7 @@ python .\triplea\cli\aaa.py pipeline --name FlagExtractKG
 
 
 
-#### Extract Topic from Abstract
+##### Extract Topic from Abstract
 
 ```shell
 python .\triplea\cli\aaa.py pipeline --name FlagExtractTopic
@@ -321,9 +332,9 @@ An example of working with the functions of this part using `Jupyter` is given i
 
 ![](./docs/assets/img/topic-graph-biobank.png)
 
-### Import Data
+#### Import Data
 
-#### Import Single Reference File
+##### Import Single Reference File
 Import file type is `.bib` , `.enw` , `.ris`
 
 ```shell
@@ -335,7 +346,7 @@ output:
 ![](docs/assets/img/import-output.png)
 
 
-#### Import Triplea Format
+##### Import Triplea Format
 
 ```sh
 python .\triplea\cli\aaa.py import --help
@@ -347,7 +358,7 @@ python .\triplea\cli\aaa.py import --type triplea --format json --bar True "C:\B
 ```
 
 
-### Export Data
+#### Export Data
 Various data export can be created from the article repository. These outputs are used to create raw datasets.
 
 |Type|Format|
@@ -396,7 +407,7 @@ Export for Rayyan CSV format:
 python .\triplea\cli\aaa.py export --type rayyan --format csv --output "test_export.csv"
 ```
 
-### Export Graph
+#### Export Graph
 
 for details information:
 ```sh
@@ -448,7 +459,7 @@ Types of graph file format that can be used in the `-f` parameter:
 |graphml|The GraphML file format uses .graphml extension and is XML structured. It supports attributes for nodes and edges, hierarchical graphs and benefits from a flexible architecture.|
 |gexf|GEXF (Graph Exchange XML Format) is an XML-based file format for storing a single undirected or directed graph.|
 
-### Visualizing Graph
+#### Visualizing Graph
 Several visualizator are used to display graphs in this program. These include:
 
 [Alchemy.js](https://graphalchemist.github.io/Alchemy/#/) : Alchemy.js is a graph drawing application built almost entirely in d3.
@@ -489,7 +500,7 @@ A file related to the extracted graph can be visualized in different formats wit
 python .\triplea\cli\aaa.py visualize_file --format graphdict "graph.json"
 ```
 
-### Analysis Graph
+#### Analysis Graph
 
 
 `analysis info` command calculates specific metrics for the entire graph. These metrics include the following:
@@ -527,7 +538,7 @@ output:
 ![](docs/assets/img/aaa-analysis-sdc.png)
 
 
-### Work with Article Repository
+#### Work with Article Repository
 Article Repository (Arepo) is a database that stores the information of articles and graphs. Different databases can be used. We have used the following information banks here:
 
 - [TinyDB](https://github.com/msiemens/tinydb) - TinyDB is a lightweight document oriented database
@@ -577,7 +588,7 @@ another command fo this:
 python .\triplea\cli\aaa.py export_article --idtype pmid --id 31398071 --format json --output "article.json"
 ```
 
-### Configuration
+#### Configuration
 
 For details information:
 ```shell
@@ -606,6 +617,78 @@ Below is a summary of important environment variables in this project:
 |AAA_PROXY_HTTPS           |HTTPS Proxy|| 
 |AAA_REFF_CRAWLER_DEEP     ||1|
 |AAA_CITED_CRAWLER_DEEP    ||1|
+
+## From Package
+
+You can create a python virtual environment before installing and it is recommended that you do so.
+```sh
+$ python -m venv venv
+```
+
+```sh
+$ .\venv\Scripts\activate
+```
+
+Install Package with pip:
+```sh
+$ pip install triplea
+```
+
+Create environment variable by `.env` file:
+```
+TRIPLEA_DB_TYPE = TinyDB
+AAA_TINYDB_FILENAME = articledata.json
+AAA_MONGODB_CONNECTION_URL = mongodb://localhost:27017/
+AAA_MONGODB_DB_NAME = articledata
+AAA_TPS_LIMIT = 1
+AAA_PROXY_HTTP = 
+AAA_PROXY_HTTPS = 
+AAA_REFF_CRAWLER_DEEP = 1
+AAA_CITED_CRAWLER_DEEP = 1
+AAA_TOPIC_EXTRACT_ENDPOINT=http://localhost:8001/api/v1/topic/
+AAA_CLIENT_AGENT="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/109.0"
+```
+If you do not create the mentioned file, the default values will be used, which are:
+```
+TRIPLEA_DB_TYPE = TinyDB
+AAA_TINYDB_FILENAME = default-tiny-db.json
+AAA_TPS_LIMIT = 1
+AAA_REFF_CRAWLER_DEEP = 1
+AAA_CITED_CRAWLER_DEEP = 1
+AAA_TOPIC_EXTRACT_ENDPOINT=http://localhost:8001/api/v1/topic/
+AAA_CLIENT_AGENT="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/109.0"
+```
+
+Run CLI:
+```sh
+$ aaa --help
+```
+
+output:
+```sh
+Usage: aaa [OPTIONS] COMMAND [ARGS]...
+
+Options:
+  -v, --version
+  --help         Show this message and exit.
+
+Commands:
+  analysis        Analysis Graph.
+  config          Configuration additional setting.
+  export          Export article repository in specific format.
+  export_article  Export Article by identifier.
+  export_graph    Export Graph.
+  export_llm      Export preTrain LLM.
+  go              Moves the articles state in the Arepo until end state.
+  import          import article from specific file format to article...
+  importbib       import article from .bib , .enw , .ris file format.
+  ner             Single NER with custom model.
+  next            Moves the articles state in the Arepo from the current...
+  pipeline        Run Custom PipeLine in arepo.
+  search          Search query from PubMed and store to Arepo.
+```
+
+*Note*: The visualization function is only available in the source version
 
 # Testing
 

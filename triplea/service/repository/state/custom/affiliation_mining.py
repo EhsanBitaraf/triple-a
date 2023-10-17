@@ -4,7 +4,8 @@ import triplea.client.affiliation_parser as client_affiliation_parser
 
 country_list = []
 
-f = open(ROOT.parent / "datasets" / "country.txt")
+# f = open(ROOT.parent / "datasets" / "country.txt")
+f = open(ROOT / "service" / "repository" / "state" / "custom" / "country.txt")
 count = 0
 while True:
     count += 1

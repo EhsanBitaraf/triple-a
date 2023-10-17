@@ -1,3 +1,4 @@
+import os
 from triplea.db.database import DataBase
 import json
 from tinydb import TinyDB, Query
@@ -13,10 +14,16 @@ from triplea.config.settings import SETTINGS
 
 class DB_TinyDB(DataBase):
     # db = TinyDB(DB_ROOT_PATH / 'articledata.json')
-    db = TinyDB(
-        DB_ROOT_PATH / SETTINGS.AAA_TINYDB_FILENAME,
-        storage=CachingMiddleware(JSONStorage),
-    )
+    if SETTINGS.AAA_DB_TYPE == "TinyDB":
+        if not os.path.exists(DB_ROOT_PATH):
+            os.makedirs(DB_ROOT_PATH)
+
+        db = TinyDB(
+            os.path.join(DB_ROOT_PATH , SETTINGS.AAA_TINYDB_FILENAME),
+            storage=CachingMiddleware(JSONStorage),
+        )
+    else:
+        db = []
 
     def add_new_article(self, article: Article) -> int:
         article_json = json.loads(
@@ -150,7 +157,7 @@ class DB_TinyDB(DataBase):
     def refresh(self):
         self.db.close()
         self.db = TinyDB(
-            DB_ROOT_PATH / SETTINGS.AAA_TINYDB_FILENAME,
+            os.path.join(DB_ROOT_PATH , SETTINGS.AAA_TINYDB_FILENAME),
             storage=CachingMiddleware(JSONStorage),
         )
 

@@ -1,0 +1,74 @@
+name: Package Application with Pyinstaller
+
+
+
+# # https://github.com/marketplace/actions/pyinstaller-windows
+
+# on:
+#   push:
+#     branches: [ main ]
+#   pull_request:
+#     branches: [ main ]
+
+# jobs:
+#   build:
+
+#     runs-on: ubuntu-latest
+
+#     steps:
+#     - uses: actions/checkout@v2
+
+#     - name: Package Application
+#       uses: JackMcKew/pyinstaller-action-windows@main
+#       with:
+#         path: triplea
+
+#     - uses: actions/upload-artifact@v2
+#       with:
+#         name: name-of-artifact
+#         path: triplea/dist/windows
+
+
+# https://github.com/pyinstaller/pyinstaller/issues/6296
+
+on:
+    push:
+      branches: [main]
+    pull_request:
+      branches: [main]
+
+jobs:
+  
+    build:
+  
+      runs-on: ${{ matrix.os }}
+      strategy:
+        matrix:
+          os: [windows-latest, ubuntu-latest, macos-latest]
+  
+      steps:
+      - uses: actions/checkout@v2
+      
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        
+      - name: Generate requirements.txt
+        run: poetry export -f requirements.txt > requirements.txt
+
+      - name: Install dependencies  
+        run: pip install -r requirements.txt pyinstaller
+        
+      - name: Build executable
+        run: pyinstaller triplea/cli/aaa.py
+      
+      - name: Test executable
+        run: dist/aaa/aaa #example, adjust path as needed
+      
+      - uses: actions/upload-artifact@v2
+        with:
+          path: dist/*
