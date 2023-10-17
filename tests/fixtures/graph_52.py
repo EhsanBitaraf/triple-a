@@ -1,6 +1,9 @@
 
+import os
 import pytest
 import networkx as nx
+
+from triplea.config.settings import ROOT
 
 
 """
@@ -12,7 +15,9 @@ This is a pytest fixture that sets up a graph object by reading a graphml file.
 def graph52():
     # set up code goes here
     try:
-        G = nx.read_graphml('tests\\fixtures\\g52.graphml')
+        path_graph = os.path.join(ROOT, "tests" , "fixtures","g52.graphml")
+        G = nx.read_graphml(path_graph)
+        # G = nx.read_graphml('tests\\fixtures\\g52.graphml')
     except FileNotFoundError:
         G = nx.read_graphml('g52.graphml')
         print("File 'g52.graphml' does not exist.")
@@ -26,7 +31,9 @@ def graph52():
 def graph52_instance():
     # set up code goes here
     try:
-        G = nx.read_graphml('tests\\fixtures\\g52.graphml')
+        path_graph = os.path.join(ROOT, "tests" , "fixtures","g52.graphml")
+        G = nx.read_graphml(path_graph)
+        # G = nx.read_graphml('tests\\fixtures\\g52.graphml')
     except FileNotFoundError:
         G = nx.read_graphml('g52.graphml')
         print("File 'g52.graphml' does not exist.")
@@ -35,3 +42,7 @@ def graph52_instance():
         print("Error reading 'g52.graphml' file.")
     else:
         return G
+    
+
+
+   
