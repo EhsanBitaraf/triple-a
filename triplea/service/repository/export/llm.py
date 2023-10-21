@@ -36,7 +36,8 @@ def export_pretrain_llm_in_dir(
     else:
         l_pmid = persist.get_article_pmid_list_by_state(state)
         logger.INFO(
-            f"{str(len(l_pmid))} Article(s) is in state {str(state)} in Article Repository"
+            f"""{str(len(l_pmid))} Article(s) is in state {str(state)}
+              in Article Repository"""
         )
 
     n = 0

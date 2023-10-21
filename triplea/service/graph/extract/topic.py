@@ -11,10 +11,12 @@ from triplea.service.click_logger import logger
 
 def graph_extract_article_topic(article: Article) -> dict:
     """
-    > For each article, extract the top 10 topics from the title and create a node for each topic and an
+    > For each article, extract the top 10 topics from the title
+      and create a node for each topic and an
     edge from the article to each topic
 
-    :param article: Article - this is the article object that we will be extracting the topics from
+    :param article: Article - this is the article object that
+      we will be extracting the topics from
     :type article: Article
     :return: A dictionary with two keys: nodes and edges.
     """
@@ -40,7 +42,9 @@ def graph_extract_article_topic(article: Article) -> dict:
             edge.DestinationID = node_topic.Identifier
             edge.Type = "TOPIC"
             edge.Weight = t["rank"]
-            edge.HashID = str(hash(edge.SourceID + edge.DestinationID + edge.Type))
+            edge.HashID = str(
+                hash(edge.SourceID + edge.DestinationID + edge.Type)
+                )
             edges.append(edge.dict())
     else:
         logger.WARNING(f"Article Topics is empty. PMID : {article.PMID}")

@@ -8,6 +8,8 @@
 # # Define the text to extract information from
 # text = "John Smith is the CEO of Acme Inc. The company is based in New York City."
 
+# flake8: noqa
+
 # # Parse the text with Spacy
 # doc = nlp(text)
 

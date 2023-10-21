@@ -1,3 +1,4 @@
+# flake8: noqa
 # Expire Module
 
 # import spacy

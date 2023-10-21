@@ -29,11 +29,20 @@ def get_article_from_bibliography_file_format(filepath: str):
     infile.close()
     file_type = ""
     if file_content.__contains__("@article{"):
-        file_type = "bib"  # A BIB file is a text document created by a LaTeX program, such as MiKTeX or TeXworks.
+        # A BIB file is a text document
+        # created by a LaTeX program,
+        # such as MiKTeX or TeXworks.
+        file_type = "bib"
     elif file_content.__contains__("%0 Journal Article"):
-        file_type = "enw"  # An .ENW file is an EndNote Export file.
+        # An .ENW file is an EndNote Export file.
+        file_type = "enw"
     elif file_content.__contains__("TY  - JOUR"):
-        file_type = "ris"  # The RIS (file format) is a standardized tag format developed by Research Information Systems company. The tag includes two letters, two spaces, and a hyphen to express bibliographic citation information.
+        # The RIS (file format) is a standardized tag format
+        # developed by Research Information Systems company.
+        # The tag includes two letters, two spaces,
+        # and a hyphen to express bibliographic
+        # citation information.
+        file_type = "ris"
     else:
         logger.ERROR("The file format is unknown to us.")
         return False

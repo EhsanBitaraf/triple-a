@@ -14,7 +14,8 @@ def create_article(article: Article):
 
 def get_article_by_state(state: int):
     """
-    This function returns a list of articles from the database that have a state that matches the state
+    This function returns a list of articles from the database
+      that have a state that matches the state
     passed in as a parameter
 
     :param state: The state of the article
@@ -26,7 +27,8 @@ def get_article_by_state(state: int):
 
 def get_article_pmid_list_by_state(state: int):
     """
-    This function returns a list of PubMed IDs (PMIDs) of articles that have a given state
+    This function returns a list of PubMed IDs (PMIDs) of articles
+      that have a given state
 
     :param state: the state of the article, which is an integer
     :type state: int
@@ -37,7 +39,8 @@ def get_article_pmid_list_by_state(state: int):
 
 def get_article_pmid_list_by_cstate(state: int, tag_field: str):
     """
-    This function returns a list of PubMed IDs (PMIDs) of articles that have a given custom state
+    This function returns a list of PubMed IDs (PMIDs) of articles
+      that have a given custom state
 
     :param state: the state of the article, which is an integer
     :type state: int
@@ -52,7 +55,8 @@ def get_all_article_pmid_list():
 
 def get_count_article_by_state(state: int) -> int:
     """
-    This function returns the number of articles in the database that have a given state
+    This function returns the number of articles in the database
+      that have a given state
 
     :param state: int
     :type state: int
@@ -63,7 +67,8 @@ def get_count_article_by_state(state: int) -> int:
 
 def get_article_by_pmid(pmid: str):
     """
-    > This function takes a PubMed ID (pmid) as a string and returns the corresponding article from the
+    > This function takes a PubMed ID (pmid) as a string and
+      returns the corresponding article from the
     database
 
     :param pmid: the PubMed ID of the article you want to retrieve
@@ -109,7 +114,11 @@ def insert_new_pmid(
             insert_type_list.append(insert_type)
 
         # # old version
-        # a = Article(PMID = pmid , State= 0 , QueryTranslation = querytranslation , InsertType= insert_type_list, ReferenceCrawlerDeep = reference_crawler_deep)
+        # a = Article(PMID = pmid,
+        #  State= 0,
+        #  QueryTranslation = querytranslation,
+        #  InsertType= insert_type_list,
+        #  ReferenceCrawlerDeep = reference_crawler_deep)
         # New version
         a = Article(
             PMID=pmid,
@@ -132,7 +141,8 @@ def get_all_article_count() -> int:
 
 def get_article_group_by_state():
     """
-    It returns a list of dictionaries, each dictionary containing the state name and the number of
+    It returns a list of dictionaries,
+      each dictionary containing the state name and the number of
     articles in that state
     :return: A list of tuples.
     """
@@ -243,7 +253,8 @@ def create_triple(triple: dict) -> int:
 
 def refresh():
     """
-    It refreshes the database by calling the refresh() function from the database module.
+    It refreshes the database by calling the refresh() function
+      from the database module.
       This function is important to TinyDB.
     """
     db.refresh()

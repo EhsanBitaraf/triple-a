@@ -119,7 +119,7 @@ def _convert_dict_to_reffrence():
     pass
 
 
-def parsing_details(article: Article) -> Article:
+def parsing_details(article: Article) -> Article:  # noqa: C901
     article.State = 2
     backward_state = -1
     data = article.OreginalArticle

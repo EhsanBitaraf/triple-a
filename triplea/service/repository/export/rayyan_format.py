@@ -20,7 +20,8 @@ print(csv_data)
 
 Code Analysis:
 1. Retrieve a list of PubMed IDs (PMIDs) from the database.
-2. Initialize variables for tracking the total number of articles and the number of articles processed.
+2. Initialize variables for tracking the total number of articles
+ and the number of articles processed.
 3. Initialize variables for storing the CSV data, nodes, and edges.
 4. Iterate over each PMID in the list.
 5. Retrieve the article data from the database using the PMID.
@@ -30,7 +31,7 @@ Code Analysis:
 """
 
 
-def export_rayyan_csv() -> str:
+def export_rayyan_csv() -> str:  # noqa: C901
     l_pmid = persist.get_all_article_pmid_list()
     logger.DEBUG(f"{str(len(l_pmid))} Article(s) Selected.")
 
@@ -41,7 +42,7 @@ def export_rayyan_csv() -> str:
     csv = ""
     csv = (
         csv
-        + """key,title,authors,issn,volume,issue,pages,year,publisher,url,abstract,notes,doi,keywords"""
+        + """key,title,authors,issn,volume,issue,pages,year,publisher,url,abstract,notes,doi,keywords"""  # noqa: E501
         + "\n"
     )
     n = 0
@@ -52,7 +53,7 @@ def export_rayyan_csv() -> str:
                 refresh_point = 0
                 print()
                 logger.INFO(
-                    f"There are {str(total_article_in_current_state - number_of_article_move_forward)} article(s) left ... ",
+                    f"""There are {str(total_article_in_current_state - number_of_article_move_forward)} article(s) left ... """,  # noqa: E501
                     forecolore="yellow",
                 )
 
@@ -84,17 +85,17 @@ def export_rayyan_csv() -> str:
                 year = updated_article.OreginalArticle["PubmedArticleSet"][
                     "PubmedArticle"
                 ]["MedlineCitation"]["Article"]["ArticleDate"]["Year"]
-            except:
+            except Exception:
                 try:
                     year = updated_article.OreginalArticle["PubmedArticleSet"][
                         "PubmedArticle"
                     ]["MedlineCitation"]["Article"]["DateCompleted"]["Year"]
-                except:
+                except Exception:
                     try:
                         year = updated_article.OreginalArticle["PubmedArticleSet"][
                             "PubmedArticle"
                         ]["MedlineCitation"]["DateCompleted"]["Year"]
-                    except:
+                    except Exception:
                         year = "0"
 
                         # with open("sample.json", "w") as outfile:
@@ -130,7 +131,7 @@ def export_rayyan_csv() -> str:
 
             csv = (
                 csv
-                + f"""{n},{title},{authors},{issn},{volume},{issue},{pages},{year},{publisher},{url},{abstract},{notes},{doi},{keywords}"""
+                + f"""{n},{title},{authors},{issn},{volume},{issue},{pages},{year},{publisher},{url},{abstract},{notes},{doi},{keywords}"""  # noqa: E501
                 + "\n"
             )
 

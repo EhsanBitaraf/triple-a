@@ -6,11 +6,13 @@ from triplea.service.click_logger import logger
 
 def import_triplea_json(filename, proccess_bar=False):
     """
-    Imports data from a JSON file and creates articles in a repository using the imported data.
+    Imports data from a JSON file and creates articles in a repository
+      using the imported data.
 
     Args:
         filename (str): The name of the JSON file to import.
-        proccess_bar (bool, optional): Whether to display a progress bar during the import process. Defaults to True.
+        proccess_bar (bool, optional): Whether to display a progress bar during
+          the import process. Defaults to True.
 
     Returns:
         None
@@ -23,7 +25,9 @@ def import_triplea_json(filename, proccess_bar=False):
         data = json.load(f)
     logger.INFO(f"{len(data)} articles have been entered.")
     if proccess_bar:
-        bar = click.progressbar(length=len(data), show_pos=True, show_percent=True)
+        bar = click.progressbar(length=len(data),
+                                show_pos=True,
+                                show_percent=True)
 
     for a in data:
         persist.create_article(a)

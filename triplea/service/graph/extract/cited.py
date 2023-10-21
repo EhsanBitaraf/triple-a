@@ -4,10 +4,12 @@ from triplea.schemas.node import Edge, Node
 
 def graph_extract_article_cited(article: Article) -> dict:
     """
-    > This function takes an article object and returns a dictionary with two keys: nodes and edges. relation between
+    > This function takes an article object
+      and returns a dictionary with two keys: nodes and edges. relation between
     article and cited article
 
-    :param article: Article - the article object that we want to extract the graph from
+    :param article: Article - the article object that we want to extract
+      the graph from
     :type article: Article
     :return: A dictionary with two keys: nodes and edges.
     """
@@ -32,7 +34,9 @@ def graph_extract_article_cited(article: Article) -> dict:
             edge.SourceID = node_article.Identifier
             edge.DestinationID = node_cite.Identifier
             edge.Type = "CITED_BY"
-            edge.HashID = str(hash(edge.SourceID + edge.DestinationID + edge.Type))
+            edge.HashID = str(
+                hash(edge.SourceID + edge.DestinationID + edge.Type)
+                )
             edges.append(edge.dict())
 
     return {"nodes": nodes, "edges": edges}

@@ -1,18 +1,23 @@
+import os
 from triplea.schemas.article import AffiliationParseMethod, Article
 from triplea.config.settings import ROOT
 import triplea.client.affiliation_parser as client_affiliation_parser
 
 country_list = []
 
-# f = open(ROOT.parent / "datasets" / "country.txt")
-f = open(ROOT / "service" / "repository" / "state" / "custom" / "country.txt")
-count = 0
-while True:
-    count += 1
-    line = f.readline()
-    country_list.append(line.strip())
-    if not line:
-        break
+
+if os.path.exists(ROOT / "service" / "repository" / "state" / "custom" / "country.txt"):
+    # f = open(ROOT.parent / "datasets" / "country.txt")
+    f = open(ROOT / "service" / "repository" / "state" / "custom" / "country.txt")
+    count = 0
+    while True:
+        count += 1
+        line = f.readline()
+        country_list.append(line.strip())
+        if not line:
+            break
+else:  # For pyinstaller Temporary i dont know how add data
+    pass
 
 
 def _is_email(txt: str) -> bool:
@@ -136,13 +141,18 @@ def get_affiliation_structured(affiliation_text: str) -> dict:
         affiliation_text (str): The affiliation text to be processed.
 
     Returns:
-        list: A list of dictionaries representing the structured affiliation information extracted from the affiliation text.
+        list: A list of dictionaries representing the
+          structured affiliation information extracted from
+            the affiliation text.
 
     Example:
-        affiliation_text = "University of XYZ, Department of Computer Science, Country XYZ"
+        affiliation_text = "University of XYZ, Department of Computer Science,
+          Country XYZ"
         structured_affiliation = get_affiliation_structured(affiliation_text)
         print(structured_affiliation)
-        # Output: [{'university': 'University of XYZ'}, {'department': 'Department of Computer Science'}, {'country': 'Country XYZ'}]
+        # Output: [{'university': 'University of XYZ'},
+         {'department': 'Department of Computer Science'},
+           {'country': 'Country XYZ'}]
     """
     if affiliation_text is None or affiliation_text == "":
         return
@@ -234,9 +244,8 @@ def affiliation_mining1(article: Article):
                                 print(f"Country : {country}")
                                 print(aff.Text)
 
-                        # print(f'City : {city}')
                         part3 = aff_part[aff_part_number - (end_pointer + 2)]
-                        # print(f'p3 : {part3}')
+
                         if part3.__contains__("University"):
                             university = part3
                         elif part3.__contains__("Hospital"):
@@ -248,6 +257,12 @@ def affiliation_mining1(article: Article):
                             # print()
                             # print(aff.Text)
                             # raise NotImplementedError
+
+                        print(f'p3 : {part3}')
+                        print(f'City : {city}')
+                        print(f"university : {university}")
+                        print(f"hospital : {hospital}")
+                        print(f"institute : {institute}")
 
                     else:  # aff_part_number < 3
                         pass

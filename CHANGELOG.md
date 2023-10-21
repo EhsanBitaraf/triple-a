@@ -10,6 +10,7 @@ All notable changes to this project will be documented in this file.
 
 
 ### Bug Fixes
+- Fix `E501` line too long
 - Change path of `country.txt`
 - Change 
         [tool.poetry.scripts]

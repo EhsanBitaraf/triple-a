@@ -23,7 +23,9 @@ def convert_arepo_mongodb_to_tinydb(
 
     destination_db = DB_TinyDB()
 
-    bar = click.progressbar(length=article_count, show_pos=True, show_percent=True)
+    bar = click.progressbar(length=article_count,
+                            show_pos=True,
+                            show_percent=True)
     n = 0
     for id in l_pmid:
         a = source_db.get_article_by_pmid(id)
@@ -50,7 +52,8 @@ def convert_arepo_mongodb_to_tinydb(
                 logger.ERROR(f"Error {exc_type}", deep=3)
                 logger.ERROR(f"Error {exc_value}", deep=3)
 
-            # logger.DEBUG(f'{n} Copy article {pmid} to destination repository.', deep = 3 )
+            # logger.DEBUG(f'''{n} Copy article {pmid}
+            #               to destination repository.''', deep = 3 )
             bar.label = f"{n} Copy article {pmid} to destination repository."
         bar.update(1)
 

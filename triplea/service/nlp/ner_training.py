@@ -61,14 +61,14 @@
 # if __name__ == "__main__":
 #     pass
 #     # # Convert Label Studio Json format to Spacy Training data
-#     # file = r"C:\Users\Bitaraf\Desktop\my-python-project\github\triple-a\triplea\service\ner_model\project-4-at-2023-02-10-10-20-6a18f1dc.json"
+#     # file = r"C:\Users\Bitaraf\Desktop\my-python-project\github\triple-a\triplea\service\ner_model\project-4-at-2023-02-10-10-20-6a18f1dc.json" # noqa: E501
 #     # data = convert_label_studio_json_to_spacy_train_format(file)
 
 #     # # Save Spacy Training Data to docbin object file format
-#     # training_data_file = r"C:\Users\Bitaraf\Desktop\my-python-project\github\triple-a\triplea\service\ner_model\training_data.spacy"
+#     # training_data_file = r"C:\Users\Bitaraf\Desktop\my-python-project\github\triple-a\triplea\service\ner_model\training_data.spacy" # noqa: E501
 #     # generate_training_data(data,training_data_file)
 
 #     # # Test Model
-#     # ner = get_title_ner("Health complaints in individual visiting primary health care: population-based national electronic health records of Iran.")
+#     # ner = get_title_ner("Health complaints in individual visiting primary health care: population-based national electronic health records of Iran.") # noqa: E501
 #     # for e in ner:
 #     #     print(f'{e.label_} : {e.ents}')

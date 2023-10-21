@@ -23,7 +23,7 @@ def extract_topic_abstract(article: Article):
     try:
         result = extract_topic(text, "textrank")
         article.Topics = result
-    except:
+    except Exception:
         exc_type, exc_value, exc_tb = sys.exc_info()
         print()
         # print(exc_tb.tb_frame)

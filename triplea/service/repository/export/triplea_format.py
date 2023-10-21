@@ -31,7 +31,7 @@ def export_triplea_json(proccess_bar=False, limit_sample=0) -> str:
                 refresh_point = 0
                 print()
                 logger.INFO(
-                    f"There are {str(total_article_in_current_state - n)} article(s) left ... ",
+                    f"There are {str(total_article_in_current_state - n)} article(s) left ... ",  # noqa: E501
                     forecolore="yellow",
                 )
             else:
@@ -44,7 +44,7 @@ def export_triplea_json(proccess_bar=False, limit_sample=0) -> str:
                 print()
                 print(logger.ERROR(f"Error in parsing article. PMID = {id}"))
                 raise Exception("Article Not Parsed.")
-            # ------------------Select ----------------
+            # ------------------Select ----------------------------------------
             output.append(updated_article)
             if proccess_bar:
                 bar.label = "Article " + id + " exported. "
@@ -54,7 +54,7 @@ def export_triplea_json(proccess_bar=False, limit_sample=0) -> str:
             else:
                 if n > limit_sample:
                     break
-            # ------------------Select ----------------
+            # ------------------Select ----------------------------------------
         except Exception:
             exc_type, exc_value, exc_tb = sys.exc_info()
             print()
@@ -69,7 +69,7 @@ def export_triplea_json(proccess_bar=False, limit_sample=0) -> str:
     return final
 
 
-def export_triplea_csv(proccess_bar=False, limit_sample=0) -> str:
+def export_triplea_csv(proccess_bar=False, limit_sample=0) -> str:  # noqa: C901
     l_pmid = persist.get_all_article_pmid_list()
     logger.DEBUG(f"{str(len(l_pmid))} Article(s) Selected.")
 
@@ -78,7 +78,7 @@ def export_triplea_csv(proccess_bar=False, limit_sample=0) -> str:
     csv = ""
     csv = (
         csv
-        + """key,title,authors,pmid,year,publisher,url,abstract,state,doi,keywords,topics"""
+        + """key,title,authors,pmid,year,publisher,url,abstract,state,doi,keywords,topics"""  # noqa: E501
         + "\n"
     )
     n = 0
@@ -89,7 +89,7 @@ def export_triplea_csv(proccess_bar=False, limit_sample=0) -> str:
                 refresh_point = 0
                 print()
                 logger.INFO(
-                    f"There are {str(total_article_in_current_state - n)} article(s) left ... ",
+                    f"There are {str(total_article_in_current_state - n)} article(s) left ... ",  # noqa: E501
                     forecolore="yellow",
                 )
             else:
@@ -115,17 +115,17 @@ def export_triplea_csv(proccess_bar=False, limit_sample=0) -> str:
                 year = updated_article.OreginalArticle["PubmedArticleSet"][
                     "PubmedArticle"
                 ]["MedlineCitation"]["Article"]["ArticleDate"]["Year"]
-            except:
+            except Exception:
                 try:
                     year = updated_article.OreginalArticle["PubmedArticleSet"][
                         "PubmedArticle"
                     ]["MedlineCitation"]["Article"]["DateCompleted"]["Year"]
-                except:
+                except Exception:
                     try:
                         year = updated_article.OreginalArticle["PubmedArticleSet"][
                             "PubmedArticle"
                         ]["MedlineCitation"]["DateCompleted"]["Year"]
-                    except:
+                    except Exception:
                         year = "0"
 
                         # with open("sample.json", "w") as outfile:
@@ -147,6 +147,7 @@ def export_triplea_csv(proccess_bar=False, limit_sample=0) -> str:
             pmid = updated_article.PMID
             state = updated_article.State
             keywords = ""
+            topics = ""
 
             for au in updated_article.Authors:
                 authors = authors + au.FullName + ","
@@ -170,7 +171,7 @@ def export_triplea_csv(proccess_bar=False, limit_sample=0) -> str:
 
             csv = (
                 csv
-                + f"""{n},{title},{authors},{pmid},{year},{publisher},{url},{abstract},{state},{doi},{keywords},{topics}"""
+                + f"""{n},{title},{authors},{pmid},{year},{publisher},{url},{abstract},{state},{doi},{keywords},{topics}"""  # noqa: E501
                 + "\n"
             )
 
@@ -187,9 +188,9 @@ def export_triplea_csv(proccess_bar=False, limit_sample=0) -> str:
     return csv
 
 
-def export_triplea_csvs_in_relational_mode_save_file(
+def export_triplea_csvs_in_relational_mode_save_file(  # noqa: C901
     output_file: str, proccess_bar=True, limit_sample=0
-):
+):  # noqa: C901
     l_pmid = persist.get_all_article_pmid_list()
     logger.DEBUG(f"{str(len(l_pmid))} Article(s) Selected.")
 
@@ -200,14 +201,14 @@ def export_triplea_csvs_in_relational_mode_save_file(
     refresh_point = 0
     csv = ""
     authors_csv = (
-        "key,authors,affiliations,country,university,institute,center,hospital,department,location,email,zipcode"
+        "key,authors,affiliations,country,university,institute,center,hospital,department,location,email,zipcode"  # noqa: E501
         + "\n"
     )
     keywords_csv = "key,keywords" + "\n"
     topics_csv = "key,topics,rank" + "\n"
     csv = (
         csv
-        + """key,title,pmid,year,publisher,url,abstract,state,doi,journal_issn,journal_iso_abbreviation,language,publication_type,citation"""
+        + """key,title,pmid,year,publisher,url,abstract,state,doi,journal_issn,journal_iso_abbreviation,language,publication_type,citation"""  # noqa: E501
         + "\n"
     )
     n = 0
@@ -256,11 +257,11 @@ def export_triplea_csvs_in_relational_mode_save_file(
                 if proccess_bar:
                     print()
                     logger.INFO(
-                        f"There are {str(total_article_in_current_state - n)} article(s) left ",
+                        f"There are {str(total_article_in_current_state - n)} article(s) left ",  # noqa: E501
                         forecolore="yellow",
                     )
                 if proccess_bar is False:
-                    bar.label = f"There are {str(total_article_in_current_state - n)} article(s) left "
+                    bar.label = f"There are {str(total_article_in_current_state - n)} article(s) left "  # noqa: E501
                     bar.update(max_refresh_point)
             else:
                 refresh_point = refresh_point + 1
@@ -290,26 +291,13 @@ def export_triplea_csvs_in_relational_mode_save_file(
             if updated_article.Title is not None:
                 title = safe_csv(updated_article.Title)
 
-            # try:
-            #     year = updated_article.OreginalArticle['PubmedArticleSet']['PubmedArticle']['MedlineCitation']['Article']['ArticleDate']['Year']
-            # except:
-            #     try:
-            #         year = updated_article.OreginalArticle['PubmedArticleSet']['PubmedArticle']['MedlineCitation']['Article']['DateCompleted']['Year']
-            #     except:
-            #         try:
-            #             year = updated_article.OreginalArticle['PubmedArticleSet']['PubmedArticle']['MedlineCitation']['DateCompleted']['Year']
-            #         except:
-            #             year = "0"
-            #             # with open("sample.json", "w") as outfile:
-            #             #     json.dump(updated_article.OreginalArticle, outfile)
-
             try:
                 year = updated_article.OreginalArticle["PubmedArticleSet"][
                     "PubmedArticle"
                 ]["MedlineCitation"]["Article"]["Journal"]["JournalIssue"]["PubDate"][
                     "Year"
                 ]
-            except:
+            except Exception:
                 try:
                     year = updated_article.OreginalArticle["PubmedArticleSet"][
                         "PubmedArticle"
@@ -318,7 +306,7 @@ def export_triplea_csvs_in_relational_mode_save_file(
                     ][
                         "MedlineDate"
                     ]
-                except:
+                except Exception:
                     year = "0"
                     # with open("sample.json", "w") as outfile:
                     #     json.dump(updated_article.OreginalArticle, outfile)
@@ -328,7 +316,7 @@ def export_triplea_csvs_in_relational_mode_save_file(
                 journal_issn = updated_article.OreginalArticle["PubmedArticleSet"][
                     "PubmedArticle"
                 ]["MedlineCitation"]["Article"]["Journal"]["ISSN"]["#text"]
-            except:
+            except Exception:
                 journal_issn = ""
 
             journal_iso_abbreviation = updated_article.OreginalArticle[
@@ -340,8 +328,8 @@ def export_triplea_csvs_in_relational_mode_save_file(
                 "MedlineCitation"
             ]["Article"]["Language"]
             if isinstance(lang, list):
-                for l in lang:
-                    language = l + ", " + language
+                for lg in lang:
+                    language = lg + ", " + language
                 language = language[:-1]
             else:
                 language = lang
@@ -412,7 +400,7 @@ def export_triplea_csvs_in_relational_mode_save_file(
                                     institute = s["institute"]
                                 elif (
                                     "institution" in s
-                                ):  # aff.ParseMethod = AffiliationParseMethod.TITIPATA_API
+                                ):  # aff.ParseMethod = AffiliationParseMethod.TITIPATA_API  # noqa: E501
                                     institute = s["institution"]
                                 elif "country" in s:
                                     country = s["country"]
@@ -423,15 +411,15 @@ def export_triplea_csvs_in_relational_mode_save_file(
 
                                 elif (
                                     "location" in s
-                                ):  # aff.ParseMethod = AffiliationParseMethod.TITIPATA_API
+                                ):  # aff.ParseMethod = AffiliationParseMethod.TITIPATA_API  # noqa: E501
                                     location = s["location"]
                                 elif (
                                     "email" in s
-                                ):  # aff.ParseMethod = AffiliationParseMethod.TITIPATA_API
+                                ):  # aff.ParseMethod = AffiliationParseMethod.TITIPATA_API  # noqa: E501
                                     email = s["email"]
                                 elif (
                                     "zipcode" in s
-                                ):  # aff.ParseMethod = AffiliationParseMethod.TITIPATA_API
+                                ):  # aff.ParseMethod = AffiliationParseMethod.TITIPATA_API  # noqa: E501
                                     zipcode = s["zipcode"]
 
                                 else:
@@ -440,7 +428,7 @@ def export_triplea_csvs_in_relational_mode_save_file(
                     else:
                         aff = None
 
-                    str_aff = f"{safe_csv(country)},{safe_csv(university)},{safe_csv(institute)},{safe_csv(center)},{safe_csv(hospital)},{safe_csv(department)},{safe_csv(location)},{safe_csv(email)},{safe_csv(zipcode)}"
+                    str_aff = f"{safe_csv(country)},{safe_csv(university)},{safe_csv(institute)},{safe_csv(center)},{safe_csv(hospital)},{safe_csv(department)},{safe_csv(location)},{safe_csv(email)},{safe_csv(zipcode)}"  # noqa: E501
                     authors_csv = (
                         authors_csv
                         + f"{n},{safe_csv(au.FullName)},{safe_csv(aff)},{str_aff}"
@@ -450,7 +438,7 @@ def export_triplea_csvs_in_relational_mode_save_file(
             if updated_article.Keywords is not None:
                 for k in updated_article.Keywords:
                     if k is not None:
-                        keywords_csv = keywords_csv + f"{n},{safe_csv(k.Text)}" + "\n"
+                        keywords_csv = keywords_csv + f"{n},{safe_csv(k.Text)}" + "\n"  # noqa: E501
 
             if updated_article.Topics is not None:
                 for topic in updated_article.Topics:
@@ -463,7 +451,7 @@ def export_triplea_csvs_in_relational_mode_save_file(
 
             csv = (
                 csv
-                + f"""{n},{title},{pmid},{year},{publisher},{url},{abstract},{state},{doi},{journal_issn},{journal_iso_abbreviation},{language},{publication_type},{citation}"""
+                + f"""{n},{title},{pmid},{year},{publisher},{url},{abstract},{state},{doi},{journal_issn},{journal_iso_abbreviation},{language},{publication_type},{citation}"""  # noqa: E501
                 + "\n"
             )
 
@@ -471,7 +459,7 @@ def export_triplea_csvs_in_relational_mode_save_file(
                 bar.label = "Article " + updated_article.PMID + " , exported."
                 bar.update(1)
 
-            # ------------------Write to file ----------------
+            # ------------------Write to file ---------------------------------
             f_main.write(csv)
             csv = ""
 

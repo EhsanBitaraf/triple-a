@@ -4,12 +4,14 @@ from triplea.schemas.article import Article
 from triplea.service.click_logger import logger
 
 
-
 def get_citation(article: Article):
     """
-    It takes an article, checks if the article's CiteCrawlerDeep is greater than 0, tries to get the cited articles from PubMed,
-    sets the article's CitedBy to the cited articles, logs that new articles are being added, creates a new CiteCrawlerDeep,
-    loops through the cited articles, and inserts the new PMID and CiteCrawlerDeep
+    It takes an article, checks if the article's CiteCrawlerDeep
+      is greater than 0, tries to get the cited articles from PubMed,
+    sets the article's CitedBy to the cited articles, logs that new articles
+      are being added, creates a new CiteCrawlerDeep,
+    loops through the cited articles,
+      and inserts the new PMID and CiteCrawlerDeep
 
     :param article: Article
     :type article: Article
@@ -43,12 +45,18 @@ def get_citation(article: Article):
                             forecolore="yellow",
                             deep=3,
                         )
-                        new_ccd = article.CiteCrawlerDeep - 1
+                        # new_ccd = article.CiteCrawlerDeep - 1
                         # CRITICAL Temporary Disable
                         # for c in lc:
-                        #     persist.insert_new_pmid(pmid=c, cite_crawler_deep=new_ccd)
+                        #     persist.insert_new_pmid(pmid=c,
+                        #                            cite_crawler_deep=new_ccd)
         else:
             pass
             article.State = 3
-            # logger.DEBUG(f'Article {pmid} Cite Crawler Deep = {article.CiteCrawlerDeep}.'  , deep = 5)
+            logger.DEBUG(
+                f"""Article {pmid} Cite
+                             Crawler Deep= {article.CiteCrawlerDeep}.""",
+                deep=5,
+            )
+
     return article

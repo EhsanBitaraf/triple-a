@@ -1,0 +1,35 @@
+.\triplea\service\repository\export\triplea_format.py:118: [E722] do not use bare 'except'
+.\triplea\service\repository\export\triplea_format.py:123: [E722] do not use bare 'except'
+.\triplea\service\repository\export\triplea_format.py:128: [E722] do not use bare 'except'
+.\triplea\service\repository\export\triplea_format.py:299: [E722] do not use bare 'except'
+.\triplea\service\repository\export\triplea_format.py:308: [E722] do not use bare 'except'
+.\triplea\service\repository\export\triplea_format.py:318: [E722] do not use bare 'except'
+.\triplea\service\repository\state\custom\extract_topic.py:26: [E722] do not use bare 'except'
+7     E722 do not use bare 'except'
+.\triplea\service\repository\export\triplea_format.py:299: [E722] do not use bare 'except'
+.\triplea\service\repository\export\triplea_format.py:308: [E722] do not use bare 'except'
+.\triplea\service\repository\export\triplea_format.py:318: [E722] do not use bare 'except'
+.\triplea\service\repository\state\custom\extract_topic.py:26: [E722] do not use bare 'except'
+4     E722 do not use bare 'except'
+.\triplea\service\repository\export\triplea_format.py:318: [E722] do not use bare 'except'
+1     E722 do not use bare 'except'
+.\triplea\service\repository\export\triplea_format.py:318: [E722] do not use bare 'except'
+1     E722 do not use bare 'except'
+.\triplea\service\graph\export\neo4j.py:1: [F401] 'click' imported but unused
+.\triplea\service\repository\export\rayyan_format.py:34: [C901] 'export_rayyan_csv' is too complex (21)
+.\triplea\service\repository\export\triplea_format.py:72: [C901] 'export_triplea_csv' is too complex (24)
+.\triplea\service\repository\export\triplea_format.py:165: [F821] undefined name 'topics'
+.\triplea\service\repository\export\triplea_format.py:190: [C901] 'export_triplea_csvs_in_relational_mode_save_file' is too complex (48)
+.\triplea\service\repository\export\triplea_format.py:330: [E741] ambiguous variable name 'l'
+.\triplea\service\repository\state\parsing_details.py:122: [C901] 'parsing_details' is too complex (60)
+4     C901 'export_rayyan_csv' is too complex (21)
+1     E741 ambiguous variable name 'l'
+1     F401 'click' imported but unused
+1     F821 undefined name 'topics'
+.\triplea\service\repository\export\rayyan_format.py:34: [C901] 'export_rayyan_csv' is too complex (21)
+.\triplea\service\repository\export\triplea_format.py:72: [C901] 'export_triplea_csv' is too complex (24)
+.\triplea\service\repository\export\triplea_format.py:191: [C901] 'export_triplea_csvs_in_relational_mode_save_file' is too complex (48)
+.\triplea\service\repository\state\parsing_details.py:122: [C901] 'parsing_details' is too complex (60)
+4     C901 'export_rayyan_csv' is too complex (21)
+.\triplea\service\repository\export\triplea_format.py:191: [C901] 'export_triplea_csvs_in_relational_mode_save_file' is too complex (48)
+1     C901 'export_triplea_csvs_in_relational_mode_save_file' is too complex (48)

@@ -74,12 +74,15 @@ def move_state_forward(
     extend_by_cited: Optional[bool] = False,
 ):
     """
-    It takes an article, extracts the data from it, and then creates a node and edge for each author and
+    It takes an article, extracts the data from it,
+      and then creates a node and edge for each author and
     affiliation
 
-    :param state: The state of the article in Knowledge Repository you want to move forward
+    :param state: The state of the article in Knowledge Repository
+      you want to move forward
     :type state: int
-    :param tps_limit: The number of requests per second you want to make to the API, defaults to 1
+    :param tps_limit: The number of requests per second
+      you want to make to the API, defaults to 1
     :type tps_limit: Optional[int] (optional)
     """
 
@@ -102,16 +105,9 @@ def move_state_forward(
                 persist.refresh()
                 print()
                 logger.INFO(
-                    f"There are {str(total_article_in_current_state - number_of_article_move_forward)} article(s) left ",
+                    f"There are {str(total_article_in_current_state - number_of_article_move_forward)} article(s) left ",  # noqa: E501
                     forecolore="yellow",
                 )
-                # min = (
-                #     total_article_in_current_state - number_of_article_move_forward
-                # ) / 60
-                # logger.INFO(
-                #     f"It takes at least {str(int(min))} minutes or {str(int(min/60))} hours",
-                #     forecolore="yellow",
-                # )
             else:
                 refresh_point = refresh_point + 1
 
@@ -121,14 +117,6 @@ def move_state_forward(
             try:
                 updated_article = Article(**a.copy())
             except Exception:
-                # print()
-                # backward_dict = a.copy()
-                # backward = Article()
-                # backward.PMID = backward_dict['PMID']
-                # logger.ERROR(f'Error in parsing article. PMID = {backward.PMID}')
-                # backward.State = 0
-                # updated_article = backward
-                # l = update_article_by_pmid(updated_article , updated_article.PMID)
                 print()
                 print(logger.ERROR(f"Error in parsing article. PMID = {id}"))
                 raise Exception("Article Not Parsed.")
@@ -138,7 +126,9 @@ def move_state_forward(
             except Exception:
                 current_state = 0
 
-            # logger.DEBUG('Article ' + updated_article.PMID + ' with state ' + str(current_state) + ' forward to ' + str(current_state + 1))
+            # logger.DEBUG(f"""Article {updated_article.PMID}
+            #               with state {str(current_state)} forward to
+            #                 {str(current_state + 1)}""")
             bar.label = (
                 "Article "
                 + updated_article.PMID
@@ -153,19 +143,23 @@ def move_state_forward(
 
             if current_state is None:
                 updated_article = state_manager.expand_details(updated_article)
-                persist.update_article_by_pmid(updated_article, updated_article.PMID)
+                persist.update_article_by_pmid(updated_article,
+                                               updated_article.PMID)
 
             elif current_state == -1:  # Error in State 0 Net state: 1
                 updated_article = state_manager.parsing_details(updated_article)
-                persist.update_article_by_pmid(updated_article, updated_article.PMID)
+                persist.update_article_by_pmid(updated_article,
+                                               updated_article.PMID)
 
             elif current_state == 0:  # Net state: get article details from pubmed
                 updated_article = state_manager.expand_details(updated_article)
-                persist.update_article_by_pmid(updated_article, updated_article.PMID)
+                persist.update_article_by_pmid(updated_article,
+                                               updated_article.PMID)
 
             elif current_state == 1:  # Net state: Extract Data
                 updated_article = state_manager.parsing_details(updated_article)
-                persist.update_article_by_pmid(updated_article, updated_article.PMID)
+                persist.update_article_by_pmid(updated_article,
+                                               updated_article.PMID)
                 # # think after
                 # if len(l) == 1:
                 #     pass
@@ -174,7 +168,8 @@ def move_state_forward(
 
             elif current_state == 2:  # Net state: Get Citation
                 updated_article = state_manager.get_citation(updated_article)
-                persist.update_article_by_pmid(updated_article, updated_article.PMID)
+                persist.update_article_by_pmid(updated_article,
+                                               updated_article.PMID)
                 # think after
                 # if len(l) == 1:
                 #     pass
@@ -183,7 +178,8 @@ def move_state_forward(
 
             elif current_state == 3:  # Net state: NER Title
                 updated_article = state_manager.ner_title(updated_article)
-                persist.update_article_by_pmid(updated_article, updated_article.PMID)
+                persist.update_article_by_pmid(updated_article,
+                                               updated_article.PMID)
                 # think after
                 # if len(l) == 1:
                 #     pass
@@ -194,7 +190,8 @@ def move_state_forward(
             if current_state == 1:
                 updated_article = Article(**a.copy())
                 updated_article.State = -1
-                persist.update_article_by_pmid(updated_article, updated_article.PMID)
+                persist.update_article_by_pmid(updated_article,
+                                               updated_article.PMID)
                 persist.refresh()
                 exc_type, exc_value, exc_tb = sys.exc_info()
                 print()
@@ -212,7 +209,8 @@ def move_state_forward(
             elif current_state == 2:
                 updated_article = Article(**a.copy())
                 updated_article.State = -2
-                persist.update_article_by_pmid(updated_article, updated_article.PMID)
+                persist.update_article_by_pmid(updated_article,
+                                               updated_article.PMID)
                 persist.refresh()
                 exc_type, exc_value, exc_tb = sys.exc_info()
                 print()
@@ -238,8 +236,10 @@ if __name__ == "__main__":
         "Number of article in knowlege repository is "
         + str(persist.get_all_article_count())
     )
-    logger.WARNING(f"{persist.get_all_node_count()} Node(s) in knowlege repository.")
-    logger.WARNING(f"{persist.get_all_edge_count()} Edge(s) in knowlege repository.")
+    logger.WARNING(f"""{persist.get_all_node_count()} Node(s)
+                    in knowlege repository.""")
+    logger.WARNING(f"""{persist.get_all_edge_count()} Edge(s)
+                    in knowlege repository.""")
     data = persist.get_article_group_by_state()
     for i in range(-3, 7):
         w = 0
@@ -250,49 +250,3 @@ if __name__ == "__main__":
                 logger.INFO(f"{n} article(s) in state {i}.")
         if w == 0:
             logger.INFO(f"0 article(s) in state {i}.")
-
-    # s = '''("Breast Neoplasms"[Mesh] OR "Breast Cancer"[Title] OR
-    #          "Breast Neoplasms"[Title] OR  "Breast Neoplasms"[Other Term] OR
-    #          "Breast Cancer"[Other Term])
-    #         AND
-    #         ("Registries"[MeSH Major Topic] OR "Database Management Systems"[MeSH Major Topic] OR
-    #          "Information Systems"[MeSH Major Topic] OR "Registry"[Other Term] OR "Registry"[Title] OR
-    #          "Information Storage and Retrieval"[MeSH Major Topic])'''
-    # get_article_list_all_store_to_kg_rep(s)
-
-    # move_state_forward(3)
-    # move_state_until(3)
-    # refresh()
-
-    # data = get_article_by_pmid('35130239')
-    # data= json.dumps(data, indent=4)
-    # with open("one-35130239.json", "w") as outfile:
-    #     outfile.write(data)
-
-    # 32434767
-    # click.echo(click.style('Number of article in knowlege repository is ', fg='green') + ' ' + click.style(str(get_all_article_count()), fg='red'))
-    # click.secho('Hello World!', fg='green')
-    # click.secho('Some more text', bg='blue', fg='white')
-    # click.secho('ATTENTION', blink=True, bold=True)
-
-    # # Save Title for Annotation
-    # file =  open("article-title.txt", "w",  encoding="utf-8")
-    # la = get_article_by_state(2)
-    # for a in la:
-    #     try:
-    #         article = Article(**a.copy())
-    #     except:
-    #         pass
-    #     file.write(article.Title + "\n")
-
-    # # Get list of cited article
-    # data = get_cited_article_from_pubmed('26951748')
-    # data = json.dumps(data, indent=4)
-    # with open("one-cite.json", "w") as outfile:
-    #     outfile.write(data)
-
-    # print(insert_new_pmid('36619805',
-    #                             reference_crawler_deep=SETTINGS.AAA_REFF_CRAWLER_DEEP,
-    #                             cite_crawler_deep=SETTINGS.AAA_CITED_CRAWLER_DEEP))
-
-    # refresh()

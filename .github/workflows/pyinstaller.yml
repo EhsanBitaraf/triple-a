@@ -52,7 +52,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.10'
+          python-version: '3.11'
       
       - name: Install Poetry
         uses: snok/install-poetry@v1
@@ -64,7 +64,7 @@ jobs:
         run: pip install -r requirements.txt pyinstaller
         
       - name: Build executable
-        run: pyinstaller triplea/cli/aaa.py
+        run: pyinstaller triplea/cli/aaa.py --onefile
       
     #   - name: Test executable
     #     run: dist/aaa/aaa #example, adjust path as needed

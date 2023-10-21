@@ -111,14 +111,14 @@ def get_article_list_from_pubmed_all_store_to_arepo(
 
 if __name__ == "__main__":
     pass
-    # f = r"C:\Users\Bitaraf\Desktop\my-python-project\github\triple-a\tests\fixtures\cite-file\scholar.ris"
+    # f = r"C:\Users\Bitaraf\Desktop\my-python-project\github\triple-a\tests\fixtures\cite-file\scholar.ris" # noqa: E501
     # f = r"C:\Users\Dr bitaraf\Desktop\MyData\CodeRepo\github\triple-a\bc.ris"
     # print(get_article_from_bibliography_file_format(f))
 
     start = 1
     retmax = 10000
-    # searchterm = '"breast neoplasms"[MeSH Terms] OR ("breast"[All Fields] AND "neoplasms"[All Fields]) OR "breast neoplasms"[All Fields] OR ("breast"[All Fields] AND "cancer"[All Fields]) OR "breast cancer"[All Fields]'
-    # searchterm = '((Bibliometric analysis[MeSH Terms])) OR ("Bibliometric analysis"[Title/Abstract])'
+    # searchterm = '"breast neoplasms"[MeSH Terms] OR ("breast"[All Fields] AND "neoplasms"[All Fields]) OR "breast neoplasms"[All Fields] OR ("breast"[All Fields] AND "cancer"[All Fields]) OR "breast cancer"[All Fields]' # noqa: E501
+    # searchterm = '((Bibliometric analysis[MeSH Terms])) OR ("Bibliometric analysis"[Title/Abstract])' # noqa: E501
     searchterm = '"Rajaie Cardiovascular"[Affiliation]'
     chunkdata = get_article_list_from_pubmed(start, retmax, searchterm)
     _save_article_pmid_list_in_arepo(chunkdata)

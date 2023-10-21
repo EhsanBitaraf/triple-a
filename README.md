@@ -237,8 +237,8 @@ The preparation of the article for extracting the graph has different steps that
 |1|article details article info saved (json Form)|
 |2|parse details info|
 |3|Get Citation|
-|4|NER Title|
-|5|extract graph|
+<!-- |4|NER Title|
+|5|extract graph| -->
 |-1|Error|
 
 

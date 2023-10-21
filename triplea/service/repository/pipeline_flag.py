@@ -30,11 +30,11 @@ def go_extract_triple():
                 if online_bar:
                     print()
                     logger.INFO(
-                        f"There are {str(total_article_in_current_state - number_of_article_move_forward)} article(s) left ",
+                        f"There are {str(total_article_in_current_state - number_of_article_move_forward)} article(s) left ",  # noqa: E501
                         forecolore="yellow",
                     )
                 if online_bar is False:
-                    bar.label = f"There are {str(total_article_in_current_state - number_of_article_move_forward)} article(s) left "
+                    bar.label = f"There are {str(total_article_in_current_state - number_of_article_move_forward)} article(s) left "  # noqa: E501
                     bar.update(max_refresh_point)
             else:
                 refresh_point = refresh_point + 1
@@ -63,19 +63,22 @@ def go_extract_triple():
                 updated_article = state_manager.extract_triple_abstract_save(
                     updated_article
                 )
-                persist.update_article_by_pmid(updated_article, updated_article.PMID)
+                persist.update_article_by_pmid(updated_article,
+                                               updated_article.PMID)
 
             elif current_state == -1:
                 updated_article = state_manager.extract_triple_abstract_save(
                     updated_article
                 )
-                persist.update_article_by_pmid(updated_article, updated_article.PMID)
+                persist.update_article_by_pmid(updated_article,
+                                               updated_article.PMID)
 
             elif current_state == 0:
                 updated_article = state_manager.extract_triple_abstract_save(
                     updated_article
                 )
-                persist.update_article_by_pmid(updated_article, updated_article.PMID)
+                persist.update_article_by_pmid(updated_article,
+                                               updated_article.PMID)
 
             elif current_state == 1:
                 pass
@@ -87,7 +90,8 @@ def go_extract_triple():
             if current_state == 0 or current_state is None:
                 updated_article = Article(**a.copy())
                 updated_article.FlagExtractKG = 0
-                persist.update_article_by_pmid(updated_article, updated_article.PMID)
+                persist.update_article_by_pmid(updated_article,
+                                               updated_article.PMID)
                 persist.refresh()
                 exc_type, exc_value, exc_tb = sys.exc_info()
                 print()
@@ -130,11 +134,11 @@ def go_extract_topic(proccess_bar=True):
                 if proccess_bar:
                     print()
                     logger.INFO(
-                        f"There are {str(total_article_in_current_state - n)} article(s) left ",
+                        f"There are {str(total_article_in_current_state - n)} article(s) left ",  # noqa: E501
                         forecolore="yellow",
                     )
                 if proccess_bar is False:
-                    bar.label = f"There are {str(total_article_in_current_state - n)} article(s) left "
+                    bar.label = f"There are {str(total_article_in_current_state - n)} article(s) left "  # noqa: E501
                     bar.update(max_refresh_point)
             else:
                 refresh_point = refresh_point + 1
@@ -159,15 +163,18 @@ def go_extract_topic(proccess_bar=True):
 
             if current_state is None:
                 updated_article = state_manager.extract_topic_abstract(updated_article)
-                persist.update_article_by_pmid(updated_article, updated_article.PMID)
+                persist.update_article_by_pmid(updated_article,
+                                               updated_article.PMID)
 
             elif current_state == -1:
                 updated_article = state_manager.extract_topic_abstract(updated_article)
-                persist.update_article_by_pmid(updated_article, updated_article.PMID)
+                persist.update_article_by_pmid(updated_article,
+                                               updated_article.PMID)
 
             elif current_state == 0:
                 updated_article = state_manager.extract_topic_abstract(updated_article)
-                persist.update_article_by_pmid(updated_article, updated_article.PMID)
+                persist.update_article_by_pmid(updated_article,
+                                               updated_article.PMID)
 
             elif current_state == 1:
                 pass
@@ -179,7 +186,8 @@ def go_extract_topic(proccess_bar=True):
             if current_state == 0 or current_state is None:
                 updated_article = Article(**a.copy())
                 updated_article.FlagExtractTopic = -1
-                persist.update_article_by_pmid(updated_article, updated_article.PMID)
+                persist.update_article_by_pmid(updated_article,
+                                               updated_article.PMID)
                 persist.refresh()
                 exc_type, exc_value, exc_tb = sys.exc_info()
                 print()
@@ -200,7 +208,8 @@ def go_affiliation_mining(method: str = "Simple"):
     l_pmid = persist.get_article_pmid_list_by_cstate(0, "FlagAffiliationMining")
     total_article_in_current_state = len(l_pmid)
     number_of_article_move_forward = 0
-    logger.DEBUG(str(len(l_pmid)) + " Article(s) is in FlagAffiliationMining " + str(0))
+    logger.DEBUG(f"""{str(len(l_pmid))} Article(s) is
+                  in FlagAffiliationMining {str(0)}""")
 
     bar = click.progressbar(length=len(l_pmid), show_pos=True, show_percent=True)
 
@@ -217,7 +226,7 @@ def go_affiliation_mining(method: str = "Simple"):
                 persist.refresh()
                 print()
                 logger.INFO(
-                    f"There are {str(total_article_in_current_state - number_of_article_move_forward)} article(s) left ",
+                    f"There are {str(total_article_in_current_state - number_of_article_move_forward)} article(s) left ",  # noqa: E501
                     forecolore="yellow",
                 )
                 min = (
@@ -225,7 +234,7 @@ def go_affiliation_mining(method: str = "Simple"):
                     * elapsed
                 ) / 60
                 logger.INFO(
-                    f"It takes at least {str(int(min))} minutes or {str(int(min/60))} hours",
+                    f"It takes at least {str(int(min))} minutes or {str(int(min/60))} hours",  # noqa: E501
                     forecolore="yellow",
                 )
             else:
@@ -243,7 +252,6 @@ def go_affiliation_mining(method: str = "Simple"):
             except Exception:
                 current_state = 0
 
-            # logger.DEBUG('Article ' + updated_article.PMID + ' with state ' + str(current_state) + ' forward to ' + str(current_state + 1))
             bar.label = "Article " + updated_article.PMID + " affiliation mining."
             bar.update(1)
             # # for re run
@@ -273,7 +281,8 @@ def go_affiliation_mining(method: str = "Simple"):
             if current_state == 0 or current_state is None:
                 updated_article = Article(**a.copy())
                 updated_article.State = -1
-                persist.update_article_by_pmid(updated_article, updated_article.PMID)
+                persist.update_article_by_pmid(updated_article,
+                                               updated_article.PMID)
                 persist.refresh()
                 exc_type, exc_value, exc_tb = sys.exc_info()
                 print()

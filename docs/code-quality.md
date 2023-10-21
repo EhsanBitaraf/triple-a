@@ -320,15 +320,15 @@ black .\triplea\service\
 ```
 
 ```sh
+flake8 --config=.flake8 --count --output-file out-flake8.txt .\triplea\service\ --no-show-source  --statistics --select W291
+
 flake8 --config=.flake8 --count --output-file out-flake8.txt .\triplea\service\ --no-show-source  --statistics --ignore E501,W503,E722
 
 flake8 --config=.flake8 --count --output-file out-flake8.txt .\triplea\service\ --no-show-source  --statistics
 
 ```
 
-510
-137
-113
+
 
 ```
 4     C901 'export_rayyan_csv' is too complex (21)
@@ -343,6 +343,12 @@ flake8 --config=.flake8 --count --output-file out-flake8.txt .\triplea\service\ 
 6     F841 local variable 'elapsed' is assigned to but never used
 ```
 
+510
+137
+113
+0
+
+Don't forget `# noqa: C901`
 ### utils
 
 

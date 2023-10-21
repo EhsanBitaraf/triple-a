@@ -27,7 +27,8 @@ def _check_graph():
         else:
             n = n + 1
             print(
-                f'{n} | DestinationID "{edge.DestinationID}" Not Exist. in Type : {edge.Type} & SourceID =  "{edge.SourceID}"'
+                f'''{n} | DestinationID "{edge.DestinationID}" Not Exist.
+                  in Type : {edge.Type} & SourceID =  "{edge.SourceID}"'''
             )
 
 
@@ -66,7 +67,8 @@ def export_graphjson_from_graphdict(graphdict) -> dict:
 
 def export_graphjson_from_arepo() -> dict:
     """
-    It takes all the nodes and edges from the article repository and converts them into a format that can be used
+    It takes all the nodes and edges from the article repository
+      and converts them into a format that can be used
     by the graph visualization library
     :return: A dictionary with two keys: nodes and edges.
     """
@@ -99,7 +101,8 @@ def export_graphjson_from_arepo() -> dict:
 
 def export_networkX_from_arepo(graph_type: Optional[str] = "directed"):
     """
-    It takes a list of nodes and edges from the article repository and creates a networkX graph object
+    It takes a list of nodes and edges from the article repository
+      and creates a networkX graph object
     :return: A networkx graph object
     """
     if graph_type == "undirected":
@@ -124,7 +127,9 @@ def export_networkX_from_arepo(graph_type: Optional[str] = "directed"):
 
 def export_gpickle_from_arepo(filename: str):
     """
-    It read article repository and extract node & edge from it, and then saves it in the [pickle format](https://docs.python.org/3/library/pickle.html).
+    It read article repository and extract node & edge from it,
+      and then saves it in the
+        [pickle format](https://docs.python.org/3/library/pickle.html).
     Pickles are a serialized byte stream of a Python object.
 
     :param filename: the name of the file to write to
@@ -140,7 +145,8 @@ def export_gpickle_from_graphdict(graphdict: dict, filename: str):
     """
     It takes a graph dictionary and exports it as a gpickle file
 
-    :param graphdict: a dictionary of dictionaries, where the keys are the nodes and the values are
+    :param graphdict: a dictionary of dictionaries,
+      where the keys are the nodes and the values are
     dictionaries of the node's neighbors and their weights
     :type graphdict: dict
     :param filename: the name of the file you want to save the graph to
@@ -300,7 +306,9 @@ def export_networkx_from_graphdict(
 
 # #----------------------------------------------------------------------------
 def export_networkX(
-    nodes: list[Node], edges: list[Edge], graph_type: Optional[str] = "directed"
+    nodes: list[Node],
+    edges: list[Edge],
+    graph_type: Optional[str] = "directed"
 ):
     if graph_type == "undirected":
         G = nx.Graph()
@@ -324,36 +332,3 @@ def export_networkX(
 
 if __name__ == "__main__":
     pass
-    # export_networkX()
-    # export_gexf('ehr')
-    # export_graphml('ehr')
-
-    # # check integrity of graph
-    # _check_graph()
-
-    # print(ROOT.parent / 'visualization' / 'alchemy' / 'data.json')
-
-    # # Export All
-    # state = 2
-    # graphdict1 = graph_extractor(graph_extract_article_author_affiliation, state)
-    # graphdict2 = graph_extractor(graph_extract_article_topic, state)
-    # graphdict3 = graph_extractor(graph_extract_article_keyword, state)
-    # graphdict4 = graph_extractor(graph_extract_article_reference, state)
-    # # graphdict5 = graph_extractor(graph_extract_article_cited, state)
-    # nodes = []
-    # nodes.extend(graphdict1['nodes'])
-    # nodes.extend(graphdict2['nodes'])
-    # nodes.extend(graphdict3['nodes'])
-    # nodes.extend(graphdict4['nodes'])
-    # # nodes.extend(graphdict5['nodes'])
-    # edges = []
-    # edges.extend(graphdict1['edges'])
-    # edges.extend(graphdict2['edges'])
-    # edges.extend(graphdict3['edges'])
-    # edges.extend(graphdict4['edges'])
-    # # edges.extend(graphdict5['edges'])
-
-    # n = Emmanuel(nodes)
-    # e = Emmanuel(edges)
-    # logger.DEBUG(f'Final {len(n)} Nodes & {len(e)} Edges Extracted.')
-    # graphdict = { 'nodes' : n , 'edges' : e}
