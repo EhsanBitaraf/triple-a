@@ -77,12 +77,14 @@ def arepo(command, pmid, output):
             + str(persist.get_all_article_count())
         )
         logger.INFO(
-            f"""{persist.get_all_node_count()} Node(s)
-                    in article repository."""
+            f"""{
+                persist.get_all_node_count()
+                } Node(s) in article repository."""
         )
         logger.INFO(
-            f"""{persist.get_all_edge_count()} Edge(s)
-                    in article repository."""
+            f"""{
+                persist.get_all_edge_count()
+                } Edge(s) in article repository."""
         )
         data = persist.get_article_group_by_state()
         for i in range(-3, 7):

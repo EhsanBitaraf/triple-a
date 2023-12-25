@@ -485,4 +485,5 @@ def export_triplea_csvs_in_relational_mode_save_file(  # noqa: C901
     f_authors.close()
     f_keywords.close()
     f_topics.close()
+    print()
     logger.INFO("Export Complete.")

@@ -112,7 +112,7 @@ def go_extract_triple():
 
 
 def go_extract_topic(proccess_bar=True):
-    max_refresh_point = 100
+    max_refresh_point = 500
     l_pmid = persist.get_article_pmid_list_by_cstate(0, "FlagExtractTopic")
     total_article_in_current_state = len(l_pmid)
     n = 0
@@ -204,39 +204,39 @@ def go_extract_topic(proccess_bar=True):
     persist.refresh()
 
 
-def go_affiliation_mining(method: str = "Simple"):
+def go_affiliation_mining(method: str = "Simple",proccess_bar=True):
+    online_bar = True
+    max_refresh_point = 500    
     l_pmid = persist.get_article_pmid_list_by_cstate(0, "FlagAffiliationMining")
     total_article_in_current_state = len(l_pmid)
     number_of_article_move_forward = 0
     logger.DEBUG(f"""{str(len(l_pmid))} Article(s) is
                   in FlagAffiliationMining {str(0)}""")
 
-    bar = click.progressbar(length=len(l_pmid), show_pos=True, show_percent=True)
+    if proccess_bar:
+        bar = click.progressbar(length=len(l_pmid), show_pos=True, show_percent=True)
 
     refresh_point = 0
     elapsed = 0
     for id in l_pmid:
         start_time = time.time()
         try:
-            number_of_article_move_forward = number_of_article_move_forward + 1
+            n = n + 1
             current_state = None
 
-            if refresh_point == 50:
+            if refresh_point == max_refresh_point:
                 refresh_point = 0
                 persist.refresh()
                 print()
-                logger.INFO(
-                    f"There are {str(total_article_in_current_state - number_of_article_move_forward)} article(s) left ",  # noqa: E501
-                    forecolore="yellow",
-                )
-                min = (
-                    (total_article_in_current_state - number_of_article_move_forward)
-                    * elapsed
-                ) / 60
-                logger.INFO(
-                    f"It takes at least {str(int(min))} minutes or {str(int(min/60))} hours",  # noqa: E501
-                    forecolore="yellow",
-                )
+                if proccess_bar:
+                    print()
+                    logger.INFO(
+                        f"There are {str(total_article_in_current_state - n)} article(s) left ",  # noqa: E501
+                        forecolore="yellow",
+                    )
+                if proccess_bar is False:
+                    bar.label = f"There are {str(total_article_in_current_state - n)} article(s) left "  # noqa: E501
+                    bar.update(max_refresh_point)
             else:
                 refresh_point = refresh_point + 1
 
@@ -252,8 +252,12 @@ def go_affiliation_mining(method: str = "Simple"):
             except Exception:
                 current_state = 0
 
-            bar.label = "Article " + updated_article.PMID + " affiliation mining."
-            bar.update(1)
+            if proccess_bar:
+                bar.label = (
+                    f"Article {updated_article.PMID} affiliation mining."
+                )
+                bar.update(1)
+
             # # for re run
             # if current_state == 2 : current_state = 1
 

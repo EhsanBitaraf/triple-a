@@ -32,8 +32,8 @@ name: Package Application with Pyinstaller
 # https://github.com/pyinstaller/pyinstaller/issues/6296
 
 on:
-    push:
-      branches: [main]
+    # push:
+    #   branches: [main]
     pull_request:
       branches: [main]
 

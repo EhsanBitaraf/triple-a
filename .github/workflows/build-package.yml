@@ -3,8 +3,8 @@ name: Build and Publish Package
 on: 
     pull_request:
       branches: [main]
-    push:
-      branches: [main]
+    # push:
+    #   branches: [main]
 
 jobs:
   build:
