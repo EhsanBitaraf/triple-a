@@ -1,6 +1,9 @@
 import time
 from typing import Optional
-from triplea.client.pubmed import get_article_list_from_pubmed
+# from triplea.client.pubmed import get_article_list_from_pubmed
+
+import triplea.client.pubmed as PubmedClient
+from triplea.schemas.article import Article, SourceBankType
 from triplea.service.click_logger import logger
 from triplea.config.settings import SETTINGS
 import triplea.service.repository.persist as persist
@@ -24,12 +27,22 @@ def _save_article_pmid_list_in_arepo(data: dict) -> None:
         n = 0
         for pmid in data["esearchresult"]["idlist"]:
             n = n + 1
-            i = persist.insert_new_pmid(
-                pmid,
-                querytranslation=qt,
-                reference_crawler_deep=SETTINGS.AAA_REFF_CRAWLER_DEEP,
-                cite_crawler_deep=SETTINGS.AAA_CITED_CRAWLER_DEEP,
-            )
+            article = Article() 
+            article.State = 0
+            article.SourceBank = SourceBankType.PUBMED
+            article.PMID = pmid
+            article.QueryTranslation = qt
+            article.ReferenceCrawlerDeep = SETTINGS.AAA_REFF_CRAWLER_DEEP
+            article.CiteCrawlerDeep = SETTINGS.AAA_CITED_CRAWLER_DEEP
+
+            i = persist.insert_new_pubmed(article)
+            ## Old Approch
+            # i = persist.insert_new_pmid(
+            #     pmid,
+            #     querytranslation=qt,
+            #     reference_crawler_deep=SETTINGS.AAA_REFF_CRAWLER_DEEP,
+            #     cite_crawler_deep=SETTINGS.AAA_CITED_CRAWLER_DEEP,
+            # )
             if i is None:  # PMID is Duplicate
                 logger.INFO(f"{pmid} is exist in knowledge repository. ({n})")
             else:
@@ -63,7 +76,7 @@ def get_article_list_from_pubmed_all_store_to_arepo(
     :type retmax: Optional[int] (optional)
     """
     sleep_time = 1 // tps_limit
-    data = get_article_list_from_pubmed(0, 2, searchterm)
+    data = PubmedClient.get_article_list_from_pubmed(0, 2, searchterm)
 
     total = int(data["esearchresult"]["count"])
     logger.INFO("Total number of article is " + str(total))
@@ -96,7 +109,7 @@ def get_article_list_from_pubmed_all_store_to_arepo(
             deep=13,
         )
         start = (i * retmax) - retmax
-        chunkdata = get_article_list_from_pubmed(start, retmax, searchterm)
+        chunkdata = PubmedClient.get_article_list_from_pubmed(start, retmax, searchterm)
         _save_article_pmid_list_in_arepo(chunkdata)
 
     # for last round
@@ -105,7 +118,7 @@ def get_article_list_from_pubmed_all_store_to_arepo(
     logger.INFO(f"""Round ({str(i + 1)}):
                  Get another {str(mid)} record (total {str(total)} record)""",
                 deep=13)
-    chunkdata = get_article_list_from_pubmed(start, retmax, searchterm)
+    chunkdata = PubmedClient.get_article_list_from_pubmed(start, retmax, searchterm)
     _save_article_pmid_list_in_arepo(chunkdata)
 
 
@@ -120,5 +133,5 @@ if __name__ == "__main__":
     # searchterm = '"breast neoplasms"[MeSH Terms] OR ("breast"[All Fields] AND "neoplasms"[All Fields]) OR "breast neoplasms"[All Fields] OR ("breast"[All Fields] AND "cancer"[All Fields]) OR "breast cancer"[All Fields]' # noqa: E501
     # searchterm = '((Bibliometric analysis[MeSH Terms])) OR ("Bibliometric analysis"[Title/Abstract])' # noqa: E501
     searchterm = '"Rajaie Cardiovascular"[Affiliation]'
-    chunkdata = get_article_list_from_pubmed(start, retmax, searchterm)
+    chunkdata = PubmedClient.get_article_list_from_pubmed(start, retmax, searchterm)
     _save_article_pmid_list_in_arepo(chunkdata)

@@ -37,6 +37,10 @@ def get_article_pmid_list_by_state(state: int):
     return db.get_article_pmid_list_by_state(state)
 
 
+def get_article_id_list_by_state(state: int):
+    return db.get_article_id_list_by_state(state)
+
+
 def get_article_pmid_list_by_cstate(state: int, tag_field: str):
     """
     This function returns a list of PubMed IDs (PMIDs) of articles
@@ -78,6 +82,9 @@ def get_article_by_pmid(pmid: str):
     return db.get_article_by_pmid(pmid)
 
 
+def get_article_by_id(id: str):
+    return db.get_article_by_id(id)
+
 def update_article_by_pmid(article, pmid: str):
     """
     This function updates an article in the database by its pmid
@@ -89,46 +96,71 @@ def update_article_by_pmid(article, pmid: str):
     """
     return db.update_article_by_pmid(article, pmid)
 
+def update_article_by_id(article, id: str):
+    return db.update_article_by_id(article, id)
 
-def insert_new_pmid(
-    pmid: str,
-    querytranslation: Optional[str] = None,
-    insert_type: Optional[str] = None,
-    reference_crawler_deep: Optional[int] = 0,
-    cite_crawler_deep: Optional[int] = 0,
-):
-    """
-    If the article is not in the database, add it
+# # Expire Function
+# def insert_new_pmid(
+#     pmid: str,
+#     querytranslation: Optional[str] = None,
+#     insert_type: Optional[str] = None,
+#     reference_crawler_deep: Optional[int] = 0,
+#     cite_crawler_deep: Optional[int] = 0,
+# ):
+#     """
+#     If the article is not in the database, add it
 
-    :param pmid: The PMID of the article you want to insert
-    :type pmid: str
-    :return: The return value is the ID of the newly inserted article.
-    """
+#     :param pmid: The PMID of the article you want to insert
+#     :type pmid: str
+#     :return: The return value is the ID of the newly inserted article.
+#     """
+#     # check PMID is exist
+#     if db.is_article_exist_by_pmid(pmid):
+#         logger.DEBUG("The article " + pmid + " already exists.", deep=3)
+#         return
+#     else:  # Insert not exist Article
+#         insert_type_list = []
+#         if insert_type is not None:
+#             insert_type_list.append(insert_type)
+
+#         # # old version
+#         # a = Article(PMID = pmid,
+#         #  State= 0,
+#         #  QueryTranslation = querytranslation,
+#         #  InsertType= insert_type_list,
+#         #  ReferenceCrawlerDeep = reference_crawler_deep)
+#         # New version
+#         a = Article(
+#             PMID=pmid,
+#             State=0,
+#             QueryTranslation=querytranslation,
+#             ReferenceCrawlerDeep=reference_crawler_deep,
+#             CiteCrawlerDeep=cite_crawler_deep,
+#         )
+
+#         return db.add_new_article(a)
+
+
+
+def insert_new_pubmed(article:Article):
     # check PMID is exist
-    if db.is_article_exist_by_pmid(pmid):
-        logger.DEBUG("The article " + pmid + " already exists.", deep=3)
+    if db.is_article_exist_by_pmid(article.PMID):
+        # logger.DEBUG(f"The article With PMID {article.PMID} already exists.",
+        #              deep=3)
         return
     else:  # Insert not exist Article
-        insert_type_list = []
-        if insert_type is not None:
-            insert_type_list.append(insert_type)
+        return db.add_new_article(article)
 
-        # # old version
-        # a = Article(PMID = pmid,
-        #  State= 0,
-        #  QueryTranslation = querytranslation,
-        #  InsertType= insert_type_list,
-        #  ReferenceCrawlerDeep = reference_crawler_deep)
-        # New version
-        a = Article(
-            PMID=pmid,
-            State=0,
-            QueryTranslation=querytranslation,
-            ReferenceCrawlerDeep=reference_crawler_deep,
-            CiteCrawlerDeep=cite_crawler_deep,
-        )
 
-        return db.add_new_article(a)
+def insert_new_arxiv(article:Article):
+    # check Arxiv ID is exist
+    if db.is_article_exist_by_arxiv_id(article.ArxivID):
+        # logger.DEBUG(
+        #     f"The article with ArxivID {article.ArxivID} already exists.",
+        #      deep=3)
+        return
+    else:  # Insert not exist Article
+        return db.add_new_article(article)
 
 
 def get_all_article_count() -> int:

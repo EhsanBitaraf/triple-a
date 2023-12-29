@@ -1,10 +1,10 @@
 import sys
 from triplea.client.pubmed import get_cited_article_from_pubmed
-from triplea.schemas.article import Article
+from triplea.schemas.article import Article, SourceBankType
 from triplea.service.click_logger import logger
 
 
-def get_citation(article: Article):
+def _get_citation_pubmed(article: Article):
     """
     It takes an article, checks if the article's CiteCrawlerDeep
       is greater than 0, tries to get the cited articles from PubMed,
@@ -26,7 +26,7 @@ def get_citation(article: Article):
             try:
                 lc = get_cited_article_from_pubmed(pmid)
             except Exception:
-                article.State = 3
+                article.State = -3
                 exc_type, exc_value, exc_tb = sys.exc_info()
                 logger.ERROR(f"Error {exc_type} Value : {exc_value}")
                 logger.ERROR(f"Error {exc_tb}")
@@ -60,3 +60,24 @@ def get_citation(article: Article):
             )
 
     return article
+
+
+def _get_citation_arxiv(article: Article):
+    article.State = 3
+    # I still haven't found an operational idea to get 
+    # citations of arxiv articles, maybe through google.
+    return article
+
+def get_citation(article: Article):
+    # this is dispatcher function
+    if article.SourceBank is None:
+        # This is Pubmed
+        updated_article = _get_citation_pubmed(article)
+    elif article.SourceBank == SourceBankType.PUBMED:
+        updated_article = _get_citation_pubmed(article)
+    elif article.SourceBank == SourceBankType.ARXIV:
+        updated_article = _get_citation_arxiv(article)
+    else:
+        raise NotImplementedError
+    
+    return updated_article

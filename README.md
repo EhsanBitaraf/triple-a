@@ -162,7 +162,7 @@ get list of PMID in state 0 and save to file for debugginf use
         outfile.write(data1)
 ```
 
-open befor file for debuging use
+open before file for debugging use
 ```python
     f = open('sample1.json')
     data = json.load(f)
@@ -231,15 +231,15 @@ The preparation of the article for extracting the graph has different steps that
 
 *List of state number*
 
-|State|Description|
-|-|-|
-|0|article identifier saved|
-|1|article details article info saved (json Form)|
-|2|parse details info|
-|3|Get Citation|
-<!-- |4|NER Title|
-|5|extract graph| -->
-|-1|Error|
+|State|Short Description|Description|
+|-----|-----------------|-----------|
+|0    |article identifier saved|At this stage, the article object stored in the data bank has only one identifier, such as the PMID or DOI identifier|
+|1    |article details article info saved (json Form)|Metadata related to the article is stored in the `OreginalArticle` field from the `SourceBank`, but it has not been parsed yet|
+|2    |parse details info||
+|3    |Get Citation||
+<!-- |4|NER Title||
+|5|extract graph|| -->
+|-1   |Error|if error happend in move state 1 to 2|
 
 
 There are two ways to run a pipeline. In the first method, we give the number of the existing state and all the articles in this state move forward one state.

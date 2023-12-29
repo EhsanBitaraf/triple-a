@@ -48,6 +48,21 @@ class DB_MongoDB(DataBase):
             return []
         else:
             return new_la
+        
+    def get_article_id_list_by_state(self, state: int):
+        myquery = {"State": state}
+        cursor = self.col_article.find(myquery, projection={"SourceBank": "$SourceBank", "_id": 1}) 
+        # TODO _id       
+
+        la = list(cursor)
+        new_la = []
+        for c in la:
+            new_la.append(c["_id"])
+
+        if len(new_la) == 0:
+            return []
+        else:
+            return new_la
 
     def get_article_pmid_list_by_cstate(self, state: int, tag_field: str):
         if state is None or state == 0:
@@ -101,11 +116,32 @@ class DB_MongoDB(DataBase):
             #     la.append(d)
             #     return la
 
+    def get_article_by_id(self, id: str):
+        myquery = {"_id": id}
+        cursor = self.col_article.find(myquery)
+
+        if len(list(cursor.clone())) == 0:
+            return None
+        else:
+            la = list(cursor)
+            return la[0]
+
     def update_article_by_pmid(self, article: Article, pmid: str):
         article_json = json.loads(
             json.dumps(article, default=lambda o: o.__dict__, sort_keys=True, indent=4)
         )
         myquery = {"PMID": pmid}
+        r = self.col_article.replace_one(myquery, article_json)
+        return r.raw_result
+
+    def update_article_by_id(self, article: Article, id: str):
+        article_json = json.loads(
+            json.dumps(article,
+                       default=lambda o: o.__dict__,
+                       sort_keys=True,
+                       indent=4)
+        )
+        myquery = {"_id": id}
         r = self.col_article.replace_one(myquery, article_json)
         return r.raw_result
 
@@ -122,6 +158,14 @@ class DB_MongoDB(DataBase):
             return True
         else:
             return False
+        
+    def is_article_exist_by_arxiv_id(self,id:str)->bool:
+        myquery = {"ArxivID": id}
+        if self.col_article.count_documents(myquery) > 0:
+            return True
+        else:
+            return False
+        
 
     def get_all_article_count(self) -> int:
         """

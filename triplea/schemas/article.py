@@ -1,7 +1,7 @@
 from pydantic import BaseModel, Field
 from typing import Optional
 import enum
-
+from datetime import datetime
 
 class NamedEntity(BaseModel):
     Label: Optional[str] = Field(description="")
@@ -22,6 +22,11 @@ class AffiliationParseMethod(enum.IntEnum):
     SIMPLE_PARSE = 1
     TITIPATA_API = 2  # https://github.com/titipata/affiliation_parser
 
+
+
+class SourceBankType(enum.IntEnum):
+    PUBMED = 1
+    ARXIV = 2  
 
 class Affiliation(BaseModel):
     HashID: Optional[str]
@@ -53,6 +58,7 @@ class Author(BaseModel):
 
 
 class Article(BaseModel):
+    SourceBank: Optional[SourceBankType] = Field(description="")
     PMID: Optional[str] = Field(
         description="""the PubMed (NLM database that incorporates MEDLINE)
           unique identifier, is a 1 to 8-digit accession number
@@ -91,3 +97,6 @@ class Article(BaseModel):
     FlagExtractKG: Optional[int] = Field(description="")
     FlagAffiliationMining: Optional[int] = Field(description="")
     FlagExtractTopic: Optional[int] = Field(description="")
+
+    Published: Optional[datetime] = Field(description="")
+    ArxivID: Optional[str] = Field(description="")

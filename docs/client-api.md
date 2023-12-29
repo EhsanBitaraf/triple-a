@@ -60,3 +60,170 @@ https://eutils.ncbi.nlm.nih.gov/entrez/eutils/elink.fcgi?dbfrom=pubmed&db=pubmed
   https://eutils.ncbi.nlm.nih.gov/entrez/eutils/elink.fcgi?dbfrom=pubmed&db=pubmed&id=35130239&retmode=json
 
 pubmed_pubmed_citedin
+
+
+# arXiv
+arXiv is a free distribution service and an open-access archive for nearly 2.4 million scholarly articles in the fields of physics, mathematics, computer science, quantitative biology, quantitative finance, statistics, electrical engineering and systems science, and economics. Materials on this site are not peer-reviewed by arXiv.
+
+https://arxiv.org/
+
+[arXiv Dataset](https://www.kaggle.com/datasets/Cornell-University/arxiv)
+arXiv dataset and metadata of 1.7M+ scholarly papers across STEM
+
+## arXiv API Access
+
+arXiv offers public API access in order to maximize its openness and interoperability. Many projects utilize this option without becoming official [arXivLabs collaborations](https://labs.arxiv.org/).
+
+## arXivLabs: Showcase
+arXiv is surrounded by a community of researchers and developers working at the cutting edge of information science and technology.
+
+https://info.arxiv.org/labs/showcase.html
+
+
+## arXiv API User's Manual
+https://info.arxiv.org/help/api/user-manual.html
+
+Please review the [Terms of Use for arXiv APIs](https://info.arxiv.org/help/api/tou.html) before using the arXiv API.
+
+
+you can search for articles that contain electron AND proton with the API by entering
+
+http://export.arxiv.org/api/query?search_query=all:electron+AND+all:proton
+
+The parameters for each of the API methods are explained below. For each method, the base url is
+```
+http://export.arxiv.org/api/{method_name}?{parameters}
+```
+
+|     |     |     |     |     |
+| --- | --- | --- | --- | --- |
+| query |     |     |     |     |
+|     | **parameters** | **type** | **defaults** | **required** |
+|     | `search_query` | string | None | No  |
+|     | `id_list` | comma-delimited string | None | No  |
+|     | `start` | int | 0   | No  |
+|     | `max_results` | int | 10  | No  |
+
+### Details of Query Construction
+
+|     |     |
+| --- | --- |
+| **prefix** | **explanation** |
+| ti  | Title |
+| au  | Author |
+| abs | Abstract |
+| co  | Comment |
+| jr  | Journal Reference |
+| cat | Subject Category |
+| rn  | Report Number |
+| id  | Id (use `id_list` instead) |
+| all | All of the above |
+
+### start and max_results paging
+```
+http://export.arxiv.org/api/query?search_query=all:electron&start=0&max_results=10 (1)
+http://export.arxiv.org/api/query?search_query=all:electron&start=10&max_results=10 (2)
+http://export.arxiv.org/api/query?search_query=all:electron&start=20&max_results=10 (3)
+```
+
+    Get results 0-9
+
+    Get results 10-19
+
+    Get results 20-29
+
+A request with `max_results >30,000` will result in an `HTTP 400 error code` with appropriate explanation. A request for 30000 results will typically take a little over 2 minutes to return a response of over 15MB. Requests for fewer results are much faster and correspondingly smaller.
+
+### sort order for return results
+
+There are two options for for the result set to the API search, sortBy and sortOrder.
+
+sortBy can be "relevance", "lastUpdatedDate", "submittedDate"
+
+sortOrder can be either "ascending" or "descending"
+
+A sample query using these new parameters looks like:
+```
+http://export.arxiv.org/api/query?search_query=ti:"electron thermal conductivity"&sortBy=lastUpdatedDate&sortOrder=ascending
+```
+### The API Response
+
+```xml
+    <?xml version="1.0" encoding="utf-8"?>
+    <feed xmlns="http://www.w3.org/2005/Atom" xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom">
+      <link xmlns="http://www.w3.org/2005/Atom" href="http://arxiv.org/api/query?search_query=all:electron&amp;id_list=&amp;start=0&amp;max_results=1" rel="self" type="application/atom+xml"/>
+      <title xmlns="http://www.w3.org/2005/Atom">ArXiv Query: search_query=all:electron&amp;id_list=&amp;start=0&amp;max_results=1</title>
+      <id xmlns="http://www.w3.org/2005/Atom">http://arxiv.org/api/cHxbiOdZaP56ODnBPIenZhzg5f8</id>
+      <updated xmlns="http://www.w3.org/2005/Atom">2007-10-08T00:00:00-04:00</updated>
+      <opensearch:totalResults xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">1000</opensearch:totalResults>
+      <opensearch:startIndex xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">0</opensearch:startIndex>
+      <opensearch:itemsPerPage xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/">1</opensearch:itemsPerPage>
+      <entry xmlns="http://www.w3.org/2005/Atom" xmlns:arxiv="http://arxiv.org/schemas/atom">
+        <id xmlns="http://www.w3.org/2005/Atom">http://arxiv.org/abs/hep-ex/0307015</id>
+        <published xmlns="http://www.w3.org/2005/Atom">2003-07-07T13:46:39-04:00</published>
+        <updated xmlns="http://www.w3.org/2005/Atom">2003-07-07T13:46:39-04:00</updated>
+        <title xmlns="http://www.w3.org/2005/Atom">Multi-Electron Production at High Transverse Momenta in ep Collisions at
+      HERA</title>
+        <summary xmlns="http://www.w3.org/2005/Atom">  Multi-electron production is studied at high electron transverse momentum in
+    positron- and electron-proton collisions using the H1 detector at HERA. The
+    data correspond to an integrated luminosity of 115 pb-1. Di-electron and
+    tri-electron event yields are measured. Cross sections are derived in a
+    restricted phase space region dominated by photon-photon collisions. In general
+    good agreement is found with the Standard Model predictions. However, for
+    electron pair invariant masses above 100 GeV, three di-electron events and
+    three tri-electron events are observed, compared to Standard Model expectations
+    of 0.30 \pm 0.04 and 0.23 \pm 0.04, respectively.
+    </summary>
+        <author xmlns="http://www.w3.org/2005/Atom">
+          <name xmlns="http://www.w3.org/2005/Atom">H1 Collaboration</name>
+        </author>
+        <arxiv:comment xmlns:arxiv="http://arxiv.org/schemas/atom">23 pages, 8 figures and 4 tables</arxiv:comment>
+        <arxiv:journal_ref xmlns:arxiv="http://arxiv.org/schemas/atom">Eur.Phys.J. C31 (2003) 17-29</arxiv:journal_ref>
+        <link xmlns="http://www.w3.org/2005/Atom" href="http://arxiv.org/abs/hep-ex/0307015v1" rel="alternate" type="text/html"/>
+        <link xmlns="http://www.w3.org/2005/Atom" title="pdf" href="http://arxiv.org/pdf/hep-ex/0307015v1" rel="related" type="application/pdf"/>
+        <arxiv:primary_category xmlns:arxiv="http://arxiv.org/schemas/atom" term="hep-ex" scheme="http://arxiv.org/schemas/atom"/>
+        <category term="hep-ex" scheme="http://arxiv.org/schemas/atom"/>
+      </entry>
+    </feed>
+
+```
+
+
+The `<category>` element is used to describe either an arXiv, ACM, or MSC classification. See the [arXiv metadata explanation]() for more details about these classifications.
+
+```
+http://export.arxiv.org/api/query?search_query=au:del_maestro+AND+ti:%22quantum+criticality%22
+```
+This query returns one result, and notice that the feed `<title>` contains double quotes as expected. The table below lists the two grouping operators used in the API.
+
+|     |     |     |
+| --- | --- | --- |
+| **symbol** | **encoding** | **explanation** |
+| ( ) | %28 %29 | Used to group Boolean expressions for Boolean operator precedence. |
+| double quotes | %22 %22 | Used to group multiple words into phrases to search a particular field. |
+| space | +   | Used to extend a `search_query` to include multiple fields. |
+
+### arXiv identifier scheme - information for interacting services
+https://info.arxiv.org/help/arxiv_identifier_for_services.html
+
+
+The table below shows the correspondence between old and new identifier forms, internal and external identifiers, and semantics that can and cannot be derived from the identifier:
+
+|     | Internal identifier | Preferred external  <br>identifier | Year | Month | Version | Original primary  <br>classification | Primary classification | Secondary classification |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Old scheme | hep-th/9901001  <br>hep-th/9901001v1  <br>math.CA/0611800v2 | arXiv:hep-th/9901001  <br>arXiv:hep-th/9901001v1  <br>arXiv:math/0611800v2 | 1999  <br>1999  <br>2006 | 1 (Jan)  <br>1 (Jan)  <br>11 (Nov) | latest  <br>v1  <br>v2 | hep-th  <br>hep-th  <br>math.CA | (in metadata) | (in metadata) |
+| New scheme | 0704.0001  <br>0704.0001v1  <br>1412.7878  <br>1501.00001  <br>9912.12345v2 | arXiv:0704.0001  <br>arXiv:0704.0001v1  <br>arXiv:1412.7878  <br>arXiv:1501.00001  <br>arXiv:9912.12345v2 | 2007  <br>2007  <br>2014  <br>2015  <br>2099 | 6 (Jun)  <br>6 (Jun)  <br>12 (Dec)  <br>1 (Jan)  <br>12 (Dec) | latest  <br>v1  <br>latest  <br>latest  <br>v2 | (in announcement log) | (in metadata) | (in metadata) |
+
+### URLs for standard arXiv functions
+The URL patterns for all standard arXiv functions are consistent for the different forms of the arXiv identifier. Some examples are given in the table below:
+
+|     | Generic | Example with old id (9107-0703) | Example with new id (0704-1412) | Example new id (1501-) |
+| --- | --- | --- | --- | --- |
+| Abstract (normal HTML) | `/abs/id` | `/abs/hep-th/9901001` | `/abs/0706.0001` | `/abs/1501.00001` |
+| Abstract (raw txt) | `/abs/id?fmt=txt` | `/abs/hep-th/9901001?fmt=txt` | `/abs/0706.0001?fmt=txt` | `/abs/1501.00001?fmt=txt` |
+| PDF | `/pdf/id.pdf` | `/pdf/hep-th/9901001.pdf` | `/pdf/0706.0001.pdf` | `/pdf/1501.00001.pdf` |
+| PS  | `/ps/id` | `/ps/hep-th/9901001` | `/ps/0706.0001` | `/ps/1501.00001` |
+| Source (.gz,.tar.gz,.pdf...) | `/src/id` | `/src/hep-th/9901001` | `/src/0706.0001` | `/src/1501.00001` |
+| Trackbacks | `/tb/id` | `/tb/hep-th/9901001` | `/tb/0706.0001` | `/tb/1501.00001` |
+| New listings | `/list/arch-ive/new` | `/list/hep-th/new` | `/list/hep-th/new` | `/list/hep-th/new` |
+| Month listings | `/list/arch-ive/yymm` | `/list/hep-th/0601` | `/list/hep-th/0601` | `/list/hep-th/0601` |

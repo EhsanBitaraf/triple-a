@@ -1,13 +1,18 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## v0.0.5 2023-12-28
+### Improvements
+- Add Published, ArxivID, SourceBank field in Article
+
+
+### Bug Fixes
 
 ## v0.0.4 2023-10-14
 ### Improvements
 - Add Package Application with Pyinstaller
 - Add FlagAffiliationMining_TITIPATA from Api
 - Add ParseMethod field in Affiliation
-
 
 ### Bug Fixes
 - Fix go_affiliation_mining 2023-12-25
@@ -33,7 +38,6 @@ All notable changes to this project will be documented in this file.
 - Add cli.visualize_file  for visual graph file
 - Add Client Topic Extraction
 - Change Topics (list[str] to list[dict])
-
 
 ### Bug Fixes
 - Fix Slow Request by session
@@ -82,7 +86,6 @@ All notable changes to this project will be documented in this file.
 - Fix proccess_bar in export
 
 ## v0.0.1 - 2023-02-05
-
 ### Improvements
 - Build Dockerfile
 - Start flake8 activity 2023-03-05

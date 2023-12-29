@@ -4,7 +4,7 @@ from typing import Optional
 import click
 from triplea.config.settings import SETTINGS
 from triplea.service.click_logger import logger
-from triplea.schemas.article import Article
+from triplea.schemas.article import Article, SourceBankType
 import triplea.service.repository.state as state_manager
 import triplea.service.repository.persist as persist
 
@@ -85,40 +85,44 @@ def move_state_forward(
       you want to make to the API, defaults to 1
     :type tps_limit: Optional[int] (optional)
     """
+    # old version
+    # la = get_article_by_state(state)
 
-    # la = get_article_by_state(state) # old version
-    l_pmid = persist.get_article_pmid_list_by_state(state)
-    total_article_in_current_state = len(l_pmid)
-    number_of_article_move_forward = 0
-    logger.DEBUG(str(len(l_pmid)) + " Article(s) is in state " + str(state))
+    # old version 0.0.3  
+    # l_pmid = persist.get_article_pmid_list_by_state(state) 
+    l_id = persist.get_article_id_list_by_state(state)
+    total_article_in_current_state = len(l_id)
+    n = 0
+    logger.DEBUG(str(len(l_id)) + " Article(s) is in state " + str(state))
 
-    bar = click.progressbar(length=len(l_pmid), show_pos=True, show_percent=True)
+    bar = click.progressbar(length=len(l_id), show_pos=True, show_percent=True)
 
     refresh_point = 0
-    for id in l_pmid:
+    for id in l_id:
         try:
-            number_of_article_move_forward = number_of_article_move_forward + 1
+            n = n + 1
             current_state = None
 
-            if refresh_point == 500:
+            if refresh_point == SETTINGS.AAA_CLI_ALERT_POINT:
                 refresh_point = 0
                 persist.refresh()
                 print()
                 logger.INFO(
-                    f"There are {str(total_article_in_current_state - number_of_article_move_forward)} article(s) left ",  # noqa: E501
+                    f"There are {str(total_article_in_current_state - n)} article(s) left ",  # noqa: E501
                     forecolore="yellow",
                 )
             else:
                 refresh_point = refresh_point + 1
 
-            a = persist.get_article_by_pmid(id)
-            # a = persist.get_article_by_pmid('35970485') # CRITICAL For Test and Debug
+            a = persist.get_article_by_id(id)
+            # CRITICAL For Test and Debug
+            # a = persist.get_article_by_pmid('35970485') 
 
             try:
                 updated_article = Article(**a.copy())
             except Exception:
                 print()
-                print(logger.ERROR(f"Error in parsing article. PMID = {id}"))
+                print(logger.ERROR(f"Error in parsing article with ID = {id}"))
                 raise Exception("Article Not Parsed.")
 
             try:
@@ -126,13 +130,25 @@ def move_state_forward(
             except Exception:
                 current_state = 0
 
-            # logger.DEBUG(f"""Article {updated_article.PMID}
-            #               with state {str(current_state)} forward to
-            #                 {str(current_state + 1)}""")
+            source_bank = updated_article.SourceBank
+
+            if source_bank == None:
+                article_source_bank_title = "Pubmed"
+                article_identifier = updated_article.PMID
+                source_bank = SourceBankType.PUBMED
+            elif source_bank == SourceBankType.PUBMED:
+                article_source_bank_title = "Pubmed"
+                article_identifier = updated_article.PMID
+            elif source_bank == SourceBankType.ARXIV:
+                article_source_bank_title = "Arxiv"
+                article_identifier = updated_article.ArxivID
+            else:
+                raise NotImplementedError
+            
             bar.label = (
-                "Article "
-                + updated_article.PMID
-                + " with state "
+                "Article " + article_source_bank_title + " ("
+                + article_identifier
+                + ") with state "
                 + str(current_state)
                 + " forward to "
                 + str(current_state + 1)
@@ -143,48 +159,31 @@ def move_state_forward(
 
             if current_state is None:
                 updated_article = state_manager.expand_details(updated_article)
-                persist.update_article_by_pmid(updated_article,
-                                               updated_article.PMID)
+                # persist.update_article_by_pmid(updated_article,
+                #                                updated_article.PMID)
 
             elif current_state == -1:  # Error in State 0 Net state: 1
                 updated_article = state_manager.parsing_details(updated_article)
-                persist.update_article_by_pmid(updated_article,
-                                               updated_article.PMID)
+                # persist.update_article_by_pmid(updated_article,
+                #                                updated_article.PMID)
 
             elif current_state == 0:  # Net state: get article details from pubmed
                 updated_article = state_manager.expand_details(updated_article)
-                persist.update_article_by_pmid(updated_article,
-                                               updated_article.PMID)
+                # persist.update_article_by_pmid(updated_article,
+                #                                updated_article.PMID)
 
             elif current_state == 1:  # Net state: Extract Data
                 updated_article = state_manager.parsing_details(updated_article)
-                persist.update_article_by_pmid(updated_article,
-                                               updated_article.PMID)
-                # # think after
-                # if len(l) == 1:
-                #     pass
-                # else:
-                #     logger.ERROR('Duplication has Occurred')
+                # persist.update_article_by_pmid(updated_article,
+                #                                updated_article.PMID)
 
             elif current_state == 2:  # Net state: Get Citation
                 updated_article = state_manager.get_citation(updated_article)
-                persist.update_article_by_pmid(updated_article,
-                                               updated_article.PMID)
-                # think after
-                # if len(l) == 1:
-                #     pass
-                # else:
-                #     logger.ERROR('Duplication has Occurred')
+                # persist.update_article_by_pmid(updated_article,
+                #                                updated_article.PMID)
 
-            elif current_state == 3:  # Net state: NER Title
-                updated_article = state_manager.ner_title(updated_article)
-                persist.update_article_by_pmid(updated_article,
-                                               updated_article.PMID)
-                # think after
-                # if len(l) == 1:
-                #     pass
-                # else:
-                #     logger.ERROR('Duplication has Occurred')
+            persist.update_article_by_id(updated_article,
+                                        id)
 
         except Exception:
             if current_state == 1:
@@ -231,22 +230,4 @@ def move_state_forward(
     persist.refresh()
 
 
-if __name__ == "__main__":
-    logger.WARNING(
-        "Number of article in knowlege repository is "
-        + str(persist.get_all_article_count())
-    )
-    logger.WARNING(f"""{persist.get_all_node_count()} Node(s)
-                    in knowlege repository.""")
-    logger.WARNING(f"""{persist.get_all_edge_count()} Edge(s)
-                    in knowlege repository.""")
-    data = persist.get_article_group_by_state()
-    for i in range(-3, 7):
-        w = 0
-        for s in data:
-            if s["State"] == i:
-                w = 1
-                n = s["n"]
-                logger.INFO(f"{n} article(s) in state {i}.")
-        if w == 0:
-            logger.INFO(f"0 article(s) in state {i}.")
+

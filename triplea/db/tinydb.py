@@ -27,7 +27,10 @@ class DB_TinyDB(DataBase):
 
     def add_new_article(self, article: Article) -> int:
         article_json = json.loads(
-            json.dumps(article, default=lambda o: o.__dict__, sort_keys=True, indent=4)
+            json.dumps(article,
+                       default=lambda o: o.__dict__,
+                       sort_keys=True,
+                       indent=4)
         )
         # article_json = json.dumps(article.json())
         return self.db.insert(article_json)
@@ -39,6 +42,11 @@ class DB_TinyDB(DataBase):
     def get_article_pmid_list_by_state(self, state: int):
         q = Query()
         l_pmid = [a.get("PMID") for a in self.db.search(q.State == state)]
+        return l_pmid
+
+    def get_article_id_list_by_state(self, state: int):
+        q = Query()
+        l_pmid = [a.get("ArxivID")  for a in self.db.search(q.State == state)]
         return l_pmid
 
     def get_article_pmid_list_by_cstate(self, state: int, tag_field: str):
@@ -72,6 +80,10 @@ class DB_TinyDB(DataBase):
     def get_article_by_pmid(self, pmid: str):
         q = Query()
         return self.db.get(q.PMID == pmid)
+    
+    def get_article_by_id(self, id: str):
+        q = Query()
+        return self.db.get(q.id == id)
 
     def update_article_by_pmid(self, article: Article, pmid: str):
         article_json = json.loads(
@@ -79,6 +91,17 @@ class DB_TinyDB(DataBase):
         )
         q = Query()
         return self.db.update(article_json, q.PMID == pmid)
+
+    def update_article_by_id(self, article: Article, id: str):
+        article_json = json.loads(
+            json.dumps(article,
+                       default=lambda o: o.__dict__,
+                       sort_keys=True,
+                       indent=4)
+        )
+        q = Query()
+        return self.db.update(article_json, q.ID == id)
+
 
     def is_article_exist_by_pmid(self, pmid: str) -> bool:
         """
@@ -90,6 +113,10 @@ class DB_TinyDB(DataBase):
         """
         q = Query()
         return self.db.contains(q.PMID == pmid)
+    
+    def is_article_exist_by_arxiv_id(self,id:str)->bool:
+        q = Query()
+        return self.db.contains(q.ArxivID == id)
 
     def get_all_article_count(self) -> int:
         """
@@ -130,7 +157,10 @@ class DB_TinyDB(DataBase):
 
     def add_new_edge(self, edge: Edge) -> int:
         edge_json = json.loads(
-            json.dumps(edge, default=lambda o: o.__dict__, sort_keys=True, indent=4)
+            json.dumps(edge,
+                       default=lambda o: o.__dict__,
+                       sort_keys=True,
+                       indent=4)
         )
         table = self.db.table("edge")
         return table.insert(edge_json)
