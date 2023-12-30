@@ -9,7 +9,10 @@ tps_limit = SETTINGS.AAA_TPS_LIMIT
 
 
 def _expand_details_arxiv(article: Article) -> Article:
-    article.State = 1
+    # previous state is 0 
+    article.State = 1 # next state
+    backward_state = 0
+    
     # Archive is One Shot. There is no need for this step,
     # although it should be checked why it is at this step
     return article

@@ -15,7 +15,7 @@ def _parse_arxiv_author(single_author_dict:dict)-> Author:
 
 def parsing_details_arxiv(article: Article) -> Article:
     # current state may be 1 
-    article.State = 2
+    article.State = 2 # next state
     backward_state = -1
     data = article.OreginalArticle
 

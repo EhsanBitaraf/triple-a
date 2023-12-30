@@ -12,6 +12,13 @@ from typing import Optional
 def parse_arxiv_list(data:dict):
     article_list = []
     try:
+        if "feed" not in data:
+            print()
+            logger.ERROR(f"Error in parsing arxiv response. Feed missing.")
+        if "entry" not in data["feed"]:
+            print()
+            logger.ERROR(f"Error in parsing arxiv response. Entry missing.")
+            
         # Parse arxiv list into Article object list with State 1
         for a in data["feed"]["entry"]:
             article = Article()    

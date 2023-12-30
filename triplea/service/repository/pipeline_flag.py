@@ -2,83 +2,84 @@ import sys
 import time
 import traceback
 import click
+from triplea.config.settings import SETTINGS
 from triplea.schemas.article import Article
 import triplea.service.repository.persist as persist
 import triplea.service.repository.state as state_manager
 from triplea.service.click_logger import logger
+from triplea.utils.general import print_error
 
+  
+def go_extract_triple(proccess_bar=True):
+    max_refresh_point = SETTINGS.AAA_CLI_ALERT_POINT
+    l_id = persist.get_article_id_list_by_cstate(0, "FlagExtractKG")
+    total_article_in_current_state = len(l_id)
+    n = 0
+    logger.DEBUG(str(len(l_id)) + " Article(s) is in FlagExtractKG " + str(0))
 
-def go_extract_triple():
-    online_bar = True
-    max_refresh_point = 500
-    l_pmid = persist.get_article_pmid_list_by_cstate(0, "FlagExtractKG")
-    total_article_in_current_state = len(l_pmid)
-    number_of_article_move_forward = 0
-    logger.DEBUG(str(len(l_pmid)) + " Article(s) is in FlagExtractKG " + str(0))
-
-    bar = click.progressbar(length=len(l_pmid), show_pos=True, show_percent=True)
+    bar = click.progressbar(length=len(l_id), show_pos=True, show_percent=True)
 
     refresh_point = 0
-    for id in l_pmid:
+    for id in l_id:
         try:
-            number_of_article_move_forward = number_of_article_move_forward + 1
+            n = n + 1
             current_state = None
 
             if refresh_point == max_refresh_point:
                 refresh_point = 0
                 persist.refresh()
-                if online_bar:
+                if proccess_bar:
                     print()
                     logger.INFO(
-                        f"There are {str(total_article_in_current_state - number_of_article_move_forward)} article(s) left ",  # noqa: E501
+                        f"There are {str(total_article_in_current_state - n)} article(s) left ",  # noqa: E501
                         forecolore="yellow",
                     )
-                if online_bar is False:
-                    bar.label = f"There are {str(total_article_in_current_state - number_of_article_move_forward)} article(s) left "  # noqa: E501
+                if proccess_bar is False:
+                    bar.label = f"There are {str(total_article_in_current_state - n)} article(s) left "  # noqa: E501
                     bar.update(max_refresh_point)
             else:
                 refresh_point = refresh_point + 1
 
-            a = persist.get_article_by_pmid(id)
+            a = persist.get_article_by_id(id)
             try:
                 updated_article = Article(**a.copy())
             except Exception:
                 print()
-                print(logger.ERROR(f"Error in parsing article. PMID = {id}"))
+                print(logger.ERROR(f"Error in parsing article. ID = {id}"))
                 raise Exception("Article Not Parsed.")
             try:
                 current_state = updated_article.FlagExtractKG
             except Exception:
                 current_state = 0
 
-            if online_bar:
+            if proccess_bar:
                 bar.label = (
                     "Article "
-                    + updated_article.PMID
+                    + str(id)
                     + " Extract Knowledge Triple From Abstract"
                 )
                 bar.update(1)
 
             if current_state is None:
                 updated_article = state_manager.extract_triple_abstract_save(
-                    updated_article
+                    updated_article, id
                 )
-                persist.update_article_by_pmid(updated_article,
-                                               updated_article.PMID)
+                persist.update_article_by_id(updated_article,
+                                             id)
 
             elif current_state == -1:
                 updated_article = state_manager.extract_triple_abstract_save(
-                    updated_article
+                    updated_article, id
                 )
-                persist.update_article_by_pmid(updated_article,
-                                               updated_article.PMID)
+                persist.update_article_by_id(updated_article,
+                                             id)
 
             elif current_state == 0:
                 updated_article = state_manager.extract_triple_abstract_save(
-                    updated_article
+                    updated_article, id
                 )
-                persist.update_article_by_pmid(updated_article,
-                                               updated_article.PMID)
+                persist.update_article_by_id(updated_article,
+                                             id)
 
             elif current_state == 1:
                 pass
@@ -90,40 +91,31 @@ def go_extract_triple():
             if current_state == 0 or current_state is None:
                 updated_article = Article(**a.copy())
                 updated_article.FlagExtractKG = 0
-                persist.update_article_by_pmid(updated_article,
-                                               updated_article.PMID)
+                persist.update_article_by_id(updated_article,
+                                             id)
                 persist.refresh()
-                exc_type, exc_value, exc_tb = sys.exc_info()
-                print()
-                logger.ERROR(f"Error {exc_type}")
-                logger.ERROR(f"Error {exc_value}")
+                print_error()
 
             else:
                 persist.refresh()
-                exc_type, exc_value, exc_tb = sys.exc_info()
-                print()
-                print(exc_tb.tb_lineno)
-                print()
-                traceback.print_tb(exc_tb)
-                logger.ERROR(f"Error {exc_type}")
-                logger.ERROR(f"Error {exc_value}")
-                logger.ERROR(f"Error {exc_tb}")
+                print_error()
+
     persist.refresh()
 
 
 def go_extract_topic(proccess_bar=True):
-    max_refresh_point = 500
-    l_pmid = persist.get_article_pmid_list_by_cstate(0, "FlagExtractTopic")
-    total_article_in_current_state = len(l_pmid)
+    max_refresh_point = SETTINGS.AAA_CLI_ALERT_POINT
+    l_id = persist.get_article_id_list_by_cstate(0, "FlagExtractTopic")
+    total_article_in_current_state = len(l_id)
     n = 0
-    logger.DEBUG(str(len(l_pmid)) + " Article(s) is in FlagExtractTopic " + str(0))
+    logger.DEBUG(str(len(l_id)) + " Article(s) is in FlagExtractTopic " + str(0))
 
     if proccess_bar:
-        bar = click.progressbar(length=len(l_pmid), show_pos=True, show_percent=True)
+        bar = click.progressbar(length=len(l_id), show_pos=True, show_percent=True)
 
     refresh_point = 0
 
-    for id in l_pmid:
+    for id in l_id:
         try:
             n = n + 1
             current_state = None
@@ -143,12 +135,12 @@ def go_extract_topic(proccess_bar=True):
             else:
                 refresh_point = refresh_point + 1
 
-            a = persist.get_article_by_pmid(id)
+            a = persist.get_article_by_id(id)
             try:
                 updated_article = Article(**a.copy())
             except Exception:
                 print()
-                print(logger.ERROR(f"Error in parsing article. PMID = {id}"))
+                print(logger.ERROR(f"Error in parsing article. ID = {id}"))
                 raise Exception("Article Not Parsed.")
             try:
                 current_state = updated_article.FlagExtractTopic  # ------------
@@ -157,69 +149,59 @@ def go_extract_topic(proccess_bar=True):
 
             if proccess_bar:
                 bar.label = (
-                    "Article " + updated_article.PMID + " , topic were extracted."
+                    f"""Article {id}, topic were extracted."""
                 )
                 bar.update(1)
 
             if current_state is None:
-                updated_article = state_manager.extract_topic_abstract(updated_article)
-                persist.update_article_by_pmid(updated_article,
-                                               updated_article.PMID)
-
+                updated_article = state_manager.extract_topic_abstract(
+                    updated_article)
             elif current_state == -1:
-                updated_article = state_manager.extract_topic_abstract(updated_article)
-                persist.update_article_by_pmid(updated_article,
-                                               updated_article.PMID)
-
+                updated_article = state_manager.extract_topic_abstract(
+                    updated_article)
             elif current_state == 0:
-                updated_article = state_manager.extract_topic_abstract(updated_article)
-                persist.update_article_by_pmid(updated_article,
-                                               updated_article.PMID)
-
+                updated_article = state_manager.extract_topic_abstract(
+                    updated_article)
             elif current_state == 1:
                 pass
 
             else:
                 raise NotImplementedError
+            
+            persist.update_article_by_id(updated_article, id)
 
         except Exception:
             if current_state == 0 or current_state is None:
                 updated_article = Article(**a.copy())
                 updated_article.FlagExtractTopic = -1
-                persist.update_article_by_pmid(updated_article,
-                                               updated_article.PMID)
+                persist.update_article_by_id(updated_article,
+                                               id)
                 persist.refresh()
-                exc_type, exc_value, exc_tb = sys.exc_info()
-                print()
-                logger.ERROR(f"Error {exc_type}")
-                logger.ERROR(f"Error {exc_value}")
+                print_error()
 
             else:
                 persist.refresh()
-                exc_type, exc_value, exc_tb = sys.exc_info()
-                print()
-                print(exc_tb.tb_lineno)
-                logger.ERROR(f"Error {exc_type}")
-                logger.ERROR(f"Error {exc_value}")
+                print_error()
     persist.refresh()
 
 
-def go_affiliation_mining(method: str = "Simple",proccess_bar=True):
-    online_bar = True
-    max_refresh_point = 500    
-    l_pmid = persist.get_article_pmid_list_by_cstate(0, "FlagAffiliationMining")
-    total_article_in_current_state = len(l_pmid)
-    number_of_article_move_forward = 0
-    logger.DEBUG(f"""{str(len(l_pmid))} Article(s) is
-                  in FlagAffiliationMining {str(0)}""")
+def go_affiliation_mining(method: str = "Simple", proccess_bar=True):
+    max_refresh_point = SETTINGS.AAA_CLI_ALERT_POINT
+    l_id = persist.get_article_id_list_by_cstate(0, "FlagAffiliationMining")
+    total_article_in_current_state = len(l_id)
+    n = 0
+    logger.DEBUG(f"""{str(
+                          len(l_id)
+                      )} Article(s) is in FlagAffiliationMining {str(0)}""")
 
     if proccess_bar:
-        bar = click.progressbar(length=len(l_pmid), show_pos=True, show_percent=True)
+        bar = click.progressbar(length=len(l_id),
+                                show_pos=True,
+                                show_percent=True)
 
     refresh_point = 0
-    elapsed = 0
-    for id in l_pmid:
-        start_time = time.time()
+    for id in l_id:
+
         try:
             n = n + 1
             current_state = None
@@ -240,12 +222,12 @@ def go_affiliation_mining(method: str = "Simple",proccess_bar=True):
             else:
                 refresh_point = refresh_point + 1
 
-            a = persist.get_article_by_pmid(id)
+            a = persist.get_article_by_id(id)
             try:
                 updated_article = Article(**a.copy())
             except Exception:
                 print()
-                print(logger.ERROR(f"Error in parsing article. PMID = {id}"))
+                print(logger.ERROR(f"Error in parsing article. ID = {id}"))
                 raise Exception("Article Not Parsed.")
             try:
                 current_state = updated_article.FlagAffiliationMining
@@ -254,7 +236,7 @@ def go_affiliation_mining(method: str = "Simple",proccess_bar=True):
 
             if proccess_bar:
                 bar.label = (
-                    f"Article {updated_article.PMID} affiliation mining."
+                    f"Article {id} affiliation mining."
                 )
                 bar.update(1)
 
@@ -263,17 +245,14 @@ def go_affiliation_mining(method: str = "Simple",proccess_bar=True):
 
             if current_state is None or current_state == -1 or current_state == 0:
                 if method == "Simple":
-                    updated_article = state_manager.affiliation_mining(updated_article)
-                    persist.update_article_by_pmid(
-                        updated_article, updated_article.PMID
-                    )
+                    updated_article = state_manager.affiliation_mining(
+                        updated_article)
+                    persist.update_article_by_id(updated_article, id)
                 elif method == "Titipata":
                     updated_article = state_manager.affiliation_mining_titipata(
                         updated_article
                     )
-                    persist.update_article_by_pmid(
-                        updated_article, updated_article.PMID
-                    )
+                    persist.update_article_by_id(updated_article, id)
 
             elif current_state == 1:
                 pass
@@ -288,17 +267,9 @@ def go_affiliation_mining(method: str = "Simple",proccess_bar=True):
                 persist.update_article_by_pmid(updated_article,
                                                updated_article.PMID)
                 persist.refresh()
-                exc_type, exc_value, exc_tb = sys.exc_info()
-                print()
-                logger.ERROR(f"Error {exc_type}")
-                logger.ERROR(f"Error {exc_value}")
+                print_error()
 
             else:
                 persist.refresh()
-                exc_type, exc_value, exc_tb = sys.exc_info()
-                print()
-                print(exc_tb.tb_lineno)
-                logger.ERROR(f"Error {exc_type}")
-                logger.ERROR(f"Error {exc_value}")
-        elapsed = time.time() - start_time
+                print_error()
     persist.refresh()

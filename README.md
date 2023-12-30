@@ -210,7 +210,7 @@ output:
 
 #### Get and Save list of article identifier base on search term
 
-Get list of article identifier (PMID) base on search term and save into knowledge repository in first state (0):
+Get list of article identifier like PMID base on search term and save into knowledge repository in first state (0):
 
 use this command:
 ```shell
@@ -234,13 +234,11 @@ The preparation of the article for extracting the graph has different steps that
 |State|Short Description|Description|
 |-----|-----------------|-----------|
 |0    |article identifier saved|At this stage, the article object stored in the data bank has only one identifier, such as the PMID or DOI identifier|
-|1    |article details article info saved (json Form)|Metadata related to the article is stored in the `OreginalArticle` field from the `SourceBank`, but it has not been parsed yet|
-|2    |parse details info||
-|3    |Get Citation||
-<!-- |4|NER Title||
-|5|extract graph|| -->
-|-1   |Error|if error happend in move state 1 to 2|
-
+|1    |article details article info saved (json Form)|Metadata related to the article is stored in the `OriginalArticle` field from the `SourceBank`, but it has not been parsed yet|
+|2    |parse details info|The contents of the `OriginalArticle` field are parsed and placed in the fields of the Article object.|
+|3    |Get Citation      ||
+|-1   |Error             |if error happend in move state 1 to 2|
+|-2   |Error             |if error happend in move state 2 to 3|
 
 There are two ways to run a pipeline. In the first method, we give the number of the existing state and all the articles in this state move forward one state.
 In another method, we give the final state number and each article under that state starts to move until it reaches the final state number that we specified.

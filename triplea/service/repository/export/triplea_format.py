@@ -191,12 +191,12 @@ def export_triplea_csv(proccess_bar=False, limit_sample=0) -> str:  # noqa: C901
 def export_triplea_csvs_in_relational_mode_save_file(  # noqa: C901
     output_file: str, proccess_bar=True, limit_sample=0
 ):  # noqa: C901
-    l_pmid = persist.get_all_article_pmid_list()
-    logger.DEBUG(f"{str(len(l_pmid))} Article(s) Selected.")
+    l_id = persist.get_all_article_id_list()
+    logger.DEBUG(f"{str(len(l_id))} Article(s) Selected.")
 
-    total_article_in_current_state = len(l_pmid)
+    total_article_in_current_state = len(l_id)
 
-    bar = click.progressbar(length=len(l_pmid), show_pos=True, show_percent=True)
+    bar = click.progressbar(length=len(l_id), show_pos=True, show_percent=True)
     max_refresh_point = 500
     refresh_point = 0
     csv = ""
@@ -248,7 +248,7 @@ def export_triplea_csvs_in_relational_mode_save_file(  # noqa: C901
     f_keywords = open(keywords_file, "a", encoding="utf-8")
     f_topics = open(topics_file, "a", encoding="utf-8")
 
-    for id in l_pmid:
+    for id in l_id:
         try:
             n = n + 1
 
@@ -270,7 +270,7 @@ def export_triplea_csvs_in_relational_mode_save_file(  # noqa: C901
                 if n > limit_sample:
                     break
 
-            a = persist.get_article_by_pmid(id)
+            a = persist.get_article_by_id(id)
             # a = persist.get_article_by_pmid('18194356') # CRITICAL
 
             try:

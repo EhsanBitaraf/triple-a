@@ -181,6 +181,13 @@ def move_state_forward(
                 updated_article = state_manager.get_citation(updated_article)
                 # persist.update_article_by_pmid(updated_article,
                 #                                updated_article.PMID)
+            elif current_state == -2:  # Net state: Get Citation
+                updated_article = state_manager.get_citation(updated_article)
+
+            else:
+                print()
+                logger.ERROR(f"Error undefine current state.")
+
 
             persist.update_article_by_id(updated_article,
                                         id)
@@ -189,8 +196,8 @@ def move_state_forward(
             if current_state == 1:
                 updated_article = Article(**a.copy())
                 updated_article.State = -1
-                persist.update_article_by_pmid(updated_article,
-                                               updated_article.PMID)
+                persist.update_article_by_id(updated_article,
+                                                        id)
                 persist.refresh()
                 exc_type, exc_value, exc_tb = sys.exc_info()
                 print()
@@ -208,8 +215,8 @@ def move_state_forward(
             elif current_state == 2:
                 updated_article = Article(**a.copy())
                 updated_article.State = -2
-                persist.update_article_by_pmid(updated_article,
-                                               updated_article.PMID)
+                persist.update_article_by_id(updated_article,
+                                                        id)
                 persist.refresh()
                 exc_type, exc_value, exc_tb = sys.exc_info()
                 print()

@@ -2,11 +2,21 @@
 All notable changes to this project will be documented in this file.
 
 ## v0.0.5 2023-12-28
+
+### Task
+- add `get_article_id_list_by_cstate` replace `get_article_pmid_list_by_cstate`
+- add `get_article_by_id` replace `get_article_by_pmid`
+- add `get_all_article_id_list` replace `get_all_article_pmid_list`
+- move_state_forward may be error in TinyDB
+- check all TinyDB
+
 ### Improvements
+- Add print_error in utils.general for unified Error printing
 - Add Published, ArxivID, SourceBank field in Article
 
 
 ### Bug Fixes
+- Fix session of extract_triple
 
 ## v0.0.4 2023-10-14
 ### Improvements

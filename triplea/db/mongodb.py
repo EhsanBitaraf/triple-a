@@ -6,7 +6,7 @@ from triplea.db.database import DataBase
 from triplea.config.settings import SETTINGS
 from triplea.schemas.article import Article
 from triplea.schemas.node import Edge, Node
-
+from bson import json_util
 
 class DB_MongoDB(DataBase):
     _connection_url = SETTINGS.AAA_MONGODB_CONNECTION_URL
@@ -81,6 +81,24 @@ class DB_MongoDB(DataBase):
             return []
         else:
             return new_la
+        
+    def get_article_id_list_by_cstate(self, state: int, tag_field: str):
+        if state is None or state == 0:
+            myquery = {"$or": [{tag_field: None}, {tag_field: 0}]}
+        else:
+            myquery = {tag_field: state}
+
+        cursor = self.col_article.find(myquery, projection={"PMID": "$PMID", "_id": 1})
+
+        la = list(cursor)
+        new_la = []
+        for c in la:
+            new_la.append(c["_id"])
+
+        if len(new_la) == 0:
+            return []
+        else:
+            return new_la        
 
     def get_all_article_pmid_list(self):
         myquery = {}
@@ -95,6 +113,20 @@ class DB_MongoDB(DataBase):
             return []
         else:
             return new_la
+    
+    def get_all_article_id_list(self):
+        myquery = {}
+        cursor = self.col_article.find(myquery, projection={"PMID": "$PMID", "_id": 1})
+
+        la = list(cursor)
+        new_la = []
+        for c in la:
+            new_la.append(c["_id"])
+
+        if len(new_la) == 0:
+            return []
+        else:
+            return new_la        
 
     def get_count_article_by_state(self, state: int):
         myquery = {"State": state}
@@ -126,21 +158,30 @@ class DB_MongoDB(DataBase):
             la = list(cursor)
             return la[0]
 
-    def update_article_by_pmid(self, article: Article, pmid: str):
-        article_json = json.loads(
-            json.dumps(article, default=lambda o: o.__dict__, sort_keys=True, indent=4)
-        )
-        myquery = {"PMID": pmid}
-        r = self.col_article.replace_one(myquery, article_json)
-        return r.raw_result
+## Temporary
+    # def update_article_by_pmid(self, article: Article, pmid: str):
+    #     article_json = json.loads(
+    #         json.dumps(article,
+    #                    default=lambda o: o.__dict__,
+    #                    sort_keys=True,
+    #                    indent=4)
+    #     )
+    #     myquery = {"PMID": pmid}
+    #     r = self.col_article.replace_one(myquery, article_json)
+    #     return r.raw_result
 
-    def update_article_by_id(self, article: Article, id: str):
-        article_json = json.loads(
-            json.dumps(article,
-                       default=lambda o: o.__dict__,
-                       sort_keys=True,
-                       indent=4)
-        )
+    def update_article_by_id(self, article: Article, id):
+        # article_json = json.loads(
+        #     # json.dumps(article,
+        #     #            default=lambda o: o.__dict__,
+        #     #            sort_keys=True,
+        #     #            indent=4)
+            
+        #     # json.dumps(article, default=json_util.default)
+            
+        # )
+        # TODO Last way of serialization
+        article_json = article.dict() 
         myquery = {"_id": id}
         r = self.col_article.replace_one(myquery, article_json)
         return r.raw_result
@@ -243,9 +284,10 @@ class DB_MongoDB(DataBase):
 
     # region Triple
     def add_new_triple(self, edge: dict) -> int:
-        triple_json = json.loads(
-            json.dumps(edge, default=lambda o: o.__dict__, sort_keys=True, indent=4)
-        )
+        # triple_json = json.loads(
+        #     json.dumps(edge, default=lambda o: o.__dict__, sort_keys=True, indent=4)
+        # )
+        triple_json = edge
         result = self.col_triple.insert_one(triple_json)
         return result.inserted_id
 

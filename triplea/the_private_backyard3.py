@@ -60,9 +60,11 @@ if __name__ == "__main__":
     # text= urllib.parse.quote(text)
     # get_article_list_from_arxiv_all_store_to_arepo(text,20,10)
 
-    data = persist.get_article_group_by_state()
-    print(data)
+    # data = persist.get_article_group_by_state()
+    # print(data)
 
     # move_state_forward(-1)
+
+    move_state_forward(0)
 
 

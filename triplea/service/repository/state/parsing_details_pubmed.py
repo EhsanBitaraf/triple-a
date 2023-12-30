@@ -121,7 +121,7 @@ def _convert_dict_to_reffrence():
 
 def parsing_details_pubmed(article: Article) -> Article:  # noqa: C901
     # current state may be 1 
-    article.State = 2
+    article.State = 2 # next state
     backward_state = -1
     data = article.OreginalArticle
 

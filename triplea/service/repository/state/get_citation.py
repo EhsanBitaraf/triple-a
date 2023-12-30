@@ -17,7 +17,9 @@ def _get_citation_pubmed(article: Article):
     :type article: Article
     :return: Article with list of CitedBy
     """
-    article.State = 3
+    # previous state is 2
+    article.State = 3 # next state
+    backward_state = -2
     pmid = article.PMID
     if pmid is not None:
         if article.CiteCrawlerDeep is None:
@@ -26,7 +28,7 @@ def _get_citation_pubmed(article: Article):
             try:
                 lc = get_cited_article_from_pubmed(pmid)
             except Exception:
-                article.State = -3
+                article.State = backward_state
                 exc_type, exc_value, exc_tb = sys.exc_info()
                 logger.ERROR(f"Error {exc_type} Value : {exc_value}")
                 logger.ERROR(f"Error {exc_tb}")
@@ -63,7 +65,9 @@ def _get_citation_pubmed(article: Article):
 
 
 def _get_citation_arxiv(article: Article):
-    article.State = 3
+    # previous state is 2
+    article.State = 3 # next state
+    backward_state = -2
     # I still haven't found an operational idea to get 
     # citations of arxiv articles, maybe through google.
     return article

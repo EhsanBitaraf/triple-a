@@ -1,8 +1,7 @@
 
 from triplea.schemas.article import Article, SourceBankType
-from triplea.service.repository.state import (parsing_details_arxiv,
-                                              parsing_details_pubmed)
-
+from triplea.service.repository.state.parsing_details_arxiv import parsing_details_arxiv
+from triplea.service.repository.state.parsing_details_pubmed import parsing_details_pubmed
 
 def parsing_details(article: Article) -> Article:
     # this is dispatcher function

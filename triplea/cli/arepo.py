@@ -112,7 +112,7 @@ def arepo(command, pmid, output):
             logger.ERROR("Not found.")
             sys.exit(1)
             return
-
+ 
         output_data = a
         a_title = a["Title"]
         a_journal = a["Journal"]

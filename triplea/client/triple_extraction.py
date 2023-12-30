@@ -3,9 +3,10 @@ import requests
 import json
 from triplea.service.click_logger import logger
 
+session = requests.Session()
 
 def extract_triple(text: str) -> list:
-    URL = SETTINGS.AAA_TOPIC_EXTRACT_ENDPOINT
+    URL = SETTINGS.AAA_TOPIC_EXTRACT_ENDPOINT + "/triple/"
 
     # data to be sent to api
     data = {
@@ -28,7 +29,7 @@ def extract_triple(text: str) -> list:
 
     # sending get request and saving the response as response object
     try:
-        r = requests.post(
+        r = session.post(
             url=URL, data=json.dumps(data), headers=headers, proxies=proxy_servers
         )
     except Exception:

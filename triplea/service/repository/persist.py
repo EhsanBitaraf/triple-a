@@ -52,10 +52,16 @@ def get_article_pmid_list_by_cstate(state: int, tag_field: str):
     """
     return db.get_article_pmid_list_by_cstate(state, tag_field)
 
+def get_article_id_list_by_cstate(state: int, tag_field: str):
+    return db.get_article_id_list_by_cstate(state, tag_field)
+
 
 def get_all_article_pmid_list():
     return db.get_all_article_pmid_list()
 
+
+def get_all_article_id_list():
+    return db.get_all_article_id_list()
 
 def get_count_article_by_state(state: int) -> int:
     """
@@ -82,7 +88,7 @@ def get_article_by_pmid(pmid: str):
     return db.get_article_by_pmid(pmid)
 
 
-def get_article_by_id(id: str):
+def get_article_by_id(id):
     return db.get_article_by_id(id)
 
 def update_article_by_pmid(article, pmid: str):
@@ -181,13 +187,69 @@ def get_article_group_by_state():
     return db.get_article_group_by_state()
 
 
+
+
 # region Extra Article Method
 
 
 def change_flag_extract_topic(current_value, set_value):
     return db.change_flag_extract_topic(current_value, set_value)
 
+def print_article_info_from_repo():
+    logger.INFO(
+        "Number of article in article repository is "
+        + str(db.get_all_article_count())
+    )
 
+    data = db.get_article_group_by_state()
+    for i in range(-3, 7):
+        for s in data:
+            if s["State"] == i:
+                w = 1
+                n = s["n"]
+                if n != 0:
+                    logger.INFO(f"{n} article(s) in state {i}.")    
+
+
+
+def print_article_short_description(id:str, id_type:str):
+    id_type = id_type.lower()
+    if id_type == "pmid":
+        a = db.get_article_by_pmid(id)
+    elif id_type == "arxiv":
+        pass
+    else:
+        raise NotImplementedError    
+
+    if a is not None:
+        a_title = a["Title"]
+        a_journal = a["Journal"]
+        a_doi = a["DOI"]
+        a_pmid = a["PMID"]
+        a_pmc = a["PMC"]
+        a_state = a["State"]
+
+        logger.INFO("")
+        logger.INFO(f"Title   : {a_title}")
+        logger.INFO(f"Journal : {a_journal}")
+        logger.INFO(f"DOI     : {a_doi}")
+        logger.INFO(f"PMID    : {a_pmid}")
+        logger.INFO(f"PMC     : {a_pmc}")
+        logger.INFO(f"State   : {a_state}")
+
+        if "Authors" in a:
+            if a["Authors"] is not None:
+                authors = ""
+                for author in a["Authors"]:
+                    authors = authors + author["FullName"] + ", "
+                logger.INFO(f"Authors : {authors}")
+
+        if "Keywords" in a:
+            if a["Keywords"] is not None:
+                keywords = ""
+                for k in a["Keywords"]:
+                    keywords = keywords + k["Text"] + ", "
+                logger.INFO(f"Keywords: {keywords}")
 # endregion
 
 

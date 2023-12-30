@@ -1,3 +1,6 @@
+import sys
+from triplea.service.click_logger import logger
+
 def safe_csv(text: str) -> str:
     if text is None:
         return ""
@@ -9,3 +12,19 @@ def safe_csv(text: str) -> str:
             text = f'"{text[:-1]}"'
 
     return text
+
+
+def print_error():
+    exc_type, exc_value, exc_tb = sys.exc_info()
+    print()
+    logger.ERROR(f"Error {exc_type}")
+    logger.ERROR(f"Error {exc_value}")  
+
+                # exc_type, exc_value, exc_tb = sys.exc_info()
+                # print()
+                # print(exc_tb.tb_lineno)
+                # print()
+                # traceback.print_tb(exc_tb)
+                # logger.ERROR(f"Error {exc_type}")
+                # logger.ERROR(f"Error {exc_value}")
+                # logger.ERROR(f"Error {exc_tb}")

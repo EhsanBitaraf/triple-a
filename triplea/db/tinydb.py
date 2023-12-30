@@ -65,11 +65,33 @@ class DB_TinyDB(DataBase):
             l_pmid = [a.get("PMID") for a in self.db.search(q[tag_field] == state)]
         return l_pmid
 
+
+    def get_article_id_list_by_cstate(self, state: int, tag_field: str):
+        q = Query()
+        if state is None or state == 0:
+            query = (
+                (Query()[tag_field] == 0)
+                | (Query()[tag_field] is None)
+                | (~Query()[tag_field].exists())
+            )
+            l_pmid = [a.get("id") for a in self.db.search(query)]
+        else:
+            l_pmid = [a.get("id") for a in self.db.search(q[tag_field] == state)]
+        return l_pmid        
+
+
     def get_all_article_pmid_list(self):
         l_all = self.db.all()
         l_pmid = []
         for i in l_all:
             l_pmid.append(i["PMID"])
+        return l_pmid
+
+    def get_all_article_id_list(self):
+        l_all = self.db.all()
+        l_pmid = []
+        for i in l_all:
+            l_pmid.append(i["id"])
         return l_pmid
 
     def get_count_article_by_state(self, state: int):
