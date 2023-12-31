@@ -1,4 +1,3 @@
-from typing import Optional
 from triplea.db.dal import db
 from triplea.schemas.article import Article
 from triplea.schemas.node import Edge, Node
@@ -52,6 +51,7 @@ def get_article_pmid_list_by_cstate(state: int, tag_field: str):
     """
     return db.get_article_pmid_list_by_cstate(state, tag_field)
 
+
 def get_article_id_list_by_cstate(state: int, tag_field: str):
     return db.get_article_id_list_by_cstate(state, tag_field)
 
@@ -62,6 +62,7 @@ def get_all_article_pmid_list():
 
 def get_all_article_id_list():
     return db.get_all_article_id_list()
+
 
 def get_count_article_by_state(state: int) -> int:
     """
@@ -91,6 +92,7 @@ def get_article_by_pmid(pmid: str):
 def get_article_by_id(id):
     return db.get_article_by_id(id)
 
+
 def update_article_by_pmid(article, pmid: str):
     """
     This function updates an article in the database by its pmid
@@ -102,8 +104,10 @@ def update_article_by_pmid(article, pmid: str):
     """
     return db.update_article_by_pmid(article, pmid)
 
+
 def update_article_by_id(article, id: str):
     return db.update_article_by_id(article, id)
+
 
 # # Expire Function
 # def insert_new_pmid(
@@ -147,8 +151,7 @@ def update_article_by_id(article, id: str):
 #         return db.add_new_article(a)
 
 
-
-def insert_new_pubmed(article:Article):
+def insert_new_pubmed(article: Article):
     # check PMID is exist
     if db.is_article_exist_by_pmid(article.PMID):
         # logger.DEBUG(f"The article With PMID {article.PMID} already exists.",
@@ -158,7 +161,7 @@ def insert_new_pubmed(article:Article):
         return db.add_new_article(article)
 
 
-def insert_new_arxiv(article:Article):
+def insert_new_arxiv(article: Article):
     # check Arxiv ID is exist
     if db.is_article_exist_by_arxiv_id(article.ArxivID):
         # logger.DEBUG(
@@ -187,39 +190,36 @@ def get_article_group_by_state():
     return db.get_article_group_by_state()
 
 
-
-
 # region Extra Article Method
 
 
 def change_flag_extract_topic(current_value, set_value):
     return db.change_flag_extract_topic(current_value, set_value)
 
+
 def print_article_info_from_repo():
     logger.INFO(
-        "Number of article in article repository is "
-        + str(db.get_all_article_count())
+        "Number of article in article repository is " + str(db.get_all_article_count())
     )
 
     data = db.get_article_group_by_state()
     for i in range(-3, 7):
         for s in data:
             if s["State"] == i:
-                w = 1
+                # w = 1
                 n = s["n"]
                 if n != 0:
-                    logger.INFO(f"{n} article(s) in state {i}.")    
+                    logger.INFO(f"{n} article(s) in state {i}.")
 
 
-
-def print_article_short_description(id:str, id_type:str):
+def print_article_short_description(id: str, id_type: str):
     id_type = id_type.lower()
     if id_type == "pmid":
         a = db.get_article_by_pmid(id)
     elif id_type == "arxiv":
         pass
     else:
-        raise NotImplementedError    
+        raise NotImplementedError
 
     if a is not None:
         a_title = a["Title"]
@@ -250,6 +250,8 @@ def print_article_short_description(id:str, id_type:str):
                 for k in a["Keywords"]:
                     keywords = keywords + k["Text"] + ", "
                 logger.INFO(f"Keywords: {keywords}")
+
+
 # endregion
 
 

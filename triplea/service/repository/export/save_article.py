@@ -4,8 +4,6 @@ from triplea.schemas.article import Article
 from triplea.utils.general import JSONEncoder
 
 
-
-
 def save_article2json(article: Article, output_file: str):
     article_json = json.loads(
         json.dumps(article, default=lambda o: o.__dict__, sort_keys=True, indent=4)

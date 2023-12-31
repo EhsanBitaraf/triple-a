@@ -16,9 +16,7 @@ class Node(BaseModel):
     #         sort_keys=True, indent=4)
 
     def json(self):
-        return {"Type": self.Type,
-                "Identifier": self.Identifier,
-                "Name": self.Name}
+        return {"Type": self.Type, "Identifier": self.Identifier, "Name": self.Name}
 
     # class Config:
     #     json_encoders = {

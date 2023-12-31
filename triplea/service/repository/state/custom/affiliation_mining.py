@@ -258,8 +258,8 @@ def affiliation_mining1(article: Article):
                             # print(aff.Text)
                             # raise NotImplementedError
 
-                        print(f'p3 : {part3}')
-                        print(f'City : {city}')
+                        print(f"p3 : {part3}")
+                        print(f"City : {city}")
                         print(f"university : {university}")
                         print(f"hospital : {hospital}")
                         print(f"institute : {institute}")

@@ -1,5 +1,6 @@
 import time
 from typing import Optional
+
 # from triplea.client.pubmed import get_article_list_from_pubmed
 
 import triplea.client.pubmed as PubmedClient
@@ -27,7 +28,7 @@ def _save_article_pmid_list_in_arepo(data: dict) -> None:
         n = 0
         for pmid in data["esearchresult"]["idlist"]:
             n = n + 1
-            article = Article() 
+            article = Article()
             article.State = 0
             article.SourceBank = SourceBankType.PUBMED
             article.PMID = pmid
@@ -36,7 +37,7 @@ def _save_article_pmid_list_in_arepo(data: dict) -> None:
             article.CiteCrawlerDeep = SETTINGS.AAA_CITED_CRAWLER_DEEP
 
             i = persist.insert_new_pubmed(article)
-            ## Old Approch
+            # # Old Approch
             # i = persist.insert_new_pmid(
             #     pmid,
             #     querytranslation=qt,
@@ -97,29 +98,24 @@ def get_article_list_from_pubmed_all_store_to_arepo(
 
     for i in range(1, round):
         time.sleep(sleep_time)
-        logger.INFO(
-            "Round ("
-            + str(i)
-            + ") : "
-            + "Get another "
-            + str(retmax)
-            + " record (Total "
-            + str(i * retmax)
-            + " record)",
-            deep=13,
-        )
+        logger.INFO(f"""Round ({str(i)}) : Get another {str(
+            retmax
+            )} record (Total {str(i * retmax)} record)""", deep=13)
         start = (i * retmax) - retmax
-        chunkdata = PubmedClient.get_article_list_from_pubmed(start, retmax, searchterm)
+        chunkdata = PubmedClient.get_article_list_from_pubmed(start,
+                                                              retmax,
+                                                              searchterm)
         _save_article_pmid_list_in_arepo(chunkdata)
 
     # for last round
     start = ((i + 1) * retmax) - retmax
     mid = total - (retmax * round)
-    logger.INFO(f"""Round ({str(i + 1)}):
-                 Get another {str(mid)} record (total {str(total)} record)""",
-                deep=13)
-    chunkdata = PubmedClient.get_article_list_from_pubmed(start, retmax, searchterm)
-    _save_article_pmid_list_in_arepo(chunkdata)
+    if mid > 0:  # Check last round
+        logger.INFO(f"""Round ({str(i + 1)}): Get another {str(mid)} record (total {str(total)} record)""", deep=13)  # noqa: E501
+        chunkdata = PubmedClient.get_article_list_from_pubmed(start,
+                                                              retmax,
+                                                              searchterm)
+        _save_article_pmid_list_in_arepo(chunkdata)
 
 
 if __name__ == "__main__":

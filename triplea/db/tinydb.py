@@ -10,6 +10,7 @@ from triplea.schemas.node import Edge, Node
 
 from triplea.config.settings import DB_ROOT_PATH
 from triplea.config.settings import SETTINGS
+from triplea.utils.general import JSONEncoder
 
 
 class DB_TinyDB(DataBase):
@@ -19,7 +20,7 @@ class DB_TinyDB(DataBase):
             os.makedirs(DB_ROOT_PATH)
 
         db = TinyDB(
-            os.path.join(DB_ROOT_PATH , SETTINGS.AAA_TINYDB_FILENAME),
+            os.path.join(DB_ROOT_PATH, SETTINGS.AAA_TINYDB_FILENAME),
             storage=CachingMiddleware(JSONStorage),
         )
     else:
@@ -27,10 +28,7 @@ class DB_TinyDB(DataBase):
 
     def add_new_article(self, article: Article) -> int:
         article_json = json.loads(
-            json.dumps(article,
-                       default=lambda o: o.__dict__,
-                       sort_keys=True,
-                       indent=4)
+            json.dumps(article, default=lambda o: o.__dict__, sort_keys=True, indent=4)
         )
         # article_json = json.dumps(article.json())
         return self.db.insert(article_json)
@@ -46,7 +44,7 @@ class DB_TinyDB(DataBase):
 
     def get_article_id_list_by_state(self, state: int):
         q = Query()
-        l_pmid = [a.get("ArxivID")  for a in self.db.search(q.State == state)]
+        l_pmid = [a.doc_id for a in self.db.search(q.State == state)]
         return l_pmid
 
     def get_article_pmid_list_by_cstate(self, state: int, tag_field: str):
@@ -55,30 +53,21 @@ class DB_TinyDB(DataBase):
             # query = (Query().FlagAffiliationMining == 0)
             # | (Query().FlagAffiliationMining == None)
             # | (~Query().FlagAffiliationMining.exists())
-            query = (
-                (Query()[tag_field] == 0)
-                | (Query()[tag_field] is None)
-                | (~Query()[tag_field].exists())
-            )
+            query = ((Query()[tag_field] == 0) | (Query()[tag_field] == None) | (~Query()[tag_field].exists()))  # noqa: E501,E711
             l_pmid = [a.get("PMID") for a in self.db.search(query)]
         else:
             l_pmid = [a.get("PMID") for a in self.db.search(q[tag_field] == state)]
         return l_pmid
 
-
     def get_article_id_list_by_cstate(self, state: int, tag_field: str):
         q = Query()
         if state is None or state == 0:
-            query = (
-                (Query()[tag_field] == 0)
-                | (Query()[tag_field] is None)
-                | (~Query()[tag_field].exists())
-            )
-            l_pmid = [a.get("id") for a in self.db.search(query)]
+            # is None = raise exception
+            query = ((Query()[tag_field] == 0) | (Query()[tag_field] == None) | (~Query()[tag_field].exists()))  # noqa: E711,E501
+            l_id = [a.doc_id for a in self.db.search(query)]
         else:
-            l_pmid = [a.get("id") for a in self.db.search(q[tag_field] == state)]
-        return l_pmid        
-
+            l_id = [a.doc_id for a in self.db.search(q[tag_field] == state)]
+        return l_id
 
     def get_all_article_pmid_list(self):
         l_all = self.db.all()
@@ -89,10 +78,10 @@ class DB_TinyDB(DataBase):
 
     def get_all_article_id_list(self):
         l_all = self.db.all()
-        l_pmid = []
+        l_id = []
         for i in l_all:
-            l_pmid.append(i["id"])
-        return l_pmid
+            l_id.append(i.doc_id)
+        return l_id
 
     def get_count_article_by_state(self, state: int):
         q = Query()
@@ -102,10 +91,9 @@ class DB_TinyDB(DataBase):
     def get_article_by_pmid(self, pmid: str):
         q = Query()
         return self.db.get(q.PMID == pmid)
-    
+
     def get_article_by_id(self, id: str):
-        q = Query()
-        return self.db.get(q.id == id)
+        return self.db.get(doc_id=id)
 
     def update_article_by_pmid(self, article: Article, pmid: str):
         article_json = json.loads(
@@ -116,14 +104,10 @@ class DB_TinyDB(DataBase):
 
     def update_article_by_id(self, article: Article, id: str):
         article_json = json.loads(
-            json.dumps(article,
-                       default=lambda o: o.__dict__,
-                       sort_keys=True,
-                       indent=4)
+            json.dumps(article, cls=JSONEncoder, sort_keys=True, indent=4)
         )
-        q = Query()
-        return self.db.update(article_json, q.ID == id)
 
+        return self.db.update(article_json, doc_ids=[id])
 
     def is_article_exist_by_pmid(self, pmid: str) -> bool:
         """
@@ -135,8 +119,8 @@ class DB_TinyDB(DataBase):
         """
         q = Query()
         return self.db.contains(q.PMID == pmid)
-    
-    def is_article_exist_by_arxiv_id(self,id:str)->bool:
+
+    def is_article_exist_by_arxiv_id(self, id: str) -> bool:
         q = Query()
         return self.db.contains(q.ArxivID == id)
 
@@ -156,6 +140,8 @@ class DB_TinyDB(DataBase):
         )
 
     # endregion
+
+    # region Node
 
     def add_new_node(self, node: Node) -> int:
         node_json = json.loads(
@@ -177,12 +163,13 @@ class DB_TinyDB(DataBase):
         table = self.db.table("node")
         return table.all()
 
+    # endregion
+
+    # region Edge
+
     def add_new_edge(self, edge: Edge) -> int:
         edge_json = json.loads(
-            json.dumps(edge,
-                       default=lambda o: o.__dict__,
-                       sort_keys=True,
-                       indent=4)
+            json.dumps(edge, default=lambda o: o.__dict__, sort_keys=True, indent=4)
         )
         table = self.db.table("edge")
         return table.insert(edge_json)
@@ -200,6 +187,19 @@ class DB_TinyDB(DataBase):
         table = self.db.table("edge")
         return table.all()
 
+    # endregion
+
+    # region Triple
+    def add_new_triple(self, edge: dict) -> int:
+        # triple_json = json.loads(
+        #     json.dumps(edge, default=lambda o: o.__dict__, sort_keys=True, indent=4)
+        # )
+        table = self.db.table("triple")
+        triple_json = edge
+        return table.insert(triple_json)
+
+    # endregion
+
     def close(self):
         self.db.close()
 
@@ -209,7 +209,7 @@ class DB_TinyDB(DataBase):
     def refresh(self):
         self.db.close()
         self.db = TinyDB(
-            os.path.join(DB_ROOT_PATH , SETTINGS.AAA_TINYDB_FILENAME),
+            os.path.join(DB_ROOT_PATH, SETTINGS.AAA_TINYDB_FILENAME),
             storage=CachingMiddleware(JSONStorage),
         )
 

@@ -18,7 +18,7 @@ def _get_citation_pubmed(article: Article):
     :return: Article with list of CitedBy
     """
     # previous state is 2
-    article.State = 3 # next state
+    article.State = 3  # next state
     backward_state = -2
     pmid = article.PMID
     if pmid is not None:
@@ -66,11 +66,13 @@ def _get_citation_pubmed(article: Article):
 
 def _get_citation_arxiv(article: Article):
     # previous state is 2
-    article.State = 3 # next state
-    backward_state = -2
-    # I still haven't found an operational idea to get 
+    article.State = 3  # next state
+    # backward_state = -2
+
+    # I still haven't found an operational idea to get
     # citations of arxiv articles, maybe through google.
     return article
+
 
 def get_citation(article: Article):
     # this is dispatcher function
@@ -83,5 +85,5 @@ def get_citation(article: Article):
         updated_article = _get_citation_arxiv(article)
     else:
         raise NotImplementedError
-    
+
     return updated_article

@@ -19,9 +19,7 @@ def graph_extract_article_country(article: Article) -> dict:
     affiliation_list = get_structured_affiliation(article)
 
     # affiliation_list = Emmanuel(affiliation_list)
-    affiliation_list = [
-        i for n, i in enumerate(affiliation_list) if i not in affiliation_list[n + 1:]
-    ]
+    affiliation_list = [i for n, i in enumerate(affiliation_list) if i not in affiliation_list[n + 1:]]  # noqa: E501
 
     for af in affiliation_list:
         if "country" in af:

@@ -30,12 +30,7 @@ def _convert_dict_to_class_affiliation(data: dict) -> Affiliation:
     if aff_part_number > 6:
         affiliation.Has_Extra = True
 
-    pre_hash = (
-        str(affiliation.Part1)
-        + str(affiliation.Part2)
-        + str(affiliation.Part3)
-        + str(affiliation.Part4)
-    )
+    pre_hash = (str(affiliation.Part1) + str(affiliation.Part2) + str(affiliation.Part3) + str(affiliation.Part4))  # noqa: E501
     affiliation.HashID = str(hash(pre_hash))
     return affiliation
 
@@ -120,8 +115,8 @@ def _convert_dict_to_reffrence():
 
 
 def parsing_details_pubmed(article: Article) -> Article:  # noqa: C901
-    # current state may be 1 
-    article.State = 2 # next state
+    # current state may be 1
+    article.State = 2  # next state
     backward_state = -1
     data = article.OreginalArticle
 

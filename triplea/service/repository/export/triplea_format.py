@@ -78,11 +78,7 @@ def export_triplea_csv(proccess_bar=False, limit_sample=0) -> str:  # noqa: C901
     total_article_in_current_state = len(l_pmid)
     refresh_point = 0
     csv = ""
-    csv = (
-        csv
-        + """key,title,authors,pmid,year,publisher,url,abstract,state,doi,keywords,topics"""  # noqa: E501
-        + "\n"
-    )
+    csv = (csv + """key,title,authors,pmid,year,publisher,url,abstract,state,doi,keywords,topics""" + "\n")  # noqa: E501
     n = 0
     for id in l_pmid:
         try:
@@ -171,11 +167,7 @@ def export_triplea_csv(proccess_bar=False, limit_sample=0) -> str:  # noqa: C901
                 if topics.__contains__(","):
                     topics = f'"{topics[:-1]}"'
 
-            csv = (
-                csv
-                + f"""{n},{title},{authors},{pmid},{year},{publisher},{url},{abstract},{state},{doi},{keywords},{topics}"""  # noqa: E501
-                + "\n"
-            )
+            csv = (csv + f"""{n},{title},{authors},{pmid},{year},{publisher},{url},{abstract},{state},{doi},{keywords},{topics}""" + "\n")  # noqa: E501
 
             # ------------------Select ----------------
         except Exception:
@@ -203,17 +195,10 @@ def export_triplea_csvs_in_relational_mode_save_file(  # noqa: C901
 
     refresh_point = 0
     csv = ""
-    authors_csv = (
-        "key,authors,affiliations,country,university,institute,center,hospital,department,location,email,zipcode"  # noqa: E501
-        + "\n"
-    )
+    authors_csv = ("key,authors,affiliations,country,university,institute,center,hospital,department,location,email,zipcode" + "\n")  # noqa: E501
     keywords_csv = "key,keywords" + "\n"
     topics_csv = "key,topics,rank" + "\n"
-    csv = (
-        csv
-        + """key,title,pmid,year,publisher,url,abstract,state,doi,journal_issn,journal_iso_abbreviation,language,publication_type,citation"""  # noqa: E501
-        + "\n"
-    )
+    csv = (csv + """key,title,pmid,year,publisher,url,abstract,state,doi,journal_issn,journal_iso_abbreviation,language,publication_type,citation""" + "\n")  # noqa: E501
     n = 0
     # -------------------Create File-------------------------------
     file_name = os.path.basename(output_file)
@@ -279,73 +264,70 @@ def export_triplea_csvs_in_relational_mode_save_file(  # noqa: C901
             try:
                 updated_article = Article(**a.copy())
             except Exception:
-                print()
-                print(logger.ERROR(f"Error in parsing article. ID = {id}"))
-                raise Exception("Article Not Parsed.")
+                raise Exception(f"Error in parsing article with ID = {id}")
 
             # -------------------------------------------------Parsing--------------------------------------------------
-            article= json_converter_01(updated_article)
-            title = safe_csv(article['title'])
-            year = article['year']
-            publisher = safe_csv(article['publisher'])
-            journal_issn = article['journal_issn']
-            journal_iso_abbreviation = safe_csv(article['journal_iso_abbreviation'])
-            language = safe_csv(article['language'])
-            publication_type = safe_csv(article['publication_type'])
-            url = article['url']
-            abstract= safe_csv(article['abstract'])
-            doi =  article['doi']
-            pmid =  article['pmid']
-            state =  article['state']
-            citation = article['citation_count']
+            article = json_converter_01(updated_article)
+            title = safe_csv(article["title"])
+            year = article["year"]
+            publisher = safe_csv(article["publisher"])
+            journal_issn = article["journal_issn"]
+            journal_iso_abbreviation = safe_csv(article["journal_iso_abbreviation"])
+            language = safe_csv(article["language"])
+            publication_type = safe_csv(article["publication_type"])
+            url = article["url"]
+            abstract = safe_csv(article["abstract"])
+            doi = article["doi"]
+            pmid = article["pmid"]
+            state = article["state"]
+            citation = article["citation_count"]
 
-
-            if article['authors'] is not None:
+            if article["authors"] is not None:
                 for au in updated_article.Authors:
-                    if 'affiliations' in au:
-                        first_aff = au['affiliations'][0]
-                        department = first_aff['department']
-                        hospital = first_aff['hospital']
-                        institute = first_aff['institute']
-                        country = first_aff['country']
-                        university = first_aff['university']
-                        center = first_aff['center']
-                        location = first_aff['location']
-                        email = first_aff['email']
-                        zipcode = first_aff['zipcode']
-                        aff = first_aff['text']
+                    if "affiliations" in au:
+                        first_aff = au["affiliations"][0]
+                        department = first_aff["department"]
+                        hospital = first_aff["hospital"]
+                        institute = first_aff["institute"]
+                        country = first_aff["country"]
+                        university = first_aff["university"]
+                        center = first_aff["center"]
+                        location = first_aff["location"]
+                        email = first_aff["email"]
+                        zipcode = first_aff["zipcode"]
+                        aff = first_aff["text"]
                     else:
-                        aff = None
+                        department = ""
+                        hospital = ""
+                        institute = ""
+                        country = ""
+                        university = ""
+                        center = ""
+                        location = ""
+                        email = ""
+                        zipcode = ""
+                        aff = ""
 
                     str_aff = f"{safe_csv(country)},{safe_csv(university)},{safe_csv(institute)},{safe_csv(center)},{safe_csv(hospital)},{safe_csv(department)},{safe_csv(location)},{safe_csv(email)},{safe_csv(zipcode)}"  # noqa: E501
-                    authors_csv = (
-                        authors_csv
-                        + f"{n},{safe_csv(au.FullName)},{safe_csv(aff)},{str_aff}"
-                        + "\n"
-                    )
+                    authors_csv = (authors_csv + f"{n},{safe_csv(au.FullName)},{safe_csv(aff)},{str_aff}" + "\n")  # noqa: E501
 
-            if 'keywords' in article:
-                for k in article['keywords']:
-                    if k is not None:
-                        keywords_csv = keywords_csv + f"{n},{safe_csv(k.Text)}" + "\n"  # noqa: E501
+            if "keywords" in article:
+                if article["keywords"] is not None:
+                    for k in article["keywords"]:
+                        if k is not None:
+                            keywords_csv = (
+                                keywords_csv + f"{n},{safe_csv(k.Text)}" + "\n"
+                            )  # noqa: E501
 
-            if 'topics' in article:
-                for topic in article['topics']:
+            if "topics" in article:
+                for topic in article["topics"]:
                     if topic is not None:
-                        topics_csv = (
-                            topics_csv
-                            + f"{n},{safe_csv(topic['text'])},{topic['rank']}"
-                            + "\n"
-                        )
+                        topics_csv = (topics_csv + f"{n},{safe_csv(topic['text'])},{topic['rank']}" + "\n")  # noqa: E501
 
-            csv = (
-                csv
-                + f"""{n},{title},{pmid},{year},{publisher},{url},{abstract},{state},{doi},{journal_issn},{journal_iso_abbreviation},{language},{publication_type},{citation}"""  # noqa: E501
-                + "\n"
-            )
+            csv = (csv + f"""{n},{title},{pmid},{year},{publisher},{url},{abstract},{state},{doi},{journal_issn},{journal_iso_abbreviation},{language},{publication_type},{citation}""" + "\n")  # noqa: E501
 
             if proccess_bar:
-                bar.label = "Article " + id + " , exported."
+                bar.label = f"Article {id}, exported."
                 bar.update(1)
 
             # ------------------Write to file ---------------------------------
@@ -363,7 +345,7 @@ def export_triplea_csvs_in_relational_mode_save_file(  # noqa: C901
 
         except Exception:
             print()
-            print(f"PMID : {updated_article.PMID}")
+            print(f"id : {id}")
             print_error()
 
     f_main.close()

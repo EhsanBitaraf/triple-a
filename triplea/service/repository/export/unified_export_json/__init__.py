@@ -1,15 +1,13 @@
-
-
-
-
 from triplea.schemas.article import Article, SourceBankType
 from triplea.service.repository.export.unified_export_json.arxiv import (
-    _json_converter_01_arxiv)
+    _json_converter_01_arxiv,
+)
 from triplea.service.repository.export.unified_export_json.pubmed import (
-    _json_converter_01_pubmed)
+    _json_converter_01_pubmed,
+)
 
 
-def json_converter_01(article:Article):
+def json_converter_01(article: Article):
     # Check SourceBank
     if article.SourceBank is None:
         # This is Pubmed
@@ -21,4 +19,4 @@ def json_converter_01(article:Article):
     else:
         raise NotImplementedError
 
-    return json_article 
+    return json_article

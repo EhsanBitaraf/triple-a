@@ -1,12 +1,10 @@
 import json
 from pymongo import MongoClient
-
-
 from triplea.db.database import DataBase
 from triplea.config.settings import SETTINGS
 from triplea.schemas.article import Article
 from triplea.schemas.node import Edge, Node
-from bson import json_util
+
 
 class DB_MongoDB(DataBase):
     _connection_url = SETTINGS.AAA_MONGODB_CONNECTION_URL
@@ -48,11 +46,13 @@ class DB_MongoDB(DataBase):
             return []
         else:
             return new_la
-        
+
     def get_article_id_list_by_state(self, state: int):
         myquery = {"State": state}
-        cursor = self.col_article.find(myquery, projection={"SourceBank": "$SourceBank", "_id": 1}) 
-        # TODO _id       
+        cursor = self.col_article.find(
+            myquery, projection={"SourceBank": "$SourceBank", "_id": 1}
+        )
+        # TODO _id
 
         la = list(cursor)
         new_la = []
@@ -81,7 +81,7 @@ class DB_MongoDB(DataBase):
             return []
         else:
             return new_la
-        
+
     def get_article_id_list_by_cstate(self, state: int, tag_field: str):
         if state is None or state == 0:
             myquery = {"$or": [{tag_field: None}, {tag_field: 0}]}
@@ -98,7 +98,7 @@ class DB_MongoDB(DataBase):
         if len(new_la) == 0:
             return []
         else:
-            return new_la        
+            return new_la
 
     def get_all_article_pmid_list(self):
         myquery = {}
@@ -113,7 +113,7 @@ class DB_MongoDB(DataBase):
             return []
         else:
             return new_la
-    
+
     def get_all_article_id_list(self):
         myquery = {}
         cursor = self.col_article.find(myquery, projection={"PMID": "$PMID", "_id": 1})
@@ -126,7 +126,7 @@ class DB_MongoDB(DataBase):
         if len(new_la) == 0:
             return []
         else:
-            return new_la        
+            return new_la
 
     def get_count_article_by_state(self, state: int):
         myquery = {"State": state}
@@ -158,7 +158,7 @@ class DB_MongoDB(DataBase):
             la = list(cursor)
             return la[0]
 
-## Temporary
+    # # Temporary
     # def update_article_by_pmid(self, article: Article, pmid: str):
     #     article_json = json.loads(
     #         json.dumps(article,
@@ -176,12 +176,12 @@ class DB_MongoDB(DataBase):
         #     #            default=lambda o: o.__dict__,
         #     #            sort_keys=True,
         #     #            indent=4)
-            
+
         #     # json.dumps(article, default=json_util.default)
-            
+
         # )
         # TODO Last way of serialization
-        article_json = article.dict() 
+        article_json = article.dict()
         myquery = {"_id": id}
         r = self.col_article.replace_one(myquery, article_json)
         return r.raw_result
@@ -199,14 +199,13 @@ class DB_MongoDB(DataBase):
             return True
         else:
             return False
-        
-    def is_article_exist_by_arxiv_id(self,id:str)->bool:
+
+    def is_article_exist_by_arxiv_id(self, id: str) -> bool:
         myquery = {"ArxivID": id}
         if self.col_article.count_documents(myquery) > 0:
             return True
         else:
             return False
-        
 
     def get_all_article_count(self) -> int:
         """

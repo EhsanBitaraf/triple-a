@@ -55,19 +55,12 @@ def move_state_until(end_state: int):
                 raise NotImplementedError
 
         persist.update_article_by_pmid(updated_article, updated_article.PMID)
-        bar.label = (
-            "Article "
-            + updated_article.PMID
-            + " with state "
-            + str(updated_article_current_state)
-            + " forward to "
-            + str(end_state)
-        )
+        bar.label = (f"Article {updated_article.PMID} with state {str(updated_article_current_state)} forward to {str(end_state)}")  # noqa: E501
         bar.update(1)
     persist.refresh()
 
 
-def move_state_forward(
+def move_state_forward(  # noqa: C901
     state: int,
     tps_limit: Optional[int] = 1,
     extend_by_refrence: Optional[bool] = False,
@@ -88,8 +81,8 @@ def move_state_forward(
     # old version
     # la = get_article_by_state(state)
 
-    # old version 0.0.3  
-    # l_pmid = persist.get_article_pmid_list_by_state(state) 
+    # old version 0.0.3
+    # l_pmid = persist.get_article_pmid_list_by_state(state)
     l_id = persist.get_article_id_list_by_state(state)
     total_article_in_current_state = len(l_id)
     n = 0
@@ -116,7 +109,7 @@ def move_state_forward(
 
             a = persist.get_article_by_id(id)
             # CRITICAL For Test and Debug
-            # a = persist.get_article_by_pmid('35970485') 
+            # a = persist.get_article_by_pmid('35970485')
 
             try:
                 updated_article = Article(**a.copy())
@@ -132,7 +125,7 @@ def move_state_forward(
 
             source_bank = updated_article.SourceBank
 
-            if source_bank == None:
+            if source_bank is None:
                 article_source_bank_title = "Pubmed"
                 article_identifier = updated_article.PMID
                 source_bank = SourceBankType.PUBMED
@@ -144,15 +137,8 @@ def move_state_forward(
                 article_identifier = updated_article.ArxivID
             else:
                 raise NotImplementedError
-            
-            bar.label = (
-                "Article " + article_source_bank_title + " ("
-                + article_identifier
-                + ") with state "
-                + str(current_state)
-                + " forward to "
-                + str(current_state + 1)
-            )
+
+            bar.label = (f"Article {article_source_bank_title} ({article_identifier}) with state {str(current_state)} forward to {str(current_state + 1)}")  # noqa: E501
             bar.update(1)
             # # for re run
             # if current_state == 2 : current_state = 1
@@ -186,18 +172,15 @@ def move_state_forward(
 
             else:
                 print()
-                logger.ERROR(f"Error undefine current state.")
+                logger.ERROR("Error undefine current state.")
 
-
-            persist.update_article_by_id(updated_article,
-                                        id)
+            persist.update_article_by_id(updated_article, id)
 
         except Exception:
             if current_state == 1:
                 updated_article = Article(**a.copy())
                 updated_article.State = -1
-                persist.update_article_by_id(updated_article,
-                                                        id)
+                persist.update_article_by_id(updated_article, id)
                 persist.refresh()
                 exc_type, exc_value, exc_tb = sys.exc_info()
                 print()
@@ -215,8 +198,7 @@ def move_state_forward(
             elif current_state == 2:
                 updated_article = Article(**a.copy())
                 updated_article.State = -2
-                persist.update_article_by_id(updated_article,
-                                                        id)
+                persist.update_article_by_id(updated_article, id)
                 persist.refresh()
                 exc_type, exc_value, exc_tb = sys.exc_info()
                 print()
@@ -235,6 +217,3 @@ def move_state_forward(
                 logger.ERROR(f"Error {exc_tb}")
 
     persist.refresh()
-
-
-

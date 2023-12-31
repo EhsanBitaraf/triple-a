@@ -306,9 +306,7 @@ def export_networkx_from_graphdict(
 
 # #----------------------------------------------------------------------------
 def export_networkX(
-    nodes: list[Node],
-    edges: list[Edge],
-    graph_type: Optional[str] = "directed"
+    nodes: list[Node], edges: list[Edge], graph_type: Optional[str] = "directed"
 ):
     if graph_type == "undirected":
         G = nx.Graph()

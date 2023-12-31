@@ -34,9 +34,7 @@ def graph_extract_article_cited(article: Article) -> dict:
             edge.SourceID = node_article.Identifier
             edge.DestinationID = node_cite.Identifier
             edge.Type = "CITED_BY"
-            edge.HashID = str(
-                hash(edge.SourceID + edge.DestinationID + edge.Type)
-                )
+            edge.HashID = str(hash(edge.SourceID + edge.DestinationID + edge.Type))
             edges.append(edge.dict())
 
     return {"nodes": nodes, "edges": edges}

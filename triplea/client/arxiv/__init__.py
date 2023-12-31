@@ -5,13 +5,15 @@ import json
 from triplea.service.click_logger import logger
 
 
-def get_article_list_from_arxiv(search_query: str, start: int, max_results: int) -> dict:
+def get_article_list_from_arxiv(
+    search_query: str, start: int, max_results: int
+) -> dict:
     URL = "http://export.arxiv.org/api/query?"
 
     # defining a params dict for the parameters to be sent to the API
     PARAMS = {
-        "search_query": search_query, 
-        "start": start,  
+        "search_query": search_query,
+        "start": start,
         "max_results": max_results,
     }
 
@@ -39,4 +41,3 @@ def get_article_list_from_arxiv(search_query: str, start: int, max_results: int)
         return data_dict
     else:
         raise Exception(f"Error HTTP : {r.status_code}")
-    

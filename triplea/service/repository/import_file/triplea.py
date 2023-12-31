@@ -25,9 +25,7 @@ def import_triplea_json(filename, proccess_bar=False):
         data = json.load(f)
     logger.INFO(f"{len(data)} articles have been entered.")
     if proccess_bar:
-        bar = click.progressbar(length=len(data),
-                                show_pos=True,
-                                show_percent=True)
+        bar = click.progressbar(length=len(data), show_pos=True, show_percent=True)
 
     for a in data:
         persist.create_article(a)

@@ -1,21 +1,18 @@
-
-
-
 import sys
 from triplea.schemas.article import Article, Author
 from triplea.service.click_logger import logger
-import triplea.service.repository.persist as persist
 
 
-def _parse_arxiv_author(single_author_dict:dict)-> Author:
+def _parse_arxiv_author(single_author_dict: dict) -> Author:
     a = Author()
     a.FullName = single_author_dict["name"]
     # TODO affilation
     return a
 
+
 def parsing_details_arxiv(article: Article) -> Article:
-    # current state may be 1 
-    article.State = 2 # next state
+    # current state may be 1
+    article.State = 2  # next state
     backward_state = -1
     data = article.OreginalArticle
 
@@ -23,7 +20,7 @@ def parsing_details_arxiv(article: Article) -> Article:
         print()
         logger.ERROR(
             f"""Error in Original Article data. It is Null.
-            PMID = {article.PMID}"""
+            PMID = {article.ArxivID}"""
         )
         article.State = backward_state
         return article
@@ -33,20 +30,20 @@ def parsing_details_arxiv(article: Article) -> Article:
         article.Title = str(data["title"]).replace("\n", " ")
         article.Abstract = str(data["summary"]).replace("\n", " ")
 
-        if isinstance(data["author"],list):
-            article_author_list =[]
+        if isinstance(data["author"], list):
+            article_author_list = []
             for auth in data["author"]:
                 article_author_list.append(_parse_arxiv_author(auth))
         else:
-            article_author_list =[]
+            article_author_list = []
             article_author_list.append(_parse_arxiv_author(data["author"]))
 
         article.Authors = article_author_list
 
         article.Published = data["published"]
-        # This is helped 
-        # http://lukasschwab.me/arxiv.py/arxiv.html#Result.get_short_id 
-        
+        # This is helped
+        # http://lukasschwab.me/arxiv.py/arxiv.html#Result.get_short_id
+
         # TODO DOI
         return article
     except Exception:
@@ -57,4 +54,3 @@ def parsing_details_arxiv(article: Article) -> Article:
         logger.ERROR(f"Error Line {exc_tb.tb_lineno}")
         logger.ERROR(f"Error {exc_value}")
         return article
-

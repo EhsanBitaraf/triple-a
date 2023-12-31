@@ -5,6 +5,7 @@ from triplea.service.click_logger import logger
 
 session = requests.Session()
 
+
 def extract_triple(text: str) -> list:
     URL = SETTINGS.AAA_TOPIC_EXTRACT_ENDPOINT + "/triple/"
 
@@ -35,14 +36,17 @@ def extract_triple(text: str) -> list:
     except Exception:
         raise Exception("Connection Error.")
 
+    if r.status_code != 201:
+        raise Exception(f"HTTP Error {r.status_code}")
+
     # extracting data in json format
     try:
         data = r.json()
         if "status" in data:
             return data["result"]
         else:
-            logger.ERROR("status not exist.")
-            raise
+            # logger.ERROR("status not exist.")
+            raise Exception("status not exist.")
 
     except Exception as ex:
         logger.ERROR(f"Error : {ex}")

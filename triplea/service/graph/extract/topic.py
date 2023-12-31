@@ -42,9 +42,7 @@ def graph_extract_article_topic(article: Article) -> dict:
             edge.DestinationID = node_topic.Identifier
             edge.Type = "TOPIC"
             edge.Weight = t["rank"]
-            edge.HashID = str(
-                hash(edge.SourceID + edge.DestinationID + edge.Type)
-                )
+            edge.HashID = str(hash(edge.SourceID + edge.DestinationID + edge.Type))
             edges.append(edge.dict())
     else:
         logger.WARNING(f"Article Topics is empty. PMID : {article.PMID}")

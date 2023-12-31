@@ -10,15 +10,17 @@ All notable changes to this project will be documented in this file.
 
 ### Improvements
 - Add unified_export_json
-- add `get_article_id_list_by_cstate` replace `get_article_pmid_list_by_cstate`
-- add `get_article_by_id` replace `get_article_by_pmid`
-- add `get_all_article_id_list` replace `get_all_article_pmid_list`
+- Add `update_article_by_pmid` replace with `update_article_by_id`
+- Add `get_article_id_list_by_cstate` replace with `get_article_pmid_list_by_cstate`
+- Add `get_article_by_id` replace with `get_article_by_pmid`
+- Add `get_all_article_id_list` replace  with`get_all_article_pmid_list`
 - Add print_error in utils.general for unified Error printing
 - Add Published, ArxivID, SourceBank field in Article
 
 
 ### Bug Fixes
 - Fix session of extract_triple
+- Fix tinydb.get_all_article_id_list
 
 ## v0.0.4 2023-10-14
 ### Improvements

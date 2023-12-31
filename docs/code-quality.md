@@ -3,7 +3,7 @@
 We used flake8 and black libraries to increase code quality.
 
 
-flake8 help
+# Flake8 help
 ```
 usage: flake8 [options] file file ...
 
@@ -82,7 +82,7 @@ pyflakes:
 Installed plugins: mccabe: 0.7.0, pycodestyle: 2.10.0, pyflakes: 3.0.1
 ```
 
-Flake8 Rules
+## Flake8 Rules
 
 https://www.flake8rules.com/
 
@@ -159,9 +159,19 @@ flake8 --config=.flake8 --output-file out-flake8.txt .\triplea\cli\
 ```
 black .\triplea\cli\
 ```
+## Flake8 Tips
 
+Per ine:
+```python
+# noqa: E501
+```
 
-## History
+Per page:
+```python
+# flake8: noqa
+```
+
+# History
 
 ### All
 
@@ -349,6 +359,7 @@ flake8 --config=.flake8 --count --output-file out-flake8.txt .\triplea\service\ 
 0
 
 Don't forget `# noqa: C901`
+
 ### utils
 
 
@@ -361,3 +372,7 @@ flake8 --config=.flake8 --output-file out-flake8.txt .\triplea\utils\ --no-show-
 ```
 
 0
+
+black .\triplea\
+
+flake8 --config=.flake8 --count --output-file out-flake8.txt .\triplea\ --no-show-source  --statistics --ignore E721,W503

@@ -22,8 +22,10 @@ click.echo(f"Title: {tr.__title__} ({tr.__version__})")
 click.echo(f"   {tr.__description__}")
 click.echo()
 
+
 def main():
     cli()
+
 
 if __name__ == "__main__":
     cli()

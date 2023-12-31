@@ -1,4 +1,3 @@
-
 from triplea.config.settings import SETTINGS
 
 # __version__ = "0.0.2" # Change Policy

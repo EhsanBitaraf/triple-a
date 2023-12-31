@@ -6,7 +6,9 @@ from triplea.client.arxiv import get_article_list_from_arxiv
 from triplea.schemas.article import Article, Author
 from triplea.service.repository import persist
 from triplea.service.repository.pipeline_core import move_state_forward
-from triplea.service.repository.state.initial import get_article_list_from_pubmed_all_store_to_arepo
+from triplea.service.repository.state.initial import (
+    get_article_list_from_pubmed_all_store_to_arepo,
+)
 
 import array
 from pymongo import MongoClient
@@ -23,14 +25,11 @@ from triplea.service.graph.analysis.ganalysis import (
     get_clustering_coefficient_per_node,
 )
 import networkx as nx
-from triplea.service.repository.state.initial_arxiv import get_article_list_from_arxiv_all_store_to_arepo
+from triplea.service.repository.state.initial_arxiv import (
+    get_article_list_from_arxiv_all_store_to_arepo,
+)
 
 from triplea.utils.general import safe_csv
-
-
-
-
-
 
 
 if __name__ == "__main__":
@@ -55,7 +54,7 @@ if __name__ == "__main__":
     # print(data["feed"]["opensearch:totalResults"]["#text"])
     # print(a+1)
     # import urllib.parse
-    
+
     # text= 'ti:"large language model" OR abs:"medical"'
     # text= urllib.parse.quote(text)
     # get_article_list_from_arxiv_all_store_to_arepo(text,20,10)
@@ -66,5 +65,3 @@ if __name__ == "__main__":
     # move_state_forward(-1)
 
     move_state_forward(0)
-
-

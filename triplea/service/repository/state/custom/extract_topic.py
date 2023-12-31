@@ -1,9 +1,6 @@
-import sys
 from triplea.client.topic_extraction import extract_topic
 from triplea.schemas.article import Article
-from triplea.service.click_logger import logger
-
-# from triplea.service.nlp.topic_extract import extract_textrank
+from triplea.utils.general import print_error
 
 
 def extract_topic_abstract(article: Article):
@@ -24,12 +21,7 @@ def extract_topic_abstract(article: Article):
         result = extract_topic(text, "textrank")
         article.Topics = result
     except Exception:
-        exc_type, exc_value, exc_tb = sys.exc_info()
-        print()
-        # print(exc_tb.tb_frame)
-
-        logger.ERROR(f"Error Line {exc_tb.tb_lineno}")
-        logger.ERROR(f"Error {exc_value}")
+        print_error()
         article.FlagExtractTopic = -1
 
     # Expire Module

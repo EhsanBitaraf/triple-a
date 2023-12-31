@@ -40,11 +40,7 @@ def export_rayyan_csv() -> str:  # noqa: C901
 
     refresh_point = 0
     csv = ""
-    csv = (
-        csv
-        + """key,title,authors,issn,volume,issue,pages,year,publisher,url,abstract,notes,doi,keywords"""  # noqa: E501
-        + "\n"
-    )
+    csv = (csv + """key,title,authors,issn,volume,issue,pages,year,publisher,url,abstract,notes,doi,keywords""" + "\n")  # noqa: E501
     n = 0
     for id in l_pmid:
         try:
@@ -129,11 +125,7 @@ def export_rayyan_csv() -> str:  # noqa: C901
                 if keywords.__contains__(","):
                     keywords = f'"{keywords[:-1]}"'
 
-            csv = (
-                csv
-                + f"""{n},{title},{authors},{issn},{volume},{issue},{pages},{year},{publisher},{url},{abstract},{notes},{doi},{keywords}"""  # noqa: E501
-                + "\n"
-            )
+            csv = (csv + f"""{n},{title},{authors},{issn},{volume},{issue},{pages},{year},{publisher},{url},{abstract},{notes},{doi},{keywords}""" + "\n")  # noqa: E501
 
             # ------------------Select ----------------
         except Exception:

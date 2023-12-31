@@ -3,6 +3,7 @@ from typing import Optional
 import enum
 from datetime import datetime
 
+
 class NamedEntity(BaseModel):
     Label: Optional[str] = Field(description="")
     Entity: Optional[str] = Field(description="")
@@ -23,10 +24,10 @@ class AffiliationParseMethod(enum.IntEnum):
     TITIPATA_API = 2  # https://github.com/titipata/affiliation_parser
 
 
-
 class SourceBankType(enum.IntEnum):
     PUBMED = 1
-    ARXIV = 2  
+    ARXIV = 2
+
 
 class Affiliation(BaseModel):
     HashID: Optional[str]
@@ -94,9 +95,9 @@ class Article(BaseModel):
     ReferenceCrawlerDeep: Optional[int] = Field(description="")
     CiteCrawlerDeep: Optional[int] = Field(description="")
     NamedEntities: Optional[list[NamedEntity]] = Field(description="")
-    FlagExtractKG: Optional[int] = Field(description="")
-    FlagAffiliationMining: Optional[int] = Field(description="")
-    FlagExtractTopic: Optional[int] = Field(description="")
+    FlagExtractKG: Optional[int] = Field(description="", default=0)
+    FlagAffiliationMining: Optional[int] = Field(description="", default=0)
+    FlagExtractTopic: Optional[int] = Field(description="", default=0)
 
     Published: Optional[datetime] = Field(description="")
     ArxivID: Optional[str] = Field(description="")

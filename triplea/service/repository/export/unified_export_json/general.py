@@ -1,17 +1,14 @@
-
-
-
 from triplea.schemas.article import Author
 
 
-def _json_converter_author_general(author:Author):
+def _json_converter_author_general(author: Author):
     fullname = ""
 
     fullname = author.FullName
 
     affiliation_list = []
     if author.Affiliations is not None:
-        for one_aff in  author.Affiliations:  
+        for one_aff in author.Affiliations:
             # first_aff = author.Affiliations[0]
             department = ""
             hospital = ""
@@ -59,27 +56,22 @@ def _json_converter_author_general(author:Author):
                         print(s)
             aff = one_aff.Text
 
-            affiliation_list.append({
-                "text" : aff,
-                "country":country,
-                "university": university ,
-                "location": location,
-                "center": center,
-                "institute": institute,
-                "hospital": hospital,
-                "email": email,
-                "zipcode": zipcode           
-            })
+            affiliation_list.append(
+                {
+                    "text": aff,
+                    "country": country,
+                    "university": university,
+                    "location": location,
+                    "center": center,
+                    "institute": institute,
+                    "department": department,
+                    "hospital": hospital,
+                    "email": email,
+                    "zipcode": zipcode,
+                }
+            )
 
     else:
         aff = None
 
-    return {
-        "fullname" : fullname,
-        "affiliations" : affiliation_list
-    }
-
-
-
-
-
+    return {"fullname": fullname, "affiliations": affiliation_list}

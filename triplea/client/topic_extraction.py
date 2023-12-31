@@ -1,7 +1,6 @@
 from triplea.config.settings import SETTINGS
 import requests
 import json
-from triplea.service.click_logger import logger
 
 # https://stackoverflow.com/questions/62599036/python-requests-is-slow-and-takes-very-long-to-complete-http-or-https-request
 session = requests.Session()
@@ -78,7 +77,7 @@ session = requests.Session()
 
 
 def extract_topic(text: str, method: str, top: int = 10, threshold: float = 0) -> list:
-    URL = f"{SETTINGS.AAA_TOPIC_EXTRACT_ENDPOINT}/topic"
+    URL = f"{SETTINGS.AAA_TOPIC_EXTRACT_ENDPOINT}/topic/"
 
     # data to be sent to api
     data = {
@@ -110,16 +109,19 @@ def extract_topic(text: str, method: str, top: int = 10, threshold: float = 0) -
     except Exception:
         raise Exception("Connection Error.")
 
+    if r.status_code != 201:
+        raise Exception(f"HTTP Error {r.status_code}")
+
     # extracting data in json format
     try:
         data = r.json()
         if "status" in data:
             return data["r"]
         else:
-            logger.ERROR("status not exist.")
-            raise
+            # logger.ERROR("status not exist.")
+            raise Exception("status not exist.")
 
     except Exception as ex:
-        logger.ERROR(f"Error : {ex}")
-        logger.ERROR(f"{type(r)}  {r} ")
-        raise
+        # logger.ERROR(f"Error : {ex}")
+        # logger.ERROR(f"{type(r)}  {r} ")
+        raise ex

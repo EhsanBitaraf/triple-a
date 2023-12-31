@@ -9,19 +9,18 @@ tps_limit = SETTINGS.AAA_TPS_LIMIT
 
 
 def _expand_details_arxiv(article: Article) -> Article:
-    # previous state is 0 
-    article.State = 1 # next state
-    backward_state = 0
-    
+    # previous state is 0
+    article.State = 1  # next state
+    # backward_state = 0
+
     # Archive is One Shot. There is no need for this step,
     # although it should be checked why it is at this step
     return article
 
 
-
 def _expand_details_pubmed(article: Article) -> Article:
-    # previous state is 0 
-    article.State = 1 # next state
+    # previous state is 0
+    article.State = 1  # next state
     backward_state = 0
     sleep_time = 1 / tps_limit
     time.sleep(sleep_time)
@@ -49,9 +48,5 @@ def expand_details(article: Article) -> Article:
         updated_article = _expand_details_arxiv(article)
     else:
         raise NotImplementedError
-    
+
     return updated_article
-
-        
-
-
