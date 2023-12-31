@@ -3,12 +3,14 @@ import os
 import sys
 
 import click
+from triplea.config.settings import SETTINGS
 from triplea.service.click_logger import logger
 from triplea.schemas.article import Article
+from triplea.service.repository.export.unified_export_json import json_converter_01
 import triplea.service.repository.persist as persist
 import traceback
 
-from triplea.utils.general import safe_csv
+from triplea.utils.general import print_error, safe_csv
 
 
 def export_triplea_json(proccess_bar=False, limit_sample=0) -> str:
@@ -196,8 +198,9 @@ def export_triplea_csvs_in_relational_mode_save_file(  # noqa: C901
 
     total_article_in_current_state = len(l_id)
 
-    bar = click.progressbar(length=len(l_id), show_pos=True, show_percent=True)
-    max_refresh_point = 500
+    if proccess_bar:
+        bar = click.progressbar(length=len(l_id), show_pos=True, show_percent=True)
+
     refresh_point = 0
     csv = ""
     authors_csv = (
@@ -252,7 +255,7 @@ def export_triplea_csvs_in_relational_mode_save_file(  # noqa: C901
         try:
             n = n + 1
 
-            if refresh_point == max_refresh_point:
+            if refresh_point == SETTINGS.AAA_CLI_ALERT_POINT:
                 refresh_point = 0
                 if proccess_bar:
                     print()
@@ -262,7 +265,7 @@ def export_triplea_csvs_in_relational_mode_save_file(  # noqa: C901
                     )
                 if proccess_bar is False:
                     bar.label = f"There are {str(total_article_in_current_state - n)} article(s) left "  # noqa: E501
-                    bar.update(max_refresh_point)
+                    bar.update(SETTINGS.AAA_CLI_ALERT_POINT)
             else:
                 refresh_point = refresh_point + 1
 
@@ -277,154 +280,40 @@ def export_triplea_csvs_in_relational_mode_save_file(  # noqa: C901
                 updated_article = Article(**a.copy())
             except Exception:
                 print()
-                print(logger.ERROR(f"Error in parsing article. PMID = {id}"))
+                print(logger.ERROR(f"Error in parsing article. ID = {id}"))
                 raise Exception("Article Not Parsed.")
 
-            title = ""
-            year = ""
-            publisher = ""
-            journal_issn = ""
-            journal_iso_abbreviation = ""
-            language = ""
-            publication_type = ""
+            # -------------------------------------------------Parsing--------------------------------------------------
+            article= json_converter_01(updated_article)
+            title = safe_csv(article['title'])
+            year = article['year']
+            publisher = safe_csv(article['publisher'])
+            journal_issn = article['journal_issn']
+            journal_iso_abbreviation = safe_csv(article['journal_iso_abbreviation'])
+            language = safe_csv(article['language'])
+            publication_type = safe_csv(article['publication_type'])
+            url = article['url']
+            abstract= safe_csv(article['abstract'])
+            doi =  article['doi']
+            pmid =  article['pmid']
+            state =  article['state']
+            citation = article['citation_count']
 
-            if updated_article.Title is not None:
-                title = safe_csv(updated_article.Title)
 
-            try:
-                year = updated_article.OreginalArticle["PubmedArticleSet"][
-                    "PubmedArticle"
-                ]["MedlineCitation"]["Article"]["Journal"]["JournalIssue"]["PubDate"][
-                    "Year"
-                ]
-            except Exception:
-                try:
-                    year = updated_article.OreginalArticle["PubmedArticleSet"][
-                        "PubmedArticle"
-                    ]["MedlineCitation"]["Article"]["Journal"]["JournalIssue"][
-                        "PubDate"
-                    ][
-                        "MedlineDate"
-                    ]
-                except Exception:
-                    year = "0"
-                    # with open("sample.json", "w") as outfile:
-                    #     json.dump(updated_article.OreginalArticle, outfile)
-
-            publisher = safe_csv(updated_article.Journal)
-            try:
-                journal_issn = updated_article.OreginalArticle["PubmedArticleSet"][
-                    "PubmedArticle"
-                ]["MedlineCitation"]["Article"]["Journal"]["ISSN"]["#text"]
-            except Exception:
-                journal_issn = ""
-
-            journal_iso_abbreviation = updated_article.OreginalArticle[
-                "PubmedArticleSet"
-            ]["PubmedArticle"]["MedlineCitation"]["Article"]["Journal"][
-                "ISOAbbreviation"
-            ]
-            lang = updated_article.OreginalArticle["PubmedArticleSet"]["PubmedArticle"][
-                "MedlineCitation"
-            ]["Article"]["Language"]
-            if isinstance(lang, list):
-                for lg in lang:
-                    language = lg + ", " + language
-                language = language[:-1]
-            else:
-                language = lang
-            language = safe_csv(language)
-
-            p = updated_article.OreginalArticle["PubmedArticleSet"]["PubmedArticle"][
-                "MedlineCitation"
-            ]["Article"]["PublicationTypeList"]["PublicationType"]
-            if isinstance(p, list):
-                for i in p:
-                    chunk = i["#text"]
-                    publication_type = chunk + ", " + publication_type
-                # publication_type = p[0]['#text']
-                publication_type = publication_type[:-1]
-            else:
-                publication_type = updated_article.OreginalArticle["PubmedArticleSet"][
-                    "PubmedArticle"
-                ]["MedlineCitation"]["Article"]["PublicationTypeList"][
-                    "PublicationType"
-                ][
-                    "#text"
-                ]
-
-            journal_iso_abbreviation = safe_csv(journal_iso_abbreviation)
-
-            publication_type = safe_csv(publication_type)
-
-            url = f"https://pubmed.ncbi.nlm.nih.gov/{updated_article.PMID}/"
-
-            if updated_article.Abstract is None:
-                abstract = ""
-            else:
-                if updated_article.Abstract.__contains__(","):
-                    abstract = updated_article.Abstract.replace('"', " ")
-                    abstract = f'"{abstract}"'
-                else:
-                    abstract = updated_article.Abstract
-            doi = updated_article.DOI
-            pmid = updated_article.PMID
-            state = updated_article.State
-
-            citation = 0
-            if updated_article.CitedBy is not None:
-                citation = len(updated_article.CitedBy)
-
-            if updated_article.Authors is not None:
+            if article['authors'] is not None:
                 for au in updated_article.Authors:
-                    if au.Affiliations is not None:
-                        first_aff = au.Affiliations[0]
-                        department = ""
-                        hospital = ""
-                        institute = ""
-                        country = ""
-                        university = ""
-                        center = ""
-
-                        location = ""
-                        email = ""
-                        zipcode = ""
-
-                        if first_aff.Structural is not None:
-                            for s in first_aff.Structural:
-                                if "department" in s:
-                                    department = s["department"]
-                                elif "hospital" in s:
-                                    hospital = s["hospital"]
-                                elif "institute" in s:
-                                    institute = s["institute"]
-                                elif (
-                                    "institution" in s
-                                ):  # aff.ParseMethod = AffiliationParseMethod.TITIPATA_API  # noqa: E501
-                                    institute = s["institution"]
-                                elif "country" in s:
-                                    country = s["country"]
-                                elif "university" in s:
-                                    university = s["university"]
-                                elif "center" in s:
-                                    center = s["center"]
-
-                                elif (
-                                    "location" in s
-                                ):  # aff.ParseMethod = AffiliationParseMethod.TITIPATA_API  # noqa: E501
-                                    location = s["location"]
-                                elif (
-                                    "email" in s
-                                ):  # aff.ParseMethod = AffiliationParseMethod.TITIPATA_API  # noqa: E501
-                                    email = s["email"]
-                                elif (
-                                    "zipcode" in s
-                                ):  # aff.ParseMethod = AffiliationParseMethod.TITIPATA_API  # noqa: E501
-                                    zipcode = s["zipcode"]
-
-                                else:
-                                    print(s)
-                        aff = first_aff.Text
+                    if 'affiliations' in au:
+                        first_aff = au['affiliations'][0]
+                        department = first_aff['department']
+                        hospital = first_aff['hospital']
+                        institute = first_aff['institute']
+                        country = first_aff['country']
+                        university = first_aff['university']
+                        center = first_aff['center']
+                        location = first_aff['location']
+                        email = first_aff['email']
+                        zipcode = first_aff['zipcode']
+                        aff = first_aff['text']
                     else:
                         aff = None
 
@@ -435,13 +324,13 @@ def export_triplea_csvs_in_relational_mode_save_file(  # noqa: C901
                         + "\n"
                     )
 
-            if updated_article.Keywords is not None:
-                for k in updated_article.Keywords:
+            if 'keywords' in article:
+                for k in article['keywords']:
                     if k is not None:
                         keywords_csv = keywords_csv + f"{n},{safe_csv(k.Text)}" + "\n"  # noqa: E501
 
-            if updated_article.Topics is not None:
-                for topic in updated_article.Topics:
+            if 'topics' in article:
+                for topic in article['topics']:
                     if topic is not None:
                         topics_csv = (
                             topics_csv
@@ -456,7 +345,7 @@ def export_triplea_csvs_in_relational_mode_save_file(  # noqa: C901
             )
 
             if proccess_bar:
-                bar.label = "Article " + updated_article.PMID + " , exported."
+                bar.label = "Article " + id + " , exported."
                 bar.update(1)
 
             # ------------------Write to file ---------------------------------
@@ -473,13 +362,9 @@ def export_triplea_csvs_in_relational_mode_save_file(  # noqa: C901
             topics_csv = ""
 
         except Exception:
-            exc_type, exc_value, exc_tb = sys.exc_info()
             print()
-            print(f"line : {exc_tb.tb_lineno}")
             print(f"PMID : {updated_article.PMID}")
-            logger.ERROR(f"Error {exc_type}")
-            logger.ERROR(f"Error {exc_value}")
-            traceback.print_tb(exc_tb)
+            print_error()
 
     f_main.close()
     f_authors.close()

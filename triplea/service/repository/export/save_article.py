@@ -1,14 +1,9 @@
 import json
 
-from bson import ObjectId
 from triplea.schemas.article import Article
+from triplea.utils.general import JSONEncoder
 
 
-class JSONEncoder(json.JSONEncoder):
-    def default(self, obj):
-        if isinstance(obj, ObjectId):
-            return str(obj)
-        return super().default(obj)
 
 
 def save_article2json(article: Article, output_file: str):
