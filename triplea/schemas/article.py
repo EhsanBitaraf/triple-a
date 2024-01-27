@@ -98,6 +98,7 @@ class Article(BaseModel):
     FlagExtractKG: Optional[int] = Field(description="", default=0)
     FlagAffiliationMining: Optional[int] = Field(description="", default=0)
     FlagExtractTopic: Optional[int] = Field(description="", default=0)
+    FlagEmbedding: Optional[int] = Field(description="", default=0)
 
     Published: Optional[datetime] = Field(description="")
     ArxivID: Optional[str] = Field(description="")

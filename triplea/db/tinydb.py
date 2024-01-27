@@ -28,7 +28,8 @@ class DB_TinyDB(DataBase):
 
     def add_new_article(self, article: Article) -> int:
         article_json = json.loads(
-            json.dumps(article, default=lambda o: o.__dict__, sort_keys=True, indent=4)
+            # json.dumps(article, default=lambda o: o.__dict__, sort_keys=True, indent=4)
+            json.dumps(article, cls=JSONEncoder, sort_keys=True, indent=4)
         )
         # article_json = json.dumps(article.json())
         return self.db.insert(article_json)
@@ -97,7 +98,8 @@ class DB_TinyDB(DataBase):
 
     def update_article_by_pmid(self, article: Article, pmid: str):
         article_json = json.loads(
-            json.dumps(article, default=lambda o: o.__dict__, sort_keys=True, indent=4)
+            # json.dumps(article, default=lambda o: o.__dict__, sort_keys=True, indent=4)
+            json.dumps(article, cls=JSONEncoder, sort_keys=True, indent=4)
         )
         q = Query()
         return self.db.update(article_json, q.PMID == pmid)

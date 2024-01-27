@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 - check all TinyDB
 
 ### Improvements
+- Add `article_embedding` and `scigenius_article_embedding` 2024-01-27
 - Add unified_export_json
 - Add `update_article_by_pmid` replace with `update_article_by_id`
 - Add `get_article_id_list_by_cstate` replace with `get_article_pmid_list_by_cstate`

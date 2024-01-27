@@ -6,6 +6,7 @@ from triplea.client.arxiv import get_article_list_from_arxiv
 from triplea.schemas.article import Article, Author
 from triplea.service.repository import persist
 from triplea.service.repository.pipeline_core import move_state_forward
+from triplea.service.repository.pipeline_flag import go_article_embedding
 from triplea.service.repository.state.initial import (
     get_article_list_from_pubmed_all_store_to_arepo,
 )
@@ -64,4 +65,5 @@ if __name__ == "__main__":
 
     # move_state_forward(-1)
 
-    move_state_forward(0)
+    # move_state_forward(0)
+    go_article_embedding()

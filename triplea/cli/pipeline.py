@@ -3,6 +3,7 @@ from triplea.service.repository.pipeline_flag import (
     go_extract_triple,
     go_affiliation_mining,
     go_extract_topic,
+    go_article_embedding,
 )
 from triplea.cli.main import cli
 
@@ -18,6 +19,8 @@ def pipeline(name: str):
         go_affiliation_mining()
     elif name == "FlagAffiliationMining_Titipata":
         go_affiliation_mining(method="Titipata")
+    elif name == "FlagEmbedding":
+        go_article_embedding()
 
     else:
         raise NotImplementedError

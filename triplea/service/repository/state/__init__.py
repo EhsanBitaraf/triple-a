@@ -13,8 +13,12 @@ from triplea.service.repository.state.custom.affiliation_mining import (
     affiliation_mining,
     affiliation_mining_titipata,
 )
-from triplea.service.repository.state.custom.extract_topic import extract_topic_abstract
-
+from triplea.service.repository.state.custom.extract_topic import (
+    extract_topic_abstract
+)
+from triplea.service.repository.state.custom.article_embedding import (
+    scigenius_article_embedding
+)
 
 __all__ = [
     "expand_details",
@@ -24,5 +28,6 @@ __all__ = [
     "extract_triple_abstract_save",
     "affiliation_mining",
     "affiliation_mining_titipata",
+    "scigenius_article_embedding",
     "extract_topic_abstract",
 ]

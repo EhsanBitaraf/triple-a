@@ -284,6 +284,7 @@ List of Custom Pipeline
 |Topic extraction from article abstract|FlagExtractTopic||
 |Convert Affiliation text to structural data|FlagAffiliationMining|This is simple way for parse Affiliation text |
 |Convert Affiliation text to structural data|FlagAffiliationMining_Titipata|use [Titipat Achakulvisut Repo](https://github.com/titipata/affiliation_parser) for parsing Affiliation text|
+|Text embedding abstract and send to SciGenius|FlagEmbedding||
 
 ##### NER Article Title
 You can try the NER method to extract the major topic of the article's title by using the following command. This command is independent and is used for testing and is not stored in the Arepo.

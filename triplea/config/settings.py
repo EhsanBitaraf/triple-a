@@ -55,6 +55,12 @@ class Settings(BaseSettings):
         "AAA_TOPIC_EXTRACT_ENDPOINT", "http://localhost:8001/api/v1/topic/"
     )
 
+    AAA_SCIGENIUS_ENDPOINT: Optional[str] = os.getenv(
+        "AAA_SCIGENIUS_ENDPOINT", "http://localhost:8001/api/v1/"
+    )
+
+    AAA_SCIGENIUS_ENDPOINT
+
     VERSION: Optional[str] = (
         version + ".001"
     )  # Change this micro version in the development process
