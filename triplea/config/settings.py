@@ -1,11 +1,14 @@
 import os
 import pathlib
 from typing import Optional
-from pydantic import BaseSettings
+# from pydantic import BaseSettings # Old pydantic version
+from pydantic_settings import BaseSettings
 from dotenv import load_dotenv
 # import tomli
 # # https://stackoverflow.com/questions/67085041/how-to-specify-version-in-only-one-place-when-using-pyproject-toml # noqa: E501
 import importlib.metadata
+
+import tomli
 
 # Project Directories
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -19,12 +22,12 @@ ENV_PATH_FILE = os.path.join(
 
 load_dotenv(ENV_PATH_FILE, override=True)
 
-# with open("pyproject.toml", "rb") as f:
-#     pyproject = tomli.load(f)
-#     version = pyproject["tool"]["poetry"]["version"]
+with open("pyproject.toml", "rb") as f:
+    pyproject = tomli.load(f)
+    version = pyproject["tool"]["poetry"]["version"]
 
 # version = importlib.metadata.version(__package__ or __name__)
-version = importlib.metadata.version("triplea")
+# version = importlib.metadata.version("triplea")
 
 
 class Settings(BaseSettings):

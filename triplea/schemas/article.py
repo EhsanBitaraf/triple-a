@@ -5,18 +5,18 @@ from datetime import datetime
 
 
 class NamedEntity(BaseModel):
-    Label: Optional[str] = Field(description="")
-    Entity: Optional[str] = Field(description="")
+    Label: Optional[str] = Field(description="", default=None)
+    Entity: Optional[str] = Field(description="", default=None)
 
 
 class Keyword(BaseModel):
-    Text: Optional[str] = Field(description="")
+    Text: Optional[str] = Field(description="", default=None)
     IS_Major: Optional[bool] = Field(
         description="""The MajorTopic attribute is set to True (for Yes)
         when the MeSH Heading/Keyword alone is
-        a central concept of the article"""
+        a central concept of the article""", default=None
     )
-    IS_Mesh: Optional[bool] = Field(description="")
+    IS_Mesh: Optional[bool] = Field(description="", default=None)
 
 
 class AffiliationParseMethod(enum.IntEnum):
@@ -30,75 +30,80 @@ class SourceBankType(enum.IntEnum):
 
 
 class Affiliation(BaseModel):
-    HashID: Optional[str]
-    Text: Optional[str] = Field(description="")
-    Part1: Optional[str] = Field(description="")
-    Part2: Optional[str] = Field(description="")
-    Part3: Optional[str] = Field(description="")
-    Part4: Optional[str] = Field(description="")
-    Part5: Optional[str] = Field(description="")
-    Part6: Optional[str] = Field(description="")
-    Has_Extra: Optional[bool] = Field(description="")
-    Structural: Optional[list[dict]] = Field(description="")
-    ParseMethod: Optional[AffiliationParseMethod] = Field(description="")
+    HashID: Optional[str]= Field(description="", default=None)
+    Text: Optional[str] = Field(description="", default=None)
+    Part1: Optional[str] = Field(description="", default=None)
+    Part2: Optional[str] = Field(description="", default=None)
+    Part3: Optional[str] = Field(description="", default=None)
+    Part4: Optional[str] = Field(description="", default=None)
+    Part5: Optional[str] = Field(description="", default=None)
+    Part6: Optional[str] = Field(description="", default=None)
+    Has_Extra: Optional[bool] = Field(description="", default=None)
+    Structural: Optional[list[dict]] = Field(description="", default=None)
+    ParseMethod: Optional[AffiliationParseMethod] = Field(description="",
+                                                          default=None)
 
 
 class Author(BaseModel):
-    HashID: Optional[str]
+    HashID: Optional[str] = Field(description="", default=None)
     LastName: Optional[str] = Field(
         description="""contains the surname or the single name used by
         an individual, even if that single name
-          is not considered to be a surname"""
+          is not considered to be a surname""", default=None
     )
     ForeName: Optional[str] = Field(
-        description="contains the remainder of name except for suffix"
+        description="contains the remainder of name except for suffix",
+        default=None
     )
-    FullName: Optional[str] = Field(description="")
-    ORCID: Optional[str] = Field(description="")
-    Affiliations: Optional[list[Affiliation]] = Field(description="")
+    FullName: Optional[str] = Field(description="", default=None)
+    ORCID: Optional[str] = Field(description="", default=None)
+    Affiliations: Optional[list[Affiliation]] = Field(description="",
+                                                      default=None)
 
 
 class Article(BaseModel):
-    SourceBank: Optional[SourceBankType] = Field(description="")
+    SourceBank: Optional[SourceBankType] = Field(description="", default=None)
     PMID: Optional[str] = Field(
         description="""the PubMed (NLM database that incorporates MEDLINE)
           unique identifier, is a 1 to 8-digit accession number
-          with no leading zeros."""
+          with no leading zeros.""", default=None
     )
-    DOI: Optional[str] = Field(description="")
+    DOI: Optional[str] = Field(description="", default=None)
     PMC: Optional[str] = Field(
         description="""This is a unique reference number or identifier
-        that is assigned to every article that is accepted into PMC."""
+        that is assigned to every article that is accepted into PMC.""",
+        default=None
     )
     Title: Optional[str] = Field(
         description="""Article Title contains the entire title of
         the journal article. Article Title is always in English;
           those titles originally published in a non-English language
             and translated for Article Title are enclosed
-            in square brackets."""
+            in square brackets.""", default=None
     )
     Journal: Optional[str] = Field(
         description="""The full journal title
         (taken from NLM cataloging data following NLM rules
-        for how to compile a serial name) is exported in this element."""
+        for how to compile a serial name) is exported in this element.""",
+        default=None
     )
-    Authors: Optional[list[Author]] = Field(description="")
-    Abstract: Optional[str] = Field(description="")
-    OreginalArticle: Optional[dict] = Field(description="")
-    State: Optional[int] = Field(description="")
-    QueryTranslation: Optional[str] = Field(description="")
-    Keywords: Optional[list[Keyword]] = Field(description="")
-    Topics: Optional[list[dict]] = Field(description="")
-    References: Optional[list[str]] = Field(description="")
-    CitedBy: Optional[list[str]] = Field(description="")
-    InsertType: Optional[list[str]] = Field(description="")
-    ReferenceCrawlerDeep: Optional[int] = Field(description="")
-    CiteCrawlerDeep: Optional[int] = Field(description="")
-    NamedEntities: Optional[list[NamedEntity]] = Field(description="")
+    Authors: Optional[list[Author]] = Field(description="", default=None)
+    Abstract: Optional[str] = Field(description="", default=None)
+    OreginalArticle: Optional[dict] = Field(description="", default=None)
+    State: Optional[int] = Field(description="", default=None)
+    QueryTranslation: Optional[str] = Field(description="", default=None)
+    Keywords: Optional[list[Keyword]] = Field(description="", default=None)
+    Topics: Optional[list[dict]] = Field(description="", default=None)
+    References: Optional[list[str]] = Field(description="", default=None)
+    CitedBy: Optional[list[str]] = Field(description="", default=None)
+    InsertType: Optional[list[str]] = Field(description="", default=None)
+    ReferenceCrawlerDeep: Optional[int] = Field(description="", default=None)
+    CiteCrawlerDeep: Optional[int] = Field(description="", default=None)
+    NamedEntities: Optional[list[NamedEntity]] = Field(description="", default=None)
     FlagExtractKG: Optional[int] = Field(description="", default=0)
     FlagAffiliationMining: Optional[int] = Field(description="", default=0)
     FlagExtractTopic: Optional[int] = Field(description="", default=0)
     FlagEmbedding: Optional[int] = Field(description="", default=0)
 
-    Published: Optional[datetime] = Field(description="")
-    ArxivID: Optional[str] = Field(description="")
+    Published: Optional[datetime] = Field(description="", default=None)
+    ArxivID: Optional[str] = Field(description="", default=None)

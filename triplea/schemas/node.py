@@ -7,9 +7,9 @@ from typing import Optional
 # It creates a class called Node with the following attributes:
 #  Type, Identifier, and Name.
 class Node(BaseModel):
-    Type: Optional[str] = Field(description="")
-    Identifier: Optional[str] = Field(description="")
-    Name: Optional[str] = Field(description="")
+    Type: Optional[str] = Field(description="", default=None)
+    Identifier: Optional[str] = Field(description="", default=None)
+    Name: Optional[str] = Field(description="", default=None)
 
     # def toJSON(self):
     #     return json.dumps(self, default=lambda o: o.__dict__,
@@ -27,8 +27,8 @@ class Node(BaseModel):
 # The Edge class is a model that has four fields:
 #  HashID, SourceID, DestinationID, and Type
 class Edge(BaseModel):
-    HashID: Optional[str] = Field(description="")
-    SourceID: Optional[str] = Field(description="")
-    DestinationID: Optional[str] = Field(description="")
-    Type: Optional[str] = Field(description="")
-    Weight: Optional[float] = Field(description="")
+    HashID: Optional[str] = Field(description="", default=None)
+    SourceID: Optional[str] = Field(description="", default=None)
+    DestinationID: Optional[str] = Field(description="", default=None)
+    Type: Optional[str] = Field(description="", default=None)
+    Weight: Optional[float] = Field(description="", default=None)

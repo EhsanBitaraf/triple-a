@@ -237,6 +237,7 @@ The preparation of the article for extracting the graph has different steps that
 |1    |article details article info saved (json Form)|Metadata related to the article is stored in the `OriginalArticle` field from the `SourceBank`, but it has not been parsed yet|
 |2    |parse details info|The contents of the `OriginalArticle` field are parsed and placed in the fields of the Article object.|
 |3    |Get Citation      ||
+|4    |Get Full Text     |At this stage, the articles that are open access and it is possible to get their full text are taken and added to the bank|
 |-1   |Error             |if error happend in move state 1 to 2|
 |-2   |Error             |if error happend in move state 2 to 3|
 

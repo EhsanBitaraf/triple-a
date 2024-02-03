@@ -4,11 +4,12 @@ All notable changes to this project will be documented in this file.
 ## v0.0.5 2023-12-28
 
 ### Task
-
+- complete get_full_text
 - move_state_forward may be error in TinyDB
 - check all TinyDB
 
 ### Improvements
+- Add `get_full_text`
 - Add `article_embedding` and `scigenius_article_embedding` 2024-01-27
 - Add unified_export_json
 - Add `update_article_by_pmid` replace with `update_article_by_id`
@@ -20,6 +21,7 @@ All notable changes to this project will be documented in this file.
 
 
 ### Bug Fixes
+- Fix bug with pydantic new version 2024-02-03
 - Fix session of extract_triple
 - Fix tinydb.get_all_article_id_list
 

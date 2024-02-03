@@ -153,23 +153,24 @@ def move_state_forward(  # noqa: C901
                 # persist.update_article_by_pmid(updated_article,
                 #                                updated_article.PMID)
 
-            elif current_state == 0:  # Net state: get article details from pubmed
+            elif current_state == 0:  # Next state: get article details from pubmed
                 updated_article = state_manager.expand_details(updated_article)
                 # persist.update_article_by_pmid(updated_article,
                 #                                updated_article.PMID)
 
-            elif current_state == 1:  # Net state: Extract Data
+            elif current_state == 1:  # Next state: Extract Data
                 updated_article = state_manager.parsing_details(updated_article)
                 # persist.update_article_by_pmid(updated_article,
                 #                                updated_article.PMID)
 
-            elif current_state == 2:  # Net state: Get Citation
+            elif current_state == 2:  # Next state: Get Citation
                 updated_article = state_manager.get_citation(updated_article)
                 # persist.update_article_by_pmid(updated_article,
                 #                                updated_article.PMID)
-            elif current_state == -2:  # Net state: Get Citation
+            elif current_state == -2:  # Next state: Get Citation
                 updated_article = state_manager.get_citation(updated_article)
-
+            elif current_state == 3:  # Next state: Get Full Text
+                updated_article = state_manager.get_full_text(updated_article)
             else:
                 print()
                 logger.ERROR("Error undefine current state.")
