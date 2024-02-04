@@ -107,3 +107,5 @@ class Article(BaseModel):
 
     Published: Optional[datetime] = Field(description="", default=None)
     ArxivID: Optional[str] = Field(description="", default=None)
+
+    FullTextMetadata: Optional[dict] = Field(description="", default=None)

@@ -217,7 +217,7 @@ class DB_TinyDB(DataBase):
 
     def get_article_group_by_state(self):
         r = []
-        for i in range(-2, 5):
+        for i in range(-4, 7):
             n = 0
             q = Query()
             n = self.db.count(q.State == i)

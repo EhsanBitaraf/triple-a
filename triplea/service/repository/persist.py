@@ -203,7 +203,7 @@ def print_article_info_from_repo():
     )
 
     data = db.get_article_group_by_state()
-    for i in range(-3, 7):
+    for i in range(-4, 7):
         for s in data:
             if s["State"] == i:
                 # w = 1

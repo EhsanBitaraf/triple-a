@@ -238,6 +238,7 @@ The preparation of the article for extracting the graph has different steps that
 |2    |parse details info|The contents of the `OriginalArticle` field are parsed and placed in the fields of the Article object.|
 |3    |Get Citation      ||
 |4    |Get Full Text     |At this stage, the articles that are open access and it is possible to get their full text are taken and added to the bank|
+|5    |Convert full text to string     ||
 |-1   |Error             |if error happend in move state 1 to 2|
 |-2   |Error             |if error happend in move state 2 to 3|
 

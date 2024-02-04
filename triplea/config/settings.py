@@ -62,13 +62,29 @@ class Settings(BaseSettings):
         "AAA_SCIGENIUS_ENDPOINT", "http://localhost:8001/api/v1/"
     )
 
-    AAA_SCIGENIUS_ENDPOINT
+    AAA_SCIGENIUS_ENDPOINT: Optional[str] = os.getenv(
+        "AAA_SCIGENIUS_ENDPOINT", "http://localhost:8001/api/v1/"
+    )
 
     VERSION: Optional[str] = (
         version + ".001"
     )  # Change this micro version in the development process
 
     AAA_CLI_ALERT_POINT: Optional[int] = os.getenv("AAA_CLI_ALERT_POINT", 500)
+
+    AAA_FULL_TEXT_REPO_TYPE: Optional[str] = os.getenv(
+        "AAA_FULL_TEXT_REPO_TYPE", "Directory"
+    )
+    AAA_FULL_TEXT_DIRECTORY: Optional[str] = os.getenv(
+        "AAA_FULL_TEXT_DIRECTORY", "Directory"
+    )
+    AAA_FULL_TEXT_STRING_REPO_TYPE: Optional[str] = os.getenv(
+        "AAA_FULL_TEXT_STRING_REPO_TYPE", "Directory"
+    )
+    AAA_FULL_TEXT_STRING_DIRECTORY: Optional[str] = os.getenv(
+        "AAA_FULL_TEXT_STRING_DIRECTORY", "Directory"
+    )
+
 
     # class Config:
     #     case_sensitive = True

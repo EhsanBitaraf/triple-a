@@ -15,7 +15,9 @@ def move_state_until(end_state: int):
     l_pmid = persist.get_all_article_pmid_list()
     logger.INFO(str(len(l_pmid)) + " Article(s) is arepo ")
 
-    bar = click.progressbar(length=len(l_pmid), show_pos=True, show_percent=True)
+    bar = click.progressbar(length=len(l_pmid),
+                            show_pos=True,
+                            show_percent=True)
 
     for id in l_pmid:
         updated_article_current_state = None
@@ -42,19 +44,22 @@ def move_state_until(end_state: int):
             elif current_state == 1:  # Net state: Extract Data
                 updated_article = state_manager.parsing_details(updated_article)
 
-            elif current_state == 2:  # Net state: Get Citation
+            elif current_state == 2:  # Next state: Get Citation
                 updated_article = state_manager.get_citation(updated_article)
 
-            elif current_state == 3:  # Net state: NER Title
-                updated_article = state_manager.ner_title(updated_article)
+            elif current_state == -2:  # Next state: Get Citation
+                updated_article = state_manager.get_citation(updated_article)
+                
+            elif current_state == 3:  # Next state: Get Full Text
+                updated_article = state_manager.get_full_text(updated_article)
 
-            elif persist.current_state == 4:  # Net state:Create Knowledge
-                pass
+            elif current_state == -3:  # Next state: Get Full Text
+                updated_article = state_manager.get_full_text(updated_article)
 
             else:
                 raise NotImplementedError
 
-        persist.update_article_by_pmid(updated_article, updated_article.PMID)
+        persist.update_article_by_id(updated_article, id)
         bar.label = (f"Article {updated_article.PMID} with state {str(updated_article_current_state)} forward to {str(end_state)}")  # noqa: E501
         bar.update(1)
     persist.refresh()
@@ -169,8 +174,21 @@ def move_state_forward(  # noqa: C901
                 #                                updated_article.PMID)
             elif current_state == -2:  # Next state: Get Citation
                 updated_article = state_manager.get_citation(updated_article)
+
             elif current_state == 3:  # Next state: Get Full Text
                 updated_article = state_manager.get_full_text(updated_article)
+
+            elif current_state == -3:  # Next state: Get Full Text
+                updated_article = state_manager.get_full_text(updated_article)
+
+            elif current_state == 4:  # Next state: Convert Full Text
+                updated_article = state_manager.convert_full_text2string(
+                    updated_article)
+
+            elif current_state == -4:  # Next state: Convert Full Text
+                updated_article = state_manager.convert_full_text2string(
+                    updated_article)
+
             else:
                 print()
                 logger.ERROR("Error undefine current state.")

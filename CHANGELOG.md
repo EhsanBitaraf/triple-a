@@ -4,11 +4,19 @@ All notable changes to this project will be documented in this file.
 ## v0.0.5 2023-12-28
 
 ### Task
+- LangChain
+- Data Extraction from Unstructured PDFs
+    - https://www.analyticsvidhya.com/blog/2021/06/data-extraction-from-unstructured-pdfs/
+    - https://unstructured-io.github.io/unstructured/core/partition.html
+    - https://python.plainenglish.io/how-to-create-a-pdf2text-preprocessing-microservice-using-python-8b844b85c797
+    - https://github.com/arXiv/arxiv-fulltext
 - complete get_full_text
 - move_state_forward may be error in TinyDB
 - check all TinyDB
 
 ### Improvements
+- Add `convert_full_text2string` for converting fulltext pdf to string 
+- Add `mongo_nav` for some query function for MongoDB
 - Add `get_full_text`
 - Add `article_embedding` and `scigenius_article_embedding` 2024-01-27
 - Add unified_export_json

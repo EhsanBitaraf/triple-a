@@ -13,3 +13,5 @@ ipywidgets
 httpx
 requests
 tomli
+pypdf
+PyPDF2
