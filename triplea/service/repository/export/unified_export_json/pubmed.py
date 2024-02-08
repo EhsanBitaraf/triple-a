@@ -96,7 +96,7 @@ def _json_converter_01_pubmed(article: Article):
     # ------------------------Citation Count-----------------------
     citation_count = 0
     if article.CitedBy is not None:
-        citation_count = len(abstract.CitedBy)
+        citation_count = len(article.CitedBy)
     # ------------------------Citation Count-----------------------
 
     # ------------------------Authors----------------------------

@@ -33,6 +33,7 @@ from triplea.service.repository.pipeline_core import move_state_forward
 from triplea.service.repository.pipeline_flag import go_extract_topic, go_extract_triple
 import triplea.service.repository.state as state_manager
 from triplea.service.repository.state.custom.affiliation_mining import country_list
+from triplea.utils.general import print_error
 
 
 def check_map_topic():
@@ -165,9 +166,6 @@ if __name__ == "__main__":
 
         except Exception:
             persist.refresh()
-            exc_type, exc_value, exc_tb = sys.exc_info()
-            print()
-            print(exc_tb.tb_lineno)
-            logger.ERROR(f"Error {exc_type}")
-            logger.ERROR(f"Error {exc_value}")
+            print_error()
+
     persist.refresh()

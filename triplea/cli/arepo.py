@@ -72,9 +72,11 @@ in the repository and display it on the console.
 )
 def arepo(command, pmid, output):
     if command == "info":
-        logger.INFO(f"""Number of article in article repository is {str(
+        logger.INFO(
+            f"""Number of article in article repository is {str(
                 persist.get_all_article_count()
-                )}""")
+                )}"""
+        )
         logger.INFO(
             f"""{
                 persist.get_all_node_count()

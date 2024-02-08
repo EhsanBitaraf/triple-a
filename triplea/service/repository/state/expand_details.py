@@ -1,9 +1,8 @@
-import sys
 import time
 from triplea.client.pubmed import get_article_details_from_pubmed
 from triplea.config.settings import SETTINGS
 from triplea.schemas.article import Article, SourceBankType
-from triplea.service.click_logger import logger
+from triplea.utils.general import print_error
 
 tps_limit = SETTINGS.AAA_TPS_LIMIT
 
@@ -29,10 +28,7 @@ def _expand_details_pubmed(article: Article) -> Article:
         article.OreginalArticle = oa
     except Exception:
         article.State = backward_state
-        exc_type, exc_value, exc_tb = sys.exc_info()
-        print()
-        logger.ERROR(f"Error {exc_type} Value : {exc_value}")
-        logger.ERROR(f"Error {exc_tb}")
+        print_error()
 
     return article
 

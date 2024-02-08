@@ -1,6 +1,6 @@
-import sys
 from triplea.schemas.article import Article, Author
 from triplea.service.click_logger import logger
+from triplea.utils.general import print_error
 
 
 def _parse_arxiv_author(single_author_dict: dict) -> Author:
@@ -48,9 +48,5 @@ def parsing_details_arxiv(article: Article) -> Article:
         return article
     except Exception:
         article.State = backward_state
-        exc_type, exc_value, exc_tb = sys.exc_info()
-        print()
-
-        logger.ERROR(f"Error Line {exc_tb.tb_lineno}")
-        logger.ERROR(f"Error {exc_value}")
+        print_error()
         return article

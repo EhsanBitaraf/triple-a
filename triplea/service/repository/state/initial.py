@@ -98,9 +98,12 @@ def get_article_list_from_pubmed_all_store_to_arepo(
 
     for i in range(1, round):
         time.sleep(sleep_time)
-        logger.INFO(f"""Round ({str(i)}) : Get another {str(
+        logger.INFO(
+            f"""Round ({str(i)}) : Get another {str(
             retmax
-            )} record (Total {str(i * retmax)} record)""", deep=13)
+            )} record (Total {str(i * retmax)} record)""",
+            deep=13,
+        )
         start = (i * retmax) - retmax
         chunkdata = PubmedClient.get_article_list_from_pubmed(start,
                                                               retmax,
@@ -111,7 +114,11 @@ def get_article_list_from_pubmed_all_store_to_arepo(
     start = ((i + 1) * retmax) - retmax
     mid = total - (retmax * round)
     if mid > 0:  # Check last round
-        logger.INFO(f"""Round ({str(i + 1)}): Get another {str(mid)} record (total {str(total)} record)""", deep=13)  # noqa: E501
+        logger.INFO(
+            f"""Round ({str(i + 1)}): Get another {str(
+                mid)} record (total {str(total)} record)""",
+            deep=13,
+        )  # noqa: E501
         chunkdata = PubmedClient.get_article_list_from_pubmed(start,
                                                               retmax,
                                                               searchterm)

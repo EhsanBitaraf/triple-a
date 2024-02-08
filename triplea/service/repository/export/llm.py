@@ -1,9 +1,9 @@
 import click
-import sys
 import os
 from triplea.schemas.article import Article
 import triplea.service.repository.persist as persist
 from triplea.service.click_logger import logger
+from triplea.utils.general import print_error
 
 
 def export_pretrain_llm_in_dir(
@@ -64,11 +64,7 @@ def export_pretrain_llm_in_dir(
         try:
             article = Article(**a.copy())
         except Exception:
-            exc_type, exc_value, exc_tb = sys.exc_info()
-            print()
-            logger.ERROR(f"Error {exc_type}")
-            logger.ERROR(f"Error {exc_value}")
-            # logger.ERROR(f'Error {exc_tb.tb_next}')
+            print_error()
             article = None
 
         if limit_sample != 0:  # Unlimited

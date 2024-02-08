@@ -1,9 +1,9 @@
 from triplea.config.settings import SETTINGS
 import requests
 import json
-
 from triplea.schemas.article import Article
-from triplea.utils.general import JSONEncoder, print_error
+# from triplea.utils.general import JSONEncoder
+from triplea.utils.general import print_error
 
 
 session = requests.Session()
@@ -43,12 +43,14 @@ def article_embedding(article: Article) -> bool:
         # )
         # j_data= article.dict()
 
-        j_data = {"SourceBank": article.SourceBank  , "Title" : article.Title.replace("\n"," "),
-                  "Abstract" : article.Abstract,
-                  "ArxivID": article.ArxivID
-                   }
+        j_data = {
+            "SourceBank": article.SourceBank,
+            "Title": article.Title.replace("\n", " "),
+            "Abstract": article.Abstract,
+            "ArxivID": article.ArxivID,
+        }
         j_data = json.dumps(j_data)
-        j_data = j_data.replace("\n"," ")
+        j_data = j_data.replace("\n", " ")
         # print()
         # print(j_data)
         r = session.post(url=URL, data=j_data, headers=headers, proxies=proxy_servers)
@@ -63,7 +65,7 @@ def article_embedding(article: Article) -> bool:
     try:
         data = r.json()
         if "Status" in data:
-            if data['Status'] == "Ok":
+            if data["Status"] == "Ok":
                 return True
             else:
                 raise Exception("status not Ok.")

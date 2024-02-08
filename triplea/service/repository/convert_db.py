@@ -1,12 +1,11 @@
 # from triplea.config.settings import SETTINGS,DB_ROOT_PATH
-import sys
 from typing import Optional
-
 import click
 from triplea.db.mongodb import DB_MongoDB
 from triplea.db.tinydb import DB_TinyDB
 from triplea.schemas.article import Article
 from triplea.service.click_logger import logger
+from triplea.utils.general import print_error
 
 
 def convert_arepo_mongodb_to_tinydb(
@@ -46,9 +45,7 @@ def convert_arepo_mongodb_to_tinydb(
                 logger.ERROR(
                     f"The copy of article {pmid} encountered an error.", deep=3
                 )
-                exc_type, exc_value, exc_tb = sys.exc_info()
-                logger.ERROR(f"Error {exc_type}", deep=3)
-                logger.ERROR(f"Error {exc_value}", deep=3)
+                print_error()
 
             # logger.DEBUG(f'''{n} Copy article {pmid}
             #               to destination repository.''', deep = 3 )

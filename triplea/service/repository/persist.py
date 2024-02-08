@@ -1,3 +1,4 @@
+from typing import Optional
 from triplea.db.dal import db
 from triplea.schemas.article import Article
 from triplea.schemas.node import Edge, Node
@@ -76,6 +77,10 @@ def get_count_article_by_state(state: int) -> int:
     return db.get_count_article_by_state(state)
 
 
+def get_article_by_arxiv_id(arxiv_id: str):
+    return db.get_article_by_arxiv_id(arxiv_id)
+
+
 def get_article_by_pmid(pmid: str):
     """
     > This function takes a PubMed ID (pmid) as a string and
@@ -109,46 +114,47 @@ def update_article_by_id(article, id: str):
     return db.update_article_by_id(article, id)
 
 
-# # Expire Function
-# def insert_new_pmid(
-#     pmid: str,
-#     querytranslation: Optional[str] = None,
-#     insert_type: Optional[str] = None,
-#     reference_crawler_deep: Optional[int] = 0,
-#     cite_crawler_deep: Optional[int] = 0,
-# ):
-#     """
-#     If the article is not in the database, add it
+# Expire Function
+# This fuction use now for add ref in pubmed
+def insert_new_pmid(
+    pmid: str,
+    querytranslation: Optional[str] = None,
+    insert_type: Optional[str] = None,
+    reference_crawler_deep: Optional[int] = 0,
+    cite_crawler_deep: Optional[int] = 0,
+):
+    """
+    If the article is not in the database, add it
 
-#     :param pmid: The PMID of the article you want to insert
-#     :type pmid: str
-#     :return: The return value is the ID of the newly inserted article.
-#     """
-#     # check PMID is exist
-#     if db.is_article_exist_by_pmid(pmid):
-#         logger.DEBUG("The article " + pmid + " already exists.", deep=3)
-#         return
-#     else:  # Insert not exist Article
-#         insert_type_list = []
-#         if insert_type is not None:
-#             insert_type_list.append(insert_type)
+    :param pmid: The PMID of the article you want to insert
+    :type pmid: str
+    :return: The return value is the ID of the newly inserted article.
+    """
+    # check PMID is exist
+    if db.is_article_exist_by_pmid(pmid):
+        logger.DEBUG("The article " + pmid + " already exists.", deep=3)
+        return
+    else:  # Insert not exist Article
+        insert_type_list = []
+        if insert_type is not None:
+            insert_type_list.append(insert_type)
 
-#         # # old version
-#         # a = Article(PMID = pmid,
-#         #  State= 0,
-#         #  QueryTranslation = querytranslation,
-#         #  InsertType= insert_type_list,
-#         #  ReferenceCrawlerDeep = reference_crawler_deep)
-#         # New version
-#         a = Article(
-#             PMID=pmid,
-#             State=0,
-#             QueryTranslation=querytranslation,
-#             ReferenceCrawlerDeep=reference_crawler_deep,
-#             CiteCrawlerDeep=cite_crawler_deep,
-#         )
+        # # old version
+        # a = Article(PMID = pmid,
+        #  State= 0,
+        #  QueryTranslation = querytranslation,
+        #  InsertType= insert_type_list,
+        #  ReferenceCrawlerDeep = reference_crawler_deep)
+        # New version
+        a = Article(
+            PMID=pmid,
+            State=0,
+            QueryTranslation=querytranslation,
+            ReferenceCrawlerDeep=reference_crawler_deep,
+            CiteCrawlerDeep=cite_crawler_deep,
+        )
 
-#         return db.add_new_article(a)
+        return db.add_new_article(a)
 
 
 def insert_new_pubmed(article: Article):
@@ -164,9 +170,9 @@ def insert_new_pubmed(article: Article):
 def insert_new_arxiv(article: Article):
     # check Arxiv ID is exist
     if db.is_article_exist_by_arxiv_id(article.ArxivID):
-        # logger.DEBUG(
-        #     f"The article with ArxivID {article.ArxivID} already exists.",
-        #      deep=3)
+        logger.DEBUG(
+            f"The article with ArxivID {article.ArxivID} already exists.", deep=3
+        )
         return
     else:  # Insert not exist Article
         return db.add_new_article(article)

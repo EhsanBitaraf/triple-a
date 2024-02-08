@@ -4,7 +4,8 @@ All notable changes to this project will be documented in this file.
 ## v0.0.5 2023-12-28
 
 ### Task
-- LangChain
+- Expose `get_article_by_arxiv_id` to cli
+- Article.Published must be fixed in pubmed and is string in Arxiv
 - Data Extraction from Unstructured PDFs
     - https://www.analyticsvidhya.com/blog/2021/06/data-extraction-from-unstructured-pdfs/
     - https://unstructured-io.github.io/unstructured/core/partition.html
@@ -15,6 +16,8 @@ All notable changes to this project will be documented in this file.
 - check all TinyDB
 
 ### Improvements
+- Add FlagShortReviewByLLM
+- Add `get_article_by_arxiv_id` Minor Version 003
 - Add `convert_full_text2string` for converting fulltext pdf to string 
 - Add `mongo_nav` for some query function for MongoDB
 - Add `get_full_text`
@@ -29,6 +32,7 @@ All notable changes to this project will be documented in this file.
 
 
 ### Bug Fixes
+- Fix `print_error()`
 - Fix bug with pydantic new version 2024-02-03
 - Fix session of extract_triple
 - Fix tinydb.get_all_article_id_list

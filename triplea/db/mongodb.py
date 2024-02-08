@@ -132,6 +132,16 @@ class DB_MongoDB(DataBase):
         myquery = {"State": state}
         return self.col_article.count_documents(myquery)
 
+    def get_article_by_arxiv_id(self, arxiv_id: str):
+        myquery = {"ArxivID": arxiv_id}
+        cursor = self.col_article.find(myquery)
+
+        if len(list(cursor.clone())) == 0:
+            return None
+        else:
+            la = list(cursor)
+            return la[0]
+
     def get_article_by_pmid(self, pmid: str):
         myquery = {"PMID": pmid}
         cursor = self.col_article.find(myquery)

@@ -18,6 +18,7 @@ from triplea.service.graph.extract.cited import graph_extract_article_cited
 from triplea.service.graph.extract.country_based_co_authorship import (
     graph_extract_article_country,
 )
+from triplea.utils.general import print_error
 
 
 __all__ = [
@@ -175,11 +176,7 @@ def graph_extractor(
         try:
             article = Article(**a.copy())
         except Exception:
-            exc_type, exc_value, exc_tb = sys.exc_info()
-            print()
-            logger.ERROR(f"Error {exc_type}")
-            logger.ERROR(f"Error {exc_value}")
-            # logger.ERROR(f'Error {exc_tb.tb_next}')
+            print_error()
             article = None
 
         if limit_node != 0:  # Unlimited
@@ -264,11 +261,8 @@ def graph_extractor_all_entity(
             try:
                 article = Article(**a.copy())
             except Exception:
-                exc_type, exc_value, exc_tb = sys.exc_info()
                 print()
-                logger.ERROR(f"Error {exc_type}")
-                logger.ERROR(f"Error {exc_value}")
-                # logger.ERROR(f'Error {exc_tb.tb_next}')
+                print_error()
                 article = None
 
             if limit_node != 0:  # Unlimited

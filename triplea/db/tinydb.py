@@ -54,7 +54,11 @@ class DB_TinyDB(DataBase):
             # query = (Query().FlagAffiliationMining == 0)
             # | (Query().FlagAffiliationMining == None)
             # | (~Query().FlagAffiliationMining.exists())
-            query = ((Query()[tag_field] == 0) | (Query()[tag_field] == None) | (~Query()[tag_field].exists()))  # noqa: E501,E711
+            query = (
+                (Query()[tag_field] == 0)
+                | (Query()[tag_field] == None)  # noqa: E711
+                | (~Query()[tag_field].exists())
+            )  # noqa: E501,E711
             l_pmid = [a.get("PMID") for a in self.db.search(query)]
         else:
             l_pmid = [a.get("PMID") for a in self.db.search(q[tag_field] == state)]
@@ -64,7 +68,11 @@ class DB_TinyDB(DataBase):
         q = Query()
         if state is None or state == 0:
             # is None = raise exception
-            query = ((Query()[tag_field] == 0) | (Query()[tag_field] == None) | (~Query()[tag_field].exists()))  # noqa: E711,E501
+            query = (
+                (Query()[tag_field] == 0)
+                | (Query()[tag_field] == None)  # noqa: E711
+                | (~Query()[tag_field].exists())
+            )  # noqa: E711,E501
             l_id = [a.doc_id for a in self.db.search(query)]
         else:
             l_id = [a.doc_id for a in self.db.search(q[tag_field] == state)]
@@ -88,6 +96,10 @@ class DB_TinyDB(DataBase):
         q = Query()
         l_pmid = self.db.search(q.State == state)
         return len(l_pmid)
+
+    def get_article_by_arxiv_id(self, arxiv_id: str):
+        q = Query()
+        return self.db.get(q.ArxivID == arxiv_id)
 
     def get_article_by_pmid(self, pmid: str):
         q = Query()

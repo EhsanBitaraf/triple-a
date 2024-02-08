@@ -1,15 +1,11 @@
 import json
 import os
-import sys
-
 import click
 from triplea.config.settings import SETTINGS
 from triplea.service.click_logger import logger
 from triplea.schemas.article import Article
 from triplea.service.repository.export.unified_export_json import json_converter_01
 import triplea.service.repository.persist as persist
-import traceback
-
 from triplea.utils.general import print_error, safe_csv
 
 
@@ -58,12 +54,7 @@ def export_triplea_json(proccess_bar=False, limit_sample=0) -> str:
                     break
             # ------------------Select ----------------------------------------
         except Exception:
-            exc_type, exc_value, exc_tb = sys.exc_info()
-            print()
-            print(exc_tb.tb_lineno)
-            logger.ERROR(f"Error {exc_type}")
-            logger.ERROR(f"Error {exc_value}")
-            traceback.print_tb(exc_tb)
+            print_error()
 
     final = json.dumps(output, default=lambda o: o.__dict__, indent=2)
     print()
@@ -78,7 +69,7 @@ def export_triplea_csv(proccess_bar=False, limit_sample=0) -> str:  # noqa: C901
     total_article_in_current_state = len(l_pmid)
     refresh_point = 0
     csv = ""
-    csv = (csv + """key,title,authors,pmid,year,publisher,url,abstract,state,doi,keywords,topics""" + "\n")  # noqa: E501
+    csv = csv + """key,title,authors,pmid,year,publisher,url,abstract,state,doi,keywords,topics""" + "\n"  # noqa: E501
     n = 0
     for id in l_pmid:
         try:
@@ -167,16 +158,11 @@ def export_triplea_csv(proccess_bar=False, limit_sample=0) -> str:  # noqa: C901
                 if topics.__contains__(","):
                     topics = f'"{topics[:-1]}"'
 
-            csv = (csv + f"""{n},{title},{authors},{pmid},{year},{publisher},{url},{abstract},{state},{doi},{keywords},{topics}""" + "\n")  # noqa: E501
+            csv = csv + f"""{n},{title},{authors},{pmid},{year},{publisher},{url},{abstract},{state},{doi},{keywords},{topics}""" + "\n"  # noqa: E501
 
             # ------------------Select ----------------
         except Exception:
-            exc_type, exc_value, exc_tb = sys.exc_info()
-            print()
-            print(exc_tb.tb_lineno)
-            logger.ERROR(f"Error {exc_type}")
-            logger.ERROR(f"Error {exc_value}")
-            traceback.print_tb(exc_tb)
+            print_error()
 
     logger.INFO("Export Complete.")
     return csv
@@ -195,10 +181,10 @@ def export_triplea_csvs_in_relational_mode_save_file(  # noqa: C901
 
     refresh_point = 0
     csv = ""
-    authors_csv = ("key,authors,affiliations,country,university,institute,center,hospital,department,location,email,zipcode" + "\n")  # noqa: E501
+    authors_csv = "key,authors,affiliations,country,university,institute,center,hospital,department,location,email,zipcode" + "\n"  # noqa: E501
     keywords_csv = "key,keywords" + "\n"
     topics_csv = "key,topics,rank" + "\n"
-    csv = (csv + """key,title,pmid,year,publisher,url,abstract,state,doi,journal_issn,journal_iso_abbreviation,language,publication_type,citation""" + "\n")  # noqa: E501
+    csv = csv + """key,title,pmid,year,publisher,url,abstract,state,doi,journal_issn,journal_iso_abbreviation,language,publication_type,citation""" + "\n"  # noqa: E501
     n = 0
     # -------------------Create File-------------------------------
     file_name = os.path.basename(output_file)
@@ -309,7 +295,11 @@ def export_triplea_csvs_in_relational_mode_save_file(  # noqa: C901
                         aff = ""
 
                     str_aff = f"{safe_csv(country)},{safe_csv(university)},{safe_csv(institute)},{safe_csv(center)},{safe_csv(hospital)},{safe_csv(department)},{safe_csv(location)},{safe_csv(email)},{safe_csv(zipcode)}"  # noqa: E501
-                    authors_csv = (authors_csv + f"{n},{safe_csv(au.FullName)},{safe_csv(aff)},{str_aff}" + "\n")  # noqa: E501
+                    authors_csv = (
+                        authors_csv
+                        + f"{n},{safe_csv(au.FullName)},{safe_csv(aff)},{str_aff}"
+                        + "\n"
+                    )  # noqa: E501
 
             if "keywords" in article:
                 if article["keywords"] is not None:
@@ -320,11 +310,16 @@ def export_triplea_csvs_in_relational_mode_save_file(  # noqa: C901
                             )  # noqa: E501
 
             if "topics" in article:
-                for topic in article["topics"]:
-                    if topic is not None:
-                        topics_csv = (topics_csv + f"{n},{safe_csv(topic['text'])},{topic['rank']}" + "\n")  # noqa: E501
+                if article["topics"] is not None:
+                    for topic in article["topics"]:
+                        if topic is not None:
+                            topics_csv = (
+                                topics_csv
+                                + f"{n},{safe_csv(topic['text'])},{topic['rank']}"
+                                + "\n"
+                            )  # noqa: E501
 
-            csv = (csv + f"""{n},{title},{pmid},{year},{publisher},{url},{abstract},{state},{doi},{journal_issn},{journal_iso_abbreviation},{language},{publication_type},{citation}""" + "\n")  # noqa: E501
+            csv = csv + f"""{n},{title},{pmid},{year},{publisher},{url},{abstract},{state},{doi},{journal_issn},{journal_iso_abbreviation},{language},{publication_type},{citation}""" + "\n"  # noqa: E501
 
             if proccess_bar:
                 bar.label = f"Article {id}, exported."

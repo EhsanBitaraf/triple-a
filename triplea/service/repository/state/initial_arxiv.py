@@ -1,5 +1,4 @@
 import json
-import sys
 from triplea.client.arxiv import get_article_list_from_arxiv
 from triplea.schemas.article import Article, SourceBankType
 from triplea.service.click_logger import logger
@@ -8,6 +7,8 @@ import triplea.service.repository.persist as persist
 
 import time
 from typing import Optional
+
+from triplea.utils.general import print_error
 
 
 def parse_arxiv_list(data: dict):
@@ -33,14 +34,10 @@ def parse_arxiv_list(data: dict):
 
             article_list.append(article)
     except Exception:
-        exc_type, exc_value, exc_tb = sys.exc_info()
-        with open("error-parse_arxiv_list-{exc_tb.tb_lineno}.json", "w") as outfile:
+        with open("error-parse_arxiv_list.json", "w") as outfile:
             outfile.write(json.dumps(data, indent=4, sort_keys=True))
             outfile.close()
-        print()
-
-        logger.ERROR(f"Error Line {exc_tb.tb_lineno}")
-        logger.ERROR(f"Error {exc_value}")
+        print_error()
 
     return article_list
 
@@ -55,6 +52,7 @@ def get_article_list_from_arxiv_all_store_to_arepo(
         sleep_time = 0
     else:
         sleep_time = 1 // tps_limit
+
     data = get_article_list_from_arxiv(searchterm, start, max_results)
 
     total = int(data["feed"]["opensearch:totalResults"]["#text"])
@@ -78,6 +76,13 @@ def get_article_list_from_arxiv_all_store_to_arepo(
         for a in article_list:
             persist.insert_new_arxiv(a)  # Check Dose Not Exist
         time.sleep(sleep_time)
-        logger.INFO(f"""Round ({str(n)}) : Get another {str(
+        logger.INFO(
+            f"""Round ({str(n)}) : Get another {str(
             max_results
-            )}  record (Total {str(n * max_results)} record)""", deep=13)
+            )}  record from {str(
+                start
+                )} to {str(
+                    start + max_results
+                    )} (Total {str(n * max_results)} record)""",
+            deep=13,
+        )

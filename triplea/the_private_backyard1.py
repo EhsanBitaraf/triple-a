@@ -19,6 +19,8 @@ import triplea.service.graph.analysis.ganalysis as ganaliz
 import traceback
 import os
 
+from triplea.utils.general import print_error
+
 
 # # Export Selected Article For Rayyan
 
@@ -129,12 +131,7 @@ if __name__ == "__main__":
 
             # ------------------Select ----------------
         except Exception:
-            exc_type, exc_value, exc_tb = sys.exc_info()
-            print()
-            print(exc_tb.tb_lineno)
-            logger.ERROR(f"Error {exc_type}")
-            logger.ERROR(f"Error {exc_value}")
-            traceback.print_tb(exc_tb)
+            print_error()
 
     print(os.path.join("/path/to/Documents", "completeName"))
 

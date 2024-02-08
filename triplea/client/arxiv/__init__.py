@@ -31,10 +31,7 @@ def get_article_list_from_arxiv(
 
     # sending get request and saving the response as response object
     try:
-        r = requests.get(url=URL,
-                         params=PARAMS,
-                         headers=headers,
-                         proxies=proxy_servers)
+        r = requests.get(url=URL, params=PARAMS, headers=headers, proxies=proxy_servers)
     except Exception:
         raise Exception("Connection Error.")
 
@@ -47,7 +44,7 @@ def get_article_list_from_arxiv(
         raise Exception(f"Error HTTP : {r.status_code}")
 
 
-def get_pdf_by_arxiv_id(arxiv_id:str):
+def get_pdf_by_arxiv_id(arxiv_id: str):
     URL = f"https://browse.arxiv.org/pdf/{arxiv_id}.pdf"
 
     headers = {"User-Agent": SETTINGS.AAA_CLIENT_AGENT}
@@ -64,12 +61,10 @@ def get_pdf_by_arxiv_id(arxiv_id:str):
 
     # sending get request and saving the response as response object
     try:
-        r = requests.get(url=URL,
-                         headers=headers,
-                         proxies=proxy_servers)
+        r = requests.get(url=URL, headers=headers, proxies=proxy_servers)
     except Exception:
         raise Exception("Connection Error.")
-    
+
     if r.status_code == 200:
         pdf = r.content
         print(type(pdf))
@@ -77,11 +72,12 @@ def get_pdf_by_arxiv_id(arxiv_id:str):
     else:
         raise Exception(f"Error HTTP : {r.status_code}")
 
+
 # https://stackoverflow.com/questions/34503412/
 #    download-and-save-pdf-file-with-python-requests-module
 # http://requests.readthedocs.org/en/latest/user/
-#    quickstart/#raw-response-content    
-# Chunking method    
+#    quickstart/#raw-response-content
+# Chunking method
 # url = 'http://www.hrecos.org//images/Data/forweb/HRTVBSH.Metadata.pdf'
 # r = requests.get(url, stream=True)
 

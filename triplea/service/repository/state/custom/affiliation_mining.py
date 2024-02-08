@@ -226,7 +226,7 @@ def affiliation_mining1(article: Article):
                             usename = email.split("@")[0]
                             if usename.__contains__(" "):
                                 # print("مشکل")
-                                country = "USA"  # Critical بعدا درست می کنم
+                                country = "USA"  # CRITICAL بعدا درست می کنم
                             else:
                                 country = aff_part[aff_part_number - (end_pointer)]
                             # print(email)

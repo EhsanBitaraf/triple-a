@@ -15,3 +15,6 @@ requests
 tomli
 pypdf
 PyPDF2
+# For LLM
+langchain
+langchain_openai

@@ -1,48 +1,15 @@
 
-
-import urllib
-
-from pypdf import PdfReader
-from triplea.db.mongo_nav import get_database_list
-from triplea.schemas.article import Article
-import triplea.service.llm as LLM_fx
-from triplea.service.repository.export.triplea_format import export_triplea_csvs_in_relational_mode_save_file
-
 from triplea.service.repository.state.initial_arxiv import get_article_list_from_arxiv_all_store_to_arepo
 from triplea.service.repository.state.initial import get_article_list_from_pubmed_all_store_to_arepo
 from triplea.service.repository.pipeline_core import move_state_forward
 import triplea.service.repository.persist as PERSIST
 import triplea.service.repository.pipeline_flag as cPIPELINE
-
-# import requests
-# import json
- 
-# url = "http://localhost:5003/v1/chat/completions" # Replace with your actual API endpoint
-# headers = {"accept": "application/json", "Content-type": "application/json"}
-# data = {"messages":[{"role":"system","content":"You are a helpful assistant."},{"role":"user","content":"Test message"}], "model": "openbuddy-llama2-70B-v13.2-AWQ"} # Replace with your actual JSON payload
- 
-# response = requests.post(url, headers=headers, json=data)
- 
-# print(response.text)
+from triplea.service.repository.export.triplea_format import (
+    export_triplea_csvs_in_relational_mode_save_file,
+)
 
 if __name__ == "__main__":
-    # id = "1802.06018v2" # No
-    # # id = "1711.07404v1"
-    # # id = "1904.01138v2"
-    # # id = "2006.00533v1"
-    # # id = "2402.01383v1" # Yes
-    # a = PERSIST.get_article_by_arxiv_id(id)
-
-    # # print(a['Title'])
-    # # print(a['Abstract'])
-    # r = LLM_fx.question_with_template_for_llm(a['Title'],a['Abstract'])
-    # print(r)
-
-    ### Short Review Article
-    cPIPELINE.go_article_review_by_llm()
-
-    # d= get_database_list()
-    # print(d)
+    pass
     
     # # Step 1 - Get article from Arxiv
     # arxiv_search_string = '(ti:“Large language model” OR ti:“Large language models” OR (ti:large AND ti:“language model”) OR (ti:large AND ti:“language models”) OR (ti:“large language” AND ti:model) OR (ti:“large language” AND ti:models) OR ti:“language model” OR ti:“language models” OR ti:LLM OR ti:LLMs OR ti:“GPT models” OR ti:“GPT model” OR ti:Gpt OR ti:gpts OR ti:Chatgpt OR ti:“generative pre-trained transformer” OR ti:“bidirectional encoder representations from transformers” OR ti:BERT OR ti:“transformer-based model” OR (ti:transformer AND ti:model) OR (ti:transformers AND ti:model) OR (ti:transformer AND ti:models) OR (ti:transformers AND ti:models)) AND (ti:Evaluation OR ti:Evaluat* OR ti:Assessment OR ti:Assess* OR ti:Validation OR ti:Validat* OR ti:Benchmarking OR ti:Benchmark*)'
@@ -58,7 +25,7 @@ if __name__ == "__main__":
     # PERSIST.print_article_info_from_repo()
 
 
-    # 0 - article identifier saved
+    # # 0 - article identifier saved
 
     # # Step 4 - Moving from `0` to `1`  - original details of article saved (json Form)
     # move_state_forward(0)                    
@@ -75,45 +42,20 @@ if __name__ == "__main__":
     # # Step 8 - Moving from `4` to `5` - Convert full text to string
     # move_state_forward(4)
 
-    # # Export
-    # export_triplea_csvs_in_relational_mode_save_file("export.csv")
+    # # Moving forward in custom pipeline
 
-    # reader = PdfReader("2310.15773v1.pdf")
-    # page1 = reader.pages[0]
-    # page2 = reader.pages[1]
+    # ### Extract Topic
+    # cPIPELINE.go_extract_topic()
 
-    # # meta = reader.metadata
-    # # print(meta.author)
-    # # print(meta.creator)
-    # # print(meta.producer)
-    # # print(meta.subject)
-    # # print(meta.title)
-    # for i in page2.get_object():
-    #     print(i)
-    #     # print(i.get_object())
-    #     print(i.extract_text())
-    # # for page in page1:
-    # #     if "/Annots" in page:
-    # #         for annot in page["/Annots"]:
-    # #             obj = annot.get_object()
-    # #             annotation = {"subtype": obj["/Subtype"], "location": obj["/Rect"]}
-    # #             print(annotation)
+    # ### Affiliation Mining
+    # cPIPELINE.go_affiliation_mining(method="Titipata")
 
-    # # print(page2.get_object())
-    # text_file = page_cleaner(reader.pages[0])
-    # text_file = text_file + '\n' + page_cleaner(reader.pages[1])
-    # f = open("ArxivID3.txt", "w")
-    # f.write(text_file)
-    # f.close()
+    # ### Extract Triple
+    # cPIPELINE.go_extract_triple()
 
-    # from unstructured.partition.auto import partition
-    # filename = "2310.15773v1.pdf"
-    # with open(filename, "rb") as f:
-    #     elements = partition(file=f, include_page_breaks=True)
+    # ### Short Review Article
+    # cPIPELINE.go_article_review_by_llm()
 
-    # print(elements[1].to_dict())
-    # # for i  in elements:
-    # #     print(i)
-    # # print("\n\n".join([str(el) for el in elements][5:15]))
-
-
+    # Export
+    export_triplea_csvs_in_relational_mode_save_file("export.csv")
+    

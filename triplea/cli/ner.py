@@ -30,7 +30,11 @@ def ner_title(title):
         pass
     else:
         logger.WARNING("Invalid input :(")
-        logger.WARNING('You pressed: "' + "".join(["\\" + hex(ord(i))[1:] if i not in printable else i for i in c]) + '"')  # noqa: E501
+        logger.WARNING(
+            'You pressed: "'
+            + "".join(["\\" + hex(ord(i))[1:] if i not in printable else i for i in c])
+            + '"'
+        )  # noqa: E501
 
 
 if __name__ == "__main__":

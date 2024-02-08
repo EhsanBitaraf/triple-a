@@ -9,7 +9,6 @@ def get_database_list():
     return dbs
 
 
-
 def get_flag():
     _connection_url = SETTINGS.AAA_MONGODB_CONNECTION_URL
     client = MongoClient(_connection_url)
@@ -45,6 +44,7 @@ def change():
     myquery = {"FlagAffiliationMining": 1}
     sett = {"$set": {"FlagAffiliationMining": 0}}
     r = col_article.update_many(myquery, sett)
+    print(f"result: {r}")
 
 
 def change_CiteCrawlerDeep():
@@ -58,6 +58,7 @@ def change_CiteCrawlerDeep():
     myquery = {"CiteCrawlerDeep": 0}
     sett = {"$set": {"CiteCrawlerDeep": 1}}
     r = col_article.update_many(myquery, sett)
+    print(f"result: {r}")
 
 
 def change_State():
@@ -68,6 +69,7 @@ def change_State():
     myquery = {"State": 3}
     sett = {"$set": {"State": 2}}
     r = col_article.update_many(myquery, sett)
+    print(f"result: {r}")
 
 
 def change_complex():
@@ -79,17 +81,15 @@ def change_complex():
     # sett = {"$set": {"FlagAffiliationMining": 0}}
     # r = col_article.update_many(myquery, sett)
 
-    myquery = {"FlagAffiliationMining": 0,
-               "Authors.Affiliations": {"$ne": "null"}}
-    sett = {"$unset": {
-        "Authors.$[author].Affiliations.$[affil].Structural": ""
-        }}
+    myquery = {"FlagAffiliationMining": 0, "Authors.Affiliations": {"$ne": "null"}}
+    sett = {"$unset": {"Authors.$[author].Affiliations.$[affil].Structural": ""}}
     filter = [
         {"author.Affiliations": {"$exists": True}},
         {"affil.Structural": {"$exists": True}},
     ]
 
     r = col_article.update_many(myquery, sett, array_filters=filter)
+    print(f"result: {r}")
 
 
 if __name__ == "__main__":

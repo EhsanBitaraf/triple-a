@@ -280,13 +280,14 @@ Apart from the core pipelines that should be used to prepare articles, customize
 
 List of Custom Pipeline
 
-|Action|Tag Name|Description|
-|------|--------|-----------|
-|Triple extraction from article abstract|FlagExtractKG||
-|Topic extraction from article abstract|FlagExtractTopic||
-|Convert Affiliation text to structural data|FlagAffiliationMining|This is simple way for parse Affiliation text |
-|Convert Affiliation text to structural data|FlagAffiliationMining_Titipata|use [Titipat Achakulvisut Repo](https://github.com/titipata/affiliation_parser) for parsing Affiliation text|
-|Text embedding abstract and send to SciGenius|FlagEmbedding||
+|Action|Tag Name|Description|Prerequisite|
+|------|--------|-----------|------------|
+|Triple extraction from article abstract      |FlagExtractKG        ||At least core state 2|
+|Topic extraction from article abstract       |FlagExtractTopic     ||At least core state 2|
+|Convert Affiliation text to structural data  |FlagAffiliationMining|This is simple way for parse Affiliation text |At least core state 2|
+|Convert Affiliation text to structural data  |FlagAffiliationMining_Titipata|use [Titipat Achakulvisut Repo](https://github.com/titipata/affiliation_parser) for parsing Affiliation text|At least core state 2|
+|Text embedding abstract and send to SciGenius|FlagEmbedding        ||At least core state 2|
+|Title and Abstract Review by LLM             |FlagShortReviewByLLM ||At least core state 2|
 
 ##### NER Article Title
 You can try the NER method to extract the major topic of the article's title by using the following command. This command is independent and is used for testing and is not stored in the Arepo.

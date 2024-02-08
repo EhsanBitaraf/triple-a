@@ -86,7 +86,17 @@ Installed plugins: mccabe: 0.7.0, pycodestyle: 2.10.0, pyflakes: 3.0.1
 
 https://www.flake8rules.com/
 
-## Sample command:
+## Flake Tips
+
+In-line Ignoring Errors:
+```python
+example = lambda: 'example'  # noqa: E731
+```
+Ignoring Entire Files:
+```python
+# flake8: noqa
+```
+## Sample command
 
 ```
 flake8 --show-source .\triplea\cli\main.py
@@ -179,7 +189,6 @@ Per page:
 flake8 --config=.flake8 --count --output-file out-flake8.txt .\triplea\ --no-show-source  --statistics
 ```
 
-
 2023-10-15
 ```
 4     C901 'export_rayyan_csv' is too complex (21)
@@ -260,6 +269,8 @@ black .\triplea\the_private_backyard_mongodb.py
 104
 ```
 104
+353
+61
 
 ### cli
 

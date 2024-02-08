@@ -1,8 +1,7 @@
-import sys
 from triplea.service.click_logger import logger
 from triplea.schemas.article import Article
 import triplea.service.repository.persist as persist
-import traceback
+from triplea.utils.general import print_error
 
 
 """
@@ -40,7 +39,7 @@ def export_rayyan_csv() -> str:  # noqa: C901
 
     refresh_point = 0
     csv = ""
-    csv = (csv + """key,title,authors,issn,volume,issue,pages,year,publisher,url,abstract,notes,doi,keywords""" + "\n")  # noqa: E501
+    csv = csv + """key,title,authors,issn,volume,issue,pages,year,publisher,url,abstract,notes,doi,keywords""" + "\n"  # noqa: E501
     n = 0
     for id in l_pmid:
         try:
@@ -125,16 +124,11 @@ def export_rayyan_csv() -> str:  # noqa: C901
                 if keywords.__contains__(","):
                     keywords = f'"{keywords[:-1]}"'
 
-            csv = (csv + f"""{n},{title},{authors},{issn},{volume},{issue},{pages},{year},{publisher},{url},{abstract},{notes},{doi},{keywords}""" + "\n")  # noqa: E501
+            csv = csv + f"""{n},{title},{authors},{issn},{volume},{issue},{pages},{year},{publisher},{url},{abstract},{notes},{doi},{keywords}""" + "\n"  # noqa: E501
 
             # ------------------Select ----------------
         except Exception:
-            exc_type, exc_value, exc_tb = sys.exc_info()
-            print()
-            print(exc_tb.tb_lineno)
-            logger.ERROR(f"Error {exc_type}")
-            logger.ERROR(f"Error {exc_value}")
-            traceback.print_tb(exc_tb)
+            print_error()
 
     # print(os.path.join('/path/to/Documents',"completeName"))
 

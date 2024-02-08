@@ -1,5 +1,3 @@
-import sys
-import traceback
 from typing import Optional
 import click
 from triplea.config.settings import SETTINGS
@@ -7,6 +5,7 @@ from triplea.service.click_logger import logger
 from triplea.schemas.article import Article, SourceBankType
 import triplea.service.repository.state as state_manager
 import triplea.service.repository.persist as persist
+from triplea.utils.general import print_error
 
 tps_limit = SETTINGS.AAA_TPS_LIMIT
 
@@ -15,9 +14,7 @@ def move_state_until(end_state: int):
     l_pmid = persist.get_all_article_pmid_list()
     logger.INFO(str(len(l_pmid)) + " Article(s) is arepo ")
 
-    bar = click.progressbar(length=len(l_pmid),
-                            show_pos=True,
-                            show_percent=True)
+    bar = click.progressbar(length=len(l_pmid), show_pos=True, show_percent=True)
 
     for id in l_pmid:
         updated_article_current_state = None
@@ -49,7 +46,7 @@ def move_state_until(end_state: int):
 
             elif current_state == -2:  # Next state: Get Citation
                 updated_article = state_manager.get_citation(updated_article)
-                
+
             elif current_state == 3:  # Next state: Get Full Text
                 updated_article = state_manager.get_full_text(updated_article)
 
@@ -60,7 +57,7 @@ def move_state_until(end_state: int):
                 raise NotImplementedError
 
         persist.update_article_by_id(updated_article, id)
-        bar.label = (f"Article {updated_article.PMID} with state {str(updated_article_current_state)} forward to {str(end_state)}")  # noqa: E501
+        bar.label = f"Article {updated_article.PMID} with state {str(updated_article_current_state)} forward to {str(end_state)}"  # noqa: E501
         bar.update(1)
     persist.refresh()
 
@@ -143,35 +140,26 @@ def move_state_forward(  # noqa: C901
             else:
                 raise NotImplementedError
 
-            bar.label = (f"Article {article_source_bank_title} ({article_identifier}) with state {str(current_state)} forward to {str(current_state + 1)}")  # noqa: E501
+            bar.label = f"Article {article_source_bank_title} ({article_identifier}) with state {str(current_state)} forward to {str(current_state + 1)}"  # noqa: E501
             bar.update(1)
             # # for re run
             # if current_state == 2 : current_state = 1
 
             if current_state is None:
                 updated_article = state_manager.expand_details(updated_article)
-                # persist.update_article_by_pmid(updated_article,
-                #                                updated_article.PMID)
-
-            elif current_state == -1:  # Error in State 0 Net state: 1
-                updated_article = state_manager.parsing_details(updated_article)
-                # persist.update_article_by_pmid(updated_article,
-                #                                updated_article.PMID)
 
             elif current_state == 0:  # Next state: get article details from pubmed
                 updated_article = state_manager.expand_details(updated_article)
-                # persist.update_article_by_pmid(updated_article,
-                #                                updated_article.PMID)
 
             elif current_state == 1:  # Next state: Extract Data
                 updated_article = state_manager.parsing_details(updated_article)
-                # persist.update_article_by_pmid(updated_article,
-                #                                updated_article.PMID)
+
+            elif current_state == -1:  # Error in State 0 Next state: 1
+                updated_article = state_manager.parsing_details(updated_article)
 
             elif current_state == 2:  # Next state: Get Citation
                 updated_article = state_manager.get_citation(updated_article)
-                # persist.update_article_by_pmid(updated_article,
-                #                                updated_article.PMID)
+
             elif current_state == -2:  # Next state: Get Citation
                 updated_article = state_manager.get_citation(updated_article)
 
@@ -183,11 +171,13 @@ def move_state_forward(  # noqa: C901
 
             elif current_state == 4:  # Next state: Convert Full Text
                 updated_article = state_manager.convert_full_text2string(
-                    updated_article)
+                    updated_article
+                )
 
             elif current_state == -4:  # Next state: Convert Full Text
                 updated_article = state_manager.convert_full_text2string(
-                    updated_article)
+                    updated_article
+                )
 
             else:
                 print()
@@ -201,38 +191,22 @@ def move_state_forward(  # noqa: C901
                 updated_article.State = -1
                 persist.update_article_by_id(updated_article, id)
                 persist.refresh()
-                exc_type, exc_value, exc_tb = sys.exc_info()
-                print()
-                logger.ERROR(f"Error {exc_type}")
-                logger.ERROR(f"Error {exc_value}")
+                print_error()
 
             elif current_state is None:
                 # Article Not Parsed.
                 persist.refresh()
-                exc_type, exc_value, exc_tb = sys.exc_info()
-                print()
-                logger.ERROR(f"Error {exc_type}")
-                logger.ERROR(f"Error {exc_value}")
+                print_error()
 
             elif current_state == 2:
                 updated_article = Article(**a.copy())
                 updated_article.State = -2
                 persist.update_article_by_id(updated_article, id)
                 persist.refresh()
-                exc_type, exc_value, exc_tb = sys.exc_info()
-                print()
-                logger.ERROR(f"Error {exc_type}")
-                logger.ERROR(f"Error {exc_value}")
+                print_error()
 
             else:
                 persist.refresh()
-                exc_type, exc_value, exc_tb = sys.exc_info()
-                print()
-                print(exc_tb.tb_lineno)
-                print()
-                traceback.print_tb(exc_tb)
-                logger.ERROR(f"Error {exc_type}")
-                logger.ERROR(f"Error {exc_value}")
-                logger.ERROR(f"Error {exc_tb}")
+                print_error()
 
     persist.refresh()

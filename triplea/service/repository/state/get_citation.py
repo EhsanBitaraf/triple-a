@@ -1,7 +1,7 @@
-import sys
 from triplea.client.pubmed import get_cited_article_from_pubmed
 from triplea.schemas.article import Article, SourceBankType
 from triplea.service.click_logger import logger
+from triplea.utils.general import print_error
 
 
 def _get_citation_pubmed(article: Article):
@@ -20,48 +20,52 @@ def _get_citation_pubmed(article: Article):
     # previous state is 2
     article.State = 3  # next state
     backward_state = -2
-    pmid = article.PMID
-    if pmid is not None:
-        if article.CiteCrawlerDeep is None:
-            article.CiteCrawlerDeep = 0
-        if article.CiteCrawlerDeep > 0:
-            try:
-                lc = get_cited_article_from_pubmed(pmid)
-            except Exception:
-                article.State = backward_state
-                exc_type, exc_value, exc_tb = sys.exc_info()
-                logger.ERROR(f"Error {exc_type} Value : {exc_value}")
-                logger.ERROR(f"Error {exc_tb}")
-                return article
 
-            if lc is not None:
-                if len(lc) > 0:
-                    if article.CiteCrawlerDeep is None:
-                        article.CiteCrawlerDeep = 0
-                        # raise Exception('CiteCrawlerDeep is None.')
-                    if article.CiteCrawlerDeep > 0:
-                        article.CitedBy = lc
-                        # create new article
-                        logger.DEBUG(
-                            f"Add {len(lc)} new article(s) by CITED.",
-                            forecolore="yellow",
-                            deep=3,
-                        )
-                        # new_ccd = article.CiteCrawlerDeep - 1
-                        # CRITICAL Temporary Disable
-                        # for c in lc:
-                        #     persist.insert_new_pmid(pmid=c,
-                        #                            cite_crawler_deep=new_ccd)
-        else:
-            pass
-            article.State = 3
-            logger.DEBUG(
-                f"""Article {pmid} Cite
-                             Crawler Deep= {article.CiteCrawlerDeep}.""",
-                deep=5,
-            )
+    try:
+        pmid = article.PMID
+        if pmid is not None:
+            if article.CiteCrawlerDeep is None:
+                article.CiteCrawlerDeep = 0
+            if article.CiteCrawlerDeep > 0:
+                try:
+                    lc = get_cited_article_from_pubmed(pmid)
+                except Exception:
+                    article.State = backward_state
+                    print_error()
+                    return article
 
-    return article
+                if lc is not None:
+                    if len(lc) > 0:
+                        if article.CiteCrawlerDeep is None:
+                            article.CiteCrawlerDeep = 0
+                            # raise Exception('CiteCrawlerDeep is None.')
+                        if article.CiteCrawlerDeep > 0:
+                            article.CitedBy = lc
+                            # create new article
+                            logger.DEBUG(
+                                f"Add {len(lc)} new article(s) by CITED.",
+                                forecolore="yellow",
+                                deep=3,
+                            )
+                            # new_ccd = article.CiteCrawlerDeep - 1
+                            # CRITICAL Temporary Disable for crawle Citation.
+                            # for c in lc:
+                            #     persist.insert_new_pmid(pmid=c,
+                            #                            cite_crawler_deep=new_ccd)
+            else:
+                pass
+                article.State = 3
+                logger.DEBUG(
+                    f"""Article {pmid} Cite
+                                Crawler Deep= {article.CiteCrawlerDeep}.""",
+                    deep=5,
+                )
+
+        return article
+    except Exception:
+        print_error()
+        article.State = backward_state
+        return article
 
 
 def _get_citation_arxiv(article: Article):

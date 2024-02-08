@@ -1,12 +1,14 @@
 import os
 import pathlib
 from typing import Optional
+
 # from pydantic import BaseSettings # Old pydantic version
 from pydantic_settings import BaseSettings
 from dotenv import load_dotenv
+
 # import tomli
 # # https://stackoverflow.com/questions/67085041/how-to-specify-version-in-only-one-place-when-using-pyproject-toml # noqa: E501
-import importlib.metadata
+# import importlib.metadata
 
 import tomli
 
@@ -45,10 +47,8 @@ class Settings(BaseSettings):
     AAA_TPS_LIMIT: Optional[int] = os.getenv("AAA_TPS_LIMIT", 1)
     AAA_PROXY_HTTP: Optional[str] = os.getenv("AAA_PROXY_HTTP", "")
     AAA_PROXY_HTTPS: Optional[str] = os.getenv("AAA_PROXY_HTTPS", "")
-    AAA_REFF_CRAWLER_DEEP: Optional[int] = os.getenv(
-        "AAA_REFF_CRAWLER_DEEP", 1)
-    AAA_CITED_CRAWLER_DEEP: Optional[int] = os.getenv(
-        "AAA_CITED_CRAWLER_DEEP", 1)
+    AAA_REFF_CRAWLER_DEEP: Optional[int] = os.getenv("AAA_REFF_CRAWLER_DEEP", 1)
+    AAA_CITED_CRAWLER_DEEP: Optional[int] = os.getenv("AAA_CITED_CRAWLER_DEEP", 1)
 
     AAA_CLIENT_AGENT: Optional[str] = os.getenv(
         "AAA_CLIENT_AGENT",
@@ -67,7 +67,7 @@ class Settings(BaseSettings):
     )
 
     VERSION: Optional[str] = (
-        version + ".001"
+        version + ".003"
     )  # Change this micro version in the development process
 
     AAA_CLI_ALERT_POINT: Optional[int] = os.getenv("AAA_CLI_ALERT_POINT", 500)
@@ -84,7 +84,6 @@ class Settings(BaseSettings):
     AAA_FULL_TEXT_STRING_DIRECTORY: Optional[str] = os.getenv(
         "AAA_FULL_TEXT_STRING_DIRECTORY", "Directory"
     )
-
 
     # class Config:
     #     case_sensitive = True
