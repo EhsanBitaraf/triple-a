@@ -9,6 +9,54 @@ def get_database_list():
     return dbs
 
 
+
+def get_article_title_and_abstract():
+    _connection_url = SETTINGS.AAA_MONGODB_CONNECTION_URL
+    client = MongoClient(_connection_url)
+    db = client[SETTINGS.AAA_MONGODB_DB_NAME]
+    col_article = db["articledata"]
+    result = list(col_article.find({"ArxivID":"1807.07455v2"},
+                                    {"_id":0,
+                                     "Title": 1,
+                                     "Abstract": 1}))
+    return result
+
+def get_article_info_with_llm_response(response:str):
+    _connection_url = SETTINGS.AAA_MONGODB_CONNECTION_URL
+    client = MongoClient(_connection_url)
+    db = client[SETTINGS.AAA_MONGODB_DB_NAME]
+    col_article = db["articledata"]
+    result = list(col_article.find({"ReviewLLM.Response": response,
+                                     "ReviewLLM.TemplateID": "T101"},
+                                    {"_id":0,
+                                     "PMID": 1,
+                                     "ArxivID": 1,
+                                     "Title":1}))
+    return result
+
+def get_groupby_with_llm_response():
+    _connection_url = SETTINGS.AAA_MONGODB_CONNECTION_URL
+    client = MongoClient(_connection_url)
+    db = client[SETTINGS.AAA_MONGODB_DB_NAME]
+    col_article = db["articledata"]
+    pipeline = [
+        {
+            "$unwind": "$ReviewLLM"
+        },
+        {
+            "$group": {
+                "_id": "$ReviewLLM.Response",
+                "count": { "$sum": 1 },
+                "totalInputTokens": { "$sum": "$ReviewLLM.InputTokens" },
+                "totalOutputTokens": { "$sum": "$ReviewLLM.OutputTokens" },
+                "totalTimeTaken": { "$sum": "$ReviewLLM.TimeTaken" }
+            }
+        }
+    ]
+
+    result = list(col_article.aggregate(pipeline))
+    return result
+
 def get_flag():
     _connection_url = SETTINGS.AAA_MONGODB_CONNECTION_URL
     client = MongoClient(_connection_url)
@@ -91,8 +139,31 @@ def change_complex():
     r = col_article.update_many(myquery, sett, array_filters=filter)
     print(f"result: {r}")
 
+def change_reset_flag_llm_with_response(response:str,template_id:str):
+    _connection_url = SETTINGS.AAA_MONGODB_CONNECTION_URL
+    client = MongoClient(_connection_url)
+    db = client[SETTINGS.AAA_MONGODB_DB_NAME]
+    col_article = db["articledata"]
+
+    myquery = {"FlagShortReviewByLLM": 1,"ReviewLLM.Response": response, "ReviewLLM.TemplateID": template_id }
+    update = {"$set": {"FlagShortReviewByLLM": 0, "ReviewLLM": None}}
+
+    r = col_article.update_many(myquery, update)
+    print(f"result: {r}")
+
+def change_reset_flag_llm_with_template_id(template_id:str):
+    _connection_url = SETTINGS.AAA_MONGODB_CONNECTION_URL
+    client = MongoClient(_connection_url)
+    db = client[SETTINGS.AAA_MONGODB_DB_NAME]
+    col_article = db["articledata"]
+
+    myquery = {"FlagShortReviewByLLM": 1, "ReviewLLM.TemplateID": template_id }
+    update = {"$set": {"FlagShortReviewByLLM": 0, "ReviewLLM": None}}
+
+    r = col_article.update_many(myquery, update)
+    print(f"result: {r}")
 
 if __name__ == "__main__":
     pass
     # change()
-    change_State()
+    # change_State()

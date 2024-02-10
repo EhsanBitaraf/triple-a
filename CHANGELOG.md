@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 ## v0.0.5 2023-12-28
 
 ### Task
+- RIS Parser
+- pip install from source:
+    - ModuleNotFoundError: No module named 'pydantic_settings'
 - Expose `get_article_by_arxiv_id` to cli
 - Article.Published must be fixed in pubmed and is string in Arxiv
 - Data Extraction from Unstructured PDFs
@@ -16,6 +19,7 @@ All notable changes to this project will be documented in this file.
 - check all TinyDB
 
 ### Improvements
+- Add `AAA_LLM_TEMPLATE_FILE` in SETTING
 - Add FlagShortReviewByLLM
 - Add `get_article_by_arxiv_id` Minor Version 003
 - Add `convert_full_text2string` for converting fulltext pdf to string 
@@ -32,6 +36,8 @@ All notable changes to this project will be documented in this file.
 
 
 ### Bug Fixes
+- Fix parsing_details_pubmed.py", line 214 : `abstract_all = abstract_all + " " + abstract_part["#text"]`
+- Fix `triplea/config/settings.py`, line 27 - FileNotFoundError: [Errno 2] No such file or directory: 'pyproject.toml'
 - Fix `print_error()`
 - Fix bug with pydantic new version 2024-02-03
 - Fix session of extract_triple

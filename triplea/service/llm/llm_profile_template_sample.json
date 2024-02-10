@@ -1,0 +1,15 @@
+{
+    "version" : "0.0.1",
+    "stop_immediately": 0,
+    "model_template_id": "T101",
+    "model_name": "openbuddy-llama2-70B-v13.2-AWQ",
+    "base_path":"http://localhost:5003/v1",
+    "temperature": 0.7,
+    "frequency_penalty": 0,
+    "presence_penalty": 0,
+    "max_tokens": 30,
+    "top_p": 0.9,
+    "response_must_be_json": false,
+    "template": "Check the title and abstract of the article below and tell me if this article has anything to do with LLMs (Large Language Models) assessment methods? Your answer must be yes or no. \ntitle: {title} \nabstract : {abstract}"
+    
+}

@@ -208,10 +208,13 @@ def parsing_details_pubmed(article: Article) -> Article:  # noqa: C901
                     article.Abstract = pubmed_article_data["Abstract"]["AbstractText"]
                 elif isinstance(pubmed_article_data["Abstract"]["AbstractText"], list):
                     abstract_all = ""
-                    for abstract_part in pubmed_article_data["Abstract"][
-                        "AbstractText"
-                    ]:
-                        abstract_all = abstract_all + " " + abstract_part["#text"]
+                    structured_abstract =pubmed_article_data["Abstract"]["AbstractText"]
+                    for abstract_part in structured_abstract:
+                        if '#text' in abstract_part:
+                            abstract_all = abstract_all + " " + abstract_part["@Label"] + ":" + abstract_part["#text"]
+                        else: # observe in 37036022
+                            abstract_all = abstract_all + " " + abstract_part["@Label"] + ":" + abstract_part["b"]
+
                     article.Abstract = abstract_all
                 elif isinstance(pubmed_article_data["Abstract"]["AbstractText"], dict):
                     # exception happen in pmid '36497366' one-abstract-dict-mode.json

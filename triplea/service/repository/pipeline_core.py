@@ -111,7 +111,7 @@ def move_state_forward(  # noqa: C901
 
             a = persist.get_article_by_id(id)
             # CRITICAL For Test and Debug
-            # a = persist.get_article_by_pmid('35970485')
+            # a = persist.get_article_by_pmid('8099394')
 
             try:
                 updated_article = Article(**a.copy())

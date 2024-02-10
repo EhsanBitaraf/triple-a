@@ -6,11 +6,11 @@ from typing import Optional
 from pydantic_settings import BaseSettings
 from dotenv import load_dotenv
 
-# import tomli
-# # https://stackoverflow.com/questions/67085041/how-to-specify-version-in-only-one-place-when-using-pyproject-toml # noqa: E501
-# import importlib.metadata
-
 import tomli
+# https://stackoverflow.com/questions/67085041/how-to-specify-version-in-only-one-place-when-using-pyproject-toml # noqa: E501
+import importlib.metadata
+
+
 
 # Project Directories
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -24,12 +24,16 @@ ENV_PATH_FILE = os.path.join(
 
 load_dotenv(ENV_PATH_FILE, override=True)
 
-with open("pyproject.toml", "rb") as f:
-    pyproject = tomli.load(f)
-    version = pyproject["tool"]["poetry"]["version"]
 
-# version = importlib.metadata.version(__package__ or __name__)
-# version = importlib.metadata.version("triplea")
+try:
+    # This is in Development
+    with open("pyproject.toml", "rb") as f:
+        pyproject = tomli.load(f)
+        version = pyproject["tool"]["poetry"]["version"]
+except Exception:
+    # This is in Package 
+    # version = importlib.metadata.version(__package__ or __name__)
+    version = importlib.metadata.version("triplea")
 
 
 class Settings(BaseSettings):
@@ -83,6 +87,13 @@ class Settings(BaseSettings):
     )
     AAA_FULL_TEXT_STRING_DIRECTORY: Optional[str] = os.getenv(
         "AAA_FULL_TEXT_STRING_DIRECTORY", "Directory"
+    )
+
+    AAA_LLM_TEMPLATE_FILE : Optional[str] = os.getenv(
+        "AAA_LLM_TEMPLATE_FILE",
+        os.path.join(
+            ROOT, "service", "llm", "llm_profile_template_sample.json"
+        )
     )
 
     # class Config:

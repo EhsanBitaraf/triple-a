@@ -26,14 +26,15 @@ def go_article_review_by_llm(proccess_bar=True):
     for id in l_id:
         try:
 
-            # --------------Stop fromfile------------------
-            f = open("stop.json")
-            stop_data = json.load(f)
-            if stop_data["Stop"] == 1:
-                print()
-                logger.INFO("Exit from StopData.")
-                return
-            # --------------Stop fromfile------------------
+            # # --------------Stop fromfile------------------
+            # # Expire and Change with new LLM Json Template
+            # f = open("stop.json")
+            # stop_data = json.load(f)
+            # if stop_data["Stop"] == 1:
+            #     print()
+            #     logger.INFO("Exit from StopData.")
+            #     return
+            # # --------------Stop fromfile------------------
 
             n = n + 1
             current_state = None

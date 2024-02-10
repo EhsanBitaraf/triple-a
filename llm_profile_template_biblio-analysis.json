@@ -1,0 +1,16 @@
+{
+    "version" : "0.0.1",
+    "stop_immediately": 0,
+    "model_template_id": "T102",
+    "model_name": "mistralai_Mistral-7B-Instruct-v0.2",
+    "base_path":"http://localhost:5003/v1",
+    "temperature": 0.7,
+    "frequency_penalty": 0,
+    "presence_penalty": 0,
+    "max_tokens": 500,
+    "top_p": 0.9,
+    "response_must_be_json": true,
+    "template": "Check the title and abstract of the article below and tell me Is this article about biobank concepts or Equipments or regulation is it about the use of biobank data in medical research?. \ntitle: {title} \nabstract : {abstract} \n Prepare my answer as below structure (json schema) in json format:\nField A : This article related to biobank or use data of BioBank. he answer should be True or False\nField B : Has the data of a biobank been used for this research? The answer should be True or False \nField C : Name of BioBank. such as Uk Biobank or BioBank Japan or etc. If the biobank is not mentioned, use null.\nField D : What field is the subject of the research related to, for example, cardiology or urology or pharmacology?\nField E : If the subject is about the biobank itself and not a research about the data used from the biobank, it should be determined which main concept the subject is related to. For example, infrastructure, security, regulations, ethical issues, database, technical architecture, etc.\nField F : Number of samples used from biobank\nField G : Description. Any additional explanation you want to give is not placed in other fields.\njson sample: \n{{'A': true,'B': false,'C': 'UK BioBank','D': 'cardiology','E': ['infrastructure','security'],'F': 12390,'G': 'Description'}}\nNote that the output format must be json"
+
+
+}
