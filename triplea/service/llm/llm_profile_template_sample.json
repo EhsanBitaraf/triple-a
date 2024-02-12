@@ -1,5 +1,5 @@
 {
-    "version" : "0.0.1",
+    "version" : "0.0.2",
     "stop_immediately": 0,
     "model_template_id": "T101",
     "model_name": "openbuddy-llama2-70B-v13.2-AWQ",

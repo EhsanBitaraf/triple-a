@@ -123,6 +123,9 @@ class DB_TinyDB(DataBase):
 
         return self.db.update(article_json, doc_ids=[id])
 
+    def update_cstate_by_id(id, tag_field: str, new_state: int):
+        raise NotImplementedError
+
     def is_article_exist_by_pmid(self, pmid: str) -> bool:
         """
         > Check if the article with the given PMID exists in the database

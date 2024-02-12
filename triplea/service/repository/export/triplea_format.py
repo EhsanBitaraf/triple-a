@@ -69,7 +69,11 @@ def export_triplea_csv(proccess_bar=False, limit_sample=0) -> str:  # noqa: C901
     total_article_in_current_state = len(l_pmid)
     refresh_point = 0
     csv = ""
-    csv = csv + """key,title,authors,pmid,year,publisher,url,abstract,state,doi,keywords,topics""" + "\n"  # noqa: E501
+    csv = (
+        csv
+        + """key,title,authors,pmid,year,publisher,url,abstract,state,doi,keywords,topics"""  # noqa: E501
+        + "\n"
+    )
     n = 0
     for id in l_pmid:
         try:
@@ -158,7 +162,11 @@ def export_triplea_csv(proccess_bar=False, limit_sample=0) -> str:  # noqa: C901
                 if topics.__contains__(","):
                     topics = f'"{topics[:-1]}"'
 
-            csv = csv + f"""{n},{title},{authors},{pmid},{year},{publisher},{url},{abstract},{state},{doi},{keywords},{topics}""" + "\n"  # noqa: E501
+            csv = (
+                csv
+                + f"""{n},{title},{authors},{pmid},{year},{publisher},{url},{abstract},{state},{doi},{keywords},{topics}"""  # noqa: E501
+                + "\n"
+            )
 
             # ------------------Select ----------------
         except Exception:
@@ -181,10 +189,17 @@ def export_triplea_csvs_in_relational_mode_save_file(  # noqa: C901
 
     refresh_point = 0
     csv = ""
-    authors_csv = "key,authors,affiliations,country,university,institute,center,hospital,department,location,email,zipcode" + "\n"  # noqa: E501
+    authors_csv = (
+        "key,authors,affiliations,country,university,institute,center,hospital,department,location,email,zipcode"  # noqa: E501
+        + "\n"
+    )
     keywords_csv = "key,keywords" + "\n"
     topics_csv = "key,topics,rank" + "\n"
-    csv = csv + """key,title,pmid,year,publisher,url,abstract,state,doi,journal_issn,journal_iso_abbreviation,language,publication_type,citation""" + "\n"  # noqa: E501
+    csv = (
+        csv
+        + """key,title,pmid,year,publisher,url,abstract,state,doi,journal_issn,journal_iso_abbreviation,language,publication_type,citation"""  # noqa: E501
+        + "\n"
+    )
     n = 0
     # -------------------Create File-------------------------------
     file_name = os.path.basename(output_file)
@@ -252,7 +267,7 @@ def export_triplea_csvs_in_relational_mode_save_file(  # noqa: C901
             except Exception:
                 raise Exception(f"Error in parsing article with ID = {id}")
 
-            # -------------------------------------------------Parsing--------------------------------------------------
+            # -------------------------------------------------Parsing---------
             article = json_converter_01(updated_article)
             title = safe_csv(article["title"])
             year = article["year"]
@@ -299,7 +314,7 @@ def export_triplea_csvs_in_relational_mode_save_file(  # noqa: C901
                         authors_csv
                         + f"{n},{safe_csv(au.FullName)},{safe_csv(aff)},{str_aff}"
                         + "\n"
-                    )  # noqa: E501
+                    )
 
             if "keywords" in article:
                 if article["keywords"] is not None:
@@ -319,7 +334,11 @@ def export_triplea_csvs_in_relational_mode_save_file(  # noqa: C901
                                 + "\n"
                             )  # noqa: E501
 
-            csv = csv + f"""{n},{title},{pmid},{year},{publisher},{url},{abstract},{state},{doi},{journal_issn},{journal_iso_abbreviation},{language},{publication_type},{citation}""" + "\n"  # noqa: E501
+            csv = (
+                csv
+                + f"""{n},{title},{pmid},{year},{publisher},{url},{abstract},{state},{doi},{journal_issn},{journal_iso_abbreviation},{language},{publication_type},{citation}"""  # noqa: E501
+                + "\n"
+            )
 
             if proccess_bar:
                 bar.label = f"Article {id}, exported."

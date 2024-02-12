@@ -1,12 +1,5 @@
+# flake8: noqa
 # Depreciate
-
-
-
-# How to suppress OpenAI API warnings in Python
-# https://stackoverflow.com/questions/71893613/how-to-suppress-openai-api-warnings-in-python
-import logging
-logging.getLogger().setLevel(logging.CRITICAL)
-
 import os
 import time
 from triplea.service.click_logger import logger
@@ -14,9 +7,14 @@ from langchain_openai import ChatOpenAI
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
 
-
 # Load Template
 import triplea.service.llm.model_template_101 as MODEL
+
+# How to suppress OpenAI API warnings in Python
+# https://stackoverflow.com/questions/71893613/how-to-suppress-openai-api-warnings-in-python
+import logging
+
+logging.getLogger().setLevel(logging.CRITICAL)
 
 
 os.environ["OPENAI_API_KEY"] = "dummy_key"
@@ -59,7 +57,9 @@ def get_llm(temperature: float):
         #   top_k=0,
     )
 
-    # llm = ChatOpenAI(model_name=model_name, temperature=temperature, openai_api_base=base_path)
+    # llm = ChatOpenAI(model_name=model_name,
+    #                  temperature=temperature,
+    #                  openai_api_base=base_path)
     logger.DEBUG(f"Run LLM from {base_path} model : {model_name}")
     return llm
 
@@ -148,7 +148,7 @@ def question_with_template_for_llm(title: str, abstract: str):
         template="""Check the title and abstract of the article below and tell me if this article has anything to do with LLMs (Large Language Models) assessment methods? Your answer must be yes or no.
 title: {title}
 abstract : {abstract}
-        """
+        """  # noqa: E501
     )
 
     # Load LLM

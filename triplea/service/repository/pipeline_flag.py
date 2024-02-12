@@ -5,7 +5,6 @@ import triplea.service.repository.persist as persist
 import triplea.service.repository.state as state_manager
 from triplea.service.click_logger import logger
 from triplea.utils.general import print_error
-import json
 
 
 def go_article_review_by_llm(proccess_bar=True):

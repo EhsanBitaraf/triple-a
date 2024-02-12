@@ -17,6 +17,8 @@ All notable changes to this project will be documented in this file.
 - check all TinyDB
 
 ### Improvements
+- Add `update_cstate_by_id` In SERVICE.REPOSITORY.PERSIST
+- Add `precalculate` and `reset_flag_llm_by_function` in SERVICE.LLM
 - Add `AAA_LLM_TEMPLATE_FILE` in SETTING
 - Add FlagShortReviewByLLM
 - Add `get_article_by_arxiv_id` Minor Version 003

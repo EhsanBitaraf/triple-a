@@ -9,4 +9,4 @@ top_p = 0.9
 template = """Check the title and abstract of the article below and tell me if this article has anything to do with LLMs (Large Language Models) assessment methods? Your answer must be yes or no.
 title: {title}
 abstract : {abstract}
-        """   # noqa: E501
+        """  # noqa: E501

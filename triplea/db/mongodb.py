@@ -196,6 +196,12 @@ class DB_MongoDB(DataBase):
         r = self.col_article.replace_one(myquery, article_json)
         return r.raw_result
 
+    def update_cstate_by_id(self, id, tag_field: str, new_state: int):
+        myquery = {"_id": id}
+        new_values = {"$set": {tag_field: new_state}}
+        r = self.col_article.update_one(myquery, new_values)
+        return r.raw_result
+
     def is_article_exist_by_pmid(self, pmid: str) -> bool:
         """
         > Check if the article with the given PMID exists in the database

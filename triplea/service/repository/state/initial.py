@@ -105,9 +105,7 @@ def get_article_list_from_pubmed_all_store_to_arepo(
             deep=13,
         )
         start = (i * retmax) - retmax
-        chunkdata = PubmedClient.get_article_list_from_pubmed(start,
-                                                              retmax,
-                                                              searchterm)
+        chunkdata = PubmedClient.get_article_list_from_pubmed(start, retmax, searchterm)
         _save_article_pmid_list_in_arepo(chunkdata)
 
     # for last round
@@ -119,9 +117,7 @@ def get_article_list_from_pubmed_all_store_to_arepo(
                 mid)} record (total {str(total)} record)""",
             deep=13,
         )  # noqa: E501
-        chunkdata = PubmedClient.get_article_list_from_pubmed(start,
-                                                              retmax,
-                                                              searchterm)
+        chunkdata = PubmedClient.get_article_list_from_pubmed(start, retmax, searchterm)
         _save_article_pmid_list_in_arepo(chunkdata)
 
 

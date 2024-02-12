@@ -114,6 +114,10 @@ def update_article_by_id(article, id: str):
     return db.update_article_by_id(article, id)
 
 
+def update_cstate_by_id(id, tag_field: str, new_state: int):
+    return db.update_cstate_by_id(id, tag_field, new_state)
+
+
 # Expire Function
 # This fuction use now for add ref in pubmed
 def insert_new_pmid(

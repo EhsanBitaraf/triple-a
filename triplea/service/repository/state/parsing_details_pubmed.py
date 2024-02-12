@@ -208,12 +208,26 @@ def parsing_details_pubmed(article: Article) -> Article:  # noqa: C901
                     article.Abstract = pubmed_article_data["Abstract"]["AbstractText"]
                 elif isinstance(pubmed_article_data["Abstract"]["AbstractText"], list):
                     abstract_all = ""
-                    structured_abstract =pubmed_article_data["Abstract"]["AbstractText"]
+                    structured_abstract = pubmed_article_data["Abstract"][
+                        "AbstractText"
+                    ]
                     for abstract_part in structured_abstract:
-                        if '#text' in abstract_part:
-                            abstract_all = abstract_all + " " + abstract_part["@Label"] + ":" + abstract_part["#text"]
-                        else: # observe in 37036022
-                            abstract_all = abstract_all + " " + abstract_part["@Label"] + ":" + abstract_part["b"]
+                        if "#text" in abstract_part:
+                            abstract_all = (
+                                abstract_all
+                                + " "
+                                + abstract_part["@Label"]
+                                + ":"
+                                + abstract_part["#text"]
+                            )
+                        else:  # observe in 37036022
+                            abstract_all = (
+                                abstract_all
+                                + " "
+                                + abstract_part["@Label"]
+                                + ":"
+                                + abstract_part["b"]
+                            )
 
                     article.Abstract = abstract_all
                 elif isinstance(pubmed_article_data["Abstract"]["AbstractText"], dict):
@@ -317,8 +331,7 @@ def parsing_details_pubmed(article: Article) -> Article:  # noqa: C901
                 else:
                     for ref in PubmedData["ReferenceList"]["Reference"]:
                         if "ArticleIdList" in ref:
-                            if isinstance(ref["ArticleIdList"]["ArticleId"],
-                                          dict):
+                            if isinstance(ref["ArticleIdList"]["ArticleId"], dict):
                                 if (
                                     ref["ArticleIdList"]["ArticleId"]["@IdType"]
                                     == "pubmed"
@@ -327,8 +340,7 @@ def parsing_details_pubmed(article: Article) -> Article:  # noqa: C901
                                         ref["ArticleIdList"]["ArticleId"]["#text"]
                                     )
 
-                            elif isinstance(ref["ArticleIdList"]["ArticleId"],
-                                            list):
+                            elif isinstance(ref["ArticleIdList"]["ArticleId"], list):
                                 for ref_id in ref["ArticleIdList"]["ArticleId"]:
                                     if ref_id["@IdType"] == "pubmed":
                                         reference_list.append(ref_id["#text"])
@@ -367,9 +379,7 @@ def parsing_details_pubmed(article: Article) -> Article:  # noqa: C901
             article.Authors = author_list
         else:
             logger.WARNING(
-                f"Article {article.PMID} has no AuthorList",
-                forecolore="white",
-                deep=5
+                f"Article {article.PMID} has no AuthorList", forecolore="white", deep=5
             )
 
         return article

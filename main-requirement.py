@@ -7,6 +7,8 @@ import urllib
 from triplea.db.mongo_nav import change_reset_flag_llm_with_template_id, get_database_list
 from triplea.schemas.article import Article
 import triplea.service.llm as LLM_fx
+from triplea.service.llm.calculate import precalculate
+from triplea.service.llm.recycle import reset_flag_llm_by_function
 from triplea.service.repository.export.triplea_format import export_triplea_csvs_in_relational_mode_save_file
 
 from triplea.service.repository.state.initial_arxiv import get_article_list_from_arxiv_all_store_to_arepo
@@ -31,6 +33,8 @@ if __name__ == "__main__":
     # # ------------------------Read Arxiv And Questuin From LLM-----------------
     # id = "1802.06018v2" 
     # a = PERSIST.get_article_by_arxiv_id(id)
+    # prompt = get_prompt_with_template(a['Title'],a['Abstract'])
+    # print(prompt)
     # r = LLM_fx.question_with_template_for_llm(a['Title'],a['Abstract'])
     # print(r)
     # # ------------------------Read Arxiv And Questuin From LLM-----------------
@@ -62,7 +66,10 @@ if __name__ == "__main__":
     # # ------------------------Read PMID And Questuin From LLM-----------------
 
     # #--------------------------Calculate befor go_article_review_by_llm--------
-    # precalculate(4.3,5)
+    # d = precalculate(6,22)
+    # print()
+    # json_formatted_str = json.dumps(d, indent=2)
+    # print(json_formatted_str)
     # #--------------------------Calculate befor go_article_review_by_llm--------
 
     # # ------------------------Run Short Review Article Pipeline----------------
@@ -81,7 +88,7 @@ if __name__ == "__main__":
     #     json.dump(data, f, ensure_ascii=False, indent=4)
     # #----------------------Get Result or Specific LLM Response-----------------
 
-    # #-------------------------Rest LLM Respose With Specific Response--------
+    # #-------------------------Reset LLM Respose With Specific Response--------
     # with open("gResp.json") as f:
     #     data = json.load(f)
 
@@ -89,7 +96,23 @@ if __name__ == "__main__":
     #     if d['Response'] == 'Unknown':
     #         print(f"Reset {d['_id']} ...")
     #         change_reset_flag_llm_with_response(d['_id'],'T101')
-    # #-------------------------Rest LLM Respose With Specific Response--------
+    # #-------------------------Reset LLM Respose With Specific Response--------
+
+    # #-------------------------Reset FlagShortReviewByLLM to 0 with fx----------
+    # def my_fx(TemplateID,lr):
+    #     for r in lr:
+    #         if 'Response' in r:
+    #             if r['Response'] == 'Yes,':
+    #                 return True
+    #             elif r['Response'] == 'Yes':
+    #                 return True
+    #         else:
+    #             return False
+
+
+    # reset_flag_llm_by_function("T101",my_fx,limit_sample=0)
+    # print()
+    # #-------------------------Reset FlagShortReviewByLLM to 0 with fx----------
 
     # Export
     # export_triplea_csvs_in_relational_mode_save_file("export.csv",limit_sample=120)
