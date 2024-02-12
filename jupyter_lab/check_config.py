@@ -5,6 +5,7 @@ from triplea.service.click_logger import logger
 
 
 if __name__ == "__main__":
+    logger.INFO(f"TripleA Version : {SETTINGS.VERSION}")
     if os.path.isfile(ENV_PATH_FILE):
         logger.INFO("Env file is exist.")
     else:
@@ -18,3 +19,5 @@ if __name__ == "__main__":
         logger.WARNING(f"   AAA_MONGODB_DB_NAME: {SETTINGS.AAA_MONGODB_DB_NAME} ")
     elif SETTINGS.AAA_DB_TYPE == "TinyDB":
         logger.WARNING(f"   AAA_TINYDB_FILENAME: {SETTINGS.AAA_TINYDB_FILENAME} ")
+
+    SETTINGS.VERSION

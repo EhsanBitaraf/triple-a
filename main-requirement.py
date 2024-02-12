@@ -61,6 +61,10 @@ if __name__ == "__main__":
     # # print(type(d))
     # # ------------------------Read PMID And Questuin From LLM-----------------
 
+    # #--------------------------Calculate befor go_article_review_by_llm--------
+    # precalculate(4.3,5)
+    # #--------------------------Calculate befor go_article_review_by_llm--------
+
     # # ------------------------Run Short Review Article Pipeline----------------
     # cPIPELINE.go_article_review_by_llm()
     # # ------------------------Run Short Review Article Pipeline----------------
@@ -68,6 +72,24 @@ if __name__ == "__main__":
     # #---------------Reset FlagShortReviewByLLM to 0 ---------------------------
     # change_reset_flag_llm_with_template_id("T102")
     # #---------------Reset FlagShortReviewByLLM to 0 ---------------------------
+
+    # #----------------------Get Result or Specific LLM Response-----------------
+    # output ="Yes"
+    # data= get_article_info_with_llm_response(output)
+
+    # with open(f'{output}.json', 'w', encoding='utf-8') as f:
+    #     json.dump(data, f, ensure_ascii=False, indent=4)
+    # #----------------------Get Result or Specific LLM Response-----------------
+
+    # #-------------------------Rest LLM Respose With Specific Response--------
+    # with open("gResp.json") as f:
+    #     data = json.load(f)
+
+    # for d in data:
+    #     if d['Response'] == 'Unknown':
+    #         print(f"Reset {d['_id']} ...")
+    #         change_reset_flag_llm_with_response(d['_id'],'T101')
+    # #-------------------------Rest LLM Respose With Specific Response--------
 
     # Export
     # export_triplea_csvs_in_relational_mode_save_file("export.csv",limit_sample=120)

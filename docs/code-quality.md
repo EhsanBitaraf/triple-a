@@ -231,6 +231,8 @@ flake8 --config=.flake8 --count --output-file out-flake8.txt .\triplea\ --no-sho
 11    W391 blank line at end of file
 ```
 
+61
+
 select
 ```sh
 flake8 --config=.flake8 --count --output-file out-flake8.txt .\triplea\ --no-show-source  --statistics --select E501

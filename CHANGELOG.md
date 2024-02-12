@@ -7,6 +7,10 @@ All notable changes to this project will be documented in this file.
 - RIS Parser
 - pip install from source:
     - ModuleNotFoundError: No module named 'pydantic_settings'
+    - ModuleNotFoundError: No module named 'langchain'
+    - ModuleNotFoundError: No module named 'langchain_openai'
+    - ModuleNotFoundError: No module named 'PyPDF2'
+    - ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts. triplea 0.0.5 requires pydantic<2.0.0,>=1.10.4, but you have pydantic 2.6.1 which is incompatible.
 - Expose `get_article_by_arxiv_id` to cli
 - Article.Published must be fixed in pubmed and is string in Arxiv
 - Data Extraction from Unstructured PDFs
