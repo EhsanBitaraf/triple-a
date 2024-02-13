@@ -1,0 +1,15 @@
+{
+    "version" : "0.0.2",
+    "stop_immediately": 0,
+    "model_template_id": "Ass11",
+    "model_name": "mistralai_Mistral-7B-Instruct-v0.2",
+    "base_path":"http://localhost:5003/v1",
+    "temperature": 0.7,
+    "frequency_penalty": 0,
+    "presence_penalty": 0,
+    "max_tokens": 500,
+    "top_p": 0.9,
+    "response_must_be_json": true,
+    "template": "Evaluate the title and abstract of the article below regarding its connection to LLMs (Large Language Models) Evaluation and Assessment. Determine whether there is a link to the medical field and/or clinical practice. Should such a relationship exist, identify the appropriate medical subcategory from the list below: Anesthesiology, Cardiology, Dermatology, Endocrinology, Gastroenterology, Hematology, Infectious Diseases, Neurology, Oncology, Ophthalmology, Orthopedics, Pathology, Pediatrics, Psychiatry, Radiology, Surgery, Allergology, Critical Care Medicine, Emergency Medicine, Geriatrics, Immunology, Nuclear Medicine, Palliative Care, Plastic & Reconstructive Surgery, Public Health, Sports Medicine or etc. \ntitle: {title} \nabstract : {abstract} \nPrepare my answer as below structure (JSON schema) in JSON format: \nField A: This article related to Evaluation and Assessment of LLMs (Large Language Models).The answer should be True or False. \nField B: Determine whether there is a link to the medical field and/or clinical practice.The answer should be True or False. \nField C: This article related to Evaluation and Assessment of LLMs (Large Language Models) in medical field and/or clinical practice.The answer should be True or False. \nField D: What medical subcategory is the subject of the research related to, for example, cardiology or urology or pharmacology? \nField E: Description. Any additional explanation you want to give is not placed in other fields.\n JSON sample:\n{{\"A\": true, \"B\": true, \"C\": true,\"D\": \"cardiology\", \"E\": \"Description\"}}\nNote that the output format must be JSON."
+    
+}

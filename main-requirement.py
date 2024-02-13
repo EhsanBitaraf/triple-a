@@ -99,14 +99,28 @@ if __name__ == "__main__":
     # #-------------------------Reset LLM Respose With Specific Response--------
 
     # #-------------------------Reset FlagShortReviewByLLM to 0 with fx----------
-    # def my_fx(TemplateID,lr):
+
+    # def my_fx(TemplateID, lr):
+    #     # True Must Be Updated
     #     for r in lr:
     #         if 'Response' in r:
     #             if r['Response'] == 'Yes,':
     #                 return True
     #             elif r['Response'] == 'Yes':
     #                 return True
+    #             elif r['Response'] == 'No' or r['Response'] == '"No' or r['Response'] == 'No,' or r['Response'] == 'No.':
+    #                 return False
+    #             elif r['Response'][:3] == 'No,':
+    #                 return False
+    #             elif r['Response'][:4] == 'Yes,':
+    #                 return True
+
+    #             else:
+                    
+    #                 # print(r['Response'])
+    #                 return True                    
     #         else:
+    #             print(r)
     #             return False
 
 
@@ -114,9 +128,9 @@ if __name__ == "__main__":
     # print()
     # #-------------------------Reset FlagShortReviewByLLM to 0 with fx----------
 
-    # Export
+    # -------------------------------Export csvs-------------------------------
     # export_triplea_csvs_in_relational_mode_save_file("export.csv",limit_sample=120)
-
+    # -------------------------------Export csvs-------------------------------
 
 
 

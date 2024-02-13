@@ -1,5 +1,5 @@
 {
-    "version" : "0.0.1",
+    "version" : "0.0.2",
     "stop_immediately": 0,
     "model_template_id": "T102",
     "model_name": "mistralai_Mistral-7B-Instruct-v0.2",

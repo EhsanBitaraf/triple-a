@@ -1,6 +1,16 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## v0.0.6 2024-02-13
+### Task
+    /triplea/service/llm/__init__.py", line 55
+    raise Exception("chera")
+
+### Improvements
+
+### Bug Fixes
+
+
 ## v0.0.5 2023-12-28
 
 ### Task
