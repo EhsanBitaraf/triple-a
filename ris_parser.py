@@ -38,7 +38,7 @@ def parse_ris_line(lines:str):
                 pass
             elif last_e == "SN":
                 pass
-            elif e == "AB":  # Abstract or synopsis.[6][14][8][15][17][18][19] Notes. Synonym of N2.
+            elif e == "AB":  # Abstract or synopsis. Notes. Synonym of N2.
                 a.Abstract =a.Abstract + ' ' + v
             else:
                 print(last_e)
