@@ -140,6 +140,11 @@ class DB_TinyDB(DataBase):
     def is_article_exist_by_arxiv_id(self, id: str) -> bool:
         q = Query()
         return self.db.contains(q.ArxivID == id)
+    
+    def is_article_exist_by_doi(self, doi: str) -> bool:
+        q = Query()
+        return self.db.contains(q.DOI == doi)
+
 
     def get_all_article_count(self) -> int:
         """

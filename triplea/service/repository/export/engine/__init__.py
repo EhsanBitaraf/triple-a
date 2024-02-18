@@ -23,13 +23,15 @@ def export_engine(fx_filter, fx_transform, fx_output, limit_sample=0, proccess_b
             a = PERSIST.get_article_by_id(id)
             article = Article(**a.copy())
             model = None
-            if fx_filter is None:
+            if fx_filter(article) is True:
                 filter_number = filter_number + 1
                 model = fx_transform(article)
             else:
-                if fx_filter(article) is True:
-                    filter_number = filter_number + 1
-                    model = fx_transform(article)
+                pass
+                model = None
+                # if fx_filter(article) is True:
+                #     filter_number = filter_number + 1
+                #     model = fx_transform(article)
 
             if model is not None:
                 output_list.append(fx_output(model))

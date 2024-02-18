@@ -631,9 +631,14 @@ $ python -m venv venv
 $ .\venv\Scripts\activate
 ```
 
-Install Package with pip:
+Install [Package](https://pypi.org/project/triplea/0.0.5/) with pip:
 ```sh
 $ pip install triplea
+```
+
+Or install Package From Github
+```sh
+$ pip install git+https://github.com/EhsanBitaraf/triple-a
 ```
 
 Create environment variable by `.env` file:
@@ -660,6 +665,8 @@ AAA_CITED_CRAWLER_DEEP = 1
 AAA_TOPIC_EXTRACT_ENDPOINT=http://localhost:8001/api/v1/topic/
 AAA_CLIENT_AGENT="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/109.0"
 ```
+
+The latest version of a sample `.env` file can be found [here](https://github.com/EhsanBitaraf/triple-a/blob/main/triplea/config/environment_variable/.env.sample).
 
 Run CLI:
 ```sh
@@ -691,6 +698,8 @@ Commands:
 ```
 
 *Note*: The visualization function is only available in the source version
+
+*Tutorial*: You can find guides for programming with this library other than using the CLI in the [cookbook section]().
 
 # Testing
 

@@ -28,6 +28,8 @@ class AffiliationParseMethod(enum.IntEnum):
 class SourceBankType(enum.IntEnum):
     PUBMED = 1
     ARXIV = 2
+    WOS = 3
+    SCOPUS = 4
 
 
 class Affiliation(BaseModel):

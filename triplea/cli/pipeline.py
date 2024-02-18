@@ -1,5 +1,6 @@
 import click
 from triplea.service.repository.pipeline_flag import (
+    go_article_review_by_llm,
     go_extract_triple,
     go_affiliation_mining,
     go_extract_topic,
@@ -21,6 +22,8 @@ def pipeline(name: str):
         go_affiliation_mining(method="Titipata")
     elif name == "FlagEmbedding":
         go_article_embedding()
+    elif name == "FlagShortReviewByLLM":
+        go_article_review_by_llm()
 
     else:
         raise NotImplementedError

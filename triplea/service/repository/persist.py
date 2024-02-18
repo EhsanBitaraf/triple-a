@@ -180,7 +180,28 @@ def insert_new_arxiv(article: Article):
         return
     else:  # Insert not exist Article
         return db.add_new_article(article)
+    
 
+def insert_new_general_deduplicate_with_doi(article: Article):
+    # check DOI
+    if article.DOI is None:
+        logger.DEBUG(
+                    f"The article with title {article.Title} has no DOI.",
+                     deep=1
+                )
+        # return # if want to reduce chance of duplication
+        return db.add_new_article(article)
+    else: 
+        # check DOI is exist
+        if db.is_article_exist_by_doi(article.DOI):
+            logger.DEBUG(
+                f"The article with DOI {article.DOI} already exists.", deep=3
+            )
+            return             
+        else:  # Insert not exist Article
+            return db.add_new_article(article)
+
+    
 
 def get_all_article_count() -> int:
     """

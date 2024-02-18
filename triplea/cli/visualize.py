@@ -4,9 +4,13 @@ import click
 from triplea.cli.main import cli
 import triplea.service.graph.extract as gextract
 from triplea.service.click_logger import logger
-import visualization.gdatarefresh as graphdatarefresh
+
 import http.server
 import socketserver
+try:
+    import visualization.gdatarefresh as graphdatarefresh
+except Exception:
+    logger.Error("Visualization only exist from source.")    
 
 # PORT = 8000
 DIRECTORY = "visualization"

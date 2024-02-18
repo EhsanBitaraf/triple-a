@@ -3,18 +3,30 @@ All notable changes to this project will be documented in this file.
 
 ## v0.0.6 2024-02-13
 ### Task
-    /triplea/service/llm/__init__.py", line 55
+- /triplea/service/llm/__init__.py", line 55
     raise Exception("chera")
+- Complete Import RIS
+- Export Mongo 2 Mongo
+- Deduplication
+- Change Affiliation
+- Complete LLM-Fulltext pipeline
+- Add CrossRef API : https://www.crossref.org/documentation/retrieve-metadata/rest-api/
+- Add import_ris_file into cli
 
 ### Improvements
+- Add `convert_unified2csv_dynamically`
+- Add `export_engine`. This is very useful for export custom
+- Add `_parse_ris_block` and `import_ris_file` [Issue #6](https://github.com/EhsanBitaraf/triple-a/issues/6)
+- Add `insert_new_general_deduplicate_with_doi` , `is_article_exist_by_doi`
+- Add `pretty_print_dict`
 
 ### Bug Fixes
-
+- Fix CLI pipline `FlagShortReviewByLLM`
 
 ## v0.0.5 2023-12-28
 
 ### Task
-- RIS Parser
+
 - Expose `get_article_by_arxiv_id` to cli
 - Article.Published must be fixed in pubmed and is string in Arxiv
 - Data Extraction from Unstructured PDFs

@@ -223,6 +223,13 @@ class DB_MongoDB(DataBase):
         else:
             return False
 
+    def is_article_exist_by_doi(self, doi: str) -> bool:
+        myquery = {"DOI": doi}
+        if self.col_article.count_documents(myquery) > 0:
+            return True
+        else:
+            return False
+        
     def get_all_article_count(self) -> int:
         """
         > This function returns the number of articles in the database

@@ -7,28 +7,35 @@ import urllib
 from triplea.db.mongo_nav import change_reset_flag_llm_with_template_id, get_database_list
 from triplea.schemas.article import Article
 import triplea.service.llm as LLM_fx
-from triplea.service.llm.calculate import precalculate
+from triplea.service.llm.calculate import post_calculate, precalculate
 from triplea.service.llm.recycle import reset_flag_llm_by_function
 from triplea.service.repository.export.triplea_format import export_triplea_csvs_in_relational_mode_save_file
+from triplea.service.repository.import_file.ris_parser import import_ris_file
 
 from triplea.service.repository.state.initial_arxiv import get_article_list_from_arxiv_all_store_to_arepo
 from triplea.service.repository.state.initial import get_article_list_from_pubmed_all_store_to_arepo
 from triplea.service.repository.pipeline_core import move_state_forward
 import triplea.service.repository.persist as PERSIST
 import triplea.service.repository.pipeline_flag as cPIPELINE
+from triplea.utils.general import pretty_print_dict
 
 
 
 if __name__ == "__main__":
     pass
+
     # # ------------------------Get List of Database-----------------------------
     # d= get_database_list()
     # print(d)
     # # ------------------------Get List of Database-----------------------------
 
-    # # ------------------------Print RepoInfo-----------------------------------
-    # PERSIST.print_article_info_from_repo()
-    # # ------------------------Print RepoInfo-----------------------------------
+    # ------------------------Print RepoInfo-----------------------------------
+    PERSIST.print_article_info_from_repo()
+    # ------------------------Print RepoInfo-----------------------------------
+
+    # #-------------------------Improt RIS Format--------------------------------
+    # import_ris_file("wos.ris")
+    # #-------------------------Improt RIS Format--------------------------------
     
     # # ------------------------Read Arxiv And Questuin From LLM-----------------
     # id = "1802.06018v2" 
@@ -39,7 +46,7 @@ if __name__ == "__main__":
     # print(r)
     # # ------------------------Read Arxiv And Questuin From LLM-----------------
 
-    # # ------------------------Read PMID And Questuin From LLM-----------------
+    # # ------------------------Read PMID And Question From LLM-----------------
     # id = "37301943"
     # id = "37301844" # No
     # id = "37301822" # No
@@ -63,18 +70,24 @@ if __name__ == "__main__":
     # # d = json.loads(r['Response'])
     # # print(d)
     # # print(type(d))
-    # # ------------------------Read PMID And Questuin From LLM-----------------
+    # # ------------------------Read PMID And Question From LLM-----------------
 
     # #--------------------------Calculate befor go_article_review_by_llm--------
     # d = precalculate(6,22)
     # print()
-    # json_formatted_str = json.dumps(d, indent=2)
-    # print(json_formatted_str)
+    # pretty_print_dict(d)
     # #--------------------------Calculate befor go_article_review_by_llm--------
+
 
     # # ------------------------Run Short Review Article Pipeline----------------
     # cPIPELINE.go_article_review_by_llm()
     # # ------------------------Run Short Review Article Pipeline----------------
+
+    # #--------------------------Calculate after go_article_review_by_llm--------
+    # o = post_calculate(template_id = "")
+    # print()
+    # pretty_print_dict(o)
+    # #--------------------------Calculate after go_article_review_by_llm--------
 
     # #---------------Reset FlagShortReviewByLLM to 0 ---------------------------
     # change_reset_flag_llm_with_template_id("T102")

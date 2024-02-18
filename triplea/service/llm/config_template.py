@@ -9,7 +9,6 @@ logging.getLogger().setLevel(logging.CRITICAL)
 
 
 def read_llm_template():
-    print(SETTINGS.AAA_LLM_TEMPLATE_FILE)
     if os.path.exists(SETTINGS.AAA_LLM_TEMPLATE_FILE) is False:
         raise FileNotFoundError(f"File {SETTINGS.AAA_LLM_TEMPLATE_FILE} Not Found.")
 
