@@ -1,132 +1,145 @@
-
-
 import click
-from triplea.schemas.article import Article
+from triplea.utils.general import print_pretty_dict, safe_csv
 
-from triplea.service.repository.export.unified_export_json import json_converter_01
-from triplea.utils.general import pretty_print_dict, safe_csv
-
-def convert_unified2csv_dynamically(list_output):
-    one_to_one = []
+class Converter:
+    list_uni_model = []
     one_to_many = []
-    d = list_output[0]
-    keys= d.keys()
-    for k in keys:
-        if isinstance(d[k],str):
-            one_to_one.append(k)
-        elif isinstance(d[k],int):
-            one_to_one.append(k)
-        elif isinstance(d[k],list):
-            dic = {"Table" : k}
-            one_to_many.append(dic)
-        elif d[k] is None:
-            value = click.prompt(f"""What is type of column {k}?
-(str, int, list)""", type=str)
-            if value == 'str':
-                one_to_one.append(k)
-            elif value == 'int':
-                one_to_one.append(k)
-            elif value =='list':
-                dic = {"Table" : k}
-                one_to_many.append(dic)
-            else:
-                print("value is out of range.")
-                exit()
-        else:
-            print(type(d[k]))
-            raise NotImplementedError
-
-
+    one_to_one = []
     # Main Part of filename
-    mf = "main111"
+    mf = "main"
 
-    #---------------------Create Header of all csv files----------------------
-    # Create Header of main csv file - for one_to_one fields
-    main = ""
-    main = "ID,"
-    for i in one_to_one:
-        main = main + i + ','
-    main = main[0:len(main)-1] + '\n'
-    print(main)
-    with open(f"{mf}.csv", "w", encoding="utf-8") as file1:
-        file1.write(main)
-
-    # Create Header of othr csv files - for one_to_many fields
-    # for t in one_to_many:
-        
-
-    def deep_check():
-        i=0
-        exit_loop=False
-        while exit_loop==False:
-            i=i+1
-            if i>=len(list_output):
-                print(f"""All values of variable '{lf}' are empty and this variable is removed from the output.""")
-                #-------------------------Delete Title from one_to_many----
-                # for one_to_many.remove(lf)
-                for i_one_to_many in range(len(one_to_many)):
-                    if one_to_many[i_one_to_many]['Table'] == lf:
-                        one_to_many.pop(i_one_to_many)
-                        # break
-                        return True # means delete coloumn
-                #-------------------------Delete Title from one_to_many----                       
-                exit_loop=True
-            else:
-                d = list_output[i]
-                if d[lf] is not None:
-                    exit_loop==True
-        return False
-
-    num=0
-    while num<len(one_to_many):
-    # for num in range(len(one_to_many)-1):
-        # lf = t['Table']
-        lf = one_to_many[num]['Table']
-        # print(lf)
-        if d[lf] is not None:
-            if len(d[lf]) != 0:
-                if isinstance(d[lf][0],dict):
-                    keys= d[lf][0].keys()
-                    star = ""
-                    star = "ID,"
-                    for k in keys:
-                        star = star + k + ','
-                    star = star[0:len(star)-1] + '\n'
-                    one_to_many[num]['keys'] = list(keys)
-                elif isinstance(d[lf][0],str):
-                    star = f"ID,{lf}\n"
-                    one_to_many[num]['keys'] = [lf]
-                elif isinstance(d[lf][0],int):
-                    star = f"ID,{lf}\n"
-                    one_to_many[num]['keys'] = [lf]
+    def _get_field_info(self):
+        # Get first information for uni_model_fields
+        d = self.list_uni_model[0]
+        keys= d.keys()
+        for k in keys:
+            if isinstance(d[k],str):
+                self.one_to_one.append(k)
+            elif isinstance(d[k],int):
+                self.one_to_one.append(k)
+            elif isinstance(d[k],list):
+                dic = {"Table" : k}
+                self.one_to_many.append(dic)
+            elif d[k] is None:
+                value = click.prompt(f"""What is type of column {k}?
+    (str, int, list)""", type=str)
+                if value == 'str':
+                    self.one_to_one.append(k)
+                elif value == 'int':
+                    self.one_to_one.append(k)
+                elif value =='list':
+                    dic = {"Table" : k}
+                    self.one_to_many.append(dic)
                 else:
-                    raise NotImplementedError
-                
-                with open(f"{mf}_{lf}.csv", "w", encoding="utf-8") as file1:
-                        file1.write(star)
-            else: # len(d[lf]) = 0
-                r = deep_check()
-                if r is True: # Delete Column
-                    num = num - 1
+                    print("value is out of range.")
+                    exit()
+            else:
+                print(type(d[k]))
+                raise NotImplementedError
 
-
-        else: # d[lf] is None
-            r = deep_check()
-            if r is True: # Delete Column
-                num = num - 1
-
-        num=num+1
-    #---------------------Create Header of all csv files---------------------- 
-        
-    #---------------------Create Data of all csv files------------------------ 
-    files = []
-    for i in range(0,len(list_output)):
-        data = list_output[i]
-        # Write Value in main Table
-        f_main = open(F"{mf}.csv", "a", encoding="utf-8") 
+    def _create_header_one_to_one(self):
+        # Create Header of main csv file - for one_to_one fields
         main = ""
-        main = f"{i},"
-        for col_name in one_to_one:
+        main = "ID,"
+        for i in self.one_to_one:
+            main = main + i + ','
+        main = main[0:len(main)-1] + '\n'
+        with open(f"{self.mf}.csv", "w", encoding="utf-8") as file1:
+            file1.write(main)
+        file1.close()
+
+    def _get_row_number_of_not_null_field(self,field_name):
+        # value = self.list_uni_model[1][field_name]
+        n = 0
+        value_is_null = True
+        while value_is_null == True:
+            n = n + 1
+            if n > len(self.list_uni_model):
+                print("n is out of range")
+                return None
+            if field_name in self.list_uni_model[n]:
+                value = self.list_uni_model[n][field_name]
+            else:
+                value = None
+
+            if value is None:
+                value_is_null = True
+            else:
+                if isinstance(value,list):
+                    if len(value) == 0:
+                        value_is_null = True
+                    else:
+                        value_is_null = False
+                else:
+                    value_is_null = False
+        return n
+
+            
+    def _generate_sub_fields_of_field(self,field_name,one_row_of_unified_model):
+        # Check Value of one to many field for detect sub fields(keys)
+        value = one_row_of_unified_model[field_name]
+        keys = []
+        if isinstance(value,list):
+            # Usually is list Because is one to many
+            if len(value) == 0:
+                # print(f"3) Value of {field_name} is None.")
+                n = self._get_row_number_of_not_null_field(field_name)
+                keys = self._generate_sub_fields_of_field(field_name,self.list_uni_model[n])
+            else:
+                one_value = value[0]
+                if isinstance(one_value,dict):
+                    keys= list(one_value.keys())
+                elif isinstance(one_value,str):
+                    keys=[field_name]
+                else:
+                    print(f"3) One value of {field_name} is not dict. {field_name} is {type(one_value)}")
+                    print(value[0])
+
+        elif value is None:
+            # print(f"3) Value of {field_name} is None.")
+            n = self._get_row_number_of_not_null_field(field_name)
+            keys = self._generate_sub_fields_of_field(field_name,self.list_uni_model[n])
+        else:
+            print(f"{field_name} is not list. {field_name} is {type(value)}")
+        
+        
+        return keys
+
+
+
+    def _complete_info_of_one_to_many_fields(self):
+        # print_pretty_dict(one_to_many)
+        num = 0
+        while num < len(self.one_to_many):
+            field_name = self.one_to_many[num]['Table']
+            # Check Type of Value
+            keys = self._generate_sub_fields_of_field(field_name,self.list_uni_model[0])
+            self.one_to_many[num]['keys'] = keys
+            num = num + 1
+
+
+    def _create_header_one_to_many(self):
+        # In This state one_to_many is complete
+        for j in range(0,len(self.one_to_many)):
+            field_name = self.one_to_many[j]['Table']
+            field_sub_fields = self.one_to_many[j]['keys']
+            file = open(F"{self.mf}_{field_name}.csv", "w", encoding="utf-8")
+            header = ""
+            header = "ID,"
+            for f in field_sub_fields:
+                header = header + f + ','
+            header = header[0:len(header)-1] + '\n'
+            file.write(header)
+            file.close()
+
+
+    def _create_data_one_to_one(self,row_num):
+        data = self.list_uni_model[row_num]
+        # Write Value in main Table
+        f_main = open(F"{self.mf}.csv", "a", encoding="utf-8") 
+        main = ""
+        main = f"{row_num},"
+        for col_name in self.one_to_one:
             col_value = ""
             if col_name in data:
                 if data[col_name] is None:
@@ -141,54 +154,101 @@ def convert_unified2csv_dynamically(list_output):
         f_main.close()
 
 
-        # Write Value in Multiple Table
-        # for t in one_to_many:
-        for j in range(0,len(one_to_many)):
-            t = one_to_many[j]
-            lf = t['Table']
-            value_dict = data[lf]
-            file = open(F"{mf}_{lf}.csv", "a", encoding="utf-8")
+
+    def _get_keys_from_one_to_many(self,field_name):
+        for i in self.one_to_many:
+            if i['Table'] == field_name:
+                return i['keys']
+
+    def _get_chunk_of_csv_from_dict_value(self,col_name,value):
+        main=""
+        if col_name in value:
+            if isinstance(value[col_name],list):
+                pass
+                print("_get_chunk_of_csv_from_dict_value")
+                print(f"    Not Implement. {col_name} Table in sub Table")
+            elif isinstance(value[col_name],str):
+                col_value= safe_csv(value[col_name])
+                main = str(col_value) + ','
+            elif isinstance(value[col_name],int):
+                col_value= value[col_name]
+                main = str(col_value) + ','
+            elif isinstance(value[col_name],float):
+                col_value= value[col_name]
+                main = str(col_value) + ','
+            elif value[col_name] is None:
+                main = "" + ','
+            else:
+                print(type(value[col_name]))
+                raise NotImplementedError
+        else:
+            main = "" + ','
+
+        return main
+
+    def _create_csv_row(self,field_name,list_value,row_num):
+        # Value is list befor this state we checked
+        if list_value is None: return
+        for value in list_value:
+            file = open(F"{self.mf}_{field_name}.csv", "a", encoding="utf-8")
             main = ""
-            main = f"{i},"
-            if isinstance(value_dict,list):
-                for value in value_dict:
-                    # print(value)
-                    if isinstance(value,str):
-                        pass
-                        col_value= safe_csv(value)
-                        main = main + str(col_value) + ','                      
-                    elif isinstance(value,list):
-                        raise NotImplementedError
-                    elif isinstance(value,dict):
-                        main = ""
-                        main = f"{i},"                        
-                        for col_name in t['keys']:
-                            if isinstance(value[col_name],list):
-                                pass
-                                # print(f"Not Implement. {col_name} Table in sub Table")
-                            elif isinstance(value[col_name],str):
-                                col_value= safe_csv(value[col_name])
-                                main = main + str(col_value) + ',' 
-                        main = main[0:len(main)-1] + '\n'
-                        file.write(main)
-                        main = ""                       
-                    else:
-                        print("nabilam")
-
-
-            elif isinstance(value_dict, dict):
-                print("chamedonam")
-            elif value_dict is None:
+            main = f"{row_num},"
+            if isinstance(value,dict):
+                keys = self._get_keys_from_one_to_many(field_name)
+                for col_name in keys:
+                    main = main + self._get_chunk_of_csv_from_dict_value(col_name,value)
+            elif isinstance(value,str):
+                col_value= safe_csv(value)
+                main = main + str(col_value) + ','
+            elif value is None:
                 main = main + "" + ','
             else:
-                print("chamedonam else")
-                print(type(value_dict))
-
-            if main != "":
-                main = main[0:len(main)-1] + '\n'
-                file.write(main)    
- 
-    #---------------------Create Data of all csv files------------------------       
-
+                pass
+                print(f"_create_csv_row. value is not expected type. value is {type(value)}.")
+            main = main[0:len(main)-1] + '\n'
+            file.write(main)
+            file.close()
         
+    def _create_data_one_to_many(self,row_num):
+        data = self.list_uni_model[row_num]
+        for j in range(0,len(self.one_to_many)):
+            field_name = self.one_to_many[j]['Table']
+            # Each field in one_to_many create new Table in seperate File 
+            if field_name in data:
+                value = data[field_name]
+            else:
+                value = None
+            # value must be list in one_to_many
+            if isinstance(value,list):
+                if len(value) == 0:
+                    # Is Null
+                    self._create_csv_row(field_name,None,row_num)
+                else:
+                    self._create_csv_row(field_name,value,row_num)
+            elif value is None:
+                # Is Null
+                self._create_csv_row(field_name,None,row_num)
+            else:
+                print(f"_create_data_one_to_many. value is not expected type. value is {type(value)} = {value}.")
 
+    def convert_unified2csv_dynamically(self,list_output):
+        self.list_uni_model = list_output
+        self._get_field_info()
+
+        #---------------------Create Header of all csv files----------------------
+        self._create_header_one_to_one()
+
+
+        self._complete_info_of_one_to_many_fields()
+
+
+        self._create_header_one_to_many()
+        #---------------------Create Header of all csv files---------------------- 
+
+
+        #---------------------Create Data of all csv files------------------------
+        for i in range(0,len(self.list_uni_model)):
+            self._create_data_one_to_one(i)
+
+            self._create_data_one_to_many(i)
+        #---------------------Create Data of all csv files------------------------

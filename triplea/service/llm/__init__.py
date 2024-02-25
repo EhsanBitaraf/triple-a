@@ -3,6 +3,8 @@
 import json
 import logging
 
+from triplea.utils.general import print_error
+
 logging.getLogger().setLevel(logging.CRITICAL)
 
 import os
@@ -87,11 +89,20 @@ def question_with_template_for_llm(title: str, abstract: str):
         if isinstance(response.content, dict):
             raise Exception("Nabilam")
         response.content = str.replace(response.content, "\n", " ")
-        response.content = str.replace(response.content, '"', '"')
+        response.content = str.replace(response.content, '\"', "'")
         try:
             r["Response"] = json.loads(response.content)
-        except Exception:
+            # r["Response"] = json.loads(json.dumps(response.content))
+        except Exception as e:
             # Error in convert str to json
             r["Response"] = {"StringContent": response.content}
+            if isinstance(e,json.JSONDecodeError):
+                r["Response"]['ErrorMsg'] = e.msg
+            else:
+                r["Response"]['ErrorType'] = type(e)
+
+                
+            print_error()
+            
 
     return r

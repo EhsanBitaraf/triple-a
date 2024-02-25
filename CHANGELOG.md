@@ -3,9 +3,9 @@ All notable changes to this project will be documented in this file.
 
 ## v0.0.6 2024-02-13
 ### Task
+- Run Bulk3
 - /triplea/service/llm/__init__.py", line 55
     raise Exception("chera")
-- Complete Import RIS
 - Export Mongo 2 Mongo
 - Deduplication
 - Change Affiliation
@@ -14,7 +14,11 @@ All notable changes to this project will be documented in this file.
 - Add import_ris_file into cli
 
 ### Improvements
+- Change `pretty_print_dict` to `print_pretty_dict`
+- Fix `import_ris_file` DEBUG process print
+- Add Class Converter in `service.repository.export.unified_export_json.convert`
 - Add `convert_unified2csv_dynamically`
+- Add `update_llm_response`
 - Add `export_engine`. This is very useful for export custom
 - Add `_parse_ris_block` and `import_ris_file` [Issue #6](https://github.com/EhsanBitaraf/triple-a/issues/6)
 - Add `insert_new_general_deduplicate_with_doi` , `is_article_exist_by_doi`

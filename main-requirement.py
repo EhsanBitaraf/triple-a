@@ -17,7 +17,7 @@ from triplea.service.repository.state.initial import get_article_list_from_pubme
 from triplea.service.repository.pipeline_core import move_state_forward
 import triplea.service.repository.persist as PERSIST
 import triplea.service.repository.pipeline_flag as cPIPELINE
-from triplea.utils.general import pretty_print_dict
+from triplea.utils.general import print_pretty_dict
 
 
 
@@ -38,30 +38,19 @@ if __name__ == "__main__":
     # #-------------------------Improt RIS Format--------------------------------
     
     # # ------------------------Read Arxiv And Questuin From LLM-----------------
-    # id = "1802.06018v2" 
+    # id = "2312.12806v1" 
     # a = PERSIST.get_article_by_arxiv_id(id)
-    # prompt = get_prompt_with_template(a['Title'],a['Abstract'])
+    # prompt = LLM_fx.get_prompt_with_template(a['Title'],a['Abstract'])
     # print(prompt)
     # r = LLM_fx.question_with_template_for_llm(a['Title'],a['Abstract'])
-    # print(r)
+    # print_pretty_dict(r)
     # # ------------------------Read Arxiv And Questuin From LLM-----------------
 
     # # ------------------------Read PMID And Question From LLM-----------------
-    # id = "37301943"
-    # id = "37301844" # No
-    # id = "37301822" # No
-    # id = "37301713" # Use BioBank Data
-    # # id = "37300838"
-    # # id = "5673991"
-    # # id = "5782260"
-    # # id = "5782261"
-    # id = "37296187" # chert
-    # id = "37285350"
-    # id = "37282698"
-    # id = "37278263" # chert
-    # # id = "37268409" # description
-    # id = "37301822"
+    # id = "30305743"
     # a = PERSIST.get_article_by_pmid(id)
+    # prompt = LLM_fx.get_prompt_with_template(a['Title'],a['Abstract'])
+    # print(prompt)
     # r = LLM_fx.question_with_template_for_llm(a['Title'],a['Abstract'])
     # print(r)
 
@@ -75,7 +64,7 @@ if __name__ == "__main__":
     # #--------------------------Calculate befor go_article_review_by_llm--------
     # d = precalculate(6,22)
     # print()
-    # pretty_print_dict(d)
+    # print_pretty_dict(d)
     # #--------------------------Calculate befor go_article_review_by_llm--------
 
 
@@ -86,7 +75,7 @@ if __name__ == "__main__":
     # #--------------------------Calculate after go_article_review_by_llm--------
     # o = post_calculate(template_id = "")
     # print()
-    # pretty_print_dict(o)
+    # print_pretty_dict(o)
     # #--------------------------Calculate after go_article_review_by_llm--------
 
     # #---------------Reset FlagShortReviewByLLM to 0 ---------------------------

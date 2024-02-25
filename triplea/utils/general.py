@@ -33,7 +33,7 @@ def print_error():
     logger.ERROR(f"line : {exc_tb.tb_lineno}")
     traceback.print_tb(exc_tb)  # In debug mode
 
-def pretty_print_dict(d:dict):
+def print_pretty_dict(d:dict):
     json_formatted_str = json.dumps(d, indent=2)
     print(json_formatted_str)    
 

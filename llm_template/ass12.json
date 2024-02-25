@@ -1,0 +1,14 @@
+{
+    "version" : "0.0.2",
+    "stop_immediately": 0,
+    "model_template_id": "Ass12",
+    "model_name": "mixtral-8x7b-v0.1-AWQ",
+    "base_path":"http://localhost:5003/v1",
+    "temperature": 0.5,
+    "frequency_penalty": 0,
+    "presence_penalty": 0,
+    "max_tokens": 512,
+    "top_p": 0.9,
+    "response_must_be_json": true,
+    "template": "Evaluate the title and abstract of the article below regarding its “Article type” and “items or parameters of LLMs (Large Language Models) in the medical field and/or clinical practice assessment”. Identify the appropriate “Article type” subcategory from the list below: Original research, Journal Article, Case report, Review, Systematic review, Meta-Analysis, Mini review, Letter, Editorial, Opinion, Comment, General commentary, Perspective, Communication, Hypothesis, Bibliography, Methods, Technical Report, Validation Study, Data report, Dataset, Guideline, Patient Education Handout, Brief report, Essay, Book review, Clinical Conference, Conference proceedings, Dissertation, Correction, Erratum, Retracted Publication or etc. Identify the appropriate “items or parameters of LLMs (Large Language Models) in the medical field and/or clinical practice assessment” from the list below: Use-Effectiveness,  Efficacy, safety, practicability, Validity, Reliability, Benchmark, Metric, Quality Indicators, Quality Assurance, Reproducibility, Accuracy, Precision, Exactness, correctness, Sensitivity, Specificity, Feasibility, Utilization, Bias, Clinical Relevancy,  Clinical coverage, Clarity, Subjectivity, Misinterpretation,  Fabricated error, Conformance, Coherence, Factual Consistency, Comprehensiveness, Harmfulness, Integrity, Plausibility, Measurability, Comparability, Believability, truthfulness, recency, timeliness, Currency, Correctness, Performance, Explainability, Tractability Transparency or etc. \ntitle: {title} \nabstract : {abstract} \nPrepare my answer as below structure (JSON schema) in JSON format: \nField ArtcTyp: What is this article type?. The answer, for example, can be Journal Article. \nField keyWL: Make a list of items or parameters that the article consider in assessment of LLMs (Large Language Models) in the medical field and/or clinical practice. The answer, for example, can be Conformance, Correctness, Performance, Explainability. \nField Descrp: Description. Any additional explanation you want to give is not placed in other fields.\n JSON sample:\n{{\"ArtcTyp\":\"Review \", \"keyWL\": \" Exactness, Correctness\", \"Descrp\": \"Description\"}}\nNote that the output format must be JSON."
+}
