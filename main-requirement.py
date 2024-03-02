@@ -33,6 +33,9 @@ if __name__ == "__main__":
     PERSIST.print_article_info_from_repo()
     # ------------------------Print RepoInfo-----------------------------------
 
+    ### Affiliation Mining
+    cPIPELINE.go_affiliation_mining(method="Titipata")
+
     # #-------------------------Improt RIS Format--------------------------------
     # import_ris_file("wos.ris")
     # #-------------------------Improt RIS Format--------------------------------

@@ -347,41 +347,32 @@ def go_extract_topic(proccess_bar=True):
     persist.refresh()
 
 
-def go_affiliation_mining(method: str = "Simple", proccess_bar=True):
+def go_affiliation_mining(method: str = "Simple",
+                          proccess_bar=True,
+                          limit_sample=0):
+    
     max_refresh_point = SETTINGS.AAA_CLI_ALERT_POINT
     l_id = persist.get_article_id_list_by_cstate(0, "FlagAffiliationMining")
-    total_article_in_current_state = len(l_id)
+    # total_article_in_current_state = len(l_id)
+    doc_number = len(l_id)
     n = 0
     logger.DEBUG(
         f"""{str(
-                          len(l_id)
-                      )} Article(s) is in FlagAffiliationMining {str(0)}"""
+                len(l_id)
+                )} Article(s) is in FlagAffiliationMining {str(0)}"""
     )
 
     if proccess_bar:
-        bar = click.progressbar(length=len(l_id), show_pos=True, show_percent=True)
+        bar = click.progressbar(length=doc_number,
+                                show_pos=True,
+                                show_percent=True)
+    else:
+        logger.INFO("Start ...")
 
-    refresh_point = 0
     for id in l_id:
         try:
             n = n + 1
             current_state = None
-
-            if refresh_point == max_refresh_point:
-                refresh_point = 0
-                persist.refresh()
-                print()
-                if proccess_bar:
-                    print()
-                    logger.INFO(
-                        f"There are {str(total_article_in_current_state - n)} article(s) left ",  # noqa: E501
-                        forecolore="yellow",
-                    )
-                if proccess_bar is False:
-                    bar.label = f"There are {str(total_article_in_current_state - n)} article(s) left "  # noqa: E501
-                    bar.update(max_refresh_point)
-            else:
-                refresh_point = refresh_point + 1
 
             a = persist.get_article_by_id(id)
             try:
@@ -395,16 +386,27 @@ def go_affiliation_mining(method: str = "Simple", proccess_bar=True):
             except Exception:
                 current_state = 0
 
+
+
+            # For View Proccess
             if proccess_bar:
                 bar.label = f"Article {id} affiliation mining."
                 bar.update(1)
+            else:
+                if n % SETTINGS.AAA_CLI_ALERT_POINT == 0:
+                    logger.INFO(f"{n} Article(s) affiliation mining..")
+                persist.refresh()
 
-            # # for re run
-            # if current_state == 2 : current_state = 1
+
+            if limit_sample != 0:  # Unlimited
+                if n > limit_sample:
+                    break
 
             if current_state is None or current_state == -1 or current_state == 0:
                 if method == "Simple":
-                    updated_article = state_manager.affiliation_mining(updated_article)
+                    updated_article = state_manager.affiliation_mining(
+                                                            updated_article
+                                                            )
                     persist.update_article_by_id(updated_article, id)
                 elif method == "Titipata":
                     updated_article = state_manager.affiliation_mining_titipata(
@@ -422,7 +424,7 @@ def go_affiliation_mining(method: str = "Simple", proccess_bar=True):
             if current_state == 0 or current_state is None:
                 updated_article = Article(**a.copy())
                 updated_article.FlagAffiliationMining = -1
-                persist.update_article_by_pmid(updated_article, updated_article.PMID)
+                persist.update_article_by_id(updated_article, id)
                 persist.refresh()
                 print_error()
 

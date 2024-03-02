@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## v0.0.6 2024-02-13
 ### Task
-- Run Bulk3
+
 - /triplea/service/llm/__init__.py", line 55
     raise Exception("chera")
 - Export Mongo 2 Mongo
@@ -25,7 +25,9 @@ All notable changes to this project will be documented in this file.
 - Add `pretty_print_dict`
 
 ### Bug Fixes
+- Fix `go_affiliation_mining`
 - Fix CLI pipline `FlagShortReviewByLLM`
+
 
 ## v0.0.5 2023-12-28
 
