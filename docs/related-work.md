@@ -119,6 +119,29 @@ https://www.bibliometrix.org/home/
 
 Numerous software tools support bibliometric analysis; however, many of these do not assist scholars in a complete recommended workflow. The most relevant tools are CitNetExplorer (van Eck & Waltman, 2014), VOSviewer (van Eck & Waltman, 2010), SciMAT (Cobo, López-Herrera, Herrera-Viedma, & Herrera, 2012), BibExcel (Persson, Danell, & Schneider, 2009), Science of Science (Sci2) Tool (Sci2 Team, 2009), CiteSpace (Chen, 2006), and VantagePoint (www.thevantagepoint.com).
 
+# Opensource
+
+## TechMiner development branch 
+Analysis of bibliographic datasets using Python
+
+TechMiner is a package for mining relevant information about topics related to Research and Development (R&D) literature extracted from bibliographical databases as Scopus. 
+
+[GitHub](https://github.com/ElsevierSoftwareX/SOFTX-D-21-00031)
+
+[Document](https://jdvelasq.github.io/techminer/)
+
+[Article](https://www.sciencedirect.com/science/article/pii/S235271102300153X)
+
+## PyblioNet
+PyblioNet is a software tool for the creation, visualization and analysis of bibliometric networks based on [Pybliometrics](https://pybliometrics.readthedocs.io/en/stable/), NetworkX and VisJs. It combines a Python-based data collection tool that accesses the Scopus database with a browser-based visualization and analysis tool. It allows users to create networks of publication data based on citations, co-citations, shared authors, bibliographic coupling, and shared keywords.
+
+
+[GitHub](https://github.com/Mat-Mueller/PyblioNet)
+
+
+[Article](https://www.sciencedirect.com/science/article/pii/S2352711023002613) 
+PyblioNet – Software for the creation, visualization and analysis of bibliometric networks
+
 # Reference
 
 Tools to visualize connections between academic publications

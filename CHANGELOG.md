@@ -25,6 +25,7 @@ All notable changes to this project will be documented in this file.
 - Add `pretty_print_dict`
 
 ### Bug Fixes
+- Fix `json_converter_01` for Scopus and Web of Sciense 
 - Fix `go_affiliation_mining`
 - Fix CLI pipline `FlagShortReviewByLLM`
 

@@ -227,3 +227,63 @@ The URL patterns for all standard arXiv functions are consistent for the differe
 | Trackbacks | `/tb/id` | `/tb/hep-th/9901001` | `/tb/0706.0001` | `/tb/1501.00001` |
 | New listings | `/list/arch-ive/new` | `/list/hep-th/new` | `/list/hep-th/new` | `/list/hep-th/new` |
 | Month listings | `/list/arch-ive/yymm` | `/list/hep-th/0601` | `/list/hep-th/0601` | `/list/hep-th/0601` |
+
+# CrossRef
+![](https://assets.crossref.org/logo/crossref-logo-200.svg)
+[Crossref](https://www.crossref.org/) makes research objects easy to find, cite, link, assess, and reuse. We’re a not-for-profit membership organization that exists to make scholarly communications better.
+
+Crossref was founded in 2000 by some established scientific societies and publishers. 
+
+Crossref is the world’s largest registry of Digital Object Identifiers (DOIs) and metadata for the scholarly research community. Unlike other DOI agencies, we encompass all research stakeholders and all geographies. We facilitate an average of 1.1 billion DOI resolutions (clicks of a DOI link) every month, which is 95% of all DOI activity. And our APIs see over 1 billion queries of our metadata every month.
+
+[A non-technical introduction to our AP](https://www.crossref.org/documentation/retrieve-metadata/rest-api/a-non-technical-introduction-to-our-api/)
+
+[Crossref Unified Resource API *swagger-docs*](https://api.crossref.org/swagger-ui/index.html)
+
+[rest-api-doc](https://github.com/CrossRef/rest-api-doc)
+  Documentation for Crossref's REST API. For questions or suggestions, see https://community.crossref.org/ 
+
+## Metadata Retrieval
+    Analyse Crossref metadata to inform and understand research
+
+https://www.crossref.org/documentation/retrieve-metadata/
+
+Here is a comparison of the metadata retrieval options. Please note that all interfaces include Crossref test prefixes: 10.13003, 10.13039, 10.18810, 10.32013, 10.50505, 10.5555, 10.88888.
+
+
+| Feature / option | Metadata Search | Simple Text Query | REST API | XML API | OAI-PMH | OpenURL | Public data files | Metadata Plus (OAI-PMH + REST API) |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| Interface for people or machines? | People | People | People (low volume and occasional use) and machines | Machines | Machines | Machines | Machines | Machines |
+| Output format | Text, JSON | Text | JSON | XML | XML | XML | json.tar.gz | JSON, XML |
+| Suitable for citation matching? | Yes (low volume) | Yes | Yes | Yes | No  | No  | Yes, locally | Yes |
+| Supports volume downloads? | No  | No  | Yes | No  | Yes | No  | Yes, exclusively | Yes |
+| Suitable for usage type | Frequent and occasional | Frequent and occasional | Frequent and occasional | Frequent | Frequent | Frequent | Occasional | Frequent and occasional |
+| Free or cost? | Free | Free | Free and cost options | Free and cost options | Cost for full service, more options available | Free | Free | Cost |
+| Includes all available metadata? | In JSON only | DOIs only | Yes | Yes | Yes | [Bibliographic](/documentation/content-registration/descriptive-metadata/) only | Yes | Yes |
+| Documentation | [Metadata Search](/documentation/retrieve-metadata#00358) | [Simple Text Query](/documentation/retrieve-metadata#00358) | [REST API](/documentation/retrieve-metadata/rest-api) | [XML API](/documentation/retrieve-metadata/xml-api/) | [OAI-PMH](/documentation/retrieve-metadata/oai-pmh) | [OpenURL](/documentation/retrieve-metadata/openurl) | [Tips for working with Crossref public data files and Plus snapshots](https://www.crossref.org/documentation/retrieve-metadata/rest-api/tips-for-using-public-data-files-and-plus-snapshots/) | [Metadata Plus](/documentation/metadata-plus/) ([OAI-PMH](/documentation/retrieve-metadata/oai-pmh) \+ [REST API](/documentation/retrieve-metadata/rest-api)) |
+
+## OpenURL
+https://www.crossref.org/documentation/retrieve-metadata/openurl/
+
+Access to the OpenURL service is free, but does ask that you identify yourself. TYou should do this by using your email address to identify yourself. You do not need to register your email address with us in advance, but you do need to include your email address in your query. Find out more.
+
+## Relationships
+https://www.crossref.org/documentation/retrieve-metadata/relationships/
+
+Research doesn’t stand alone and relationships show the connections between research outputs, people, and organizations. We deliver these connections via a [relationships API endpoint](https://api.crossref.org/beta/relationships), which makes the [Research Nexus](https://www.crossref.org/documentation/research-nexus/) visible.
+
+
+[What types of records can be registered with Crossref?](https://www.crossref.org/documentation/research-nexus/)
+
+- Books, chapters, and reference works: includes book title and/or chapter-level records. Books can be registered as a monograph, series, or set.
+- Conference proceedings: information about a single conference and records for each conference paper/proceeding.
+- Datasets: includes database records or collections.
+- Dissertations: includes single dissertations and theses, but not collections.
+- Grants: includes both direct funding and other types of support such as the use of equipment and facilities.
+- Journals and articles: at the journal title and article level, and includes supplemental materials as components.
+- Peer reviews: any number of reviews, reports, or comments attached to any other work that has been registered with Crossref.
+- Pending publications: a temporary placeholder record with minimal metadata, often used for embargoed work where a DOI needs to be shared before the full content is made available online.
+- Preprints and posted content: includes preprints, eprints, working papers, reports, and other types of content that has been posted but not formally published.
+- Reports and working papers: this includes content that is published and likely has an ISSN.
+- Standards: includes publications from standards organizations.
+- You can also establish relationships between different research objects (such as preprints, translations, and datasets) in your metadata.
