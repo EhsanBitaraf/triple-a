@@ -2,6 +2,7 @@
 
 import json
 import urllib
+from triplea.config.settings import SETTINGS
 
 # from pypdf import PdfReader
 from triplea.db.mongo_nav import change_reset_flag_llm_with_template_id, get_database_list
@@ -23,6 +24,7 @@ from triplea.utils.general import print_pretty_dict
 
 if __name__ == "__main__":
     pass
+    print(SETTINGS.VERSION)
 
     # # ------------------------Get List of Database-----------------------------
     # d= get_database_list()
@@ -33,8 +35,8 @@ if __name__ == "__main__":
     PERSIST.print_article_info_from_repo()
     # ------------------------Print RepoInfo-----------------------------------
 
-    ### Affiliation Mining
-    cPIPELINE.go_affiliation_mining(method="Titipata")
+    # ### Affiliation Mining
+    # cPIPELINE.go_affiliation_mining(method="Titipata")
 
     # #-------------------------Improt RIS Format--------------------------------
     # import_ris_file("wos.ris")
@@ -50,7 +52,7 @@ if __name__ == "__main__":
     # # ------------------------Read Arxiv And Questuin From LLM-----------------
 
     # # ------------------------Read PMID And Question From LLM-----------------
-    # id = "30305743"
+    # id = "33675346"
     # a = PERSIST.get_article_by_pmid(id)
     # prompt = LLM_fx.get_prompt_with_template(a['Title'],a['Abstract'])
     # print(prompt)

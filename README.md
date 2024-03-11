@@ -1,6 +1,8 @@
 # triple-a
 *Article Analysis Assistant*
 
+Triple-A is a tool that can be used to create a repository of scientific articles and perform a series of citation graph analysis, bibilometric analysis, and automatic data extraction processes on this repository.
+
 This program somehow creates a network of article references and provides a connection between authors and keywords, these things are usually called "[**Citation Graph**](https://en.wikipedia.org/wiki/Citation_graph)".
 
 There are various software and online systems for this, a brief review of which can be found [here](docs/related-work.md).
@@ -83,11 +85,14 @@ https://badge.fury.io/for/py/Triple-a -->
 
 
 # 🎮 Main Features
+- Creating a repository for a domain of articles (based on search strategy)
+- Citation Graph Analysis
+- [Bibliometric Analysis](https://researchguides.uic.edu/bibliometrics)
+- Create RAG (Retrieval-Augmented Generation) for a domain of articles
 - Single paper analysis
-- Dynamic citations deep definition for meta data fetch
 - Network Analysis (Per Node/Overall Graph)
 - Import bibliography file
-- Use for [Bibliometric Analysis](https://researchguides.uic.edu/bibliometrics)
+
 
 
 
@@ -617,8 +622,17 @@ Below is a summary of important environment variables in this project:
 |AAA_TPS_LIMIT             |Transaction Per Second Limitation|1|
 |AAA_PROXY_HTTP            |An HTTP proxy is a server that acts as an intermediary between a client and PubMed server. When a client sends a request to a server through an HTTP proxy, the proxy intercepts the request and forwards it to the server on behalf of the client. Similarly, when the server responds, the proxy intercepts the response and forwards it back to the client.||
 |AAA_PROXY_HTTPS           |HTTPS Proxy|| 
+|AAA_CLIENT_AGENT          |||
 |AAA_REFF_CRAWLER_DEEP     ||1|
 |AAA_CITED_CRAWLER_DEEP    ||1|
+|AAA_CLI_ALERT_POINT||500|
+|AAA_TOPIC_EXTRACT_ENDPOINT|||
+|AAA_SCIGENIUS_ENDPOINT|||
+|AAA_LLM_TEMPLATE_FILE|||
+|AAA_FULL_TEXT_REPO_TYPE|||
+|AAA_FULL_TEXT_DIRECTORY|||
+|AAA_FULL_TEXT_STRING_REPO_TYPE|||
+|AAA_FULL_TEXT_STRING_DIRECTORY|||
 
 ## From Package
 
