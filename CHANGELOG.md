@@ -25,6 +25,7 @@ All notable changes to this project will be documented in this file.
 - Add `pretty_print_dict`
 
 ### Bug Fixes
+- Fix FileNotFoundError for LLM Template 2024-03-24
 - Fix AttributeError: 'Log' object has no attribute 'Error'. Did you mean: 'ERROR'? in line 13 cli/visualiza.py Version 0.0.6.003
 - Fix `json_converter_01` for Scopus and Web of Sciense 
 - Fix `go_affiliation_mining`

@@ -21,20 +21,21 @@ os.environ["OPENAI_API_KEY"] = "dummy_key"
 
 T = template()
 
-GOLOBAL_LLM = ChatOpenAI(
-    model_name=T["model_name"],
-    temperature=T["temperature"],
-    openai_api_base=T["base_path"],
-    frequency_penalty=T["frequency_penalty"],
-    presence_penalty=T["presence_penalty"],
-    max_tokens=T["max_tokens"],
-    top_p=T["top_p"],
-    #   top_k=0,
-)
+if T is not None:
+    GOLOBAL_LLM = ChatOpenAI(
+        model_name=T["model_name"],
+        temperature=T["temperature"],
+        openai_api_base=T["base_path"],
+        frequency_penalty=T["frequency_penalty"],
+        presence_penalty=T["presence_penalty"],
+        max_tokens=T["max_tokens"],
+        top_p=T["top_p"],
+        #   top_k=0,
+    )
 
-# # Simple Load
-# GOLOBAL_LLM = ChatOpenAI(model_name=model_name, temperature=temperature, openai_api_base=base_path)
-logger.DEBUG(f"Run LLM from {T['base_path']} model : {T['model_name']}")
+    # # Simple Load
+    # GOLOBAL_LLM = ChatOpenAI(model_name=model_name, temperature=temperature, openai_api_base=base_path)
+    logger.DEBUG(f"Run LLM from {T['base_path']} model : {T['model_name']}")
 
 
 def get_prompt_with_template(title: str, abstract: str):
