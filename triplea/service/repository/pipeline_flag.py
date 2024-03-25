@@ -271,7 +271,7 @@ def go_extract_triple(proccess_bar=True):
     persist.refresh()
 
 
-def go_extract_topic(proccess_bar=True):
+def go_extract_topic(method = "textrank", top: int = 10, threshold: float = 0, proccess_bar=True):
     max_refresh_point = SETTINGS.AAA_CLI_ALERT_POINT
     l_id = persist.get_article_id_list_by_cstate(0, "FlagExtractTopic")
     total_article_in_current_state = len(l_id)
@@ -320,11 +320,20 @@ def go_extract_topic(proccess_bar=True):
                 bar.update(1)
 
             if current_state is None:
-                updated_article = state_manager.extract_topic_abstract(updated_article)
+                updated_article = state_manager.extract_topic_abstract(updated_article,
+                                                                       method,
+                                                                       top,
+                                                                       threshold)
             elif current_state == -1:
-                updated_article = state_manager.extract_topic_abstract(updated_article)
+                updated_article = state_manager.extract_topic_abstract(updated_article,
+                                                                       method,
+                                                                       top,
+                                                                       threshold)
             elif current_state == 0:
-                updated_article = state_manager.extract_topic_abstract(updated_article)
+                updated_article = state_manager.extract_topic_abstract(updated_article,
+                                                                       method,
+                                                                       top,
+                                                                       threshold)                                                                       
             elif current_state == 1:
                 pass
 

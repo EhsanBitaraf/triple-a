@@ -25,6 +25,7 @@ All notable changes to this project will be documented in this file.
 - Add `pretty_print_dict`
 
 ### Bug Fixes
+- Fix Topic Extraction for method textrank, topicrank, positionrank in `Version 0.0.6.004`
 - Fix bug in `get_article_list_from_pubmed_all_store_to_arepo`
 - Fix FileNotFoundError for LLM Template 2024-03-24
 - Fix AttributeError: 'Log' object has no attribute 'Error'. Did you mean: 'ERROR'? in line 13 cli/visualiza.py Version 0.0.6.003

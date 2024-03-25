@@ -56,7 +56,7 @@ class Settings(BaseSettings):
 
     AAA_CLIENT_AGENT: Optional[str] = os.getenv(
         "AAA_CLIENT_AGENT",
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/109.0",  # noqa: E501
+        f"TripleA {version}",  
     )
     AAA_TOPIC_EXTRACT_ENDPOINT: Optional[str] = os.getenv(
         "AAA_TOPIC_EXTRACT_ENDPOINT", "http://localhost:8001/api/v1/topic/"
@@ -71,7 +71,7 @@ class Settings(BaseSettings):
     )
 
     VERSION: Optional[str] = (
-        version + ".003"
+        version + ".004"
     )  # Change this micro version in the development process
 
     AAA_CLI_ALERT_POINT: Optional[int] = os.getenv("AAA_CLI_ALERT_POINT", 500)
