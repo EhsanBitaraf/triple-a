@@ -43,7 +43,8 @@ class Affiliation(BaseModel):
     Part6: Optional[str] = Field(description="", default=None)
     Has_Extra: Optional[bool] = Field(description="", default=None)
     Structural: Optional[list[dict]] = Field(description="", default=None)
-    ParseMethod: Optional[AffiliationParseMethod] = Field(description="", default=None)
+    ParseMethod: Optional[AffiliationParseMethod] = Field(description="",
+                                                          default=None)
 
 
 class Author(BaseModel):
@@ -55,11 +56,13 @@ class Author(BaseModel):
         default=None,
     )
     ForeName: Optional[str] = Field(
-        description="contains the remainder of name except for suffix", default=None
+        description="contains the remainder of name except for suffix",
+        default=None
     )
     FullName: Optional[str] = Field(description="", default=None)
     ORCID: Optional[str] = Field(description="", default=None)
-    Affiliations: Optional[list[Affiliation]] = Field(description="", default=None)
+    Affiliations: Optional[list[Affiliation]] = Field(description="",
+                                                      default=None)
 
 
 class Article(BaseModel):
@@ -102,7 +105,8 @@ class Article(BaseModel):
     InsertType: Optional[list[str]] = Field(description="", default=None)
     ReferenceCrawlerDeep: Optional[int] = Field(description="", default=None)
     CiteCrawlerDeep: Optional[int] = Field(description="", default=None)
-    NamedEntities: Optional[list[NamedEntity]] = Field(description="", default=None)
+    NamedEntities: Optional[list[NamedEntity]] = Field(description="",
+                                                        default=None)
     FlagExtractKG: Optional[int] = Field(description="", default=0)
     FlagAffiliationMining: Optional[int] = Field(description="", default=0)
     FlagExtractTopic: Optional[int] = Field(description="", default=0)
@@ -114,3 +118,7 @@ class Article(BaseModel):
 
     FullTextMetadata: Optional[dict] = Field(description="", default=None)
     ReviewLLM: Optional[list[dict]] = Field(description="", default=None)
+    AffiliationIntegration: Optional[list[dict]] = Field(
+        description="""This field was created to unify affiliation
+          between different formats of articles""",
+        default=None)

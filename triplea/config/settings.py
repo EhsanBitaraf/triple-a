@@ -71,7 +71,7 @@ class Settings(BaseSettings):
     )
 
     VERSION: Optional[str] = (
-        version + ".004"
+        version + ".005"
     )  # Change this micro version in the development process
 
     AAA_CLI_ALERT_POINT: Optional[int] = os.getenv("AAA_CLI_ALERT_POINT", 500)

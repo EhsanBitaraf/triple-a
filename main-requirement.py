@@ -2,6 +2,8 @@
 
 import json
 import urllib
+
+from bson import ObjectId
 from triplea.config.settings import SETTINGS
 
 # from pypdf import PdfReader
@@ -13,6 +15,7 @@ from triplea.service.llm.recycle import reset_flag_llm_by_function
 from triplea.service.repository.export.triplea_format import export_triplea_csvs_in_relational_mode_save_file
 from triplea.service.repository.import_file.ris_parser import import_ris_file
 
+from triplea.service.repository.state.custom import affiliation_mining_titipata_integration
 from triplea.service.repository.state.initial_arxiv import get_article_list_from_arxiv_all_store_to_arepo
 from triplea.service.repository.state.initial import get_article_list_from_pubmed_all_store_to_arepo
 from triplea.service.repository.pipeline_core import move_state_forward
@@ -26,17 +29,28 @@ if __name__ == "__main__":
     pass
     print(SETTINGS.VERSION)
 
+
+    # ------------------------test-----------------
+    id = "65d468490d50cd24865bed30"
+    id = ObjectId(id)
+    a = PERSIST.get_article_by_id(id)
+    article = Article(**a.copy())
+    ua = affiliation_mining_titipata_integration.affiliation_mining_titipata_integration(article)
+    
+    # print_pretty_dict(ua)
+    # ------------------------test-----------------
+
     # # ------------------------Get List of Database-----------------------------
     # d= get_database_list()
     # print(d)
     # # ------------------------Get List of Database-----------------------------
 
-    # ------------------------Print RepoInfo-----------------------------------
-    PERSIST.print_article_info_from_repo()
-    # ------------------------Print RepoInfo-----------------------------------
+    # # ------------------------Print RepoInfo-----------------------------------
+    # PERSIST.print_article_info_from_repo()
+    # # ------------------------Print RepoInfo-----------------------------------
 
     # ### Affiliation Mining
-    # cPIPELINE.go_affiliation_mining(method="Titipata")
+    # cPIPELINE.go_affiliation_mining(method="TitipataIntegrated")
 
     # #-------------------------Improt RIS Format--------------------------------
     # import_ris_file("wos.ris")
@@ -58,12 +72,19 @@ if __name__ == "__main__":
     # print(prompt)
     # r = LLM_fx.question_with_template_for_llm(a['Title'],a['Abstract'])
     # print(r)
+    # # ------------------------Read PMID And Question From LLM-----------------
+
+    # # ------------------------Read id And Question From LLM-----------------
+    # id = "65ffbf945fbe2581ad699b80"
+    # id = ObjectId("65ffbf945fbe2581ad699b80")
+    # a = PERSIST.get_article_by_id(id)
+    # prompt = LLM_fx.get_prompt_with_template(a['Title'],a['Abstract'])
+    # print(prompt)
+    # r = LLM_fx.question_with_template_for_llm(a['Title'],a['Abstract'])
+    # print(r)
 
     # print(f"Response Type {type(r['Response'])}")
     
-    # # d = json.loads(r['Response'])
-    # # print(d)
-    # # print(type(d))
     # # ------------------------Read PMID And Question From LLM-----------------
 
     # #--------------------------Calculate befor go_article_review_by_llm--------

@@ -90,7 +90,7 @@ def question_with_template_for_llm(title: str, abstract: str):
         if isinstance(response.content, dict):
             raise Exception("Nabilam")
         response.content = str.replace(response.content, "\n", " ")
-        response.content = str.replace(response.content, '\"', "'")
+        # response.content = str.replace(response.content, '\"', "'")
         try:
             r["Response"] = json.loads(response.content)
             # r["Response"] = json.loads(json.dumps(response.content))
@@ -99,6 +99,7 @@ def question_with_template_for_llm(title: str, abstract: str):
             r["Response"] = {"StringContent": response.content}
             if isinstance(e,json.JSONDecodeError):
                 r["Response"]['ErrorMsg'] = e.msg
+                r["Response"]["colno"] =  e.colno
             else:
                 r["Response"]['ErrorType'] = type(e)
 

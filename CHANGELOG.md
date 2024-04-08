@@ -14,6 +14,8 @@ All notable changes to this project will be documented in this file.
 - Add import_ris_file into cli
 
 ### Improvements
+- Add `affiliation_mining_titipata_integration`
+- Add new field for affiliation in `Version 0.0.6.005` 2024-04-08
 - Change `pretty_print_dict` to `print_pretty_dict`
 - Fix `import_ris_file` DEBUG process print
 - Add Class Converter in `service.repository.export.unified_export_json.convert`
@@ -25,6 +27,7 @@ All notable changes to this project will be documented in this file.
 - Add `pretty_print_dict`
 
 ### Bug Fixes
+- Fix `question_with_template_for_llm`
 - Fix Topic Extraction for method textrank, topicrank, positionrank in `Version 0.0.6.004`
 - Fix bug in `get_article_list_from_pubmed_all_store_to_arepo`
 - Fix FileNotFoundError for LLM Template 2024-03-24
