@@ -101,7 +101,7 @@ def question_with_template_for_llm(title: str, abstract: str):
                 r["Response"]['ErrorMsg'] = e.msg
                 r["Response"]["colno"] =  e.colno
             else:
-                r["Response"]['ErrorType'] = type(e)
+                r["Response"]['ErrorType'] = str(type(e))
 
                 
             print_error()

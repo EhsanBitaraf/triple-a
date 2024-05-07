@@ -95,6 +95,16 @@ def change():
     r = col_article.update_many(myquery, sett)
     print(f"result: {r}")
 
+def change_reset_flag_affiliation_mining():
+    _connection_url = SETTINGS.AAA_MONGODB_CONNECTION_URL
+    client = MongoClient(_connection_url)
+    db = client[SETTINGS.AAA_MONGODB_DB_NAME]
+    col_article = db["articledata"]
+    myquery = {"FlagAffiliationMining": 1}
+    sett = {"$set": {"FlagAffiliationMining": 0}}
+    r = col_article.update_many(myquery, sett)
+    print(f"result: {r}")
+
 
 def change_CiteCrawlerDeep():
     _connection_url = SETTINGS.AAA_MONGODB_CONNECTION_URL

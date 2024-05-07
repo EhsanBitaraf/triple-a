@@ -383,6 +383,11 @@ def go_affiliation_mining(method: str = "Simple",
             n = n + 1
             current_state = None
 
+            # # -----------------------------Temporary------------------------
+            # from bson import ObjectId
+            # id = "65d46589604437efd5da91cd"
+            # id = ObjectId(id)
+            # # -----------------------------Temporary------------------------
             a = persist.get_article_by_id(id)
             try:
                 updated_article = Article(**a.copy())

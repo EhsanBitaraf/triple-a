@@ -287,3 +287,15 @@ Research doesn’t stand alone and relationships show the connections between re
 - Reports and working papers: this includes content that is published and likely has an ISSN.
 - Standards: includes publications from standards organizations.
 - You can also establish relationships between different research objects (such as preprints, translations, and datasets) in your metadata.
+
+
+# Elsevier Developer Portal - Interactive Scopus APIs
+https://dev.elsevier.com/scopus.html
+
+
+Scopus delivers a comprehensive view of the world of research.
+Scopus.com allows you to track analyze and visualize research data from 5000 different publishers.
+
+It covers 78 million items including records from journals, books and book series, conference proceedings and trade publications across 16 million Author Profiles and 70,000 Institutional Profiles All of this comes together to power your research and help you to stay abreast with current publications, find co-authors, analyze journals to publish in and track and monitor global trends
+
+Scopus APIs expose curated abstracts and citation data from all scholarly journals indexed by Scopus[.](https://dev.elsevier.com/sc_apis.html)

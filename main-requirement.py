@@ -7,7 +7,7 @@ from bson import ObjectId
 from triplea.config.settings import SETTINGS
 
 # from pypdf import PdfReader
-from triplea.db.mongo_nav import change_reset_flag_llm_with_template_id, get_database_list
+from triplea.db.mongo_nav import change_reset_flag_affiliation_mining, change_reset_flag_llm_with_template_id, get_database_list
 from triplea.schemas.article import Article
 import triplea.service.llm as LLM_fx
 from triplea.service.llm.calculate import post_calculate, precalculate
@@ -30,15 +30,15 @@ if __name__ == "__main__":
     print(SETTINGS.VERSION)
 
 
-    # ------------------------test-----------------
-    id = "65d468490d50cd24865bed30"
-    id = ObjectId(id)
-    a = PERSIST.get_article_by_id(id)
-    article = Article(**a.copy())
-    ua = affiliation_mining_titipata_integration.affiliation_mining_titipata_integration(article)
+    # # ------------------------test-----------------
+    # id = "65d46589604437efd5da91cd"
+    # id = ObjectId(id)
+    # a = PERSIST.get_article_by_id(id)
+    # article = Article(**a.copy())
+    # ua = affiliation_mining_titipata_integration.affiliation_mining_titipata_integration(article)
     
-    # print_pretty_dict(ua)
-    # ------------------------test-----------------
+    # # print_pretty_dict(ua)
+    # # ------------------------test-----------------
 
     # # ------------------------Get List of Database-----------------------------
     # d= get_database_list()
@@ -50,6 +50,7 @@ if __name__ == "__main__":
     # # ------------------------Print RepoInfo-----------------------------------
 
     # ### Affiliation Mining
+    # change_reset_flag_affiliation_mining()
     # cPIPELINE.go_affiliation_mining(method="TitipataIntegrated")
 
     # #-------------------------Improt RIS Format--------------------------------
