@@ -88,22 +88,12 @@ if __name__ == "__main__":
     
     # # ------------------------Read PMID And Question From LLM-----------------
 
-    # #--------------------------Calculate befor go_article_review_by_llm--------
-    # d = precalculate(6,22)
-    # print()
-    # print_pretty_dict(d)
-    # #--------------------------Calculate befor go_article_review_by_llm--------
 
 
     # # ------------------------Run Short Review Article Pipeline----------------
     # cPIPELINE.go_article_review_by_llm()
     # # ------------------------Run Short Review Article Pipeline----------------
 
-    # #--------------------------Calculate after go_article_review_by_llm--------
-    # o = post_calculate(template_id = "")
-    # print()
-    # print_pretty_dict(o)
-    # #--------------------------Calculate after go_article_review_by_llm--------
 
     # #---------------Reset FlagShortReviewByLLM to 0 ---------------------------
     # change_reset_flag_llm_with_template_id("T102")

@@ -18,6 +18,9 @@ After performing various steps on the collection of articles in TripleA, a lot o
 [`sample-export-engine-advanced.py`](https://github.com/EhsanBitaraf/triple-a/blob/main/cookbook/sample-export-engine-advanced.py)
 
 
+## Calculate calling of LLM
+[`sample_calculate_llm_call.py`](https://github.com/EhsanBitaraf/triple-a/blob/main/cookbook/sample_calculate_llm_call.py)
+
 ## Reset LLM flag with function
 
 
