@@ -14,6 +14,7 @@ All notable changes to this project will be documented in this file.
 - Add import_ris_file into cli
 
 ### Improvements
+- Add `change_status` 2024-07-01 do not work!
 - Add `sample_calculate_llm_call` in Cookbook 2024-05-19
 - Add `affiliation_mining_titipata_integration`
 - Add new field for affiliation in `Version 0.0.6.005` 2024-04-08

@@ -161,6 +161,13 @@ class DB_TinyDB(DataBase):
             {"FlagExtractTopic": set_value}, Query().FlagExtractTopic == current_value
         )
 
+    def change_status(self, current_status, set_status):
+        # Create a query object
+        query = Query()
+
+        # Update documents where "State" is current_status
+        self.db.update({'State': set_status}, query.State == current_status)
+
     # endregion
 
     # region Node

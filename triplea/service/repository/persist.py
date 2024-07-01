@@ -227,6 +227,8 @@ def get_article_group_by_state():
 def change_flag_extract_topic(current_value, set_value):
     return db.change_flag_extract_topic(current_value, set_value)
 
+def change_status(current_status, set_status):
+    return db.change_status(current_status, set_status)
 
 def print_article_info_from_repo():
     logger.INFO(

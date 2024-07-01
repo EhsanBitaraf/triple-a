@@ -252,6 +252,10 @@ class DB_MongoDB(DataBase):
         r = self.col_article.update_many(myquery, sett)
         return r
 
+    def change_status(self, current_status, set_status):
+        raise NotImplementedError
+    
+
     # endregion
 
     # endregion
