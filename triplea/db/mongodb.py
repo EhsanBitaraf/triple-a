@@ -251,8 +251,18 @@ class DB_MongoDB(DataBase):
         sett = {"$set": {"FlagExtractTopic": set_value}}
         r = self.col_article.update_many(myquery, sett)
         return r
+    def change_flag_affiliation_mining(self,
+                                       current_value=1,
+                                       set_value=0):
+        myquery = {"FlagAffiliationMining": current_value}
+        sett = {"$set": {"FlagAffiliationMining": set_value}}
+        r = self.col_article.update_many(myquery, sett)
+        return r
 
     def change_status(self, current_status, set_status):
+        myquery = {"State": current_status}
+        sett = {"$set": {"State": set_status}}
+        r = self.col_article.update_many(myquery, sett)
         raise NotImplementedError
     
 

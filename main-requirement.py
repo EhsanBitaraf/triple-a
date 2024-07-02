@@ -49,13 +49,6 @@ if __name__ == "__main__":
     # PERSIST.print_article_info_from_repo()
     # # ------------------------Print RepoInfo-----------------------------------
 
-    # ### Affiliation Mining
-    # change_reset_flag_affiliation_mining()
-    # cPIPELINE.go_affiliation_mining(method="TitipataIntegrated")
-
-    # #-------------------------Improt RIS Format--------------------------------
-    # import_ris_file("wos.ris")
-    # #-------------------------Improt RIS Format--------------------------------
     
     # # ------------------------Read Arxiv And Questuin From LLM-----------------
     # id = "2312.12806v1" 

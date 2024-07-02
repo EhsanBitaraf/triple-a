@@ -14,7 +14,9 @@ All notable changes to this project will be documented in this file.
 - Add import_ris_file into cli
 
 ### Improvements
-- Add `change_status` 2024-07-01 do not work!
+- Add `change_flag_affiliation_mining` in DAL
+- Add `sample_import_ris_file.py` in Cookbook
+- Add `change_status` 2024-07-01 
 - Add `sample_calculate_llm_call` in Cookbook 2024-05-19
 - Add `affiliation_mining_titipata_integration`
 - Add new field for affiliation in `Version 0.0.6.005` 2024-04-08
@@ -29,6 +31,7 @@ All notable changes to this project will be documented in this file.
 - Add `pretty_print_dict`
 
 ### Bug Fixes
+- Fix `export_engine` in `l_id = PERSIST.get_all_article_id_list()`
 - Fix `question_with_template_for_llm`
 - Fix Topic Extraction for method textrank, topicrank, positionrank in `Version 0.0.6.004`
 - Fix bug in `get_article_list_from_pubmed_all_store_to_arepo`

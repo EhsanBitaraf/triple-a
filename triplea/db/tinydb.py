@@ -161,6 +161,13 @@ class DB_TinyDB(DataBase):
             {"FlagExtractTopic": set_value}, Query().FlagExtractTopic == current_value
         )
 
+    def change_flag_affiliation_mining(self, current_value, set_value):
+        # Update the value of "FlagAffiliationMining" from 0 to 1
+        return self.db.update(
+            {"FlagAffiliationMining": set_value},
+            Query().FlagAffiliationMining == current_value
+        )
+
     def change_status(self, current_status, set_status):
         # Create a query object
         query = Query()

@@ -11,7 +11,8 @@ def export_engine(fx_filter,
                   fx_output,
                   limit_sample=0,
                   proccess_bar=True):
-    l_id = PERSIST.get_article_id_list_by_cstate(1, "FlagShortReviewByLLM") # TODO Change it
+    # l_id = PERSIST.get_article_id_list_by_cstate(1, "FlagShortReviewByLLM")
+    l_id = PERSIST.get_all_article_id_list()
     SETTINGS.AAA_CLI_ALERT_POINT
     n = 0
     filter_number = 0
