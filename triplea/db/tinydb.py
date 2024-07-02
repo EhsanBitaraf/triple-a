@@ -157,23 +157,39 @@ class DB_TinyDB(DataBase):
 
     def change_flag_extract_topic(self, current_value, set_value):
         # Update the value of "FlagExtractTopic" from 0 to 1
-        return self.db.update(
+        r = self.db.update(
             {"FlagExtractTopic": set_value}, Query().FlagExtractTopic == current_value
         )
+        self.refresh()
+        return r
 
     def change_flag_affiliation_mining(self, current_value, set_value):
         # Update the value of "FlagAffiliationMining" from 0 to 1
-        return self.db.update(
+        r = self.db.update(
             {"FlagAffiliationMining": set_value},
             Query().FlagAffiliationMining == current_value
         )
+        self.refresh()
+        return r
 
     def change_status(self, current_status, set_status):
         # Create a query object
         query = Query()
 
         # Update documents where "State" is current_status
-        self.db.update({'State': set_status}, query.State == current_status)
+        r = self.db.update({'State': set_status}, query.State == current_status)
+        self.refresh()
+        return r
+
+
+    def change_CiteCrawlerDeep(self, current_value, set_value):
+        query = Query()
+
+        # Update documents where "CiteCrawlerDeep" is current_value
+        r = self.db.update({'CiteCrawlerDeep': set_value},
+                        query.CiteCrawlerDeep == current_value)
+        self.refresh()
+        return r
 
     # endregion
 

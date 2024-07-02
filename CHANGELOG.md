@@ -14,6 +14,7 @@ All notable changes to this project will be documented in this file.
 - Add import_ris_file into cli
 
 ### Improvements
+- Add `change_CiteCrawlerDeep` in DAL
 - Add `change_flag_affiliation_mining` in DAL
 - Add `sample_import_ris_file.py` in Cookbook
 - Add `change_status` 2024-07-01 

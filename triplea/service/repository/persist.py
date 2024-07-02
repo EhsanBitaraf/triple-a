@@ -235,6 +235,9 @@ def change_flag_affiliation_mining(
 def change_status(current_status, set_status):
     return db.change_status(current_status, set_status)
 
+def change_CiteCrawlerDeep(current_value, set_value):
+    return db.change_CiteCrawlerDeep(current_value, set_value)
+
 def print_article_info_from_repo():
     logger.INFO(
         "Number of article in article repository is " + str(db.get_all_article_count())

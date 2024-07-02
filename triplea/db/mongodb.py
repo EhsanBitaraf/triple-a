@@ -263,8 +263,13 @@ class DB_MongoDB(DataBase):
         myquery = {"State": current_status}
         sett = {"$set": {"State": set_status}}
         r = self.col_article.update_many(myquery, sett)
-        raise NotImplementedError
+        return r
     
+    def change_CiteCrawlerDeep(self, current_value, set_value):
+        myquery = {"CiteCrawlerDeep": current_value}
+        sett = {"$set": {"CiteCrawlerDeep": set_value}}
+        r = self.col_article.update_many(myquery, sett)
+        return r
 
     # endregion
 
