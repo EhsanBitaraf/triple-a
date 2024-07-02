@@ -88,20 +88,6 @@ def get_flag():
 
 
 
-def change_CiteCrawlerDeep():
-    _connection_url = SETTINGS.AAA_MONGODB_CONNECTION_URL
-    client = MongoClient(_connection_url)
-    db = client[SETTINGS.AAA_MONGODB_DB_NAME]
-    col_article = db["articledata"]
-    # col_nodes = db["nodes"]
-    # col_edges = db["edges"]
-    # col_triple = db["triple"]
-    myquery = {"CiteCrawlerDeep": 0}
-    sett = {"$set": {"CiteCrawlerDeep": 1}}
-    r = col_article.update_many(myquery, sett)
-    print(f"result: {r}")
-
-
 
 
 def change_complex():
