@@ -63,6 +63,25 @@ OpenCitations is an independent not-for-profit infrastructure organization for o
 http://opencitations.net/
 
 
+## OpenAlex
+OpenAlex is a free and open catalog of the global research system. It's named after the ancient Library of Alexandria and made by the nonprofit OurResearch.
+
+This is the help center for OpenAlex, containing information about the data, the website where you can start exploring, and the background concepts. To learn about the API, the data snapshot, and other fun stuff, head over to our technical documentation.
+
+At the heart of OpenAlex is our dataset—a catalog of works. A work is any sort of scholarly output. A research article is one kind of work, but there are others such as datasets, books, and dissertations. We keep track of these works—their titles (and abstracts and full text in many cases), when they were created, etc. But that's not all we do. We also keep track of the connections between these works, finding associations through things like journals, authors, institutional affiliations, citations, concepts, and funders. There are hundreds of millions of works out there, and tens of thousands more being created every day, so it's important that we have these relationships to help us make sense of research at a large scale.
+
+This type of data is a valuable resource to institutions, researchers, governments, publishers, funders, and anyone else interested in global research and scholarly communication. We offer the data freely so that its value can be shared. Using the website, anyone can get started right away exploring the data to learn about all sorts of things, from individual papers, to global research trends.
+
+[OurResearch](https://ourresearch.org/) is a nonprofit that builds tools for Open Science, including OpenAlex, Unpaywall, and Unsub, among others. Our open-source tools are used by millions every day, in universities, businesses, and libraries worldwide, to uncover, connect, and analyze research products.
+
+Openness is one of our core values, and so we strive to bake it into everything we do—including our data, code, software, and organizational practices. This is also why OpenAlex is completely open-source and free to use under the CC0 license.
+
+OpenAlex offers an open replacement for industry-standard scientific knowledge bases like Elsevier's Scopus and Clarivate's Web of Science. Compared to these paywalled services, OpenAlex offers significant advantages in terms of inclusivity, affordability, and availability.
+
+[API of OpenAlex](https://docs.openalex.org/)
+
+https://help.openalex.org/hc/en-us
+
 # Opensource
 
 ## TechMiner development branch 
