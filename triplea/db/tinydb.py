@@ -194,7 +194,7 @@ class DB_TinyDB(DataBase):
     # endregion
 
     def delete_article_by_id(self, id):
-        self.db.remove(doc_ids=[1])
+        self.db.remove(doc_ids=[id])
 
     # region Node
 
