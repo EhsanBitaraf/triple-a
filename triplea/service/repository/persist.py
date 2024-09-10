@@ -295,6 +295,8 @@ def print_article_short_description(id: str, id_type: str):
 
 # endregion
 
+def delete_article_by_id(id):
+    return db.delete_article_by_id(id)
 
 # endregion
 

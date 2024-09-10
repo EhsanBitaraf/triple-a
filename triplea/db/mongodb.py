@@ -275,6 +275,9 @@ class DB_MongoDB(DataBase):
 
     # endregion
 
+    def delete_article_by_id(self, id):
+        raise NotImplementedError
+    
     # region Node
 
     def add_new_node(self, node: Node) -> int:
