@@ -54,12 +54,15 @@ def json_converter_02(article: Article):
         article.SourceBank = SourceBankType.PUBMED
         
     elif article.SourceBank == SourceBankType.PUBMED:
-        for author in article.Authors:
-            if author.ForeName is not None:
-                a = f"{author.LastName}, {author.ForeName[0:1]}"
-            else:
-                a = author.FullName
-            author_fullname_list.append(a)
+        if article.Authors is None:
+            pass
+        else:
+            for author in article.Authors:
+                if author.ForeName is not None:
+                    a = f"{author.LastName}, {author.ForeName[0:1]}"
+                else:
+                    a = author.FullName
+                author_fullname_list.append(a)
         c1['authors'] = author_fullname_list
 
     elif article.SourceBank == SourceBankType.ARXIV:
@@ -84,12 +87,21 @@ def json_converter_02(article: Article):
         raise NotImplementedError
     
     aic = []
+    aid = []
+    aii = []
     for ai in article.AffiliationIntegration:
         if 'Structural' in ai:
             for i in ai['Structural']:
                 if 'country' in i: 
                     aic.append(i['country'])
+                if 'department' in i:
+                    aid.append(i['department'])
+                if 'institution' in i:
+                    aii.append(i['institution'])
     c1['affiliation_integration_country'] = Emmanuel(aic)
+    c1['affiliation_integration_department'] = Emmanuel(aid)
+    c1['affiliation_integration_institution'] = Emmanuel(aii)
+
 
 
     return c1
