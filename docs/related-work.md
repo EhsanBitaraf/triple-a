@@ -82,6 +82,12 @@ OpenAlex offers an open replacement for industry-standard scientific knowledge b
 
 https://help.openalex.org/hc/en-us
 
+
+# Article
+
+## pyBibX - A Python Library for Bibliometric and Scientometric Analysis Powered withArtificial Intelligence Tools
+[link](https://www.researchgate.net/publication/370417659_pyBibX_--_A_Python_Library_for_Bibliometric_and_Scientometric_Analysis_Powered_with_Artificial_Intelligence_Tools?isFromSharing=1)
+
 # Opensource
 
 ## TechMiner development branch 
