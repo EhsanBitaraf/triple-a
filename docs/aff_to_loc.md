@@ -64,3 +64,21 @@ We also provide function to match affiliation string to [GRID](https://grid.ac/)
 
 
 https://github.com/titipata/affiliation_parser
+
+
+
+In 2021 GRID became an integrated part of [Dimensions](https://www.dimensions.ai/) and passed the torch to [ROR](https://ror.org/) for being the community driven research organisation identifier. Read the shared announcement of the GRID and the ROR team further below.
+
+All previous GRID releases until September 2021 will remain openly available as CC0 on figshare,
+while the GRID team will now focus on curating organisation data within Dimensions.
+
+
+ROR is a global, community-led registry of open persistent identifiers for research organizations
+
+Search the registry [here](https://ror.org/)
+
+[ROR Github](https://github.com/ror-community)
+
+[ror-api](https://github.com/ror-community/ror-api): The ROR API allows retrieving, searching and filtering the organizations indexed in ROR.
+
+[ror-utilities](https://github.com/ror-community/ror-utilities): Utility scripts for working with the ROR API 
