@@ -170,6 +170,17 @@ https://www.bibliometrix.org/home/
 Numerous software tools support bibliometric analysis; however, many of these do not assist scholars in a complete recommended workflow. The most relevant tools are CitNetExplorer (van Eck & Waltman, 2014), VOSviewer (van Eck & Waltman, 2010), SciMAT (Cobo, López-Herrera, Herrera-Viedma, & Herrera, 2012), BibExcel (Persson, Danell, & Schneider, 2009), Science of Science (Sci2) Tool (Sci2 Team, 2009), CiteSpace (Chen, 2006), and VantagePoint (www.thevantagepoint.com).
 
 
+# Software
+
+## The Science of Science (Sci2) Tool 
+The Science of Science (Sci2) Tool is a modular toolset specifically designed for the study of science. It supports the temporal, geospatial, topical, and network analysis and visualization of scholarly datasets at the micro (individual), meso (local), and macro (global) levels.
+
+https://sci2.cns.iu.edu/user/index.php
+
+https://github.com/CIShell/sci2
+
+https://github.com/CIShell/sci2-docker-vnc
+
 # Reference
 
 Tools to visualize connections between academic publications
