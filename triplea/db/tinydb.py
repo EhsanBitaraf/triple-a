@@ -123,8 +123,9 @@ class DB_TinyDB(DataBase):
 
         return self.db.update(article_json, doc_ids=[id])
 
-    def update_cstate_by_id(id, tag_field: str, new_state: int):
-        raise NotImplementedError
+    def update_cstate_by_id(self, id, tag_field: str, new_state: int):
+        return self.db.update({tag_field: new_state}, doc_ids=[id])
+        
 
     def is_article_exist_by_pmid(self, pmid: str) -> bool:
         """

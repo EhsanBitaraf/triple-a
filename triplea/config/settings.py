@@ -59,7 +59,11 @@ class Settings(BaseSettings):
         f"TripleA {version}",  
     )
     AAA_TOPIC_EXTRACT_ENDPOINT: Optional[str] = os.getenv(
-        "AAA_TOPIC_EXTRACT_ENDPOINT", "http://localhost:8001/api/v1/topic/"
+        "AAA_TOPIC_EXTRACT_ENDPOINT", "http://localhost:8001/api/v1/topic"
+    )
+
+    AAA_AFFILIATION_PARSER_ENDPOINT: Optional[str] = os.getenv(
+        "AAA_AFFILIATION_PARSER_ENDPOINT", "http://localhost:8001/api/v1/affiliation"
     )
 
     AAA_SCIGENIUS_ENDPOINT: Optional[str] = os.getenv(

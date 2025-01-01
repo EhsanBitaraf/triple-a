@@ -34,6 +34,10 @@ def json_converter_01(article: Article):
         json_article = _json_converter_01_wos(article)
     elif article.SourceBank == SourceBankType.SCOPUS:
         json_article = _json_converter_01_scopus(article)
+    elif article.SourceBank == SourceBankType.IEEE:
+        json_article = _json_converter_01_scopus(article)
+    elif article.SourceBank == SourceBankType.UNKNOWN:
+        json_article = _json_converter_01_scopus(article) # I dont know
     else:
         raise NotImplementedError
 
@@ -43,8 +47,10 @@ def json_converter_01(article: Article):
 def json_converter_02(article: Article):
     # In this conversion we make uniform AffiliationIntegration , 
     # citation_count in WOS and Author
+    # add source
 
     c1 = json_converter_01(article)
+    c1['source'] = article.SourceBank 
 
     author_fullname_list = []
 
@@ -52,6 +58,7 @@ def json_converter_02(article: Article):
     if article.SourceBank is None:
         # This is Pubmed
         article.SourceBank = SourceBankType.PUBMED
+        c1['source'] = SourceBankType.PUBMED
         
     elif article.SourceBank == SourceBankType.PUBMED:
         if article.Authors is None:
@@ -83,24 +90,29 @@ def json_converter_02(article: Article):
     elif article.SourceBank == SourceBankType.SCOPUS:
         pass
         # json_article = _json_converter_01_scopus(article)
+    elif article.SourceBank == SourceBankType.IEEE:
+        pass
+    elif article.SourceBank == SourceBankType.UNKNOWN:
+        pass
     else:
         raise NotImplementedError
     
     aic = []
     aid = []
     aii = []
-    for ai in article.AffiliationIntegration:
-        if 'Structural' in ai:
-            for i in ai['Structural']:
-                if 'country' in i: 
-                    aic.append(i['country'])
-                if 'department' in i:
-                    aid.append(i['department'])
-                if 'institution' in i:
-                    aii.append(i['institution'])
-    c1['affiliation_integration_country'] = Emmanuel(aic)
-    c1['affiliation_integration_department'] = Emmanuel(aid)
-    c1['affiliation_integration_institution'] = Emmanuel(aii)
+    if article.AffiliationIntegration is not None:
+        for ai in article.AffiliationIntegration:
+            if 'Structural' in ai:
+                for i in ai['Structural']:
+                    if 'country' in i: 
+                        aic.append(i['country'])
+                    if 'department' in i:
+                        aid.append(i['department'])
+                    if 'institution' in i:
+                        aii.append(i['institution'])
+        c1['affiliation_integration_country'] = Emmanuel(aic)
+        c1['affiliation_integration_department'] = Emmanuel(aid)
+        c1['affiliation_integration_institution'] = Emmanuel(aii)
 
 
 

@@ -14,6 +14,10 @@ All notable changes to this project will be documented in this file.
 - Add import_ris_file into cli
 
 ### Improvements
+- Add `convert_df2csv` to cookbook in `sample-export-engine-advanced`
+- Update `update_cstate_by_id` in TinyDB
+- Seperate `AAA_TOPIC_EXTRACT_ENDPOINT` and `AAA_AFFILIATION_PARSER_ENDPOINT` 2024-12-15
+- Add IEEE , UNKNOWN to SourceBankType
 - Update README.md
 - Improve `json_converter_02`
 - Add `delete_article_by_id`  2024-09-10
@@ -36,6 +40,10 @@ All notable changes to this project will be documented in this file.
 - Add `pretty_print_dict`
 
 ### Bug Fixes
+- Fix bug for loading llm template (encoding='utf-8')
+- Add 'source' to `json_converter_02`
+- Move `Database` and `Datasets` Directory from Repo 2024-12-15
+- Fix `json_converter_02` for none AffiliationIntegration 2024-12-13
 - Fix `export_engine` in `l_id = PERSIST.get_all_article_id_list()`
 - Fix `question_with_template_for_llm`
 - Fix Topic Extraction for method textrank, topicrank, positionrank in `Version 0.0.6.004`

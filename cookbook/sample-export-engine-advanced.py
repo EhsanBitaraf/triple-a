@@ -8,6 +8,7 @@
 
 import json
 import click
+import pandas as pd
 from triplea.schemas.article import Article
 from triplea.service.repository.export.engine import export_engine
 from triplea.service.repository.export.unified_export_json import json_converter_01
@@ -171,6 +172,47 @@ def fx_output(output):
     else:
         return ""
 
+
+def detect_field_types(df):
+    main_fields = []
+    one_to_many_fields = []
+
+    for column in df.columns:
+        if df[column].apply(lambda x: isinstance(x, list)).all():
+            one_to_many_fields.append(column)
+        else:
+            main_fields.append(column)
+
+    return main_fields, one_to_many_fields
+
+
+def convert_df2csv(df):
+    main_fields, one_to_many_fields = detect_field_types(df)
+    df = df.reset_index(drop=True)
+
+    print("These are is main fields:")
+    print(main_fields)
+
+    print("These are one to many fields:")
+    print(one_to_many_fields)
+
+    # Create main CSV with explicit ID column
+    main_df = df[main_fields].copy()
+    main_df.insert(0, 'id', main_df.index)
+    main_df.to_csv('main.csv', index=False)
+    print("-- main.csv saved.")
+
+    # Create separate CSV files for one-to-many fields
+    for field in one_to_many_fields:
+        rows = []
+        for index, row in df.iterrows():
+            for item in row[field]:
+                rows.append({'id': index, field: item})
+        pd.DataFrame(rows).to_csv(f'main_{field}.csv', index=False)
+        print(f"-- main_{field}.csv saved.")
+
+
+
 if __name__ == "__main__":
     ol = export_engine(fx_filter,fx_transform,fx_output,
                        limit_sample=0,
@@ -178,9 +220,13 @@ if __name__ == "__main__":
     print()
     print(f"{len(ol)} Articles selected and transform.")
 
-    # General Model
+    # General Model for convert - Old Version
     c = Converter()
     c.convert_unified2csv_dynamically(ol)
+
+    # General Model for convert - New Version
+    df = pd.DataFrame(ol)
+    convert_df2csv(df)
 
     
 

@@ -36,3 +36,4 @@ def reset_flag_llm_by_function(TemplateID, fx, limit_sample=0, proccess_bar=True
             print()
             print(logger.ERROR(f"article. ID = {id}"))
             print_error()
+    PERSIST.refresh()

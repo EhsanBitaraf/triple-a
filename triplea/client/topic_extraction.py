@@ -77,7 +77,8 @@ session = requests.Session()
 
 
 def extract_topic(text: str, method: str, top: int = 10, threshold: float = 0) -> list:
-    URL = f"{SETTINGS.AAA_TOPIC_EXTRACT_ENDPOINT}/topic/"
+    # URL = f"{SETTINGS.AAA_TOPIC_EXTRACT_ENDPOINT}/topic/"
+    URL = f"{SETTINGS.AAA_TOPIC_EXTRACT_ENDPOINT}/"
 
     # data to be sent to api
     data = {

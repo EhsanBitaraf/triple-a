@@ -7,7 +7,8 @@ session = requests.Session()
 
 
 def parse_affiliation(text: str) -> list:
-    URL = f"{SETTINGS.AAA_TOPIC_EXTRACT_ENDPOINT}/affiliation"
+    # URL = f"{SETTINGS.AAA_TOPIC_EXTRACT_ENDPOINT}/affiliation"
+    URL = f"{SETTINGS.AAA_AFFILIATION_PARSER_ENDPOINT}/"
 
     # # data to be sent to api
     # PARAMS = {

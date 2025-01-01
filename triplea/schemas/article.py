@@ -30,6 +30,8 @@ class SourceBankType(enum.IntEnum):
     ARXIV = 2
     WOS = 3
     SCOPUS = 4
+    IEEE = 5
+    UNKNOWN = 6
 
 
 class Affiliation(BaseModel):

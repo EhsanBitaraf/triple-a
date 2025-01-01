@@ -77,6 +77,14 @@ def _get_citation_arxiv(article: Article):
     # citations of arxiv articles, maybe through google.
     return article
 
+def _get_citation_ieee(article: Article):
+    # previous state is 2
+    article.State = 3  # next state
+    # backward_state = -2
+
+    # I still haven't found an operational idea to get
+    # citations of IEEE RIS articles, maybe through google.
+    return article
 
 def get_citation(article: Article):
     # this is dispatcher function
@@ -87,6 +95,14 @@ def get_citation(article: Article):
         updated_article = _get_citation_pubmed(article)
     elif article.SourceBank == SourceBankType.ARXIV:
         updated_article = _get_citation_arxiv(article)
+    elif article.SourceBank == SourceBankType.IEEE:
+        updated_article = _get_citation_ieee(article)
+    elif article.SourceBank == SourceBankType.SCOPUS:
+        updated_article = _get_citation_ieee(article)
+    elif article.SourceBank == SourceBankType.WOS:
+        updated_article = _get_citation_ieee(article)
+    elif article.SourceBank == SourceBankType.UNKNOWN:
+        updated_article = _get_citation_ieee(article)
     else:
         raise NotImplementedError
 

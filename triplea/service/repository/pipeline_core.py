@@ -137,7 +137,21 @@ def move_state_forward(  # noqa: C901
             elif source_bank == SourceBankType.ARXIV:
                 article_source_bank_title = "Arxiv"
                 article_identifier = updated_article.ArxivID
+            elif source_bank == SourceBankType.IEEE:
+                article_source_bank_title = "IEEE"
+                article_identifier = updated_article.DOI
+            elif source_bank == SourceBankType.WOS:
+                article_source_bank_title = "WOS"
+                article_identifier = updated_article.DOI
+            elif source_bank == SourceBankType.SCOPUS:
+                article_source_bank_title = "SCOPUS"
+                article_identifier = updated_article.DOI
+            elif source_bank == SourceBankType.UNKNOWN:
+                article_source_bank_title = "UNKNOWN"
+                article_identifier = updated_article.DOI
+
             else:
+                print(f"SourceBankType is {source_bank}")
                 raise NotImplementedError
 
             bar.label = f"Article {article_source_bank_title} ({article_identifier}) with state {str(current_state)} forward to {str(current_state + 1)}"  # noqa: E501

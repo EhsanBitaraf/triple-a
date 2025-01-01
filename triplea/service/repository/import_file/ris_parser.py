@@ -3,7 +3,7 @@ from triplea.schemas.article import Article, Author, Keyword, SourceBankType
 import triplea.service.repository.persist as PERSIST
 from triplea.service.click_logger import logger
 
-def _parse_ris_block(lines):
+def _parse_ris_block(lines, sourcebanktype = SourceBankType.UNKNOWN):
     a = Article()
     a.OreginalArticle = {"file": lines}
     a.InsertType = ["From RIS"]
@@ -366,11 +366,15 @@ def _parse_ris_block(lines):
                 pass
                 if e != "\n":
                     print(f"....{e}")
+                    print(f"{e} -> {v}")
         # ------------------------------Parse all tag we need-----------------
+
+    if a.SourceBank is None:
+        a.SourceBank = sourcebanktype
     return a
             
 
-def import_ris_file(filepath):
+def import_ris_file(filepath, sourcebanktype = SourceBankType.UNKNOWN):
     # file: Union[TextIO, Path],
 
     #         with file.open(mode="r", newline=newline, encoding=encoding) as f:
@@ -387,7 +391,7 @@ def import_ris_file(filepath):
         a_block.append( lines[i])
         # Best Method for split block
         if lines[i][:5] == 'ER  -':
-            a = _parse_ris_block(a_block)
+            a = _parse_ris_block(a_block, sourcebanktype)
             r  = PERSIST.insert_new_general_deduplicate_with_doi(a)
             if r is not None:
                 import_article = import_article + 1

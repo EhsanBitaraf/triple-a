@@ -14,6 +14,6 @@ def read_llm_template():
         logger.WARNING("LLM template not found or not configured.")
         return None
     
-    with open(SETTINGS.AAA_LLM_TEMPLATE_FILE) as f:
+    with open(SETTINGS.AAA_LLM_TEMPLATE_FILE, encoding='utf-8') as f:
         d = json.load(f)
     return d
