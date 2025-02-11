@@ -14,6 +14,7 @@ All notable changes to this project will be documented in this file.
 - Add import_ris_file into cli
 
 ### Improvements
+- Add `SourceBankType.GOOGLESCHOLAR` 2025-01-22
 - Add `convert_df2csv` to cookbook in `sample-export-engine-advanced`
 - Update `update_cstate_by_id` in TinyDB
 - Seperate `AAA_TOPIC_EXTRACT_ENDPOINT` and `AAA_AFFILIATION_PARSER_ENDPOINT` 2024-12-15
@@ -40,6 +41,8 @@ All notable changes to this project will be documented in this file.
 - Add `pretty_print_dict`
 
 ### Bug Fixes
+- Fix ris_parser in C3 for journal title in conference proccess in googlescholar
+- Fix extra `\` in url of end points (AAA_AFFILIATION_PARSER_ENDPOINT) 2025-01-01
 - Fix bug for loading llm template (encoding='utf-8')
 - Add 'source' to `json_converter_02`
 - Move `Database` and `Datasets` Directory from Repo 2024-12-15

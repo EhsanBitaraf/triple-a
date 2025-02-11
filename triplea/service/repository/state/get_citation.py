@@ -103,6 +103,8 @@ def get_citation(article: Article):
         updated_article = _get_citation_ieee(article)
     elif article.SourceBank == SourceBankType.UNKNOWN:
         updated_article = _get_citation_ieee(article)
+    elif article.SourceBank == SourceBankType.GOOGLESCHOLAR:
+        updated_article = _get_citation_ieee(article)
     else:
         raise NotImplementedError
 

@@ -38,6 +38,8 @@ def json_converter_01(article: Article):
         json_article = _json_converter_01_scopus(article)
     elif article.SourceBank == SourceBankType.UNKNOWN:
         json_article = _json_converter_01_scopus(article) # I dont know
+    elif article.SourceBank == SourceBankType.GOOGLESCHOLAR:
+        json_article = _json_converter_01_scopus(article) # I dont know
     else:
         raise NotImplementedError
 
@@ -93,6 +95,8 @@ def json_converter_02(article: Article):
     elif article.SourceBank == SourceBankType.IEEE:
         pass
     elif article.SourceBank == SourceBankType.UNKNOWN:
+        pass
+    elif article.SourceBank == SourceBankType.GOOGLESCHOLAR:
         pass
     else:
         raise NotImplementedError

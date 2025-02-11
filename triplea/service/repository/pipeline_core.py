@@ -149,6 +149,9 @@ def move_state_forward(  # noqa: C901
             elif source_bank == SourceBankType.UNKNOWN:
                 article_source_bank_title = "UNKNOWN"
                 article_identifier = updated_article.DOI
+            elif source_bank == SourceBankType.GOOGLESCHOLAR:
+                article_source_bank_title = "GOOGLESCHOLAR"
+                article_identifier = updated_article.DOI
 
             else:
                 print(f"SourceBankType is {source_bank}")

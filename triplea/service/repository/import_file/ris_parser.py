@@ -12,17 +12,18 @@ def _parse_ris_block(lines, sourcebanktype = SourceBankType.UNKNOWN):
     a.State = 2
     last_e=""
     print(f"#--------------------------------------------")
+    C3 = ""
     # for line in lines:
     for l in range(0,len(lines)):
         line = lines[l]
         element_value = line.split("  - ")
         e = element_value[0]
         
-        #--------------------UTF Clening-----------
+        #--------------------UTF Cleaning-----------
         if str.__contains__(e,'\ufeff'):
             # UTF8
             e = str.replace(e,'\ufeff','')
-        #--------------------UTF Clening-----------
+        #--------------------UTF Cleaning-----------
 
         # ------------------------------Check for line without tag (in endnote)
         if len(element_value) == 2:
@@ -170,6 +171,8 @@ def _parse_ris_block(lines, sourcebanktype = SourceBankType.UNKNOWN):
             # /n
         elif e == "DP":  # Database provider.
             pass
+            if v.__contains__("Google Scholar"):
+                a.SourceBank = SourceBankType.GOOGLESCHOLAR            
             # print(f"{e} -> {v}")
             # NLM
         elif e == "DB":  # Name of database.
@@ -268,6 +271,7 @@ def _parse_ris_block(lines, sourcebanktype = SourceBankType.UNKNOWN):
             # print(f"{e} -> {v}")  
         elif e == "C3":  # Custom 3, e.g. size/length, title prefix, proceedings title, data type, PMCID, congress session, contact phone, size, music parts, or designated states.[6][14][18][20]
             pass
+            C3 = v
             # print(f"{e} -> {v}")
         elif e == "SE":  #  Section, screens, code section, message number, pages, chapter, filed date, number of pages, original release date, version, e-pub date, duration of grant, section number, start page, international patent number, or running time.
             pass
@@ -369,7 +373,13 @@ def _parse_ris_block(lines, sourcebanktype = SourceBankType.UNKNOWN):
                     print(f"{e} -> {v}")
         # ------------------------------Parse all tag we need-----------------
 
-    if a.SourceBank is None:
+
+    if a.Journal is None or a.Journal == "":
+        a.Journal = C3 # I see in google scholar
+
+
+
+    if C3 is None:
         a.SourceBank = sourcebanktype
     return a
             

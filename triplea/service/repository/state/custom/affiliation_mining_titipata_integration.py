@@ -100,6 +100,8 @@ def affiliation_mining_titipata_integration(article: Article):
         aff_list = _get_affiliation_integrated_from_wos_scopus(article)
     elif article.SourceBank == SourceBankType.UNKNOWN:
         aff_list = _get_affiliation_integrated_from_wos_scopus(article)
+    elif article.SourceBank == SourceBankType.GOOGLESCHOLAR:
+        aff_list = _get_affiliation_integrated_from_wos_scopus(article)
     else:
         raise NotImplementedError
 

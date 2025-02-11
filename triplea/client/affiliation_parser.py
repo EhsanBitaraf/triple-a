@@ -1,7 +1,7 @@
 from triplea.config.settings import SETTINGS
 import requests
 from triplea.service.click_logger import logger
-from urllib.parse import quote
+from urllib.parse import quote, urljoin
 
 session = requests.Session()
 
@@ -16,8 +16,8 @@ def parse_affiliation(text: str) -> list:
     # }
 
     text_encode = quote(text)
-    url = f"{URL}/{text_encode}"
-
+    url = urljoin(URL, text_encode)
+    
     headers = {
         "User-Agent": SETTINGS.AAA_CLIENT_AGENT,
     }

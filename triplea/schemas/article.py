@@ -32,6 +32,7 @@ class SourceBankType(enum.IntEnum):
     SCOPUS = 4
     IEEE = 5
     UNKNOWN = 6
+    GOOGLESCHOLAR = 7
 
 
 class Affiliation(BaseModel):
