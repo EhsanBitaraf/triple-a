@@ -37,6 +37,7 @@ def export_engine(fx_filter,
             if fx_filter(article) is True:
                 filter_number = filter_number + 1
                 model = fx_transform(article)
+                model['DBUID'] = id # for expose id in export
             else:
                 pass
                 model = None

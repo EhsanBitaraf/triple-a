@@ -12,8 +12,24 @@ All notable changes to this project will be documented in this file.
 - Complete LLM-Fulltext pipeline
 - Add CrossRef API : https://www.crossref.org/documentation/retrieve-metadata/rest-api/
 - Add import_ris_file into cli
+- In Retracted publication. like this [artilce](https://pubmed.ncbi.nlm.nih.gov/36721396/)
+```json
+"PublicationTypeList": {
+    "PublicationType": [
+        {
+            "#text": "Journal Article",
+            "@UI": "D016428"
+        },
+        {
+            "#text": "Retracted Publication",
+            "@UI": "D016441"
+        }
+    ]
+}
+```
 
 ### Improvements
+- Add `DBUID` field in export. change in `export.engine`
 - Add `SourceBankType.GOOGLESCHOLAR` 2025-01-22
 - Add `convert_df2csv` to cookbook in `sample-export-engine-advanced`
 - Update `update_cstate_by_id` in TinyDB
@@ -41,6 +57,7 @@ All notable changes to this project will be documented in this file.
 - Add `pretty_print_dict`
 
 ### Bug Fixes
+- Fix `model['DBUID'] = id`  in export engine
 - Fix ris_parser in C3 for journal title in conference proccess in googlescholar
 - Fix extra `\` in url of end points (AAA_AFFILIATION_PARSER_ENDPOINT) 2025-01-01
 - Fix bug for loading llm template (encoding='utf-8')

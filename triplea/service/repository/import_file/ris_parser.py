@@ -379,7 +379,7 @@ def _parse_ris_block(lines, sourcebanktype = SourceBankType.UNKNOWN):
 
 
 
-    if C3 is None:
+    if a.SourceBank is None:
         a.SourceBank = sourcebanktype
     return a
             
