@@ -27,6 +27,8 @@ All notable changes to this project will be documented in this file.
     ]
 }
 ```
+- Add [Altmetric API](/docs/client-api.md#altmetric-api)
+
 
 ### Improvements
 - Add `DBUID` field in export. change in `export.engine`

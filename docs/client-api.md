@@ -299,3 +299,64 @@ Scopus.com allows you to track analyze and visualize research data from 5000 dif
 It covers 78 million items including records from journals, books and book series, conference proceedings and trade publications across 16 million Author Profiles and 70,000 Institutional Profiles All of this comes together to power your research and help you to stay abreast with current publications, find co-authors, analyze journals to publish in and track and monitor global trends
 
 Scopus APIs expose curated abstracts and citation data from all scholarly journals indexed by Scopus[.](https://dev.elsevier.com/sc_apis.html)
+
+# Altmetric API
+https://www.altmetric.com/solutions/altmetric-api/#
+
+https://api.altmetric.com/
+
+Yes, **Altmetric provides a public API** that you can use to retrieve the **Altmetric Attention Score and related data** for a research article using its **DOI**.
+
+---
+
+### ✅ **API Overview:**
+
+* **Base URL** (for public access):
+
+  ```
+  https://api.altmetric.com/v1/doi/{DOI}
+  ```
+
+* **Example** (for a known DOI):
+
+  ```
+  https://api.altmetric.com/v1/doi/10.1038/nature12373
+  ```
+
+* This will return a JSON response with:
+
+  * `altmetric_score`
+  * `title`
+  * `journal`
+  * `cited_by_tweeters_count`, `cited_by_news_outlets_count`, etc.
+  * `images`, `donut`, and other metadata
+
+---
+
+### 🔒 Rate Limiting & API Key:
+
+* The **public API** is free but **rate-limited**.
+* For **higher usage or commercial access**, you need to:
+
+  * Contact [Altmetric](https://www.altmetric.com/)
+  * Get an **API key**
+  * Use their **authenticated API** for bulk or advanced queries
+
+---
+
+### 🔧 Example (Python):
+
+```python
+import requests
+
+doi = "10.1038/nature12373"
+url = f"https://api.altmetric.com/v1/doi/{doi}"
+
+response = requests.get(url)
+if response.status_code == 200:
+    data = response.json()
+    print("Altmetric Score:", data.get("score"))
+else:
+    print("Error:", response.status_code)
+```
+
