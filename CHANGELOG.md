@@ -59,6 +59,7 @@ All notable changes to this project will be documented in this file.
 - Add `pretty_print_dict`
 
 ### Bug Fixes
+- Fix authors in `json_converter_02` 2025-06-25
 - Fix `model['DBUID'] = id`  in export engine
 - Fix ris_parser in C3 for journal title in conference proccess in googlescholar
 - Fix extra `\` in url of end points (AAA_AFFILIATION_PARSER_ENDPOINT) 2025-01-01

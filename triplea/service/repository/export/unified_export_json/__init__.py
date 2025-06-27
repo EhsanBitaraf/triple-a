@@ -85,15 +85,25 @@ def json_converter_02(article: Article):
                     t = t.replace("\n", "")
                     t = int(t)
                     c1['citation_count'] = t
-        for author in article.Authors:
-            author_fullname_list.append(author.FullName)
+        if article.Authors is not None:
+            for author in article.Authors:
+                author_fullname_list.append(author.FullName)
         c1['authors'] = author_fullname_list
 
     elif article.SourceBank == SourceBankType.SCOPUS:
         pass
         # json_article = _json_converter_01_scopus(article)
+        if article.Authors is not None:
+            for author in article.Authors:
+                author_fullname_list.append(author.FullName)
+        c1['authors'] = author_fullname_list
+
     elif article.SourceBank == SourceBankType.IEEE:
         pass
+        if article.Authors is not None:
+            for author in article.Authors:
+                author_fullname_list.append(author.FullName)
+        c1['authors'] = author_fullname_list
     elif article.SourceBank == SourceBankType.UNKNOWN:
         pass
     elif article.SourceBank == SourceBankType.GOOGLESCHOLAR:
