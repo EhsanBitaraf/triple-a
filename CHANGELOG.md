@@ -1,9 +1,22 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## v0.0.6 2024-02-13
-### Task
 
+## v0.0.7 2025-07-06
+
+### Task
+- Debug check 18194356
+- Add language and add publication Type and year and journal_issn
+
+### Improvements
+- Add `CitationCount` field in Article
+
+### Bug Fixes
+- Fix `_get_citation_pubmed`, `_get_citation_wos`, `_get_citation_scopus` and compatible with  `Article.CitationCount`
+
+## v0.0.6 2024-02-13
+
+### Task
 - /triplea/service/llm/__init__.py", line 55
     raise Exception("chera")
 - Export Mongo 2 Mongo

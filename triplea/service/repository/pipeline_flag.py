@@ -271,7 +271,9 @@ def go_extract_triple(proccess_bar=True):
     persist.refresh()
 
 
-def go_extract_topic(method = "textrank", top: int = 10, threshold: float = 0, proccess_bar=True):
+def go_extract_topic(
+    method="textrank", top: int = 10, threshold: float = 0, proccess_bar=True
+):
     max_refresh_point = SETTINGS.AAA_CLI_ALERT_POINT
     l_id = persist.get_article_id_list_by_cstate(0, "FlagExtractTopic")
     total_article_in_current_state = len(l_id)
@@ -320,20 +322,17 @@ def go_extract_topic(method = "textrank", top: int = 10, threshold: float = 0, p
                 bar.update(1)
 
             if current_state is None:
-                updated_article = state_manager.extract_topic_abstract(updated_article,
-                                                                       method,
-                                                                       top,
-                                                                       threshold)
+                updated_article = state_manager.extract_topic_abstract(
+                    updated_article, method, top, threshold
+                )
             elif current_state == -1:
-                updated_article = state_manager.extract_topic_abstract(updated_article,
-                                                                       method,
-                                                                       top,
-                                                                       threshold)
+                updated_article = state_manager.extract_topic_abstract(
+                    updated_article, method, top, threshold
+                )
             elif current_state == 0:
-                updated_article = state_manager.extract_topic_abstract(updated_article,
-                                                                       method,
-                                                                       top,
-                                                                       threshold)                                                                       
+                updated_article = state_manager.extract_topic_abstract(
+                    updated_article, method, top, threshold
+                )
             elif current_state == 1:
                 pass
 
@@ -356,11 +355,9 @@ def go_extract_topic(method = "textrank", top: int = 10, threshold: float = 0, p
     persist.refresh()
 
 
-def go_affiliation_mining(method: str = "Simple",
-                          proccess_bar=True,
-                          limit_sample=0):
-    
-    max_refresh_point = SETTINGS.AAA_CLI_ALERT_POINT
+def go_affiliation_mining(method: str = "Simple", proccess_bar=True, limit_sample=0):
+
+    # max_refresh_point = SETTINGS.AAA_CLI_ALERT_POINT
     l_id = persist.get_article_id_list_by_cstate(0, "FlagAffiliationMining")
     # total_article_in_current_state = len(l_id)
     doc_number = len(l_id)
@@ -372,9 +369,7 @@ def go_affiliation_mining(method: str = "Simple",
     )
 
     if proccess_bar:
-        bar = click.progressbar(length=doc_number,
-                                show_pos=True,
-                                show_percent=True)
+        bar = click.progressbar(length=doc_number, show_pos=True, show_percent=True)
     else:
         logger.INFO("Start ...")
 
@@ -400,8 +395,6 @@ def go_affiliation_mining(method: str = "Simple",
             except Exception:
                 current_state = 0
 
-
-
             # For View Proccess
             if proccess_bar:
                 bar.label = f"Article {id} affiliation mining."
@@ -411,16 +404,13 @@ def go_affiliation_mining(method: str = "Simple",
                     logger.INFO(f"{n} Article(s) affiliation mining..")
                 persist.refresh()
 
-
             if limit_sample != 0:  # Unlimited
                 if n > limit_sample:
                     break
 
             if current_state is None or current_state == -1 or current_state == 0:
                 if method == "Simple":
-                    updated_article = state_manager.affiliation_mining(
-                                                            updated_article
-                                                            )
+                    updated_article = state_manager.affiliation_mining(updated_article)
                     persist.update_article_by_id(updated_article, id)
                 elif method == "Titipata":
                     updated_article = state_manager.affiliation_mining_titipata(
@@ -428,8 +418,10 @@ def go_affiliation_mining(method: str = "Simple",
                     )
                     persist.update_article_by_id(updated_article, id)
                 elif method == "TitipataIntegrated":
-                    updated_article = state_manager.affiliation_mining_titipata_integration(
-                        updated_article
+                    updated_article = (
+                        state_manager.affiliation_mining_titipata_integration(
+                            updated_article
+                        )
                     )
                     persist.update_article_by_id(updated_article, id)
             elif current_state == 1:

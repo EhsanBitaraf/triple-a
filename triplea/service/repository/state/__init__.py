@@ -1,7 +1,9 @@
 from triplea.service.repository.state.convert_full_text_to_string import (
     convert_full_text2string,
 )
-from triplea.service.repository.state.custom.affiliation_mining_titipata_integration import affiliation_mining_titipata_integration
+from triplea.service.repository.state.custom.affiliation_mining_titipata_integration import (
+    affiliation_mining_titipata_integration,
+)
 from triplea.service.repository.state.custom.review_by_llm import short_review_article
 from triplea.service.repository.state.expand_details import expand_details
 from triplea.service.repository.state.get_full_text import get_full_text

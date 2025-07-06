@@ -8,11 +8,11 @@ from bson import ObjectId
 
 
 def safe_csv(text):
-    if isinstance(text,int):
+    if isinstance(text, int):
         return text
-    elif isinstance(text,float):
+    elif isinstance(text, float):
         return text
-    
+
     if text is None:
         return ""
     if text.__contains__(","):
@@ -33,9 +33,11 @@ def print_error():
     logger.ERROR(f"line : {exc_tb.tb_lineno}")
     traceback.print_tb(exc_tb)  # In debug mode
 
-def print_pretty_dict(d:dict):
+
+def print_pretty_dict(d: dict):
     json_formatted_str = json.dumps(d, indent=2)
-    print(json_formatted_str)    
+    print(json_formatted_str)
+
 
 class JSONEncoder(json.JSONEncoder):
     def default(self, obj):

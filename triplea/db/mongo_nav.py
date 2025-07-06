@@ -85,11 +85,6 @@ def get_flag():
     print(list(col_article.aggregate(pipeline)))
 
 
-
-
-
-
-
 def change_complex():
     _connection_url = SETTINGS.AAA_MONGODB_CONNECTION_URL
     client = MongoClient(_connection_url)

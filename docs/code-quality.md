@@ -98,6 +98,37 @@ Ignoring Entire Files:
 ```
 ## Sample command
 
+
+### select
+
+
+```sh
+flake8 --config=.flake8 --count --output-file out-flake8.txt .\triplea\ --no-show-source  --statistics --select E501
+```
+
+### ignore
+```sh
+flake8 --config=.flake8 --count --output-file out-flake8.txt .\triplea\ --no-show-source  --statistics --ignore E501,W503,E722
+```
+### black
+
+```sh
+black .\triplea\the_private_backyard.py
+
+black .\triplea\the_private_backyard1.py
+
+black .\triplea\the_private_backyard2.py
+
+black .\triplea\the_private_backyard3.py
+
+black .\triplea\the_private_backyard3.py
+
+black .\triplea\the_private_backyard_mongodb.py
+
+```
+
+### Mix
+
 ```
 flake8 --show-source .\triplea\cli\main.py
 ```
@@ -189,7 +220,7 @@ Per page:
 flake8 --config=.flake8 --count --output-file out-flake8.txt .\triplea\ --no-show-source  --statistics
 ```
 
-2023-10-15
+#### 2023-10-15
 ```
 4     C901 'export_rayyan_csv' is too complex (21)
 24    E116 unexpected indentation (comment)
@@ -233,33 +264,10 @@ flake8 --config=.flake8 --count --output-file out-flake8.txt .\triplea\ --no-sho
 
 61
 
-select
-```sh
-flake8 --config=.flake8 --count --output-file out-flake8.txt .\triplea\ --no-show-source  --statistics --select E501
-```
-
-ignore
-```sh
-flake8 --config=.flake8 --count --output-file out-flake8.txt .\triplea\ --no-show-source  --statistics --ignore E501,W503,E722
-```
 
 
-```sh
-black .\triplea\the_private_backyard.py
 
-black .\triplea\the_private_backyard1.py
-
-black .\triplea\the_private_backyard2.py
-
-black .\triplea\the_private_backyard3.py
-
-black .\triplea\the_private_backyard3.py
-
-black .\triplea\the_private_backyard_mongodb.py
-
-```
-
-2023-10-16
+#### 2023-10-16
 ```
 4     C901 'export_rayyan_csv' is too complex (21)
 1     E303 too many blank lines (3)
@@ -273,6 +281,44 @@ black .\triplea\the_private_backyard_mongodb.py
 104
 353
 61
+
+
+#### 2025-07-06
+```
+1     C901 '_parse_ris_block' is too complex (78)
+2     E127 continuation line over-indented for visual indent
+1     E128 continuation line under-indented for visual indent
+4     E131 continuation line unaligned for hanging indent
+1     E201 whitespace after '('
+13    E203 whitespace before ':'
+1     E221 multiple spaces before operator
+23    E225 missing whitespace around operator
+71    E231 missing whitespace after ':'
+10    E251 unexpected spaces around keyword / parameter equals
+22    E261 at least two spaces before inline comment
+5     E262 inline comment should start with '# '
+6     E265 block comment should start with '# '
+1     E272 multiple spaces before keyword
+1     E301 expected 1 blank line, found 0
+16    E302 expected 2 blank lines, found 1
+23    E303 too many blank lines (2)
+39    E501 line too long (101 > 90 characters)
+1     E701 multiple statements on one line (colon)
+1     E712 comparison to True should be 'if cond is True:' or 'if cond:'
+2     E741 ambiguous variable name 'l'
+3     F401 'triplea.utils.general.print_pretty_dict' imported but unused
+1     F541 f-string is missing placeholders
+2     F841 local variable 'yr' is assigned to but never used
+41    W291 trailing whitespace
+2     W292 no newline at end of file
+28    W293 blank line contains whitespace
+1     W391 blank line at end of file
+322
+```
+322
+240
+57
+0
 
 ### cli
 

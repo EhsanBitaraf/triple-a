@@ -96,7 +96,7 @@ def get_article_list_from_pubmed_all_store_to_arepo(
         retmax = total
         round = 2
 
-    i = 0 
+    i = 0
     for i in range(1, round):
         time.sleep(sleep_time)
         logger.INFO(

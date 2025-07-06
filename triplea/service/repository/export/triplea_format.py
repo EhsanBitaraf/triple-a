@@ -260,7 +260,6 @@ def export_triplea_csvs_in_relational_mode_save_file(  # noqa: C901
                     break
 
             a = persist.get_article_by_id(id)
-            # a = persist.get_article_by_pmid('18194356') # CRITICAL
 
             try:
                 updated_article = Article(**a.copy())

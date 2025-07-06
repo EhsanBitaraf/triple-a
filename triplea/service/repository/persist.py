@@ -180,28 +180,22 @@ def insert_new_arxiv(article: Article):
         return
     else:  # Insert not exist Article
         return db.add_new_article(article)
-    
+
 
 def insert_new_general_deduplicate_with_doi(article: Article):
     # check DOI
     if article.DOI is None:
-        logger.DEBUG(
-                    f"The article with title {article.Title} has no DOI.",
-                     deep=1
-                )
+        logger.DEBUG(f"The article with title {article.Title} has no DOI.", deep=1)
         # return # if want to reduce chance of duplication
         return db.add_new_article(article)
-    else: 
+    else:
         # check DOI is exist
         if db.is_article_exist_by_doi(article.DOI):
-            logger.DEBUG(
-                f"The article with DOI {article.DOI} already exists.", deep=3
-            )
-            return             
+            logger.DEBUG(f"The article with DOI {article.DOI} already exists.", deep=3)
+            return
         else:  # Insert not exist Article
             return db.add_new_article(article)
 
-    
 
 def get_all_article_count() -> int:
     """
@@ -227,16 +221,18 @@ def get_article_group_by_state():
 def change_flag_extract_topic(current_value, set_value):
     return db.change_flag_extract_topic(current_value, set_value)
 
-def change_flag_affiliation_mining(
-                                    current_value=1,
-                                    set_value=0):
+
+def change_flag_affiliation_mining(current_value=1, set_value=0):
     return db.change_flag_affiliation_mining(current_value, set_value)
+
 
 def change_status(current_status, set_status):
     return db.change_status(current_status, set_status)
 
+
 def change_CiteCrawlerDeep(current_value, set_value):
     return db.change_CiteCrawlerDeep(current_value, set_value)
+
 
 def print_article_info_from_repo():
     logger.INFO(
@@ -295,8 +291,10 @@ def print_article_short_description(id: str, id_type: str):
 
 # endregion
 
+
 def delete_article_by_id(id):
     return db.delete_article_by_id(id)
+
 
 # endregion
 

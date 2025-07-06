@@ -3,7 +3,9 @@ from triplea.schemas.article import Article
 from triplea.utils.general import print_error
 
 
-def extract_topic_abstract(article: Article,method = "textrank",top: int = 10, threshold: float = 0):
+def extract_topic_abstract(
+    article: Article, method="textrank", top: int = 10, threshold: float = 0
+):
     article.FlagExtractTopic = 1
     if article.Title is None:
         title = ""
@@ -18,10 +20,7 @@ def extract_topic_abstract(article: Article,method = "textrank",top: int = 10, t
     text = title + " " + abstract
     text = text.replace("\n", "")
     try:
-        result = extract_topic(text,
-                               method = method,
-                               top=top,
-                               threshold=threshold)
+        result = extract_topic(text, method=method, top=top, threshold=threshold)
         article.Topics = result
     except Exception:
         print_error()

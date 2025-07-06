@@ -17,23 +17,23 @@ def _json_converter_01_wos(article: Article):
     publication_type = ""
     journal_issn = ""
     journal_iso_abbreviation = ""
-    if isinstance(article.OreginalArticle,dict):
-        for i in article.OreginalArticle['file']:
+    if isinstance(article.OreginalArticle, dict):
+        for i in article.OreginalArticle["file"]:
             tag = i[0:2]
-            if tag =="DO":
-                url ="https://doi.org/" + str.replace(i[6:len(i)],"\n" , "")
+            if tag == "DO":
+                url = "https://doi.org/" + str.replace(i[6: len(i)], "\n", "")
             elif tag == "LA":
-                language = str.replace(i[6:len(i)],"\n" , "")
+                language = str.replace(i[6: len(i)], "\n", "")
             elif tag == "PY":
-                year = str.replace(i[6:len(i)],"\n" , "")
+                year = str.replace(i[6: len(i)], "\n", "")
             elif tag == "TY":
-                publication_type = str.replace(i[6:len(i)],"\n" , "")
+                publication_type = str.replace(i[6: len(i)], "\n", "")
             elif tag == "SN":
-                ji = str.replace(i[6:len(i)],"\n" , "")
-                if len(ji) == 9  and not (ji.__contains__("X")):
+                ji = str.replace(i[6: len(i)], "\n", "")
+                if len(ji) == 9 and not (ji.__contains__("X")):
                     journal_issn = ji
 
-    citation_count = None
+    citation_count = article.CitationCount  # in Update version 0.0.7
 
     # ------------------------Authors----------------------------
     list_authors = []

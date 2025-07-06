@@ -5,6 +5,42 @@ email, or any other method with the owners of this repository before making a ch
 
 Please note we have a code of conduct, please follow it in all your interactions with the project.
 
+
+# Conventions
+
+
+## ✏️ Comment Tags Convention
+
+To make it easy for everyone to find important comments, we use the following tags in our code:
+
+| Tag          | Meaning                                                                                         |
+| ------------ | ----------------------------------------------------------------------------------------------- |
+| `# CRITICAL` | This marks code that must be addressed before release (e.g., security fix, hard-coded secrets). |
+| `TODO`       | Marks a planned task that isn’t done yet but is not urgent.                                     |
+| `FIXME`      | Marks something broken that needs to be fixed ASAP.                                             |
+| `NOTE`       | Adds helpful context or explanation for future readers.                                         |
+
+**Examples:**
+
+```python
+# CRITICAL: Remove debug mode before deploying to production
+# TODO: Add more unit tests for edge cases
+# FIXME: This function fails if input is null
+# NOTE: Using legacy API here due to client requirements
+```
+
+### 🔍 How to find them
+
+* Use **VS Code’s Search** (`Ctrl+Shift+F`) to locate all `CRITICAL`, `TODO`, or `FIXME` comments.
+* We recommend the **TODO Highlight** or **Better Comments** extensions for easier tracking.
+* Always remove or resolve `# CRITICAL` items before merging to `main`.
+
+
+
+
+
+
+
 ## Pull Request Process
 
 1. Ensure any install or build dependencies are removed before the end of the layer when doing a 

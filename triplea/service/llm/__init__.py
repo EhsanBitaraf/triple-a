@@ -97,14 +97,12 @@ def question_with_template_for_llm(title: str, abstract: str):
         except Exception as e:
             # Error in convert str to json
             r["Response"] = {"StringContent": response.content}
-            if isinstance(e,json.JSONDecodeError):
-                r["Response"]['ErrorMsg'] = e.msg
-                r["Response"]["colno"] =  e.colno
+            if isinstance(e, json.JSONDecodeError):
+                r["Response"]["ErrorMsg"] = e.msg
+                r["Response"]["colno"] = e.colno
             else:
-                r["Response"]['ErrorType'] = str(type(e))
+                r["Response"]["ErrorType"] = str(type(e))
 
-                
             print_error()
-            
 
     return r

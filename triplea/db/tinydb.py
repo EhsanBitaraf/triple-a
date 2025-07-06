@@ -125,7 +125,6 @@ class DB_TinyDB(DataBase):
 
     def update_cstate_by_id(self, id, tag_field: str, new_state: int):
         return self.db.update({tag_field: new_state}, doc_ids=[id])
-        
 
     def is_article_exist_by_pmid(self, pmid: str) -> bool:
         """
@@ -141,11 +140,10 @@ class DB_TinyDB(DataBase):
     def is_article_exist_by_arxiv_id(self, id: str) -> bool:
         q = Query()
         return self.db.contains(q.ArxivID == id)
-    
+
     def is_article_exist_by_doi(self, doi: str) -> bool:
         q = Query()
         return self.db.contains(q.DOI == doi)
-
 
     def get_all_article_count(self) -> int:
         """
@@ -168,7 +166,7 @@ class DB_TinyDB(DataBase):
         # Update the value of "FlagAffiliationMining" from 0 to 1
         r = self.db.update(
             {"FlagAffiliationMining": set_value},
-            Query().FlagAffiliationMining == current_value
+            Query().FlagAffiliationMining == current_value,
         )
         self.refresh()
         return r
@@ -178,17 +176,17 @@ class DB_TinyDB(DataBase):
         query = Query()
 
         # Update documents where "State" is current_status
-        r = self.db.update({'State': set_status}, query.State == current_status)
+        r = self.db.update({"State": set_status}, query.State == current_status)
         self.refresh()
         return r
-
 
     def change_CiteCrawlerDeep(self, current_value, set_value):
         query = Query()
 
         # Update documents where "CiteCrawlerDeep" is current_value
-        r = self.db.update({'CiteCrawlerDeep': set_value},
-                        query.CiteCrawlerDeep == current_value)
+        r = self.db.update(
+            {"CiteCrawlerDeep": set_value}, query.CiteCrawlerDeep == current_value
+        )
         self.refresh()
         return r
 

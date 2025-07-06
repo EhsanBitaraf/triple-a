@@ -2,6 +2,7 @@ from triplea.config.settings import SETTINGS
 import requests
 import json
 from triplea.schemas.article import Article
+
 # from triplea.utils.general import JSONEncoder
 from triplea.utils.general import print_error
 

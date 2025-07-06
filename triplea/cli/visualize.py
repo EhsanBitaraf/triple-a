@@ -7,10 +7,11 @@ from triplea.service.click_logger import logger
 
 import http.server
 import socketserver
+
 try:
     import visualization.gdatarefresh as graphdatarefresh
 except Exception:
-    logger.ERROR("Visualization only exist from source.")    
+    logger.ERROR("Visualization only exist from source.")
 
 # PORT = 8000
 DIRECTORY = "visualization"

@@ -41,7 +41,7 @@ def export_rayyan_csv() -> str:  # noqa: C901
     csv = ""
     csv = (
         csv
-        + """key,title,authors,issn,volume,issue,pages,year,publisher,url,abstract,notes,doi,keywords"""   # noqa: E501
+        + """key,title,authors,issn,volume,issue,pages,year,publisher,url,abstract,notes,doi,keywords"""  # noqa: E501
         + "\n"
     )
     n = 0

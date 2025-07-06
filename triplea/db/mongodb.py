@@ -229,7 +229,7 @@ class DB_MongoDB(DataBase):
             return True
         else:
             return False
-        
+
     def get_all_article_count(self) -> int:
         """
         > This function returns the number of articles in the database
@@ -251,9 +251,8 @@ class DB_MongoDB(DataBase):
         sett = {"$set": {"FlagExtractTopic": set_value}}
         r = self.col_article.update_many(myquery, sett)
         return r
-    def change_flag_affiliation_mining(self,
-                                       current_value=1,
-                                       set_value=0):
+
+    def change_flag_affiliation_mining(self, current_value=1, set_value=0):
         myquery = {"FlagAffiliationMining": current_value}
         sett = {"$set": {"FlagAffiliationMining": set_value}}
         r = self.col_article.update_many(myquery, sett)
@@ -264,7 +263,7 @@ class DB_MongoDB(DataBase):
         sett = {"$set": {"State": set_status}}
         r = self.col_article.update_many(myquery, sett)
         return r
-    
+
     def change_CiteCrawlerDeep(self, current_value, set_value):
         myquery = {"CiteCrawlerDeep": current_value}
         sett = {"$set": {"CiteCrawlerDeep": set_value}}
@@ -277,7 +276,7 @@ class DB_MongoDB(DataBase):
 
     def delete_article_by_id(self, id):
         raise NotImplementedError
-    
+
     # region Node
 
     def add_new_node(self, node: Node) -> int:

@@ -17,7 +17,7 @@ def parse_affiliation(text: str) -> list:
 
     text_encode = quote(text)
     url = urljoin(URL, text_encode)
-    
+
     headers = {
         "User-Agent": SETTINGS.AAA_CLIENT_AGENT,
     }

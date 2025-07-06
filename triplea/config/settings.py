@@ -56,7 +56,7 @@ class Settings(BaseSettings):
 
     AAA_CLIENT_AGENT: Optional[str] = os.getenv(
         "AAA_CLIENT_AGENT",
-        f"TripleA {version}",  
+        f"TripleA {version}",
     )
     AAA_TOPIC_EXTRACT_ENDPOINT: Optional[str] = os.getenv(
         "AAA_TOPIC_EXTRACT_ENDPOINT", "http://localhost:8001/api/v1/topic"
@@ -75,7 +75,7 @@ class Settings(BaseSettings):
     )
 
     VERSION: Optional[str] = (
-        version + ".005"
+        version + ".007"
     )  # Change this micro version in the development process
 
     AAA_CLI_ALERT_POINT: Optional[int] = os.getenv("AAA_CLI_ALERT_POINT", 500)

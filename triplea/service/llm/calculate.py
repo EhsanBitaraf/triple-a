@@ -7,34 +7,32 @@ from triplea.service.click_logger import logger
 import click
 
 
-def post_calculate(template_id:str, limit_sample=0, proccess_bar=True):
+def post_calculate(template_id: str, limit_sample=0, proccess_bar=True):
     l_id = PERSIST.get_article_id_list_by_cstate(1, "FlagShortReviewByLLM")
     total_input_tokens = 0
-    total_output_tokens= 0
+    total_output_tokens = 0
     total_time_taken = 0
     n = 0
     doc_number = 0
     if proccess_bar:
-        bar = click.progressbar(length=len(l_id),
-                                show_pos=True,
-                                show_percent=True)
+        bar = click.progressbar(length=len(l_id), show_pos=True, show_percent=True)
     for id in l_id:
         n = n + 1
         a = PERSIST.get_article_by_id(id)
         article = Article(**a.copy())
 
         for d in article.ReviewLLM:
-            if template_id == "": # Unlimited
+            if template_id == "":  # Unlimited
                 doc_number = doc_number + 1
-                total_input_tokens = total_input_tokens + d['InputTokens']
-                total_output_tokens = total_output_tokens + d['OutputTokens']
-                total_time_taken = total_time_taken + d['TimeTaken']
+                total_input_tokens = total_input_tokens + d["InputTokens"]
+                total_output_tokens = total_output_tokens + d["OutputTokens"]
+                total_time_taken = total_time_taken + d["TimeTaken"]
             else:
-                if d['TemplateID']==template_id:
+                if d["TemplateID"] == template_id:
                     doc_number = doc_number + 1
-                    total_input_tokens = total_input_tokens + d['InputTokens']
-                    total_output_tokens = total_output_tokens + d['OutputTokens']
-                    total_time_taken = total_time_taken + d['TimeTaken']
+                    total_input_tokens = total_input_tokens + d["InputTokens"]
+                    total_output_tokens = total_output_tokens + d["OutputTokens"]
+                    total_time_taken = total_time_taken + d["TimeTaken"]
 
         # For View Proccess
         if proccess_bar:
@@ -45,11 +43,11 @@ def post_calculate(template_id:str, limit_sample=0, proccess_bar=True):
             if n > limit_sample:
                 break
     out = {}
-    out['Document'] = doc_number
+    out["Document"] = doc_number
     out["TotalOutputTokens"] = total_output_tokens
     out["TotalInputTokens"] = total_input_tokens
     out["TotalTokens"] = total_input_tokens + total_output_tokens
-    out["TotalTimeTaken"]= total_time_taken
+    out["TotalTimeTaken"] = total_time_taken
     out["TokenPerSecond"] = out["TotalTokens"] / total_time_taken
     out["SecondPerRequest"] = total_time_taken / doc_number
     out["gCO2e"] = ((out["TotalTokens"]) / 1000) * 0.3
@@ -59,6 +57,7 @@ def post_calculate(template_id:str, limit_sample=0, proccess_bar=True):
         (out["TotalOutputTokens"] / 1000) * 0.03
     )
     return out
+
 
 def precalculate(
     time_taken_per_request: float, avarage_output_tokens: int, proccess_bar=True

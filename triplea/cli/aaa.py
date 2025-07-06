@@ -16,8 +16,8 @@ from triplea.cli.visualize import visualize  # visualize # noqa: F401
 from triplea.cli.visualize import visualize_file  # visualize_file # noqa: F401
 from triplea.cli.analysis import analysis  # analysis # noqa: F401
 from triplea.cli.arepo import arepo  # arepo # noqa: F401
-from triplea.cli.pipeline import pipeline # pipeline # noqa: F401
-from triplea.config.settings import SETTINGS  
+from triplea.cli.pipeline import pipeline  # pipeline # noqa: F401
+from triplea.config.settings import SETTINGS
 
 # click.echo(f"Title: {tr.__title__} ({tr.__version__})")
 click.echo(f"Title: {tr.__title__} ({SETTINGS.VERSION})")

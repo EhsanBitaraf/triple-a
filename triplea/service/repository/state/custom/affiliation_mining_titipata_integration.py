@@ -1,8 +1,7 @@
 from triplea.schemas.article import AffiliationParseMethod, Article, SourceBankType
-from triplea.config.settings import ROOT
 import triplea.client.affiliation_parser as client_affiliation_parser
 from triplea.service.graph.extract import Emmanuel
-from triplea.utils.general import print_pretty_dict
+# from triplea.utils.general import print_pretty_dict
 
 
 def _get_affiliation_integrated_from_pubmed(article: Article):
@@ -15,34 +14,34 @@ def _get_affiliation_integrated_from_pubmed(article: Article):
                     aff_list.append(aff.Text)
     return Emmanuel(aff_list)
 
+
 def _get_affiliation_integrated_from_wos_scopus(article: Article):
     aff_list = []
     if article.OreginalArticle is not None:
-        if 'file' in article.OreginalArticle:
+        if "file" in article.OreginalArticle:
             last_e = ""
-            for l in range(0,len(article.OreginalArticle['file'])):
-                line = article.OreginalArticle['file'][l]
+            for num in range(0, len(article.OreginalArticle["file"])):
+                line = article.OreginalArticle["file"][num]
                 element_value = line.split("  - ")
                 e = element_value[0]
                 # ------------------------------Check for line without tag (in endnote)
                 if len(element_value) == 2:
-                    v = str.replace(element_value[1],'\n','').strip()
+                    v = str.replace(element_value[1], "\n", "").strip()
                     last_e = e
-                    if v.__contains__('\n'):
+                    if v.__contains__("\n"):
                         print("wow")
-                else: # len split is 1
-                    if last_e == "AD": # First Line
+                else:  # len split is 1
+                    if last_e == "AD":  # First Line
                         # aff_list.append({"Text" : v})
                         aff_list.append(v)
 
-                    v = ""                      
+                    v = ""
                 # ------------------------------Check for line without tag (in endnote)
                 if e == "AD":
                     # aff_list.append({"Text" : v})
                     aff_list.append(v)
     return Emmanuel(aff_list)
 
-                 
 
 def _affiliation_mining_titipata_in_list(aff_list):
     if aff_list is None:
@@ -68,17 +67,17 @@ def _affiliation_mining_titipata_in_list(aff_list):
             loc.append({"zipcode": affl["zipcode"]})
 
         # loc.append({"method" : "Titipata"})
-        structural_aff_list.append({"Text" : aff,
-                                    "ParseMethod": AffiliationParseMethod.TITIPATA_API,
-                                    "Structural": loc})
+        structural_aff_list.append(
+            {
+                "Text": aff,
+                "ParseMethod": AffiliationParseMethod.TITIPATA_API,
+                "Structural": loc,
+            }
+        )
         # aff['ParseMethod'] = AffiliationParseMethod.TITIPATA_API
         # aff['Structural'] = loc
 
     return structural_aff_list
-
-
-
-
 
 
 def affiliation_mining_titipata_integration(article: Article):
@@ -109,4 +108,3 @@ def affiliation_mining_titipata_integration(article: Article):
     article.AffiliationIntegration = new_aff_list
     article.FlagAffiliationMining = 1
     return article
-
