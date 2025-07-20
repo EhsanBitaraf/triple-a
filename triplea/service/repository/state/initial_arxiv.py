@@ -32,6 +32,12 @@ def parse_arxiv_list(data: dict):
             article.CiteCrawlerDeep = SETTINGS.AAA_CITED_CRAWLER_DEEP
             article.ArxivID = str(a["id"]).split("arxiv.org/abs/")[-1]
 
+            article.links = f"https://arxiv.org/abs/{article.ArxivID}/"
+            article.SerialNumber = "2331-8422"
+            # journal_iso_abbreviation = "ArXiv"
+            year = article.Published.year
+            article.PublicationType = ["Preprint"] 
+
             article_list.append(article)
     except Exception:
         with open("error-parse_arxiv_list.json", "w") as outfile:

@@ -382,6 +382,75 @@ def parsing_details_pubmed(article: Article) -> Article:  # noqa: C901
                 f"Article {article.PMID} has no AuthorList", forecolore="white", deep=5
             )
 
+
+        article.links = f"https://pubmed.ncbi.nlm.nih.gov/{article.PMID}/"
+
+        # ------------------------year--------------------------------
+        try:
+            article.Year = article.OreginalArticle["PubmedArticleSet"]["PubmedArticle"][
+                "MedlineCitation"
+            ]["Article"]["Journal"]["JournalIssue"]["PubDate"]["Year"]
+        except Exception:
+            try:
+                article.Year = article.OreginalArticle["PubmedArticleSet"]["PubmedArticle"][
+                    "MedlineCitation"
+                ]["Article"]["Journal"]["JournalIssue"]["PubDate"]["MedlineDate"]
+            except Exception:
+                article.Year = "0"
+                # with open("sample.json", "w") as outfile:
+                #     json.dump(article.OreginalArticle, outfile)
+        # ------------------------year--------------------------------
+
+        # ------------------------ISSN--------------------------------
+        try:
+            article.SerialNumber = article.OreginalArticle["PubmedArticleSet"]["PubmedArticle"][
+                "MedlineCitation"
+            ]["Article"]["Journal"]["ISSN"]["#text"]
+        except Exception:
+            article.SerialNumber = ""
+        # ------------------------ISSN--------------------------------
+
+        # # ------------------------Journal ISO abv---------------------
+        # journal_iso_abbreviation = article.OreginalArticle["PubmedArticleSet"][
+        #     "PubmedArticle"
+        # ]["MedlineCitation"]["Article"]["Journal"]["ISOAbbreviation"]
+        # journal_iso_abbreviation = journal_iso_abbreviation
+        # # ------------------------Journal ISO abv---------------------
+
+        # ------------------------Language----------------------------
+        lang = article.OreginalArticle["PubmedArticleSet"]["PubmedArticle"][
+            "MedlineCitation"
+        ]["Article"]["Language"]
+        if isinstance(lang, list):
+            for lg in lang:
+                language = lg + ", " + language
+            language = language[:-1]
+        else:
+            language = lang
+        article.Language = language
+        # ------------------------Language----------------------------
+
+        # ------------------------Publication Type--------------------
+        ptype_list = []
+        p = article.OreginalArticle["PubmedArticleSet"]["PubmedArticle"]["MedlineCitation"][
+            "Article"
+        ]["PublicationTypeList"]["PublicationType"]
+        if isinstance(p, list):
+            for i in p:
+                chunk = i["#text"]
+                # publication_type = chunk + ", " + publication_type
+                ptype_list.append(chunk)
+            # publication_type = p[0]['#text']
+            # publication_type = publication_type[:-1]
+        else:
+            publication_type = article.OreginalArticle["PubmedArticleSet"]["PubmedArticle"][
+                "MedlineCitation"
+            ]["Article"]["PublicationTypeList"]["PublicationType"]["#text"]
+            ptype_list.append(publication_type)
+        article.PublicationType = ptype_list
+        # ------------------------Publication Type--------------------
+
+
         return article
     except Exception:
         article.State = backward_state

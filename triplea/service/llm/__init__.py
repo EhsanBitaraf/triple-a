@@ -13,9 +13,10 @@ from triplea.service.click_logger import logger
 from langchain_openai import ChatOpenAI
 from langchain.prompts import PromptTemplate
 from langchain.chains import LLMChain
+import triplea.service.repository.persist as PERSIST
 
 from triplea.service.llm.config_template import read_llm_template as template
-
+from triplea.service.llm.config_template import read_llm_template_from_file
 
 os.environ["OPENAI_API_KEY"] = "dummy_key"
 
@@ -30,7 +31,7 @@ if T is not None:
         presence_penalty=T["presence_penalty"],
         max_tokens=T["max_tokens"],
         top_p=T["top_p"],
-        #   top_k=0,
+        # top_k=0,
     )
 
     # # Simple Load
@@ -41,6 +42,15 @@ if T is not None:
 def get_prompt_with_template(title: str, abstract: str):
     prompt_template = PromptTemplate.from_template(T["template"])
     prompt = prompt_template.format(title=title, abstract=abstract)
+    return prompt
+
+# Insert from dt-main-lab.ipynb for new version
+def get_prompt_with_template_from_special_template_file(template_file, dbuid: str):
+    T = read_llm_template_from_file(template_file)
+    prompt_template = PromptTemplate.from_template(T["template"])
+    a = PERSIST.get_article_by_id(dbuid)
+    prompt = prompt_template.format(title=a['Title'], abstract=a['Abstract'])
+    print(f"""Title with DBUID {dbuid}: {a['Title']} """)
     return prompt
 
 
@@ -106,3 +116,5 @@ def question_with_template_for_llm(title: str, abstract: str):
             print_error()
 
     return r
+
+

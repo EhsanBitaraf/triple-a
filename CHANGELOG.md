@@ -2,26 +2,12 @@
 All notable changes to this project will be documented in this file.
 
 
-## v0.0.7 2025-07-06
-
-### Task
-- Debug check 18194356
-- Add language and add publication Type and year and journal_issn
-
-### Improvements
-- Add `CitationCount` field in Article
-
-### Bug Fixes
-- Fix `_get_citation_pubmed`, `_get_citation_wos`, `_get_citation_scopus` and compatible with  `Article.CitationCount`
-
-## v0.0.6 2024-02-13
+## v1.1.1 2025-07-20
 
 ### Task
 - /triplea/service/llm/__init__.py", line 55
     raise Exception("chera")
 - Export Mongo 2 Mongo
-- Deduplication
-- Change Affiliation
 - Complete LLM-Fulltext pipeline
 - Add CrossRef API : https://www.crossref.org/documentation/retrieve-metadata/rest-api/
 - Add import_ris_file into cli
@@ -42,6 +28,43 @@ All notable changes to this project will be documented in this file.
 ```
 - Add [Altmetric API](/docs/client-api.md#altmetric-api)
 
+- Expose `get_article_by_arxiv_id` to cli
+- Article.Published must be fixed in pubmed and is string in Arxiv
+- Data Extraction from Unstructured PDFs
+    - https://www.analyticsvidhya.com/blog/2021/06/data-extraction-from-unstructured-pdfs/
+    - https://unstructured-io.github.io/unstructured/core/partition.html
+    - https://python.plainenglish.io/how-to-create-a-pdf2text-preprocessing-microservice-using-python-8b844b85c797
+    - https://github.com/arXiv/arxiv-fulltext
+- complete get_full_text
+- move_state_forward may be error in TinyDB
+- check all TinyDB
+
+### Improvements
+- Integrated all task improvment
+- In version 0.0.7 the datamodel change. we change version to major
+
+### Bug Fixes
+
+## v0.0.7 2025-07-06
+
+### Improvements
+- Insert lib_llm.py to tripleA
+- Add `_converter_authors_to_short` and `_json_converter_author_general` deprecated.
+- Create `dataset.py` in triplea.service.repository.export for conver_df_to_csv, read_dataset_for_analysis, scimago_data_enrichment, clean_language_dataset, clean_publication_type, normalized_issn
+- Create new version of dataset conversion `_json_converter_03`
+- Create `get_tqdm` in `triplea.utils.general` for changing process bar
+- Add EMBASE = 8 , ACM = 9 to `SourceBankType`
+- Add `Language` and `Year` and `SerialNumber` and `links` and `PublicationType` to Article
+- Add `CitationCount` field in Article
+
+### Bug Fixes
+- Change and fix tqdm in `move_state_until`, `move_state_forward`, `go_extract_topic`
+                        , `go_affiliation_mining`
+                        , `export_engine`
+- Fix `parsing_details_pubmed` for new article's fields
+- Fix `_get_citation_pubmed`, `_get_citation_wos`, `_get_citation_scopus` and compatible with  `Article.CitationCount`
+
+## v0.0.6 2024-02-13
 
 ### Improvements
 - Add `DBUID` field in export. change in `export.engine`
@@ -93,19 +116,6 @@ All notable changes to this project will be documented in this file.
 
 ## v0.0.5 2023-12-28
 
-### Task
-
-- Expose `get_article_by_arxiv_id` to cli
-- Article.Published must be fixed in pubmed and is string in Arxiv
-- Data Extraction from Unstructured PDFs
-    - https://www.analyticsvidhya.com/blog/2021/06/data-extraction-from-unstructured-pdfs/
-    - https://unstructured-io.github.io/unstructured/core/partition.html
-    - https://python.plainenglish.io/how-to-create-a-pdf2text-preprocessing-microservice-using-python-8b844b85c797
-    - https://github.com/arXiv/arxiv-fulltext
-- complete get_full_text
-- move_state_forward may be error in TinyDB
-- check all TinyDB
-
 ### Improvements
 - Add `update_cstate_by_id` In SERVICE.REPOSITORY.PERSIST
 - Add `precalculate` and `reset_flag_llm_by_function` in SERVICE.LLM
@@ -124,7 +134,6 @@ All notable changes to this project will be documented in this file.
 - Add print_error in utils.general for unified Error printing
 - Add Published, ArxivID, SourceBank field in Article
 
-
 ### Bug Fixes
 - Repackaing pyproject.toml
 - Fix parsing_details_pubmed.py", line 214 : `abstract_all = abstract_all + " " + abstract_part["#text"]`
@@ -135,6 +144,7 @@ All notable changes to this project will be documented in this file.
 - Fix tinydb.get_all_article_id_list
 
 ## v0.0.4 2023-10-14
+
 ### Improvements
 - Add Package Application with Pyinstaller
 - Add FlagAffiliationMining_TITIPATA from Api
@@ -156,6 +166,7 @@ All notable changes to this project will be documented in this file.
 
 
 ## v0.0.3 - 2023-09-27
+
 ### Improvements
 - Add micro version
 - Add `change_flag_extract_topic` in DAL
@@ -173,6 +184,7 @@ All notable changes to this project will be documented in this file.
 
 
 ## v0.0.2 - 2023-03-25
+
 ### Improvements
 - Add `export_article` Alternative to export one article
 - Add `export_triplea_csvs_in_relational_mode_save_file`
@@ -212,6 +224,7 @@ All notable changes to this project will be documented in this file.
 - Fix proccess_bar in export
 
 ## v0.0.1 - 2023-02-05
+
 ### Improvements
 - Build Dockerfile
 - Start flake8 activity 2023-03-05
@@ -242,7 +255,6 @@ All notable changes to this project will be documented in this file.
 - Add DAL
 - Add Project Structure
 - Add settings
-
 
 ### Bug Fixes
 - Fix get_all_article_pmid_list not implemented in MongoDB [Issue #3](https://github.com/EhsanBitaraf/triple-a/issues/3)

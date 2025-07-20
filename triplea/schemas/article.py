@@ -33,6 +33,8 @@ class SourceBankType(enum.IntEnum):
     IEEE = 5
     UNKNOWN = 6
     GOOGLESCHOLAR = 7
+    EMBASE = 8
+    ACM = 9
 
 
 class Affiliation(BaseModel):
@@ -129,4 +131,25 @@ external sources like PubMed or Scopus.
 Retrieved from external sources (e.g., PubMed, Scopus) during processing
 between steps 2 and 3. Used to quantify the article's scholarly impact.""",
         default=0,
+    )
+    Language: Optional[str] = Field(
+        description="""Language""",
+        default="",
+    )
+    Year: Optional[str] = Field(
+        description="""(publication) year/date. RIS Tag : PY, Y1, YR  """,
+        default="",
+    )
+    SerialNumber: Optional[str] = Field(
+        description="""ISSN, ISBN, or report/document/patent number.
+        RIS Tag : SN  """,
+        default="",
+    )
+    links: Optional[str] = Field(
+        description="""Links. RIS Tag : LK, UR  """,
+        default= None,
+    )
+    PublicationType: Optional[list[str]] = Field(description="""
+        """,
+        default=None
     )

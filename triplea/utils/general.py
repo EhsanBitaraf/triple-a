@@ -7,6 +7,21 @@ from triplea.service.click_logger import logger
 from bson import ObjectId
 
 
+def get_tqdm():
+    try:
+        # Check if running in IPython (Jupyter or IPython shell)
+        from IPython import get_ipython
+        shell = get_ipython()
+        if shell and 'IPKernelApp' in shell.config:
+            from tqdm.notebook import tqdm
+        else:
+            from tqdm import tqdm
+    except:
+        # Fallback if IPython isn't available
+        from tqdm import tqdm
+    return tqdm
+
+
 def safe_csv(text):
     if isinstance(text, int):
         return text

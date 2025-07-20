@@ -5,7 +5,7 @@ import triplea.service.repository.persist as persist
 import triplea.service.repository.state as state_manager
 from triplea.service.click_logger import logger
 from triplea.utils.general import print_error
-
+from triplea.utils.general import get_tqdm
 
 def go_article_review_by_llm(proccess_bar=True):
     max_refresh_point = SETTINGS.AAA_CLI_ALERT_POINT
@@ -281,7 +281,9 @@ def go_extract_topic(
     logger.DEBUG(str(len(l_id)) + " Article(s) is in FlagExtractTopic " + str(0))
 
     if proccess_bar:
-        bar = click.progressbar(length=len(l_id), show_pos=True, show_percent=True)
+        # bar = click.progressbar(length=len(l_id), show_pos=True, show_percent=True)
+        tqdm = get_tqdm()
+        bar = tqdm(total=len(l_id), desc="Processing ")
 
     refresh_point = 0
 
@@ -300,7 +302,10 @@ def go_extract_topic(
                         forecolore="yellow",
                     )
                 if proccess_bar is False:
-                    bar.label = f"There are {str(total_article_in_current_state - n)} article(s) left "  # noqa: E501
+                    # bar.label = f"There are {str(total_article_in_current_state - n)} article(s) left "  # noqa: E501
+                    bar.set_description(f"""There are {
+                        str(total_article_in_current_state - n)
+                        } article(s) left """)
                     bar.update(max_refresh_point)
             else:
                 refresh_point = refresh_point + 1
@@ -318,7 +323,8 @@ def go_extract_topic(
                 current_state = 0
 
             if proccess_bar:
-                bar.label = f"""Article {id}, topic were extracted."""
+                # bar.label = f"""Article {id}, topic were extracted."""
+                bar.set_description(f"""Article {id}, topic were extracted.""")
                 bar.update(1)
 
             if current_state is None:
@@ -353,9 +359,11 @@ def go_extract_topic(
                 persist.refresh()
                 print_error()
     persist.refresh()
+    bar.close()
 
-
-def go_affiliation_mining(method: str = "Simple", proccess_bar=True, limit_sample=0):
+def go_affiliation_mining(method: str = "Simple",
+                         proccess_bar=True,
+                         limit_sample=0):
 
     # max_refresh_point = SETTINGS.AAA_CLI_ALERT_POINT
     l_id = persist.get_article_id_list_by_cstate(0, "FlagAffiliationMining")
@@ -369,7 +377,11 @@ def go_affiliation_mining(method: str = "Simple", proccess_bar=True, limit_sampl
     )
 
     if proccess_bar:
-        bar = click.progressbar(length=doc_number, show_pos=True, show_percent=True)
+        # bar = click.progressbar(length=doc_number,
+        #                         show_pos=True,
+        #                         show_percent=True)
+        tqdm = get_tqdm()
+        bar = tqdm(total=doc_number, desc="Processing ")
     else:
         logger.INFO("Start ...")
 
@@ -397,7 +409,8 @@ def go_affiliation_mining(method: str = "Simple", proccess_bar=True, limit_sampl
 
             # For View Proccess
             if proccess_bar:
-                bar.label = f"Article {id} affiliation mining."
+                # bar.label = f"Article {id} affiliation mining."
+                bar.set_description( f"Article {id} affiliation mining.")
                 bar.update(1)
             else:
                 if n % SETTINGS.AAA_CLI_ALERT_POINT == 0:
@@ -442,3 +455,4 @@ def go_affiliation_mining(method: str = "Simple", proccess_bar=True, limit_sampl
                 persist.refresh()
                 print_error()
     persist.refresh()
+    bar.close()

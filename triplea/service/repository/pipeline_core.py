@@ -6,7 +6,7 @@ from triplea.schemas.article import Article, SourceBankType
 import triplea.service.repository.state as state_manager
 import triplea.service.repository.persist as persist
 from triplea.utils.general import print_error
-
+from triplea.utils.general import get_tqdm
 tps_limit = SETTINGS.AAA_TPS_LIMIT
 
 
@@ -14,8 +14,9 @@ def move_state_until(end_state: int):
     l_pmid = persist.get_all_article_pmid_list()
     logger.INFO(str(len(l_pmid)) + " Article(s) is arepo ")
 
-    bar = click.progressbar(length=len(l_pmid), show_pos=True, show_percent=True)
-
+    # bar = click.progressbar(length=len(l_pmid), show_pos=True, show_percent=True)
+    tqdm = get_tqdm()
+    bar = tqdm(total=len(l_pmid), desc="Processing ")
     for id in l_pmid:
         updated_article_current_state = None
         a = persist.get_article_by_pmid(id)
@@ -57,11 +58,13 @@ def move_state_until(end_state: int):
                 raise NotImplementedError
 
         persist.update_article_by_id(updated_article, id)
-        bar.label = f"Article {updated_article.PMID} with state {str(updated_article_current_state)} forward to {str(end_state)}"  # noqa: E501
+        # bar.label = f"Article {updated_article.PMID} with state {str(updated_article_current_state)} forward to {str(end_state)}"  # noqa: E501
+        bar.set_description(f"""Article {updated_article.PMID} with state {
+            str(updated_article_current_state)} forward to {str(end_state)}""")
         bar.update(1)
     persist.refresh()
 
-
+ 
 def move_state_forward(  # noqa: C901
     state: int,
     tps_limit: Optional[int] = 1,
@@ -90,8 +93,9 @@ def move_state_forward(  # noqa: C901
     n = 0
     logger.DEBUG(str(len(l_id)) + " Article(s) is in state " + str(state))
 
-    bar = click.progressbar(length=len(l_id), show_pos=True, show_percent=True)
-
+    # bar = click.progressbar(length=len(l_id), show_pos=True, show_percent=True)
+    tqdm = get_tqdm()
+    bar = tqdm(total=len(l_id), desc="Processing ")
     refresh_point = 0
     for id in l_id:
         try:
@@ -150,12 +154,18 @@ def move_state_forward(  # noqa: C901
             elif source_bank == SourceBankType.GOOGLESCHOLAR:
                 article_source_bank_title = "GOOGLESCHOLAR"
                 article_identifier = updated_article.DOI
-
+            elif source_bank == SourceBankType.EMBASE:
+                article_source_bank_title = "EMBASE"
+                article_identifier = updated_article.DOI
+            elif source_bank == SourceBankType.ACM:
+                article_source_bank_title = "ACM"
+                article_identifier = updated_article.DOI
             else:
                 print(f"SourceBankType is {source_bank}")
                 raise NotImplementedError
 
-            bar.label = f"Article {article_source_bank_title} ({article_identifier}) with state {str(current_state)} forward to {str(current_state + 1)}"  # noqa: E501
+            # bar.label = f"Article {article_source_bank_title} ({article_identifier}) with state {str(current_state)} forward to {str(current_state + 1)}"  # noqa: E501
+            bar.set_description(f"Article {article_source_bank_title} ({article_identifier}) with state {str(current_state)} forward to {str(current_state + 1)}")   # noqa: E501
             bar.update(1)
             # # for re run
             # if current_state == 2 : current_state = 1
@@ -199,7 +209,7 @@ def move_state_forward(  # noqa: C901
                 logger.ERROR("Error undefine current state.")
 
             persist.update_article_by_id(updated_article, id)
-
+            
         except Exception:
             if current_state == 1:
                 updated_article = Article(**a.copy())
@@ -225,3 +235,4 @@ def move_state_forward(  # noqa: C901
                 print_error()
 
     persist.refresh()
+    bar.close()

@@ -12,11 +12,16 @@ from triplea.service.repository.export.unified_export_json.wos import (
     _json_converter_01_wos,
 )
 
+import warnings
+from triplea.service.repository.export.unified_export_json.general import (
+    _converter_authors_to_short, _json_converter_author_general)
 # from triplea.service.graph.extract import Emmanuel
 
 
 def Emmanuel(d: list) -> list:
-    """Base on [this](https://stackoverflow.com/questions/9427163/remove-duplicate-dict-in-list-in-python)
+    """Base on 
+        [this](https://stackoverflow.com/questions/9427163/
+        remove-duplicate-dict-in-list-in-python)
 
     Args:
         d (list): _description_
@@ -26,8 +31,109 @@ def Emmanuel(d: list) -> list:
     """
     return [i for n, i in enumerate(d) if i not in d[n + 1 :]]
 
+def _json_converter_03(article: Article):
+    # In this conversion after adding field to article -
+    #  `Language`,`Year`, `SerialNumber` and `links`  
+    title = article.Title
+    publisher = article.Journal
+    doi = article.DOI
+    pmid = article.PMID
+    state = article.State
+    abstract = article.Abstract
+    url = article.links
+    language = article.Language
+    year = article.Year
+    publication_type = article.PublicationType
+    journal_issn = article.SerialNumber
+    journal_iso_abbreviation = ""
+    citation_count = article.CitationCount
+
+
+    # ------------------------Authors----------------------------
+    
+    list_authors = _converter_authors_to_short(article)
+    # list_authors = []
+    # if article.Authors is not None:
+    #     for au in article.Authors:
+    #         list_authors.append(_json_converter_author_general(au))
+    # ------------------------Authors----------------------------
+
+    # ------------------------Keywords----------------------------
+    list_keywords = []
+    if article.Keywords is not None:
+        for k in article.Keywords:
+            if k.IS_Mesh == True or k.IS_Mesh is None:
+                list_keywords.append(k.Text)
+    # ------------------------Keywords----------------------------
+
+    # ------------------------Topics----------------------------
+    list_topic = []
+    if article.Topics is not None:
+        for t in article.Topics:
+            list_topic.append(t['text'])
+    # ------------------------Topics----------------------------
+
+
+    # ------------------------affiliation_integration--------------------------
+    aic = []
+    aid = []
+    aii = []
+    aitext = []
+    if article.AffiliationIntegration is not None:
+        for ai in article.AffiliationIntegration:
+            if "Structural" in ai:
+                for i in ai["Structural"]:
+                    if "country" in i:
+                        aic.append(i["country"])
+                    if "department" in i:
+                        aid.append(i["department"])
+                    if "institution" in i:
+                        aii.append(i["institution"])
+            if 'Text' in ai:
+                aitext.append(ai['Text'])
+
+
+    # ------------------------affiliation_integration--------------------------
+    r = {
+        "bank" : article.SourceBank,
+        "title": title,
+        "year": year,
+        "publisher": publisher,
+        "journal_issn": journal_issn,
+        "journal_iso_abbreviation": journal_iso_abbreviation,
+        "language": language,
+        "publication_type": publication_type,
+        "doi": doi,
+        "pmid": pmid,
+        "state": state,
+        "url": url,
+        "abstract": abstract,
+        "citation_count": citation_count,
+        "authors": list_authors,
+        "keywords": list_keywords,
+        "topics": list_topic,
+        "affiliation_integration_country" :  Emmanuel(aic),
+        "affiliation_integration_department" : Emmanuel(aid),
+        "affiliation_integration_institution" : Emmanuel(aii),
+        "affiliation_integration_text" : Emmanuel(aitext)
+    }
+    return r
+
+
+def json_converter_03(article: Article):
+    return _json_converter_03(article)
+
+
+## --------------------------------------deprecated-------------------------
 
 def json_converter_01(article: Article):
+    warnings.warn(
+        """json_converter_01() is deprecated
+          and will be removed in a future version.
+          You can use json_converter_03""",
+        DeprecationWarning,
+        stacklevel=2
+    )
     # Check SourceBank
     if article.SourceBank is None:
         # This is Pubmed
@@ -46,16 +152,29 @@ def json_converter_01(article: Article):
         json_article = _json_converter_01_scopus(article)  # I dont know
     elif article.SourceBank == SourceBankType.GOOGLESCHOLAR:
         json_article = _json_converter_01_scopus(article)  # I dont know
+    elif article.SourceBank == SourceBankType.EMBASE:
+        json_article = _json_converter_03(article)  # I dont know
+    elif article.SourceBank == SourceBankType.ACM:
+        json_article = _json_converter_03(article)  # I dont know
     else:
         raise NotImplementedError
 
     return json_article
 
-
 def json_converter_02(article: Article):
+
+    warnings.warn(
+        """json_converter_01() is deprecated
+          and will be removed in a future version.
+          You can use json_converter_03""",
+        DeprecationWarning,
+        stacklevel=2
+    )
     # In this conversion we make uniform AffiliationIntegration ,
     # citation_count in WOS and Author
     # add source
+
+
 
     c1 = json_converter_01(article)
     c1["source"] = article.SourceBank

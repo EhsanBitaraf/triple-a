@@ -1,8 +1,16 @@
 import click
 from triplea.utils.general import safe_csv
-
+import warnings
 
 class Converter:
+    warnings.warn(
+        """class Converter() is deprecated and
+ will be removed in a future version.
+ You can use triplea.service.repository.export.dataset
+         """,
+        DeprecationWarning,
+        stacklevel=2
+    )
     list_uni_model = []
     one_to_many = []
     one_to_one = []
