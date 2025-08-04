@@ -40,6 +40,8 @@ All notable changes to this project will be documented in this file.
 - check all TinyDB
 
 ### Improvements
+- Add more field in affilation_integration in dataset(`_json_converter_03`) version 1.1.1.002
+- Add `_get_affiliation_list_from_all_bank` and `_affiliation_mining_multiple_parser_in_list` and define AffiliationParseMethod.REGEX_API 2025-08-04
 - Integrated all task improvment
 - In version 0.0.7 the datamodel change. we change version to major
 

@@ -21,6 +21,9 @@ from triplea.service.repository.state.custom.affiliation_mining import (
     affiliation_mining,
     affiliation_mining_titipata,
 )
+from triplea.service.repository.state.custom.affiliation_mining_multiple_parser import(
+    affiliation_mining_regex_integration
+)
 from triplea.service.repository.state.custom.extract_topic import extract_topic_abstract
 from triplea.service.repository.state.custom.article_embedding import (
     scigenius_article_embedding,
@@ -41,4 +44,5 @@ __all__ = [
     "affiliation_mining_titipata_integration",
     "scigenius_article_embedding",
     "extract_topic_abstract",
+    "affiliation_mining_regex_integration"
 ]

@@ -80,8 +80,8 @@ def _affiliation_mining_titipata_in_list(aff_list):
     return structural_aff_list
 
 
-def affiliation_mining_titipata_integration(article: Article):
-    # this is dispatcher function
+def _get_affiliation_list_from_all_bank(article: Article):
+    aff_list = []
     if article.SourceBank is None:
         # This is Pubmed
         # updated_article = _get_citation_pubmed(article)
@@ -107,8 +107,14 @@ def affiliation_mining_titipata_integration(article: Article):
         aff_list = _get_affiliation_integrated_from_wos_scopus(article)
     else:
         raise NotImplementedError
+    return aff_list
+
+def affiliation_mining_titipata_integration(article: Article):
+    aff_list = _get_affiliation_list_from_all_bank (article)
+
 
     new_aff_list = _affiliation_mining_titipata_in_list(aff_list)
     article.AffiliationIntegration = new_aff_list
     article.FlagAffiliationMining = 1
     return article
+

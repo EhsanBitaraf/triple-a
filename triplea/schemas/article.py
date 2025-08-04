@@ -23,6 +23,7 @@ class Keyword(BaseModel):
 class AffiliationParseMethod(enum.IntEnum):
     SIMPLE_PARSE = 1
     TITIPATA_API = 2  # https://github.com/titipata/affiliation_parser
+    REGEX_API = 3     # It is my API with affparsmodels package
 
 
 class SourceBankType(enum.IntEnum):

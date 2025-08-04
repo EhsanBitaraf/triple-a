@@ -78,6 +78,9 @@ def _json_converter_03(article: Article):
     aic = []
     aid = []
     aii = []
+    uni_list = []
+    gov_list = []
+    city_list = []
     aitext = []
     if article.AffiliationIntegration is not None:
         for ai in article.AffiliationIntegration:
@@ -89,6 +92,13 @@ def _json_converter_03(article: Article):
                         aid.append(i["department"])
                     if "institution" in i:
                         aii.append(i["institution"])
+
+                    if "university" in i:
+                        uni_list.append(i["university"])
+                    if "government_entity" in i:
+                        gov_list.append(i["government_entity"])
+                    if "city" in i:
+                        city_list.append(i["city"])
             if 'Text' in ai:
                 aitext.append(ai['Text'])
 
@@ -115,6 +125,11 @@ def _json_converter_03(article: Article):
         "affiliation_integration_country" :  Emmanuel(aic),
         "affiliation_integration_department" : Emmanuel(aid),
         "affiliation_integration_institution" : Emmanuel(aii),
+
+        "affiliation_integration_university" :  Emmanuel(uni_list),
+        "affiliation_integration_government_entity" : Emmanuel(gov_list),
+        "affiliation_integration_city" : Emmanuel(city_list),
+
         "affiliation_integration_text" : Emmanuel(aitext)
     }
     return r

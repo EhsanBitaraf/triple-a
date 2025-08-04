@@ -437,6 +437,14 @@ def go_affiliation_mining(method: str = "Simple",
                         )
                     )
                     persist.update_article_by_id(updated_article, id)
+                elif method == "RegexIntegrated":
+                    updated_article = (
+                        state_manager.affiliation_mining_regex_integration(
+                            updated_article
+                        )
+                    )
+                    persist.update_article_by_id(updated_article, id)
+
             elif current_state == 1:
                 pass
 
