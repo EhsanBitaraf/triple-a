@@ -52,7 +52,10 @@ def clean_publication_type(d):
     clean_publication_type = []
     for p in pts:
         p = p.strip()
-        if p in ['Review','Systematic Review']:
+        if p in ['Review',
+                 'Systematic Review',
+                 "Scoping Review",
+                 'Meta-Analysis',]:
             p = 'Review'
         elif p == '':
             p = None
@@ -68,10 +71,14 @@ def clean_publication_type(d):
                    'Comparative Study',
                    'Multicenter Study',
                    'Observational Study',
-                   'Meta-Analysis',
+                   
                    'Validation Study',
 
                    'Research Support',
+"Research Support, Non-U.S. Gov't",
+"Research Support, U.S. Gov't, P.H.S.",
+"Research Support, N.I.H., Extramural",
+
                    "Non-U.S. Gov't",
                    "U.S. Gov't",
                    "Intramural",
@@ -98,8 +105,7 @@ def clean_publication_type(d):
 
         elif p in ['Published Erratum', 'Erratum']:
             p = 'Published Erratum'
-        elif p in ['Video-Audio Media']:
-            p = 'Video-Audio Media'
+
 
         elif p in ['Preprint','GEN']:
             p = 'Preprint'
@@ -187,6 +193,23 @@ def normalized_issn(issn):
         issn_list.append(issn)
     return issn_list
 
+def normalize_issn(journal_issn: str) -> str:
+    """
+    This function for my dataset
+    """
+    # Match ISSN patterns: with or without hyphen, and check digit can be X
+    issn_pattern = re.compile(r'\b(\d{4})-?(\d{3}[0-9Xx])\b(?:\s*\(ISSN\))?')
+
+    matches = issn_pattern.findall(journal_issn)
+    if matches:
+        # Format the first ISSN found correctly as XXXX-XXXX
+        prefix, suffix = matches[0]
+        return f"{prefix}-{suffix.upper()}"
+
+    # No ISSN found, return the original string
+    return journal_issn
+
+
 def scimago_data_enrichment(df, scimagojr_csv_file_path):
     # scimagojr_csv_file_path = DATA_DIR / 'scimagojr 2023.csv'
     scimago_df = pd.read_csv(scimagojr_csv_file_path,
@@ -245,6 +268,7 @@ def read_dataset_for_analysis(DATASET_FILE, scimagojr_csv_file_path):
         clean_language_dataset(d)
         clean_publication_type(d)
         clean_year(d)
+        d['journal_issn'] = normalize_issn(d['journal_issn'])
 
     # data = read_repository(DATASET_FILE)
     df = pd.DataFrame(data)
