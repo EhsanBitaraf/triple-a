@@ -22,6 +22,7 @@ create_table
 # from src.config import DATASET_FILE, DATA_DIR, ROOT
 import json
 import os
+import re
 import pandas as pd
 from pathlib import Path
 from triplea.config.settings import ROOT
