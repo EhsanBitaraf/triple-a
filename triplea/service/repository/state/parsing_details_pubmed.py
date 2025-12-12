@@ -1,7 +1,9 @@
 from triplea.schemas.article import Affiliation, Article, Author, Keyword
-from triplea.service.click_logger import logger
-from triplea.utils.general import print_error
-
+# from triplea.service.click_logger import logger
+# from triplea.utils.general import print_error
+import logging
+logger = logging.getLogger(__name__)
+logger.addHandler(logging.NullHandler())
 
 def _convert_dict_to_class_affiliation(data: dict) -> Affiliation:
     """
@@ -127,7 +129,7 @@ def parsing_details_pubmed(article: Article) -> Article:  # noqa: C901
     try:
         if data is None:
             print()
-            logger.ERROR(
+            logger.error(
                 f"""Error in Original Article data. It is Null.
                 PMID = {article.PMID}"""
             )
@@ -138,7 +140,7 @@ def parsing_details_pubmed(article: Article) -> Article:  # noqa: C901
         if "PubmedArticleSet" in data:
             if data["PubmedArticleSet"] is None:
                 print()
-                logger.ERROR(
+                logger.error(
                     f"Error in Original Article data. It is Null. PMID = {article.PMID}"
                 )
                 article.State = backward_state
@@ -149,13 +151,13 @@ def parsing_details_pubmed(article: Article) -> Article:  # noqa: C901
             else:
                 print()
                 article.State = backward_state
-                logger.ERROR(
+                logger.error(
                     f"Error in format Original Article data.  PMID = {article.PMID}"
                 )
                 return article
         else:
             print()
-            logger.ERROR("Error in format Original Article data.")
+            logger.error("Error in format Original Article data.")
             article.State = backward_state
             # data= json.dumps(data, indent=4)
             # with open("one-error-originalarticle.json", "w") as outfile:
@@ -237,7 +239,7 @@ def parsing_details_pubmed(article: Article) -> Article:  # noqa: C901
                     ]
                 else:
                     t = type(pubmed_article_data["Abstract"]["AbstractText"])
-                    logger.ERROR(f"Type {str(t)} in Abstract Not Implemented")
+                    logger.error(f"Type {str(t)} in Abstract Not Implemented")
                     raise NotImplementedError
             else:
                 raise NotImplementedError
@@ -351,10 +353,8 @@ def parsing_details_pubmed(article: Article) -> Article:  # noqa: C901
 
             if article.ReferenceCrawlerDeep > 0:
                 # Create new article from References List
-                logger.DEBUG(
-                    f"Add {len(reference_list)} new article(s) by REFERENCE. ",
-                    forecolore="yellow",
-                    deep=3,
+                logger.debug(
+                    f"Add {len(reference_list)} new article(s) by REFERENCE. "
                 )
                 # new_rcd = article.ReferenceCrawlerDeep - 1
                 for ref_pmid in reference_list:
@@ -378,8 +378,8 @@ def parsing_details_pubmed(article: Article) -> Article:  # noqa: C901
                 raise NotImplementedError
             article.Authors = author_list
         else:
-            logger.WARNING(
-                f"Article {article.PMID} has no AuthorList", forecolore="white", deep=5
+            logger.warning(
+                f"Article {article.PMID} has no AuthorList", forecolore="white"
             )
 
 
@@ -422,6 +422,7 @@ def parsing_details_pubmed(article: Article) -> Article:  # noqa: C901
             "MedlineCitation"
         ]["Article"]["Language"]
         if isinstance(lang, list):
+            language = ""
             for lg in lang:
                 language = lg + ", " + language
             language = language[:-1]
@@ -452,7 +453,7 @@ def parsing_details_pubmed(article: Article) -> Article:  # noqa: C901
 
 
         return article
-    except Exception:
+    except Exception as e:
         article.State = backward_state
-        print_error()
+        logger.error(f"Error in parsing_details_pubmed : {e}" , exc_info=True)
         return article

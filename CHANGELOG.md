@@ -8,26 +8,7 @@ All notable changes to this project will be documented in this file.
 - /triplea/service/llm/__init__.py", line 55
     raise Exception("chera")
 - Export Mongo 2 Mongo
-- Complete LLM-Fulltext pipeline
-- Add CrossRef API : https://www.crossref.org/documentation/retrieve-metadata/rest-api/
 - Add import_ris_file into cli
-- In Retracted publication. like this [artilce](https://pubmed.ncbi.nlm.nih.gov/36721396/)
-```json
-"PublicationTypeList": {
-    "PublicationType": [
-        {
-            "#text": "Journal Article",
-            "@UI": "D016428"
-        },
-        {
-            "#text": "Retracted Publication",
-            "@UI": "D016441"
-        }
-    ]
-}
-```
-- Add [Altmetric API](/docs/client-api.md#altmetric-api)
-
 - Expose `get_article_by_arxiv_id` to cli
 - Article.Published must be fixed in pubmed and is string in Arxiv
 - Data Extraction from Unstructured PDFs
@@ -36,10 +17,77 @@ All notable changes to this project will be documented in this file.
     - https://python.plainenglish.io/how-to-create-a-pdf2text-preprocessing-microservice-using-python-8b844b85c797
     - https://github.com/arXiv/arxiv-fulltext
 - complete get_full_text
-- move_state_forward may be error in TinyDB
-- check all TinyDB
+
+
+#### Task 2
+
+TripleA Version
+
+ModuleNotFoundError: No module named 'ratelimit'
+
+- Fix _affiliation_mining_multiple_parser_in_list because this:
+                            "city": [
+                                "pittsburgh",
+                                "pittsburgh",
+                                "usa"
+                            ]
+
+
+
+----
+
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+Cell In[2], line 6
+      4 t_file = r"C:\Users\BT\Desktop\CodeBase\github\research-openehr\data-extraction-from-abstract-v3.json"
+      5 id = "470"
+----> 6 q = get_prompt_with_template_from_special_template_file(t_file, id)
+      7 print(q)
+
+File ~\Desktop\CodeBase\github\triple-a\triplea\service\llm\__init__.py:54, in get_prompt_with_template_from_special_template_file(template_file, dbuid)
+     53 def get_prompt_with_template_from_special_template_file(template_file, dbuid: str):
+---> 54     T = read_llm_template_from_file(template_file)
+     55     prompt_template = PromptTemplate.from_template(T["template"])
+     56     a = PERSIST.get_article_by_id(dbuid)
+
+File ~\Desktop\CodeBase\github\triple-a\triplea\service\llm\config_template.py:147, in read_llm_template_from_file(llmtemplate_filename)
+    144     # print(f"The file {llmtemplate} exists")
+    145 else:
+    146     print(f"The file {llmtemplate} does not exist")
+--> 147     exit()
+    148 with open(llmtemplate, encoding='utf-8') as f:
+    149     d = json.load(f)
+
+NameError: name 'exit' is not defined
+
+
+
+
+
+
+
+
+
+
+
 
 ### Improvements
+- Add `precalculate_llm_cost` and deprecated `precalculate`
+- Add `from triplea.client.crossref import crossref_by_doi`
+- Add `from triplea.client.altmetric import get_altmetric`
+- Add `triplea.service.repository.pipeline_flag.go_get_enrich_data`
+- Add `openalex_by_doi`
+- Add `model_crossref_by_oid_without_pmid`
+- Add `model_openalex_by_doi`
+- Add `model_crossref_by_oid`
+- Add `semanticscholar_by_doi`
+- Add `model_semanticscholar_by_doi`
+- Add `from triplea.client.crossref import crossref_by_doi`
+- Add `from triplea.client.altmetric import get_altmetric` نباید خالی برگرداند هنگام خطا
+- Add `triplea.service.repository.pipeline_flag.go_get_enrich_data`
+- Add `EnrichedData` field to article object. 2025-10-20
+- pip install -e "C:\Users\BT\Desktop\CodeBase\github\hkit" --Task
+- Add clean_authors  in `triplea.service.repository.export.dataset`
 - Add `normalize_issn` in `triplea.service.repository.export.dataset` version 1.1.1.003
 - Add more field in affilation_integration in dataset(`_json_converter_03`) version 1.1.1.002
 - Add `_get_affiliation_list_from_all_bank` and `_affiliation_mining_multiple_parser_in_list` and define AffiliationParseMethod.REGEX_API 2025-08-04
@@ -47,7 +95,25 @@ All notable changes to this project will be documented in this file.
 - In version 0.0.7 the datamodel change. we change version to major
 
 ### Bug Fixes
+- Improve & Fix logger in :
+    - service\repository\state\initial.py
+    - client\pubmed\__init__.py
+    - service\repository\persist.py
+    - service\repository\pipeline_core\__move_state_forward.py
+    - service\repository\pipeline_core\__move_article_state_forward_by_id.py
+    - service\repository\state\expand_details.py
+    - service\repository\state\parsing_details_arxiv.py
+    - service\repository\state\parsing_details_pubmed.py
+    - service\repository\state\get_citation.py
+    - service\repository\state\get_full_text.py
+    - service\repository\import_file\ris_parser.py
+    - move_state_until deprecated
+- Fix _json_converter_03 for AffiliationIntegration
 - Bug fix in `clean_publication_type` version 1.1.1.003
+- Fix `from triplea.client.topic_extraction import extract_topic`
+- Fix `from triplea.service.repository.state.custom.extract_topic import extract_topic_abstract`
+- Fix `go_extract_topic`
+- Fix `from triplea.service.repository.state.custom.affiliation_mining_multiple_parser`
 
 ## v0.0.7 2025-07-06
 
@@ -62,6 +128,7 @@ All notable changes to this project will be documented in this file.
 - Add `CitationCount` field in Article
 
 ### Bug Fixes
+- "A2" nicht Author ist Editor in `service\repository\import_file\ris_parser.py`
 - Change and fix tqdm in `move_state_until`, `move_state_forward`, `go_extract_topic`
                         , `go_affiliation_mining`
                         , `export_engine`

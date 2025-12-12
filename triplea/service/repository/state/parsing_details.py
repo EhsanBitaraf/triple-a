@@ -4,6 +4,10 @@ from triplea.service.repository.state.parsing_details_pubmed import (
     parsing_details_pubmed,
 )
 
+import logging
+logger = logging.getLogger(__name__)
+logger.addHandler(logging.NullHandler())
+
 
 def parsing_details(article: Article) -> Article:
     # this is dispatcher function
@@ -15,6 +19,7 @@ def parsing_details(article: Article) -> Article:
     elif article.SourceBank == SourceBankType.ARXIV:
         updated_article = parsing_details_arxiv(article)
     else:
+        logger.error("NotImplementedError. article.SourceBank not recognized.")
         raise NotImplementedError
 
     return updated_article

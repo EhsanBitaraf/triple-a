@@ -1,9 +1,11 @@
 from triplea.client.pubmed import get_cited_article_from_pubmed
 from triplea.schemas.article import Article, SourceBankType
-from triplea.service.click_logger import logger
-from triplea.utils.general import print_error
+# from triplea.service.click_logger import logger
+# from triplea.utils.general import print_error
 import re
-
+import logging
+logger = logging.getLogger(__name__)
+logger.addHandler(logging.NullHandler())
 
 def _get_citation_pubmed(article: Article):
     """
@@ -30,9 +32,9 @@ def _get_citation_pubmed(article: Article):
             if article.CiteCrawlerDeep > 0:
                 try:
                     lc = get_cited_article_from_pubmed(pmid)
-                except Exception:
+                except Exception as e:
                     article.State = backward_state
-                    print_error()
+                    logger.error(f"Error in _get_citation_pubmed : {e}" , exc_info=True)
                     return article
 
                 if lc is not None:
@@ -44,10 +46,8 @@ def _get_citation_pubmed(article: Article):
                             article.CitedBy = lc
                             article.CitationCount = len(lc)
                             # create new article
-                            logger.DEBUG(
-                                f"Add {len(lc)} new article(s) by CITED.",
-                                forecolore="yellow",
-                                deep=3,
+                            logger.info(
+                                f"Add {len(lc)} new article(s) by CITED."
                             )
                             # new_ccd = article.CiteCrawlerDeep - 1
                             # CRITICAL Temporary Disable for crawle Citation.
@@ -57,15 +57,14 @@ def _get_citation_pubmed(article: Article):
             else:
                 pass
                 article.State = 3
-                logger.DEBUG(
+                logger.debug(
                     f"""Article {pmid} Cite
-                                Crawler Deep= {article.CiteCrawlerDeep}.""",
-                    deep=5,
+                                Crawler Deep= {article.CiteCrawlerDeep}."""
                 )
 
         return article
-    except Exception:
-        print_error()
+    except Exception as e:
+        logger.error(f"Error in _get_citation_pubmed : {e}" , exc_info=True)
         article.State = backward_state
         return article
 
@@ -131,12 +130,11 @@ def _get_citation_wos(article: Article):
             return article
 
         else:
-            print()
-            print("N1 field not found in WOS RIS Format.")
-            print(ris_text)
+            logger.warning("N1 field not found in WOS RIS Format.")
+            logger.debug(ris_text)
 
-    except Exception:
-        print_error()
+    except Exception as e:
+        logger.error(f"Error in _get_citation_wos : {e}" , exc_info=True)
         article.State = backward_state
         return article
 
@@ -161,8 +159,8 @@ def _get_citation_scopus(article: Article):
                 print("Cited By not found in Scopus RIS Format.")
         else:
             print("N1 field not found in Scopus RIS Format.")
-    except Exception:
-        print_error()
+    except Exception as e:
+        logger.error(f"Error in _get_citation_scopus : {e}" , exc_info=True)
         article.State = backward_state
         return article
 
@@ -191,6 +189,7 @@ def get_citation(article: Article):
     elif article.SourceBank == SourceBankType.ACM:
         updated_article = _get_citation_ieee(article)
     else:
+        logger.error(f"NotImplementedError. Unrecognized rticle.SourceBank" )
         raise NotImplementedError
 
     return updated_article

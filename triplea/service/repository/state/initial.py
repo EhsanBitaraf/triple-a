@@ -5,10 +5,14 @@ from typing import Optional
 
 import triplea.client.pubmed as PubmedClient
 from triplea.schemas.article import Article, SourceBankType
-from triplea.service.click_logger import logger
+# from triplea.service.click_logger import logger
+import logging
 from triplea.config.settings import SETTINGS
 import triplea.service.repository.persist as persist
+from triplea.utils.general import get_tqdm
 
+logger = logging.getLogger(__name__)
+logger.addHandler(logging.NullHandler())
 
 def _save_article_pmid_list_in_arepo(data: dict) -> None:
     """
@@ -45,12 +49,12 @@ def _save_article_pmid_list_in_arepo(data: dict) -> None:
             #     cite_crawler_deep=SETTINGS.AAA_CITED_CRAWLER_DEEP,
             # )
             if i is None:  # PMID is Duplicate
-                logger.INFO(f"{pmid} is exist in knowledge repository. ({n})")
+                logger.info(f"{pmid} is exist in knowledge repository. ({n})")
             else:
-                logger.INFO(f"add {pmid} to knowledge repository. ({n})")
+                logger.info(f"add {pmid} to knowledge repository. ({n})")
     else:
         persist.refresh()
-        logger.ERROR("data is not in right format.")
+        logger.error("data is not in right format.")
     persist.refresh()
 
 
@@ -80,7 +84,7 @@ def get_article_list_from_pubmed_all_store_to_arepo(
     data = PubmedClient.get_article_list_from_pubmed(0, 2, searchterm)
 
     total = int(data["esearchresult"]["count"])
-    logger.INFO("Total number of article is " + str(total))
+    logger.info("Total number of article is " + str(total))
 
     if total == 0:
         return
@@ -96,30 +100,42 @@ def get_article_list_from_pubmed_all_store_to_arepo(
         retmax = total
         round = 2
 
+    tqdm = get_tqdm()
+    bar = tqdm(total=round, desc=f"get articles id (total={total})")
+
     i = 0
     for i in range(1, round):
         time.sleep(sleep_time)
-        logger.INFO(
-            f"""Round ({str(i)}) : Get another {str(
+        logger.info(
+            f"""    Round ({str(i)}) : Get another {str(
             retmax
-            )} record (Total {str(i * retmax)} record)""",
-            deep=13,
+            )} record (Total {str(i * retmax)} record)"""
         )
         start = (i * retmax) - retmax
-        chunkdata = PubmedClient.get_article_list_from_pubmed(start, retmax, searchterm)
+        chunkdata = PubmedClient.get_article_list_from_pubmed(start,
+                                                              retmax, 
+                                                              searchterm)
         _save_article_pmid_list_in_arepo(chunkdata)
+        bar.update(1)
 
     # for last round
     start = ((i + 1) * retmax) - retmax
     mid = total - (retmax * round)
     if mid > 0:  # Check last round
-        logger.INFO(
-            f"""Round ({str(i + 1)}): Get another {str(
-                mid)} record (total {str(total)} record)""",
-            deep=13,
+        logger.info(
+            f"""    Round ({str(i + 1)}): Get another {str(
+                mid)} record (total {str(total)} record)""" 
         )  # noqa: E501
-        chunkdata = PubmedClient.get_article_list_from_pubmed(start, retmax, searchterm)
+        chunkdata = PubmedClient.get_article_list_from_pubmed(start, 
+                                                              retmax, 
+                                                              searchterm)
         _save_article_pmid_list_in_arepo(chunkdata)
+        bar.update(1)
+    else:
+        bar.update(1)
+
+    
+    bar.close()
 
 
 

@@ -26,6 +26,33 @@ import re
 import pandas as pd
 from pathlib import Path
 from triplea.config.settings import ROOT
+import csv
+
+
+def clean_authors(d):
+    """
+    Ensure all author names in d['authors'] end with a period.
+    Example:
+        {"authors": ["Abidi, S", "Bray, B.E", "Alegre, E."]}
+        => {"authors": ["Abidi, S.", "Bray, B.E.", "Alegre, E."]}
+    """
+    if "authors" not in d or not isinstance(d["authors"], list):
+        return d  # در صورت نبودن کلید authors یا اشتباه بودن نوع داده، تغییری نده
+
+    cleaned = []
+    for a in d["authors"]:
+        if not isinstance(a, str):
+            cleaned.append(a)
+            continue
+
+        a = a.strip()
+        if not a.endswith("."):
+            a += "."
+        cleaned.append(a)
+
+    d["authors"] = cleaned
+    return d
+
 
 def clean_language_dataset(d):
     # ---- Clean Language------
@@ -48,7 +75,10 @@ def clean_publication_type(d):
         pts = d['publication_type']
     else:
         pt = d['publication_type']
-        pts = pt.split(",")
+        if pt is not None:
+            pts = pt.split(",")
+        else:
+            pts = []
     
     clean_publication_type = []
     for p in pts:
@@ -66,25 +96,25 @@ def clean_publication_type(d):
                    'Clinical Trial Protocol',
                    'Clinical Trial',
                    'Controlled Clinical Trial',
-
                    'English Abstract',
-
                    'Comparative Study',
                    'Multicenter Study',
                    'Observational Study',
-                   
                    'Validation Study',
-
                    'Research Support',
-"Research Support, Non-U.S. Gov't",
-"Research Support, U.S. Gov't, P.H.S.",
-"Research Support, N.I.H., Extramural",
-
+                    "Clinical Trial, Phase I",
+                    "Clinical Trial, Phase I",
+                    "Clinical Trial, Phase II",
+                    "Clinical Trial, Veterinary",
+                    "Research Support, U.S. Gov't, Non-P.H.S.",
+                    "Research Support, N.I.H., Intramural",
+                    "Research Support, Non-U.S. Gov't",
+                    "Research Support, U.S. Gov't, P.H.S.",
+                    "Research Support, N.I.H., Extramural",
                    "Non-U.S. Gov't",
                    "U.S. Gov't",
                    "Intramural",
                    'Extramural',
-
                    "Twin Study"
                    ]:
             p = 'Journal Article'
@@ -147,11 +177,14 @@ def clean_publication_type(d):
         elif p in ["Dataset"]: # PubMed
             p = "Dataset"
 
-        elif p in ["Retracted Publication"]: # PubMed
-            p = "----Retracted Publication"
+        elif p in ["Retracted Publication",# PubMed
+                    "Retracted" # Scoupus
+                    ]: # Scoupus
+            p = "Retracted Publication"
 
         else:
-            print(f"clean_publication_type -> {p}")
+            p = f"{p} (Unknown)"
+            # print(f"clean_publication_type -> {p}")
 
         if p is not None:
             clean_publication_type.append(p)
@@ -260,6 +293,49 @@ def scimago_data_enrichment(df, scimagojr_csv_file_path):
 
     return df
 
+
+def _smart_title_case(text):
+    # Only apply title-case rules if the text is fully uppercase
+    if not isinstance(text, str):
+        return text
+    if text != text.upper():
+        return text  # Return original text if it is not full uppercase
+    
+    # Words to keep lowercase unless they are the first word
+    lower_words = {"of", "the", "and", "in", "on", "at", "for", "to"}
+
+    words = text.strip().split()
+    if not words:
+        return text
+
+    # First word capitalized
+    result = [words[0].capitalize()]
+
+    # Process remaining words
+    for w in words[1:]:
+        if w.lower() in lower_words:
+            result.append(w.lower())
+        else:
+            result.append(w.capitalize())
+
+    return " ".join(result)
+
+def fill_unmapped_journall_with_publisher(df):
+    # Make a copy to avoid modifying the original dataframe
+    df = df.copy()
+
+    # Identify rows with empty or NaN journal_title
+    mask = df['journal_title'].isna() | (df['journal_title'].astype(str).str.strip() == "")
+
+    # Fill journal_title using smart title case applied to publisher
+    df.loc[mask, 'journal_title'] = (
+        df.loc[mask, 'publisher']
+        .astype(str)
+        .apply(_smart_title_case)
+    )
+
+    return df
+
 def read_dataset_for_analysis(DATASET_FILE, scimagojr_csv_file_path):
     scimagojr_csv_file_path = Path(scimagojr_csv_file_path)
     with open(DATASET_FILE, "r") as json_file:
@@ -269,12 +345,16 @@ def read_dataset_for_analysis(DATASET_FILE, scimagojr_csv_file_path):
         clean_language_dataset(d)
         clean_publication_type(d)
         clean_year(d)
+        clean_authors(d)
         d['journal_issn'] = normalize_issn(d['journal_issn'])
 
     # data = read_repository(DATASET_FILE)
     df = pd.DataFrame(data)
 
     df = scimago_data_enrichment(df, scimagojr_csv_file_path)
+
+    # After map fill unmapped
+    df = fill_unmapped_journall_with_publisher(df)
     return df
 
 def detect_field_types(df):
@@ -310,7 +390,9 @@ def conver_df_to_csv(df, output_dir = ROOT):
     # Create main CSV with explicit ID column
     main_df = df[main_fields].copy()
     main_df.insert(0, 'id', main_df.index)
-    main_df.to_csv(output_dir / 'main.csv', index=False)
+    # main_df.to_csv(output_dir / 'main.csv', index=False)
+    main_df.to_csv(output_dir / 'main.csv', index=False, quoting=csv.QUOTE_ALL, escapechar='\\')
+
     print("-- main.csv saved.")
 
     # Create separate CSV files for one-to-many fields

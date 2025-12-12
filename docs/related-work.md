@@ -90,6 +90,13 @@ https://help.openalex.org/hc/en-us
 
 # Opensource
 
+## pybibx
+A Bibliometric and Scientometric Python Library Powered with Artificial Intelligence Tools 
+
+https://colab.research.google.com/drive/1yHiMMZIKa-RrarXbPB9ca0gLN9YvvtPU?usp=sharing
+
+https://github.com/Valdecy/pybibx
+
 ## TechMiner development branch 
 Analysis of bibliographic datasets using Python
 

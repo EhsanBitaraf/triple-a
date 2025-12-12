@@ -154,3 +154,4 @@ between steps 2 and 3. Used to quantify the article's scholarly impact.""",
         """,
         default=None
     )
+    EnrichedData: Optional[dict] = Field(description="", default=None)

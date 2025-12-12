@@ -5,8 +5,10 @@ import io
 import PyPDF2
 from triplea.config.settings import SETTINGS
 
-from triplea.utils.general import print_error
-
+# from triplea.utils.general import print_error
+import logging
+logger = logging.getLogger(__name__)
+logger.addHandler(logging.NullHandler())
 
 def _get_full_text_pubmed(article: Article):
     raise NotImplementedError
@@ -24,8 +26,10 @@ def _get_full_text_arxiv(article: Article):
         f.write(pdf_bytes)
         f.close()
     elif SETTINGS.AAA_FULL_TEXT_REPO_TYPE == "Database":
+        logger.error("NotImplementedError")
         raise NotImplementedError
     else:
+        logger.error("NotImplementedError")
         raise NotImplementedError
 
     return article
@@ -65,9 +69,10 @@ def get_full_text(article: Article):
         elif article.SourceBank == SourceBankType.ARXIV:
             updated_article = _get_full_text_arxiv(article)
         else:
+            logger.error("NotImplementedError")
             raise NotImplementedError
-    except Exception:
-        print_error()
+    except Exception as e:
+        logger.error(f"Error in get_full_text : {e}" , exc_info=True)
         updated_article.State = backward_state
 
     return updated_article

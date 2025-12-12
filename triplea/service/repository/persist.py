@@ -2,8 +2,10 @@ from typing import Optional
 from triplea.db.dal import db
 from triplea.schemas.article import Article
 from triplea.schemas.node import Edge, Node
-from triplea.service.click_logger import logger
-
+from triplea.service.click_logger import logger as click_logger
+import logging
+logger = logging.getLogger(__name__)
+logger.addHandler(logging.NullHandler())
 
 # region Article
 
@@ -136,7 +138,7 @@ def insert_new_pmid(
     """
     # check PMID is exist
     if db.is_article_exist_by_pmid(pmid):
-        logger.DEBUG("The article " + pmid + " already exists.", deep=3)
+        logger.debug("The article " + pmid + " already exists.")
         return
     else:  # Insert not exist Article
         insert_type_list = []
@@ -174,8 +176,8 @@ def insert_new_pubmed(article: Article):
 def insert_new_arxiv(article: Article):
     # check Arxiv ID is exist
     if db.is_article_exist_by_arxiv_id(article.ArxivID):
-        logger.DEBUG(
-            f"The article with ArxivID {article.ArxivID} already exists.", deep=3
+        logger.debug(
+            f"The article with ArxivID {article.ArxivID} already exists."
         )
         return
     else:  # Insert not exist Article
@@ -185,13 +187,13 @@ def insert_new_arxiv(article: Article):
 def insert_new_general_deduplicate_with_doi(article: Article):
     # check DOI
     if article.DOI is None:
-        logger.DEBUG(f"The article with title {article.Title} has no DOI.", deep=1)
+        logger.debug(f"The article with title {article.Title} has no DOI.")
         # return # if want to reduce chance of duplication
         return db.add_new_article(article)
     else:
         # check DOI is exist
         if db.is_article_exist_by_doi(article.DOI):
-            logger.DEBUG(f"The article with DOI {article.DOI} already exists.", deep=3)
+            logger.debug(f"The article with DOI {article.DOI} already exists.")
             return
         else:  # Insert not exist Article
             return db.add_new_article(article)
@@ -235,10 +237,13 @@ def change_CiteCrawlerDeep(current_value, set_value):
 
 
 def print_article_info_from_repo():
-    logger.INFO(
+    click_logger.INFO(
         "Number of article in article repository is " + str(db.get_all_article_count())
     )
-
+    logger.info(
+        f"""Number of article in article repository is {
+            str(db.get_all_article_count())}"""
+    )
     data = db.get_article_group_by_state()
     for i in range(-4, 7):
         for s in data:
@@ -246,7 +251,8 @@ def print_article_info_from_repo():
                 # w = 1
                 n = s["n"]
                 if n != 0:
-                    logger.INFO(f"{n} article(s) in state {i}.")
+                    click_logger.INFO(f"{n} article(s) in state {i}.")
+                    logger.info(f"{n} article(s) in state {i}.")
 
 
 def print_article_short_description(id: str, id_type: str):
@@ -266,27 +272,37 @@ def print_article_short_description(id: str, id_type: str):
         a_pmc = a["PMC"]
         a_state = a["State"]
 
-        logger.INFO("")
-        logger.INFO(f"Title   : {a_title}")
-        logger.INFO(f"Journal : {a_journal}")
-        logger.INFO(f"DOI     : {a_doi}")
-        logger.INFO(f"PMID    : {a_pmid}")
-        logger.INFO(f"PMC     : {a_pmc}")
-        logger.INFO(f"State   : {a_state}")
+        click_logger.INFO("")
+        click_logger.INFO(f"Title   : {a_title}")
+        click_logger.INFO(f"Journal : {a_journal}")
+        click_logger.INFO(f"DOI     : {a_doi}")
+        click_logger.INFO(f"PMID    : {a_pmid}")
+        click_logger.INFO(f"PMC     : {a_pmc}")
+        click_logger.INFO(f"State   : {a_state}")
+
+        logger.info("")
+        logger.info(f"Title   : {a_title}")
+        logger.info(f"Journal : {a_journal}")
+        logger.info(f"DOI     : {a_doi}")
+        logger.info(f"PMID    : {a_pmid}")
+        logger.info(f"PMC     : {a_pmc}")
+        logger.info(f"State   : {a_state}")
 
         if "Authors" in a:
             if a["Authors"] is not None:
                 authors = ""
                 for author in a["Authors"]:
                     authors = authors + author["FullName"] + ", "
-                logger.INFO(f"Authors : {authors}")
+                click_logger.INFO(f"Authors : {authors}")
+                logger.info(f"Authors : {authors}")
 
         if "Keywords" in a:
             if a["Keywords"] is not None:
                 keywords = ""
                 for k in a["Keywords"]:
                     keywords = keywords + k["Text"] + ", "
-                logger.INFO(f"Keywords: {keywords}")
+                click_logger.INFO(f"Keywords: {keywords}")
+                logger.info(f"Keywords: {keywords}")
 
 
 # endregion
@@ -310,7 +326,7 @@ def create_node(node: Node) -> int:
     :return: Nothing.
     """
     if db.is_node_exist_by_identifier(node.Identifier):
-        logger.DEBUG("Node " + node.Name + " is exist.", deep=3)
+        logger.debug("Node " + node.Name + " is exist.")
         return
     else:
         return db.add_new_node(node)
@@ -346,7 +362,7 @@ def create_edge(edge: Edge) -> int:
     :return: The return value is the id of the edge in the database.
     """
     if db.is_edge_exist_by_hashid(edge.HashID):
-        logger.DEBUG("Edge " + edge.HashID + " is exist.", deep=3)
+        logger.debug("Edge " + edge.HashID + " is exist.")
         return
     else:
         return db.add_new_edge(edge)

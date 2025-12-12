@@ -5,7 +5,8 @@ This is new API
 
 from triplea.schemas.article import AffiliationParseMethod, Article
 from triplea.service.repository.state.custom.affiliation_mining_titipata_integration import _get_affiliation_list_from_all_bank
-import triplea.client.affiliation_parser_multiple as client_affiliation_parser
+# import triplea.client.affiliation_parser_multiple as client_affiliation_parser
+from triplea.client.affiliation_parser_multiple import parse_affiliation_multiple
 
 def _affiliation_mining_multiple_parser_in_list(aff_list,
                                                 method:AffiliationParseMethod):
@@ -16,7 +17,7 @@ def _affiliation_mining_multiple_parser_in_list(aff_list,
         # affl_normal_text = aff['Text'].replace("/", " ")
         affl_normal_text = aff.replace("/", " ")
 
-        affl = client_affiliation_parser.parse_affiliation_multiple(
+        affl = parse_affiliation_multiple(
             affl_normal_text,int(method))
         loc = []
         if "countries" in affl:

@@ -85,20 +85,31 @@ def _json_converter_03(article: Article):
     if article.AffiliationIntegration is not None:
         for ai in article.AffiliationIntegration:
             if "Structural" in ai:
+                pm = ai['ParseMethod']
                 for i in ai["Structural"]:
                     if "country" in i:
-                        aic.append(i["country"])
+                        if pm == 3:
+                            aic.extend(i["country"])
+                        else:
+                            aic.append(i["country"])
                     if "department" in i:
-                        aid.append(i["department"])
+                        if pm == 3:
+                            aid.extend(i["department"])
+                        else:
+                            aid.append(i["department"])
                     if "institution" in i:
-                        aii.append(i["institution"])
+                        if pm == 3:
+                            aii.extend(i["institution"])
+                        else:
+                            aii.append(i["institution"])
 
-                    if "university" in i:
-                        uni_list.append(i["university"])
-                    if "government_entity" in i:
-                        gov_list.append(i["government_entity"])
-                    if "city" in i:
-                        city_list.append(i["city"])
+                    if pm == 3:
+                        if "university" in i:
+                            uni_list.extend(i["university"])
+                        if "government_entity" in i:
+                            gov_list.extend(i["government_entity"])
+                        if "city" in i:
+                            city_list.extend(i["city"])
             if 'Text' in ai:
                 aitext.append(ai['Text'])
 

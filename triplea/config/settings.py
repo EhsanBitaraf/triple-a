@@ -25,15 +25,30 @@ ENV_PATH_FILE = os.path.join(
 load_dotenv(ENV_PATH_FILE, override=True)
 
 
+# ----------------------------Log setting--------------------------
+import logging,os
+LOG_PATH = os.path.abspath('app_debug.log')
+for handler in logging.root.handlers[:]: logging.root.removeHandler(handler)
+logging.basicConfig(filename=LOG_PATH,filemode='a',level=logging.DEBUG,format='%(asctime)s [%(levelname)s] %(name)s: %(message)s',encoding='utf-8',force=True,)
+logging.getLogger(__name__).debug("Logger configured. Writing to: %s", LOG_PATH)
+logging.getLogger("pymongo.topology").setLevel(logging.WARNING)
+# ----------------------------Log setting--------------------------
+
+
+logger = logging.getLogger(__name__)
+logger.addHandler(logging.NullHandler())
+
 try:
     # This is in Development
     with open("pyproject.toml", "rb") as f:
         pyproject = tomli.load(f)
         version = pyproject["tool"]["poetry"]["version"]
+        logger.debug(f"Get version from pyproject.toml : {version}")
 except Exception:
     # This is in Package
     #  version = importlib.metadata.version(__package__ or __name__)
     version = importlib.metadata.version("triplea")
+    logger.error(f"error. then get version: {version}")
 
 
 class Settings(BaseSettings):
@@ -103,5 +118,5 @@ class Settings(BaseSettings):
     #     # env_file = ROOT / 'config' / 'enviroment_variable' / '.env'
     #     # env_file_encoding = 'utf-8'
 
-
+logger.debug(f"--------------------------- Setting Config--------------------")
 SETTINGS = Settings()

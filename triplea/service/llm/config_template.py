@@ -9,7 +9,7 @@ from triplea.service.click_logger import logger
 from triplea.utils.general import print_pretty_dict
 
 
-logging.getLogger().setLevel(logging.CRITICAL)
+# logging.getLogger().setLevel(logging.CRITICAL)
 
 
 
@@ -144,6 +144,7 @@ def read_llm_template_from_file(llmtemplate_filename):
         # print(f"The file {llmtemplate} exists")
     else:
         print(f"The file {llmtemplate} does not exist")
+        raise Exception(f"The file {llmtemplate} does not exist")
         exit()
     with open(llmtemplate, encoding='utf-8') as f:
         d = json.load(f)

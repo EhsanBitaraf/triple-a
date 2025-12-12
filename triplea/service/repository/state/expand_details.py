@@ -6,6 +6,9 @@ from triplea.utils.general import print_error
 
 tps_limit = SETTINGS.AAA_TPS_LIMIT
 
+import logging
+logger = logging.getLogger(__name__)
+logger.addHandler(logging.NullHandler())
 
 def _expand_details_arxiv(article: Article) -> Article:
     # previous state is 0
@@ -18,7 +21,12 @@ def _expand_details_arxiv(article: Article) -> Article:
 
 
 def _expand_details_pubmed(article: Article) -> Article:
-    # previous state is 0
+    ## ------ Validate ----
+    ## previous state is 0
+    if  article.State != 0:
+        logger.error("State must be 0.")
+        raise Exception("State must be 0.")
+
     article.State = 1  # next state
     backward_state = 0
     sleep_time = 1 / tps_limit
@@ -26,9 +34,9 @@ def _expand_details_pubmed(article: Article) -> Article:
     try:
         oa = get_article_details_from_pubmed(article.PMID)
         article.OreginalArticle = oa
-    except Exception:
+    except Exception as e:
         article.State = backward_state
-        print_error()
+        logger.error(f"Failed to get article details from PubMed for PMID {article.PMID}: {e}", exc_info=True)
 
     return article
 
@@ -43,6 +51,7 @@ def expand_details(article: Article) -> Article:
     elif article.SourceBank == SourceBankType.ARXIV:
         updated_article = _expand_details_arxiv(article)
     else:
+        logger.error("NotImplementedError")
         raise NotImplementedError
 
     return updated_article

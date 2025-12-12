@@ -2,8 +2,12 @@
 from time import sleep
 from triplea.schemas.article import Article, Author, Keyword, SourceBankType
 import triplea.service.repository.persist as PERSIST
-from triplea.service.click_logger import logger
+# from triplea.service.click_logger import logger
 from triplea.utils.general import get_tqdm
+import logging
+logger = logging.getLogger(__name__)
+logger.addHandler(logging.NullHandler())
+
 
 def _parse_ris_block(lines, sourcebanktype=SourceBankType.UNKNOWN):
     debug = False
@@ -15,7 +19,7 @@ def _parse_ris_block(lines, sourcebanktype=SourceBankType.UNKNOWN):
     a.State = 2
     a.SourceBank = sourcebanktype
     last_e = ""
-    if debug: print(f"#--------------------------------------------")
+    if debug: logger.debug(f"#--------------------------------------------")
     C3 = ""
     # for line in lines:
     unknown_tag_list = []
@@ -36,7 +40,7 @@ def _parse_ris_block(lines, sourcebanktype=SourceBankType.UNKNOWN):
             v = str.replace(element_value[1], "\n", "").strip()
             last_e = e
             if v.__contains__("\n"):
-                print("wow")
+                logger.debug("wow")
         else:  # len split is 1
             if last_e == "":  # First Line
                 pass
@@ -55,10 +59,10 @@ def _parse_ris_block(lines, sourcebanktype=SourceBankType.UNKNOWN):
             elif last_e == "LA":
                 pass
             else:
-                print("-----------------------------")
-                print(last_e)
-                print(f"len : {len(element_value)} --> {line}")
-                # print(lines)
+                logger.debug("-----------------------------")
+                logger.debug(last_e)
+                logger.debug(f"len : {len(element_value)} --> {line}")
+                # logger.debug(lines)
 
             v = ""
         # ------------------------------Check for line without tag (in endnote)
@@ -69,7 +73,7 @@ def _parse_ris_block(lines, sourcebanktype=SourceBankType.UNKNOWN):
         # https://en.wikipedia.org/wiki/RIS_(file_format)
         if e == "TY":  # Type of reference. Must be the first tag.
             pass
-            # print(f"{e} -> {v}")
+            # logger.debug(f"{e} -> {v}")
             if v == "JOUR":  # Journal Type
                 pass
             elif v == "CONF":  # Conference proceedings
@@ -81,7 +85,7 @@ def _parse_ris_block(lines, sourcebanktype=SourceBankType.UNKNOWN):
             elif v == "BOOK":  # Book (whole)
                 pass
             else:
-                print(f"Value of TY Tag is unknown ---> {element_value[1]}")
+                logger.debug(f"Value of TY Tag is unknown ---> {element_value[1]}")
             ptype_list.append(v)
         elif (e == "M3"):  
             # Type of work, e.g. type (of work/article/medium/image);
@@ -90,13 +94,13 @@ def _parse_ris_block(lines, sourcebanktype=SourceBankType.UNKNOWN):
             #  Suitable to hold the medium.
             pass
             ptype_list.append(v)
-            # if debug: print(f"{e} -> {v}")
+            # if debug: logger.debug(f"{e} -> {v}")
             # Article
         elif (e == "TI"):  
             # (Primary) title, e.g. title of entry/grant/podcast/work,
             #  case name, or name of act.
             a.Title = v
-            # print(f"{e} -> {v}")
+            # logger.debug(f"{e} -> {v}")
         elif (e == "T1"): # (Primary) title. 
             a.Title = v
             # T1 -> Current EHR developments: An Australian and international perspective - Part 1
@@ -108,7 +112,7 @@ def _parse_ris_block(lines, sourcebanktype=SourceBankType.UNKNOWN):
             #  title number, magazine, collection title, album title,
             #  newspaper, published
             a.Journal = v
-            # print(f"{e} -> {v}")
+            # logger.debug(f"{e} -> {v}")
             # All
             # Nippon Ishikai zasshi. Journal of the Japan Medical Association
             # Toshiba Review
@@ -121,11 +125,11 @@ def _parse_ris_block(lines, sourcebanktype=SourceBankType.UNKNOWN):
             # Abbreviation (for journal/periodical name).
             #  "Periodical name: full format. This is an alphanumeric field
             #  of up to 255 characters."
-            if debug : print(f"{e} -> {v}")
+            if debug : logger.debug(f"{e} -> {v}")
             # JO -> Healthc. Rev. Online
         elif (e == "JA"): 
             # Standard abbreviation for journal/periodical name.
-            if debug : print(f"{e} -> {v}")
+            if debug : logger.debug(f"{e} -> {v}")
             # in IEEE
             # JA -> 2022 IEEE 19th International Conference on Software Architecture (ICSA)
         elif (e == "J2"):  
@@ -137,7 +141,7 @@ def _parse_ris_block(lines, sourcebanktype=SourceBankType.UNKNOWN):
             #  This field is used for the abbreviated title of a book
             #  or journal name, the latter mapped to T2.
             pass
-            if debug : print(f"{e} -> {v}")
+            if debug : logger.debug(f"{e} -> {v}")
             # J2 -> Dianli Xitong Baohu yu Kongzhi
             # T2 -> Dianli Xitong Baohu yu Kongzhi/Power System Protection and Control
             # J2 -> Rev. Educ.
@@ -148,11 +152,11 @@ def _parse_ris_block(lines, sourcebanktype=SourceBankType.UNKNOWN):
         elif (e == "AB"): 
             # Abstract or synopsis.Notes. Synonym of N2.
             a.Abstract = v
-            # print(f"{e} -> {v}")
+            # logger.debug(f"{e} -> {v}")
         elif (e == "N2"): 
             # Abstract. Synonym of AB.
             a.Abstract = v
-            # print(f"{e} -> {v}")
+            # logger.debug(f"{e} -> {v}")
 
         elif (e == "KW"):  
             # Keyword/phrase. Must be at most 255 characters long.
@@ -171,7 +175,7 @@ def _parse_ris_block(lines, sourcebanktype=SourceBankType.UNKNOWN):
                 a.Authors = []
             a.Authors.append(Author(FullName=v))
             # All
-            # print(f"{e} -> {v}")
+            # logger.debug(f"{e} -> {v}")
         elif (e == "A1"):  # Interviewee. (Primary) author. Synonym of AU.
             if a.Authors is None:
                 a.Authors = []
@@ -182,18 +186,18 @@ def _parse_ris_block(lines, sourcebanktype=SourceBankType.UNKNOWN):
             #  name of file, producer, series director, department,
             #  interviewer, issuing organization, recipient, or narrator.
             #  The tag must be repeated for each person. Synonym of ED
-            if a.Authors is None:
-                a.Authors = []
-            a.Authors.append(Author(FullName=v))
+            # if a.Authors is None:
+            #     a.Authors = []
+            # a.Authors.append(Author(FullName=v))
             # Not All
-            # print(f"{e} -> {v}")
+            if debug: logger.debug(f"{e} -> {v}")
         elif (e == "ED"):  
             # Secondary author. Editor. Synonym of A2. Edition. 
             pass
             if a.Authors is None:
                 a.Authors = []
             a.Authors.append(Author(FullName=v))
-            # print(f"{e} -> {v}")
+            # logger.debug(f"{e} -> {v}")
             # Downie, JS
             # Poursardar, F
             # Nichols, DM
@@ -204,7 +208,7 @@ def _parse_ris_block(lines, sourcebanktype=SourceBankType.UNKNOWN):
             #  government body, contact name, scale, format of music,
             #  column, or sender's e-mail.
             pass
-            if debug : print(f"{e} -> {v}")
+            if debug : logger.debug(f"{e} -> {v}")
             # in ACM
             #  C1 -> New York, NY, USA
         elif (e == "C2"):  
@@ -215,7 +219,7 @@ def _parse_ris_block(lines, sourcebanktype=SourceBankType.UNKNOWN):
             #  recieipients e-mail, or report number.
             pass
             a.PMC = v
-            # print(f"{e} -> {v}")
+            # logger.debug(f"{e} -> {v}")
             # PMC10770784
             # PMC10618876
         elif (e == "C3"):  
@@ -224,25 +228,25 @@ def _parse_ris_block(lines, sourcebanktype=SourceBankType.UNKNOWN):
             #  music parts, or designated states.
             pass
             C3 = v
-            # print(f"{e} -> {v}")
+            # logger.debug(f"{e} -> {v}")
         elif e == "C5": 
             # Custom 5, e.g. format, packaging method, issue title,
             #  last update date, funding number, accompanying matter,
             #  format/length, references, or publisher.
             pass
-            if debug: print(f"{e} -> {v}")
+            if debug: logger.debug(f"{e} -> {v}")
             # in EMBASE
             # C5 -> 15460689
         elif (e == "C6"):  # Custom 6, e.g. NIHMSID, CFDA number, legal status, issue, or volume.
             pass
-            if debug: print(f"{e} -> {v}")
+            if debug: logger.debug(f"{e} -> {v}")
             # JAN 2024
             # OCT 2023
             # NIHMS1957582
             # EMS178744
         elif e == "C7":  # Custom 7, e.g. article number or PMCID.
             pass
-            if debug : print(f"{e} -> {v}")
+            if debug : logger.debug(f"{e} -> {v}")
             # a.PMC = v # ?
             # 110170
             # 1333
@@ -259,11 +263,11 @@ def _parse_ris_block(lines, sourcebanktype=SourceBankType.UNKNOWN):
 
         elif e == "LA":  # Language
             a.Language = v
-            # if debug: print(f"{e} -> {v}")
+            # if debug: logger.debug(f"{e} -> {v}")
             # eng, English, Chinese
         elif e == "ST":  # Short title or abbreviated case name
             pass
-            if debug: print(f"{e} -> {v}")
+            if debug: logger.debug(f"{e} -> {v}")
             # Like TI if other language
 
         elif (e == "PY"):  
@@ -272,21 +276,21 @@ def _parse_ris_block(lines, sourcebanktype=SourceBankType.UNKNOWN):
             #  Must always use 4 digits, with leading zeros if before 1000.
             #  Synonym of Y1.
             a.Year = v
-            # print(f"{e} -> {v}")   # All
+            # logger.debug(f"{e} -> {v}")   # All
             # 2012
             # 2023
         elif (e == "Y1"):
             # "Year///Date".[14] Primary date/year.
             #  Synonym of PY.
             # a.Year = v
-            if debug: print(f"{e} -> {v}")
+            if debug: logger.debug(f"{e} -> {v}")
             
         elif e == "Y2":  
             # Access date or date enacted.
             #  Secondary date. Date of publication.
             # a.Year  = v
             # because usually have PY
-            if debug: print(f"{e} -> {v}")
+            if debug: logger.debug(f"{e} -> {v}")
             # in GoogleScholar
             # Y2 -> 2025/07/17/02:15:28
         elif e == "YR":  # Publication year
@@ -297,38 +301,38 @@ def _parse_ris_block(lines, sourcebanktype=SourceBankType.UNKNOWN):
             #  date of collection, date released, deadline,
             #  date of code edition, or date enacted.
             pass
-            # print(f"{e} -> {v}") # Not All
+            # logger.debug(f"{e} -> {v}") # Not All
             # Oct, Dec, May 27, MAR, Feb
-            if debug: print(f"{e} -> {v}")
+            if debug: logger.debug(f"{e} -> {v}")
 
         elif e == "SN":  # ISSN, ISBN, or report/document/patent number.
             a.SerialNumber = v
-            # if debug: print(f"{e} -> {v}")
+            # if debug: logger.debug(f"{e} -> {v}")
             # 16743415 (ISSN)
             # 1040-2446
             # 978-195591706-3 (ISBN)
-            # 2212-1366 (Print)
+            # 2212-1366 (logger.debug)
             # 1099-4300 J9 - ENTROPY-SWITZ
             # 18761100 (ISSN); 978-981195537-2 (ISBN)
 
 
         elif e == "ER":  # End of reference. Must be the last tag.
             pass
-            # print(f"{e} -> {v}")
+            # logger.debug(f"{e} -> {v}")
             # /n
         elif e == "DP":  # Database provider.
             pass
             if v.__contains__("Google Scholar"):
                 a.SourceBank = SourceBankType.GOOGLESCHOLAR
-            # print(f"{e} -> {v}")
+            # logger.debug(f"{e} -> {v}")
             # NLM
         elif e == "DB":  # Name of database.
             if v.__contains__("Scopus"):
                 if a.SourceBank is None or a.SourceBank == SourceBankType.UNKNOWN:
                     a.SourceBank = SourceBankType.SCOPUS
             else:
-                print(f"DB - Not Scopus is : {v}")
-            # print(f"{e} -> {v}")
+                logger.debug(f"DB - Not Scopus is : {v}")
+            # logger.debug(f"{e} -> {v}")
             # Scopus
         elif e == "AN":  # Accession number.
             pass
@@ -336,7 +340,7 @@ def _parse_ris_block(lines, sourcebanktype=SourceBankType.UNKNOWN):
                 # This is Web of Sciense
                 a.SourceBank = SourceBankType.WOS
             else:
-                if debug: print(f"{e} -> {v}")
+                if debug: logger.debug(f"{e} -> {v}")
             # WOS:000900130208031
             # 37847549
 
@@ -345,7 +349,7 @@ def _parse_ris_block(lines, sourcebanktype=SourceBankType.UNKNOWN):
             #  email address, phone number, and/or fax number. Institution.
             pass
             # All
-            if debug: print(f"{e} -> {v}")
+            if debug: logger.debug(f"{e} -> {v}")
             # This is Affiliation
             # EnBW Kernkraft GmbH, Philippsburg, Germany
             # University of Colorado Anschutz Medical Campus School of Medicine, Aurora, CO, USA.
@@ -358,7 +362,7 @@ def _parse_ris_block(lines, sourcebanktype=SourceBankType.UNKNOWN):
             #  number of pages, public law number, or access date.
             #  Miscellaneous 1. A good place for type or genre information.
             pass
-            if debug: print(f"{e} -> {v}")
+            if debug: logger.debug(f"{e} -> {v}")
             # in MBASE
             #  M1 -> (Barretto S.A.; Warren J.; Goodchild A.; Bird L.;
             #         Heard S.; Stumptner M.)
@@ -370,11 +374,11 @@ def _parse_ris_block(lines, sourcebanktype=SourceBankType.UNKNOWN):
             # Reference identifier,
             #  may be limited to 20 alphanumeric characters.
             pass
-            if debug: print(f"{e} -> {v}")
+            if debug: logger.debug(f"{e} -> {v}")
             # ?
         elif e == "IS":  # Number, e.g. issue or number of volumes.
             pass
-            if debug: print(f"{e} -> {v}")
+            if debug: logger.debug(f"{e} -> {v}")
             # 18
             # 3
         elif (e == "PB"):  
@@ -382,13 +386,13 @@ def _parse_ris_block(lines, sourcebanktype=SourceBankType.UNKNOWN):
             #  library/archive, assignee, institution, source,
             #  or university / degree grantor.
             pass
-            if debug: print(f"{e} -> {v}")
+            if debug: logger.debug(f"{e} -> {v}")
             # Institute of Electrical and Electronics Engineers Inc.
             # Association for Computational Linguistics (ACL)
             # IEEE Computer Society
         elif e == "N1":  # Notes.
             pass
-            if debug: print(f"{e} -> {v}")
+            if debug: logger.debug(f"{e} -> {v}")
             # Export Date: 10 February 2024; Cited By: 2;
             # Times Cited in Web of Science Core Collection: 0 Total Times Cited: 0 Cited Reference Count: 33
             # 2287-285x
@@ -399,7 +403,7 @@ def _parse_ris_block(lines, sourcebanktype=SourceBankType.UNKNOWN):
             # Pages, description, code pages, number of pages,
             #  first/start page, or running time.
             pass
-            if debug: print(f"{e} -> {v}")
+            if debug: logger.debug(f"{e} -> {v}")
             # 261-270
             # e50865
             # e94
@@ -410,7 +414,7 @@ def _parse_ris_block(lines, sourcebanktype=SourceBankType.UNKNOWN):
             # source, title of show, section title, academic department,
             #  or full journal name.
             pass
-            if debug: print(f"{e} -> {v}")
+            if debug: logger.debug(f"{e} -> {v}")
             # T3 -> SAC '08
             # T3 -> MIXHS '11
         elif (e == "VL"):  
@@ -419,7 +423,7 @@ def _parse_ris_block(lines, sourcebanktype=SourceBankType.UNKNOWN):
             #  volume/storage container, number, patent version number,
             #  code number, or degree.
             pass
-            if debug: print(f"{e} -> {v}")
+            if debug: logger.debug(f"{e} -> {v}")
             # 2016-December
             # 52
             # 121
@@ -427,7 +431,7 @@ def _parse_ris_block(lines, sourcebanktype=SourceBankType.UNKNOWN):
 
         elif (e == "VO"): # Volume. Published Standard number
             pass
-            if debug: print(f"{e} -> {v}")
+            if debug: logger.debug(f"{e} -> {v}")
             # in IEEE
             # VO -> 8
         elif (e == "VL"):
@@ -436,7 +440,7 @@ def _parse_ris_block(lines, sourcebanktype=SourceBankType.UNKNOWN):
             #  volume/storage container, number, patent version number,
             #  code number, or degree.
             pass
-            if debug: print(f"{e} -> {v}")
+            if debug: logger.debug(f"{e} -> {v}")
 
         elif (e == "UR"):  
             # Web/URL. Can be repeated for multiple tags,
@@ -444,13 +448,13 @@ def _parse_ris_block(lines, sourcebanktype=SourceBankType.UNKNOWN):
             #  as a semicolon-separated list.
             pass
             a.links = v
-            # if debug: print(f"{e} -> {v}")
+            # if debug: logger.debug(f"{e} -> {v}")
             # https://www.scopus.com/inward/record.uri?eid=2-s2.0-84961725690&doi=10.7667%2fPSPC151240&partnerID=40&md5=fa3bc7d65364213ec8ed9510f3a6da11
         elif (e == "LK"):  
             # Links
             #  Use in EMBASE but the UR is better
             # a.links = v
-            if debug: print(f"{e} -> {v}")
+            if debug: logger.debug(f"{e} -> {v}")
         elif (e == "L1"):  
             # File attachments, e.g. figure. "Link to PDF.
             #  There is no practical length limit to this field.
@@ -461,7 +465,7 @@ def _parse_ris_block(lines, sourcebanktype=SourceBankType.UNKNOWN):
             #  Use the UR tag for URL links." Internet link. Local file.
             # a.links = v
             # The same time have UR Tag
-            if debug: print(f"{e} -> {v}")
+            if debug: logger.debug(f"{e} -> {v}")
             # in GoogleScholar
             #  L1 -> https://journals.sagepub.com/doi/pdf/10.1177/183335830803700104?casa_token=4yYaUfwFbAIAAAAA:NPfe_og_E28YaagfzvVGI91vlWW301gpVLRdXbw1s9bi_q__F8F0YvmMlFBExfXQi0CvU_bwD_Jz
 
@@ -471,7 +475,7 @@ def _parse_ris_block(lines, sourcebanktype=SourceBankType.UNKNOWN):
             #  requirement, description of material,
             #  international patent classification, or description.
             pass
-            if debug: print(f"{e} -> {v}")
+            if debug: logger.debug(f"{e} -> {v}")
             # 2023/12/22
             # 2023/10/17
             # VOL. 1
@@ -482,7 +486,7 @@ def _parse_ris_block(lines, sourcebanktype=SourceBankType.UNKNOWN):
             #  version history, original grant number, or priority numbers.
             #  Other pages. Original foreign title.
             pass
-            if debug: print(f"{e} -> {v}")
+            if debug: logger.debug(f"{e} -> {v}")
 
         elif (e == "SE"):  
             #  Section, screens, code section, message number, pages, chapter,
@@ -490,15 +494,15 @@ def _parse_ris_block(lines, sourcebanktype=SourceBankType.UNKNOWN):
             #  e-pub date, duration of grant, section number, start page,
             #  international patent number, or running time.
             pass
-            if debug: print(f"{e} -> {v}")
+            if debug: logger.debug(f"{e} -> {v}")
         elif e == "EP":  # Pages. End page.
             pass
-            if debug: print(f"{e} -> {v}")
+            if debug: logger.debug(f"{e} -> {v}")
             # 484
             # 400
         elif e == "PU":  # ?
             pass
-            print(f"{e} -> {v}")
+            logger.debug(f"{e} -> {v}")
             # in WOS:
                 # SPRINGER HEIDELBERG
                 # W B SAUNDERS CO LTD
@@ -506,21 +510,21 @@ def _parse_ris_block(lines, sourcebanktype=SourceBankType.UNKNOWN):
                 # in WOS
         elif e == "PI":  # ?
             pass
-            print(f"{e} -> {v}")
+            logger.debug(f"{e} -> {v}")
             # PHILADELPHIA
             # EDINBURGH
             # COLLEGE PK
             # in WOS
         elif e == "PA":  # Personal notes.
             pass
-            if debug: print(f"{e} -> {v}")
+            if debug: logger.debug(f"{e} -> {v}")
             # TWO COMMERCE SQ, 2001 MARKET ST, PHILADELPHIA, PA 19103 USA
             # CALEDONIAN EXCHANGE, 19A CANNING ST, EDINBURGH, Lothian, ENGLAND
             # GENTHINER STRASSE 13, D-10785 BERLIN, GERMANY
             # 130 QUEENS QUAY E, STE 1102, TORONTO, ON M5A 0P6, CANADA
         elif e == "J9":  # ?
             pass
-            print(f"{e} -> {v}")
+            logger.debug(f"{e} -> {v}")
             # MEDICINE
             # J GLOB HEALTH
             # SEIZURE-EUR J EPILEP
@@ -528,7 +532,7 @@ def _parse_ris_block(lines, sourcebanktype=SourceBankType.UNKNOWN):
             # in WOS
         elif e == "JI":
             pass
-            print(f"{e} -> {v}")
+            logger.debug(f"{e} -> {v}")
             # JMIR Med. Inf.
             # Anal. Bioanal. Chem.
             # Medicine (Baltimore)
@@ -541,7 +545,7 @@ def _parse_ris_block(lines, sourcebanktype=SourceBankType.UNKNOWN):
             #    - AHCI – Arts & Humanities Citation Index
             #    - ESCI – Emerging Sources Citation Index
             pass
-            print(f"{e} -> {v}")
+            logger.debug(f"{e} -> {v}")
             # Science Citation Index Expanded (SCI-EXPANDED)
             # Social Science Citation Index (SSCI)
             # Emerging Sources Citation Index (ESCI)
@@ -549,20 +553,20 @@ def _parse_ris_block(lines, sourcebanktype=SourceBankType.UNKNOWN):
 
         elif e == "CP":  # City/place of publication.[9][16] Issue.[21][18]
             pass
-            # print(f"{e} -> {v}")
+            # logger.debug(f"{e} -> {v}")
             # IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)
             # 16th ACM/IEEE International Conference on Human-Robot Interaction (HRI)
             # 9th Annual Sessions of the American-College-of-Surgeons (ACS)
             # in WOS
         elif (e == "A1"):  # Interviewee. (Primary) author. Synonym of AU.
             pass
-            print(f"{e} -> {v}")
+            logger.debug(f"{e} -> {v}")
             # Assoc Computat Linguist
             # Assoc Advancement Artificial Intelligence
             # Assoc Comp Machinery
         elif e == "FU": # Funding source or funding acknowledgment.
             pass
-            if debug: print(f"{e} -> {v}")
+            if debug: logger.debug(f"{e} -> {v}")
             # National Science Foundation
             # Projekt DEAL
             # i2b2 National Center for Biomedical Computing [U54LM008748]
@@ -571,10 +575,10 @@ def _parse_ris_block(lines, sourcebanktype=SourceBankType.UNKNOWN):
             # FU -> Kamprad Family Foundation for Entrepreneurship, Research Charity; European Interreg project
         elif e == "FX":
             pass
-            if debug: print(f"{e} -> {v}")
+            if debug: logger.debug(f"{e} -> {v}")
         elif e == "MA":
             pass
-            if debug: print(f"{e} -> {v}")
+            if debug: logger.debug(f"{e} -> {v}")
             # LB1650
             # 1255P
             # S91
@@ -582,12 +586,12 @@ def _parse_ris_block(lines, sourcebanktype=SourceBankType.UNKNOWN):
             # 3076
         elif e == "U2": # Notes. User definable 2–5.
             pass
-            if debug: print(f"{e} -> {v}")
+            if debug: logger.debug(f"{e} -> {v}")
             # in EMBASE
             # U2 -> L39466308
         elif e == "U4": # Notes. User definable 2–5.
             pass
-            if debug: print(f"{e} -> {v}")
+            if debug: logger.debug(f"{e} -> {v}")
             # in EMBASE
             # U4 -> 2004-11-18
 
@@ -599,8 +603,8 @@ def _parse_ris_block(lines, sourcebanktype=SourceBankType.UNKNOWN):
                 pass
                 if e != "\n":
                     unknown_tag_list.append (e)
-                    print(f"Unhandle Tag ....{e}")
-                    print(f"    {e} -> {v}")
+                    logger.debug(f"Unhandle Tag ....{e}")
+                    logger.debug(f"    {e} -> {v}")
         # ------------------------------Parse all tag we need-----------------
 
     if a.Journal is None or a.Journal == "":
@@ -611,7 +615,7 @@ def _parse_ris_block(lines, sourcebanktype=SourceBankType.UNKNOWN):
 
     a.PublicationType =  ptype_list
 
-    if debug:  print(f"List of unknown Tag of RIS : {unknown_tag_list}")
+    if debug:  logger.debug(f"List of unknown Tag of RIS : {unknown_tag_list}")
     return a
 
 
@@ -622,6 +626,7 @@ def import_ris_file(filepath, sourcebanktype=SourceBankType.UNKNOWN):
     #             return parser(**kw).parse_lines(f)
 
     # Read file as list of lines
+    logger.debug(f"Read {filepath} ...")
     with open(filepath, encoding="utf8") as file:
         lines = file.readlines()
 
@@ -630,6 +635,7 @@ def import_ris_file(filepath, sourcebanktype=SourceBankType.UNKNOWN):
     import_article = 0
     tqdm = get_tqdm()
     bar = tqdm(total=len(lines), desc="Processing ")
+    bar.update(1)
     for i in range(0, len(lines) - 1):
         bar.update(1)
         a_block.append(lines[i])
@@ -640,6 +646,7 @@ def import_ris_file(filepath, sourcebanktype=SourceBankType.UNKNOWN):
             
             if r is not None:
                 import_article = import_article + 1
+                logger.debug(f"Processing - {import_article} article(s) imported ")
                 bar.set_description(f"Processing - {import_article} article(s) imported ")
 
             a_block = []
@@ -650,4 +657,4 @@ def import_ris_file(filepath, sourcebanktype=SourceBankType.UNKNOWN):
         #         parse_ris_block(a_block)
         #         a_block = []
     bar.close()
-    logger.INFO(f"{import_article} article(s) imported")
+    logger.info(f"{import_article} article(s) imported")

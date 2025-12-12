@@ -118,7 +118,13 @@ def shorten_name_from_last_first(full_name: str) -> str:
         >>> shorten_name_from_last_first("Smith, John")
         'Smith, J.'
     """
-    last_name, first_name = [part.strip() for part in full_name.split(',')]
+    try:
+        last_name, first_name = [part.strip() for part in full_name.split(',')]
+    except Exception as e: # ToDo error_name_export_in_dataset
+        last_name = "Error"
+        first_name = str(e)
+
+
     return f"{last_name}, {first_name[0]}."
 
 

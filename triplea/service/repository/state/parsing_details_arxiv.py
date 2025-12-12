@@ -1,11 +1,13 @@
 from triplea.schemas.article import Article, Author
-from triplea.service.click_logger import logger
-from triplea.utils.general import print_error
-
+# from triplea.service.click_logger import logger
+import logging
+logger = logging.getLogger(__name__)
+logger.addHandler(logging.NullHandler())
 
 def _parse_arxiv_author(single_author_dict: dict) -> Author:
     a = Author()
     a.FullName = single_author_dict["name"]
+    logger.warning("TODO affilation in _parse_arxiv_author")
     # TODO affilation
     return a
 
@@ -18,7 +20,7 @@ def parsing_details_arxiv(article: Article) -> Article:
 
     if data is None:
         print()
-        logger.ERROR(
+        logger.error(
             f"""Error in Original Article data. It is Null.
             PMID = {article.ArxivID}"""
         )
@@ -46,7 +48,7 @@ def parsing_details_arxiv(article: Article) -> Article:
 
         # TODO DOI
         return article
-    except Exception:
+    except Exception as e:
         article.State = backward_state
-        print_error()
+        logger.error(f"Error in parsing_details_arxiv : {e}" , exc_info=True)
         return article

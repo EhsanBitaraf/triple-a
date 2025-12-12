@@ -8,9 +8,17 @@ import triplea.service.repository.persist as persist
 from triplea.utils.general import print_error
 from triplea.utils.general import get_tqdm
 tps_limit = SETTINGS.AAA_TPS_LIMIT
-
+import warnings
 
 def move_state_until(end_state: int):
+
+    warnings.warn(
+        """move_state_until() is deprecated
+          and will be removed in a future version.""",
+        DeprecationWarning,
+        stacklevel=2
+    )
+
     l_pmid = persist.get_all_article_pmid_list()
     logger.INFO(str(len(l_pmid)) + " Article(s) is arepo ")
 

@@ -12,10 +12,13 @@ import triplea.service.llm.model_template_101 as MODEL
 
 # How to suppress OpenAI API warnings in Python
 # https://stackoverflow.com/questions/71893613/how-to-suppress-openai-api-warnings-in-python
-import logging
+# import logging
 
-logging.getLogger().setLevel(logging.CRITICAL)
+# logging.getLogger().setLevel(logging.CRITICAL)
+import warnings
 
+# فقط هشدارهای langchain_openai را پنهان کن
+warnings.filterwarnings("ignore", module="langchain_openai")
 
 os.environ["OPENAI_API_KEY"] = "dummy_key"
 

@@ -1,11 +1,81 @@
 # from triplea.db.mongo_nav import get_article_title_and_abstract
+import warnings
 from triplea.schemas.article import Article
 from triplea.service.llm import get_prompt_with_template
 import triplea.service.repository.persist as PERSIST
 from triplea.utils.general import print_error
-from triplea.service.click_logger import logger
+from triplea.service.click_logger import logger as click_log
 import click
 
+from triplea.utils.general import get_tqdm
+import logging
+logger = logging.getLogger(__name__)
+logger.addHandler(logging.NullHandler())
+
+def precalculate_llm_cost(
+    time_taken_per_request: float,
+    avarage_output_tokens: int,
+    proccess_bar=True
+):
+    l_id = PERSIST.get_article_id_list_by_cstate(0, "FlagShortReviewByLLM")
+    n = 0
+    max_record = len(l_id)
+    logger.info(f"{str(max_record)} Article(s) exist for precalculate LLM cost")
+    if proccess_bar:
+        tqdm = get_tqdm()
+        bar = tqdm(total=max_record, desc="Processing ")
+
+    input_token = 0
+    for id in l_id:
+        n = n + 1
+        try:
+            a = PERSIST.get_article_by_id(id)
+            article = Article(**a.copy())
+
+            prompt = get_prompt_with_template(article.Title, article.Abstract)
+            input_token = input_token + (len(prompt) / 4)
+
+            if proccess_bar:
+                bar.set_description(f"""{n} Article(s) check""")
+                bar.update(1)
+
+
+        except Exception as e:
+            logger.error(f"Error processing article {id} but move next : {e}" , exc_info=True)
+
+    output_token = avarage_output_tokens * n
+
+    models = [
+    {"model": "GPT-4o" , "input" : 2.50 , "output" : 10},
+    {"model": "GPT-4o mini" , "input" : 0.150 , "output" : 0.600},
+    {"model": "GPT-4.1", "input": 2, "output": 8},
+    {"model": "gpt-4.1-mini", "input": 0.4, "output": 1.6},
+    {"model": "OpenAI o1" , "input" :15.00 , "output" : 60.00 },
+    {"model": "OpenAI o3-mini" , "input" :1.10 , "output" : 4.40 },
+    {"model": "GPT-5", "input": 1.25, "output": 10.00},
+    {"model": "GPT-5 mini", "input": 0.25, "output": 2.00},
+    {"model": "GPT-5 nano", "input": 0.05, "output": 0.40},
+    
+    ]
+
+    total_time = time_taken_per_request * n
+    logger.info(f"Input token = {input_token}, Estimation of output token = {output_token}, Estimate of Total Time = {total_time}")
+    total= input_token + output_token
+    
+    r = []
+    for m in models:
+        model = m['model']
+        input_price_per_million_tokens = m['input']
+        output_price_per_million_tokens = m['output']
+
+        input_cost = (input_token / 1000000) * input_price_per_million_tokens 
+        output_cost = (output_token / 1000000) * output_price_per_million_tokens 
+        total_cost = input_cost + output_cost
+        logger.info(f"The total cost based on the {model} is {total_cost}$.")
+        r.append ({"model": model , "total_cost": total_cost})
+
+    bar.close()
+    return r
 
 def post_calculate(template_id: str, limit_sample=0, proccess_bar=True):
     l_id = PERSIST.get_article_id_list_by_cstate(1, "FlagShortReviewByLLM")
@@ -62,6 +132,13 @@ def post_calculate(template_id: str, limit_sample=0, proccess_bar=True):
 def precalculate(
     time_taken_per_request: float, avarage_output_tokens: int, proccess_bar=True
 ):
+    warnings.warn(
+        """precalculate() is deprecated
+          and will be removed in a future version.
+          You can use precalculate_llm_cost""",
+        DeprecationWarning,
+        stacklevel=2
+    )
     # This not General
     # artilce_list = get_article_title_and_abstract()
 
@@ -81,7 +158,7 @@ def precalculate(
             article = Article(**a.copy())
         except Exception:
             print()
-            print(logger.ERROR(f"Error in parsing article. ID = {id}"))
+            print(click_log.ERROR(f"Error in parsing article. ID = {id}"))
             print_error()
 
         prompt = get_prompt_with_template(article.Title, article.Abstract)

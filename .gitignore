@@ -131,10 +131,13 @@ dmypy.json
 # My 
 database/*
 /main_*.py
+/main_*.ipynb
 out-flake8.txt
 
 dt-batch-api-call.ipynb
 dt-bibliometric-analysis.ipynb
 dt-main-lab.ipynb
 output/*
-llm_template/*
+# llm_template/*
+references/*
+/*.json

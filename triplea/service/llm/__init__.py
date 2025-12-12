@@ -1,11 +1,15 @@
 # How to suppress OpenAI API warnings in Python
 # https://stackoverflow.com/questions/71893613/how-to-suppress-openai-api-warnings-in-python
 import json
-import logging
+# import logging
 
 from triplea.utils.general import print_error
 
-logging.getLogger().setLevel(logging.CRITICAL)
+# logging.getLogger().setLevel(logging.CRITICAL)
+import warnings
+
+# فقط هشدارهای langchain_openai را پنهان کن
+warnings.filterwarnings("ignore", module="langchain_openai")
 
 import os
 import time
@@ -18,7 +22,8 @@ import triplea.service.repository.persist as PERSIST
 from triplea.service.llm.config_template import read_llm_template as template
 from triplea.service.llm.config_template import read_llm_template_from_file
 
-os.environ["OPENAI_API_KEY"] = "dummy_key"
+if not os.environ.get("OPENAI_API_KEY"):
+    os.environ["OPENAI_API_KEY"] = "dummy_api_key"
 
 T = template()
 
@@ -50,7 +55,7 @@ def get_prompt_with_template_from_special_template_file(template_file, dbuid: st
     prompt_template = PromptTemplate.from_template(T["template"])
     a = PERSIST.get_article_by_id(dbuid)
     prompt = prompt_template.format(title=a['Title'], abstract=a['Abstract'])
-    print(f"""Title with DBUID {dbuid}: {a['Title']} """)
+    # print(f"""Title with DBUID {dbuid}: {a['Title']} """)
     return prompt
 
 

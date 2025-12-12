@@ -92,7 +92,6 @@ https://badge.fury.io/for/py/Triple-a -->
 - **Single Article Analysis**: Analyze individual articles.
 - **Network Analysis**: Conduct detailed network analysis at both node and overall graph levels.
 - **Bibliography Import**: Easily import bibliography files in various formats (e.g., `.bib`, `.ris`).
-- **LLM Research Querying**: Ask an LLM research questions from the repository of articles and review its results.
 - **Topic Extraction**: Perform topic extraction using an external service.
 - **Affiliation Parsing**: Perform affiliation parsing using an external service.
 

@@ -2,8 +2,10 @@ from triplea.config.settings import SETTINGS
 import requests
 import xmltodict
 import json
-from triplea.service.click_logger import logger
-
+# from triplea.service.click_logger import logger
+import logging
+logger = logging.getLogger(__name__)
+logger.addHandler(logging.NullHandler())
 
 def get_article_list_from_pubmed(retstart: int, retmax: int, search_term: str) -> dict:
     """
@@ -30,8 +32,8 @@ def get_article_list_from_pubmed(retstart: int, retmax: int, search_term: str) -
         "retmax": retmax,  # Total number of UIDs from the retrieved set to be shown in the XML output (default=20). By default, ESearch only includes the first 20 UIDs retrieved in the XML output. If usehistory is set to 'y', the remainder of the retrieved set will be stored on the History server; otherwise these UIDs are lost. Increasing retmax allows more of the retrieved UIDs to be included in the XML output, up to a maximum of 10,000 records.
         # # For chunking data when more than 10000
         # "datetype" : "pdat",
-        # "mindate" : "2021/01/01",
-        # "maxdate" : "2023/09/17"
+        # "mindate" : "2010/01/01",
+        # "maxdate" : "2025/01/03"
     }
 
     headers = {"User-Agent": SETTINGS.AAA_CLIENT_AGENT}
@@ -47,7 +49,9 @@ def get_article_list_from_pubmed(retstart: int, retmax: int, search_term: str) -
 
     # sending get request and saving the response as response object
     try:
-        r = requests.get(url=URL, params=PARAMS, headers=headers, proxies=proxy_servers)
+        logger.debug(f"get_article_list_from_pubmed retstart:{retstart} retmax:{retmax} search_term(len):{len(search_term)} ")
+        # r = requests.get(url=URL, params=PARAMS, headers=headers, proxies=proxy_servers)
+        r = requests.post(url=URL, data=PARAMS, headers=headers, proxies=proxy_servers)
     except Exception:
         raise Exception("Connection Error.")
 
@@ -55,8 +59,8 @@ def get_article_list_from_pubmed(retstart: int, retmax: int, search_term: str) -
     try:
         data = r.json()
     except Exception as ex:
-        logger.ERROR(f"Error : {ex}")
-        logger.ERROR(f"{type(r)}  {r} ")
+        logger.error(f"Error : {ex}")
+        logger.error(f"{type(r)}  {r} ")
         raise
     return data
 
