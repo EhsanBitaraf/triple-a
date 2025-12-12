@@ -1,0 +1,20 @@
+click
+tinydb
+pydantic
+python-dotenv
+xmltodict
+networkx
+pandas
+nxviz
+netwulf
+pymongo
+ipykernel
+ipywidgets
+httpx
+requests
+tomli
+pypdf
+PyPDF2
+# For LLM
+langchain
+langchain_openai

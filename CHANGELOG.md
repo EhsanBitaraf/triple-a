@@ -2,6 +2,19 @@
 All notable changes to this project will be documented in this file.
 
 
+## v1.1.2 2025-12-12
+
+### Improvements
+- Initial version v1.1.2 and update poetry.lock with python 310
+
+
+### Bug Fixes
+- Fix poetry.lock for 20 security issue
+- Fix get_tqdm()
+- Fix triplea\service\llm\__init__.py with Backwards-compatible import for PromptTemplate
+- Fix hkit in pyproject.toml
+
+
 ## v1.1.1 2025-07-20
 
 ### Task
@@ -72,6 +85,29 @@ NameError: name 'exit' is not defined
 
 
 ### Improvements
+- Check security
+change last dependency in pyproject :
+
+```
+[tool.poetry.dependencies]
+python = "^3.10"
+click = "^8.1.7"
+pydantic = "^2.6.1"
+pydantic-settings = "^2.1.0"
+tomli = "^2.0.1"
+pymongo = "^4.6.1"
+langchain-openai = "^0.0.5"
+langchain = "^0.1.6"
+tinydb = "^4.8.0"
+networkx = "^3.2.1"
+xmltodict = "^0.13.0"
+nxviz = "^0.7.4"
+netwulf = "^0.1.5"
+ipykernel = "^6.29.2"
+ipywidgets = "^8.1.2"
+pypdf2 = "^3.0.1"
+```
+
 - Add `precalculate_llm_cost` and deprecated `precalculate`
 - Add `from triplea.client.crossref import crossref_by_doi`
 - Add `from triplea.client.altmetric import get_altmetric`
