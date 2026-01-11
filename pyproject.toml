@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "triplea"
-version = "1.1.1"
+version = "1.1.2"
 description = "Article Analysis Assistant"
 authors = ["EhsanBitaraf <bitaraf.e@iums.ac.ir>", "Maryam Jafarpour <maryam.jafarpoor@gmail.com>"]
 license = "Apache-2.0"
