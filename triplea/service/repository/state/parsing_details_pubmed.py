@@ -379,7 +379,7 @@ def parsing_details_pubmed(article: Article) -> Article:  # noqa: C901
             article.Authors = author_list
         else:
             logger.warning(
-                f"Article {article.PMID} has no AuthorList", forecolore="white"
+                f"Article {article.PMID} has no AuthorList"
             )
 
 

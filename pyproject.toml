@@ -39,7 +39,8 @@ pypdf2 = "*"
 ratelimit = "*"
 unstructured = "*"
 tomli = "*"     
-ebhkit = { git = "https://github.com/EhsanBitaraf/hkit.git" }
+# ebhkit = { git = "https://github.com/EhsanBitaraf/hkit.git" }
+ebhkit = "*"   
 
 [tool.poetry.scripts]
 aaa = "triplea.cli.aaa:main"

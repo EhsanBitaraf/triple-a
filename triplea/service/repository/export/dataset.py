@@ -27,6 +27,7 @@ import pandas as pd
 from pathlib import Path
 from triplea.config.settings import ROOT
 import csv
+import ast
 
 
 def clean_authors(d):
@@ -357,7 +358,9 @@ def read_dataset_for_analysis(DATASET_FILE, scimagojr_csv_file_path):
     df = fill_unmapped_journall_with_publisher(df)
     return df
 
-def detect_field_types(df):
+
+
+def detect_field_types_old(df):
     main_fields = []
     one_to_many_fields = []
 
@@ -369,7 +372,7 @@ def detect_field_types(df):
 
     return main_fields, one_to_many_fields
 
-def conver_df_to_csv(df, output_dir = ROOT):
+def conver_df_to_csv_old(df, output_dir = ROOT):
     # Make sure output_dir is a Path object
     output_dir = Path(output_dir)
 
@@ -403,4 +406,194 @@ def conver_df_to_csv(df, output_dir = ROOT):
                 rows.append({'id': index, field: item})
         output_file = output_dir / f'main_{field}.csv'
         pd.DataFrame(rows).to_csv(output_file, index=False)
+        print(f"-- main_{field}.csv saved.")
+
+
+
+###
+
+
+def to_list_cell(x, sep=','):
+    if x is None or (isinstance(x, float) and pd.isna(x)):
+        return []
+
+    if isinstance(x, list):
+        return x
+
+    if isinstance(x, (tuple, set)):
+        return list(x)
+
+    if isinstance(x, str):
+        s = x.strip()
+        if not s:
+            return []
+
+        # اگر شبیه لیست متنی بود: "['a','b']" یا '["a","b"]'
+        if (s.startswith('[') and s.endswith(']')) or (s.startswith('(') and s.endswith(')')):
+            try:
+                v = ast.literal_eval(s)
+                if isinstance(v, (list, tuple, set)):
+                    return list(v)
+            except Exception:
+                pass
+
+        # جداکردن با sep (کاما)
+        return [p.strip() for p in s.split(sep) if p.strip()]
+
+    return [x]
+
+
+def detect_field_types(df, sep=','):
+    main_fields = []
+    one_to_many_fields = []
+
+    for col in df.columns:
+        # اگر حداقل یکی از سلول‌ها list واقعی بود
+        has_real_list = df[col].apply(lambda x: isinstance(x, list)).any()
+
+        # یا اگر رشته‌ای داشت که شامل جداکننده است (مثل کاما)
+        has_sep_in_str = df[col].apply(lambda x: isinstance(x, str) and (sep in x)).any()
+
+        if has_real_list or has_sep_in_str:
+            one_to_many_fields.append(col)
+        else:
+            main_fields.append(col)
+
+    return main_fields, one_to_many_fields
+
+
+
+
+
+def convert_df_to_csv(df, output_dir, sep=','):
+    """
+    Convert a dataframe into:
+    - main.csv (one row per record with ID)
+    - Separate CSV files for one-to-many fields
+
+    Parameters:
+        df (pd.DataFrame): Input dataframe
+        output_dir (str or Path): Output directory path
+        sep (str): Separator for string-based multi values (default=',')
+    """
+
+    # Ensure output_dir is a Path object
+    output_dir = Path(output_dir)
+
+    # Create directory (including parents) if it does not exist
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    print(f"Output directory is: {output_dir}")
+
+    # Reset index to create stable IDs
+    df = df.reset_index(drop=True)
+
+    # Detect field types
+    main_fields = []
+    one_to_many_fields = []
+
+    for column in df.columns:
+        has_list = df[column].apply(lambda x: isinstance(x, list)).any()
+        has_sep_string = df[column].apply(
+            lambda x: isinstance(x, str) and sep in x
+        ).any()
+
+        if has_list or has_sep_string:
+            one_to_many_fields.append(column)
+        else:
+            main_fields.append(column)
+
+    print("These are main fields:")
+    print(main_fields)
+
+    print("These are one-to-many fields:")
+    print(one_to_many_fields)
+
+    # ---------------------------
+    # Normalize one-to-many fields
+    # ---------------------------
+
+    def normalize_to_list(value):
+        """Convert cell value into a list safely."""
+
+        # Handle NaN / None
+        if value is None or (isinstance(value, float) and pd.isna(value)):
+            return []
+
+        # Already a list
+        if isinstance(value, list):
+            return value
+
+        # Tuple or set → convert to list
+        if isinstance(value, (tuple, set)):
+            return list(value)
+
+        # String cases
+        if isinstance(value, str):
+            s = value.strip()
+
+            if not s:
+                return []
+
+            # Try parsing list-like strings: "['a','b']"
+            if (s.startswith('[') and s.endswith(']')) or \
+               (s.startswith('(') and s.endswith(')')):
+                try:
+                    parsed = ast.literal_eval(s)
+                    if isinstance(parsed, (list, tuple, set)):
+                        return list(parsed)
+                except Exception:
+                    pass
+
+            # Fallback: split by separator
+            return [item.strip() for item in s.split(sep) if item.strip()]
+
+        # Any other scalar → treat as single-item list
+        return [value]
+
+    # Apply normalization
+    for field in one_to_many_fields:
+        df[field] = df[field].apply(normalize_to_list)
+
+    # ---------------------------
+    # Create main.csv
+    # ---------------------------
+
+    main_df = df[main_fields].copy()
+
+    # Insert explicit ID column
+    main_df.insert(0, 'id', main_df.index)
+
+    main_df.to_csv(
+        output_dir / 'main.csv',
+        index=False,
+        quoting=csv.QUOTE_ALL,
+        escapechar='\\'
+    )
+
+    print("-- main.csv saved.")
+
+    # ---------------------------
+    # Create one-to-many CSV files
+    # ---------------------------
+
+    for field in one_to_many_fields:
+        rows = []
+
+        for idx, items in df[field].items():
+            for item in items:
+                rows.append({
+                    'id': idx,
+                    field: item
+                })
+
+        output_file = output_dir / f'main_{field}.csv'
+
+        pd.DataFrame(rows).to_csv(
+            output_file,
+            index=False,
+            quoting=csv.QUOTE_ALL,
+            escapechar='\\'
+        )
+
         print(f"-- main_{field}.csv saved.")

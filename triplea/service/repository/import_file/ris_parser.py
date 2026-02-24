@@ -21,6 +21,7 @@ def _parse_ris_block(lines, sourcebanktype=SourceBankType.UNKNOWN):
     last_e = ""
     if debug: logger.debug(f"#--------------------------------------------")
     C3 = ""
+    embase_year = None
     # for line in lines:
     unknown_tag_list = []
     ptype_list = []
@@ -282,8 +283,10 @@ def _parse_ris_block(lines, sourcebanktype=SourceBankType.UNKNOWN):
         elif (e == "Y1"):
             # "Year///Date".[14] Primary date/year.
             #  Synonym of PY.
+            # in EMBASE ris
             # a.Year = v
-            if debug: logger.debug(f"{e} -> {v}")
+            embase_year = v
+            # if debug: logger.debug(f"{e} -> {v}")
             
         elif e == "Y2":  
             # Access date or date enacted.
@@ -613,6 +616,9 @@ def _parse_ris_block(lines, sourcebanktype=SourceBankType.UNKNOWN):
     if a.SourceBank is None:
         a.SourceBank = sourcebanktype
 
+    if a.Year is None or a.Year == '':
+        if embase_year is not None:
+            a.Year = embase_year
     a.PublicationType =  ptype_list
 
     if debug:  logger.debug(f"List of unknown Tag of RIS : {unknown_tag_list}")
@@ -627,8 +633,12 @@ def import_ris_file(filepath, sourcebanktype=SourceBankType.UNKNOWN):
 
     # Read file as list of lines
     logger.debug(f"Read {filepath} ...")
-    with open(filepath, encoding="utf8") as file:
-        lines = file.readlines()
+    try:
+        with open(filepath, encoding="utf8") as file:
+            lines = file.readlines()
+    except Exception as e:
+        logger.error(f"Error in reading RIS file: {str(e)}")
+        raise
 
     # parse lines into the RIS Block
     a_block = []

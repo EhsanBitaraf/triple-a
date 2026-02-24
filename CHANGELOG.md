@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 
 
 ### Bug Fixes
+- Fix `repository 'https://github.com/EhsanBitaraf/hkit.git/' not found` in pyproject.toml
 - Fix poetry.lock for 20 security issue
 - Fix get_tqdm()
 - Fix triplea\service\llm\__init__.py with Backwards-compatible import for PromptTemplate
