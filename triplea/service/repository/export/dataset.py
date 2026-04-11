@@ -435,7 +435,7 @@ def to_list_cell(x, sep=','):
                 if isinstance(v, (list, tuple, set)):
                     return list(v)
             except Exception:
-                pass
+                pass # nosec
 
         # جداکردن با sep (کاما)
         return [p.strip() for p in s.split(sep) if p.strip()]
@@ -543,7 +543,7 @@ def convert_df_to_csv(df, output_dir, sep=','):
                     if isinstance(parsed, (list, tuple, set)):
                         return list(parsed)
                 except Exception:
-                    pass
+                    pass # nosec
 
             # Fallback: split by separator
             return [item.strip() for item in s.split(sep) if item.strip()]

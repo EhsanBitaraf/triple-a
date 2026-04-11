@@ -26,21 +26,29 @@ pydantic = "*"
 pydantic-settings = "*"
 pymongo = "*"
 tinydb = "*"
-langchain-openai = "*"
-langchain = "*"
 networkx = "*"
 pandas = "*"
+tomli = "*"
+ebhkit = "*"
 xmltodict = "*"
-nxviz = "*"
-netwulf = "*"
-ipykernel = "*"
-ipywidgets = "*"
-pypdf2 = "*"
-ratelimit = "*"
-unstructured = "*"
-tomli = "*"     
-# ebhkit = { git = "https://github.com/EhsanBitaraf/hkit.git" }
-ebhkit = "*"   
+
+langchain = { version = "*", optional = true }
+langchain-openai = { version = "*", optional = true }
+nxviz = { version = "*", optional = true }
+netwulf = { version = "*", optional = true }
+ipykernel = { version = "*", optional = true }
+ipywidgets = { version = "*", optional = true }
+pypdf2 = { version = "*", optional = true }
+ratelimit = { version = "*", optional = true }
+unstructured = { version = "*", optional = true }
+
+[tool.poetry.extras]
+llm = ["langchain", "langchain-openai"]
+viz = ["nxviz", "netwulf"]
+notebook = ["ipykernel", "ipywidgets"]
+pdfconvert = ["pypdf2", "unstructured"]
+throttle = ["ratelimit"]
+all = ["langchain", "langchain-openai", "nxviz", "netwulf", "ipykernel", "ipywidgets", "pypdf2", "ratelimit", "unstructured"]
 
 [tool.poetry.scripts]
 aaa = "triplea.cli.aaa:main"
