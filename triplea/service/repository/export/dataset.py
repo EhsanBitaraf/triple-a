@@ -339,7 +339,7 @@ def fill_unmapped_journall_with_publisher(df):
 
 def read_dataset_for_analysis(DATASET_FILE, scimagojr_csv_file_path):
     scimagojr_csv_file_path = Path(scimagojr_csv_file_path)
-    with open(DATASET_FILE, "r") as json_file:
+    with open(DATASET_FILE, "r", encoding="utf-8") as json_file:
         data = json.load(json_file)
 
     for d in data:

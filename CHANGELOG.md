@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 
 
 ### Bug Fixes
+- Fix "utf-8" encoding in reading dataset
 - Fix `repository 'https://github.com/EhsanBitaraf/hkit.git/' not found` in pyproject.toml
 - Fix poetry.lock for 20 security issue
 - Fix get_tqdm()
