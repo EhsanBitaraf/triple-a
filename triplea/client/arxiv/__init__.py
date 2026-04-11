@@ -31,7 +31,13 @@ def get_article_list_from_arxiv(
 
     # sending get request and saving the response as response object
     try:
-        r = requests.get(url=URL, params=PARAMS, headers=headers, proxies=proxy_servers)
+        r = requests.get(
+            url=URL,
+            params=PARAMS,
+            headers=headers,
+            proxies=proxy_servers,
+            timeout=10
+        )
     except Exception:
         raise Exception("Connection Error.")
 
@@ -61,7 +67,12 @@ def get_pdf_by_arxiv_id(arxiv_id: str):
 
     # sending get request and saving the response as response object
     try:
-        r = requests.get(url=URL, headers=headers, proxies=proxy_servers)
+        r = requests.get(
+            url=URL,
+            headers=headers,
+            proxies=proxy_servers,
+            timeout=10
+        )
     except Exception:
         raise Exception("Connection Error.")
 

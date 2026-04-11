@@ -136,7 +136,7 @@ def get_altmetric(
                 )
             except Exception:
                 # no SETTINGS discovered; keep default UA
-                pass
+                pass # nosec
 
     headers = {"User-Agent": resolved_user_agent}
 

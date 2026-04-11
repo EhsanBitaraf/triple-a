@@ -51,7 +51,14 @@ def get_article_list_from_pubmed(retstart: int, retmax: int, search_term: str) -
     try:
         logger.debug(f"get_article_list_from_pubmed retstart:{retstart} retmax:{retmax} search_term(len):{len(search_term)} ")
         # r = requests.get(url=URL, params=PARAMS, headers=headers, proxies=proxy_servers)
-        r = requests.post(url=URL, data=PARAMS, headers=headers, proxies=proxy_servers)
+        # r = requests.post(url=URL, data=PARAMS, headers=headers, proxies=proxy_servers)
+        r = requests.post(
+                url=URL,
+                data=PARAMS,
+                headers=headers,
+                proxies=proxy_servers,
+                timeout=30
+            )
     except Exception:
         raise Exception("Connection Error.")
 
@@ -90,7 +97,14 @@ def get_article_details_from_pubmed(PMID) -> dict:
     else:
         proxy_servers = None
 
-    r = requests.get(url=URL, params=PARAMS, headers=headers, proxies=proxy_servers)
+    # r = requests.get(url=URL, params=PARAMS, headers=headers, proxies=proxy_servers)
+    r = requests.get(
+        url=URL,
+        params=PARAMS,
+        headers=headers,
+        proxies=proxy_servers,
+        timeout=10
+    )
     if r.status_code == 200:
         xml = r.content
         data_dict = xmltodict.parse(xml)
@@ -119,7 +133,14 @@ def get_cited_article_from_pubmed(PMID) -> dict:
     else:
         proxy_servers = None
 
-    r = requests.get(url=URL, params=PARAMS, headers=headers, proxies=proxy_servers)
+    # r = requests.get(url=URL, params=PARAMS, headers=headers, proxies=proxy_servers)
+    r = requests.get(
+        url=URL,
+        params=PARAMS,
+        headers=headers,
+        proxies=proxy_servers,
+        timeout=10
+    )
     if r.status_code == 200:
         # xml = r.content
         # data_dict = xmltodict.parse(xml)

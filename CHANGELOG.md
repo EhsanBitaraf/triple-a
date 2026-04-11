@@ -5,10 +5,16 @@ All notable changes to this project will be documented in this file.
 ## v1.1.2 2025-12-12
 
 ### Improvements
+- install bandit
 - Initial version v1.1.2 and update poetry.lock with python 310
 
 
 ### Bug Fixes
+- Add timeout to all HTTP requests to prevent potential hangs and improve reliability
+- Fix silent exception handling by marking intentional ignores with # nosec
+- Improve error handling clarity in data export and client modules
+- Resolve potential resource exhaustion issue caused by missing request timeouts
+- Clean up dependency configuration to avoid installing unnecessary packages by default
 - Fix "utf-8" encoding in reading dataset
 - Fix `repository 'https://github.com/EhsanBitaraf/hkit.git/' not found` in pyproject.toml
 - Fix poetry.lock for 20 security issue
