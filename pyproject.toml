@@ -38,7 +38,7 @@ nxviz = { version = "*", optional = true }
 netwulf = { version = "*", optional = true }
 ipykernel = { version = "*", optional = true }
 ipywidgets = { version = "*", optional = true }
-pypdf2 = { version = "*", optional = true }
+pypdf = { version = ">=3.9.0", optional = true }
 ratelimit = { version = "*", optional = true }
 unstructured = { version = "*", optional = true }
 
@@ -46,9 +46,9 @@ unstructured = { version = "*", optional = true }
 llm = ["langchain", "langchain-openai"]
 viz = ["nxviz", "netwulf"]
 notebook = ["ipykernel", "ipywidgets"]
-pdfconvert = ["pypdf2", "unstructured"]
+pdfconvert = ["pypdf", "unstructured"]
 throttle = ["ratelimit"]
-all = ["langchain", "langchain-openai", "nxviz", "netwulf", "ipykernel", "ipywidgets", "pypdf2", "ratelimit", "unstructured"]
+all = ["langchain", "langchain-openai", "nxviz", "netwulf", "ipykernel", "ipywidgets", "pypdf", "ratelimit", "unstructured"]
 
 [tool.poetry.scripts]
 aaa = "triplea.cli.aaa:main"

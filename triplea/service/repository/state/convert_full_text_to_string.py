@@ -34,11 +34,11 @@ def _pypdf_page_cleaner(page):
 def _convert_pdf2string(pdf_bytes):
     if AAA_FULL_TEXT_CONVERTER_TYPE == "pypdf":
         # from pypdf import PdfReader
-        import PyPDF2
+        from pypdf import PdfReader
 
         # Assume that the pdf bytes are stored in a variable called pdf_bytes
         pdf_stream = io.BytesIO(pdf_bytes)
-        pdf_reader = PyPDF2.PdfReader(pdf_stream)
+        pdf_reader = PdfReader(pdf_stream)
         pdf_text = ""
         for p in pdf_reader.pages:
             text = p.extract_text()

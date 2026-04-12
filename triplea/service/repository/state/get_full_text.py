@@ -2,7 +2,7 @@ import os
 from triplea.client.arxiv import get_pdf_by_arxiv_id
 from triplea.schemas.article import Article, SourceBankType
 import io
-import PyPDF2
+from pypdf import PdfReader
 from triplea.config.settings import SETTINGS
 
 # from triplea.utils.general import print_error
@@ -36,7 +36,7 @@ def _get_full_text_arxiv(article: Article):
 
     # Assume that the pdf bytes are stored in a variable called pdf_bytes
     pdf_stream = io.BytesIO(pdf_bytes)
-    pdf_reader = PyPDF2.PdfReader(pdf_stream)
+    pdf_reader = PdfReader(pdf_stream)
     print(pdf_reader.pages)
     print(len(pdf_reader.pages))
     print(pdf_reader.metadata)

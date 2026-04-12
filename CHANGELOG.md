@@ -10,6 +10,7 @@ All notable changes to this project will be documented in this file.
 
 
 ### Bug Fixes
+- replace PyPDF2 with pypdf to fix infinite loop vulnerability in PDF parsing
 - Add timeout to all HTTP requests to prevent potential hangs and improve reliability
 - Fix silent exception handling by marking intentional ignores with # nosec
 - Improve error handling clarity in data export and client modules

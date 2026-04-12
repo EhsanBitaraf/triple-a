@@ -135,6 +135,10 @@ $ source venv/bin/activate
 ### Step 4: Install Poetry
 [Poetry](https://python-poetry.org/) is used for managing dependencies in this project. If you don't already have Poetry installed, install it using pip:
 
+```bash
+python -m poetry config virtualenvs.create false
+```
+
 ```shell
 pip install poetry
 ```
@@ -909,7 +913,11 @@ poetry run pytest --cov --cov-report html
 
 This will create a directory named `htmlcov` containing an HTML report, which you can open in your web browser to visually inspect coverage details.
 
+## Use bandit
 
+```bash
+python -m bandit -r .
+```
 # Dependencies
 
 The project relies on various libraries for different functionalities. Below is a categorized list of dependencies required for the project:
