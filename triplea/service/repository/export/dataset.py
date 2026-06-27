@@ -413,6 +413,47 @@ def conver_df_to_csv_old(df, output_dir = ROOT):
 ###
 
 
+def is_list_like_string(x):
+    if not isinstance(x, str):
+        return False
+
+    s = x.strip()
+
+    if not s:
+        return False
+
+    if not (
+        (s.startswith('[') and s.endswith(']')) or
+        (s.startswith('(') and s.endswith(')'))
+    ):
+        return False
+
+    try:
+        v = ast.literal_eval(s)
+        return isinstance(v, (list, tuple, set))
+    except Exception:
+        return False
+
+
+def detect_field_types(df):
+    main_fields = []
+    one_to_many_fields = []
+
+    for col in df.columns:
+        has_real_list = df[col].apply(
+            lambda x: isinstance(x, (list, tuple, set))
+        ).any()
+
+        has_list_like_string = df[col].apply(is_list_like_string).any()
+
+        if has_real_list or has_list_like_string:
+            one_to_many_fields.append(col)
+        else:
+            main_fields.append(col)
+
+    return main_fields, one_to_many_fields
+
+
 def to_list_cell(x, sep=','):
     if x is None or (isinstance(x, float) and pd.isna(x)):
         return []
@@ -443,26 +484,23 @@ def to_list_cell(x, sep=','):
     return [x]
 
 
-def detect_field_types(df, sep=','):
-    main_fields = []
-    one_to_many_fields = []
+# def detect_field_types(df, sep=','):
+#     main_fields = []
+#     one_to_many_fields = []
 
-    for col in df.columns:
-        # اگر حداقل یکی از سلول‌ها list واقعی بود
-        has_real_list = df[col].apply(lambda x: isinstance(x, list)).any()
+#     for col in df.columns:
+#         # اگر حداقل یکی از سلول‌ها list واقعی بود
+#         has_real_list = df[col].apply(lambda x: isinstance(x, list)).any()
 
-        # یا اگر رشته‌ای داشت که شامل جداکننده است (مثل کاما)
-        has_sep_in_str = df[col].apply(lambda x: isinstance(x, str) and (sep in x)).any()
+#         # یا اگر رشته‌ای داشت که شامل جداکننده است (مثل کاما)
+#         has_sep_in_str = df[col].apply(lambda x: isinstance(x, str) and (sep in x)).any()
 
-        if has_real_list or has_sep_in_str:
-            one_to_many_fields.append(col)
-        else:
-            main_fields.append(col)
+#         if has_real_list or has_sep_in_str:
+#             one_to_many_fields.append(col)
+#         else:
+#             main_fields.append(col)
 
-    return main_fields, one_to_many_fields
-
-
-
+#     return main_fields, one_to_many_fields
 
 
 def convert_df_to_csv(df, output_dir, sep=','):
@@ -492,16 +530,18 @@ def convert_df_to_csv(df, output_dir, sep=','):
     main_fields = []
     one_to_many_fields = []
 
-    for column in df.columns:
-        has_list = df[column].apply(lambda x: isinstance(x, list)).any()
-        has_sep_string = df[column].apply(
-            lambda x: isinstance(x, str) and sep in x
-        ).any()
+    # for column in df.columns:
+    #     has_list = df[column].apply(lambda x: isinstance(x, list)).any()
+    #     has_sep_string = df[column].apply(
+    #         lambda x: isinstance(x, str) and sep in x
+    #     ).any()
 
-        if has_list or has_sep_string:
-            one_to_many_fields.append(column)
-        else:
-            main_fields.append(column)
+    #     if has_list or has_sep_string:
+    #         one_to_many_fields.append(column)
+    #     else:
+    #         main_fields.append(column)
+    
+    main_fields, one_to_many_fields = detect_field_types(df)
 
     print("These are main fields:")
     print(main_fields)

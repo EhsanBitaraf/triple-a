@@ -213,6 +213,7 @@ def parsing_details_pubmed(article: Article) -> Article:  # noqa: C901
                     structured_abstract = pubmed_article_data["Abstract"][
                         "AbstractText"
                     ]
+
                     for abstract_part in structured_abstract:
                         if "#text" in abstract_part:
                             abstract_all = (
@@ -222,27 +223,57 @@ def parsing_details_pubmed(article: Article) -> Article:  # noqa: C901
                                 + ":"
                                 + abstract_part["#text"]
                             )
-                        else:  # observe in 37036022
-                            abstract_all = (
-                                abstract_all
-                                + " "
-                                + abstract_part["@Label"]
-                                + ":"
-                                + abstract_part["b"]
-                            )
-
+                        else:   # "#text" is not in abstract_part:
+                            if "b" in abstract_part:
+                                # observe in 37036022
+                                abstract_all = (
+                                    abstract_all
+                                    + " "
+                                    + abstract_part["@Label"]
+                                    + ":"
+                                    + abstract_part["b"]
+                                )
+                            elif "i" in abstract_part:
+                                # observe in 35073153
+                                abstract_all = (
+                                    abstract_all
+                                    + " "
+                                    + abstract_part["@Label"]
+                                    + ":"
+                                    + abstract_part["i"]
+                                )
+                            else:
+                                raise Exception(f"Unknown Abstract Structure. PMID={article.PMID}")                         
                     article.Abstract = abstract_all
                 elif isinstance(pubmed_article_data["Abstract"]["AbstractText"], dict):
                     # exception happen in pmid '36497366' one-abstract-dict-mode.json
-                    article.Abstract = pubmed_article_data["Abstract"]["AbstractText"][
-                        "#text"
-                    ]
+
+                    if "i" in pubmed_article_data["Abstract"]["AbstractText"]:
+                        # I dont know why but in some case PMID = 32324109
+                        article.Abstract = pubmed_article_data["Abstract"][
+                            "AbstractText"][
+                            "i"
+                        ]
+                    elif "#text" in pubmed_article_data["Abstract"]["AbstractText"]:
+                        article.Abstract = pubmed_article_data["Abstract"][
+                            "AbstractText"][
+                            "#text"
+                        ]
                 else:
                     t = type(pubmed_article_data["Abstract"]["AbstractText"])
                     logger.error(f"Type {str(t)} in Abstract Not Implemented")
                     raise NotImplementedError
             else:
                 raise NotImplementedError
+
+
+        if isinstance(article.Abstract,list):
+            # very anormal like PMID": "33769098"
+            abst= ""
+            for ptext in article.Abstract:
+                abst = abst + " " + ptext
+            article.Abstract = abst
+
 
         # Creating a list of keywords. Merging Mesh List & Keyword List
         medline_citation = data["PubmedArticleSet"]["PubmedArticle"]["MedlineCitation"]
@@ -315,29 +346,16 @@ def parsing_details_pubmed(article: Article) -> Article:  # noqa: C901
                             raise NotImplementedError
 
             else:
-                if isinstance(PubmedData["ReferenceList"]["Reference"], dict):
-                    ref = PubmedData["ReferenceList"]["Reference"]
-                    if "ArticleIdList" in ref:
-                        if isinstance(ref["ArticleIdList"]["ArticleId"], dict):
-                            if ref["ArticleIdList"]["ArticleId"]["@IdType"] == "pubmed":
-                                reference_list.append(
-                                    ref["ArticleIdList"]["ArticleId"]["#text"]
-                                )
 
-                        elif isinstance(ref["ArticleIdList"]["ArticleId"], list):
-                            for ref_id in ref["ArticleIdList"]["ArticleId"]:
-                                if ref_id["@IdType"] == "pubmed":
-                                    reference_list.append(ref_id["#text"])
-                        else:
-                            raise NotImplementedError
-                else:
-                    for ref in PubmedData["ReferenceList"]["Reference"]:
+                # import json
+                # with open('data1.json', 'w') as file:
+                #     json.dump(PubmedData["ReferenceList"], file)
+                if "Reference" in PubmedData["ReferenceList"]:
+                    if isinstance(PubmedData["ReferenceList"]["Reference"], dict):
+                        ref = PubmedData["ReferenceList"]["Reference"]
                         if "ArticleIdList" in ref:
                             if isinstance(ref["ArticleIdList"]["ArticleId"], dict):
-                                if (
-                                    ref["ArticleIdList"]["ArticleId"]["@IdType"]
-                                    == "pubmed"
-                                ):
+                                if ref["ArticleIdList"]["ArticleId"]["@IdType"] == "pubmed":
                                     reference_list.append(
                                         ref["ArticleIdList"]["ArticleId"]["#text"]
                                     )
@@ -348,6 +366,27 @@ def parsing_details_pubmed(article: Article) -> Article:  # noqa: C901
                                         reference_list.append(ref_id["#text"])
                             else:
                                 raise NotImplementedError
+                    else:
+                        for ref in PubmedData["ReferenceList"]["Reference"]:
+                            if "ArticleIdList" in ref:
+                                if isinstance(ref["ArticleIdList"]["ArticleId"], dict):
+                                    if (
+                                        ref["ArticleIdList"]["ArticleId"]["@IdType"]
+                                        == "pubmed"
+                                    ):
+                                        reference_list.append(
+                                            ref["ArticleIdList"]["ArticleId"]["#text"]
+                                        )
+
+                                elif isinstance(ref["ArticleIdList"]["ArticleId"], list):
+                                    for ref_id in ref["ArticleIdList"]["ArticleId"]:
+                                        if ref_id["@IdType"] == "pubmed":
+                                            reference_list.append(ref_id["#text"])
+                                else:
+                                    raise NotImplementedError
+                else: # "Reference" is not in PubmedData["ReferenceList"]
+                    # I think when refrence is full text like PMID=32857892
+                    logger.warning(f"ReferenceList is not normal. PMID = {article.PMID}")
 
             article.References = reference_list
 
